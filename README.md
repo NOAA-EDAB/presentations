@@ -11,11 +11,10 @@ Why is naming files so difficult? To ameliorate your anxiety, please use the fol
 
 
 #### Directory Structure
-1.  Name of project (e.g. `Risk Assessment`)
-2.  Name of meeting and YYYY-MM-DD (e.g. `NEFMC SSC 2019-03-29`)
-3.  All associated subdirectories and a .Rproj file may be stored here. For example, a folder where R scripts are kept should be called `R`, and this should be on the same level as your .Rproj file. 
-
-*Note:* If more than one presentation exists for your event, create a subfolder called `presentations`, and nest associated subdirectories following step 3 above.
+1.  Name of project (e.g. `State of the Ecosystem`)
+2.  Name of meeting(s) (e.g. `Council meetings`)
+3.  Create a subfolder for each presentation with the meeting title and date (e.g. `NEFMC YYYY-MM-DD`). 
+4.  All associated subdirectories and a .Rproj file may be stored here. For example, a folder where R scripts are kept should be called `R`, and this should be on the same level as your .Rproj file. 
 
 #### Presentation naming scheme
 Presentation filenames should follow the format of `YYYYMMDD_meeting_surname`.
