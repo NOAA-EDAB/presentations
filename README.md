@@ -23,6 +23,7 @@ If you are compiling your Rmd to HTML, then this repository will allow you to sh
 
 1.  Move the compiled HTML document (your presentation) to the `/docs` folder
 2.  The JavaScript libraries associated with your presentation will likely already be in `/docs/libs`. However, be sure to add any missing libraries.
+  * Custom .css files should be saved to `/docs/libs` following the naming scheme `[presentation_name]_theme.css`
 3.  Move associated image directories to `/docs`<sup>1</sup> 
 
 [1] During the development process, you will inevitably be sourcing external images (.png, jpg, etc.), and creating your own (i.e. through your code). When compiled to HTML, `knitr` will create a subfolder for the figures you created called `[presentation_name]_files`. If you are sourcing images from your own image folder, name it `[presentation_name]_images`. In an Rmd, images in this folder would be sourced using the path `[presentation_name]_images/[your_image.png]`.
