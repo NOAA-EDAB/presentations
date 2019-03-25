@@ -1,0 +1,190 @@
+---
+title: "State of the Ecosystem:"
+subtitle: "New England 2019"
+author: "Sean Hardison and Sarah Gaichas <br /> Ecosystem Dynamics and Assessment <br /> Integrated Statistics & Northeast Fisheries Science Center"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/20190320_NEFMC_SSC_Hardison_theme.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(ecodata)
+library(here)
+library(kableExtra)
+library(ggrepel)
+library(stringr)
+library(patchwork)
+library(grid)
+library(plotly)
+library(vegan)
+library(rpart)
+library(colorRamps)
+
+#GIS libraries
+library(sf)
+library(rgdal)
+library(raster)
+library(rnaturalearth)
+
+data.dir <- here::here("data")
+
+
+#Time series constants
+shade.alpha <- 0.3
+shade.fill <- "lightgrey"
+lwd <- 1
+pcex <- 2
+trend.alpha <- 0.5
+trend.size <- 2
+hline.size <- 1
+hline.alpha <- 0.35
+hline.lty <- "dashed"
+label.size <- 5
+hjust.label <- 1.5
+letter_size <- 4
+feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
+x.shade.min <- 2009
+x.shade.max <- 2018
+map.lwd <- 0.4
+#Function for custom ggplot facet labels
+label <- function(variable,value){
+  return(facet_names[value])
+}
+
+#facet names for titles
+facet_names <- list("Apex predators" = expression("Apex predators"),
+                    "Piscivores" = expression("Piscivores"),
+                    "Planktivores" = expression("Planktivores"),
+                    "Benthivores" = expression("Benthivores"),
+                    "Benthos" = expression("Benthos"))
+#CRS
+crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+
+#Coastline shapefile
+coast <- ne_countries(scale = 10,
+                          continent = "North America",
+                          returnclass = "sf") %>%
+             sf::st_transform(crs = crs)
+
+#State polygons
+ne_states <- ne_states(country = "united states of america",
+                                      returnclass = "sf") %>%
+  sf::st_transform(crs = crs)
+
+#high-res polygon of Maine
+#new_england <- read_sf(gis.dir,"new_england")
+
+#EPU shapefile
+epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB","GB","GOM"))
+```
+
+# Today's Talk
+
+.pull-left[
+
+- New avenues for ecosystem information
+
+- Report structure
+
+- Overview of results for New England 2019
+
+- Notable improvements: open-source data and technical documentation
+]
+
+.pull-right[
+*The IEA Loop<sup>1</sup>*
+![iea-loop](20190329_NEFMC_SSC_Hardison_images/iea-loop.png)
+
+
+]
+
+.footnote[
+[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+
+???
+
+---
+
+## New avenues for ecosystem reporting
+
+**Ecosystem Context for Stock Assessment (ECSA)**
+
+.pull-left[
+* First provided for 2018 summer flounder assessment
+
+* Provides seasonal ecosystem information for stock areas
+  * Ocean temperature and salinity, chlorophyll, zooplankton, estimated habitat occupancy, diet composition
+]
+
+.pull-right[
+![sumflo_ecsa](20190329_NEFMC_SSC_Hardison_images/sumflo_stock_area.png)
+[Summer flounder ECSA](noaa-edab.github.io/ECSA)
+]
+  
+???
+A new approach to incorporating ecosystem information into the management process is the ECSA, or the Ecosystem Context for Stock Assessment. 
+
+The goal of the ECSA is to provide seasonal ecosystem information for specific stocks, so that ecosystem information can form a backdrop for the stock assessment process. 
+
+Kevin's initiative
+
+---
+
+## Ecosystem Context for Stock Assessment (ECSA)
+
+![ecsa_screencap](20190329_NEFMC_SSC_Hardison_images/ecsa_screencap.gif)
+
+???
+An exciting part of the ECSA is that the data are visualized in an interactive way and data are quickly accessible
+
+---
+
+## Ecosystem Context for Stock Assessment (ECSA)
+
+* Automated workflows for rapid generation of reports
+
+--
+
+* Relies upon transparent and rigorous work flow 
+
+--
+
+* Developed specifically for science audience
+  * More technical than SOE, includes methods and full references
+
+
+
+???
+The ECSA is a very different product from the State of the Ecosystem report, but relies on many of the same principals we use to develop the SOE
+
+Specifically, we rely upon automated workflows, and in the case of the ECSA, this allows us to rapidly generate reports for single stocks. 
+
+By hosting our work on open-source platforms like github, we ensure that our analyses are transparent for those whom are interested. This further allows us to elaborate upon our methods in greater detail. 
+
+A major difference in the two reports is the audience each report is aimed at. By design, State of the Ecosystem reports are high-level overviews, whereas the ECSA is technical and aimed at stock-assessment scientists.
+
+## State of the Ecosystem
+
+
