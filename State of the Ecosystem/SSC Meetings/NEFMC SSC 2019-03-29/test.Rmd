@@ -99,12 +99,11 @@ epu_sf <- ecodata::epu_sf %>%
   filter(EPU %in% c("MAB","GB","GOM"))
 ```
 
-## Commercial drivers
-```{r bennet-ne, out.width = "65%", fig.align="center"}
+---
 
-source("R/bennet_plots_NE.R")
-
-ne_bennet <- bennet_plots_NE(scale_x_min = 1986)
-
-ne_bennet[[1]] + ne_bennet[[2]] + plot_layout(ncol = 1)
+```{r, out.width = "65%", fig.align= "center"}
+knitr::include_graphics("20190320_NEFMC_SSC_Hardison_images/grayseals-noaa-nefsc-psb.jpg")
 ```
+.image-cap[
+*Image credit: NOAA Fisheries*
+]

@@ -556,6 +556,22 @@ engagement_plots(type = "comm",epu = "GOM")
 Many social-ecological systems in New England are reliant on lobster, as in Gulf of Maine, or scallop, for Georges Bank. As these species are considered moderately to highly at risk due to climate change, the communities dependent on them could be a heightened risk as well. 
 
 Maine and South coast of MA have high reliance
+---
+## Commercial drivers
+```{r bennet-ne, out.width = "65%", fig.align="center"}
+
+source("R/bennet_plots_NE.R")
+
+ne_bennet <- bennet_plots_NE(scale_x_min = 1986)
+
+ne_bennet[[1]] + ne_bennet[[2]] + plot_layout(ncol = 1)
+```
+
+
+???
+This reliance becomes apparent if we look at the breakdown of catch volume and prices by feeding guild.
+
+In these figures, the catch price is shown in blue and the catch volume is shown in green, and total revenue change from the long term is shown by the black line. It's not perfect, but it's relatively clear that the benthivore feeding guild is driving revenue in Gulf of Maine and benthos in Georges Bank. 
 
 ---
 ## Challenges: Long-term decline in seafood production
@@ -572,18 +588,8 @@ gom_total + gb_total + plot_layout(ncol = 1)
 
 
 ???
-Along with higher reliance on fewer commercial species in the region, we've also seen a decline in managed landings overall in both Gulf of Maine and Georges Bank
+Along with strong reliance on a few species in New England, we've also seen a decline in catch of managed species since the mid 1980s. 
 
----
-## Commercial drivers
-```{r bennet-ne, out.width = "65%", fig.align="center"}
-
-source("R/bennet_plots_NE.R")
-
-ne_bennet <- bennet_plots_NE(scale_x_min = 1986)
-
-ne_bennet[[1]] + ne_bennet[[2]] + plot_layout(ncol = 1)
-```
 
 ---
 ## Recreational fishing
@@ -615,9 +621,54 @@ While commercial fisheries have high specialization of catch, there's a positive
 
 Updated Marine Recreational Information Program data shows that there's been an upswing in harvest since the mid-90s, although the trend overall is negative
 
-This corresponds with an increase in recreational effort since the mid-90s
-
-
+An increase in diversity of recreational catch will likely benefit communities that are reliant upon recreational fisheries by increasing their resilience to ecosystem changes.
 
 ---
+## Challenges: Protected species interactions
+
+* 2018: 4 unusual mortality events for three large whale species and two seal species
+
+**North Atlantic right whales (NARW)**
+  * Strong consensus of population decline
+  * Diverging abundance trends between sexes, with higher female mortality rates
+
+* Evidence suggests that the level of interaction between NARWs, fixed gear (US and CAN) is contributing to the decline of the species
+
+  * 20 NARW deaths in 2017 and 2018, >50% due to human interactions (5 vessel strike, 6 entanglement)
+
+```{r NARW-abundance, fig.width = 7.25, fig.height = 3, fig.align = "center"}
+hline <- mean(narw[narw$Var == "right whale abundance median",]$Value)
+series.col <- "black"
+ecodata::narw %>% 
+  spread(.,Var,Value) %>% 
+  ggplot() +
+#Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = `right whale abundance median`), size = lwd-0.75) +
+  geom_point(aes(x = Time, y = `right whale abundance median`), size = pcex-0.75) +
+  geom_errorbar(aes(x = Time,
+                    ymin = `right whale abundance lcl`,
+                  ymax = `right whale abundance ucl`), 
+                width = 0.25) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  ggtitle("NARW abundance") +
+  ylab(expression("Abundance (n)")) +
+  xlab("Time")+
+  geom_hline(aes(yintercept = hline),
+           color = "black",
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts() + 
+  theme(axis.title = element_text(size = 14),
+        plot.title = element_text(size = 16, face = "bold"))
+```
+
+???
+The North Atlantic right whale is among the most endangered whales in the world, with less than 450 individuals remaining and declining abundance trends. Evidence suggests that interactions with fisheries are contributing to the decline of the fisheries. Between 2017 and 2018, there were 20 known right whale mortality events, and more than half of these were the direct result of entanglement or vessel strike. Right whale distributions may also be changing with climate related distribution shifts of their main food source, Calanus finmarchicus. 
+
 

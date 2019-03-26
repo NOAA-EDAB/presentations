@@ -20,7 +20,7 @@ bennet_plots_NE <- function(scale_x_min = scale_x_min){
   ind_fill <- c("#a6cee3", "#b2df8a")
   
   #limits
-  y.lim <- c(-270,270)
+  y.lim <- c(-240,240)
   
   #plot
   
@@ -40,8 +40,8 @@ bennet_plots_NE <- function(scale_x_min = scale_x_min){
     scale_colour_grey(name ="Total Revenue Change") +
     ggtitle("Gulf of Maine Benthivores Component")+
     labs(y="Value $1,000,000 ($2015)") +
-    scale_x_continuous(breaks = seq(scale_x_min, 2015, by = 10), expand = c(0.01, 0.01)) +
-    scale_y_continuous(breaks = seq(y.lim[1], y.lim[2], by = 100), limits = y.lim, expand = c(0.01, 0.01)) +
+    scale_x_continuous(breaks = seq(scale_x_min, 2017, by = 10), expand = c(0.01, 0.01)) +
+    scale_y_continuous(breaks = seq(y.lim[1], y.lim[2], by = 60), limits = y.lim, expand = c(0.01, 0.01)) +
     theme_ts() +
     theme(title = element_text(size = 10, face = "bold")) +
     theme(legend.position="bottom", legend.direction = "horizontal", legend.background = element_rect(fill = "transparent"), legend.title = element_blank(), legend.text = element_blank())
@@ -61,8 +61,8 @@ bennet_plots_NE <- function(scale_x_min = scale_x_min){
     scale_colour_grey(name ="Total Revenue Change") +
     ggtitle("Georges Bank Benthos Component")+
     labs(y="Value $1,000,000 ($2015)") +
-    scale_x_continuous(breaks = seq(scale_x_min, 2015, by = 10), expand = c(0.01, 0.01)) +
-    scale_y_continuous(breaks = seq(y.lim[1], y.lim[2], by = 100), limits = y.lim, expand = c(0.01, 0.01)) +
+    scale_x_continuous(breaks = seq(scale_x_min, 2017, by = 10), expand = c(0.01, 0.01)) +
+    # scale_y_continuous(breaks = seq(-270, 270, by = 90), limits = y.lim, expand = c(0.01, 0.01)) +
     theme_ts() +
     theme(title = element_text(size = 10, face = "bold")) +
     theme(legend.position="bottom", 
