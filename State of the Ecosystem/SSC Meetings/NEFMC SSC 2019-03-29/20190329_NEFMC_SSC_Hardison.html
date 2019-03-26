@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="author" content="Sean Hardison and Sarah Gaichas   Ecosystem Dynamics and Assessment   Integrated Statistics &amp; Northeast Fisheries Science Center" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
     <link rel="stylesheet" href="libs\20190320_NEFMC_SSC_Hardison_theme.css" type="text/css" />
   </head>
   <body>
@@ -57,7 +58,7 @@ class: top, left
 .pull-left[
 * First provided for 2018 summer flounder assessment
 
-* Provides seasonal ecosystem information for stock areas
+* Provides seasonal ecosystem information for **stock areas**
   * Ocean temperature and salinity, chlorophyll, zooplankton, estimated habitat occupancy, diet composition
 ]
 
@@ -67,11 +68,10 @@ class: top, left
 ]
   
 ???
-A new approach to incorporating ecosystem information into the management process is the ECSA, or the Ecosystem Context for Stock Assessment. 
+A new approach to incorporating ecosystem information into the management process is the ECSA, or the Ecosystem Context for Stock Assessment, which is the brainchild of Kevin Friedland, and relies heavily on his modeling work on the shelf.  
 
 The goal of the ECSA is to provide seasonal ecosystem information for specific stocks, so that ecosystem information can form a backdrop for the stock assessment process. 
 
-Kevin's initiative
 
 ---
 
@@ -90,20 +90,294 @@ An exciting part of the ECSA is that the data are visualized in an interactive w
 
 --
 
-* Summer flounder ECSA was prototype
+* Relies upon transparent and reproducible work flow 
 
 --
 
 * Developed specifically for science audience
-  * More technical than SOE, includes methods and full references
+  * More technical language, includes methods and full references
 
 --
 
-* Relies upon transparent and rigorous work flow 
+* Positive feedback overall, will continue building out ECSA for assessments
+
+???
+The ECSA is a very different product from the State of the Ecosystem report, but relies on many of the same principals we use to develop the SOE
+
+Specifically, we rely upon automated workflows, and in the case of the ECSA, this allows us to rapidly generate reports for single stocks. 
+
+By hosting our work on open-source platforms like github, we ensure that our analyses are transparent for those whom are interested. This further allows us to elaborate upon our methods in detail without overwhelming readers. 
+
+A major difference in the two reports is the audience each report is aimed at. By design, State of the Ecosystem reports are high-level overviews, whereas the ECSA is technical and aimed at stock-assessment scientists.
+
+---
+## State of the Ecosystem 2019: Structure
+.pull-left[
+
+### Report Structure
+1. Human dimensions
+
+2. Protected species
+
+3. Fish and invertebrates (managed and otherwise)
+
+4. Habitat quality and ecosystem productivity
+]
+
+.pull-right[
+.table[
+&lt;table class="table" style="width: 50; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Ecosystem-scale objectives and indicators on the Northeast US shelf&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;font-weight: bold;"&gt; Objective Categories &lt;/th&gt;
+   &lt;th style="text-align:left;font-weight: bold;"&gt; Indicators &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Seafood Production &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Landings by feeding guild &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Profits &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Revenue by feeding guild &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Recreation &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Number of anglers and trips; recreational catch &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Stability &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Diversity indices (fishery and species) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Social &amp;amp; Cultural &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Commercial and recreational reliance &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Biomass &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Biomass or abundance by feeding guild from surveys &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Productivity &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Condition and recruitment of managed species &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Trophic structure &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Relative biomass of feeding guilds, primary productivity &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Habitat &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Estuarine and offshore habitat conditions &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+]
+
+
+---
+## SOE Orientation: Indicator visualization
+
+Status (short-term) and trend (long-term) of components are measured as **indicators** and plotted in a standardized way
+
+Indicators are selected to
+
+1. Be broadly informative about a component in a management context&lt;sup&gt;1-3&lt;/sup&gt;
+
+1. Minimize redundancy of information
+
+1. Be responsive to ecosystem change
+
+
+&lt;img src="20190329_NEFMC_SSC_Hardison_files/figure-html/doc-orientation-1.png" style="display: block; margin: auto;" /&gt;
 
 
 
-The summer flounder ECSA was a prototype for the MAFMC
+.footnote[
+[1] Rice J. C.Rochet M. J. "A framework for selecting a suite of indicators for fisheries management." ICES Journal of Marine Science 62 (2005): 516–527.
+
+[2] Link J. 2010. Ecosystem-Based Fisheries Management: Confronting Tradeoffs . Cambridge University Press, New York.
+
+[3] Zador, Stephani G., et al. "Ecosystem considerations in Alaska: the value of qualitative assessments." ICES Journal of Marine Science 74.1 (2017): 421-430.
+]
+
+
+---
+
+## SOE Orientation: Indicator spatial scales
+
+&lt;img src="20190329_NEFMC_SSC_Hardison_images/SOE_Map.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+
+.footnote[
+https://noaa-edab.github.io/tech-memo/epu.html
+]
+
+---
+
+## SOE Orientation: Feeding guilds
+.table[
+&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Feeding guilds and management bodies.&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Guild &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; MAFMC &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Joint &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; NEFMC &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; State or Other &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 2cm; "&gt; Apex Predator &lt;/td&gt;
+   &lt;td style="text-align:left;width: 4cm; "&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;width: 2cm; "&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;width: 5cm; "&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;width: 6cm; "&gt; bluefin tuna, shark uncl, swordfish, yellowfin tuna &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 2cm; "&gt; Piscivore &lt;/td&gt;
+   &lt;td style="text-align:left;width: 4cm; "&gt; bluefish, summer flounder &lt;/td&gt;
+   &lt;td style="text-align:left;width: 2cm; "&gt; goosefish, spiny dogfish &lt;/td&gt;
+   &lt;td style="text-align:left;width: 5cm; "&gt; acadian redfish, atlantic cod, atlantic halibut, clearnose skate, little skate, offshore hake, pollock, red hake, silver hake, smooth skate, thorny skate, white hake, winter skate &lt;/td&gt;
+   &lt;td style="text-align:left;width: 6cm; "&gt; fourspot flounder, john dory, sea raven, striped bass, weakfish, windowpane &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 2cm; "&gt; Planktivore &lt;/td&gt;
+   &lt;td style="text-align:left;width: 4cm; "&gt; atlantic mackerel, butterfish, longfin squid, northern shortfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;width: 2cm; "&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;width: 5cm; "&gt; atlantic herring &lt;/td&gt;
+   &lt;td style="text-align:left;width: 6cm; "&gt; alewife, american shad, blackbelly rosefish, blueback herring, cusk, longhorn sculpin, lumpfish, menhaden, northern sand lance, northern searobin, sculpin uncl &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 2cm; "&gt; Benthivore &lt;/td&gt;
+   &lt;td style="text-align:left;width: 4cm; "&gt; black sea bass, scup, tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;width: 2cm; "&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;width: 5cm; "&gt; american plaice, barndoor skate, crab,red deepsea, haddock, ocean pout, rosette skate, winter flounder, witch flounder, yellowtail flounder &lt;/td&gt;
+   &lt;td style="text-align:left;width: 6cm; "&gt; american lobster, atlantic wolffish, blue crab, cancer crab uncl, chain dogfish, cunner, jonah crab, lady crab, smooth dogfish, spider crab uncl, squid cuttlefish and octopod uncl, striped searobin, tautog &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 2cm; "&gt; Benthos &lt;/td&gt;
+   &lt;td style="text-align:left;width: 4cm; "&gt; atlantic surfclam, ocean quahog &lt;/td&gt;
+   &lt;td style="text-align:left;width: 2cm; "&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;width: 5cm; "&gt; sea scallop &lt;/td&gt;
+   &lt;td style="text-align:left;width: 6cm; "&gt; blue mussel, channeled whelk, sea cucumber, sea urchin and sand dollar uncl, sea urchins, snails(conchs) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+???
+* Feeding guilds assigned based on NEFSC food habits data base
+  * Food habits change with age and size, so guilds assigned based on most common size class
+
+* Simplified from existing guild structures&lt;sup&gt;1,2&lt;/sup&gt;
+
+.footnote[
+[1] Garrison, Lance P, and Jason S Link. 2000. “Dietary guild structure of the fish community in the Northeast United States continental shelf ecosystem.” Marine Ecology Progress Series 202:231–40.
+
+[2] Link, Jason S, Carolyn A Griswold, Elizabeth T Methratta, and Jessie Gunnard. 2006. Documentation for the energy modeling and analysis exercise (EMAX). US Department of Commerce, National Oceanic; Atmospheric Administration.
+]
+
+
+Because we focus on ecosystem context, we've aggregated species in most of our indicators up to the level of feeding guild, shown here.
+
+These feeding guilds were derived from NEFSC food habits data and existing guilds identified in the literature
+
+---
+
+## SOE 2019 Overview Results
+
+&lt;img src="20190329_NEFMC_SSC_Hardison_images/nes-components.png" width="1973" /&gt;
+
+???
+The purpose of this report is to synthesize available information relevant to fishery management in the New England portion of the US Northeast Shelf. This 2019 report highlights where management interventions have proven successful to achieve ecological objectives, but also characterizes the considerable challenges for management posed by climate change and increasing trade-offs across conservation, fishing, and other human activities in this region. Finally, we describe combinations of ecological signals that present opportunities for further integrated research and possibly creative management solutions.
+
+---
+
+## Good news: Management works 
+
+Current bycatch levels suggest that management actions have been effective in reducing harbor porpoise bycatch
+
+&lt;img src="20190329_NEFMC_SSC_Hardison_files/figure-html/harbor-porpoise-bars-1.png" style="display: block; margin: auto;" /&gt;
+
+
+???
+The maps here show density estimates of the widely distributed harbor porpoise in the spring and fall months, as estimated by the Atlantic Marine Assessment Program for Protected Species.
+
+The red line in the time series plot shows the potential biological removal. Above this line removals from the population will prevent the stock from reaching a stable population size. 
+
+2016 and 2017 estimates for bycatch are among the lowest values in the series, suggest that management actions have been effective in reducing harbor porpoise bycatch. 
+
+---
+## Challenges: F and B objectives
+
+  * Objectives being met for 20 stocks
+  * 4 stock below B and above F thresholds
+  * Herring assessment estimated B/Bmsy &lt; 1; new for this year
+
+&lt;img src="20190329_NEFMC_SSC_Hardison_files/figure-html/stock-status-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+While management action has had a postive impact on harbor porpoise mortality, there are multiple signals indicating challenges to meeting management goals. 
+
+Management objectives are being met for 20 species at the single species level, but 9 stocks are below biomass thresholds. 
+
+---
+
+## Challenges: Community reliance and vulnerability
+
+* High social-ecological reliance on scallop and lobster
+* Species considered moderately to highly at risk due to climate change (OA, temp)
+
+
+&lt;img src="20190329_NEFMC_SSC_Hardison_files/figure-html/com-eng1-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+Many social-ecological systems in New England are reliant on lobster, as in Gulf of Maine, or scallop, for Georges Bank. As these species are considered moderately to highly at risk due to climate change, the communities dependent on them could be a heightened risk as well. 
+
+Maine and South coast of MA have high reliance
+
+---
+## Challenges: Long-term decline in seafood production
+
+&lt;img src="20190329_NEFMC_SSC_Hardison_files/figure-html/ne-total-landings-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+
+
+???
+Along with higher reliance on fewer commercial species in the region, we've also seen a decline in managed landings overall in both Gulf of Maine and Georges Bank
+
+---
+## Commercial drivers
+&lt;img src="20190329_NEFMC_SSC_Hardison_files/figure-html/bennet-ne-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+
+---
+## Recreational fishing
+
+.pull-left[
+NE: 
+* Positive long-term trend for diversity of catch in New England recreational fisheries
+
+* Overall decline in rec seafood harvest since 1980s
+  * Trending upwards since mid-90s
+
+* Increase in recreational effort (n anglers) since the mid 90s
+]
+.pull-right[
+![](20190329_NEFMC_SSC_Hardison_files/figure-html/rec-div1-1.png)&lt;!-- --&gt;
+]
+
+???
+While commercial fisheries have high specialization of catch, there's a positive long-term trend for recreational catch diversity in the recreational sector. 
+
+Updated Marine Recreational Information Program data shows that there's been an upswing in harvest since the mid-90s, although the trend overall is negative
+
+This corresponds with an increase in recreational effort since the mid-90s
+
+
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

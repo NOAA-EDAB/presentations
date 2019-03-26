@@ -47,7 +47,7 @@ library(raster)
 library(rnaturalearth)
 
 data.dir <- here::here("data")
-
+r.dir <- here::here("R")
 
 #Time series constants
 shade.alpha <- 0.3
@@ -134,7 +134,7 @@ epu_sf <- ecodata::epu_sf %>%
 .pull-left[
 * First provided for 2018 summer flounder assessment
 
-* Provides seasonal ecosystem information for stock areas
+* Provides seasonal ecosystem information for **stock areas**
   * Ocean temperature and salinity, chlorophyll, zooplankton, estimated habitat occupancy, diet composition
 ]
 
@@ -144,11 +144,10 @@ epu_sf <- ecodata::epu_sf %>%
 ]
   
 ???
-A new approach to incorporating ecosystem information into the management process is the ECSA, or the Ecosystem Context for Stock Assessment. 
+A new approach to incorporating ecosystem information into the management process is the ECSA, or the Ecosystem Context for Stock Assessment, which is the brainchild of Kevin Friedland, and relies heavily on his modeling work on the shelf.  
 
 The goal of the ECSA is to provide seasonal ecosystem information for specific stocks, so that ecosystem information can form a backdrop for the stock assessment process. 
 
-Kevin's initiative
 
 ---
 
@@ -167,24 +166,458 @@ An exciting part of the ECSA is that the data are visualized in an interactive w
 
 --
 
-* Relies upon transparent and rigorous work flow 
+* Relies upon transparent and reproducible work flow 
 
 --
 
 * Developed specifically for science audience
-  * More technical than SOE, includes methods and full references
+  * More technical language, includes methods and full references
 
+--
 
+* Positive feedback overall, will continue building out ECSA for assessments
 
 ???
 The ECSA is a very different product from the State of the Ecosystem report, but relies on many of the same principals we use to develop the SOE
 
 Specifically, we rely upon automated workflows, and in the case of the ECSA, this allows us to rapidly generate reports for single stocks. 
 
-By hosting our work on open-source platforms like github, we ensure that our analyses are transparent for those whom are interested. This further allows us to elaborate upon our methods in greater detail. 
+By hosting our work on open-source platforms like github, we ensure that our analyses are transparent for those whom are interested. This further allows us to elaborate upon our methods in detail without overwhelming readers. 
 
 A major difference in the two reports is the audience each report is aimed at. By design, State of the Ecosystem reports are high-level overviews, whereas the ECSA is technical and aimed at stock-assessment scientists.
 
-## State of the Ecosystem
+---
+## State of the Ecosystem 2019: Structure
+.pull-left[
 
+### Report Structure
+1. Human dimensions
+
+2. Protected species
+
+3. Fish and invertebrates (managed and otherwise)
+
+4. Habitat quality and ecosystem productivity
+]
+
+.pull-right[
+.table[
+<table class="table" style="width: 50; margin-left: auto; margin-right: auto;">
+<caption>Ecosystem-scale objectives and indicators on the Northeast US shelf</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;font-weight: bold;"> Objective Categories </th>
+   <th style="text-align:left;font-weight: bold;"> Indicators </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Seafood Production </td>
+   <td style="text-align:left;"> Landings by feeding guild </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Profits </td>
+   <td style="text-align:left;"> Revenue by feeding guild </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Recreation </td>
+   <td style="text-align:left;"> Number of anglers and trips; recreational catch </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Stability </td>
+   <td style="text-align:left;"> Diversity indices (fishery and species) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Social &amp; Cultural </td>
+   <td style="text-align:left;"> Commercial and recreational reliance </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Biomass </td>
+   <td style="text-align:left;"> Biomass or abundance by feeding guild from surveys </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Productivity </td>
+   <td style="text-align:left;"> Condition and recruitment of managed species </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Trophic structure </td>
+   <td style="text-align:left;"> Relative biomass of feeding guilds, primary productivity </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Habitat </td>
+   <td style="text-align:left;"> Estuarine and offshore habitat conditions </td>
+  </tr>
+</tbody>
+</table>
+]
+]
+
+
+---
+## SOE Orientation: Indicator visualization
+
+Status (short-term) and trend (long-term) of components are measured as **indicators** and plotted in a standardized way
+
+Indicators are selected to
+
+1. Be broadly informative about a component in a management context<sup>1-3</sup>
+
+1. Minimize redundancy of information
+
+1. Be responsive to ecosystem change
+
+
+```{r doc-orientation, echo = F, warning = F, message=F, fig.height = 3, fig.width=8, fig.align = "center"}
+m <- 0.1
+x <- 1989:2018
+y <-  m*x + rnorm(30, sd = 0.35)
+
+data <- data.frame(x = x,
+                  y = y)
+
+#Define constants for figure plot
+x.shade.max <- max(x)
+x.shade.min <- x.shade.max - 9 
+hline = mean(y)
+
+#Plot series with trend 
+ggplot2::ggplot(data = data,aes(x = x, y = y)) +
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_point(size = pcex) +
+  scale_color_manual(aesthetics = "color")+
+  guides(color = FALSE) +
+  geom_hline(aes(yintercept = hline),
+              size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+  geom_line() +
+  geom_gls() +
+  scale_y_continuous(labels = function(l){trans = l / 1000})+
+  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
+  ylab(expression("Invented Index, 10"^3*"widgets")) +
+  xlab("Year") +
+  ggtitle("Indicator Z") +
+  theme_ts() +
+  theme(plot.title = element_text(size = 16),
+        axis.title = element_text(size = 14))
+```
+
+
+
+.footnote[
+[1] Rice J. C.Rochet M. J. "A framework for selecting a suite of indicators for fisheries management." ICES Journal of Marine Science 62 (2005): 516–527.
+
+[2] Link J. 2010. Ecosystem-Based Fisheries Management: Confronting Tradeoffs . Cambridge University Press, New York.
+
+[3] Zador, Stephani G., et al. "Ecosystem considerations in Alaska: the value of qualitative assessments." ICES Journal of Marine Science 74.1 (2017): 421-430.
+]
+
+
+---
+
+## SOE Orientation: Indicator spatial scales
+
+```{r epus, echo = F, out.width = "70%", fig.align = "center"}
+knitr::include_graphics("20190329_NEFMC_SSC_Hardison_images/SOE_Map.jpg")
+```
+
+.footnote[
+https://noaa-edab.github.io/tech-memo/epu.html
+]
+
+---
+
+## SOE Orientation: Feeding guilds
+.table[
+```{r feeding-guilds}
+# new table with all species listed by management entity
+df <- ecodata::species_groupings %>%
+  dplyr::select(SOE_18, COMNAME, Fed_Managed) %>%
+  filter(SOE_18 != "Other") %>%
+  distinct() %>%
+  group_by(SOE_18, Fed_Managed) %>%
+  summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
+  spread(Fed_Managed, COMNAME) %>%
+  arrange(factor(SOE_18, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
+df<-df[-6,c(1,4,3,5,6)] %>%
+  mutate_all(tolower)
+
+
+knitr::kable(df, caption = 'Feeding guilds and management bodies.', 
+             col.names = c("Guild", "MAFMC", "Joint", "NEFMC", "State or Other")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  column_spec(1, width="2cm") %>%
+  column_spec(2, width="4cm") %>%
+  column_spec(3, width="2cm") %>%
+  column_spec(4, width="5cm") %>%
+  column_spec(5, width="6cm")
+
+```
+]
+???
+* Feeding guilds assigned based on NEFSC food habits data base
+  * Food habits change with age and size, so guilds assigned based on most common size class
+
+* Simplified from existing guild structures<sup>1,2</sup>
+
+.footnote[
+[1] Garrison, Lance P, and Jason S Link. 2000. “Dietary guild structure of the fish community in the Northeast United States continental shelf ecosystem.” Marine Ecology Progress Series 202:231–40.
+
+[2] Link, Jason S, Carolyn A Griswold, Elizabeth T Methratta, and Jessie Gunnard. 2006. Documentation for the energy modeling and analysis exercise (EMAX). US Department of Commerce, National Oceanic; Atmospheric Administration.
+]
+
+
+Because we focus on ecosystem context, we've aggregated species in most of our indicators up to the level of feeding guild, shown here.
+
+These feeding guilds were derived from NEFSC food habits data and existing guilds identified in the literature
+
+---
+
+## SOE 2019 Overview Results
+
+```{r nes-comp1, echo = F}
+knitr::include_graphics("20190329_NEFMC_SSC_Hardison_images/nes-components.png")
+```
+
+???
+The purpose of this report is to synthesize available information relevant to fishery management in the New England portion of the US Northeast Shelf. This 2019 report highlights where management interventions have proven successful to achieve ecological objectives, but also characterizes the considerable challenges for management posed by climate change and increasing trade-offs across conservation, fishing, and other human activities in this region. Finally, we describe combinations of ecological signals that present opportunities for further integrated research and possibly creative management solutions.
+
+---
+
+## Good news: Management works 
+
+Current bycatch levels suggest that management actions have been effective in reducing harbor porpoise bycatch
+
+```{r harbor-porpoise-bars, fig.width = 8, fig.align="center", fig.height = 6}
+source("R/hp_density_plot.R")
+hp_bycatch  <- ecodata::harborporpoise %>% 
+  spread(.,Var,Value) %>% 
+ggplot() +
+    annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = lwd) +
+  geom_point(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = pcex) +
+  geom_errorbar(aes(x = Time,
+                    ymin = `harbor porpoise bycatch lo95ci`,
+                  ymax = `harbor porpoise bycatch up95ci`,
+                  color = "Harbor Porpoise Bycatch"), 
+                width = 0.25)+
+  geom_line(aes(x = Time, y = `harbor porpoise bycatch pbr`, color = "PBR"), size = lwd-0.1) +
+  scale_color_manual("", values = c("Harbor Porpoise Bycatch" = "black", "PBR" = "red")) +
+  guides(color = guide_legend(override.aes = list(shape = c(19,NA)))) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggtitle("Harbor porpoise bycatch") +
+  ylab("Bycatch Estimate (n)") +
+  theme_ts() +
+  theme(legend.position = c(0.4, 0.85),
+        legend.background = element_rect(fill = "transparent"),
+        axis.title = element_text(size = 14),
+        plot.title = element_text(size = 16, face = "bold"))
+
+xlims <- c(-78, -66)
+ylims <- c(35, 46)
+fall_hp <- hp_density("Fall", lat = F)
+spring_hp <- hp_density("Spring", leg = F)
+
+(spring_hp | fall_hp ) /
+  hp_bycatch + plot_layout(ncol = 1, heights = c(1.5, 1.25)) & theme(plot.margin = margin(0,0,0.3,0,"cm"))
+
+```
+
+
+???
+The maps here show density estimates of the widely distributed harbor porpoise in the spring and fall months, as estimated by the Atlantic Marine Assessment Program for Protected Species.
+
+The red line in the time series plot shows the potential biological removal. Above this line removals from the population will prevent the stock from reaching a stable population size. 
+
+2016 and 2017 estimates for bycatch are among the lowest values in the series, suggest that management actions have been effective in reducing harbor porpoise bycatch. 
+
+---
+## Challenges: F and B objectives
+
+  * Objectives being met for 20 stocks
+  * 4 stock below B and above F thresholds
+  * Herring assessment estimated B/Bmsy < 1; new for this year
+
+```{r stock-status, fig.width = 8, fig.asp = 0.75, fig.align="center"}
+
+#Get data, spread for plotting, and filter
+stock_status <- ecodata::stock_status %>%
+  spread(.,Var,Value) %>% 
+  filter(Council %in% c("NEFMC","Both"))
+
+#Plot constants
+y.max <- 4.5
+x.max <- 7.5
+
+all_missing <- stock_status %>%
+  filter(is.na(B.Bmsy),is.na(F.Fmsy)) %>% 
+  dplyr::select(Code, Council)
+
+b_missing <- stock_status %>%
+  filter(is.na(B.Bmsy), !is.na(F.Fmsy)) %>% 
+  dplyr::select(Code, Council)
+
+f_missing <- stock_status %>%
+  filter(is.na(F.Fmsy), !is.na(B.Bmsy)) %>% 
+  dplyr::select(Code, Council)
+
+#A dataframe that defines custom legend for stocks with unknown status
+
+all.df <- data.frame(text = all_missing$Code,
+                    x = rep(x.max,length(all_missing$Code)),
+                    y = seq(4.35,2.85,-0.22),
+                    color = all_missing$Council)
+
+b.df <- data.frame(text = b_missing$Code,
+                    x = rep(x.max*0.8,length(b_missing$Code)),
+                    y = c(4.35,4.14),
+                    color = b_missing$Council)
+
+f.df <- data.frame(text = f_missing$Code,
+                    x = rep(x.max*0.6,length(f_missing$Code)),
+                    y = seq(4.35,2.85,-0.22),
+                    color = f_missing$Council)
+
+
+#Plotting code
+ggplot(data = stock_status) +
+  geom_vline(xintercept = 1, linetype = "dotted", color = "grey60")+
+  geom_vline(xintercept = 0.5, linetype = "dashed", color = "grey60")+
+  geom_hline(yintercept = 1, linetype = "dashed", color = "grey60") +
+  geom_point(aes(x = B.Bmsy,
+                 y = F.Fmsy,
+                 color = Council,
+                 shape = Council)) +
+  geom_text_repel(aes(x = B.Bmsy, #geom_text_repel auto-jitters text around points
+                      y = F.Fmsy,
+                      label = Code,
+                      color = Council), show.legend = FALSE,nudge_y = 0.05, nudge_x = 0.05) +
+  ylim(0,y.max) +
+  xlim(0,x.max*1.1) +
+  geom_text(data = all.df, aes(x = x, y = y, label = text, color = color),show.legend = FALSE, size = 3)+
+  geom_text(data = b.df, aes(x = x, y = y, label = text, color = color),show.legend = FALSE, size = 3)+
+  geom_text(data = f.df, aes(x = x, y = y, label = text, color = color),show.legend = FALSE, size = 3)+
+  scale_color_manual(values = c("purple","blue"),#c("purple","blue"), #Change legend labels for clarity
+                   name = "Managed by",
+                   breaks = c("Both","NEFMC"),
+                   labels = c("MAFMC/NEFMC","NEFMC"))+
+  scale_shape_manual(values = c(1, 19), #Change legend labels for clarity
+                     name = "Managed by",
+                     breaks = c("Both","NEFMC"),
+                     labels = c("MAFMC/NEFMC","NEFMC"))+
+  annotate("rect", xmin = 0.924*x.max,
+           xmax = 1.08*x.max,
+           ymin = 0.645*y.max,
+           ymax = 0.98*y.max,
+           alpha = 0.01) +
+  annotate("text", x = 7.5, y = 4.5, label = "F and B missing", fontface =2, size = 3)+
+    annotate("rect", 
+             xmin = 0.729*x.max,
+           xmax = 0.871*x.max,
+           ymin = 0.905*y.max,
+           ymax = 0.98*y.max,
+           alpha = 0.01) +
+  annotate("text", x = 6, y = 4.5, label = "B missing", fontface =2, size = 3)+
+    annotate("rect", xmin = 0.509*x.max,
+           xmax = 0.681*x.max,
+           ymin = 0.65*y.max,
+           ymax = 0.98*y.max,
+           alpha = 0.01) +
+  annotate("text", x = 4.5, y = 4.5, label = "F missing", fontface =2, size = 3)+
+  xlab(expression(~B/B[msy])) +
+  ylab(expression(~F/F[msy])) +
+  theme_ts()
+```
+
+???
+While management action has had a postive impact on harbor porpoise mortality, there are multiple signals indicating challenges to meeting management goals. 
+
+Management objectives are being met for 20 species at the single species level, but 9 stocks are below biomass thresholds. 
+
+---
+
+## Challenges: Community reliance and vulnerability
+
+* High social-ecological reliance on scallop and lobster
+* Species considered moderately to highly at risk due to climate change (OA, temp)
+
+
+```{r com-eng1, fig.width = 8, fig.height = 5, fig.align="center"}
+source("R/engagement_plots.R")
+engagement_plots(type = "comm",epu = "GOM")
+```
+
+???
+Many social-ecological systems in New England are reliant on lobster, as in Gulf of Maine, or scallop, for Georges Bank. As these species are considered moderately to highly at risk due to climate change, the communities dependent on them could be a heightened risk as well. 
+
+Maine and South coast of MA have high reliance
+
+---
+## Challenges: Long-term decline in seafood production
+
+```{r ne-total-landings, out.width = "65%", fig.align="center"}
+source("R/total_landings_plot.R")
+
+gom_total <- plot_total_landings(epu = "GOM", council = "NEFMC")
+gb_total <- plot_total_landings(epu = "GB", council = "NEFMC")
+
+
+gom_total + gb_total + plot_layout(ncol = 1)
+```
+
+
+???
+Along with higher reliance on fewer commercial species in the region, we've also seen a decline in managed landings overall in both Gulf of Maine and Georges Bank
+
+---
+## Commercial drivers
+```{r bennet-ne, out.width = "65%", fig.align="center"}
+
+source("R/bennet_plots_NE.R")
+
+ne_bennet <- bennet_plots_NE(scale_x_min = 1986)
+
+ne_bennet[[1]] + ne_bennet[[2]] + plot_layout(ncol = 1)
+```
+
+---
+## Recreational fishing
+
+.pull-left[
+NE: 
+* Positive long-term trend for diversity of catch in New England recreational fisheries
+
+* Overall decline in rec seafood harvest since 1980s
+  * Trending upwards since mid-90s
+
+* Increase in recreational effort (n anglers) since the mid 90s
+]
+.pull-right[
+```{r rec-div1, fig.height=9}
+source("R/rec_div_plots.R")
+source("R/rec_harvest_plots.R")
+source("R/rec_effort_plots.R")
+ne_rec_div <- rec_div_plots("NE")
+ne_rec_harvest <- rec_harvest_plots("NE")
+ne_rec_effort <- rec_effort_plots("NE")
+
+ne_rec_div[[2]] + ne_rec_harvest + ne_rec_effort[[2]] + plot_layout(ncol = 1)
+```
+]
+
+???
+While commercial fisheries have high specialization of catch, there's a positive long-term trend for recreational catch diversity in the recreational sector. 
+
+Updated Marine Recreational Information Program data shows that there's been an upswing in harvest since the mid-90s, although the trend overall is negative
+
+This corresponds with an increase in recreational effort since the mid-90s
+
+
+
+---
 
