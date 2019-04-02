@@ -31,8 +31,8 @@ sli_plots <- function(epu){
     theme_ts() +
     theme(strip.text=element_text(hjust=0,
                                   face = "italic"),
-          axis.title = element_text(size = 14),
-          plot.title = element_text(size = 16))
+          axis.title = element_text(size = 12),
+          plot.title = element_text(size = 14))
   
   pp_anom_plt <- pp_anom %>% 
     ggplot(aes(x = Time, y = Value, group = Var)) +
@@ -54,7 +54,7 @@ sli_plots <- function(epu){
     theme_ts() +
     theme(strip.text=element_text(hjust=0,
                                   face = "italic"),
-          axis.title = element_text(size = 14),
-          plot.title = element_text(size = 16))
+          axis.title = element_text(size = 12),
+          plot.title = element_text(size = 14))
   return(list(sli_plt, pp_anom_plt))
 }

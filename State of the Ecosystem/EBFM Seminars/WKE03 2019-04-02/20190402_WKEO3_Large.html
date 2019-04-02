@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Ecosystem reporting:</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Scott Large Ecosystem Dynamics and Assessment Branch Northeast Fisheries Science Center" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs\EDAB_theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# Ecosystem reporting:
+## Thoughts on efforts to move ecosystem<br/>considerations into management.
+### Scott Large<br/>Ecosystem Dynamics and Assessment Branch<br/>Northeast Fisheries Science Center
+
+---
+
+class: top, left
+
+### Why?
+
+We report on ecosystem considerations to ensure *sustainable* management of living marine resources.
+
+How can we develop ecosystem reporting to be:   
+* efficient 
+* targeted ecosystem reporting -and-
+* informative to multiple aspects of the management process
+
+---
+## Who is the audience
+
+* What information does the audience need for their decisions?
+    + Do they need that much detail? 
+    + Do they have the background to understand the implications of the message?
+    + Could the information be more meaningful if applied elsewhere in the process?
+
+---
+## Who is the audience, cont'd
+
+We probably don't need to provide the same ecosystem information to:
+* Stock assessment scientists
+* ICES ACOM / Science and Statistical Committees (USA)
+* European Council / Fishery Management Council (USA)
+
+But they each desperately need ecosystem reporting.
+
+---
+## Tiers of ecosystem reporting
+
+* [Ecosystem Context for Stock Assessment](https://noaa-edab.github.io/ECSA/) 
+    + Stock specific data that *might* influence recruitment, natural mortality, productivity, and etc.
+    + Meant to start a conversation with stock assessment scientists
+    + Can provide quantitative and/or qualitative information to the advisory process
+* [State of the Ecosystem Report](https://github.com/NOAA-EDAB/SOE-NEFMC)
+    + More holistic indicators on ecoregion spatial scales
+    + Meant to inform SSC and Fishery Management Councils of patterns that might influence multiple stocks when providing advice
+    + Can provide qualitative information to the advisory process
+* [Ecosystem report cards](https://access.afsc.noaa.gov/reem/ecoweb/index.php?ID=1)
+    + High-level information for non-scientists
+    + Meant to inform those setting quota (or equivalent) of trends in indices
+    + Can provide qualitative information to the advisory process
+    
+---
+## But Scott, neither time nor resources are available!
+* Probably true, so efficiency is key
+* Back-end development is critical for describing collection, analyses, and processing data
+* ICES data services are leading the pack
+* Ditch .pdf, .ppt, and .docx for plain-text formats like markdown, rmarkdown, and xaringan
+![soe-data-flow](EDAB_images/soe-data-flow.png)  
+
+---
+## External Resources
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
+  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
+  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
+  
+* [ERDDAP server](https://comet.nefsc.noaa.gov/erddap/index.html)
+
+<<<<<<< HEAD:State of the Ecosystem/SSC Meetings/NEFMC SSC 2019-03-29/test.html
+---
+
+&lt;img src="20190320_NEFMC_SSC_Hardison_images/grayseals-noaa-nefsc-psb.jpg" width="65%" style="display: block; margin: auto;" /&gt;
+.image-cap[
+*Image credit: NOAA Fisheries*
+]
+=======
+* Slides available at https://noaa-edab.github.io/presentations
+>>>>>>> 16351c5ca17f80e75ca2a8bdce18b7c294b22a1d:State of the Ecosystem/EBFM Seminars/WKE03 2019-04-02/20190402_WKEO3_Large.html
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

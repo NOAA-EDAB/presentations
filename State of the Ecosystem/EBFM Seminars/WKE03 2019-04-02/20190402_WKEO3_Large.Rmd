@@ -1,0 +1,84 @@
+---
+title: "Ecosystem reporting:"
+subtitle: "Thoughts on efforts to move ecosystem<br/>considerations into management."
+author: "Scott Large<br/>Ecosystem Dynamics and Assessment Branch<br/>Northeast Fisheries Science Center"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+class: top, left
+
+### Why?
+
+We report on ecosystem considerations to ensure *sustainable* management of living marine resources.
+
+How can we develop ecosystem reporting to be:   
+* efficient 
+* targeted ecosystem reporting -and-
+* informative to multiple aspects of the management process
+
+---
+## Who is the audience
+
+* What information does the audience need for their decisions?
+    + Do they need that much detail? 
+    + Do they have the background to understand the implications of the message?
+    + Could the information be more meaningful if applied elsewhere in the process?
+
+---
+## Who is the audience, cont'd
+
+We probably don't need to provide the same ecosystem information to:
+* Stock assessment scientists
+* ICES ACOM / Science and Statistical Committees (USA)
+* European Council / Fishery Management Council (USA)
+
+But they each desperately need ecosystem reporting.
+
+---
+## Tiers of ecosystem reporting
+
+* [Ecosystem Context for Stock Assessment](https://noaa-edab.github.io/ECSA/) 
+    + Stock specific data that *might* influence recruitment, natural mortality, productivity, and etc.
+    + Meant to start a conversation with stock assessment scientists
+    + Can provide quantitative and/or qualitative information to the advisory process
+* [State of the Ecosystem Report](https://github.com/NOAA-EDAB/SOE-NEFMC)
+    + More holistic indicators on ecoregion spatial scales
+    + Meant to inform SSC and Fishery Management Councils of patterns that might influence multiple stocks when providing advice
+    + Can provide qualitative information to the advisory process
+* [Ecosystem report cards](https://access.afsc.noaa.gov/reem/ecoweb/index.php?ID=1)
+    + High-level information for non-scientists
+    + Meant to inform those setting quota (or equivalent) of trends in indices
+    + Can provide qualitative information to the advisory process
+    
+---
+## But Scott, neither time nor resources are available!
+* Probably true, so efficiency is key
+* Back-end development is critical for describing collection, analyses, and processing data
+* ICES data services are leading the pack
+* Ditch .pdf, .ppt, and .docx for plain-text formats like markdown, rmarkdown, and xaringan
+![soe-data-flow](EDAB_images/soe-data-flow.png)  
+
+---
+## External Resources
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
+  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
+  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
+  
+* [ERDDAP server](https://comet.nefsc.noaa.gov/erddap/index.html)
+
+* Slides available at https://noaa-edab.github.io/presentations
