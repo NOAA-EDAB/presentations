@@ -136,13 +136,17 @@ knitr::include_graphics(file.path(image.dir,"DVCS.png"))
 
 ---
 
-## Vocabulary check
+.box-highlight[
+
+**Vocabulary check**
 
 * Repository: A file directory that is being tracked by **Git**
   
   * Also called a "repo"
   
 * Clone: An exact copy of a repository containing the full history of project changes
+
+]
 
 ---
 ## How does Git work?
@@ -176,3 +180,115 @@ When a snapshot is taken, a file is assigned an id specific to the checksum, or 
 knitr::include_graphics(file.path(image.dir,"file-states.png"))
 ```
 
+---
+
+## Actually Getting Git: User set-up
+
+1. Open command line or terminal window
+
+2. Check user name and email address
+
+  .remark-inline-code[
+    `git config --global user.name`
+  ]
+  .remark-inline-code[
+    `git config --global user.email`
+  ]
+
+3. Check text editor
+  .remark-inline-code[
+    `git config --global core.editor`
+  ]
+
+
+???
+Important that user name and email map to what you've used to sign up with on github
+
+On windows, you will need to specify the full path to the executable file if changing text editor
+
+---
+
+## Cloning a repository
+
+**From RStudio**
+
+1. Open RStudio and select `File -> New Project`
+
+2. Select `Version Control`
+
+3. Select `Git`
+
+4. Paste `https://github.com/seanhardison1/getting-git` into repo URL
+
+5. Name your project `getting-git`
+
+
+**From cmd/terminal**
+
+1. Open command line or terminal
+
+2. `cd` into a directory where you want project to be housed
+
+3. Enter .remark-inline-code[`git clone https://github.com/seanhardison1/getting-git`]
+
+
+???
+RStudio will automatically assign an Rproject file to your repository. 
+
+---
+
+.box-highlight[
+
+**Vocabulary check**
+
+* Commit: Git for "file save"
+
+* Remote: A repository not located on your local machine
+
+    * The repository you just cloned is "the remote"
+]
+
+
+---
+## Create, commit, and push
+
+**In RStudio**
+
+1. Create a new file in `/getting-git` (.R, .txt, etc)
+
+2. Stage your file
+
+3. Commit changes
+
+4. Push to remote repository (Github)
+
+![add_commit_push](EDAB_images/add_commit_push.gif)
+
+---
+## Creating your own repository
+
+**From RStudio**
+
+1. Open RStudio and select `File -> New Project`
+
+2. Select `New Directory`
+
+3. Select `New Project`
+
+4. Enter directory name and location
+
+5. **Select `Create a git repository`**
+
+
+**From cmd/terminal**
+1. Open command line or terminal
+
+2. `cd` into a directory where you want project to be housed
+
+3. Create folder for project `mkdir [folder-name]`
+
+4. `cd` into new directory 
+
+5. Initialize repository `git init`
+
+6. [Link to GitHub](https://help.github.com/en/articles/adding-an-existing-project-to-github-using-the-command-line)
