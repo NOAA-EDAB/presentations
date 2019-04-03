@@ -250,7 +250,7 @@ RStudio will automatically assign an Rproject file to your repository.
 
 
 ---
-## Create, commit, and push
+## Create, commit, pull, and push
 
 **In RStudio**
 
@@ -260,10 +260,36 @@ RStudio will automatically assign an Rproject file to your repository.
 
 3. Commit changes
 
-4. Push to remote repository (Github)
+4. **Pull** to download latest snapshot 
+
+5. **Push** to remote repository (Github)
+
+--
 
 ![add_commit_push](EDAB_images/add_commit_push.gif)
 
+---
+## Create, commit, pull, and push
+
+**From command line/terminal**
+
+1. Create new file in `/getting-git` 
+
+2. Stage your file:
+
+    * .remark-inline-code[`git add [filename.xyz]`]
+    
+3. Commit changes
+
+    * .remark-inline-code[`git add [filename.xyz]`]
+
+4. **Pull** to download latest snapshot 
+
+    * .remark-inline-code[`git pull`]
+
+5. **Push** to remote repository (Github)
+
+    * .remark-inline-code[`git push`]
 ---
 ## Creating your own repository
 
