@@ -31,19 +31,7 @@ class: right, middle, my-title, title-slide
 
 ---
 
-## Source material
-
-&lt;img src="C:/Users/sean.hardison/Documents/git/presentations/Workshops/Getting Git 2019-04-11/EDAB_images/progit.png" width="50%" style="display: block; margin: auto;" /&gt;
-
-[Available here](https://git-scm.com/book/en/v2)
-
-.footnote[
-Chacon, Scott, and Ben Straub. Pro git. Apress, 2014.
-]
-
----
-
-## Your friendly neighborhood Version Control System 1:
+## A brief history of the Version Control universe
 
 .pull-left[
 * Local Version Control (L-VC): 
@@ -60,100 +48,6 @@ Chacon, Scott, and Ben Straub. Pro git. Apress, 2014.
 &lt;img src="C:/Users/sean.hardison/Documents/git/presentations/Workshops/Getting Git 2019-04-11/EDAB_images/LVCS.png" width="1067" /&gt;
 
 ]
-
----
-
-## Your friendly neighborhood Version Control System 2:
-
-.pull-left[
-* Centralized Version Control (CVC): 
-
-  * Allows collaboration between systems
-
-  * Files can be **checked out** from central server hosting database of file patches
-  
-  * Centralized server is weakness: If server goes down, VC/collaboration cannot occur 
-]
-
-.pull-right[
-
-&lt;img src="C:/Users/sean.hardison/Documents/git/presentations/Workshops/Getting Git 2019-04-11/EDAB_images/DVCS.png" width="891" /&gt;
-
-]
-
----
-
-## Your friendly neighborhood Version Control System 3:
-
-.pull-left[
-* Distributed Version Control (DVC): 
-
-  * Users **check out** copies of full directories rather than individual files
-
-    * These directories, or **repositories**, include the full history of each file
-  
-  * In short: everyone has the database of patches 
-
-]
-
-.pull-right[
-
-&lt;img src="C:/Users/sean.hardison/Documents/git/presentations/Workshops/Getting Git 2019-04-11/EDAB_images/DVCS.png" width="891" /&gt;
-
-
-]
-
----
-
-## Distributed Version Control Systems
-
-* Distributed Version Control (DVC):
-
-  * A copy you create of a remote repository is called a **clone**
-
-.center[
-![clone-wars](EDAB_images/clone-wars.gif)
-]
-
-* **Git** is a distributed version control software
-
----
-
-## Vocabulary check
-
-* Repository: A file directory that is being tracked by **Git**
-  
-  * Also called a "repo"
-  
-* Clone: An exact copy of a repository containing the full history of project changes
-
----
-## How does Git work?
-
-* Git stores information about the state of all files in the repository (think repo "**snapshots**")
-
-&lt;img src="C:/Users/sean.hardison/Documents/git/presentations/Workshops/Getting Git 2019-04-11/EDAB_images/git-snapshots.png" width="80%" style="display: block; margin: auto;" /&gt;
-
-* Files that have not been changed are not replicated, but linked to
-
-* All information is **local**, and all operations can be performed offline
-
-???
-When a snapshot is taken, a file is assigned an id specific to the checksum, or hash. No further changes can be made to that file without Git first knowing about it, and so you cannot lose information.
-
----
-
-## The Three File States
-
-* Files can be in one of three states after being added to repo
-
-    1. Staged - Files are marked for **committing** (the snapshot)
-
-    2. Modified - Staged files have been modified, but not committed
-
-    3. Committed - Snapshot taken, file states stored to local database
-
-&lt;img src="C:/Users/sean.hardison/Documents/git/presentations/Workshops/Getting Git 2019-04-11/EDAB_images/file-states.png" width="60%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

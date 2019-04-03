@@ -1,0 +1,44 @@
+---
+title: "Getting Git"
+author: "Sean Hardison <br /> Ecosystem Dynamics and Assessment <br /> Integrated Statistics & Northeast Fisheries Science Center"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+    
+    
+---
+
+```{r setup, echo = F}
+
+image.dir <- here::here("EDAB_images")
+r.dir <- here::here("R")
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      message = F)
+```
+
+# Today's workshop
+
+* Version control systems + Git
+
+* Concepts in Git
+
+* Integration with Github
+
+* Create, collaborate, and share
+
+---
+
+
+## A brief history of the Version Control universe

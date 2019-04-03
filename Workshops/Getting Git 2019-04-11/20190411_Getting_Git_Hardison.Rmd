@@ -13,4 +13,166 @@ output:
   revealjs::revealjs_presentation:
     self_contained: false
     reveal_plugins: ["notes", "search"]
+    
+    
 ---
+
+```{r setup, echo = F}
+
+image.dir <- here::here("EDAB_images")
+r.dir <- here::here("R")
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      message = F)
+```
+
+# Today's workshop
+
+* Version control systems + Git
+
+* Concepts in Git
+
+* Integration with Github
+
+* Create, collaborate, and share
+
+---
+
+## Source material
+
+```{r progit, out.width = "50%", fig.align = "center"}
+knitr::include_graphics(file.path(image.dir, "progit.png"))
+```
+
+[Available here](https://git-scm.com/book/en/v2)
+
+.footnote[
+Chacon, Scott, and Ben Straub. Pro git. Apress, 2014.
+]
+
+---
+
+## Your friendly neighborhood Version Control System 1:
+
+.pull-left[
+* Local Version Control (L-VC): 
+
+  * Developed in response to error-prone manual VC
+
+  * A database keeping track of file changes ("patches")
+  
+  * Patches can be added and subtracted to revert to documents in a certain state
+]
+
+.pull-right[
+
+```{r}
+knitr::include_graphics("C:/Users/sean.hardison/Documents/git/presentations/Workshops/Getting Git 2019-04-11/EDAB_images/LVCS.png")
+```
+
+]
+
+---
+
+## Your friendly neighborhood Version Control System 2:
+
+.pull-left[
+* Centralized Version Control (CVC): 
+
+  * Allows collaboration between systems
+
+  * Files can be **checked out** from central server hosting database of file patches
+  
+  * Centralized server is weakness: If server goes down, VC/collaboration cannot occur 
+]
+
+.pull-right[
+
+```{r}
+knitr::include_graphics("C:/Users/sean.hardison/Documents/git/presentations/Workshops/Getting Git 2019-04-11/EDAB_images/DVCS.png")
+```
+
+]
+
+---
+
+## Your friendly neighborhood Version Control System 3:
+
+.pull-left[
+* Distributed Version Control (DVC): 
+
+  * Users **check out** copies of full directories rather than individual files
+
+    * These directories, or **repositories**, include the full history of each file
+  
+  * In short: everyone has the database of patches 
+
+]
+
+.pull-right[
+
+```{r}
+knitr::include_graphics(file.path(image.dir,"DVCS.png"))
+```
+
+
+]
+
+---
+
+## Distributed Version Control Systems
+
+* Distributed Version Control (DVC):
+
+  * A copy you create of a remote repository is called a **clone**
+
+.center[
+![clone-wars](EDAB_images/clone-wars.gif)
+]
+
+* **Git** is a distributed version control software
+
+---
+
+## Vocabulary check
+
+* Repository: A file directory that is being tracked by **Git**
+  
+  * Also called a "repo"
+  
+* Clone: An exact copy of a repository containing the full history of project changes
+
+---
+## How does Git work?
+
+* Git stores information about the state of all files in the repository (think repo "**snapshots**")
+
+```{r snapshots, out.width = "80%", fig.align = "center"}
+knitr::include_graphics(file.path(image.dir,"git-snapshots.png"))
+```
+
+* Files that have not been changed are not replicated, but linked to
+
+* All information is **local**, and all operations can be performed offline
+
+???
+When a snapshot is taken, a file is assigned an id specific to the checksum, or hash. No further changes can be made to that file without Git first knowing about it, and so you cannot lose information.
+
+---
+
+## The Three File States
+
+* Files can be in one of three states after being added to repo
+
+    1. Staged - Files are marked for **committing** (the snapshot)
+
+    2. Modified - Staged files have been modified, but not committed
+
+    3. Committed - Snapshot taken, file states stored to local database
+
+```{r file-states, out.width = "60%", fig.align="center"}
+knitr::include_graphics(file.path(image.dir,"file-states.png"))
+```
+
