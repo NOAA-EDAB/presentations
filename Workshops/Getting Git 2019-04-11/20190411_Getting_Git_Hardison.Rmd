@@ -184,6 +184,8 @@ knitr::include_graphics(file.path(image.dir,"file-states.png"))
 
 ## Actually Getting Git: User set-up
 
+**Local Git**
+
 1. Open command line or terminal window
 
 2. Check user name and email address
@@ -199,12 +201,38 @@ knitr::include_graphics(file.path(image.dir,"file-states.png"))
   .remark-inline-code[
     `git config --global core.editor`
   ]
+  
+**GitHub (remote Git)**
+
+1. Create Github account if you have not done so already
+
+2. Log in!
 
 
 ???
 Important that user name and email map to what you've used to sign up with on github
 
 On windows, you will need to specify the full path to the executable file if changing text editor
+
+---
+
+## Groups & Remote (Github) repository creation
+
+1. Break out into groups of 3 or 4
+
+1. Nominate group leader 
+
+--
+
+1. Create a `getting-git` repository on Github (gif below)
+
+1. Group leaders: Allow group members to collaborate: `Settings -> Collaborators -> [usernames]`
+
+.center[
+![create_gh_repo](EDAB_images/create_gh_repo.gif)
+]
+
+
 
 ---
 
@@ -218,7 +246,7 @@ On windows, you will need to specify the full path to the executable file if cha
 
 3. Select `Git`
 
-4. Paste `https://github.com/seanhardison1/getting-git` into repo URL
+4. Paste `https://github.com/[leader_username]/getting-git` into repo URL
 
 5. Name your project `getting-git`
 
@@ -229,7 +257,7 @@ On windows, you will need to specify the full path to the executable file if cha
 
 2. `cd` into a directory where you want project to be housed
 
-3. Enter .remark-inline-code[`git clone https://github.com/seanhardison1/getting-git`]
+3. Enter .remark-inline-code[`git clone https://github.com/[leader_username]/getting-git`]
 
 
 ???
@@ -277,19 +305,134 @@ RStudio will automatically assign an Rproject file to your repository.
 
 2. Stage your file:
 
-    * .remark-inline-code[`git add [filename.xyz]`]
+    * `git add [filename.xyz]`
     
 3. Commit changes
 
-    * .remark-inline-code[`git add [filename.xyz]`]
+    * `git commit` or `git commit -m "[commit message]"`
 
 4. **Pull** to download latest snapshot 
 
-    * .remark-inline-code[`git pull`]
+    * `git pull`
 
 5. **Push** to remote repository (Github)
 
-    * .remark-inline-code[`git push`]
+    * `git push`
+---
+## The Great Merge Conflict of 2019
+
+.center[
+![git-merge](EDAB_images/git-merge.gif)
+]
+
+* Merge conflicts occur when collaborators overwrite each other's content
+
+* A well-orchestrated example
+
+---
+## The Great Merge Conflict of 2019 (continued)
+
+
+In your groups, force a merge conflict and work through it. 
+
+**In someone else's document**
+
+  1. Edit another group member's document
+
+  1. Stage, commit, and push the change
+
+--
+
+**In your document (edited by someone else)**
+
+  1. Make a change overlapping with group member edits. Stage and commit.
+
+  1. Pull from Github: a merge conflict will appear. 
+
+  1. Fix conflict, stage, commit, and push!
+
+
+--
+
+### In summary: Merge conflicts are a natural part of getting git
+
+---
+## Fixing conflicts at the command line/terminal
+
+Assuming conflict exists between remote and local repos:
+
+1. Add changes: `git add [filename.xyz]`
+
+1. Commit changes: `git commit -m "[going about my own business]"`
+
+1. Pull remote to prompt merge conflict: `git pull`
+
+1. Fix conflict
+  
+1. Add changes, commit, and push!
+
+---
+## Sharing your work through Github
+
+**Github Pages** is a free service for hosting repository webpages
+  * Hugely flexible; allows for interactivity, JS library integration
+  * Easy to use
+
+Some examples from EDAB:
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* SOE indicator visualizations:
+
+  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
+  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
+  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
+  
+* [Recent EDAB presentations](https://noaa-edab.github.io/presentations/)
+
+---
+## Let's make something to share with the world! 
+
+Group leaders: Go to your repository setting and turn on Github Pages
+
+.center[
+![init-gh-pages](EDAB_images/init-gh-pages.gif)
+]
+
+---
+## Let's make something to share with the world! 
+
+1. Open up a new Rmarkdown document
+
+2. Save it as "index.Rmd"
+
+3. Knit the document to HTML
+
+4. Stage, commit, and push index.html and index.Rmd to Github
+
+5. Go to the url: `[leader_username].github.io/[repository_name]`
+
+---
+##  Let's make something to share with the world! 
+
+* Once an index.html file has been push to the repo, more .html files can also be hosted
+
+  * `[username].github.io/[repository_name]/[paradigm_shifter.html]`
+  
+* Interactivity is easy:
+
+.remark-inline-code[
+library(dygraphs) <br>
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+]
+
+```{r dygraphs-example, echo = F, fig.align = "center", out.width = "80%", out.height="30%"}
+library(dygraphs)
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+```
+
 ---
 ## Creating your own repository
 
