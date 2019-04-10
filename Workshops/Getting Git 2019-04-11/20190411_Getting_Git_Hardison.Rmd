@@ -30,6 +30,7 @@ knitr::opts_chunk$set(echo = F,
 
 # Today's workshop
 
+.pull-left[
 * Version control systems + Git
 
 * Concepts in Git
@@ -38,15 +39,17 @@ knitr::opts_chunk$set(echo = F,
 
 * Create, collaborate, and share
 
----
+]
 
-## Source material
+.pull-right[
+**Source material**
 
-```{r progit, out.width = "50%", fig.align = "center"}
+```{r progit, out.width = "80%", fig.align = "center"}
 knitr::include_graphics(file.path(image.dir, "progit.png"))
 ```
 
 [Available here](https://git-scm.com/book/en/v2)
+]
 
 .footnote[
 Chacon, Scott, and Ben Straub. Pro git. Apress, 2014.
@@ -69,7 +72,7 @@ Chacon, Scott, and Ben Straub. Pro git. Apress, 2014.
 .pull-right[
 
 ```{r}
-knitr::include_graphics("C:/Users/sean.hardison/Documents/git/presentations/Workshops/Getting Git 2019-04-11/EDAB_images/LVCS.png")
+knitr::include_graphics(file.path(image.dir,"LVCS.png"))
 ```
 
 ]
@@ -91,7 +94,7 @@ knitr::include_graphics("C:/Users/sean.hardison/Documents/git/presentations/Work
 .pull-right[
 
 ```{r}
-knitr::include_graphics("C:/Users/sean.hardison/Documents/git/presentations/Workshops/Getting Git 2019-04-11/EDAB_images/DVCS.png")
+knitr::include_graphics(file.path(image.dir,"CVCS.png"))
 ```
 
 ]
@@ -178,6 +181,15 @@ When a snapshot is taken, a file is assigned an id specific to the checksum, or 
 
 ```{r file-states, out.width = "60%", fig.align="center"}
 knitr::include_graphics(file.path(image.dir,"file-states.png"))
+```
+
+---
+## The Three File States continued
+
+* Repository snapshots are transferred between local and remote sessions using **push** and **pull** commands
+
+```{r gh-file-states, out.width = "100%", fig.align="center"}
+knitr::include_graphics(file.path(image.dir,"github-file-states.png"))
 ```
 
 ---
@@ -461,3 +473,18 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
 5. Initialize repository `git init`
 
 6. [Link to GitHub](https://help.github.com/en/articles/adding-an-existing-project-to-github-using-the-command-line)
+
+---
+#### Helpful git commands
+
+Show all settings: `git config --list`
+
+View status of files in git repo: `git status`
+
+View unstaged changes: `git diff`
+
+View staged changes `git diff --staged`
+
+View commit history `git log` (pretty: `git log --pretty=format:"%h - %an, %ar : %s"`)
+
+Rever to commmit: `git checkout [commit-ref] [filename.xyz]`
