@@ -499,8 +499,29 @@ knitr::include_graphics(file.path(image.dir, "branching.png"))
 .footnote[
 [Image source](https://www.atlassian.com/git/tutorials/why-git)
 ]
+
+
 ---
-## Creating your own repository
+#### Helpful git commands
+
+Add all files: `git add .`
+
+Commit w/o text editor: `git commit -m "Your commit message"`
+
+Show all settings: `git config --list`
+
+View status of files in git repo: `git status`
+
+View unstaged changes: `git diff`
+
+View staged changes `git diff --staged`
+
+View commit history `git log` (pretty: `git log --pretty=format:"%h - %an, %ar : %s"`)
+
+Revert to commmit: `git checkout [commit-ref] [filename.xyz]`
+
+---
+## Creating a local repository
 
 **From RStudio**
 
@@ -527,23 +548,3 @@ knitr::include_graphics(file.path(image.dir, "branching.png"))
 5. Initialize repository `git init`
 
 6. [Link to GitHub](https://help.github.com/en/articles/adding-an-existing-project-to-github-using-the-command-line)
-
----
-#### Helpful git commands
-
-Add all files: `git add .`
-
-Commit w/o text editor: `git commit -m "Your commit message"`
-
-Show all settings: `git config --list`
-
-View status of files in git repo: `git status`
-
-View unstaged changes: `git diff`
-
-View staged changes `git diff --staged`
-
-View commit history `git log` (pretty: `git log --pretty=format:"%h - %an, %ar : %s"`)
-
-Revert to commmit: `git checkout [commit-ref] [filename.xyz]`
-
