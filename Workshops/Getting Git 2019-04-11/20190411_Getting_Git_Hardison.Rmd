@@ -56,6 +56,38 @@ Chacon, Scott, and Ben Straub. Pro git. Apress, 2014.
 ]
 
 ---
+## Why use Github and Git?
+
+.pull-left[
+* For science:
+  * Reproducibility
+  * Transparency
+  * Ease of collaboration
+  * Communicating your work
+  
+  
+* It just works.
+  * Never lose a file
+  * Work from multiple machines seemlessly
+]
+
+.pull-right[
+```{r linux_clouds, out.width = "100%", fig.align="center"}
+knitr::include_graphics(file.path(image.dir,"linux_clouds.jpg"))
+```
+
+
+]
+
+.footnote[
+[Image source](https://twitter.com/Linux/status/936877536780283905)
+]
+
+???
+Rep - With Github, anyone with the right tools should be able to recreate your workflow 
+Collabora
+
+---
 
 ## Your friendly neighborhood Version Control System 1:
 
@@ -214,6 +246,8 @@ knitr::include_graphics(file.path(image.dir,"github-file-states.png"))
     `git config --global core.editor`
   ]
   
+* **Important**: Your git email/username must map to your Github account  
+
 **GitHub (remote Git)**
 
 1. Create Github account if you have not done so already
@@ -339,7 +373,11 @@ RStudio will automatically assign an Rproject file to your repository.
 
 * Merge conflicts occur when collaborators overwrite each other's content
 
-* A well-orchestrated example
+* A merge conflict must be fixed manually
+
+--
+
+* Now for a well-orchestrated example
 
 ---
 ## The Great Merge Conflict of 2019 (continued)
@@ -400,7 +438,7 @@ Some examples from EDAB:
   * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
   * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
   
-* [Recent EDAB presentations](https://noaa-edab.github.io/presentations/)
+* [Recent EDAB presentations (including this one)](https://noaa-edab.github.io/presentations/)
 
 ---
 ## Let's make something to share with the world! 
@@ -446,6 +484,22 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
 ```
 
 ---
+## Branching
+
+* Ensures main repository (master branch) is "production quality"
+
+```{r branching, echo = F, fig.align="center", out.width = "60%",out.height = "40%"}
+
+knitr::include_graphics(file.path(image.dir, "branching.png"))
+
+```
+
+* Can be used to isolate breaking changes in code for testing, then merged into master
+
+.footnote[
+[Image source](https://www.atlassian.com/git/tutorials/why-git)
+]
+---
 ## Creating your own repository
 
 **From RStudio**
@@ -477,6 +531,10 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
 ---
 #### Helpful git commands
 
+Add all files: `git add .`
+
+Commit w/o text editor: `git commit -m "Your commit message"`
+
 Show all settings: `git config --list`
 
 View status of files in git repo: `git status`
@@ -487,4 +545,5 @@ View staged changes `git diff --staged`
 
 View commit history `git log` (pretty: `git log --pretty=format:"%h - %an, %ar : %s"`)
 
-Rever to commmit: `git checkout [commit-ref] [filename.xyz]`
+Revert to commmit: `git checkout [commit-ref] [filename.xyz]`
+
