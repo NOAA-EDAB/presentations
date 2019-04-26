@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>A simulation study of trend detection methods for IEA</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sean Hardison, Charles T. Perretti, Geret S. DePiper, Andrew Beet   Integrated Statistics &amp; Northeast Fisheries Science Center" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/WGNARS_theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# A simulation study of trend detection methods for IEA
+## WGNARS 2019
+### Sean Hardison, Charles T. Perretti, Geret S. DePiper, Andrew Beet <br /> Integrated Statistics &amp; Northeast Fisheries Science Center
+
+---
+
+class: top, left 
+
+
+
+
+**Trend Detection in Integrated Ecosystem Assessment**
+
+* Assessing trends in time series is a key component of the IEA approach
+
+* As analysts, we want to identify the limitations of these methods to ensure sound assessments of risk and indicator change
+
+* Key statistical assumptions in trend analysis are often not properly accounted for
+
+&lt;img src="20190430_IEA_trend_Hardison_files/figure-html/random_trend-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+**Trend Detection in Integrated Ecosystem Assessment**
+
+* Study question: What are the limitations of trend detection for IEA?
+
+* Commonalities in IEA time series:
+  * Short (often &lt; 30 years)
+  * Variety of error structures
+
+* Time series assessed with single method
+
+&lt;img src="EDAB_images/indicator_vis.png" width="100%" style="display: block; margin: auto;" /&gt;
+.image-cap2[
+Frequency of estimated slopes (absolute values) (A), autocorrelation strengths (B), and time series residual variances (C) in 124 time series considered for inclusion in the 2017 State of the Ecosystem report. 
+]
+
+---
+**AR(1) Simulation Methods**
+
+1. Simulations:
+  * Series of varying lengths (N = 10, 20, 30)
+  * AR1 process strengths (&amp;rho;&lt;sub&gt;1&lt;/sub&gt; = 0, 0.43, 0.9)
+  * Trend strengths (&amp;alpha;&lt;sub&gt;1&lt;/sub&gt; = 0, 0.026, 0.051, and 0.147) 
+
+2. Test for trend:
+  * GLS model selection 
+  * Mann-Kendall test&lt;sup&gt;1&lt;/sup&gt;
+  * Mann-Kendall test with trend-free pre-whitening&lt;sup&gt;2&lt;/sup&gt;
+  
+&lt;img src="EDAB_images/indicator_vis.png" width="100%" style="display: block; margin: auto;" /&gt;
+  
+.footnote[
+
+[1] Mann, H. B. 1945b. Nonparametric tests against trend. Econometrica: Journal of the Econometric Society: 245–259. JSTOR.
+
+[2] Yue, S., and Wang, C. Y. 2002. Applicability of prewhitening to eliminate the influence of serial correlation on the Mann-Kendall test. Water Resources Research, 38: 4–1–4–7. http://doi.wiley.com/10.1029/2001WR000861.
+
+]
+
+---
+**AR(1) Simulation Results: Significance Testing**
+
+&lt;img src="EDAB_images/iea_trend_ar1_results.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+**Results: Extending N under Strong AR(1)**
+
+&lt;img src="EDAB_images/iea_ar1_extended.png" width="100%" style="display: block; margin: auto;" /&gt;
+.image-cap[
+The dashed red line shows the nominal rejection rate of 0.05.
+]
+
+.box-highlight[
+**Parameters**
+* N = 50 - 650
+* Strong AR(1) (&amp;rho;&lt;sub&gt;1&lt;/sub&gt; = 0.9)
+* No trend
+]
+---
+**Results: The role of series variance in significance testing**
+
+&lt;img src="EDAB_images/iea_trend_variance.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+.box-highlight[
+**Parameters**
+* N = 30
+* σ&lt;sup&gt;2&lt;/sup&gt; = 0.3 ("low") and σ&lt;sup&gt;2&lt;/sup&gt; = 0.8 ("high") 
+* Weak trend (&amp;beta; = 0.026)
+
+]
+
+---
+**Results: Estimating slope from autocorrelated data**
+
+&lt;img src="EDAB_images/iea_slope_id.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+---
+**Results: Testing for trend in data simulated from AR(2) model**
+
+* How do tests for trend handle data with AR(2) error?
+ 
+.box-highlight[
+**Parameters**
+* N = 10, 20, 30
+* AR(2) process strength: &amp;rho;&lt;sub&gt;1&lt;/sub&gt; = 0.43, &amp;rho;&lt;sub&gt;2&lt;/sub&gt; = 0.2
+* &amp;alpha;&lt;sub&gt;1&lt;/sub&gt; = 0, 0.026, 0.051, and 0.147
+]
+
+&lt;img src="EDAB_images/iea-ar2-results.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+---
+**Summary**
+.summary-highlight[
+Testing for trend in short time series results in high incidence of false positive and false negative findings
+  * Both become more prevalent when autocorrelated error is present in data 
+  
+Tests designed to account for AR error structure are biased when N is small
+
+Estimates of trend strength often mischaracterize true trend when N is small or AR error is present
+
+Which test performed best?
+  * GLS-MS; although difference between tests are small (and all performed poorly)
+  * Benefit of GLS-MS is ability to characterize uncertainty in estimate from probability distribution
+]
+
+---
+**Lessons?**
+* Applying tests for trend broadly without considering underlying error structures will likely result in assigning spurious trends or missing key patterns
+
+* If hypothesis testing is to be used to identify trends for IEA, a more nuanced approach should be developed to account for characteristics that could bias tests
+  * R package with flexible diagnostic functions currently in development to address shortcomings
+  
+&lt;img src="EDAB_images/noaa-iea-wgnars.png" width="100%" style="display: block; margin: auto;" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
