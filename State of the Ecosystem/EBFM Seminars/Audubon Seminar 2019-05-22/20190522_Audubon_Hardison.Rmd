@@ -344,11 +344,11 @@ knitr::include_graphics("20190522_Audubon_Hardison_images/iea-loop-explanation.p
 ]
 
 ---
-## State of the Ecosystem (SOE) Reports
+## New England State of the Ecosystem (SOE) Reports
 
 .pull-left[
 
-**Goal: Bringing relevant ecosystem information to resource managers**
+**Goal: Bringing relevant ecosystem information to New England Fishery Management Council**
 
 ### Report Structure
 1. Human dimensions
@@ -1242,6 +1242,57 @@ tern_loc + shannon + plot_layout(ncol = 1, heights = c(1,0.75))
 ```
 ]
 
+---
+## Implications for protected species: North Atlantic Right Whale range shifts
+
+```{r, out.width = "100%", fig.align="center"}
+knitr::include_graphics("20190522_Audubon_Hardison_images/record-et-al.png")
+```
+
+*Record et al. 2019* examines the role of warming deepwater in western Gulf of Maine on *Calanus finmarchicus* and North Atlantic right whale
+
+**North Atlantic right whale distributions affected by climate driven changes in *C. finmarchicus* abundance in western Gulf of Maine**
+
+---
+## Implications for protected species: North Atlantic Right Whale range shifts
+
+.pull-left[
+**Western GOM**
+* Recent *C. finmarchicus* abundance in W. GOM has been highest ever in recent years
+  * Why? *C. finmarchicus* supplied by highly productive Maine Coastal Current can reproduce rapidly and mediate effects of warming.
+  * NARW + *C. finmarchicus* conditions remain favorable in W. GOM
+]
+
+.pull-right[
+```{r, out.width = "100%", fig.align="center"}
+knitr::include_graphics("20190522_Audubon_Hardison_images/record-et-al-fig.png")
+```
+.image-cap[
+Significant abundance changes in *Calanus* shown in blue (negative) and red (positive). ([Record et al. 2019](https://cloudup.com/iFB8decQWOs))
+  ]
+]
+
+
+---
+## Implications for protected species: North Atlantic Right Whale range shifts
+
+.pull-left[
+**Eastern GOM**
+* Deepwater warming contributes to high mortality of dormant copepods
+* More Gulf Stream influence in Gulf means less supply of copepods into GOM
+
+**The result? NARWs favor western GOM and Canadian waters for foraging.**
+]
+
+.pull-right[
+```{r, out.width = "100%", fig.align="center"}
+knitr::include_graphics("20190522_Audubon_Hardison_images/record-et-al-fig.png")
+```
+.image-cap[
+Significant abundance changes in *Calanus* shown in blue (negative) and red (positive). ([Record et al. 2019](https://cloudup.com/iFB8decQWOs))
+  ]
+]
+
 
 ---
 ## Surveys trends: Maine/New Hampshire Inshore Survey
@@ -1419,7 +1470,7 @@ out_pp$Month <- factor(out_pp$Month, levels = month.abb)
 source("R/sli_plots.R")
 gom_out <- sli_plots("GOM")
 gb_out <- sli_plots("GB")
-
+ecodata::zoo_anom_sli
 gom_out[[1]] +  gb_out[[1]] +gom_out[[2]] + gb_out[[2]] + plot_layout(ncol=2)
 ```
 
@@ -1429,8 +1480,8 @@ To assess the size structure of copepods in the region, we use the small-large i
 * A lower value means higher abundance of large copepods (<i>Calanus</i>)
 * Primary production may play a role in copepod size dynamics***
 
-
 ---
+
 ## Changing base of the food web and fish conditions
 
 * Fish condition is measured at the weight at a given length relative to the average
