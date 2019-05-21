@@ -150,11 +150,11 @@ The darker region in this figure shows the watershed serving Gulf of Maine, whic
 ## Gulf of Maine and Georges Bank: Climate
 
 .pull-left[
-* Climate in GOM and GB are linked to large-scale cycles like the **North Atlantic Oscillation (NAO)** and **Atlantic Multidecadal Oscillation (AMO)**
+* Climate varaibility in GOM and GB are driven large-scale cycles like the **North Atlantic Oscillation (NAO)** and **Atlantic Multidecadal Oscillation (AMO)**
 
 * NAO: A [teleconnection](https://en.wikipedia.org/wiki/Teleconnection) of inverted atmospheric pressures over Greenland and the central North Atlantic<sup>1</sup>
   * Positive phases linked to warmer temperatures in New England
-  * NA affects influence of Gulf Stream waters in New England
+  * NAO mediates influence of Gulf Stream waters in GOM
 ]
 
 .pull-right[
@@ -189,6 +189,9 @@ knitr::include_graphics("20190522_Audubon_Hardison_images/nao-positive.gif")
 
 [2] [Gulf of Maine in Context](http://www.gulfofmaine.org/state-of-the-gulf/docs/the-gulf-of-maine-in-context.pdf)
 ]
+
+???
+Teleconnection - A causal relationship between climate conditions over some distance
 
 ---
 
@@ -300,8 +303,12 @@ Ice-free winters and high fish abundance supports breeding, migrating or staging
 knitr::include_graphics("20190522_Audubon_Hardison_images/nes-components.png")
 ```
 
---
+
 How can we manage resources effectively while accounting for ecosystem complexities?
+
+???
+It's not surprising to know that all of these components to the ecosystem are linked in some direct or indirect way. The real question then becomes, from the perspective of managing the system, how can we make use of this information?
+
 
 ---
 ## Ecosystem-based fishery management
@@ -328,6 +335,8 @@ Different approaches to ecosystem management. (Image credit: [NOAA Fisheries](ht
 ]
 
 ???
+Tackling that question requires managing from a holistic perspective, which manifests as what is known as ecosystem-based fisheries management. 
+
 Magnuson-Stevens, Endangered Species Act, National Environmental Protection Act...
 
 ---
@@ -539,56 +548,6 @@ knitr::kable(df, caption = 'Feeding guilds and management bodies.',
 Because we focus on ecosystem context, we've aggregated species in most of our indicators up to the level of feeding guild, shown here.
 
 These feeding guilds were derived from NEFSC food habits data and existing guilds identified in the literature
----
-
-## Good news: Management works 
-
-Current bycatch levels suggest that management actions have been effective in reducing harbor porpoise bycatch
-
-```{r harbor-porpoise-bars, fig.width = 8, fig.align="center", fig.height = 6}
-source("R/hp_density_plot.R")
-hp_bycatch  <- ecodata::harborporpoise %>% 
-  spread(.,Var,Value) %>% 
-ggplot() +
-    annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_line(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = lwd) +
-  geom_point(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = pcex) +
-  geom_errorbar(aes(x = Time,
-                    ymin = `harbor porpoise bycatch lo95ci`,
-                  ymax = `harbor porpoise bycatch up95ci`,
-                  color = "Harbor Porpoise Bycatch"), 
-                width = 0.25)+
-  geom_line(aes(x = Time, y = `harbor porpoise bycatch pbr`, color = "PBR"), size = lwd-0.1) +
-  scale_color_manual("", values = c("Harbor Porpoise Bycatch" = "black", "PBR" = "red")) +
-  guides(color = guide_legend(override.aes = list(shape = c(19,NA)))) +
-  scale_x_continuous(expand = c(0.01, 0.01)) +
-  ggtitle("Harbor porpoise bycatch") +
-  ylab("Bycatch Estimate (n)") +
-  theme_ts() +
-  theme(legend.position = c(0.4, 0.85),
-        legend.background = element_rect(fill = "transparent"),
-        axis.title = element_text(size = 14),
-        plot.title = element_text(size = 16, face = "bold"))
-
-xlims <- c(-78, -66)
-ylims <- c(35, 46)
-fall_hp <- hp_density("Fall", lat = F)
-spring_hp <- hp_density("Spring", leg = F)
-
-(spring_hp | fall_hp ) /
-  hp_bycatch + plot_layout(ncol = 1, heights = c(1.5, 1.25)) & theme(plot.margin = margin(0,0,0.3,0,"cm"))
-
-```
-
-
-???
-The maps here show density estimates of the widely distributed harbor porpoise in the spring and fall months, as estimated by the Atlantic Marine Assessment Program for Protected Species.
-
-The red line in the time series plot shows the potential biological removal. Above this line removals from the population will prevent the stock from reaching a stable population size. 
-
-2016 and 2017 estimates for bycatch are among the lowest values in the series, suggest that management actions have been effective in reducing harbor porpoise bycatch. 
 
 ---
 ## Challenges: F and B objectives
@@ -778,9 +737,58 @@ Updated Marine Recreational Information Program data shows that there's been an 
 An increase in diversity of recreational catch will likely benefit communities that are reliant upon recreational fisheries by increasing their resilience to ecosystem changes.
 
 ---
-## Challenges: Protected species interactions (I)
 
-* 2018: 4 unusual mortality events for three large whale species and two seal species
+## Protected species interactions: Harbor porpoise
+
+Current bycatch levels suggest that management actions have been effective in reducing harbor porpoise bycatch
+
+```{r harbor-porpoise-bars, fig.width = 8, fig.align="center", fig.height = 6}
+source("R/hp_density_plot.R")
+hp_bycatch  <- ecodata::harborporpoise %>% 
+  spread(.,Var,Value) %>% 
+ggplot() +
+    annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = lwd) +
+  geom_point(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = pcex) +
+  geom_errorbar(aes(x = Time,
+                    ymin = `harbor porpoise bycatch lo95ci`,
+                  ymax = `harbor porpoise bycatch up95ci`,
+                  color = "Harbor Porpoise Bycatch"), 
+                width = 0.25)+
+  geom_line(aes(x = Time, y = `harbor porpoise bycatch pbr`, color = "PBR"), size = lwd-0.1) +
+  scale_color_manual("", values = c("Harbor Porpoise Bycatch" = "black", "PBR" = "red")) +
+  guides(color = guide_legend(override.aes = list(shape = c(19,NA)))) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggtitle("Harbor porpoise bycatch") +
+  ylab("Bycatch Estimate (n)") +
+  theme_ts() +
+  theme(legend.position = c(0.4, 0.85),
+        legend.background = element_rect(fill = "transparent"),
+        axis.title = element_text(size = 14),
+        plot.title = element_text(size = 16, face = "bold"))
+
+xlims <- c(-78, -66)
+ylims <- c(35, 46)
+fall_hp <- hp_density("Fall", lat = F)
+spring_hp <- hp_density("Spring", leg = F)
+
+(spring_hp | fall_hp ) /
+  hp_bycatch + plot_layout(ncol = 1, heights = c(1.5, 1.25)) & theme(plot.margin = margin(0,0,0.3,0,"cm"))
+
+```
+
+
+???
+The maps here show density estimates of the widely distributed harbor porpoise in the spring and fall months, as estimated by the Atlantic Marine Assessment Program for Protected Species.
+
+The red line in the time series plot shows the potential biological removal. Above this line removals from the population will prevent the stock from reaching a stable population size. 
+
+2016 and 2017 estimates for bycatch are among the lowest values in the series, suggest that management actions have been effective in reducing harbor porpoise bycatch. 
+
+---
+## Protected species interactions: NARW
 
 **North Atlantic right whales (NARW)**
   * Strong consensus of population decline
@@ -830,20 +838,22 @@ Changing ecosystem conditions may contribute to increased interactions between N
 Changes in fishery management to address the issue of fishery interactions with protected species could have large implications for the fixed gear sector, and particularly for pot gear fisheries like lobster.
 
 ---
-## Challenges: Proctected species interactions (II)
+## Proctected species interactions: Grey seals
 
-* MA gray seal population between 30-40,000 individuals
+* MA grey seal population between 30-40,000 individuals
 
-* Annual gray seal bycatch mortality ~900
+* Annual grey seal bycatch mortality ~900
 
-* Unusual Mortality Event declared for seals (gray and harbor)
+* Unusual Mortality Event declared for seals (grey and harbor)
 
 * Seal diet studies underway to understand role in fisheries
 
 ```{r, out.width = "50%", fig.align= "center"}
 knitr::include_graphics("20190522_Audubon_Hardison_images/grayseals-noaa-nefsc-psb.jpg")
 ```
+.image-cap[
 *Image credit: NOAA Fisheries*
+]
 
 
 ???
@@ -1164,26 +1174,84 @@ bot_temp_insitu_gom +
 ## Management implications: species shifts
 
 ```{r spec_prop, fig.width = 8, fig.height = 8, fig.align="center"}
-source("R/get_spec_prop.R")
-nefmc_benth_in_mid <- get_species_prop_plots(guild = "Benthivore", epu = "MAB",managed_by = "NEFMC",region = "the Mid-Atlantic")
 
-mafmc_plank_in_gom <- get_species_prop_plots(guild = "Planktivore", epu = "GOM",managed_by = "MAFMC",region = "Gulf of Maine")
+spec_dist <- ecodata::species_dist %>% 
+  group_by(Var) %>% 
+  mutate(hline = mean(Value))
 
-mafmc_plank_in_gb <- get_species_prop_plots(guild = "Planktivore", epu = "GB",managed_by = "MAFMC",region = "Georges Bank")
+asd <- spec_dist %>% 
+  filter(Var == "along-shelf distance") %>% 
+  ggplot(aes(x = Time, y = Value,
+               group = Var)) + 
+ #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_gls() +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggtitle("Along-shelf distance")+
+  ylab(expression("Distance (km)")) +
+  xlab("")+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts() 
 
-nefmc_benth_in_mid +
-mafmc_plank_in_gom +
-mafmc_plank_in_gb + plot_layout(ncol = 1)
+depth <- spec_dist %>% 
+  filter(Var == "depth") %>% 
+  ggplot(aes(x = Time, y = Value,
+               group = Var)) + 
+ #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_gls() +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggtitle("Depth")+
+  ylab(expression("Depth (m)")) +
+  xlab("")+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts() 
+
+lat <- spec_dist %>% 
+  filter(Var == "Latitude") %>% 
+  ggplot(aes(x = Time, y = Value,
+               group = Var)) + 
+ #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_gls() +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggtitle("Latitude")+
+  ylab(expression("Latitude (ºN)")) +
+  xlab("Time")+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts() 
+
+asd + depth + lat + plot_layout(ncol = 1) 
 ```
 
 
 ???
-Distributions of managed species within feeding guilds have changed. 
+Making use of the NEFSC bottom trawl data which extends back to the 1960s, we can quantify how species distributions on the shelf have changed through time by estimating the yearly centroids of their distributions.
 
-Increase in MAFMC species proportiongs in GOM/GB driven by mackerel
+The predominant pattern across species is a shift northwards and into deeper waters. These shifts are due to a number of factors, including fishing pressures and climate changes
 
-The decline in NEFMC species in the mid survey is driven mostly by ocean pout, which has seen proportional declines in the gulf of maine and georges bank survey
-
+A clear example of this occurring is the American lobster, whose populations have become more productive in Gulf of Maine compared to the northern Mid-Atlantic due to favorable climate conditions. 
 
 ---
 ## Implications for protected species: Common tern diet
@@ -1293,123 +1361,6 @@ Significant abundance changes in *Calanus* shown in blue (negative) and red (pos
   ]
 ]
 
-
----
-## Surveys trends: Maine/New Hampshire Inshore Survey
-.pull-left[
-```{r inshore-menh, fig.height=9}
-source("R/get_ne_surveys.R")
-
-survs <- get_ne_surveys()
-survs[[1]] 
-
-```
-]
-
-.pull-right[
-```{r menh-strata, out.width = "100%"}
-knitr::include_graphics("20190522_Audubon_Hardison_images/menh-survey-strata.png")
-```
-]
-
-.footnote[
-[ME/NH Survey Protocols](https://www.maine.gov/dmr/science-research/projects/trawlsurvey/reports/documents/proceduresandprotocols.pdf)
-]
-
----
-## Surveys trends: Massachusetts Inshore Survey
-
-.pull-left[
-```{r ma-strata, out.width = "100%"}
-knitr::include_graphics("20190522_Audubon_Hardison_images/ma-survey-strata.png")
-```
-]
-
-.pull-right[
-```{r inshore-ma, fig.height=9}
-survs <- get_ne_surveys()
-survs[[2]] 
-
-```
-]
-
-
----
-## Surveys trends: Offshore
-```{r offshore, fig.width=15, fig.height=8}
-survs[[3]] + survs[[4]] + plot_layout(ncol = 2)
-```
-
-
----
-## Survey trends: Inshore and offshore
-
-```{r benthivore_ne, fig.width = 7.5, fig.height = 8, fig.align="center"}
-load(file = "data/benthivore_survey_NE.rdata")
-benthivore_NE %>% 
-  ggplot(aes(x = Time, y = Value, color = Var), color = "black") +
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-           xmin = x.shade.min , xmax = x.shade.max ,
-           ymin = -Inf, ymax = Inf) +
-  geom_gls(data = benthivore_NE %>% filter(Survey != "MENH"),
-           aes(x = Time, y = Value,
-               color = Var),
-           alpha = trend.alpha, size = trend.size) +
-  geom_line(size = lwd-0.5) +
-  geom_point(size = pcex-0.5) +
-  scale_color_manual(values = rep("black",8), aesthetics = "color")+
-  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
-  guides(color = FALSE) +
-  geom_hline(aes(yintercept = hline,
-                 group = Var),
-             size = hline.size,
-             alpha = hline.alpha,
-             linetype = hline.lty)+
-  facet_wrap(group~.,scales = "free_y", ncol = 2) +
-  ylab(expression("Biomass (kg tow"^-1*")")) +
-  ggtitle("Benthivore survey biomass in New England") +
-  theme_facet()+
-    theme(strip.text=element_text(hjust=0,
-                                  size = 12),
-          axis.text = element_text(size = 12),
-          axis.title = element_text(size = 12),
-          title = element_text(size = 14))
-```
-
----
-## Survey trends: Inshore and offshore piscivores
-
-```{r piscivore_ne, fig.width = 7.5, fig.height = 8, fig.align="center"}
-load(file = "data/piscivore_survey_NE.rdata")
-piscivore_NE %>% 
-  ggplot(aes(x = Time, y = Value, color = Var), color = "black") +
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-           xmin = x.shade.min , xmax = x.shade.max ,
-           ymin = -Inf, ymax = Inf) +
-  geom_gls(data = piscivore_NE %>% filter(Survey != "MENH"),
-           aes(x = Time, y = Value,
-               color = Var),
-           alpha = trend.alpha, size = trend.size) +
-  geom_line(size = lwd-0.5) +
-  geom_point(size = pcex-0.5) +
-  scale_color_manual(values = rep("black",8), aesthetics = "color")+
-  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
-  guides(color = FALSE) +
-  geom_hline(aes(yintercept = hline,
-                 group = Var),
-             size = hline.size,
-             alpha = hline.alpha,
-             linetype = hline.lty)+
-  facet_wrap(group~.,scales = "free_y", ncol = 2) +
-  ylab(expression("Biomass (kg tow"^-1*")")) +
-  ggtitle("Piscivore survey biomass in New England") +
-  theme_facet()+
-    theme(strip.text=element_text(hjust=0,
-                                  size = 12),
-          axis.text = element_text(size = 12),
-          axis.title = element_text(size = 12),
-          title = element_text(size = 14))
-```
 ---
 ## Changing base of the food web: primary production
 
@@ -1470,7 +1421,7 @@ out_pp$Month <- factor(out_pp$Month, levels = month.abb)
 source("R/sli_plots.R")
 gom_out <- sli_plots("GOM")
 gb_out <- sli_plots("GB")
-ecodata::zoo_anom_sli
+
 gom_out[[1]] +  gb_out[[1]] +gom_out[[2]] + gb_out[[2]] + plot_layout(ncol=2)
 ```
 
@@ -1572,3 +1523,120 @@ Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program)
 knitr::include_graphics("20190522_Audubon_Hardison_images/noaa-iea.png")
 ```
 
+---
+## Surveys trends: Maine/New Hampshire Inshore Survey
+.pull-left[
+```{r inshore-menh, fig.height=9}
+source("R/get_ne_surveys.R")
+
+survs <- get_ne_surveys()
+survs[[1]] 
+
+```
+]
+
+.pull-right[
+```{r menh-strata, out.width = "100%"}
+knitr::include_graphics("20190522_Audubon_Hardison_images/menh-survey-strata.png")
+```
+]
+
+.footnote[
+[ME/NH Survey Protocols](https://www.maine.gov/dmr/science-research/projects/trawlsurvey/reports/documents/proceduresandprotocols.pdf)
+]
+
+---
+
+## Surveys trends: Massachusetts Inshore Survey
+
+.pull-left[
+```{r ma-strata, out.width = "100%"}
+knitr::include_graphics("20190522_Audubon_Hardison_images/ma-survey-strata.png")
+```
+]
+
+.pull-right[
+```{r inshore-ma, fig.height=9}
+survs <- get_ne_surveys()
+survs[[2]] 
+
+```
+]
+
+
+---
+## Surveys trends: Offshore
+```{r offshore, fig.width=15, fig.height=8}
+survs[[3]] + survs[[4]] + plot_layout(ncol = 2)
+```
+
+
+---
+## Survey trends: Inshore and offshore
+
+```{r benthivore_ne, fig.width = 7.5, fig.height = 8, fig.align="center"}
+load(file = "data/benthivore_survey_NE.rdata")
+benthivore_NE %>% 
+  ggplot(aes(x = Time, y = Value, color = Var), color = "black") +
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+           xmin = x.shade.min , xmax = x.shade.max ,
+           ymin = -Inf, ymax = Inf) +
+  geom_gls(data = benthivore_NE %>% filter(Survey != "MENH"),
+           aes(x = Time, y = Value,
+               color = Var),
+           alpha = trend.alpha, size = trend.size) +
+  geom_line(size = lwd-0.5) +
+  geom_point(size = pcex-0.5) +
+  scale_color_manual(values = rep("black",8), aesthetics = "color")+
+  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
+  guides(color = FALSE) +
+  geom_hline(aes(yintercept = hline,
+                 group = Var),
+             size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+  facet_wrap(group~.,scales = "free_y", ncol = 2) +
+  ylab(expression("Biomass (kg tow"^-1*")")) +
+  ggtitle("Benthivore survey biomass in New England") +
+  theme_facet()+
+    theme(strip.text=element_text(hjust=0,
+                                  size = 12),
+          axis.text = element_text(size = 12),
+          axis.title = element_text(size = 12),
+          title = element_text(size = 14))
+```
+
+---
+## Survey trends: Inshore and offshore piscivores
+
+```{r piscivore_ne, fig.width = 7.5, fig.height = 8, fig.align="center"}
+load(file = "data/piscivore_survey_NE.rdata")
+piscivore_NE %>% 
+  ggplot(aes(x = Time, y = Value, color = Var), color = "black") +
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+           xmin = x.shade.min , xmax = x.shade.max ,
+           ymin = -Inf, ymax = Inf) +
+  geom_gls(data = piscivore_NE %>% filter(Survey != "MENH"),
+           aes(x = Time, y = Value,
+               color = Var),
+           alpha = trend.alpha, size = trend.size) +
+  geom_line(size = lwd-0.5) +
+  geom_point(size = pcex-0.5) +
+  scale_color_manual(values = rep("black",8), aesthetics = "color")+
+  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
+  guides(color = FALSE) +
+  geom_hline(aes(yintercept = hline,
+                 group = Var),
+             size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+  facet_wrap(group~.,scales = "free_y", ncol = 2) +
+  ylab(expression("Biomass (kg tow"^-1*")")) +
+  ggtitle("Piscivore survey biomass in New England") +
+  theme_facet()+
+    theme(strip.text=element_text(hjust=0,
+                                  size = 12),
+          axis.text = element_text(size = 12),
+          axis.title = element_text(size = 12),
+          title = element_text(size = 14))
+```
