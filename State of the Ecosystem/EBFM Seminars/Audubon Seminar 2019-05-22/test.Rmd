@@ -99,52 +99,100 @@ epu_sf <- ecodata::epu_sf %>%
   filter(EPU %in% c("MAB","GB","GOM"))
 ```
 
-## Zooplankton abundance and North Atlantic Right Whale range shifts
-
-```{r, out.width = "100%", fig.align="center"}
-knitr::include_graphics("20190522_Audubon_Hardison_images/record-et-al.png")
-```
-
-*Record et al. 2019* examines the role of warming deepwater in western Gulf of Maine on *Calanus finmarchicus* and North Atlantic right whale
-
-**North Atlantic right whale distributions affected by climate driven changes in *C. finmarchicus* abundance in western Gulf of Maine**
-
----
-## Zooplankton abundance and North Atlantic Right Whale range shifts
+## Implications for protected species: Common tern diet
 
 .pull-left[
-**Western GOM**
-* Recent *C. finmarchicus* abundance in W. GOM has been highest ever in recent years
-  * Why? *C. finmarchicus* supplied by highly productive Maine Coastal Current can reproduce rapidly and mediate effects of warming.
-  * NARW + *C. finmarchicus* conditions remain favorable in W. GOM
+* Warmer waters affect vertical distribution of prey species
+  * Results in more generalist diet choices
+  
+* High diet diversity in past decade may be the result of decreases in preferred prey type (hake, sandlance)
+  * Butterfish appear in diet in warm years, are difficult to digest; may cause starvation
 ]
-
 .pull-right[
-```{r, out.width = "100%", fig.align="center"}
-knitr::include_graphics("20190522_Audubon_Hardison_images/record-et-al-fig.png")
+```{r tern-diet-diversity, fig.height=8}
+aggregate_prod <- ecodata::common_tern %>% 
+    filter(!str_detect(Var, "Diet|Sum"))  %>% 
+  mutate(Island = word(Var, 1),
+         Var = word(Var, 3),
+         Island = plyr::mapvalues(Island, from = c("EER","JI","MR","OGI","PINWR","SINWR","STI"),
+                                  to = c("Eastern Egg Rock", "Jenny Island", "Matinicus Rock", "Outer Green Island", "Pond Island", "Seal Island","Stratton Island"))) %>%
+  group_by(Time) %>% 
+  dplyr::summarise(Mean = mean(Value, na.rm = T),
+                   SE = sd(Value, na.rm = T)/sqrt(n()),
+                   SD = sd(Value, na.rm = T),
+                   n = n()) %>% 
+  mutate(Mean = ifelse(is.na(SE),NA,Mean),
+         se.low = Mean - SE,
+         se.high = Mean + SE,
+         hline = mean(Mean, na.rm = T))
+
+prodplot <- aggregate_prod %>% ggplot() +
+#Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = Mean), size = lwd-0.75) +
+  geom_point(aes(x = Time, y = Mean), size = pcex-0.75) +
+  geom_gls(aes(x = Time, y = Mean)) +
+  geom_errorbar(aes(x = Time,
+                    ymin = se.low,
+                  ymax = se.high), 
+                width = 0.25) +
+  scale_x_continuous(expand = c(0.01, 0.01),limits = c(1991,2018)) +
+  guides(color = FALSE) +
+  ggtitle("Common tern productivity") +
+  ylab(expression("Fledged chicks per nest")) +
+  xlab("Time")+
+  geom_hline(aes(yintercept = hline),
+           color = "black",
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  labs(tag = "")  +
+  theme_ts()+
+  theme(axis.title = element_text(size = 14),
+          plot.title = element_text(size = 16, face = "bold"))
+
+diet_div <- ecodata::common_tern %>% 
+  filter(str_detect(Var, "Diet"),
+         !str_detect(Var, "Sum")) %>% 
+  mutate(Island = word(Var, 1),
+         Var = word(Var, 4)) %>% 
+  group_by(Island, Time) %>%
+  dplyr::summarise(evenness = diversity(Value)/log(specnumber(Value)),
+                   shannon = diversity(Value),
+                   simpson = diversity(Value, index = "simpson")) %>% 
+  gather(.,Var,Value,-Island, -Time) %>% 
+  group_by(Var, Time) %>%
+  dplyr::summarize(Value = mean(Value, na.rm = T),
+                   sd = sd(Value, na.rm = T),
+                   n = n()) %>%
+  group_by(Var) %>% 
+  mutate(hline = mean(Value, na.rm = T))
+
+shannon <- diet_div %>% 
+  filter(Var == "shannon") %>% 
+ggplot(aes(x = Time, y = Value)) +
+      annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line() +
+  geom_point() +
+  #geom_gls() +
+  scale_x_continuous(expand = c(0.01, 0.01),limits = c(1992,2018)) +
+  ggtitle("Common tern diet diversity")+
+  ylab(expression("Shannon Diversity")) +
+  xlab("")+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts() +
+  theme(axis.title = element_text(size = 14),
+          plot.title = element_text(size = 16, face = "bold"))
+
+source("R/get_tern_map.R")
+tern_loc <- get_tern_map()
+tern_loc + shannon + prodplot + plot_layout(ncol = 1, heights = c(1,0.4,0.4))
 ```
-.image-cap[
-Significant abundance changes in *Calanus* shown in blue (negative) and red (positive). ([Record et al. 2019](https://cloudup.com/iFB8decQWOs))
-  ]
-]
-
-
----
-## Zooplankton abundance and North Atlantic Right Whale range shifts
-
-.pull-left[
-**Eastern GOM**
-* Deepwater warming contributes to high mortality of dormant copepods
-* More Gulf Stream influence in Gulf means less supply of copepods into GOM
-
-**The result? NARWs favor western GOM and Canadian waters for foraging.**
-]
-
-.pull-right[
-```{r, out.width = "100%", fig.align="center"}
-knitr::include_graphics("20190522_Audubon_Hardison_images/record-et-al-fig.png")
-```
-.image-cap[
-Significant abundance changes in *Calanus* shown in blue (negative) and red (positive). ([Record et al. 2019](https://cloudup.com/iFB8decQWOs))
-  ]
 ]
