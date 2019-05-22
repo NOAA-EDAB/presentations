@@ -500,7 +500,7 @@ knitr::include_graphics("20190522_Audubon_Hardison_images/SOE_Map.jpg")
 ```
 
 .footnote[
-https://noaa-edab.github.io/tech-memo/epu.html
+https://noaa-edab.github.io/tech-doc/epu.html
 ]
 
 ---
@@ -550,111 +550,8 @@ Because we focus on ecosystem context, we've aggregated species in most of our i
 These feeding guilds were derived from NEFSC food habits data and existing guilds identified in the literature
 
 ---
-## Challenges: F and B objectives
 
-  * Objectives being met for 20 stocks
-  * 4 stocks below B and above F thresholds
-  * Herring dropped to B/Bmsy < 1
-
-```{r stock-status, fig.width = 8, fig.asp = 0.75, fig.align="center"}
-
-#Get data, spread for plotting, and filter
-stock_status <- ecodata::stock_status %>%
-  spread(.,Var,Value) %>% 
-  filter(Council %in% c("NEFMC","Both"))
-
-#Plot constants
-y.max <- 4.5
-x.max <- 7.5
-
-all_missing <- stock_status %>%
-  filter(is.na(B.Bmsy),is.na(F.Fmsy)) %>% 
-  dplyr::select(Code, Council)
-
-b_missing <- stock_status %>%
-  filter(is.na(B.Bmsy), !is.na(F.Fmsy)) %>% 
-  dplyr::select(Code, Council)
-
-f_missing <- stock_status %>%
-  filter(is.na(F.Fmsy), !is.na(B.Bmsy)) %>% 
-  dplyr::select(Code, Council)
-
-#A dataframe that defines custom legend for stocks with unknown status
-
-all.df <- data.frame(text = all_missing$Code,
-                    x = rep(x.max,length(all_missing$Code)),
-                    y = seq(4.35,2.85,-0.22),
-                    color = all_missing$Council)
-
-b.df <- data.frame(text = b_missing$Code,
-                    x = rep(x.max*0.8,length(b_missing$Code)),
-                    y = c(4.35,4.14),
-                    color = b_missing$Council)
-
-f.df <- data.frame(text = f_missing$Code,
-                    x = rep(x.max*0.6,length(f_missing$Code)),
-                    y = seq(4.35,2.85,-0.22),
-                    color = f_missing$Council)
-
-
-#Plotting code
-ggplot(data = stock_status) +
-  geom_vline(xintercept = 1, linetype = "dotted", color = "grey60")+
-  geom_vline(xintercept = 0.5, linetype = "dashed", color = "grey60")+
-  geom_hline(yintercept = 1, linetype = "dashed", color = "grey60") +
-  geom_point(aes(x = B.Bmsy,
-                 y = F.Fmsy,
-                 color = Council,
-                 shape = Council)) +
-  geom_text_repel(aes(x = B.Bmsy, #geom_text_repel auto-jitters text around points
-                      y = F.Fmsy,
-                      label = Code,
-                      color = Council), show.legend = FALSE,nudge_y = 0.05, nudge_x = 0.05) +
-  ylim(0,y.max) +
-  xlim(0,x.max*1.1) +
-  geom_text(data = all.df, aes(x = x, y = y, label = text, color = color),show.legend = FALSE, size = 3)+
-  geom_text(data = b.df, aes(x = x, y = y, label = text, color = color),show.legend = FALSE, size = 3)+
-  geom_text(data = f.df, aes(x = x, y = y, label = text, color = color),show.legend = FALSE, size = 3)+
-  scale_color_manual(values = c("purple","blue"),#c("purple","blue"), #Change legend labels for clarity
-                   name = "Managed by",
-                   breaks = c("Both","NEFMC"),
-                   labels = c("MAFMC/NEFMC","NEFMC"))+
-  scale_shape_manual(values = c(1, 19), #Change legend labels for clarity
-                     name = "Managed by",
-                     breaks = c("Both","NEFMC"),
-                     labels = c("MAFMC/NEFMC","NEFMC"))+
-  annotate("rect", xmin = 0.924*x.max,
-           xmax = 1.08*x.max,
-           ymin = 0.645*y.max,
-           ymax = 0.98*y.max,
-           alpha = 0.01) +
-  annotate("text", x = 7.5, y = 4.5, label = "F and B missing", fontface =2, size = 3)+
-    annotate("rect", 
-             xmin = 0.729*x.max,
-           xmax = 0.871*x.max,
-           ymin = 0.905*y.max,
-           ymax = 0.98*y.max,
-           alpha = 0.01) +
-  annotate("text", x = 6, y = 4.5, label = "B missing", fontface =2, size = 3)+
-    annotate("rect", xmin = 0.509*x.max,
-           xmax = 0.681*x.max,
-           ymin = 0.65*y.max,
-           ymax = 0.98*y.max,
-           alpha = 0.01) +
-  annotate("text", x = 4.5, y = 4.5, label = "F missing", fontface =2, size = 3)+
-  xlab(expression(~B/B[msy])) +
-  ylab(expression(~F/F[msy])) +
-  theme_ts()
-```
-
-???
-While management action has had a postive impact on harbor porpoise mortality, there are multiple signals indicating challenges to meeting management goals. 
-
-Management objectives are being met for 20 species at the single species level, but 9 stocks are below biomass thresholds. 
-
----
-
-## Challenges: Community reliance and vulnerability
+## Community engagement and reliance on commercial fisheries in New England
 
 * High social-ecological reliance on scallop and lobster
 * Species considered moderately to highly at risk due to climate change (OA, temp)
@@ -670,7 +567,8 @@ Many social-ecological systems in New England are reliant on lobster, as in Gulf
 
 Maine and South coast of MA have high reliance
 ---
-## Commercial drivers
+## Drivers of commercial fisheries in New England
+
 ```{r bennet-ne, out.width = "65%", fig.align="center"}
 
 source("R/bennet_plots_NE.R")
@@ -680,6 +578,7 @@ ne_bennet <- bennet_plots_NE(scale_x_min = 1986)
 ne_bennet[[1]] + ne_bennet[[2]] + plot_layout(ncol = 1)
 ```
 
+**Lobsters** in Gulf of Maine and **sea scallops** on Georges Bank are the largest economic drivers of commercial fisheries in New England.
 
 ???
 This reliance becomes apparent if we look at the breakdown of catch volume and prices by feeding guild.
@@ -1254,6 +1153,56 @@ The predominant pattern across species is a shift northwards and into deeper wat
 A clear example of this occurring is the American lobster, whose populations have become more productive in Gulf of Maine compared to the northern Mid-Atlantic due to favorable climate conditions. 
 
 ---
+## Management implications: species shifts
+
+**Mass and Maine/New Hampshire Inshore Surveys + NEFSC Offshore Survey Trends**
+
+.pull-left[
+
+```{r, fig.width = 7.5, fig.height = 10, fig.align="center"}
+load(file = "data/benthivore_survey_NE.rdata")
+benthivore_NE %>% 
+  ggplot(aes(x = Time, y = Value, color = Var), color = "black") +
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+           xmin = x.shade.min , xmax = x.shade.max ,
+           ymin = -Inf, ymax = Inf) +
+  geom_gls(data = benthivore_NE %>% filter(Survey != "MENH"),
+           aes(x = Time, y = Value,
+               color = Var),
+           alpha = trend.alpha, size = trend.size) +
+  geom_line(size = lwd-0.5) +
+  geom_point(size = pcex-0.5) +
+  scale_color_manual(values = rep("black",8), aesthetics = "color")+
+  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
+  guides(color = FALSE) +
+  geom_hline(aes(yintercept = hline,
+                 group = Var),
+             size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+  facet_wrap(group~.,scales = "free_y", ncol = 2) +
+  ylab(expression("Biomass (kg tow"^-1*")")) +
+  ggtitle("Benthivore survey biomass in New England") +
+  theme_facet()+
+    theme(strip.text=element_text(hjust=0,
+                                  size = 12),
+          axis.text = element_text(size = 12),
+          axis.title = element_text(size = 12),
+          title = element_text(size = 14))
+```
+]
+
+.pull-right[
+```{r, out.width = "80%"}
+knitr::include_graphics("20190522_Audubon_Hardison_images/menh-survey-strata.png")
+```
+
+```{r, out.width = "80%"}
+knitr::include_graphics("20190522_Audubon_Hardison_images/ma-survey-strata.png")
+```
+]
+
+---
 ## Implications for protected species: Common tern diet
 
 .pull-left[
@@ -1381,7 +1330,6 @@ Significant abundance changes in *Calanus* shown in blue (negative) and red (pos
   ]
 ]
 
-
 ---
 ## Implications for protected species: North Atlantic Right Whale range shifts
 
@@ -1405,7 +1353,7 @@ Significant abundance changes in *Calanus* shown in blue (negative) and red (pos
 ---
 ## Changing base of the food web: primary production
 
-* Summer PP is increasing in the Mid-Atlantic (and in New England)
+* Summer PP is increasing in New England
   * Driven by warmer temperatures and increased bacterial remineralization and nutrient recycling
   * Increasing primary production likely due to higher productivity of smaller phytoplankton
 
@@ -1510,7 +1458,7 @@ Interestingly, the drop-off in condition around 2000 resembles a shift in zoopla
 ---
 ## Contributors - THANK YOU!
 
-The New England and Mid-Atlantic SOEs made possible by (at least) 38 contributors from 8 intstitutions 
+The New England and Mid-Atlantic SOEs made possible by (at least) 38 contributors from 8 institutions 
 
 .pull-left[
 .contrib[
@@ -1681,3 +1629,107 @@ piscivore_NE %>%
           axis.title = element_text(size = 12),
           title = element_text(size = 14))
 ```
+
+
+---
+## Challenges: F and B objectives
+
+  * Objectives being met for 20 stocks
+  * 4 stocks below B and above F thresholds
+  * Herring dropped to B/Bmsy < 1
+
+```{r stock-status, fig.width = 8, fig.asp = 0.75, fig.align="center"}
+
+#Get data, spread for plotting, and filter
+stock_status <- ecodata::stock_status %>%
+  spread(.,Var,Value) %>% 
+  filter(Council %in% c("NEFMC","Both"))
+
+#Plot constants
+y.max <- 4.5
+x.max <- 7.5
+
+all_missing <- stock_status %>%
+  filter(is.na(B.Bmsy),is.na(F.Fmsy)) %>% 
+  dplyr::select(Code, Council)
+
+b_missing <- stock_status %>%
+  filter(is.na(B.Bmsy), !is.na(F.Fmsy)) %>% 
+  dplyr::select(Code, Council)
+
+f_missing <- stock_status %>%
+  filter(is.na(F.Fmsy), !is.na(B.Bmsy)) %>% 
+  dplyr::select(Code, Council)
+
+#A dataframe that defines custom legend for stocks with unknown status
+
+all.df <- data.frame(text = all_missing$Code,
+                    x = rep(x.max,length(all_missing$Code)),
+                    y = seq(4.35,2.85,-0.22),
+                    color = all_missing$Council)
+
+b.df <- data.frame(text = b_missing$Code,
+                    x = rep(x.max*0.8,length(b_missing$Code)),
+                    y = c(4.35,4.14),
+                    color = b_missing$Council)
+
+f.df <- data.frame(text = f_missing$Code,
+                    x = rep(x.max*0.6,length(f_missing$Code)),
+                    y = seq(4.35,2.85,-0.22),
+                    color = f_missing$Council)
+
+
+#Plotting code
+ggplot(data = stock_status) +
+  geom_vline(xintercept = 1, linetype = "dotted", color = "grey60")+
+  geom_vline(xintercept = 0.5, linetype = "dashed", color = "grey60")+
+  geom_hline(yintercept = 1, linetype = "dashed", color = "grey60") +
+  geom_point(aes(x = B.Bmsy,
+                 y = F.Fmsy,
+                 color = Council,
+                 shape = Council)) +
+  geom_text_repel(aes(x = B.Bmsy, #geom_text_repel auto-jitters text around points
+                      y = F.Fmsy,
+                      label = Code,
+                      color = Council), show.legend = FALSE,nudge_y = 0.05, nudge_x = 0.05) +
+  ylim(0,y.max) +
+  xlim(0,x.max*1.1) +
+  geom_text(data = all.df, aes(x = x, y = y, label = text, color = color),show.legend = FALSE, size = 3)+
+  geom_text(data = b.df, aes(x = x, y = y, label = text, color = color),show.legend = FALSE, size = 3)+
+  geom_text(data = f.df, aes(x = x, y = y, label = text, color = color),show.legend = FALSE, size = 3)+
+  scale_color_manual(values = c("purple","blue"),#c("purple","blue"), #Change legend labels for clarity
+                   name = "Managed by",
+                   breaks = c("Both","NEFMC"),
+                   labels = c("MAFMC/NEFMC","NEFMC"))+
+  scale_shape_manual(values = c(1, 19), #Change legend labels for clarity
+                     name = "Managed by",
+                     breaks = c("Both","NEFMC"),
+                     labels = c("MAFMC/NEFMC","NEFMC"))+
+  annotate("rect", xmin = 0.924*x.max,
+           xmax = 1.08*x.max,
+           ymin = 0.645*y.max,
+           ymax = 0.98*y.max,
+           alpha = 0.01) +
+  annotate("text", x = 7.5, y = 4.5, label = "F and B missing", fontface =2, size = 3)+
+    annotate("rect", 
+             xmin = 0.729*x.max,
+           xmax = 0.871*x.max,
+           ymin = 0.905*y.max,
+           ymax = 0.98*y.max,
+           alpha = 0.01) +
+  annotate("text", x = 6, y = 4.5, label = "B missing", fontface =2, size = 3)+
+    annotate("rect", xmin = 0.509*x.max,
+           xmax = 0.681*x.max,
+           ymin = 0.65*y.max,
+           ymax = 0.98*y.max,
+           alpha = 0.01) +
+  annotate("text", x = 4.5, y = 4.5, label = "F missing", fontface =2, size = 3)+
+  xlab(expression(~B/B[msy])) +
+  ylab(expression(~F/F[msy])) +
+  theme_ts()
+```
+
+???
+While management action has had a postive impact on harbor porpoise mortality, there are multiple signals indicating challenges to meeting management goals. 
+
+Management objectives are being met for 20 species at the single species level, but 9 stocks are below biomass thresholds. 
