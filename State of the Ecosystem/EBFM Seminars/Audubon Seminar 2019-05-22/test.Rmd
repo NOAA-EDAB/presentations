@@ -1,0 +1,198 @@
+---
+title: "State of the Ecosystem:"
+subtitle: "New England 2019"
+author: "Sean Hardison, Sarah Gaichas, Sean Lucey, Scott Large <br /> Ecosystem Dynamics and Assessment <br /> Integrated Statistics & Northeast Fisheries Science Center"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/20190522_Audubon_Hardison_theme.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(ecodata)
+library(here)
+library(kableExtra)
+library(ggrepel)
+library(stringr)
+library(patchwork)
+library(grid)
+library(plotly)
+library(vegan)
+library(rpart)
+library(colorRamps)
+
+#GIS libraries
+library(sf)
+library(rgdal)
+library(raster)
+library(rnaturalearth)
+
+data.dir <- here::here("data")
+r.dir <- here::here("R")
+
+#Time series constants
+shade.alpha <- 0.3
+shade.fill <- "lightgrey"
+lwd <- 1
+pcex <- 2
+trend.alpha <- 0.5
+trend.size <- 2
+hline.size <- 1
+hline.alpha <- 0.35
+hline.lty <- "dashed"
+label.size <- 5
+hjust.label <- 1.5
+letter_size <- 4
+feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
+x.shade.min <- 2009
+x.shade.max <- 2018
+map.lwd <- 0.4
+#Function for custom ggplot facet labels
+label <- function(variable,value){
+  return(facet_names[value])
+}
+
+#facet names for titles
+facet_names <- list("Apex predators" = expression("Apex predators"),
+                    "Piscivores" = expression("Piscivores"),
+                    "Planktivores" = expression("Planktivores"),
+                    "Benthivores" = expression("Benthivores"),
+                    "Benthos" = expression("Benthos"))
+#CRS
+crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+
+#Coastline shapefile
+coast <- ne_countries(scale = 10,
+                          continent = "North America",
+                          returnclass = "sf") %>%
+             sf::st_transform(crs = crs)
+
+#State polygons
+ne_states <- ne_states(country = "united states of america",
+                                      returnclass = "sf") %>%
+  sf::st_transform(crs = crs)
+
+#high-res polygon of Maine
+#new_england <- read_sf(gis.dir,"new_england")
+
+#EPU shapefile
+epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB","GB","GOM"))
+```
+
+## Implications for protected species: Common tern diet
+
+.pull-left[
+* Warmer waters affect vertical distribution of prey species
+  * Results in more generalist diet choices
+  
+* High diet diversity in past decade may be the result of decreases in preferred prey type (hake, sandlance)
+  * Butterfish appear in diet in warm years, are difficult to digest; may cause starvation
+]
+.pull-right[
+```{r tern-diet-diversity, fig.height=8}
+aggregate_prod <- ecodata::common_tern %>% 
+    filter(!str_detect(Var, "Diet|Sum"))  %>% 
+  mutate(Island = word(Var, 1),
+         Var = word(Var, 3),
+         Island = plyr::mapvalues(Island, from = c("EER","JI","MR","OGI","PINWR","SINWR","STI"),
+                                  to = c("Eastern Egg Rock", "Jenny Island", "Matinicus Rock", "Outer Green Island", "Pond Island", "Seal Island","Stratton Island"))) %>%
+  group_by(Time) %>% 
+  dplyr::summarise(Mean = mean(Value, na.rm = T),
+                   SE = sd(Value, na.rm = T)/sqrt(n()),
+                   SD = sd(Value, na.rm = T),
+                   n = n()) %>% 
+  mutate(Mean = ifelse(is.na(SE),NA,Mean),
+         se.low = Mean - SE,
+         se.high = Mean + SE,
+         hline = mean(Mean, na.rm = T))
+
+prodplot <- aggregate_prod %>% ggplot() +
+#Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = Mean), size = lwd-0.75) +
+  geom_point(aes(x = Time, y = Mean), size = pcex-0.75) +
+  geom_gls(aes(x = Time, y = Mean)) +
+  geom_errorbar(aes(x = Time,
+                    ymin = se.low,
+                  ymax = se.high), 
+                width = 0.25) +
+  scale_x_continuous(expand = c(0.01, 0.01),limits = c(1991,2018)) +
+  guides(color = FALSE) +
+  ggtitle("Common tern productivity") +
+  ylab(expression("Fledged chicks per nest")) +
+  xlab("Time")+
+  geom_hline(aes(yintercept = hline),
+           color = "black",
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  labs(tag = "")  +
+  theme_ts()+
+  theme(axis.title = element_text(size = 14),
+          plot.title = element_text(size = 16, face = "bold"))
+
+diet_div <- ecodata::common_tern %>% 
+  filter(str_detect(Var, "Diet"),
+         !str_detect(Var, "Sum")) %>% 
+  mutate(Island = word(Var, 1),
+         Var = word(Var, 4)) %>% 
+  group_by(Island, Time) %>%
+  dplyr::summarise(evenness = diversity(Value)/log(specnumber(Value)),
+                   shannon = diversity(Value),
+                   simpson = diversity(Value, index = "simpson")) %>% 
+  gather(.,Var,Value,-Island, -Time) %>% 
+  group_by(Var, Time) %>%
+  dplyr::summarize(Value = mean(Value, na.rm = T),
+                   sd = sd(Value, na.rm = T),
+                   n = n()) %>%
+  group_by(Var) %>% 
+  mutate(hline = mean(Value, na.rm = T))
+
+shannon <- diet_div %>% 
+  filter(Var == "shannon") %>% 
+ggplot(aes(x = Time, y = Value)) +
+      annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line() +
+  geom_point() +
+  #geom_gls() +
+  scale_x_continuous(expand = c(0.01, 0.01),limits = c(1992,2018)) +
+  ggtitle("Common tern diet diversity")+
+  ylab(expression("Shannon Diversity")) +
+  xlab("")+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts() +
+  theme(axis.title = element_text(size = 14),
+          plot.title = element_text(size = 16, face = "bold"))
+
+source("R/get_tern_map.R")
+tern_loc <- get_tern_map()
+tern_loc + shannon + prodplot + plot_layout(ncol = 1, heights = c(1,0.4,0.4))
+```
+]
