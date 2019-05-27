@@ -67,7 +67,7 @@ data.dir <- here::here("data")
 
 .pull-left[
 
-- Changing climate and ocean conditions --> Shifting distributions, changing productivity
+- Changing climate and ocean conditions &rarr; Shifting distributions, changing productivity
 
 - Needs:
   - Improve our ability to project global change impacts in the California Current and Nordic/Barents Seas (and elsewhere)
@@ -123,7 +123,7 @@ Building on global change projections:  [Hodgson et al. 2018](https://www.scienc
 
 1. Focus on key stocks (Northeast Arctic cod, Norwegian spring spawning herring, California Current sardine, Pacific hake or a Pacific rockfish)
 
-1. Atlantis output to dataset generator (`atlantisom`) -> Stock Synthesis assessment 
+1. Atlantis output &rarr; dataset generator (`atlantisom`) &rarr; Stock Synthesis assessment 
 
 1. Compare performance of different model settings, multiple models, model ensembles 
 ]
@@ -133,7 +133,7 @@ Building on global change projections:  [Hodgson et al. 2018](https://www.scienc
 knitr::include_graphics("EDAB_images/CCAclimatescenario.png")
 ```
 ]
-Bonus: `atlantisom` -> multispecies, other single species models for testing
+Bonus: `atlantisom` &rarr; multispecies, other single species models for testing
 
 ???
 
@@ -162,33 +162,76 @@ knitr::include_graphics("EDAB_images/PoseidonDesign.png")
 
 
 ---
-## Stock Synthesis framework
+## Stock assessment uncertainty
 
-stuff about the model itself and the variation we expect to look at
+* Focus on climate impacts to growth and mortality (productivity)
 
-do this with other assessment models, generalize, use REDUS framework?
+* Range of assumptions about growth and mortality currently used in operational stock assessments
 
----
-## Make atlantis output into assessment model input
+* Stock synthesis framework initially, due to familiarity 
 
-Show example workflow
+* Can extend to other assessment models, generalize, and use components of the REDUS framework?
 
 ---
 ## What can we do so far?
-
-Example results: 
 .pull-left[
 Survey census test NOBA 
 ```{r ex-output1, echo = F, warning = F, message=F, fig.align = "center"}
 knitr::include_graphics("EDAB_images/NOBAcensus.png")
 ```
+
+True length composition NOBA
+```{r ex-output3, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/NOBAherringtruelf.png")
+```
+
 ]
 .pull-right[
 Standard survey test CCA
 ```{r ex-output2, echo = F, warning = F, message=F, fig.align = "center"}
 knitr::include_graphics("EDAB_images/CCsurveyex.png")
 ```
+
+Survey length composition CCA
+```{r ex-output4, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/CCV3herringlfcomp.png")
+```
+
 ]
+
+---
+## Make atlantis output into assessment model input
+
+Example workflow: 
+
+1. Get true biomass, abundance, age composition, length composition, weight at age, fishery catch, fishery catch at age, fishery length composition, and fishery weight age age for a "sardine-like species": https://sgaichas.github.io/poseidon-dev/FullSardineTruthEx.html
+
+1. Format these outputs and get other life history parameters for input into a stock assessment model ([Stock Synthesis](https://www.sciencedirect.com/science/article/abs/pii/S0165783612003293), using [`r4ss`](https://github.com/r4ss)):
+https://sgaichas.github.io/poseidon-dev/CreateStockSynthesis.html
+
+1. Run the assessment model
+
+---
+## Full disclosure!
+
+.pull-left[
+Still working on:
+
+1. Estimating total mortality to back out M
+
+1. Splitting aggregate age groups into true ages (not needed for NOBA)
+
+1. Interpolating aggregate age groups weight at age for true ages
+
+1. Fishery catch weight by area
+
+1. Generalizing for different Atlantis codebase vintages
+]
+
+.pull-right[
+![workinprogress scale 100%](EDAB_images/work-in-progress.png)
+]
+
 
 ---
 ## Specify uncertainty in assessment "data": REDUS to the rescue!
@@ -233,16 +276,16 @@ What level of uncertainty is appropriate to carry through these analyses?
 
 * [atlantisom R package](https://github.com/r4atlantis/atlantisom)
 
-* [dataset generation](https://github.com/sgaichas/poseidon-dev)
-
-  * [True Biomass Comparisons](https://sgaichas.github.io/poseidon-dev/TrueBioTest.html)
-  * [Standard Surveys](https://sgaichas.github.io/poseidon-dev/StandardSurveyTest.html)
-  * [Age Comps in progress](https://sgaichas.github.io/poseidon-dev/TrueLengthAgeCompTest.html)
+* [Testing atlantisom](https://github.com/sgaichas/poseidon-dev)
 
 * Slides available at https://noaa-edab.github.io/presentations
 
 ---
+
+background-image: url("EDAB_images/IMG_2733.jpg")
+background-size: cover
+
 ## Questions?
 
 
-# Tusen Takk til Havforskningsinstituttet! Vi gleder oss til en produktiv tid her.
+# Tusen Takk til Havforskningsinstituttet!
