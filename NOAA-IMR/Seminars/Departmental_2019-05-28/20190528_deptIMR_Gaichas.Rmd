@@ -165,12 +165,33 @@ knitr::include_graphics("EDAB_images/PoseidonDesign.png")
 ## Stock assessment uncertainty
 
 * Focus on climate impacts to growth and mortality (productivity)
+* Full factorial design over assumptions about growth and mortality used in operational stock assessments
 
-* Range of assumptions about growth and mortality currently used in operational stock assessments
+    * Growth:
+      1. constant growth parameters
+      1. regime shifts in growth parameters (Stawitz et al. 2019)
+      1. empirical weight-at-age (Kuriyama et al. 2016)
+    
+    * Natural mortality:
+      1. fixed at an “uninformed” constant value of 0.2
+      1. fixed at a constant value that reflects the true average value (over time) from the OM
+      1. establishing regimes by fixing at the true average values from the OM over specified time blocks
+    
+    * Also, an equally weighted ensemble of the 9 estimating models
 
-* Stock synthesis framework initially, due to familiarity 
+* Stock synthesis framework initially, but extend to other assessment models, generalize, and use components of the REDUS framework
 
-* Can extend to other assessment models, generalize, and use components of the REDUS framework?
+---
+## Make atlantis output into assessment model input
+
+Example workflow: 
+
+1. Get true biomass, abundance, age composition, length composition, weight at age, fishery catch, fishery catch at age, fishery length composition, and fishery weight age age for a "sardine-like species": https://sgaichas.github.io/poseidon-dev/FullSardineTruthEx.html
+
+1. Format these outputs and get other life history parameters for input into a stock assessment model ([Stock Synthesis](https://www.sciencedirect.com/science/article/abs/pii/S0165783612003293), using [`r4ss`](https://github.com/r4ss)):
+https://sgaichas.github.io/poseidon-dev/CreateStockSynthesis.html
+
+1. Run the assessment model
 
 ---
 ## What can we do so far?
@@ -198,18 +219,6 @@ knitr::include_graphics("EDAB_images/CCV3herringlfcomp.png")
 ```
 
 ]
-
----
-## Make atlantis output into assessment model input
-
-Example workflow: 
-
-1. Get true biomass, abundance, age composition, length composition, weight at age, fishery catch, fishery catch at age, fishery length composition, and fishery weight age age for a "sardine-like species": https://sgaichas.github.io/poseidon-dev/FullSardineTruthEx.html
-
-1. Format these outputs and get other life history parameters for input into a stock assessment model ([Stock Synthesis](https://www.sciencedirect.com/science/article/abs/pii/S0165783612003293), using [`r4ss`](https://github.com/r4ss)):
-https://sgaichas.github.io/poseidon-dev/CreateStockSynthesis.html
-
-1. Run the assessment model
 
 ---
 ## Full disclosure!
