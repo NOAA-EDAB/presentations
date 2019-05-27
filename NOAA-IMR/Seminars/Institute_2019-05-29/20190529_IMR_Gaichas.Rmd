@@ -1,10 +1,10 @@
 ---
-title: "State of the Ecosystem:"
-subtitle: "Mid-Atlantic 2019<br /> with updates to EAFM Risk Assessment"
-author: "Sarah Gaichas and Sean Hardison <br /> Ecosystem Dynamics and Assessment <br /> Northeast Fisheries Science Center"
+title: "Implementing Ecosystem Approaches <br> to Fishery Management:"
+subtitle: "A Risk Assessment Example"
+author: "Sarah Gaichas Geret DePiper, Richard Seagraves, Brandon Muffley, and Sean Lucey <br /> Northeast Fisheries Science Center and Mid-Atlantic Fishery Management Council"
 output:
   xaringan::moon_reader:
-    css: ["default", "libs/20190320_MAFMC_SSC_Gaichas_theme.css"]
+    css: ["default", "libs/EDAB_theme2.css"]
     lib_dir: libs
     nature:
       titleSlideClass: ["right", "middle", "my-title"]
@@ -98,33 +98,111 @@ epu_sf <- ecodata::epu_sf %>%
   filter(EPU %in% c("MAB","GB","GOM"))
 ```
 
-# Today's Talk
+## Conclusion
+
+Rapid progress in implementing an ecosystem approach to fishery management resulted from positive collaboration between managers, stakeholders, and scientists. Collaboration is essential to integrated ecosystem assessment and to the success of ecosystem approaches. 
 
 .pull-left[
+*Outline*
+- Why did managers decide to invest in an ecosystem approach?
 
-- Role of Ecosystem reporting in MAFMC EAFM
+- How did they develop their approach?
 
-- Report structure
+- Why risk assessment?
 
-- Overview results for Mid-Atlantic 2019
+- How did they develop the risk assessment?
 
-- EAFM risk assessment update
+- How are they using the risk assessment?
 
-- Notable improvements: open-source data and technical documentation
+- What are their next steps?
+
 ]
 
 .pull-right[
-*The IEA Loop<sup>1</sup>*
-![iea-loop](20190320_MAFMC_SSC_Gaichas_images/iea-loop.png)
+*The IEA Loop*
+![iea-loop](EDAB_images/iea-loop.png)
 
-
+.small[
+https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
 ]
 
+
+
+???
+---
+## Fisheries management in the US
+
+Council map
+
+Highlight the Mid
+
+---
+## Why an ecosystem approach?
+
+Visioning/strategic planning process: 2011-2012
+
+"We rebuilt all the stocks, so why is everyone still pissed off?"
+
+Common themes across stakeholder groups
+
+Summarize visioning report, reference it
+
+---
+## How was the approach developed?
+
+Public workshops aligned with the common themes over 2-3 years
+
+  * Forage 
+  * Climate
+  * Interactions
+  * Habitat
+  
+  Social and economic considerations in each discussion
+
+Scientific presentations followed by Council questions and discussion
+
+Developed policy guidance white papers for Council discussion
+
+NOT regulatory, but policy statements
+
+Led to work on regulations, e.g. unmanaged forage amendment
+
+---
+## Mid-Atlantic Council Ecosystem Approach
+
+* 2016 EAFM Policy Guidance document; revised 2019<sup>1</sup> 
+
+* MAFMC EAFM framework<sup>2</sup>
+```{r framework, echo = F, out.width = "60%", fig.align = "center"}
+knitr::include_graphics("EDAB_images/Framework.png")
+```
+
 .footnote[
-[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+[1] http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf
+
+[2] https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full
+]
+
+---
+## Foreshadowing
+
+* 2017 Inital EAFM risk assessment completed; revised and published 2018<sup>1</sup>
+
+* State of the Ecosystem indicators to be used for annual risk assessment updates
+
+
+.footnote[
+[1] https://www.frontiersin.org/articles/10.3389/fmars.2018.00442/full
 ]
 
 ???
+
+
+---
+
+## Meanwhile, State of the Ecosystem (SOE) Reporting: Context for busy people
+
 ---
 
 ## State of the Ecosystem (SOE) Reporting: Context for busy people
@@ -142,42 +220,19 @@ epu_sf <- ecodata::epu_sf %>%
 1. Emphasis on reproducibility 
 
 ```{r nes-comp2, echo = F, out.width = "60%", fig.align = "center"}
-knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/nes-components-abstracted.png")
+knitr::include_graphics("EDAB_images/nes-components-abstracted.png")
 ```
 
 ???
 In 2016, we began taking steps to address these common critiques of the ESR model
 
 ---
-## Mid-Atlantic Council Ecosystem Approach
-
-* 2016 EAFM Policy Guidance document; revised 2019<sup>1</sup> 
-
-* MAFMC EAFM framework<sup>2</sup>
-```{r framework, echo = F, out.width = "60%", fig.align = "center"}
-knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/Framework.png")
-```
-
-* 2017 Inital EAFM risk assessment completed; revised and published 2018<sup>3</sup>
-
-* SOE indicators to be used for annual risk assessment updates
-
-
-.footnote[
-[1] http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf
-
-[2] https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full
-
-[3] https://www.frontiersin.org/articles/10.3389/fmars.2018.00442/full
-]
-
-???
-
----
 ## State of the Ecosystem 2019: Structure
 .pull-left[
 
 ### Report Structure
+0. Synthetic overview
+
 1. Human dimensions
 
 2. Protected species
@@ -238,8 +293,6 @@ knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/Framework.png")
 </table>
 ]
 ]
-
-
 ---
 ## SOE Orientation: Indicator visualization
 
@@ -307,11 +360,11 @@ ggplot2::ggplot(data = data,aes(x = x, y = y)) +
 ## SOE Orientation: Indicator spatial scales
 
 ```{r epus, echo = F, out.width = "70%", fig.align = "center"}
-knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/SOE_Map.jpg")
+knitr::include_graphics("EDAB_images/SOE_Map.jpg")
 ```
 
 .footnote[
-https://noaa-edab.github.io/tech-memo/epu.html
+https://noaa-edab.github.io/tech-doc/epu.html
 ]
 
 ???
@@ -362,102 +415,170 @@ Because we focus on ecosystem context, we've aggregated species in most of our i
 These feeding guilds were derived from NEFSC food habits data and existing guilds identified in the literature
 
 ---
+## EAFM Risk Assessment update
+
+The Mid-Atlantic Council requested that the State of the Ecosystem report indicators be used to annually update their EAFM risk assessment. Therefore, the ecosystem reporting now has a direct strategic use.
+
+### Decreased Risk
+* Summer flounder fishing mortality (F) status has improved from high risk (F>Fmsy) to low risk (F<Fmsy) based on the new benchmark assessment
+
+* Updated commercial fleet diversity (fleet count and fleet diversity) have no long term trends, thus improving from moderate-high risk to low risk according to risk criteria for this element
+
+### Increased Risk
+* No indicators for individual elements have changed enough to warrant increased risk rankings according to the Council risk critiera (but see caveats regarding analyses that were not updated)
+
+---
+## EAFM Risk Assessment: Updated Risk Rankings
+*Species level risk elements*
+```{r sptable, fig.align="center",out.width="95%"}
+knitr::include_graphics("EDAB_images/sptable2019.png")
+```
+*Ecosystem level risk elements*
+```{r ecotable, fig.align="center",out.width="95%"}
+knitr::include_graphics("EDAB_images/ecotable2019.png")
+```
+
+---
+## EAFM Risk Assessment: Risk Rankings without updates
+*Species and Sector level risk elements*
+```{r mgttable, fig.align="center",out.width="75%"}
+knitr::include_graphics("EDAB_images/mgttable2019.png")
+```
+
+---
+## Mid-Atlantic Council Ecosystem Approach
+
+* Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
+
+```{r framework2, echo = F, out.width = "60%", fig.align = "center"}
+knitr::include_graphics("EDAB_images/Framework.png")
+```
+
+* Working group of habitat, biology, stock assessment, management, economic and social scientists are now developing:
+
+  * draft conceptual models of high risk elements, linkages
+  * dataset identification and gap analysis for each element and link
+  * draft questions that the Council could persue with additional work
+
+---
+## Mid-Atlantic Council Ecosystem Approach
+
+* The late 2018 summer flounder conceptual model, now under construction:
+
+```{r sfconceptmod, echo = F, out.width = "60%", fig.align = "center"}
+knitr::include_graphics("EDAB_images/Summerfl_EAFM_v2.png")
+```
+
+* Final conceptual modeling to be done by late 2019
+
+* Council may then elect to proceed with management strategy evaluation (MSE) using the information from conceptual modeling as a basis
+
+---
+## IEA footnote: Improvements to reproducibility and provenance
+
+* Reporting the information is not enough
+
+* Managers appreciate the concise format, but back-end critical for describing collection, analyses, and processing
+  
+![soe-data-flow](EDAB_images/soe-data-flow.png)  
+
+???
+This workflows also ensures that there's no information lost between SOE cycles. We know exactly how a data set was analyzed and handled so that the data can be updated for next year's reports.
+
+---
+## External Resources
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
+  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
+  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
+  
+* [ERDDAP server](https://comet.nefsc.noaa.gov/erddap/index.html)
+
+* Slides available at https://noaa-edab.github.io/presentations
+
+---
+## Contributors - THANK YOU!
+
+The New England and Mid-Atlantic SOEs made possible by (at least) 38 contributors from 8 institutions 
+
+.pull-left[
+.contrib[
+Donald Anderson (Woods Hole Oceanographic Institute) <br>
+Amani Bassyouni (Virginia Department of Health)<br>
+Lisa Calvo (Rutgers)<br>
+Matthew Camisa (MA Division of Marine Fisheries) <br>
+Patricia Clay<br>
+Lisa Colburn<br>
+Geret DePiper<br>
+Deb Duarte<br>
+Michael Fogarty<br>
+Paula Fratantoni <br>
+Kevin Friedland<br>
+Sarah Gaichas<br>
+James Gartland (Virginia Institute of Marine Science)<br>
+Heather Haas<br>
+Sean Hardison <br>
+Kimberly Hyde<br>
+Terry Joyce (Woods Hole Oceanographic Institute)<br>
+John Kosik<br>
+Steve Kress (National Audubon Society)<br>
+Scott Large
+]
+]
+
+.pull-right[
+.contrib[
+Don Lyons (National Audubon Society)<br>
+Loren Kellogg<br>
+David Kulis (Woods Hole Oceanographic Institute)<br>
+Sean Lucey<br>
+Chris Melrose<br>
+Ryan Morse<br>
+Kimberly Murray<br>
+Chris Orphanides<br>
+Richard Pace<br>
+Charles Perretti<br>
+Karl Roscher (Maryland Department of Natural Resources)<br>
+Vincent Saba<br>
+Laurel Smith<br>
+Mark Terceiro<br>
+John Walden<br>
+Harvey Walsh<br>
+Mark Wuenschel<br>
+Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program)
+]
+]
+
+```{r iea-logo, fig.align="center", out.width = "50%"}
+knitr::include_graphics("EDAB_images/noaa-iea.png")
+```
+
+---
+
+background-image: url("EDAB_images/IMG_2733.jpg")
+background-size: cover
+
+## Questions?
+
+
+# Tusen Takk til Havforskningsinstituttet!
+
+
+---
 
 ## SOE 2019 Overview Results
 
 ```{r nes-comp1, echo = F}
-knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/nes-components.png")
+knitr::include_graphics("EDAB_images/nes-components.png")
 ```
 
 ???
 The purpose of this report is to synthesize available information relevant to fishery management in the Mid-Atlantic portion of the US Northeast Shelf. This 2019 report highlights where management interventions have proven successful to achieve ecological objectives, but also characterizes the considerable challenges for management posed by climate change and increasing trade-offs across conservation, fishing, and other human activities in this region. Finally, we describe combinations of ecological signals that present opportunities for further integrated research and possibly creative management solutions.
 
-
----
-## Good news: Management works (I)
-
-Evidence suggests that management limiting nutrient inputs has significantly improved water quality in Chesapeake Bay
-
-**Chesapeake Bay Water Quality**
-
-```{r cb-water-qual, fig.height = 3.5, fig.align = "center"}
-minlab <- seq(1985,2015,5)
-maxlab <- seq(1987,2017,5)
-
-ecodata::ches_bay_wq %>% 
-  mutate(hline = mean(Value)) %>% 
-  ggplot(aes(x = Time, y = Value)) +
-       annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_line() +
-  geom_point() +
-  geom_gls() +
-    ylab(expression("Estimated attainment, percent")) +
-  ggtitle("Chesapeake Bay Estimated Water Quality Standards Attainment") +
-  scale_x_continuous(breaks = minlab,labels = paste0(minlab,"-",maxlab),expand = c(0.01, 0.01)) +
-    geom_hline(aes(yintercept = hline),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty) +
-  theme_ts() +
-  theme(axis.title = element_text(size = 14))
-```
-
-
-???
-First indicator I'd like to talk about is a new water quality for Chesapeake Bay, which many resource species use as nursery habitat or are dependent upon (e.g. bluefish, striped bass, menhaden, black sea bass)
-
-These data, which were provided by collaborators at the Chesapeake Bay Program, represent the percent of tidal waters in Chesapeake Bay meeting water quality standards for chlorophyll a, submerged aquatic vegetation, and dissolved oxygen. The increase in water quality for the Bay has been tied to management action limiting nutrient influx into the watershed, and improvments in dissolved oxygen and water clarity. 
-
----
-## Good news: Management works (II)
-Current bycatch levels suggest that management actions have been effective in reducing harbor porpoise bycatch
-
-```{r harbor-porpoise-bars, fig.width = 8, fig.align="center", fig.height = 6}
-source("R/hp_density_plot.R")
-hp_bycatch  <- ecodata::harborporpoise %>% 
-  spread(.,Var,Value) %>% 
-ggplot() +
-    annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_line(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = lwd) +
-  geom_point(aes(x = Time, y = `harbor porpoise bycatch estimate`, color = "Harbor Porpoise Bycatch"), size = pcex) +
-  geom_errorbar(aes(x = Time,
-                    ymin = `harbor porpoise bycatch lo95ci`,
-                  ymax = `harbor porpoise bycatch up95ci`,
-                  color = "Harbor Porpoise Bycatch"), 
-                width = 0.25)+
-  geom_line(aes(x = Time, y = `harbor porpoise bycatch pbr`, color = "PBR"), size = lwd-0.1) +
-  scale_color_manual("", values = c("Harbor Porpoise Bycatch" = "black", "PBR" = "red")) +
-  guides(color = guide_legend(override.aes = list(shape = c(19,NA)))) +
-  scale_x_continuous(expand = c(0.01, 0.01)) +
-  ggtitle("Harbor porpoise bycatch") +
-  ylab("Bycatch Estimate (n)") +
-  theme_ts() +
-  theme(legend.position = c(0.4, 0.85),
-        legend.background = element_rect(fill = "transparent"),
-        axis.title = element_text(size = 14),
-        plot.title = element_text(size = 16, face = "bold"))
-
-xlims <- c(-78, -66)
-ylims <- c(35, 46)
-fall_hp <- hp_density("Fall", lat = F)
-spring_hp <- hp_density("Spring", leg = F)
-
-(spring_hp | fall_hp ) /
-  hp_bycatch + plot_layout(ncol = 1, heights = c(1.5, 1.25)) & theme(plot.margin = margin(0,0,0.3,0,"cm"))
-
-```
-
-
-???
-The maps here show density estimates of the widely distributed harbor porpoise in the spring and fall months, as estimated by the Atlantic Marine Assessment Program for Protected Species.
-
-The red line in the time series plot shows the potential biological removal. Above this line removals from the population will prevent the stock from reaching a stable population size. 
-
-2016 and 2017 estimates for bycacth are among the lowest values in the series, suggest that management actions have been effective in reducing harbor porpoise bycatch. 
 
 ---
 ## Harvested species (mostly) meeting B and F objectives
@@ -871,7 +992,7 @@ These things are important for managers to know about because they directly infl
 * Mid-Atlantic summer 2018 SSTs were 3rd highest on record 
 * Bottom temperature increasing as well, past 6 years all above average
 ```{r mab-sst, fig.align = "center", fig.width=9, fig.height=7}
-knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/sst-anom.png")
+knitr::include_graphics("EDAB_images/sst-anom.png")
 ```
 
 ???
@@ -1138,7 +1259,7 @@ To assess the size structure of copepods in the region, we use the small-large i
 
 *MAFMC Condition Factor*
 ```{r fish-con2, fig.align="center",out.width="95%"}
-knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/MAFMC_Fish_Condition_2019.jpg")
+knitr::include_graphics("EDAB_images/MAFMC_Fish_Condition_2019.jpg")
 ```
 
 
@@ -1172,149 +1293,10 @@ In the Mid, there seems to be a decline in productivity in recent years, due to 
 In the past 5 years, strong productivity years for witch flounder, silver hake, and winter flounder have driven increases
 
 ---
-## EAFM Risk Assessment update (I)
-
-### Decreased Risk
-* Summer flounder fishing mortality (F) status has improved from high risk (F>Fmsy) to low risk (F<Fmsy) based on the new benchmark assessment
-
-* Updated commercial fleet diversity (fleet count and fleet diversity) have no long term trends, thus improving from moderate-high risk to low risk according to risk criteria for this element
-
-### Increased Risk
-* No indicators for individual elements have changed enough to warrant increased risk rankings according to the Council risk critiera
-
-* But see caveats regarding analyses that were not updated
-
----
-## EAFM Risk Assessment update (II)
-
-### Re-evaluate Risk
-* Indicators for recreational opportunities based on updated Marine Recreational Information Program (MRIP) data show generally similar patterns of decreased angler days and trips over the past 10 years, but the declines are less pronounced than measured previously. A reduction from the highest risk ranking to a lower risk category may be warranted. 
-
-### New Risk Indicators
-* Recreational diversity indicators (fleet and species) to be considered
-
-* Chesapeake Bay water quality could be added to estuarine habitat element
-
----
-## EAFM Risk Assessment: Updated Risk Rankings
-*Species level risk elements*
-```{r sptable, fig.align="center",out.width="95%"}
-knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/sptable2019.png")
-```
-*Ecosystem level risk elements*
-```{r ecotable, fig.align="center",out.width="95%"}
-knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/ecotable2019.png")
-```
-
----
-## EAFM Risk Assessment: Risk Rankings without updates
-*Species and Sector level risk elements*
-```{r mgttable, fig.align="center",out.width="75%"}
-knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/mgttable2019.png")
-```
-
----
-## SOE 2019: Improvements to reproducibility and provenance
-
-* Reporting the information is not enough
-
-* Managers appreciate the concise format, but back-end critical for describing collection, analyses, and processing
-  
-![soe-data-flow](20190320_MAFMC_SSC_Gaichas_images/soe-data-flow.png)  
-
-???
-This workflows also ensures that there's no information lost between SOE cycles. We know exactly how a data set was analyzed and handled so that the data can be updated for next year's reports.
-
----
-## External Resources
-
-* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
-
-* [ecodata R package](https://github.com/noaa-edab/ecodata)
-
-  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
-  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
-  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
-  
-* [ERDDAP server](https://comet.nefsc.noaa.gov/erddap/index.html)
-
-* Slides available at https://sgaichas.github.io/soe-presentation
-
----
-## Contributors - THANK YOU!
-
-The New England and Mid-Atlantic SOEs made possible by (at least) 38 contributors from 8 intstitutions 
-
-.pull-left[
-.contrib[
-Donald Anderson (Woods Hole Oceanographic Institute) <br>
-Amani Bassyouni (Virginia Department of Health)<br>
-Lisa Calvo (Rutgers)<br>
-Matthew Camisa (MA Division of Marine Fisheries) <br>
-Patricia Clay<br>
-Lisa Colburn<br>
-Geret DePiper<br>
-Deb Duarte<br>
-Michael Fogarty<br>
-Paula Fratantoni <br>
-Kevin Friedland<br>
-Sarah Gaichas<br>
-James Gartland (Virginia Institute of Marine Science)<br>
-Heather Haas<br>
-Sean Hardison <br>
-Kimberly Hyde<br>
-Terry Joyce (Woods Hole Oceanographic Institute)<br>
-John Kosik<br>
-Steve Kress (National Audubon Society)<br>
-Scott Large
-]
-]
-
-.pull-right[
-.contrib[
-Don Lyons (National Audubon Society)<br>
-Loren Kellogg<br>
-David Kulis (Woods Hole Oceanographic Institute)<br>
-Sean Lucey<br>
-Chris Melrose<br>
-Ryan Morse<br>
-Kimberly Murray<br>
-Chris Orphanides<br>
-Richard Pace<br>
-Charles Perretti<br>
-Karl Roscher (Maryland Department of Natural Resources)<br>
-Vincent Saba<br>
-Laurel Smith<br>
-Mark Terceiro<br>
-John Walden<br>
-Harvey Walsh<br>
-Mark Wuenschel<br>
-Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program)
-]
-]
-
-```{r iea-logo, fig.align="center", out.width = "50%"}
-knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/noaa-iea.png")
-```
-
----
-## Appendix: General feeding guilds
-
-```{r guilds}
-df <- data.frame("Feeding guild" = c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos"),
-                 Description = c("Top of food chain","Fish eaters","Zooplankton eaters",
-                                 "Feed on bottom","Things that live on bottom"),
-                 Examples = c("Shark spp, swordfish","Atlantic cod, spiny dogfish","Atlantic herring","Lobster, black sea bass","Sea scallop, urchins"))
-
-knitr::kable(df) %>% 
-kable_styling(bootstrap_options = c("striped", "hover")) 
-```
-
----
 ## Appendix: Ocean circulation
 
 ```{r atl-circ, out.width="50%", fig.align="center"}
-knitr::include_graphics("20190320_MAFMC_SSC_Gaichas_images/nw-atlantic-circ.jpg")
+knitr::include_graphics("EDAB_images/nw-atlantic-circ.jpg")
 ```
 
 
@@ -1395,102 +1377,3 @@ gsi_plt + sw_plt
 Over the past few years, we've seen a strong departure of the gulf stream north wall from it's mean latitude
 
 With that comes a larger percentage of warm slope water entering into gulf of maine through the NE channel
-
-
----
-## Appendix: Common tern diet diversity
-.pull-left[
-* Warmer waters affect vertical distribution of prey species
-
-  * Results in more generalist diet choices
-* High diet diversity in past decade may be the result of decreases in preferred prey type (hake, sandlance)
-]
-.pull-right[
-```{r tern-diet-diversity, fig.height=8}
-
-diet_div <- ecodata::common_tern %>% 
-  filter(str_detect(Var, "Diet"),
-         !str_detect(Var, "Sum")) %>% 
-  mutate(Island = word(Var, 1),
-         Var = word(Var, 4)) %>% 
-  group_by(Island, Time) %>%
-  dplyr::summarise(evenness = diversity(Value)/log(specnumber(Value)),
-                   shannon = diversity(Value),
-                   simpson = diversity(Value, index = "simpson")) %>% 
-  gather(.,Var,Value,-Island, -Time) %>% 
-  group_by(Var, Time) %>%
-  dplyr::summarize(Value = mean(Value, na.rm = T),
-                   sd = sd(Value, na.rm = T),
-                   n = n()) %>%
-  group_by(Var) %>% 
-  mutate(hline = mean(Value, na.rm = T))
-
-shannon <- diet_div %>% 
-  filter(Var == "shannon") %>% 
-ggplot(aes(x = Time, y = Value)) +
-      annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_line() +
-  geom_point() +
-  #geom_gls() +
-  scale_x_continuous(expand = c(0.01, 0.01),limits = c(1992,2018)) +
-  ggtitle("Common tern diet diversity")+
-  ylab(expression("Shannon Diversity")) +
-  xlab("")+
-  geom_hline(aes(yintercept = hline),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty) +
-  theme_ts() +
-  theme(axis.title = element_text(size = 14),
-          plot.title = element_text(size = 16, face = "bold"))
-
-source("R/get_tern_map.R")
-tern_loc <- get_tern_map()
-tern_loc + shannon + plot_layout(ncol = 1, heights = c(1,0.75))
-```
-]
-
----
-## Appendix: Common tern diet
-* Warmer waters result in *butterfish* appearing in common tern diet
-  * May cause starvation or require parents to increase foraging effort
-* High diet diversity in past decade may be the result of decreases in preferred prey type (hake, sandlance)
-
-```{r stacked-bar-prey-freq,out.width='100%', fig.height=5}
-
-cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
-
-prey_freq <- ecodata::common_tern %>% 
-  filter(str_detect(Var, "Diet"),
-         !str_detect(Var, "Sum")) %>% 
-    mutate(Island = word(Var, 1),
-         Var = word(Var, 4)) %>%
-    group_by(Var, Time) %>% 
-    dplyr::summarise(Value = sum(Value, na.rm = T)) %>% 
-    group_by(Time) %>% 
-    mutate(Freq = Value/sum(Value, na.rm = T)) %>% 
-    group_by(Var) %>% 
-  mutate(hline = mean(Freq, na.rm = T))
-
-diet_freq_bar <- prey_freq %>% 
-  filter(Freq > 0.05) %>% 
-  dplyr::mutate(Prey = gsub("\\.", " ", Var)) %>% 
-  # dplyr::rename(Prey = Var) %>%
-  ggplot(aes(x = Time, y = Freq, fill = Prey)) +
-  geom_bar(stat = "identity") +
-  scale_x_continuous(expand = c(0.01, 0.01))+
-  scale_fill_manual(values = RColorBrewer::brewer.pal(10,"Paired")) +
-  ggtitle("Prey composition") +
-  ylab("Proportion of prey items") +
-  theme_ts()
-
-diet_plotly <- ggplotly(diet_freq_bar)
-diet_plotly
-```
-
-???
-* Common tern breeding colonies are monitored in the southern GOM
-* Common tern sensitive to vertical distribution of prey
-
