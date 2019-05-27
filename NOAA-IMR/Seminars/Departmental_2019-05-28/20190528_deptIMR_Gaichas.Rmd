@@ -41,6 +41,7 @@ data.dir <- here::here("data")
 ## Fragile ecosystems, robust assessments? Performance testing stock assessments for the California Current and Nordic and Barents Seas under climate change
 .pull-left[
 - Scientist exchange central to this project
+
 - NOAA internal "international fellowship" and REDUS funding:  
   - Gaichas, April 15 - June 15
   - Lynch, April 18 - June 7
@@ -54,7 +55,7 @@ data.dir <- here::here("data")
 
 - Additional NMFS and IMR collaborators with diverse skills and experiences 
   - Emma Hodgson, other stock assessment and modeling folks
-  - Cecile Hansen, Daniel Howell, Erik Olsen, and now **YOU**
+  - Cecilie Hansen, Daniel Howell, Erik Olsen, and now **YOU**
 
 .footnote[
 [1] https://www.meganstarr.com/30-things-you-should-know-before-moving-to-norway/
@@ -88,30 +89,35 @@ data.dir <- here::here("data")
 ---
 ## End-to-end ecosystem operating models
 
-* Barents Sea<sup>1-2</sup>
-* California Current<sup>3-4</sup> 
+Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-2979.2011.00412.x), [Fulton and Smith 2004](https://www.ajol.info/index.php/ajms/article/view/33182)
 
-```{r Atlantismods, echo = F, out.width = "60%", fig.align = "center"}
-knitr::include_graphics("EDAB_images/atlantismods.png")
-```
+.pull-left[
+**Norwegian-Barents Sea**
 
-* Building on previous global change projections <sup>5-6</sup>
+[Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
+[2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
 
-.footnote[
-[1] Hansen et al 2016
-[2] Hansen et al 2018
-
-[3] Marshall et al. 2017
-[4] Kaplan et al. 2017
-
-[5] Hodgson et al. 2018
-[6] Olsen et al. 2018
+![NOBA scale 90%](EDAB_images/journal.pone.0210419.g001.png)
 ]
+.pull-right[
+**California Current**
+
+[Marshall et al. 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.13594), 
+[Kaplan et al. 2017](https://www.sciencedirect.com/science/article/pii/S0304380016308262?via%3Dihub)
+
+![CCAspatial scale 100%](EDAB_images/CCAspatial.png)
+]
+
+
+
+Building on global change projections:  [Hodgson et al. 2018](https://www.sciencedirect.com/science/article/pii/S0304380018301856?via%3Dihub), 
+[Olsen et al. 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00064/full)
+
 
 ???
 ---
 
-## End-to-end ecosystem operating models
+## Project overview
 .pull-left[
 1. Scenarios for effects of temperature on growth, natural mortality
 
@@ -119,16 +125,16 @@ knitr::include_graphics("EDAB_images/atlantismods.png")
 
 1. Atlantis output to dataset generator (`atlantisom`) -> Stock Synthesis assessment 
 
-1. Also `atlantisom` -> multispecies, other single species models for testing
-
 1. Compare performance of different model settings, multiple models, model ensembles 
 ]
 
 .pull-right[
-```{r nes-comp2, echo = F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/q_surverr_MEF.png")
+```{r nes-comp2, echo = F, fig.align = "center", fig.show = "hold"}
+knitr::include_graphics("EDAB_images/CCAclimatescenario.png")
 ```
 ]
+Bonus: `atlantisom` -> multispecies, other single species models for testing
+
 ???
 
 ---
@@ -137,6 +143,35 @@ knitr::include_graphics("EDAB_images/q_surverr_MEF.png")
 ```{r poseidon, echo = F, fig.align = "center"}
 knitr::include_graphics("EDAB_images/PoseidonDesign.png")
 ```
+
+---
+## Design
+* Operating model scenario (climate and fishing)
+![CCAspatial scale 90%](EDAB_images/projectionOMsetup.png)
+
+--
+
+.pull-left[
+* Recruitment variability in the operating model
+
+* Specify uncertainty in assessment inputs using `atlantisom`
+]
+.pull-right[
+![sardinerec scale 100%](EDAB_images/CCAsardineRecVar.png)
+]
+
+
+---
+## Stock Synthesis framework
+
+stuff about the model itself and the variation we expect to look at
+
+do this with other assessment models, generalize, use REDUS framework?
+
+---
+## Make atlantis output into assessment model input
+
+Show example workflow
 
 ---
 ## What can we do so far?
@@ -156,15 +191,14 @@ knitr::include_graphics("EDAB_images/CCsurveyex.png")
 ]
 
 ---
-## Process
-
-Show example workflow?
-
----
-## REDUS to the rescue!
+## Specify uncertainty in assessment "data": REDUS to the rescue!
 
 What level of uncertainty is appropriate to carry through these analyses?
 .pull-left[
+1. Biological:
+
+    1. appropriate sigma-R?
+
 1. Survey specification:
 
     1. timing and spatial coverage?
@@ -175,13 +209,14 @@ What level of uncertainty is appropriate to carry through these analyses?
 
     1. selectivity at age for each species?
 
+] 
+.pull-right[
 1. Survey uncertainty:
 
     1. additional observation error (survey cv for index)?
     
     1. effective sample size for biological samples?
-] 
-.pull-right[
+    
 1. Fishery uncertainty:
     
     1. additional observation error (catch cv for total)?
