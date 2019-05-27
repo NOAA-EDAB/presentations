@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Generating datasets for   model performance testing:</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas, Isaac Kaplan, Patrick Lynch, and Christine Stawitz   Northeast and Northwest Fisheries Science Centers,   and Office of Science &amp; Technology      Supported by REDUS project, IMR, and NOAA NMFS International Fellowship" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme2.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# Generating datasets for <br> model performance testing:
+## How challenging can it be?
+### Sarah Gaichas, Isaac Kaplan, Patrick Lynch, and Christine Stawitz <br /> Northeast and Northwest Fisheries Science Centers, <br /> and Office of Science &amp; Technology <br /> <br /> <br />Supported by REDUS project, IMR, and NOAA NMFS International Fellowship
+
+---
+
+class: top, left
+
+
+
+## Fragile ecosystems, robust assessments? Performance testing stock assessments for the California Current and Nordic and Barents Seas under climate change
+.pull-left[
+- Scientist exchange central to this project
+- NOAA internal "international fellowship" and REDUS funding:  
+  - Gaichas, April 15 - June 15
+  - Lynch, April 18 - June 7
+  - Kaplan, May 11 - June 21
+  - Christine Stawitz, May 19-25
+]
+.pull-right[
+![exchange:scale 250%](EDAB_images/movetoNorway.jpg)
+*&lt;sup&gt;1&lt;/sup&gt;*
+]
+
+- Additional NMFS and IMR collaborators with diverse skills and experiences 
+  - Emma Hodgson, other stock assessment and modeling folks
+  - Cecile Hansen, Daniel Howell, Erik Olsen, and now **YOU**
+
+.footnote[
+[1] https://www.meganstarr.com/30-things-you-should-know-before-moving-to-norway/
+]
+
+---
+
+# Project motivation
+
+.pull-left[
+
+- Changing climate and ocean conditions --&gt; Shifting distributions, changing productivity
+
+- Needs:
+  - Improve our ability to project global change impacts in the California Current and Nordic/Barents Seas (and elsewhere)
+  - Test the performance of stock assessments to these impacts
+]
+
+.pull-right[
+*Climate-Ready Management&lt;sup&gt;1&lt;/sup&gt;*
+![Climateready](EDAB_images/KarpetalFig1.png)
+
+
+]
+
+.footnote[
+[1] Karp, Melissa A. et al. 2019. Accounting for shifting distributionsand changing productivity in the development of scientific advice for fishery management. – ICES Journal of Marine Science, doi:10.1093/icesjms/fsz048.
+]
+
+???
+---
+## End-to-end ecosystem operating models
+
+* Barents Sea&lt;sup&gt;1-2&lt;/sup&gt;
+* California Current&lt;sup&gt;3-4&lt;/sup&gt; 
+
+&lt;img src="EDAB_images/atlantismods.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+* Building on previous global change projections &lt;sup&gt;5-6&lt;/sup&gt;
+
+.footnote[
+[1] Hansen et al 2016
+[2] Hansen et al 2018
+
+[3] Marshall et al. 2017
+[4] Kaplan et al. 2017
+
+[5] Hodgson et al. 2018
+[6] Olsen et al. 2018
+]
+
+???
+---
+
+## End-to-end ecosystem operating models
+.pull-left[
+1. Scenarios for effects of temperature on growth, natural mortality
+
+1. Focus on key stocks (Northeast Arctic cod, Norwegian spring spawning herring, California Current sardine, Pacific hake or a Pacific rockfish)
+
+1. Atlantis output to dataset generator (`atlantisom`) -&gt; Stock Synthesis assessment 
+
+1. Also `atlantisom` -&gt; multispecies, other single species models for testing
+
+1. Compare performance of different model settings, multiple models, model ensembles 
+]
+
+.pull-right[
+&lt;img src="EDAB_images/q_surverr_MEF.png" width="1600" style="display: block; margin: auto;" /&gt;
+]
+???
+
+---
+## Test both estimation and (simple) MSE capability
+
+&lt;img src="EDAB_images/PoseidonDesign.png" width="1709" style="display: block; margin: auto;" /&gt;
+
+---
+## What can we do so far?
+
+Example results: 
+.pull-left[
+Survey census test NOBA 
+&lt;img src="EDAB_images/NOBAcensus.png" width="1792" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+Standard survey test CCA
+&lt;img src="EDAB_images/CCsurveyex.png" width="1792" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Process
+
+Show example workflow?
+
+---
+## REDUS to the rescue!
+
+What level of uncertainty is appropriate to carry through these analyses?
+.pull-left[
+1. Survey specification:
+
+    1. timing and spatial coverage?
+
+    1. which species are captured?
+
+    1. species-specific survey efficiency ("q")?
+
+    1. selectivity at age for each species?
+
+1. Survey uncertainty:
+
+    1. additional observation error (survey cv for index)?
+    
+    1. effective sample size for biological samples?
+] 
+.pull-right[
+1. Fishery uncertainty:
+    
+    1. additional observation error (catch cv for total)?
+    
+    1. catch sampled for length/age in all areas?
+    
+    1. effective sample size for biological samples?
+]
+
+---
+## External Resources
+
+* [Atlantis Model Documentation](https://github.com/Atlantis-Ecosystem-Model/Atlantis_example_and_instructions)
+
+* [atlantisom R package](https://github.com/r4atlantis/atlantisom)
+
+* [dataset generation](https://github.com/sgaichas/poseidon-dev)
+
+  * [True Biomass Comparisons](https://sgaichas.github.io/poseidon-dev/TrueBioTest.html)
+  * [Standard Surveys](https://sgaichas.github.io/poseidon-dev/StandardSurveyTest.html)
+  * [Age Comps in progress](https://sgaichas.github.io/poseidon-dev/TrueLengthAgeCompTest.html)
+
+* Slides available at https://noaa-edab.github.io/presentations
+
+---
+## Questions?
+
+
+# Tusen Takk til Havforskningsinstituttet! Vi gleder oss til en produktiv tid her.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
