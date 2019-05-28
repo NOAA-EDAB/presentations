@@ -99,10 +99,9 @@ epu_sf <- ecodata::epu_sf %>%
 
 ```
 
-## Conclusion
+## An integrated ecosystem assessment success story (in progress)
 
-Diverse stakeholders agreed that an ecosystem approach was necessary. Rapid progress in implementing an ecosystem approach to fishery management resulted from collaboration between managers, stakeholders, and scientists. 
-
+Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing an ecosystem approach to fishery management was done in collaboration between managers, stakeholders, and scientists. 
 .pull-left[
 *Outline*
 - Why did managers decide to invest in an ecosystem approach?
@@ -116,7 +115,6 @@ Diverse stakeholders agreed that an ecosystem approach was necessary. Rapid prog
 - How are they using the risk assessment? What's next?
 
 ]
-
 .pull-right[
 *Integrated Ecosystem Assessment*
 
@@ -164,7 +162,7 @@ in 2011, the Council asked:
 ![visioning2](EDAB_images/MA_Visioning2.png)
 ]
 
-And many people answered, from commercial fishery, recreational fishery, environmental NGO, and interested public perspectives.
+And many people answered, from commercial fishery, recreational fishery, environmental organization, and interested public perspectives.
 
 Visioning report: 
 
@@ -192,10 +190,10 @@ Visioning report, p. 3:
 http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
 
 ---
-## How was the Ecosystem approach developed?
+## How did they develop their ecosystem approach?
 
 Visioning Project &rarr; Strategic Plan with one objective to develop 
->"A non-regulatory umbrella document intended to guide Council policy with respect to ecosystem considerations across existing FMPs"
+>"A non-regulatory umbrella document intended to guide Council policy with respect to ecosystem considerations across existing Fishery Management Plans"
 
 ```{r workshops, echo = F, out.width = "80%", fig.align = "center"}
 knitr::include_graphics("EDAB_images/MAapproach.png")
@@ -221,6 +219,25 @@ https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full
 ]
 
 ---
+## Examples illustrating the use of the framework
+.pull-left-40[
+![firstrisk](EDAB_images/fmars-03-00105-g010.jpg)
+]
+.pull-right-60[
+Risk assessment highlights prority species/issues for more detailed evaluation
+
+A conceptual model maps out key interactions for high risk fisheries, specifies quantitative management strategy evaluation
+]
+--
+
+```{r conceptmod, fig.align="right", out.width='78%'}
+knitr::include_graphics("EDAB_images/fmars-03-00105-g011.jpg")
+```
+
+???
+The conceptual model is used to specify quantitative management strategy evaluation
+
+---
 ## Why risk assessment?
 
 Common framework across industry, science, business; but methods matter. Assessing the risks correctly is essential to good decision making.
@@ -241,12 +258,12 @@ Clarify exactly what we are assessing and why
   * *How are we measuring it?* &rarr; **Indicator**
   * *What is the risk?* &rarr; **Risk Ranking Criteria**
   
-Iterative process starting with 2015 workshops
+Iterative process starting with the Council workshops
 
   * Council staff and scientists create examples based on Council input
   
-  &uarr;                                                    &darr;
-  
+  &uarr; &darr; &uarr; &darr; &uarr; &darr; &uarr; &darr; &uarr; &darr; &uarr; &darr;
+                                                      
   * Council discusses, clarifies, revises with public input
 
 Risk assessment paper<sup>1</sup>: https://www.frontiersin.org/articles/10.3389/fmars.2018.00442/full
@@ -254,8 +271,9 @@ Risk assessment paper<sup>1</sup>: https://www.frontiersin.org/articles/10.3389/
 .footnote[
 [1] Gaichas, S. K., DePiper, G. S., Seagraves, R. J., Muffley, B. W., Sabo, M., Colburn, L. L., and Loftus, A. L. 2018. Implementing Ecosystem Approaches to Fishery Management: Risk Assessment in the US Mid-Atlantic. Frontiers in Marine Science, 5.
 ]
+
 ---
-## The Council first defined a range of risk elements: Ecological
+## Council-defined risk elements: Ecological
 
 ```{r riskel2}
 
@@ -278,7 +296,7 @@ kable(elements1, "html") %>%
 ```
 
 ---
-## Risk Elements: Economic, Social, and Food Production
+## Risk elements: Economic, Social, and Food Production
 ```{r elements2}
 
 elements2<-elements %>%
@@ -294,7 +312,7 @@ kable(elements2, "html") %>%
 ```
 
 ---
-## Risk Elements: Management
+## Risk elements: Management
 ```{r elements3}
 
 elements3<-elements %>%
@@ -309,18 +327,13 @@ kable(elements3, "html") %>%
 ```
 
 ---
-background-image: url("EDAB_images/nes-components.png")
+background-image: url("EDAB_images/IMG_2246.JPG")
 background-size: cover
-
-
-# But where will the indicators come from?
-
-
-
+## <center>But where will the indicators come from?</center>
 
 ---
 
-## Meanwhile, IEA scientists improving ecosystem reports:
+## Meanwhile, scientists were improving ecosystem reports:
 
 *"So what?" --John Boreman, September 2016*
 
@@ -345,7 +358,7 @@ In 2016, we began taking steps to address these common critiques of the ESR mode
 ## Revised ecosystem status reporting
 .pull-left[
 
-### Report Structure
+### Report structure
 0. Synthetic overview
 
 1. Human dimensions
@@ -486,38 +499,7 @@ https://noaa-edab.github.io/tech-doc/epu.html
 Indicators 
 
 ---
-## Example risk indicator: Climate 
-
-This element is applied at the species level. Risks to species productivity (and therefore to achieving OY) due to projected climate change in the Northeast US were evaluated in a comprehensive assessment<sup>1</sup>.
-
-.table[
-.pull-left[
-```{r riskclim, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-| Risk Level         | Definition                                                          |  
-|:-------------------|:--------------------------------------------------------------------|
-| Low  | Low climate vulnerability ranking |
-| Low-Moderate | Moderate climate vulnerability ranking |
-| Moderate-High | High climate vulnerability ranking |
-| High | Very high climate vulnerability ranking |
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-
-```
-]
-]
-.pull-right[
-```{r NEVAvul, out.width="100%"}
-knitr::include_graphics("EDAB_images/journal.pone.0146756.g003.PNG")
-
-```
-.image-cap[https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146756.] 
-]
-.footnote[
-[1] Hare, J. A., Morrison, W. E., Nelson, M. W., Stachura, M. M., Teeters, E. J., Griffis, R. B., Alexander, M. A., et al. 2016. A Vulnerability Assessment of Fish and Invertebrates to Climate Change on the Northeast U.S. Continental Shelf. PLOS ONE, 11: e0146756.
-]
----
-## Example risk indicator: Commercial revenue 
+## Risk assessent indicators and ranking criteria: Commercial revenue 
 
 This element is applied at the ecosystem level. Revenue serves as a proxy for commercial profits.
 
@@ -587,13 +569,11 @@ ggplot(data = indicators)+
 ]
 
 ---
-## Example risk indicator: ecosystem productivity
+## Risk assessent indicators and ranking criteria: System productivity
 
 This element is applied at the ecosystem level, and ranks the risk of not achieving optimum yield due to changes in ecosystem productivity at the base of the food web.
 
-Four indicators are used together to assess risk of changing ecosystem productivity. 
-
-We examine trends in total primary production, zooplankton abundance for a key Mid-Atlantic species, and two aggregate fish productivity measures: condition factor (weight divided by length of individual fish) and a survey based "recruitment" (small fish to large fish) index.
+Four indicators are used together to assess risk of changing ecosystem productivity: primary production, zooplankton abundance, fish condition and fish recruitment. 
 
 .table[
 ```{r riskecop, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
@@ -608,10 +588,13 @@ tabl <- "
 cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 ```
 ]
+???
+We examine trends in total primary production, zooplankton abundance for a key Mid-Atlantic species, and two aggregate fish productivity measures: condition factor (weight divided by length of individual fish) and a survey based "recruitment" (small fish to large fish) index.
+
 ---
-## Example risk indicator: ecosystem productivity
+## Risk assessent indicators and ranking criteria: System productivity
 .pull-left[
-```{r pp-trends, fig.width=10, fig.height = 5}
+```{r pp-trends, fig.height=4}
 out_pp <- ecodata::chl_pp %>% 
   filter(EPU %in% c("MAB", "GOM","GB"),
          str_detect(Var, "MONTHLY_PPD_MEDIAN")) %>% 
@@ -648,13 +631,13 @@ out_pp$Month <- factor(out_pp$Month, levels = month.abb)
  
 ```
 
-```{r fish-con2, fig.align="center",out.width="95%"}
+```{r fish-con2, fig.align="center"}
 knitr::include_graphics("EDAB_images/MAFMC_Fish_Condition_2019.jpg")
 ```
 ]
 
 .pull-right[
-```{r seasonal-zoo, fig.width = 8, fig.asp = .6, fig.align = "center"}
+```{r seasonal-zoo, fig.height=4}
 facet_names <- list(
   'centropages spring'=expression(paste(italic("Centropages "), "spring")),
   'centropages fall'=expression(paste(italic("Centropages "), "fall")),
@@ -752,12 +735,45 @@ top + middle + bottom + plot_layout(ncol = 1) & theme(plot.margin = margin(0,0,0
 ```
 
 
-```{r fish-prod, fig.align = "center", fig.height = 5, fig.width=9}
+```{r fish-prod , fig.height=4}
 source("R/productivity_plots.R")
 prod <- productivity_plots()
 prod
 ```
 ]
+
+---
+## Risk assessent indicators and ranking criteria: Climate 
+
+This element is applied at the species level. Risks to species productivity (and therefore to achieving optimum yield) due to projected climate change in the Northeast US were evaluated in a comprehensive assessment<sup>1</sup>.
+
+.table[
+.pull-left[
+```{r riskclim, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+| Risk Level         | Definition                                                          |  
+|:-------------------|:--------------------------------------------------------------------|
+| Low  | Low climate vulnerability ranking |
+| Low-Moderate | Moderate climate vulnerability ranking |
+| Moderate-High | High climate vulnerability ranking |
+| High | Very high climate vulnerability ranking |
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+
+```
+]
+]
+.pull-right[
+```{r NEVAvul, out.width="100%"}
+knitr::include_graphics("EDAB_images/journal.pone.0146756.g003.PNG")
+
+```
+.image-cap[https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146756.] 
+]
+.footnote[
+[1] Hare, J. A., Morrison, W. E., Nelson, M. W., Stachura, M. M., Teeters, E. J., Griffis, R. B., Alexander, M. A., et al. 2016. A Vulnerability Assessment of Fish and Invertebrates to Climate Change on the Northeast U.S. Continental Shelf. PLOS ONE, 11: e0146756.
+]
+
 ---
 ## Risk assessment results, 2017-2018
 
@@ -767,22 +783,22 @@ prod
 ![ecotable](EDAB_images/ecotable2018.png)
 
 ---
-## EAFM Risk Assessment update 2019
+## EAFM risk assessment update 2019
 
 The Mid-Atlantic Council requested that the State of the Ecosystem report indicators be used to annually update their EAFM risk assessment. 
 
 *Therefore, ecosystem reporting now has a direct strategic use.*
 
-### Decreased Risk
+### Decreased risk
 * Summer flounder fishing mortality (F) status has improved from high risk (F>Fmsy) to low risk (F<Fmsy) based on the new benchmark assessment
 
 * Updated commercial fleet diversity (fleet count and fleet diversity) have no long term trends, thus improving from moderate-high risk to low risk according to risk criteria for this element
 
-### Increased Risk
+### Increased risk
 * No indicators for individual elements have changed enough to warrant increased risk rankings according to the Council risk critiera 
 
 ---
-## EAFM Risk Assessment: 2019 Risk Rankings
+## EAFM risk assessment: 2019 Risk Rankings
 *Species level risk elements*
 ```{r sptable, fig.align="center",out.width="95%"}
 knitr::include_graphics("EDAB_images/sptable2019.png")
@@ -793,14 +809,14 @@ knitr::include_graphics("EDAB_images/ecotable2019.png")
 ```
 
 ---
-## EAFM Risk Assessment: Risk Rankings without 2019 updates
+## EAFM risk assessment: risk rankings without 2019 updates
 *Species and Sector level risk elements*
 ```{r mgttable, fig.align="center",out.width="75%"}
 knitr::include_graphics("EDAB_images/mgttable2019.png")
 ```
 
 ---
-## Mid-Atlantic Council Next Steps
+## Mid-Atlantic council next steps
 
 * Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
 
@@ -815,7 +831,7 @@ knitr::include_graphics("EDAB_images/Framework.png")
   * draft questions that the Council could persue with additional work
 
 ---
-## Mid-Atlantic Council Ecosystem Approach Continued...
+## Mid-Atlantic Council ecosystem approach continued...
 
 * The late 2018 summer flounder conceptual model, now under construction:
 
@@ -840,7 +856,7 @@ knitr::include_graphics("EDAB_images/Summerfl_EAFM_v2.png")
 This workflows also ensures that there's no information lost between SOE cycles. We know exactly how a data set was analyzed and handled so that the data can be updated for next year's reports.
 
 ---
-## External Resources
+## External resources
 
 * [State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
 
@@ -853,6 +869,19 @@ This workflows also ensures that there's no information lost between SOE cycles.
 * [ERDDAP server](https://comet.nefsc.noaa.gov/erddap/index.html)
 
 * Slides available at https://noaa-edab.github.io/presentations
+
+---
+## Conclusions
+
+Risk assessment is valuable for the general implementation of ecosystem approaches to natural resource management
+
+* Risk assessment is a rapid, familiar, scaleable, and transparent method to move forward with EAFM within a real-world operational fishery management context 
+
+* Risk assessment can be conducted collaboratively within existing stakeholder processes
+
+* This EAFM risk assessment highlights certain species and certain management issues as posing higher cumulative risks to meeting Council-derived management objectives when considering a broad range of ecological, social, and economic factors 
+
+* The Council foresees refining the process so that ecosystem indicators monitor risks to achieving ecological, social, and economic fishery objectives, which can then be mitigated through management action. 
 
 ---
 ## Contributors - THANK YOU!
