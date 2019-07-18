@@ -38,9 +38,9 @@ data.dir <- here::here("data")
 
 ```
 
-## What is an ecosystem model?
+# What is an ecosystem model?
 
-
+![ecomods](EDAB_images/ecomods.png)
 
 ---
 
@@ -62,14 +62,14 @@ data.dir <- here::here("data")
 
 ???
 ---
-## Suggestion:
+# Suggestion:
 
 1. Clearly specified questions/objectives
 2. Data availability
 3. THEN build a model, or better, model(s)
 
 ---
-## Today's objective
+# Today's objective
 
 Primary: Think about *your* research question
 What data do you have to address it?
@@ -86,20 +86,21 @@ Why might this be? (including model limitations)
 
 ---
 ## What is a food web model?
-.pull-left[
-A network of flows between boxes
 
+.pull-left[
 A system of linear equations
 
-For each group, i, specify:
-  + Biomass (B) [or Ecotrophic Efficiency (EE)]
-  + Population growth rate (P/B)
-  + Consumption (Q/B)
-  + Diet composition (DC)
-  + Fishery catch (C)
-  + Biomass accumulation (BA)
-  + Im/emigration (IM and EM)
-Solving for EE [or B] for each group:
+For each group, $i$, specify: 
+
+   Biomass $B$ [or Ecotrophic Efficiency $EE$ ]  
+   Population growth rate $\frac{P}{B}$  
+   Consumption rate $\frac{Q}{B}$  
+   Diet composition $DC$  
+   Fishery catch $C$  
+   Biomass accumulation $BA$  
+   Im/emigration $IM$ and $EM$  
+   
+Solving for $EE$ [or $B$ ] for each group:
 ]
 
 .pull-right[
@@ -119,35 +120,7 @@ OBSERVATIONS!
 ---
 ## The Gulf of Maine food web model
 ![GOM food web](EDAB_images/GOMfw.png)
----
-## End-to-end ecosystem operating models
 
-Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-2979.2011.00412.x), [Fulton and Smith 2004](https://www.ajol.info/index.php/ajms/article/view/33182)
-
-.pull-left[
-**Norwegian-Barents Sea**
-
-[Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
-[2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
-
-![NOBA scale 90%](EDAB_images/journal.pone.0210419.g001.png)
-]
-.pull-right[
-**California Current**
-
-[Marshall et al. 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.13594), 
-[Kaplan et al. 2017](https://www.sciencedirect.com/science/article/pii/S0304380016308262?via%3Dihub)
-
-![CCAspatial scale 100%](EDAB_images/CCAspatial.png)
-]
-
-
-
-Building on global change projections:  [Hodgson et al. 2018](https://www.sciencedirect.com/science/article/pii/S0304380018301856?via%3Dihub), 
-[Olsen et al. 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00064/full)
-
-
-???
 ---
 
 ## Project overview
@@ -170,97 +143,6 @@ Bonus: `atlantisom` &rarr; multispecies, other single species models for testing
 
 ???
 
----
-## Test both estimation and (simple) MSE capability
-
-```{r poseidon, echo = F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/PoseidonDesign.png")
-```
-
----
-## Design: Operating model scenario (climate and fishing)
-
-```{r OMdesign, echo = F, fig.align = "center", out.width="85%"}
-knitr::include_graphics("EDAB_images/projectionOMsetup.png")
-```
-
---
-
-.pull-left[
-* Recruitment variability in the operating model
-
-* Specify uncertainty in assessment inputs using `atlantisom`
-]
-.pull-right[
-![sardinerec scale 100%](EDAB_images/CCAsardineRecVar.png)
-]
-
-
----
-## Stock assessment uncertainty
-
-* Focus on climate impacts to growth and natural mortality (productivity)
-* Full factorial design over common stock assessment assumptions
-
-    * Growth:
-      1. constant growth parameters
-      1. regime shifts in growth parameters ([Stawitz et al. 2019](https://www.sciencedirect.com/science/article/abs/pii/S0165783619300049?via%3Dihub))
-      1. empirical weight-at-age ([Kuriyama et al. 2016](https://www.sciencedirect.com/science/article/abs/pii/S0165783615300837))
-      
-    * Natural mortality:
-      1. fixed at an “uninformed” constant value of 0.2
-      1. fixed at a constant value that reflects the true average value (over time) from the OM
-      1. establishing regimes by fixing at the true average values from the OM over specified time blocks
-      
-    * Also, an equally weighted ensemble of the 9 estimation models
-    
-* Stock synthesis framework initially, but extend to other assessment models, generalize, and use components of the REDUS framework
-
----
-## Experimental design (figure added 7 June 2019)
-
-```{r EMdesign, echo = F, fig.align = "center", out.width="80%"}
-knitr::include_graphics("EDAB_images/expdesignfig.png")
-```
-
----
-## Make atlantis output into assessment model input
-
-Example workflow: 
-
-1. Get true biomass, abundance, age composition, length composition, weight at age, fishery catch, fishery catch at age, fishery length composition, and fishery weight age age for a "sardine-like species": https://sgaichas.github.io/poseidon-dev/FullSardineTruthEx.html
-
-1. Format these outputs and get other life history parameters for input into a stock assessment model ([Stock Synthesis](https://www.sciencedirect.com/science/article/abs/pii/S0165783612003293), using [`r4ss`](https://github.com/r4ss)):
-https://sgaichas.github.io/poseidon-dev/CreateStockSynthesis.html
-
-1. Run the assessment model
-
----
-## What can we do so far?
-.pull-left[
-Survey census test NOBA 
-```{r ex-output1, echo = F, warning = F, message=F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/NOBAcensus.png")
-```
-
-True length composition NOBA
-```{r ex-output3, echo = F, warning = F, message=F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/NOBAherringtruelf.png")
-```
-
-]
-.pull-right[
-Standard survey test CCA
-```{r ex-output2, echo = F, warning = F, message=F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/CCsurveyex.png")
-```
-
-Survey length composition CCA
-```{r ex-output4, echo = F, warning = F, message=F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/CCV3herringlfcomp.png")
-```
-
-]
 
 ---
 ## Full disclosure!
