@@ -96,10 +96,11 @@ data.dir <- here::here("data")
 ---
 ## Today's objective
 
-Think about *your* research question
+Primary: Think about *your* research question
 What data do you have to address it?
 Would a model be useful to address your research question?
-If so, how might you build one?
+If so, what would you want it to do? 
+Advanced: How might you build it?
 
 Secondary: Understand what a food web model is
 Know what questions to ask about how it was built
@@ -111,19 +112,32 @@ Why might this be? (including model limitations)
 ---
 ## What is a food web model?
 
-A system of linear equations
 A network of flows between boxes
+
+System of linear equations
+For each group, i, specify:
+  + Biomass (B) [or Ecotrophic Efficiency (EE)]
+  + Population growth rate (P/B)
+  + Consumption (Q/B)
+  + Diet composition (DC)
+  + Fishery catch (C)
+  + Biomass accumulation (BA)
+  + Im/emigration (IM and EM)
+Solving for EE [or B] for each group:
+
+$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$
+???
 Mathematically identical to an "input-output" model in economics
 
-___
+---
 ## How do you build one?
 
-OBSERVATIONS!
+OBSERVATIONS! 
 
 
 ---
 ## The Gulf of Maine food web model
-
+![GOM food web](EDAB_images/GOMfw.png)
 ---
 ## End-to-end ecosystem operating models
 
