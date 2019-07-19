@@ -64,18 +64,18 @@ data.dir <- here::here("data")
 ---
 # Today's objective
 
-Primary: Think about *your* research question
-What data do you have to address it?
-Would a model be useful to address your research question?
-If so, what would you want it to do? 
-Advanced: How might you build it?
+Primary: Think about *your* research question  
+What data do you have to address it?  
+Would a model be useful to address your research question?  
+If so, what would you want it to do?   
+Advanced: How might you build it?  
 
-Secondary: Understand what a food web model is
-Know what questions to ask about how it was built
-Play with a food web model
-Perturb it in different ways
-What do you observe?
-Why might this be? (including model limitations)
+Secondary: Understand what a food web model is  
+Know what questions to ask about how it was built  
+Play with a food web model  
+Perturb it in different ways  
+What do you observe?  
+Why might this be? (including model limitations)  
 
 ---
 ## What is a food web model?
@@ -116,18 +116,19 @@ OBSERVATIONS!
 
 ---
 
-## Project overview
+## Lab overview
 .pull-left[
-1. Scenarios for effects of temperature on growth, natural mortality
+Anchovy Bay food web model
+1. Orientation using simple food web invented for illustration
 
-1. Focus on key stocks (Northeast Arctic cod, Norwegian spring spawning herring, California Current sardine, Pacific hake or a Pacific rockfish)
+1. Tradeoffs between fisheries targeting different species
 
-1. Atlantis output &rarr; dataset generator (`atlantisom`) &rarr; Stock Synthesis assessment 
+1. Effects of different ecological interactions  
 
-1. Compare performance of different model settings, multiple models, model ensembles 
 ]
 
 .pull-right[
+Gulf of Maine food web model
 ```{r nes-comp2, echo = F, fig.align = "center", fig.show = "hold"}
 knitr::include_graphics("EDAB_images/CCAclimatescenario.png")
 ```
