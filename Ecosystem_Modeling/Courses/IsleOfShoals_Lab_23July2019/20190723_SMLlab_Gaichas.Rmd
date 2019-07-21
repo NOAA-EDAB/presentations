@@ -57,25 +57,30 @@ data.dir <- here::here("data")
 ![whyindeed](EDAB_images/whyindeed.png)
 ]
 .pull-right[
-1. Clearly specified questions/objectives
-2. Data availability
-3. THEN build a model, or better, model(s)
+
+1. Develop clearly specified questions and objectives 
+  - What does the model have to output/predict?
+  - What does the user need to be able to change?
+  
+1. Evaluate data availability (appropriate temporal/spatial scales) 
+  
+1. THEN build a model, or better, model(s)  
 ]
 ---
 # Today's objective
 
 Primary: Think about *your* research question  
-What data do you have to address it?  
-Would a model be useful to address your research question?  
-If so, what would you want it to do?   
-Advanced: How might you build it?  
+  - What data do you have to address it?  
+  - Would a model be useful to address your research question?  
+  - If so, what would you want it to do?   
+  - Advanced: How might you build it?  
 
 Secondary: Understand what a food web model is  
-Know what questions to ask about how it was built  
-Play with a food web model  
-Perturb it in different ways  
-What do you observe?  
-Why might this be? (including model limitations)  
+  - Know what questions to ask about how it was built  
+  - Know what it can and cannot do 
+  - Experiment: perturb the model in different ways  
+    - What do you observe?  
+    - Why might this be? (including model limitations)  
 
 ---
 ## What is a food web model?
@@ -107,9 +112,27 @@ Mathematically identical to an "input-output" model in economics
 ---
 ## How do you build one?
 
-LIT
+Specify most parameters for each species; can solve for one
 
-OBSERVATIONS
+.pull-left[
+How? Observations from:
+
+1. Fishery independent surveys
+  - Biomass estimates
+  - Diet compositions
+  - Growth and reproduction information
+  
+1. Catch/landings/discard data from fishery managers
+
+1. Literature, historical information, general life history theory
+
+1. Other transparent, reproducible processes/sources
+]
+
+.pull-right[
+![workinprogress](EDAB_images/work-in-progress.png)
+]
+
 
 
 ---
@@ -120,7 +143,7 @@ Anchovy Bay food web model
 
 1. Orientation using simple food web invented for illustration
 
-1. Tradeoffs between fishering fleets targeting different species
+1. Tradeoffs between fishing fleets targeting different species
 
 
 ]
@@ -138,14 +161,17 @@ Gulf of Maine food web model
 ]
 ???
 ---
-## The Gulf of Maine food web
+## The Northeast US shelf food web
 ![GOM food web 2002](EDAB_images/LinkNEUSfoodweb.png)
-
+.footnote[Link, J. 2002. Does food web theory work for marine ecosystems? Marine ecology progress series, 230: 1–9.]
 
 ---
 ## The Gulf of Maine food web model
 ![GOM food web](EDAB_images/GOMfw.png)
+.footnote[Link, J., Overholtz, W., O’Reilly, J., Green, J., Dow, D., Palka, D., Legault, C., et al. 2008. The Northeast U.S. continental shelf Energy Modeling and Analysis exercise (EMAX): Ecological network model development and basic ecosystem metrics. Journal of Marine Systems, 74: 453–474.  
 
+Link, J., Col, L., Guida, V., Dow, D., O’Reilly, J., Green, J., Overholtz, W., et al. 2009. Response of balanced network models to large-scale perturbation: Implications for evaluating the role of small pelagics in the Gulf of Maine. Ecological Modelling, 220: 351–369.
+]
 
 ---
 ## Exercises: work in teams
@@ -181,47 +207,43 @@ Gulf of Maine:
 ---
 ## The next level: uncertainty
 
-What level of uncertainty is appropriate to carry through these analyses?
+How would you address this?
 .pull-left[
-1. Biological:
+Biological parameters:
 
-    1. appropriate sigma-R?
+1. Biomass
 
-1. Survey specification:
+1. Production rate
+    
+1. Consumption rate
 
-    1. timing and spatial coverage?
+1. Diet composition
 
-    1. which species are captured?
-
-    1. species-specific survey efficiency ("q")?
-
-    1. selectivity at age for each species?
+1. Predator-prey interactions
 
 ] 
 .pull-right[
-1. Survey uncertainty:
+Management needs:
 
-    1. additional observation error (survey cv for index)?
+1. Species/group resolution
     
-    1. effective sample size for biological samples?
+1. Fishing fleet resolution
     
-1. Fishery uncertainty:
+1. Spatial resolution
     
-    1. additional observation error (catch cv for total)?
+1. Changing stakeholder questions
     
-    1. catch sampled for length/age in all areas?
-    
-    1. effective sample size for biological samples?
+1. Limited time
 ]
 
 ---
 ## External Resources
 
-* [Atlantis Model Documentation](https://github.com/Atlantis-Ecosystem-Model/Atlantis_example_and_instructions)
+* [Wikipedia: Ecosystem models](https://en.wikipedia.org/wiki/Ecosystem_model)
 
-* [atlantisom R package](https://github.com/r4atlantis/atlantisom)
+* [Ecopath](https://en.wikipedia.org/wiki/Ecopath)
 
-* [Testing atlantisom](https://github.com/sgaichas/poseidon-dev)
+* [Rpath codebase](https://github.com/NOAA-EDAB/Rpath)
 
 * Slides available at https://noaa-edab.github.io/presentations
 
@@ -233,4 +255,4 @@ background-size: cover
 ## Questions?
 
 
-# Tusen Takk til Havforskningsinstituttet!
+# Thank you
