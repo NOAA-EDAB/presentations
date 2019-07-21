@@ -107,61 +107,79 @@ Mathematically identical to an "input-output" model in economics
 ---
 ## How do you build one?
 
-OBSERVATIONS! 
+LIT
+
+OBSERVATIONS
+
+
+---
+
+## What can you do with one? Lab overview
+.pull-left[
+Anchovy Bay food web model
+
+1. Orientation using simple food web invented for illustration
+
+1. Tradeoffs between fishering fleets targeting different species
+
+
+]
+
+.pull-right[
+Gulf of Maine food web model
+
+1. More complex food web model based on a real system
+
+1. System reaction to different scenarios
+    1. Changing fishing effort (combined fleet)
+    1. Changing mortality for individual species
+    1. Changing predator-prey dynamics
+
+]
+???
+---
+## The Gulf of Maine food web
+![GOM food web 2002](EDAB_images/LinkNEUSfoodweb.png)
 
 
 ---
 ## The Gulf of Maine food web model
 ![GOM food web](EDAB_images/GOMfw.png)
 
+
 ---
+## Exercises: work in teams
 
-## Lab overview
 .pull-left[
-Anchovy Bay food web model
-1. Orientation using simple food web invented for illustration
+Anchovy Bay:
 
-1. Tradeoffs between fisheries targeting different species
+1. Describe impacts of different fishing scenarios
 
-1. Effects of different ecological interactions  
+1. Describe potential catch and biomass objectives
+
+1. Can you engineer any scenarios to achieve them?
 
 ]
 
 .pull-right[
-Gulf of Maine food web model
-```{r nes-comp2, echo = F, fig.align = "center", fig.show = "hold"}
-knitr::include_graphics("EDAB_images/CCAclimatescenario.png")
-```
-]
-Bonus: `atlantisom` &rarr; multispecies, other single species models for testing
+Gulf of Maine:
 
-???
+1. Describe impacts of different fishing scenarios
 
+1. Describe impacts of individual species mortality scenarios
 
----
-## Full disclosure!
+1. Describe impacts of "as prey" scenario
 
-.pull-left[
-Still working on:
+1. Can you suggest mechanisms for any observed differences?
 
-1. Estimating total mortality to back out M
+1. What else do you need to know? Describe as a model scenario
+(if we have enough time, I may be able to implement)
 
-1. Splitting aggregate age groups into true ages (not needed for NOBA)
-
-1. Interpolating aggregate age groups weight at age for true ages
-
-1. Fishery catch weight by area
-
-1. Generalizing for different Atlantis codebase vintages
-]
-
-.pull-right[
-![workinprogress scale 100%](EDAB_images/work-in-progress.png)
 ]
 
 
 ---
-## Specify uncertainty in assessment "data": REDUS to the rescue!
+## The next level: uncertainty
 
 What level of uncertainty is appropriate to carry through these analyses?
 .pull-left[
