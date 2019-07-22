@@ -38,58 +38,174 @@ data.dir <- here::here("data")
 
 ```
 
-# What does modeling have to do with management?
+## What does modeling have to do with management?
 
 ![NOAA fisheries](EDAB_images/noaafisheries.png)
+![NOAAlogo](EDAB_images/noaa-logo.PNG)
+
 ---
-# What kinds of models are there?
+## What kinds of models are there?
 
 ![ecomods](EDAB_images/ecomods.png)
 ---
-# How can we use ecological information?
+## Conclusion: which models are best for management decisions?
 .pull-left[
-- CLEARLY SPECIFIED QUESTIONS
+- Based on **clearly specified questions** (from managers/stakeholders)
 
-- OBSERVATIONS!
+- **Outputs** and **controls designed** to answer the questions
 
-- MODELS BUILT FOR PURPOSE
+- Using **observations** directly from the ecosystem
+
+- With clear description of **uncertainties**
 
 ]
 .pull-right[
-![exchange:scale 250%](EDAB_images/movetoNorway.jpg)
-*<sup>1</sup>*
+![models](EDAB_images/xkcdphysicists.png)
+.footnote[https://xkcd.com/793/]
 ]
 
-- Additional NMFS and IMR collaborators with diverse skills and experiences 
-  - Emma Hodgson, other stock assessment and modeling folks
-  - Cecilie Hansen, Daniel Howell, Erik Olsen, and now **YOU**
 
-.footnote[
-[1] https://www.meganstarr.com/30-things-you-should-know-before-moving-to-norway/
+---
+## Food webs and fisheries--two examples
+
+- Preface: What is a "forage fish"?
+
+- Alaska pollock: ecological research with a food web model  
+  *"How does ecosystem structure affect dynamics?"*  
+    - Distinguishing climate, fishing, and food web interactions  
+    - Dealing with uncertainty  
+
+- Atlantic herring: fishery management strategy evaluation  
+  *"Which harvest control rules best consider herring's role as forage?"*  
+    - Balancing fishing benefits and ecological services
+    - Diverse stakeholder interests
+    - Needed timely answers!
+    
+---
+## What is a forage fish?
+
+```{r forage, echo = F, fig.align = "center", out.width='67%'}
+knitr::include_graphics("EDAB_images/forageSeattleTimes.png")
+```
+
+---
+## How does ecosystem structure affect dynamics? 
+![fwforcingstructure](EDAB_images/fwforcingstructuraltype.png)
+
+---
+## Alaska pollock: a tale of two ecosystems
+![EBSGOAmaps](EDAB_images/EBSGOAmap.png)
+---
+## Alaska pollock: a tale of two ecosystems
+![EBSGOAmapsfws](EDAB_images/EBSGOAmap_fws.png)  
+    
+---
+## Alaska pollock: a tale of two ecosystems
+```{r biodist, echo = F, fig.align = "center", out.width="75%"}
+knitr::include_graphics("EDAB_images/EBSGOAbiodist.png")
+```
+
+???
+Similar biomass groups up to TL 3
+
+EBS pollock dominate at TL 3.5, highest biomass of any fish
+
+GOA has highest biomass above TL 4 (halibut, arrowtooth)
+
+---
+## Alaska pollock: a tale of two ecosystems
+.pull-left[
+- Different pollock trajectories
+
+- Different pollock diets, mortality sources
+
+```{r pollpic, echo = F, fig.align = "center", out.width="85%"}
+knitr::include_graphics("EDAB_images/pollpic.png")
+```
+
+]
+.pull-right[
+```{r pollassess, echo = F, fig.align = "center", out.width="95%"}
+knitr::include_graphics("EDAB_images/EBSGOApollassess.png")
+#knitr::include_graphics("EDAB_images/EBSGOApolldietmort.png")
+```
+]
+```{r polldietmort, echo = F, fig.align = "center", out.width="95%"}
+#knitr::include_graphics("EDAB_images/EBSGOApollassess.png")
+knitr::include_graphics("EDAB_images/EBSGOApolldietmort.png")
+```
+
+???
+diets:- copepods, krill, pollock in EBS
+      - krill, shrimp, some copepods in GOA
+
+---
+## Ecosystem models and uncertainty
+![aydinmodyield](EDAB_images/AydinModYield.png)
+---
+## Model ensemble https://xkcd.com/1885/
+![xkcd_ensemble_model_2x.png](EDAB_images/xkcd_ensemble_model_2x.png)
+---
+## What is a food web model?
+
+.pull-left-60[
+A system of linear equations
+
+For each group, $i$, specify: 
+
+   Biomass $B$ [or Ecotrophic Efficiency $EE$ ]  
+   Population growth rate $\frac{P}{B}$  
+   Consumption rate $\frac{Q}{B}$  
+   Diet composition $DC$  
+   Fishery catch $C$  
+   Biomass accumulation $BA$  
+   Im/emigration $IM$ and $EM$  
+   
+Solving for $EE$ [or $B$ ] for each group:
 ]
 
----
-# Food webs and fisheries--two examples
+.pull-right-40[
+![toyfoodweb](EDAB_images/toyfw.png)
+]
 
-- What is a "forage fish"?
-
-- Alaska pollock: ecological research with a food web model
-    Climate, fishing, and food web interactions
-    Dealing with uncertainty
-
-- Atlantic herring: fishery management strategy evaluation
-    Balancing fishing benefits and ecological services
-    Needed timely answers!
-    
----
-# What is a forage fish?
-
+$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$
+???
 
 ---
-# Alaska pollock: a tale of two ecosystems
+## Ecosystem models and uncertainty: grading inputs
+![fwpedigree](EDAB_images/fwpedigree.png)
 
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert1](EDAB_images/Foodwebmodel_uncertaintyseries/Slide1.png)
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert2](EDAB_images/Foodwebmodel_uncertaintyseries/Slide2.png)
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert3](EDAB_images/Foodwebmodel_uncertaintyseries/Slide3.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert4](EDAB_images/Foodwebmodel_uncertaintyseries/Slide4.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert5](EDAB_images/Foodwebmodel_uncertaintyseries/Slide5.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert6](EDAB_images/Foodwebmodel_uncertaintyseries/Slide6.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert7](EDAB_images/Foodwebmodel_uncertaintyseries/Slide7.png)
 
-    
+---
+## Defining ecosystem structure in the EBS and GOA
+
+---
+## Different dynamics in the two systems?
+
+---
+## 
+
 ---
 # Are any herring harvest control rules good for both fisheries and predators?
 
@@ -97,87 +213,6 @@ Yes *
 
 * in New England
 
----
-# Project motivation
-
-.pull-left[
-
-- Changing climate and ocean conditions &rarr; Shifting distributions, changing productivity
-
-- Needs:
-  - Improve our ability to project global change impacts in the California Current and Nordic/Barents Seas (and elsewhere)
-  - Test the performance of stock assessments to these impacts
-]
-
-.pull-right[
-*Climate-Ready Management<sup>1</sup>*
-![Climateready](EDAB_images/KarpetalFig1.png)
-
-
-]
-
-.footnote[
-[1] Karp, Melissa A. et al. 2019. Accounting for shifting distributionsand changing productivity in the development of scientific advice for fishery management. – ICES Journal of Marine Science, doi:10.1093/icesjms/fsz048.
-]
-
-???
----
-## End-to-end ecosystem operating models
-
-Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-2979.2011.00412.x), [Fulton and Smith 2004](https://www.ajol.info/index.php/ajms/article/view/33182)
-
-.pull-left[
-**Norwegian-Barents Sea**
-
-[Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
-[2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
-
-![NOBA scale 90%](EDAB_images/journal.pone.0210419.g001.png)
-]
-.pull-right[
-**California Current**
-
-[Marshall et al. 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.13594), 
-[Kaplan et al. 2017](https://www.sciencedirect.com/science/article/pii/S0304380016308262?via%3Dihub)
-
-![CCAspatial scale 100%](EDAB_images/CCAspatial.png)
-]
-
-
-
-Building on global change projections:  [Hodgson et al. 2018](https://www.sciencedirect.com/science/article/pii/S0304380018301856?via%3Dihub), 
-[Olsen et al. 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00064/full)
-
-
-???
----
-
-## Project overview
-.pull-left[
-1. Scenarios for effects of temperature on growth, natural mortality
-
-1. Focus on key stocks (Northeast Arctic cod, Norwegian spring spawning herring, California Current sardine, Pacific hake or a Pacific rockfish)
-
-1. Atlantis output &rarr; dataset generator (`atlantisom`) &rarr; Stock Synthesis assessment 
-
-1. Compare performance of different model settings, multiple models, model ensembles 
-]
-
-.pull-right[
-```{r nes-comp2, echo = F, fig.align = "center", fig.show = "hold"}
-knitr::include_graphics("EDAB_images/CCAclimatescenario.png")
-```
-]
-Bonus: `atlantisom` &rarr; multispecies, other single species models for testing
-
-???
-
----
-## Test both estimation and (simple) MSE capability
-
-```{r poseidon, echo = F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/PoseidonDesign.png")
-```
 
 ---
 ## Design: Operating model scenario (climate and fishing)
