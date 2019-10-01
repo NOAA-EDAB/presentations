@@ -292,14 +292,16 @@ knitr::include_graphics("EDAB_images/expdesignfig.png")
 ---
 ## Make atlantis output into assessment model input
 
-Example workflow: 
+Example workflows: 
 
 1. Get true biomass, abundance, age composition, length composition, weight at age, fishery catch, fishery catch at age, fishery length composition, and fishery weight age age for a "sardine-like species": https://sgaichas.github.io/poseidon-dev/FullSardineTruthEx.html
 
 1. Format these outputs and get other life history parameters for input into a stock assessment model ([Stock Synthesis](https://www.sciencedirect.com/science/article/abs/pii/S0165783612003293), using [`r4ss`](https://github.com/r4ss)):
 https://sgaichas.github.io/poseidon-dev/CreateStockSynthesis.html
 
-1. Run the assessment model
+1. Get true and observed input data, format inputs, and run the assessment model: https://sgaichas.github.io/poseidon-dev/SardinesHakeatlantisom2SStest.html
+
+1. In progress: compare assessment results with truth
 
 ---
 ## What can we do so far?
@@ -331,7 +333,8 @@ knitr::include_graphics("EDAB_images/CCV3herringlfcomp.png")
 ---
 ## A "sardine" assessment
 
-Need: assessment model data inputs and life history parameters 
+Need: assessment model data inputs and life history parameters
+
 *(model based on actual Sardine assessment in Stock Synthesis 3)*
 
 .pull-left[
@@ -356,14 +359,20 @@ Parameters:
 ## A "sardine" assessment: in progress
 
   * California Current Atlantis run with and without climate signal
-  * Input data generated
-  * Parameters derived
+  * Input data generated (e.g. sardine survey, below in green)
+  * Parameters derived; simpler recruitment distribution
+
+```{r sardsurv, echo = F, warning = F, message=F, out.width = "90%", fig.align = "left"}
+knitr::include_graphics("EDAB_images/CCsurvObsBiom.png")
+```
 
 
 ---
 ## A "sardine" assessment: in progress
 
-# RUNNING? Watch this space...
+# SS successfully ran (yesterday!)
+
+
 
 ---
 ## Full disclosure!
@@ -371,15 +380,17 @@ Parameters:
 .pull-left-60[
 Still working on:
 
-1. Generalizing for different Atlantis codebase vintages
+1. Functions for older Atlantis codebases (i.e., CCA model)
 
-    1. Splitting aggregate age groups into true ages (not needed for NOBA)
+    1. Splitting aggregate age groups into true ages
 
     1. Interpolating aggregate age groups weight at age for true ages
 
     1. Fishery catch weight by area
 
 1. Wrapper functions to generate data in fewer steps
+
+1. Automated skill assessment functions
 
 1. Inputs for models other than Stock Synthesis
 ]
