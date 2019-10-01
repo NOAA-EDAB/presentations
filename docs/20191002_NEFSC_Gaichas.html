@@ -3,7 +3,7 @@
   <head>
     <title>Fragile ecosystems, robust assessments?</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Sarah Gaichas, Isaac Kaplan, Patrick Lynch, and Christine Stawitz   Northeast and Northwest Fisheries Science Centers,   and Office of Science &amp; Technology      Supported by REDUS project, IMR, and NOAA NMFS International Fellowship" />
+    <meta name="author" content="Sarah Gaichas, Isaac Kaplan, Patrick Lynch, and Christine Stawitz   Northeast and Northwest Fisheries Science Centers,   and Office of Science &amp; Technology      Supported by Institute for Marine Research Norway, and NOAA NMFS International Fellowship" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="libs/EDAB_theme2.css" type="text/css" />
   </head>
@@ -13,7 +13,7 @@ class: right, middle, my-title, title-slide
 
 # Fragile ecosystems, robust assessments?
 ## (What I did with my summer vacation)
-### Sarah Gaichas, Isaac Kaplan, Patrick Lynch, and Christine Stawitz <br /> Northeast and Northwest Fisheries Science Centers, <br /> and Office of Science &amp; Technology <br /> <br /> <br />Supported by REDUS project, IMR, and NOAA NMFS International Fellowship
+### Sarah Gaichas, Isaac Kaplan, Patrick Lynch, and Christine Stawitz <br /> Northeast and Northwest Fisheries Science Centers, <br /> and Office of Science &amp; Technology <br /> <br /> <br />Supported by Institute for Marine Research Norway, and NOAA NMFS International Fellowship
 
 ---
 
@@ -267,14 +267,16 @@ Bonus: `atlantisom` &amp;rarr; multispecies, other single species models for tes
 ---
 ## Make atlantis output into assessment model input
 
-Example workflow: 
+Example workflows: 
 
 1. Get true biomass, abundance, age composition, length composition, weight at age, fishery catch, fishery catch at age, fishery length composition, and fishery weight age age for a "sardine-like species": https://sgaichas.github.io/poseidon-dev/FullSardineTruthEx.html
 
 1. Format these outputs and get other life history parameters for input into a stock assessment model ([Stock Synthesis](https://www.sciencedirect.com/science/article/abs/pii/S0165783612003293), using [`r4ss`](https://github.com/r4ss)):
 https://sgaichas.github.io/poseidon-dev/CreateStockSynthesis.html
 
-1. Run the assessment model
+1. Get true and observed input data, format inputs, and run the assessment model: https://sgaichas.github.io/poseidon-dev/SardinesHakeatlantisom2SStest.html
+
+1. In progress: compare assessment results with truth
 
 ---
 ## What can we do so far?
@@ -298,7 +300,8 @@ Survey length composition CCA
 ---
 ## A "sardine" assessment
 
-Need: assessment model data inputs and life history parameters 
+Need: assessment model data inputs and life history parameters
+
 *(model based on actual Sardine assessment in Stock Synthesis 3)*
 
 .pull-left[
@@ -320,17 +323,31 @@ Parameters:
 ]
 
 ---
-## A "sardine" assessment: in progress
+## A "sardine" assessment: setup
 
   * California Current Atlantis run with and without climate signal
-  * Input data generated
-  * Parameters derived
+  * Input data generated (e.g. sardine survey, below in green)
+  * Parameters derived; simpler recruitment distribution
+
+&lt;img src="EDAB_images/CCsurvObsBiom.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
 
 
 ---
-## A "sardine" assessment: in progress
+## A "sardine" assessment: fits to data
 
-# RUNNING? Watch this space...
+.pull-left[
+![surveyfit](EDAB_images/index2_cpuefit_Survey.png)
+![lenfit](EDAB_images/comp_lenfit_flt2mkt0_page1.png)
+]
+
+.pull-right[
+![caafit1](EDAB_images/comp_agefit_flt1mkt0_page1.png)
+![caafit2](EDAB_images/comp_agefit_flt1mkt0_page2.png)
+]
+
+---
+## A "sardine" assessment: skill?
+
 
 ---
 ## Full disclosure!
@@ -338,15 +355,17 @@ Parameters:
 .pull-left-60[
 Still working on:
 
-1. Generalizing for different Atlantis codebase vintages
+1. Functions for older Atlantis codebases (i.e., CCA model)
 
-    1. Splitting aggregate age groups into true ages (not needed for NOBA)
+    1. Splitting aggregate age groups into true ages
 
     1. Interpolating aggregate age groups weight at age for true ages
 
     1. Fishery catch weight by area
 
 1. Wrapper functions to generate data in fewer steps
+
+1. Automated skill assessment functions
 
 1. Inputs for models other than Stock Synthesis
 ]
@@ -357,7 +376,7 @@ Still working on:
 
 
 ---
-## Specify uncertainty in assessment "data": WWPD?
+## Specify uncertainty in assessment "data": What Would Poseidon Do?
 
 What level of uncertainty is appropriate to carry through these analyses?
 .pull-left[
