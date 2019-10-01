@@ -38,23 +38,87 @@ data.dir <- here::here("data")
 
 ```
 
-# Summer vacation
+background-image: url("EDAB_images/IMG_4195.jpg")
+background-size: cover
 
+## Summer Vacation
+
+???
+Greece, Crete, near the cave of Polypheomos
+---
+background-image: url("EDAB_images/IMG_5562.jpg")
+background-size: cover
+
+## Summer Vacation
+
+???
+Greece, Crete, near the cave of Polypheomos
+---
+background-image: url("EDAB_images/IMG_5472.jpg")
+background-size: cover
+
+## Summer Vacation
+
+???
+Greece, Crete, near the cave of Polypheomos
+---
+## Summer Vacation
+
+.pull-left-30[
+![cyclopscafe](EDAB_images/IMG_5716.jpg)
+]
+.pull-right-70[
+![cyclopshike](EDAB_images/cave-walk-1.jpg)
+]
+
+???
 Greece, Crete, near the cave of Polypheomos
 
-Odysseus and Poseidon
+---
+## Odysseus and the Cyclops Polyphemus
 
+.pull-left[
+![blinding](EDAB_images/Polyphemus_Eleusis_2630.jpg)
+]
+
+.pull-right[
+![sneaking](EDAB_images/L8.6Polyphemos.jpg)
+]
+
+By <a href="https://nl.wikipedia.org/wiki/User:Napoleon_Vier" class="extiw" title="nl:User:Napoleon Vier">Napoleon Vier</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=1353019">Link</a>
+
+.footnote[
+https://www.ancientworldmagazine.com/articles/blinding-polyphemus/
+]
+---
+
+<a href="https://www.storyboardthat.com/storyboards/jolinlabberton/odyssey-storyboard"><img src="//sbt.blob.core.windows.net/storyboards/jolinlabberton/odyssey-storyboard.png" /></a>
+<br>
+<a href="https://www.storyboardthat.com">Made with Storyboard That</a>
+
+---
+
+???
 Hubris will sink you (or substantially delay achieving your objectives, and at great cost)
 
 Things change; workarounds are important
 
 testing is a theme (hypotheses, skills, each other)
 
-https://www.ancientworldmagazine.com/articles/blinding-polyphemus/
+---
+# Things we learn about Poseidon
 
+  * Tricky: unforseen challenges 
 
-By <a href="https://nl.wikipedia.org/wiki/User:Napoleon_Vier" class="extiw" title="nl:User:Napoleon Vier">Napoleon Vier</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=1353019">Link</a>
+  * Vengeful: high cost of overconfidence
 
+---
+# Things we learn from Odysseus
+
+  * Test your models
+
+  * Guard your Personally Identifiable Information (PII)
+  
 ---
 ## We use models for a lot
 ![NOAAlogo](EDAB_images/noaa-logo.PNG)
@@ -267,8 +331,10 @@ knitr::include_graphics("EDAB_images/CCV3herringlfcomp.png")
 ---
 ## A "sardine" assessment
 
-Need: assessment model data inputs and life history parameters (based on actual Sardine assessment)
+Need: assessment model data inputs and life history parameters 
+*(model based on actual Sardine assessment in Stock Synthesis 3)*
 
+.pull-left[
 Data: 
   * survey biomass index 
   * survey length composition 
@@ -276,33 +342,55 @@ Data:
   * fishery catch (tons) 
   * fishery length composition 
   * fishery age composition
+]
+.pull-right[
+Parameters:
+  * natural mortality (from total mortality)
+  * growth curve (from survey length at age)
+  * maturity at age (true)
+  * unfished recruitment and steepness (true)
+  * weight-length curve (true)
+]
 
-Parameters
+---
+## A "sardine" assessment: in progress
+
+  * California Current Atlantis run with and without climate signal
+  * Input data generated
+  * Parameters derived
+
+
+---
+## A "sardine" assessment: in progress
+
+# RUNNING? Watch this space...
 
 ---
 ## Full disclosure!
 
-.pull-left[
+.pull-left-60[
 Still working on:
 
-1. Estimating total mortality to back out M
-
-1. Splitting aggregate age groups into true ages (not needed for NOBA)
-
-1. Interpolating aggregate age groups weight at age for true ages
-
-1. Fishery catch weight by area
-
 1. Generalizing for different Atlantis codebase vintages
+
+    1. Splitting aggregate age groups into true ages (not needed for NOBA)
+
+    1. Interpolating aggregate age groups weight at age for true ages
+
+    1. Fishery catch weight by area
+
+1. Wrapper functions to generate data in fewer steps
+
+1. Inputs for models other than Stock Synthesis
 ]
 
-.pull-right[
+.pull-right-40[
 ![workinprogress scale 100%](EDAB_images/work-in-progress.png)
 ]
 
 
 ---
-## Specify uncertainty in assessment "data": Your input requested!
+## Specify uncertainty in assessment "data": WWPD?
 
 What level of uncertainty is appropriate to carry through these analyses?
 .pull-left[
@@ -365,3 +453,8 @@ background-size: cover
 
 
 # Tusen Takk til Havforskningsinstituttet!
+
+---
+
+background-image: url("EDAB_images/IMG_5809.jpg")
+background-size: cover

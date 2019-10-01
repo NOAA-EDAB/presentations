@@ -21,6 +21,88 @@ class: top, left
 
 
 
+background-image: url("EDAB_images/IMG_4195.jpg")
+background-size: cover
+
+## Summer Vacation
+
+???
+Greece, Crete, near the cave of Polypheomos
+---
+background-image: url("EDAB_images/IMG_5562.jpg")
+background-size: cover
+
+## Summer Vacation
+
+???
+Greece, Crete, near the cave of Polypheomos
+---
+background-image: url("EDAB_images/IMG_5472.jpg")
+background-size: cover
+
+## Summer Vacation
+
+???
+Greece, Crete, near the cave of Polypheomos
+---
+## Summer Vacation
+
+.pull-left-30[
+![cyclopscafe](EDAB_images/IMG_5716.jpg)
+]
+.pull-right-70[
+![cyclopshike](EDAB_images/cave-walk-1.jpg)
+]
+
+???
+Greece, Crete, near the cave of Polypheomos
+
+---
+## Odysseus and the Cyclops Polyphemus
+
+.pull-left[
+![blinding](EDAB_images/Polyphemus_Eleusis_2630.jpg)
+]
+
+.pull-right[
+![sneaking](EDAB_images/L8.6Polyphemos.jpg)
+]
+
+By &lt;a href="https://nl.wikipedia.org/wiki/User:Napoleon_Vier" class="extiw" title="nl:User:Napoleon Vier"&gt;Napoleon Vier&lt;/a&gt;, &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0"&gt;CC BY-SA 3.0&lt;/a&gt;, &lt;a href="https://commons.wikimedia.org/w/index.php?curid=1353019"&gt;Link&lt;/a&gt;
+
+.footnote[
+https://www.ancientworldmagazine.com/articles/blinding-polyphemus/
+]
+---
+
+&lt;a href="https://www.storyboardthat.com/storyboards/jolinlabberton/odyssey-storyboard"&gt;&lt;img src="//sbt.blob.core.windows.net/storyboards/jolinlabberton/odyssey-storyboard.png" /&gt;&lt;/a&gt;
+&lt;br&gt;
+&lt;a href="https://www.storyboardthat.com"&gt;Made with Storyboard That&lt;/a&gt;
+
+---
+
+???
+Hubris will sink you (or substantially delay achieving your objectives, and at great cost)
+
+Things change; workarounds are important
+
+testing is a theme (hypotheses, skills, each other)
+
+---
+# Things we learn about Poseidon
+
+  * Tricky: unforseen challenges 
+
+  * Vengeful: high cost of overconfidence
+
+---
+# Things we learn from Odysseus
+
+  * Test your models
+
+  * Guard your Personally Identifiable Information (PII)
+  
+---
 ## We use models for a lot
 ![NOAAlogo](EDAB_images/noaa-logo.PNG)
 ![NOAA fisheries](EDAB_images/noaafisheries.png)
@@ -129,7 +211,7 @@ Building on global change projections:  [Hodgson et al. 2018](https://www.scienc
 ]
 
 .pull-right[
-&lt;img src="EDAB_images/CCAclimatescenario.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/CCAclimatescenario.png" width="921" style="display: block; margin: auto;" /&gt;
 ]
 Bonus: `atlantisom` &amp;rarr; multispecies, other single species models for testing
 
@@ -138,7 +220,7 @@ Bonus: `atlantisom` &amp;rarr; multispecies, other single species models for tes
 ---
 ## Test both estimation and (simple) MSE capability
 
-&lt;img src="EDAB_images/PoseidonDesign.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/PoseidonDesign.png" width="1709" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Design: Operating model scenario (climate and fishing)
@@ -178,7 +260,7 @@ Bonus: `atlantisom` &amp;rarr; multispecies, other single species models for tes
 * Stock synthesis framework initially, but extend to other assessment models, generalize, and use components of the REDUS framework
 
 ---
-## Experimental design (figure added 7 June 2019)
+## Experimental design 
 
 &lt;img src="EDAB_images/expdesignfig.png" width="80%" style="display: block; margin: auto;" /&gt;
 
@@ -198,26 +280,28 @@ https://sgaichas.github.io/poseidon-dev/CreateStockSynthesis.html
 ## What can we do so far?
 .pull-left[
 Survey census test NOBA 
-&lt;img src="EDAB_images/NOBAcensus.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/NOBAcensus.png" width="1792" style="display: block; margin: auto;" /&gt;
 
 True length composition NOBA
-&lt;img src="EDAB_images/NOBAherringtruelf.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/NOBAherringtruelf.png" width="1792" style="display: block; margin: auto;" /&gt;
 
 ]
 .pull-right[
 Standard survey test CCA
-&lt;img src="EDAB_images/CCsurveyex.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/CCsurveyex.png" width="1792" style="display: block; margin: auto;" /&gt;
 
 Survey length composition CCA
-&lt;img src="EDAB_images/CCV3herringlfcomp.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/CCV3herringlfcomp.png" width="1792" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 ## A "sardine" assessment
 
-Need: assessment model data inputs and life history parameters (based on actual Sardine assessment)
+Need: assessment model data inputs and life history parameters 
+*(model based on actual Sardine assessment in Stock Synthesis 3)*
 
+.pull-left[
 Data: 
   * survey biomass index 
   * survey length composition 
@@ -225,33 +309,55 @@ Data:
   * fishery catch (tons) 
   * fishery length composition 
   * fishery age composition
+]
+.pull-right[
+Parameters:
+  * natural mortality (from total mortality)
+  * growth curve (from survey length at age)
+  * maturity at age (true)
+  * unfished recruitment and steepness (true)
+  * weight-length curve (true)
+]
 
-Parameters
+---
+## A "sardine" assessment: in progress
+
+  * California Current Atlantis run with and without climate signal
+  * Input data generated
+  * Parameters derived
+
+
+---
+## A "sardine" assessment: in progress
+
+# RUNNING? Watch this space...
 
 ---
 ## Full disclosure!
 
-.pull-left[
+.pull-left-60[
 Still working on:
 
-1. Estimating total mortality to back out M
-
-1. Splitting aggregate age groups into true ages (not needed for NOBA)
-
-1. Interpolating aggregate age groups weight at age for true ages
-
-1. Fishery catch weight by area
-
 1. Generalizing for different Atlantis codebase vintages
+
+    1. Splitting aggregate age groups into true ages (not needed for NOBA)
+
+    1. Interpolating aggregate age groups weight at age for true ages
+
+    1. Fishery catch weight by area
+
+1. Wrapper functions to generate data in fewer steps
+
+1. Inputs for models other than Stock Synthesis
 ]
 
-.pull-right[
+.pull-right-40[
 ![workinprogress scale 100%](EDAB_images/work-in-progress.png)
 ]
 
 
 ---
-## Specify uncertainty in assessment "data": Your input requested!
+## Specify uncertainty in assessment "data": WWPD?
 
 What level of uncertainty is appropriate to carry through these analyses?
 .pull-left[
@@ -314,6 +420,11 @@ background-size: cover
 
 
 # Tusen Takk til Havforskningsinstituttet!
+
+---
+
+background-image: url("EDAB_images/IMG_5809.jpg")
+background-size: cover
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -360,24 +471,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 (function() {
