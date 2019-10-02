@@ -301,7 +301,8 @@ https://sgaichas.github.io/poseidon-dev/CreateStockSynthesis.html
 
 1. Get true and observed input data, format inputs, and run the assessment model: https://sgaichas.github.io/poseidon-dev/SardinesHakeatlantisom2SStest.html
 
-1. In progress: compare assessment results with truth
+1. In progress: compare assessment results with truth:
+https://sgaichas.github.io/poseidon-dev/SkillAssessInit.html
 
 ---
 ## What can we do so far?
@@ -381,9 +382,25 @@ knitr::include_graphics("EDAB_images/CCsurvObsBiom.png")
 ]
 
 ---
-## A "sardine" assessment: skill?
+## A "sardine" assessment: skill? (proof of concept)
+.pull-left[
+Biomass
+```{r skillB, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/trueBss3B.png")
+```
+Fishing mortality
+```{r skillF, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/trueFss3F.png")
+```
+]
+.pull-right[
+Recruitment
+```{r skillR, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/trueRss3R.png")
+```
 
-
+Key: <span style="color:teal">True</span> <span style="color:red">SS3 estimate</span>
+]
 ---
 ## Full disclosure!
 
