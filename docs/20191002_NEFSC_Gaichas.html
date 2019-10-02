@@ -167,7 +167,7 @@ testing is a theme (hypotheses, skills, each other)
 ]
 
 - Additional NMFS and IMR collaborators with diverse skills and experiences 
-  - Emma Hodgson, other stock assessment and modeling folks
+  - Kelli Johnson, Gavin Fay, Emma Hodgson, other stock assessment and modeling folks
   - Cecilie Hansen, Daniel Howell, Erik Olsen, and now **YOU**
 
 .footnote[
@@ -242,7 +242,7 @@ Building on global change projections:  [Hodgson et al. 2018](https://www.scienc
 ]
 
 .pull-right[
-&lt;img src="EDAB_images/CCAclimatescenario.png" width="921" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/CCAclimatescenario.png" style="display: block; margin: auto;" /&gt;
 ]
 Bonus: `atlantisom` &amp;rarr; multispecies, other single species models for testing
 
@@ -251,7 +251,7 @@ Bonus: `atlantisom` &amp;rarr; multispecies, other single species models for tes
 ---
 ## Test both estimation and (simple) MSE capability
 
-&lt;img src="EDAB_images/PoseidonDesign.png" width="1709" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/PoseidonDesign.png" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Design: Operating model scenario (climate and fishing)
@@ -314,18 +314,18 @@ https://sgaichas.github.io/poseidon-dev/SkillAssessInit.html
 ## What can we do so far?
 .pull-left[
 Survey census test NOBA 
-&lt;img src="EDAB_images/NOBAcensus.png" width="1792" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/NOBAcensus.png" style="display: block; margin: auto;" /&gt;
 
 True length composition NOBA
-&lt;img src="EDAB_images/NOBAherringtruelf.png" width="1792" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/NOBAherringtruelf.png" style="display: block; margin: auto;" /&gt;
 
 ]
 .pull-right[
 Standard survey test CCA
-&lt;img src="EDAB_images/CCsurveyex.png" width="1792" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/CCsurveyex.png" style="display: block; margin: auto;" /&gt;
 
 Survey length composition CCA
-&lt;img src="EDAB_images/CCV3herringlfcomp.png" width="1792" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/CCV3herringlfcomp.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -381,13 +381,13 @@ Parameters:
 ## A "sardine" assessment: skill? (proof of concept)
 .pull-left[
 Biomass
-&lt;img src="EDAB_images/trueBss3B.png" width="1792" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/trueBss3B.png" style="display: block; margin: auto;" /&gt;
 Fishing mortality
-&lt;img src="EDAB_images/trueFss3F.png" width="1792" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/trueFss3F.png" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 Recruitment
-&lt;img src="EDAB_images/trueRss3R.png" width="1792" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/trueRss3R.png" style="display: block; margin: auto;" /&gt;
 
 Key: &lt;span style="color:teal"&gt;True&lt;/span&gt; &lt;span style="color:red"&gt;SS3 estimate&lt;/span&gt;
 ]
@@ -532,7 +532,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
