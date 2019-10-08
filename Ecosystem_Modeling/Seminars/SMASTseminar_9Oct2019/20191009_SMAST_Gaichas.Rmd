@@ -1,0 +1,562 @@
+---
+title: "Fragile ecosystems, robust assessments?"
+subtitle: "(What I did with my summer vacation)"
+author: "Sarah Gaichas, Isaac Kaplan, Patrick Lynch, and Christine Stawitz <br /> Northeast and Northwest Fisheries Science Centers, <br /> and Office of Science & Technology <br /> <br /> <br />Supported by Institute of Marine Research Norway, and NOAA NMFS International Fellowship"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme2.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(here)
+library(kableExtra)
+library(ggrepel)
+library(stringr)
+
+library(atlantisom)
+
+data.dir <- here::here("data")
+
+```
+
+background-image: url("EDAB_images/IMG_4195.jpg")
+background-size: cover
+
+## Summer Vacation
+
+???
+Greece, Crete, near the cave of Polypheomos
+---
+background-image: url("EDAB_images/IMG_5562.jpg")
+background-size: cover
+
+## Summer Vacation
+
+???
+Greece, Crete, near the cave of Polypheomos
+---
+background-image: url("EDAB_images/IMG_5472.jpg")
+background-size: cover
+
+## Summer Vacation
+
+???
+Greece, Crete, near the cave of Polypheomos
+---
+## Summer Vacation
+
+.pull-left-40[
+![cyclopscafe](EDAB_images/IMG_5716.jpg)
+]
+.pull-right-60[
+![cyclopshike](EDAB_images/cave-walk-1.jpg)
+]
+
+???
+Greece, Crete, near the cave of Polypheomos
+
+---
+## Odysseus and the Cyclops Polyphemus
+
+.pull-left[
+![blinding](EDAB_images/Polyphemus_Eleusis_2630.jpg)
+]
+
+.pull-right[
+![sneaking](EDAB_images/L8.6Polyphemos.jpg)
+]
+
+By <a href="https://nl.wikipedia.org/wiki/User:Napoleon_Vier" class="extiw" title="nl:User:Napoleon Vier">Napoleon Vier</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=1353019">Link</a>
+
+.footnote[
+https://www.ancientworldmagazine.com/articles/blinding-polyphemus/
+]
+---
+
+<a href="https://www.storyboardthat.com/storyboards/jolinlabberton/odyssey-storyboard"><img src="//sbt.blob.core.windows.net/storyboards/jolinlabberton/odyssey-storyboard.png" /></a>
+<br>
+<a href="https://www.storyboardthat.com">Made with Storyboard That</a>
+
+---
+```{r story1, out.width="73%", fig.align='center'}
+knitr::include_graphics("EDAB_images/Cell-Col-0-Row-0.png")
+```
+
+---
+```{r story2, out.width="73%", fig.align='center'}
+knitr::include_graphics("EDAB_images/Cell-Col-1-Row-0.png")
+```
+
+---
+```{r story3, out.width="73%", fig.align='center'}
+knitr::include_graphics("EDAB_images/Cell-Col-2-Row-0.png")
+```
+
+---
+```{r story4, out.width="73%", fig.align='center'}
+knitr::include_graphics("EDAB_images/Cell-Col-0-Row-1.png")
+```
+
+---
+```{r story5, out.width="73%", fig.align='center'}
+knitr::include_graphics("EDAB_images/Cell-Col-1-Row-1.png")
+```
+
+---
+```{r story6, out.width="73%", fig.align='center'}
+knitr::include_graphics("EDAB_images/Cell-Col-2-Row-1.png")
+```
+
+???
+Hubris will sink you (or substantially delay achieving your objectives, and at great cost)
+
+Things change; workarounds are important
+
+testing is a theme (hypotheses, skills, each other)
+
+---
+# Things we learn about Poseidon
+
+  * Tricky: unforseen challenges 
+
+  * Vengeful: high cost of overconfidence
+
+![poseidon](EDAB_images/poseidon-1024x6391.jpg)
+
+---
+# Things we learn from Odysseus
+
+  * Test your models
+
+  * Guard your Personally Identifiable Information (PII)
+  
+![odysseus](EDAB_images/odysseusithaca.jpg)
+  
+---
+## We use models for a lot
+![NOAAlogo](EDAB_images/noaa-logo.PNG)
+![NOAA fisheries](EDAB_images/noaafisheries.png)
+
+---
+## What kinds of models are there?
+
+![ecomods](EDAB_images/ecomods.png)
+---
+## How do we know they are right?
+
+ * Fits to historical data (hindcast)
+ 
+ * Influence of data over time (retrospective diagnostics)
+ 
+ * Keep as simple and focused as possible
+ 
+ * Simulation testing
+
+## But What if 
+
+##   data are noisy? 
+
+##   we need to model complex interactions?
+
+##   conditions change over time?
+
+---
+## Fragile ecosystems, robust assessments? Performance testing stock assessments for the California Current and Nordic and Barents Seas under climate change
+.pull-left[
+- Scientist exchange central to this project
+
+- NOAA internal "international fellowship" and REDUS funding:  
+  - Gaichas, April 15 - June 15
+  - Lynch, April 18 - June 7
+  - Kaplan, May 11 - June 21
+  - Christine Stawitz, May 19-25
+]
+.pull-right[
+![exchange:scale 250%](EDAB_images/movetoNorway.jpg)
+*<sup>1</sup>*
+]
+
+- Additional NMFS and IMR collaborators with diverse skills and experiences 
+  - Kelli Johnson, Gavin Fay, Emma Hodgson, other stock assessment and modeling folks
+  - Cecilie Hansen, Daniel Howell, Erik Olsen, and now **YOU**
+
+.footnote[
+[1] https://www.meganstarr.com/30-things-you-should-know-before-moving-to-norway/
+]
+
+---
+
+# Project motivation
+
+.pull-left[
+
+- Changing climate and ocean conditions &rarr; Shifting distributions, changing productivity
+
+- Needs:
+  - Improve our ability to project global change impacts in the California Current and Nordic/Barents Seas (and elsewhere)
+  - Test the performance of stock assessments to these impacts
+]
+
+.pull-right[
+*Climate-Ready Management<sup>1</sup>*
+![Climateready](EDAB_images/KarpetalFig1.png)
+
+
+]
+
+.footnote[
+[1] Karp, Melissa A. et al. 2019. Accounting for shifting distributionsand changing productivity in the development of scientific advice for fishery management. – ICES Journal of Marine Science, doi:10.1093/icesjms/fsz048.
+]
+
+???
+---
+## End-to-end ecosystem operating models
+
+Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-2979.2011.00412.x), [Fulton and Smith 2004](https://www.ajol.info/index.php/ajms/article/view/33182)
+
+.pull-left[
+**Norwegian-Barents Sea**
+
+[Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
+[2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
+
+![NOBA scale 90%](EDAB_images/journal.pone.0210419.g001.png)
+]
+.pull-right[
+**California Current**
+
+[Marshall et al. 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.13594), 
+[Kaplan et al. 2017](https://www.sciencedirect.com/science/article/pii/S0304380016308262?via%3Dihub)
+
+![CCAspatial scale 100%](EDAB_images/CCAspatial.png)
+]
+
+
+
+Building on global change projections:  [Hodgson et al. 2018](https://www.sciencedirect.com/science/article/pii/S0304380018301856?via%3Dihub), 
+[Olsen et al. 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00064/full)
+
+
+???
+---
+
+## Project overview
+.pull-left[
+1. Scenarios for effects of temperature on growth, natural mortality
+
+1. Focus on key stocks (Northeast Arctic cod, Norwegian spring spawning herring, California Current sardine, Pacific hake or a Pacific rockfish)
+
+1. Atlantis output &rarr; dataset generator (`atlantisom`) &rarr; Stock Synthesis assessment 
+
+1. Compare performance of different model settings, multiple models, model ensembles 
+]
+
+.pull-right[
+```{r nes-comp2, echo = F, fig.align = "center", fig.show = "hold"}
+knitr::include_graphics("EDAB_images/CCAclimatescenario.png")
+```
+]
+Bonus: `atlantisom` &rarr; multispecies, other single species models for testing
+
+???
+
+---
+## Test both estimation and (simple) MSE capability
+
+```{r poseidon, echo = F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/PoseidonDesign.png")
+```
+
+---
+## Design: Operating model scenario (climate and fishing)
+
+```{r OMdesign, echo = F, fig.align = "center", out.width="85%"}
+knitr::include_graphics("EDAB_images/projectionOMsetup.png")
+```
+
+--
+
+.pull-left[
+* Recruitment variability in the operating model
+
+* Specify uncertainty in assessment inputs using `atlantisom`
+]
+.pull-right[
+![sardinerec scale 100%](EDAB_images/CCAsardineRecVar.png)
+]
+
+---
+## Climate impacts in the operating model 
+![sardine](EDAB_images/sardinetempIsaac.png)
+
+.footnote[
+Hodgson, E. E., Kaplan, I. C., Marshall, K. N., Leonard, J., Essington, T. E., Busch, D. S., Fulton, E. A., et al. 2018. Consequences of spatially variable ocean acidification in the California Current: Lower pH drives strongest declines in benthic species in southern regions while greatest economic impacts occur in northern regions. Ecological Modelling, 383: 106–117.
+
+Marshall, K. N., Kaplan, I. C., Hodgson, E. E., Hermann, A., Busch, D. S., McElhany, P., Essington, T. E., et al. 2017. Risks of ocean acidification in the California Current food web and fisheries: ecosystem model projections. Global Change Biology, 23: 1525–1539.
+
+]
+---
+## Climate impacts in the operating model 
+![hake](EDAB_images/haketempIsaac.png)
+.footnote[
+Hodgson, E. E., Kaplan, I. C., Marshall, K. N., Leonard, J., Essington, T. E., Busch, D. S., Fulton, E. A., et al. 2018. Consequences of spatially variable ocean acidification in the California Current: Lower pH drives strongest declines in benthic species in southern regions while greatest economic impacts occur in northern regions. Ecological Modelling, 383: 106–117.
+
+Marshall, K. N., Kaplan, I. C., Hodgson, E. E., Hermann, A., Busch, D. S., McElhany, P., Essington, T. E., et al. 2017. Risks of ocean acidification in the California Current food web and fisheries: ecosystem model projections. Global Change Biology, 23: 1525–1539.
+
+]
+---
+## Climate + cumulative impacts in the operating model 
+![guild](EDAB_images/guildbioIsaac.png)
+---
+## Stock assessment uncertainty
+
+* Focus on climate impacts to growth and natural mortality (productivity)
+* Full factorial design over common stock assessment assumptions
+
+    * Growth:
+      1. constant growth parameters
+      1. regime shifts in growth parameters ([Stawitz et al. 2019](https://www.sciencedirect.com/science/article/abs/pii/S0165783619300049?via%3Dihub))
+      1. empirical weight-at-age ([Kuriyama et al. 2016](https://www.sciencedirect.com/science/article/abs/pii/S0165783615300837))
+      
+    * Natural mortality:
+      1. fixed at an “uninformed” constant value of 0.2
+      1. fixed at a constant value that reflects the true average value (over time) from the OM
+      1. establishing regimes by fixing at the true average values from the OM over specified time blocks
+      
+    * Also, an equally weighted ensemble of the 9 estimation models
+    
+* Stock synthesis framework initially, but extend to other assessment models, generalize, and learn from Norwegian data and assessment framework
+
+---
+## Experimental design 
+
+```{r EMdesign, echo = F, fig.align = "center", out.width="80%"}
+knitr::include_graphics("EDAB_images/expdesignfig.png")
+```
+
+---
+## Make atlantis output into assessment model input
+
+Example workflows: 
+
+1. Get true biomass, abundance, age composition, length composition, weight at age, fishery catch, fishery catch at age, fishery length composition, and fishery weight age age for a "sardine-like species": https://sgaichas.github.io/poseidon-dev/FullSardineTruthEx.html
+
+1. Format these outputs and get other life history parameters for input into a stock assessment model ([Stock Synthesis](https://www.sciencedirect.com/science/article/abs/pii/S0165783612003293), using [`r4ss`](https://github.com/r4ss)):
+https://sgaichas.github.io/poseidon-dev/CreateStockSynthesis.html
+
+1. Get true and observed input data, format inputs, and run the assessment model: https://sgaichas.github.io/poseidon-dev/SardinesHakeatlantisom2SStest.html
+
+1. In progress: compare assessment results with truth:
+https://sgaichas.github.io/poseidon-dev/SkillAssessInit.html
+
+---
+## What can we do so far?
+.pull-left[
+Survey census test NOBA 
+```{r ex-output1, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/NOBAcensus.png")
+```
+
+True length composition NOBA
+```{r ex-output3, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/NOBAherringtruelf.png")
+```
+
+]
+.pull-right[
+Standard survey test CCA
+```{r ex-output2, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/CCsurveyex.png")
+```
+
+Survey length composition CCA
+```{r ex-output4, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/CCV3herringlfcomp.png")
+```
+
+]
+
+---
+## A "sardine" assessment
+
+Need: assessment model data inputs and life history parameters
+
+*(model based on actual Sardine assessment in Stock Synthesis 3)*
+
+.pull-left[
+Data: 
+  * survey biomass index 
+  * survey length composition 
+  * survey age composition (conditional catch at age)
+  * fishery catch (tons) 
+  * fishery length composition 
+  * fishery age composition
+]
+.pull-right[
+Parameters:
+  * natural mortality (from total mortality)
+  * growth curve (from survey length at age)
+  * maturity at age (true)
+  * unfished recruitment and steepness (true)
+  * weight-length curve (true)
+]
+
+---
+## A "sardine" assessment: setup
+
+  * California Current Atlantis run with and without climate signal
+  * Input data generated (e.g. sardine survey, below in green)
+  * Parameters derived; simpler recruitment distribution
+
+```{r sardsurv, echo = F, warning = F, message=F, out.width = "90%", fig.align = "left"}
+knitr::include_graphics("EDAB_images/CCsurvObsBiom.png")
+```
+
+
+---
+## A "sardine" assessment: fits to data
+
+.pull-left[
+![surveyfit](EDAB_images/index2_cpuefit_Survey.png)
+![lenfit](EDAB_images/comp_lenfit_flt2mkt0_page1.png)
+]
+
+.pull-right[
+![caafit1](EDAB_images/comp_agefit_flt1mkt0_page1.png)
+![caafit2](EDAB_images/comp_agefit_flt1mkt0_page2.png)
+]
+
+---
+## A "sardine" assessment: skill? (proof of concept)
+.pull-left[
+Biomass
+```{r skillB, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/trueBss3B.png")
+```
+Fishing mortality
+```{r skillF, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/trueFss3F.png")
+```
+]
+.pull-right[
+Recruitment
+```{r skillR, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/trueRss3R.png")
+```
+
+Key: <span style="color:teal">True</span> <span style="color:red">SS3 estimate</span>
+]
+---
+## Full disclosure!
+
+.pull-left-60[
+Still working on:
+
+1. Functions for older Atlantis codebases (i.e., CCA model)
+
+    1. Splitting aggregate age groups into true ages
+
+    1. Interpolating aggregate age groups weight at age for true ages
+
+    1. Fishery catch weight by area
+
+1. Wrapper functions to generate data in fewer steps
+
+1. Automated skill assessment functions
+
+1. Inputs for models other than Stock Synthesis
+]
+
+.pull-right-40[
+![workinprogress scale 100%](EDAB_images/work-in-progress.png)
+]
+
+
+---
+## Specify uncertainty in assessment "data": What Would Poseidon Do?
+
+What level of uncertainty is appropriate to carry through these analyses?
+.pull-left[
+1. Biological:
+
+    1. appropriate sigma-R?
+
+1. Survey specification:
+
+    1. timing and spatial coverage?
+
+    1. which species are captured?
+
+    1. species-specific survey efficiency ("q")?
+
+    1. selectivity at age for each species?
+
+] 
+.pull-right[
+1. Survey uncertainty:
+
+    1. additional observation error (survey cv for index)?
+    
+    1. effective sample size for biological samples?
+    
+1. Fishery uncertainty:
+    
+    1. additional observation error (catch cv for total)?
+    
+    1. catch sampled for length/age in all areas?
+    
+    1. effective sample size for biological samples?
+]
+
+---
+## P.S. What else could we test?
+
+![xkcd_ensemble_model_2x.png](EDAB_images/xkcd_ensemble_model_2x.png)
+.footnote[
+https://xkcd.com/1885/
+]
+
+---
+## External Resources
+
+* [Atlantis Model Documentation](https://github.com/Atlantis-Ecosystem-Model/Atlantis_example_and_instructions)
+
+* [atlantisom R package](https://github.com/r4atlantis/atlantisom)
+
+* [Testing atlantisom](https://github.com/sgaichas/poseidon-dev)
+
+* Slides available at https://noaa-edab.github.io/presentations
+
+---
+
+background-image: url("EDAB_images/IMG_2733.jpg")
+background-size: cover
+
+## Questions?
+
+
+# Tusen Takk til Havforskningsinstituttet!
+
+---
+
+background-image: url("EDAB_images/IMG_5809.jpg")
+background-size: cover
