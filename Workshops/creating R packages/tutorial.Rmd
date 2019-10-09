@@ -1,0 +1,380 @@
+---
+title: "Creating R Packages"
+
+output:
+   html_document:
+     toc: true
+     toc_depth: 4
+     toc_float:
+       collapsed: true
+       smooth_scrol: true
+   slidy_presentation:
+     font_adjustment: 0
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Why create your own R packages? {-}
+
+* Keeps you organized
+* Reduces copy and pasting of functions from project to project
+* Allow you to easily share your code (eg. through a repository on GitHub)
+* Great options for code documentation and package documentation (roxygen, rmarkdown)
+* Better understanding of how R works
+* Integrates with other important/interesting components (mentioned above)
+* Fun to learn something new!
+
+---
+
+### Pre-requisites{-}
+
+#### _devtools_ & _remotes_ & _usethis_{-}
+A key package you will need (if you dont have it already) is `devtools`. `devtools` is a package to aid in development of packages. To check to see if you have it, type the following line:
+```{r , eval = FALSE}
+ "devtools" %in% row.names(installed.packages())
+```
+A result of FALSE means you dont have it. Install it 
+```
+install.packages("devtools")
+```
+Another package you'll need is `remotes`. This allows you to install packages from github (Most of this code used to be in `devtools`)
+```
+install.packages(c("remotes","usethis"))
+```
+
+
+--- 
+
+#### _Rtools, XCode_ {-}
+You will also need to make sure you have another component installed (This is not an R package) and this component differs between operating sytems.
+
+Windows: [Rtools](https//cran.r-project.org/bin/windows/Rtools);  Mac: XCode (free in app store); Linux: install R development tools.
+
+To check you have everything installed type in the console:
+```
+devtools::has_devel()
+ ```
+If the result is *"Your system is ready to build packages!"*, then you have all required tools.
+
+---
+
+#### _Other packages_ {-}
+
+* Rmarkdown package (for vignette documentation)
+* Knitr package (to export rmarkdown)
+* Roxygen package (for function documentation)
+* devtools package (for package development)
+* usethis package (for package development)
+* remotes package (for installing packages from github)
+
+To install all at once:
+``` 
+install.packages(c("knitr","roxygen2","rmarkdown","devtools","remotes","usethis"))
+```
+
+## What is an R package? {-}
+
+An R package is a collection of functions (not just R code) and data with documentation.
+
+Packages developed by others need to be installed. Often these are installed from either CRAN or Github.
+
+* To install from CRAN `install.packages("packageName")`
+
+* To install from github `remotes::install_github("packageName")`
+
+* To install vignettes associated with package from github
+
+```
+remotes::install_github("packageName",build_vignettes = TRUE)
+```
+
+The whole package is then loaded into memory using 
+```
+library(packageName)
+```
+Individual fuctions from a package can be loaded without having to load the entire library. This becomes important when writing your own packages. Use the syntax
+```
+packageName::functionName
+```
+
+Your own package will be organized in a way akin to folders on your computer. You might keep R code in one folder, data in another, documentation in another etc.
+
+---
+
+### Naming your package {-}
+
+* Keep it concise, unique, but descriptive.
+* only use letters, numbers, (and periods).
+* no underscores or hyphens.
+* use abbreviations or acronyms (we should be good at that!)
+
+Hadley wickham has other recommandations in his book [R-packages](http://r-pkgs.had.co.nz/intro.html)
+
+---
+
+### Package structure {-}
+
+All packages have a specific structure that needs to be adhered to. We will use RStudios GUI to create a package (File-> New Project -> R package).
+
+This creates the basic elements for a package (5 components)
+
+1.  A `DESCRIPTION` file - Basic information about the package, authors, contributors, version, title, description, the type of license, and the package dependencies (does it require other packages to work!)
+2.  A `NAMESPACE` file - defines the list of functions in your package available to users. It also defines external functions and packages that are imported. (This is automatically generated if using `roxygen2` for documentation so dont worry about this.).
+3.  An `R/` directory where your R code will reside
+4.  A `man/` directory where documentation will reside
+5.  An `.rbuildignore` file where you can specify which files you do not want to include in the package
+
+Note: If you create a package this way, YOU MUST delete the `NAMESPACE` file. It will get regenerated at a later point in time.
+
+---
+
+If you have existing code you'd like to turn into a package use:
+
+```
+usethis::create_package()
+```
+
+This will create all of the same content with the exception of the list item #4 (the man folder used for documentation).
+To include this:
+```
+devtools::document()
+```
+
+---
+
+### Project preferences {-}
+
+You will also need to change some preferences in the project options.
+
+Tools -> Project Options -> Build tools
+
+Check "Generate documentation with Roxygen" then click configure. Check everything
+
+Note: If you already have a project in RStudio, you can convert it into a package at any time.
+
+--- 
+
+### Now what? {-}
+
+First you should edit the `DESCRIPTIONS` file to give some basic information about your package. However this can be done at anytime prior to sharing.
+
+At this point you are ready to enter the workflow loop:
+
+1.  Develop your code
+2.  [Document](#doc) it (Dont forget to @export)
+3.  Build your package (Ctrl+Shift+B)
+4.  See if the code does what you expect
+5.  Look at documentation using `?` to see if it looks ok
+6.  Repeat
+
+As you continue in this workflow loop you may realize you need to:
+
+* Include [data](#data) in your package. (`usethis::use_data`)
+* Do some [preprocessing](#raw) of data that you don't want in your package (just the result of the processing) (`usethis::use_data_raw`)
+* Add an [overview](#vig) of how to use your package (`usethis::use_vignette`)
+* Utilize functions in [external](#pkgs) packages (`usethis::use_package`)
+
+---
+
+## Example {-}
+
+Lets create a package called `simpleStats`. It has a function called `calc_stats` which given a vector as input calculates the mean,  range, and standard deviation. The result is a list containing these 3 results. Create a data set to be bunded with the package called `myData.Rdata`. Make `myData` be a numeric vector of size 100 of a white noise time series (mean=0, sd=1). Import the package `ggplot2` and plot the data
+
+
+---
+
+## Documentation {-#doc}
+
+Documetation is a critical part of any package, since if your code isn't documented then how will anyone know how to use it. It is also useful for you. And it is super easy and straightforward. 
+
+R provides a standard way of documenting functions and data in your package. These are `.Rd` files that reside in the `man/` folder are similar in structure to LaTeX. However you dont need to know any of that, since `roxygen2` will create these for you with minimal effort. The main advantages of using `roxygen2` are:
+
+* The documentation resides in the same file as your code. It is then translated to the format R requires (`.Rd` files)
+* The `NAMESPACE` is updated to reflect if code it to be made available to user
+* The `DESCRIPTIONS` file is updated to reflect use of external packages
+
+---
+
+### Function documentation {-}
+
+All functions should be documented. Every line of documentation begins with `#'`. Note the apostrophe! The order of the comments translate directly to the order they appear when typing `?`. There are quite a few tags you could use but the main tags are:
+
+* **@param**     : the name of an argument passed to the function
+* **@return**    : a description of the result returned from your function (scalar, matrix, list)
+* **@section**   : An arbitrary section you'd like to include in the help document
+* **@seealso**   : A section for you to add links to other files and functions
+* **@examples**  : Provide examples of how the function works. Include examples!
+* **@export**    : Determins if the function is to be accessed by anyone or only internally within the package
+
+---
+
+```
+#' function Title
+#'
+#' function description
+#'
+#' @param argument1 description of argument1
+#' @param argument2 description of argument2
+#'
+#' @return A list containing
+#'
+#' \item{res1 returned}{description of res1}
+#' \item{res2 returned}{description of res2}
+#'
+#' @section sectionHheadingName:
+#' Write whatever you want
+#'
+#' @seealso \code{\link{some_other_function_name}}
+#'
+#' @examples
+#' write examples of code usage
+#' myfunction(argument1,argument2)
+#'
+#' @export
+
+myfunction <- function(argument1, argument2) {
+  do something....
+  res <- list(res1=res1,res2=res2)
+  return(res)
+}
+```
+--- 
+
+### Data documetnation {-#data}
+#### _External data_ {-}
+You can bundle data along with your package and make it available to the user without any effort. Any data placed in `data/` will be exported and available for users. The data can be "lazily loaded" when the package is loaded into memory. This means the data wont use any memory until it is used. This is handled in the `DESCRIPTIONS` file. (LazyData: true). Packages work well (and fast) with data files in the `.RData` format.
+
+Data documentation has a similar feel to function documentation. 
+
+Note: If your data file is named `myData.RData` then it must contain one object with the same name as the filename (`myData`) and your documentation should be named `myData.R`. This file should reside in your `R/` folder with your other code. (`usethis::use_data()` can simplify this process). **NEVER @export data **
+
+---
+
+```
+#' data Title
+#'
+#' data description
+#'
+#' @format description of data class and size (often a data frame)
+#' \describe{
+#'   \item{col1}{description of col1}
+#'   \item{col2}{description of col2}
+#'   ...
+#'  } 
+#' @section optional Section:
+#' section description
+#' 
+#' @source See authors et al (2018) \url{http:://www.somesite.com}
+"myData"
+```
+
+---
+
+#### _Internal data_ {-}
+
+You may create a package that requires data to function. You may not want to make this data available to a user. You can use `usethis::use_data(..., internal=TRUE)` to create a file (in your project root directory) called `sysdata.rda`. This will not get exported. No need to document.
+
+
+#### _Processed (Raw) data_ {-#raw}
+
+Often before you are ready to distribute your data you have to clean it up, process it in some way, or make it more user friendly. You should include the code used to do this. This code should reside in `data-raw/` and should not be bundled with your package.
+
+```
+usethis::use_data_raw()
+```
+will create the folder for you and include this folder in the `.RbuildIgnore` file
+
+---
+
+### Package documentation {-}
+
+To access the package details by using `package?packageName` then a file called packageName.R needs to be created with a couple of additional tags
+
+```
+#' Package Title
+#'
+#' Package description
+#'
+#'@section headingName:
+#' Write whatever you want
+#'
+#'@docType package
+#'@name packageName
+NULL
+```
+
+---
+
+### Package vignettes {-#vig}
+Package vignettes are a type of documentation (written in rmarkdown) that give an overview of your package, explain the components and even show how the functions work. It should behave like a guide. Examples of these can be found by typing `browseVignettes("packageName")`. To create a vignette for your package type:
+```
+usethis::use_vignette("vignetteName")
+```
+This will:
+
+* Create a folder called `vignettes/`
+* Create a template rmarkdown `.rmd` file in the `vignettes` folder
+* Adds the `Suggests: knitr, rmarkdown` to your `DESCRIPTION` file
+
+
+
+## Importing packages {-#pkgs}
+
+You may need use other packages in your package. These are termed dependencies and are handled in the `DESCRIPTIONS` file. To add a dependency to you package simply type
+```
+usethis::use_package("packageName")
+```
+This will add the line `Imports: packageName` in your `DESCRIPTIONS` file.
+
+You can now use all of the functions in this package in your code. I recommend whenever possible to use the syntax `packageName::functionName` instead of `functionName`. This helps you in the future to debug your code and identiy which functions are imported. You can use as many packages as you like. These packages will be downloaded and installed on the users machine when they install your package so try to be efficient.
+
+## Using C++ {-#cpp}
+
+You can speed up portions of your code by using compiled code like C++. All compiled code resides in its own folder `src/`. To include this functionality in your package you need the `Rcpp` package. This is achieved by typing:
+```
+usethis::use_rcpp()
+```
+This command does several things
+
+* Creates the `src/` folder
+* Adds the lines (`LinkingTo: Rcpp` and `Imports: Rcpp`) to the `DESCRIPTIONS` file
+* Add the necessary export info to the `NAMESPACE` file
+* Adds the compiled files to `.gitignore` (if using version control)
+* Informs you of additional lines required in your `packageName.R` documentation file
+```
+#' @useDynLib packageName
+#' @importFrom Rcpp sourceCpp
+```
+
+
+## Sharing your code {-#sharing}
+
+At some point in your package development you should start using git (locally in RStudio) to track ongoing changes to your project/package. Eventually linking to Github so you can share your package with others. Even if you dont plan to share it is still a good option for keeping all of your packages. 
+
+* Link RStudio to github and push all of your files.
+* create a `readMe.md` file on Github to tell the world what this repository is and instructions on how to download it.
+
+Packages can be downloaded from Github using:
+```
+remotes::install_github(package="packageName",build_vignettes = TRUE)
+```
+
+
+## Step by step {-}
+
+1. File->New Project->R package -  Creates package in RStudio (Folder name = package name)
+1. Tools->Project Options->Build tools. Check Roxygen. Check All
+1. Edit `DESCRIPTIONS` file
+1. Delete `NAMESPACE` file
+1. `devtools::document()` - creates `man/` folder and new `NAMESPACE`
+1. `usthis::use_data_raw()` - creates `data-raw/` folder
+1. `usethis::use_vignette("vignetteName")` - creates `vignettes/` folder
+1. Create main package documentation, `packageName.R`, and document it.
+1. Write some code and document it. Save file as `.R` in the `R/` folder
+1. Build Tab (Rstudio)->"Run and Build" or "Install and Restart" to build package and test for errors. (Or Ctrl+Shift+B)
+1. `usethis::use_package("packagName1","packageName2")` to include external packages
+1. `usethis::use_data("dataName")` - .RData saved in /data folder
+
+
