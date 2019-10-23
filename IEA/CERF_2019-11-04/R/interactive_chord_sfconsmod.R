@@ -2,7 +2,7 @@
 # S. Gaichas 25, July 2019
 # based on original codel by G. DePiper, circulargraphcode_Summer_Flounder_v2.R
 
-interactive_chord_sfconsmod <- function(edges){
+interactive_chord_sfconsmod <- function(edges, width, height, margin){
   
   ## Examine unweighted adjacency matrix
   ## Examine unweighted adjacency matrix
@@ -132,9 +132,9 @@ interactive_chord_sfconsmod <- function(edges){
     
     chorddiag(New_edges, 
               type = "directional",
-              width = 900,
-              height = 900,
-              margin = 120,
+              width = width,
+              height = height,
+              margin = margin,
               groupColors = New_colors,
               groupedgeColor = New_colors,
               chordedgeColor = New_colors,

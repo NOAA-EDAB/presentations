@@ -355,7 +355,7 @@ ggplot2::ggplot(data = data,aes(x = x, y = y)) +
              alpha = hline.alpha,
              linetype = hline.lty)+
   geom_line() +
-  ecodata::geom_gls() +
+  geom_gls() +
   scale_y_continuous(labels = function(l){trans = l / 1000})+
   scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
   ylab(expression("Invented Index, 10"^3*"widgets")) +
@@ -693,29 +693,31 @@ knitr::include_graphics("EDAB_images/ecotable2019.png")
 
 ---
 ## How are they using the risk assessment? What's next?
-
+.pull-left[
 * Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
 
-```{r framework2, echo = F, out.width = "60%", fig.align = "center"}
+```{r framework2, echo = F, out.width = "90%", fig.align = "center"}
 knitr::include_graphics("EDAB_images/Framework.png")
 ```
-
+]
+.pull-right[
 * Working group of habitat, biology, stock assessment, management, economic and social scientists developed:
 
   * draft conceptual models of high risk elements, linkages
   * dataset identification and gap analysis for each element and link
   * draft questions that the Council could persue with additional work
+]  
+* Final conceptual model and supporting information at December 2019 Council meeting
+
+* Council may then elect to proceed with management strategy evaluation (MSE) using the information from conceptual modeling as a basis
+
 
 ---
-## Mid-Atlantic Council ecosystem approach continued...
-
-* The September 2019 summer flounder conceptual model, now under revision:
-
-```{r sfconceptmod, echo = F, out.width = "60%", fig.align = "center"}
+```{r sfconceptmod, echo = F, fig.align = "center"}
 # setup for conceptual model
-PKG <- c(#"foreign","foodweb","sna",
-         "DiagrammeR","circlize","RColorBrewer","QPress",
-         "chorddiag", "kableExtra", "googledrive", "readxl")
+PKG <- c(#"foreign","foodweb","sna", "DiagrammeR","circlize", "kableExtra", "googledrive", "readxl"
+         "RColorBrewer","QPress",
+         "chorddiag")
 
 for (p in PKG) {
   if(!require(p,character.only = TRUE)) {
@@ -729,13 +731,9 @@ edges <- model.dia(file.path(data.dir, "Summer_Flounder_July22_2019.dia"))
 
 source("R/interactive_chord_sfconsmod.R")
 
-interactive_chord_sfconsmod(edges)
+interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
 
 ```
-
-* Final conceptual model and supporting information at December 2019 Council meeting
-
-* Council may then elect to proceed with management strategy evaluation (MSE) using the information from conceptual modeling as a basis
 
 ---
 ## Footnote: Improvements to reproducibility and provenance
@@ -772,15 +770,20 @@ This workflows also ensures that there's no information lost between SOE cycles.
 ---
 ## Conclusions
 
-Risk assessment is valuable for the general implementation of ecosystem approaches to natural resource management
+Integrated ecosystem assessment is a valuable framework for the general implementation of ecosystem approaches to natural resource management
 
-* Risk assessment is a rapid, familiar, scaleable, and transparent method to move forward with EAFM within a real-world operational fishery management context 
+* The Council’s rapid progress in implementing EAFM resulted from positive collaboration between managers, stakeholders, and scientists. Collaboration is essential to IEA and to the success of EAFM.
 
-* Risk assessment can be conducted collaboratively within existing stakeholder processes
+* Ecosystem indicators and reporting can be tailored to specific regional objectives.
 
-* This EAFM risk assessment highlights certain species and certain management issues as posing higher cumulative risks to meeting Council-derived management objectives when considering a broad range of ecological, social, and economic factors 
+* Risk assessment is a rapid, familiar, scaleable, and transparent method to move forward with EAFM within a real-world operational fishery management context.
 
-* The Council foresees refining the process so that ecosystem indicators monitor risks to achieving ecological, social, and economic fishery objectives, which can then be mitigated through management action. 
+* This EAFM process highlights certain species and certain management issues as posing higher cumulative risks to meeting Council-derived management objectives when considering a broad range of ecological, social, and economic factors.
+
+* Conceptual modeling links the key factors for high risk fisheries and scopes more detailed integrated analysis and management strategy evaluation.
+
+???
+The Council foresees refining the process so that ecosystem indicators monitor risks to achieving ecological, social, and economic fishery objectives, which can then be mitigated through management action. 
 
 ---
 ## Contributors - THANK YOU!
