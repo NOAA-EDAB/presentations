@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>There is no I in EAFM:</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas, Geret DePiper and Sean Lucey   Northeast Fisheries Science Center     Brandon Muffley and Richard Seagraves   Mid-Atlantic Fishery Management Council" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/d3/d3.min.js"></script>
+    <script src="libs/d3-tip/index.js"></script>
+    <link href="libs/chorddiag/chorddiag.css" rel="stylesheet" />
+    <script src="libs/chorddiag/chorddiag.js"></script>
+    <script src="libs/chorddiag-binding/chorddiag.js"></script>
+    <link rel="stylesheet" href="libs/EDAB_theme2.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# There is no I in EAFM:
+## Adapting Integrated Ecosystem Assessment <br /> for Mid-Atlantic Fisheries Management
+### Sarah Gaichas, Geret DePiper and Sean Lucey <br /> Northeast Fisheries Science Center <br /> <br /> Brandon Muffley and Richard Seagraves <br /> Mid-Atlantic Fishery Management Council
+
+---
+
+class: top, left
+
+
+
+## An integrated ecosystem assessment success story (in progress)
+
+Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing an ecosystem approach to fishery management was done in collaboration between managers, stakeholders, and scientists. 
+.pull-left[
+*Outline*
+- Mid-Atlantic Fishery Management Council Ecosystem Approach (EAFM)
+
+- Tailoring ecosystem reporting for fishery managers
+
+- Mid-Atlantic EAFM risk assessment 
+
+- Mid-Atlantic EAFM conceptual modeling (towards MSE)
+
+- Improvements: open-source data and technical documentation
+
+]
+.pull-right[
+*Integrated Ecosystem Assessment*
+
+![iea-loop](EDAB_images/iea-loop.png)
+
+.image-cap[
+https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+]
+
+
+???
+
+---
+## The Mid-Atlantic Fishery Management Council
+
+.pull-left-30[
+![MAcouncil](EDAB_images/MACouncil.png)
+]
+.pull-right-70[
+![MAFMPs](EDAB_images/MAFMPs.png)
+]
+Source: http://www.mafmc.org/fishery-management-plans
+---
+## Why an ecosystem approach?
+
+*"We rebuilt all the stocks, so why is everyone still pissed off?" --Rich Seagraves*
+
+in 2011, the Council asked:
+
+.pull-left[
+![visioning1](EDAB_images/MA_Visioning1.png)
+]
+.pull-right[
+![visioning2](EDAB_images/MA_Visioning2.png)
+]
+
+And many people answered, from commercial fishery, recreational fishery, environmental organization, and interested public perspectives.
+
+Visioning report: 
+
+http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
+
+---
+## Common themes among all stakeholder groups:
+
+&gt;• There is a lack of confidence in the data that drive fishery management decisions.
+&gt;
+&gt;• Stakeholders are not as involved in the Council process as they can and should be.
+&gt;
+&gt;• Different jurisdictions and regulations among the many fishery management organizations result in complexity and inconsistency.
+&gt;
+&gt;• There is a need for increased transparency and communications in fisheries management.
+&gt;
+&gt;• The dynamics of the ecosystem and food web should be considered to a greater extent in fisheries management decisions.
+&gt;
+&gt;• Stakeholders are not adequately represented on the Council.
+&gt;
+&gt;• Pollution is negatively affecting the health of fish stocks.
+
+Visioning report, p. 3:
+
+http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
+
+---
+## Mid-Atlantic Council Ecosystem Approach
+
+* 2016 Ecosystem Approach to Fishery Management (EAFM) Policy Guidance document:
+http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf
+
+* Mid-Atlantic EAFM framework&lt;sup&gt;1&lt;/sup&gt;:
+
+&lt;img src="EDAB_images/Framework.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+Details on development, including workshop presentations and white papers:
+http://www.mafmc.org/eafm
+
+.footnote[
+[1] Gaichas, S., Seagraves, R., Coakley, J., DePiper, G., Guida, V., Hare, J., Rago, P., et al. 2016. A Framework for Incorporating Species, Fleet, Habitat, and Climate Interactions into Fishery Management. Frontiers in Marine Science, 3.
+]
+
+---
+## Examples illustrating the use of the framework
+.pull-left-40[
+![firstrisk](EDAB_images/fmars-03-00105-g010.jpg)
+]
+.pull-right-60[
+Risk assessment highlights prority species/issues for more detailed evaluation
+
+A conceptual model maps out key interactions for high risk fisheries, specifies quantitative management strategy evaluation
+]
+--
+
+&lt;img src="EDAB_images/fmars-03-00105-g011.jpg" width="78%" style="display: block; margin: auto 0 auto auto;" /&gt;
+
+???
+The conceptual model is used to specify quantitative management strategy evaluation
+
+
+---
+background-image: url("EDAB_images/IMG_2246.jpg")
+background-size: cover
+## &lt;center&gt;But where will the risk assessment indicators come from?&lt;/center&gt;
+
+---
+
+## Meanwhile, scientists were improving ecosystem reports:
+
+*"So what?" --John Boreman, September 2016*
+
+1. Clear linkage of ecosystem indicators with management objectives
+
+1. Synthesis across indicators for big picture
+
+1. Objectives related to human-well being placed first in report
+
+1. Short (&lt; 30 pages), non-technical (but rigorous) text
+
+1. Emphasis on reproducibility 
+
+&lt;img src="EDAB_images/nes-components-abstracted.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+???
+In 2016, we began taking steps to address these common critiques of the ESR model
+
+---
+## Revised ecosystem status reporting
+.pull-left[
+
+### Report structure
+0. Synthetic overview
+
+1. Human dimensions
+
+2. Protected species
+
+3. Fish and invertebrates (managed and otherwise)
+
+4. Habitat quality and ecosystem productivity
+]
+
+.pull-right[
+.table[
+&lt;table class="table" style="width: 50; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Ecosystem-scale objectives and indicators on the Northeast US shelf&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;font-weight: bold;"&gt; Objective Categories &lt;/th&gt;
+   &lt;th style="text-align:left;font-weight: bold;"&gt; Indicators &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Seafood Production &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Landings by feeding guild &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Profits &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Revenue by feeding guild &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Recreation &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Number of anglers and trips; recreational catch &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Stability &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Diversity indices (fishery and species) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Social &amp;amp; Cultural &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Commercial and recreational reliance &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Biomass &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Biomass or abundance by feeding guild from surveys &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Productivity &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Condition and recruitment of managed species &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Trophic structure &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Relative biomass of feeding guilds, primary productivity &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Habitat &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Estuarine and offshore habitat conditions &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+]
+---
+## Standardized indicator visualization in reports
+
+Status (short-term) and trend (long-term) of components are measured as **indicators** and plotted in a standardized way
+
+Indicators are selected to
+
+1. Be broadly informative about a component in a management context&lt;sup&gt;1-3&lt;/sup&gt;
+
+1. Minimize redundancy of information
+
+1. Be responsive to ecosystem change
+
+
+&lt;img src="20191104_CERF_Gaichas_files/figure-html/doc-orientation-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+.footnote[
+[1] Rice J. C.Rochet M. J. "A framework for selecting a suite of indicators for fisheries management." ICES Journal of Marine Science 62 (2005): 516–527.
+
+[2] Link J. 2010. Ecosystem-Based Fisheries Management: Confronting Tradeoffs . Cambridge University Press, New York.
+
+[3] Zador, Stephani G., et al. "Ecosystem considerations in Alaska: the value of qualitative assessments." ICES Journal of Marine Science 74.1 (2017): 421-430.
+]
+
+
+---
+## Indicator spatial scales--already Mid-Atlantic specific
+
+&lt;img src="EDAB_images/SOE_Map.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+
+.footnote[
+https://noaa-edab.github.io/tech-doc/epu.html
+]
+
+???
+Indicators 
+
+---
+## Risk assessent indicators and ranking criteria: Commercial revenue 
+
+This element is applied at the ecosystem level. Revenue serves as a proxy for commercial profits.
+
+.table[
+.pull-left[
+
+| Risk Level         | Definition                                                          |  
+|:-------------------|:--------------------------------------------------------------------|
+| Low  | No trend and low variability in revenue |
+| Low-Moderate | Increasing or high variability in revenue |
+| Moderate-High | Significant long term revenue decrease |
+| High | Significant recent decrease in revenue |
+]
+]
+.pull-right[
+![](20191104_CERF_Gaichas_files/figure-html/total-rev-1.png)&lt;!-- --&gt;
+
+![](20191104_CERF_Gaichas_files/figure-html/bennet-1.png)&lt;!-- --&gt;
+
+]
+
+Ranked moderate-high risk due to the significant long term revenue decrease for Mid-Atlantic managed species (red points in top plot)
+---
+## Risk assessent indicators and ranking criteria: System productivity
+
+This element is applied at the ecosystem level, and ranks the risk of not achieving optimum yield due to changes in ecosystem productivity at the base of the food web.
+
+Four indicators are used together to assess risk of changing ecosystem productivity: primary production, zooplankton abundance, fish condition and fish recruitment. 
+
+.table[
+
+| Risk Level         | Definition                                                          |  
+|:-------------------|:--------------------------------------------------------------------|
+| Low  | No trends in ecosystem productivity |
+| Low-Moderate | Trend in ecosystem productivity (1-2 measures, increase or decrease) |
+| Moderate-High | Trend in ecosystem productivity (3+ measures, increase or decrease) |
+| High | Decreasing trend in ecosystem productivity, all measures |
+]
+???
+We examine trends in total primary production, zooplankton abundance for a key Mid-Atlantic species, and two aggregate fish productivity measures: condition factor (weight divided by length of individual fish) and a survey based "recruitment" (small fish to large fish) index.
+
+---
+## Risk assessent indicators and ranking criteria: System productivity
+.pull-left[
+![](20191104_CERF_Gaichas_files/figure-html/pp-trends-1.png)&lt;!-- --&gt;
+
+&lt;img src="EDAB_images/MAFMC_Fish_Condition_2019.jpg" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+![](20191104_CERF_Gaichas_files/figure-html/seasonal-zoo-1.png)&lt;!-- --&gt;
+
+
+![](20191104_CERF_Gaichas_files/figure-html/fish-prod -1.png)&lt;!-- --&gt;
+]
+
+Ranked low-moderate risk due to the significant long term trends in zooplankton abundance for major species (top right plot)
+---
+## Risk assessent indicators and ranking criteria: Climate 
+
+This element is applied at the species level. Risks to species productivity (and therefore to achieving optimum yield) due to projected climate change in the Northeast US were evaluated in a comprehensive assessment&lt;sup&gt;1&lt;/sup&gt;.
+
+.table[
+.pull-left[
+
+| Risk Level         | Definition                                                          |  
+|:-------------------|:--------------------------------------------------------------------|
+| Low  | Low climate vulnerability ranking |
+| Low-Moderate | Moderate climate vulnerability ranking |
+| Moderate-High | High climate vulnerability ranking |
+| High | Very high climate vulnerability ranking |
+]
+]
+.pull-right[
+&lt;img src="EDAB_images/journal.pone.0146756.g003.PNG" width="100%" /&gt;
+.image-cap[https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146756.] 
+]
+.footnote[
+[1] Hare, J. A., Morrison, W. E., Nelson, M. W., Stachura, M. M., Teeters, E. J., Griffis, R. B., Alexander, M. A., et al. 2016. A Vulnerability Assessment of Fish and Invertebrates to Climate Change on the Northeast U.S. Continental Shelf. PLOS ONE, 11: e0146756.
+]
+
+Each species ranked according to position/color in the plot on the right
+
+---
+## Risk assessment results
+*Species and Sector level risk elements*
+&lt;img src="EDAB_images/mgttable2019.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Risk assessment results updated with 2019 indicators
+*Species level risk elements*
+&lt;img src="EDAB_images/sptable2019.png" width="95%" style="display: block; margin: auto;" /&gt;
+*Ecosystem level risk elements*
+&lt;img src="EDAB_images/ecotable2019.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+
+---
+## How are they using the risk assessment? What's next?
+
+* Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
+
+&lt;img src="EDAB_images/Framework.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+* Working group of habitat, biology, stock assessment, management, economic and social scientists developed:
+
+  * draft conceptual models of high risk elements, linkages
+  * dataset identification and gap analysis for each element and link
+  * draft questions that the Council could persue with additional work
+
+---
+## Mid-Atlantic Council ecosystem approach continued...
+
+* The September 2019 summer flounder conceptual model, now under revision:
+
+<div id="htmlwidget-7f1e68b6bf3fcbdd1110" style="width:900px;height:900px;" class="chorddiag html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7f1e68b6bf3fcbdd1110">{"x":{"matrix":[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0],[0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],"options":{"type":"directional","width":900,"height":900,"margin":120,"showGroupnames":true,"groupNames":["Community Vulnerability","Dissolved Oxygen","Economic Drivers","Freshwater Influx","Nutrient Influx","Ocean Acidification","Ocean Features","Oceanographic Transport","Other Species Ditributional Shifts","Shifts in Preferences","Temperature","Water Diversion","Compliance","Discards","Fishery Distributional Shift","Fishery Resilience","Fleet Diversity","Landings","Perceived Inequity","Technical Interactions","Allocation","Communication","Enforcement","Management Control","Other Regulations","Permit Access","Regulatory Complexity","Risk Buffering","Adults & Spawners","Age & Size Structure","Fluke Distributional Shift","Fluke Recruitment","Fluke SSB","Growth","Maturation","Natural Mortality","Sex Ratio","Assessment Process","Data Quality","Predictability of Recreational Fishing","Stock Assessment","Aquatic Vegetation","Estuarine Habitat","Food Web Changes","Habitat Alteration","Loose Inert Substrate","Offshore Habitat","Salinity","Water Clarity","Commercial Profits","Consumer Surplus","Recreational Profits","Recreational Value","Seafood","Protected Species"],"groupColors":["#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#A6761D","#A6761D","#A6761D","#A6761D","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E7298A"],"groupThickness":0.1,"groupPadding":0.0174532925199433,"groupnamePadding":[10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10],"groupnameFontsize":12,"groupedgeColor":["#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#A6761D","#A6761D","#A6761D","#A6761D","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E7298A"],"chordedgeColor":["#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#A6761D","#A6761D","#A6761D","#A6761D","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E7298A"],"categoryNames":null,"categorynamePadding":100,"categorynameFontsize":28,"showTicks":false,"tickInterval":0.1,"ticklabelFontsize":10,"fadeLevel":0.1,"showTooltips":true,"showZeroTooltips":true,"tooltipNames":["Community Vulnerability","Dissolved Oxygen","Economic Drivers","Freshwater Influx","Nutrient Influx","Ocean Acidification","Ocean Features","Oceanographic Transport","Other Species Ditributional Shifts","Shifts in Preferences","Temperature","Water Diversion","Compliance","Discards","Fishery Distributional Shift","Fishery Resilience","Fleet Diversity","Landings","Perceived Inequity","Technical Interactions","Allocation","Communication","Enforcement","Management Control","Other Regulations","Permit Access","Regulatory Complexity","Risk Buffering","Adults & Spawners","Age & Size Structure","Fluke Distributional Shift","Fluke Recruitment","Fluke SSB","Growth","Maturation","Natural Mortality","Sex Ratio","Assessment Process","Data Quality","Predictability of Recreational Fishing","Stock Assessment","Aquatic Vegetation","Estuarine Habitat","Food Web Changes","Habitat Alteration","Loose Inert Substrate","Offshore Habitat","Salinity","Water Clarity","Commercial Profits","Consumer Surplus","Recreational Profits","Recreational Value","Seafood","Protected Species"],"tooltipFontsize":12,"tooltipUnit":"","tooltipGroupConnector":" &#x25B6; ","precision":"null","clickAction":null,"clickGroupAction":null}},"evals":[],"jsHooks":[]}</script>
+
+* Final conceptual model and supporting information at December 2019 Council meeting
+
+* Council may then elect to proceed with management strategy evaluation (MSE) using the information from conceptual modeling as a basis
+
+---
+## Footnote: Improvements to reproducibility and provenance
+
+* Reporting the information is not enough
+* Managers appreciate the concise format, but back-end critical for describing collection, analyses, and processing
+* Streamlined workflow allowed scientists to meet management deadlines
+  
+![soe-data-flow](EDAB_images/soe-data-flow.png)  
+
+???
+This workflows also ensures that there's no information lost between SOE cycles. We know exactly how a data set was analyzed and handled so that the data can be updated for next year's reports.
+
+---
+## If you want **all** the details
+
+* [Mid-Atlantic Council EAFM paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
+
+* [Mid-Atlantic Council Risk Assessment paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
+
+* [Mid-Atlantic Council Summer Flounder conceptual model and support tables](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html)
+
+* [State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
+  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
+  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
+
+
+* Slides available at https://noaa-edab.github.io/presentations
+
+---
+## Conclusions
+
+Risk assessment is valuable for the general implementation of ecosystem approaches to natural resource management
+
+* Risk assessment is a rapid, familiar, scaleable, and transparent method to move forward with EAFM within a real-world operational fishery management context 
+
+* Risk assessment can be conducted collaboratively within existing stakeholder processes
+
+* This EAFM risk assessment highlights certain species and certain management issues as posing higher cumulative risks to meeting Council-derived management objectives when considering a broad range of ecological, social, and economic factors 
+
+* The Council foresees refining the process so that ecosystem indicators monitor risks to achieving ecological, social, and economic fishery objectives, which can then be mitigated through management action. 
+
+---
+## Contributors - THANK YOU!
+
+The New England and Mid-Atlantic Ecosystem reports made possible by (at least) 38 contributors from 8 institutions 
+
+.pull-left[
+.contrib[
+Donald Anderson (Woods Hole Oceanographic Institute) &lt;br&gt;
+Amani Bassyouni (Virginia Department of Health)&lt;br&gt;
+Lisa Calvo (Rutgers)&lt;br&gt;
+Matthew Camisa (MA Division of Marine Fisheries) &lt;br&gt;
+Patricia Clay&lt;br&gt;
+Lisa Colburn&lt;br&gt;
+Geret DePiper&lt;br&gt;
+Deb Duarte&lt;br&gt;
+Michael Fogarty&lt;br&gt;
+Paula Fratantoni &lt;br&gt;
+Kevin Friedland&lt;br&gt;
+Sarah Gaichas&lt;br&gt;
+James Gartland (Virginia Institute of Marine Science)&lt;br&gt;
+Heather Haas&lt;br&gt;
+Sean Hardison &lt;br&gt;
+Kimberly Hyde&lt;br&gt;
+Terry Joyce (Woods Hole Oceanographic Institute)&lt;br&gt;
+John Kosik&lt;br&gt;
+Steve Kress (National Audubon Society)&lt;br&gt;
+Scott Large
+]
+]
+
+.pull-right[
+.contrib[
+Don Lyons (National Audubon Society)&lt;br&gt;
+Loren Kellogg&lt;br&gt;
+David Kulis (Woods Hole Oceanographic Institute)&lt;br&gt;
+Sean Lucey&lt;br&gt;
+Chris Melrose&lt;br&gt;
+Ryan Morse&lt;br&gt;
+Kimberly Murray&lt;br&gt;
+Chris Orphanides&lt;br&gt;
+Richard Pace&lt;br&gt;
+Charles Perretti&lt;br&gt;
+Karl Roscher (Maryland Department of Natural Resources)&lt;br&gt;
+Vincent Saba&lt;br&gt;
+Laurel Smith&lt;br&gt;
+Mark Terceiro&lt;br&gt;
+John Walden&lt;br&gt;
+Harvey Walsh&lt;br&gt;
+Mark Wuenschel&lt;br&gt;
+Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program)
+]
+]
+
+&lt;img src="EDAB_images/noaa-iea.png" width="50%" style="display: block; margin: auto;" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
