@@ -1,7 +1,7 @@
 ---
 title: "There is no I in EAFM:"
 subtitle: "Adapting Integrated Ecosystem Assessment <br /> for Mid-Atlantic Fisheries Management"
-author: "Sarah Gaichas, Geret DePiper and Sean Lucey <br /> Northeast Fisheries Science Center <br /> <br /> Brandon Muffley and Richard Seagraves <br /> Mid-Atlantic Fishery Management Council"
+author: "Sarah Gaichas, Geret DePiper, Brandon Muffley, Richard Seagraves, Sean Lucey <br /> Northeast Fisheries Science Center, Mid-Atlantic Fishery Management Council"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme2.css"]
@@ -315,69 +315,6 @@ In 2016, we began taking steps to address these common critiques of the ESR mode
 ]
 ]
 ---
-## Standardized indicator visualization in reports
-
-Status (short-term) and trend (long-term) of components are measured as **indicators** and plotted in a standardized way
-
-Indicators are selected to
-
-1. Be broadly informative about a component in a management context<sup>1-3</sup>
-
-1. Minimize redundancy of information
-
-1. Be responsive to ecosystem change
-
-
-```{r doc-orientation, echo = F, warning = F, message=F, fig.height = 3, fig.width=8, fig.align = "center"}
-m <- 0.1
-x <- 1989:2018
-y <-  m*x + rnorm(30, sd = 0.35)
-
-data <- data.frame(x = x,
-                  y = y)
-
-#Define constants for figure plot
-x.shade.max <- max(x)
-x.shade.min <- x.shade.max - 9 
-hline = mean(y)
-
-#Plot series with trend 
-ggplot2::ggplot(data = data,aes(x = x, y = y)) +
-  #Highlight last ten years
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_point(size = pcex) +
-  scale_color_manual(aesthetics = "color")+
-  guides(color = FALSE) +
-  geom_hline(aes(yintercept = hline),
-              size = hline.size,
-             alpha = hline.alpha,
-             linetype = hline.lty)+
-  geom_line() +
-  geom_gls() +
-  scale_y_continuous(labels = function(l){trans = l / 1000})+
-  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
-  ylab(expression("Invented Index, 10"^3*"widgets")) +
-  xlab("Year") +
-  ggtitle("Indicator Z") +
-  theme_ts() +
-  theme(plot.title = element_text(size = 16),
-        axis.title = element_text(size = 14))
-```
-
-
-
-.footnote[
-[1] Rice J. C.Rochet M. J. "A framework for selecting a suite of indicators for fisheries management." ICES Journal of Marine Science 62 (2005): 516–527.
-
-[2] Link J. 2010. Ecosystem-Based Fisheries Management: Confronting Tradeoffs . Cambridge University Press, New York.
-
-[3] Zador, Stephani G., et al. "Ecosystem considerations in Alaska: the value of qualitative assessments." ICES Journal of Marine Science 74.1 (2017): 421-430.
-]
-
-
----
 ## Indicator spatial scales--already Mid-Atlantic specific
 
 ```{r epus, echo = F, out.width = "70%", fig.align = "center"}
@@ -462,6 +399,276 @@ ggplot(data = indicators)+
 ]
 
 Ranked moderate-high risk due to the significant long term revenue decrease for Mid-Atlantic managed species (red points in top plot)
+---
+## Risk assessent indicators and ranking criteria: Climate 
+
+This element is applied at the species level. Risks to species productivity (and therefore to achieving optimum yield) due to projected climate change in the Northeast US were evaluated in a comprehensive assessment<sup>1</sup>.
+
+.table[
+.pull-left[
+```{r riskclim, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+| Risk Level         | Definition                                                          |  
+|:-------------------|:--------------------------------------------------------------------|
+| Low  | Low climate vulnerability ranking |
+| Low-Moderate | Moderate climate vulnerability ranking |
+| Moderate-High | High climate vulnerability ranking |
+| High | Very high climate vulnerability ranking |
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+
+```
+]
+]
+.pull-right[
+```{r NEVAvul, out.width="100%"}
+knitr::include_graphics("EDAB_images/journal.pone.0146756.g003.PNG")
+
+```
+.image-cap[https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146756.] 
+]
+.footnote[
+[1] Hare, J. A., Morrison, W. E., Nelson, M. W., Stachura, M. M., Teeters, E. J., Griffis, R. B., Alexander, M. A., et al. 2016. A Vulnerability Assessment of Fish and Invertebrates to Climate Change on the Northeast U.S. Continental Shelf. PLOS ONE, 11: e0146756.
+]
+
+Each species ranked according to position/color in the plot on the right
+
+---
+## Risk assessment results
+*Species and Sector level risk elements*
+```{r mgttable, fig.align="center",out.width="85%"}
+knitr::include_graphics("EDAB_images/mgttable2019.png")
+```
+
+
+---
+## Risk assessment results updated with 2019 indicators
+*Species level risk elements*
+```{r sptable, fig.align="center",out.width="95%"}
+knitr::include_graphics("EDAB_images/sptable2019.png")
+```
+*Ecosystem level risk elements*
+```{r ecotable, fig.align="center",out.width="95%"}
+knitr::include_graphics("EDAB_images/ecotable2019.png")
+```
+
+
+---
+## How are they using the risk assessment? What's next?
+.pull-left[
+* Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
+
+```{r framework2, echo = F, out.width = "90%", fig.align = "center"}
+knitr::include_graphics("EDAB_images/Framework.png")
+```
+]
+.pull-right[
+* Working group of habitat, biology, stock assessment, management, economic and social scientists developed:
+
+  * draft conceptual models of high risk elements, linkages
+  * dataset identification and gap analysis for each element and link
+  * draft questions that the Council could persue with additional work
+]  
+* Final conceptual model and supporting information at December 2019 Council meeting
+
+* Council may then elect to proceed with management strategy evaluation (MSE) using the information from conceptual modeling as a basis
+
+
+---
+```{r sfconceptmod, echo = F, fig.align = "center"}
+# setup for conceptual model
+PKG <- c(#"foreign","foodweb","sna", "DiagrammeR","circlize", "kableExtra", "googledrive", "readxl"
+         "RColorBrewer","QPress",
+         "chorddiag")
+
+for (p in PKG) {
+  if(!require(p,character.only = TRUE)) {
+    install.packages(p)
+    require(p,character.only = TRUE)}
+}
+
+
+#assumes this is a project and .dia file is in data directory
+edges <- model.dia(file.path(data.dir, "Summer_Flounder_July22_2019.dia"))
+
+source("R/interactive_chord_sfconsmod.R")
+
+interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
+
+```
+
+---
+## Conclusions
+
+Integrated ecosystem assessment is a valuable framework for the general implementation of ecosystem approaches to natural resource management
+
+* The Council’s rapid progress in implementing EAFM resulted from positive collaboration between managers, stakeholders, and scientists. Collaboration is essential to IEA and to the success of EAFM.
+
+* Ecosystem indicators and reporting can be tailored to specific regional objectives.
+
+* Risk assessment is a rapid, familiar, scaleable, and transparent method to move forward with EAFM within a real-world operational fishery management context.
+
+* This EAFM process highlights certain species and certain management issues as posing higher cumulative risks to meeting Council-derived management objectives when considering a broad range of ecological, social, and economic factors.
+
+* Conceptual modeling links the key factors for high risk fisheries and scopes more detailed integrated analysis and management strategy evaluation.
+
+???
+The Council foresees refining the process so that ecosystem indicators monitor risks to achieving ecological, social, and economic fishery objectives, which can then be mitigated through management action. 
+
+---
+## Footnote: Improvements to reproducibility and provenance
+
+* Reporting the information is not enough
+* Managers appreciate the concise format, but back-end critical for describing collection, analyses, and processing
+* Streamlined workflow allowed scientists to meet management deadlines
+  
+![soe-data-flow](EDAB_images/soe-data-flow.png)  
+
+???
+This workflows also ensures that there's no information lost between SOE cycles. We know exactly how a data set was analyzed and handled so that the data can be updated for next year's reports.
+
+---
+## If you want **all** the details
+
+* [Mid-Atlantic Council EAFM paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
+
+* [Mid-Atlantic Council Risk Assessment paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
+
+* [Mid-Atlantic Council Summer Flounder conceptual model and support tables](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html)
+
+* [State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
+  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
+  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
+
+
+* Slides available at https://noaa-edab.github.io/presentations
+
+---
+## Contributors - THANK YOU!
+
+The New England and Mid-Atlantic Ecosystem reports made possible by (at least) 38 contributors from 8 institutions 
+
+.pull-left[
+.contrib[
+Donald Anderson (Woods Hole Oceanographic Institute) <br>
+Amani Bassyouni (Virginia Department of Health)<br>
+Lisa Calvo (Rutgers)<br>
+Matthew Camisa (MA Division of Marine Fisheries) <br>
+Patricia Clay<br>
+Lisa Colburn<br>
+Geret DePiper<br>
+Deb Duarte<br>
+Michael Fogarty<br>
+Paula Fratantoni <br>
+Kevin Friedland<br>
+Sarah Gaichas<br>
+James Gartland (Virginia Institute of Marine Science)<br>
+Heather Haas<br>
+Sean Hardison <br>
+Kimberly Hyde<br>
+Terry Joyce (Woods Hole Oceanographic Institute)<br>
+John Kosik<br>
+Steve Kress (National Audubon Society)<br>
+Scott Large
+]
+]
+
+.pull-right[
+.contrib[
+Don Lyons (National Audubon Society)<br>
+Loren Kellogg<br>
+David Kulis (Woods Hole Oceanographic Institute)<br>
+Sean Lucey<br>
+Chris Melrose<br>
+Ryan Morse<br>
+Kimberly Murray<br>
+Chris Orphanides<br>
+Richard Pace<br>
+Charles Perretti<br>
+Karl Roscher (Maryland Department of Natural Resources)<br>
+Vincent Saba<br>
+Laurel Smith<br>
+Mark Terceiro<br>
+John Walden<br>
+Harvey Walsh<br>
+Mark Wuenschel<br>
+Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program)
+]
+]
+
+```{r iea-logo, fig.align="center", out.width = "50%"}
+knitr::include_graphics("EDAB_images/noaa-iea.png")
+```
+
+---
+# Extra Slides
+
+---
+## Standardized indicator visualization in reports
+
+Status (short-term) and trend (long-term) of components are measured as **indicators** and plotted in a standardized way
+
+Indicators are selected to
+
+1. Be broadly informative about a component in a management context<sup>1-3</sup>
+
+1. Minimize redundancy of information
+
+1. Be responsive to ecosystem change
+
+
+```{r doc-orientation, echo = F, warning = F, message=F, fig.height = 3, fig.width=8, fig.align = "center"}
+m <- 0.1
+x <- 1989:2018
+y <-  m*x + rnorm(30, sd = 0.35)
+
+data <- data.frame(x = x,
+                  y = y)
+
+#Define constants for figure plot
+x.shade.max <- max(x)
+x.shade.min <- x.shade.max - 9 
+hline = mean(y)
+
+#Plot series with trend 
+ggplot2::ggplot(data = data,aes(x = x, y = y)) +
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_point(size = pcex) +
+  scale_color_manual(aesthetics = "color")+
+  guides(color = FALSE) +
+  geom_hline(aes(yintercept = hline),
+              size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+  geom_line() +
+  geom_gls() +
+  scale_y_continuous(labels = function(l){trans = l / 1000})+
+  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
+  ylab(expression("Invented Index, 10"^3*"widgets")) +
+  xlab("Year") +
+  ggtitle("Indicator Z") +
+  theme_ts() +
+  theme(plot.title = element_text(size = 16),
+        axis.title = element_text(size = 14))
+```
+
+
+
+.footnote[
+[1] Rice J. C.Rochet M. J. "A framework for selecting a suite of indicators for fisheries management." ICES Journal of Marine Science 62 (2005): 516–527.
+
+[2] Link J. 2010. Ecosystem-Based Fisheries Management: Confronting Tradeoffs . Cambridge University Press, New York.
+
+[3] Zador, Stephani G., et al. "Ecosystem considerations in Alaska: the value of qualitative assessments." ICES Journal of Marine Science 74.1 (2017): 421-430.
+]
+
 ---
 ## Risk assessent indicators and ranking criteria: System productivity
 
@@ -637,210 +844,6 @@ prod
 ]
 
 Ranked low-moderate risk due to the significant long term trends in zooplankton abundance for major species (top right plot)
----
-## Risk assessent indicators and ranking criteria: Climate 
-
-This element is applied at the species level. Risks to species productivity (and therefore to achieving optimum yield) due to projected climate change in the Northeast US were evaluated in a comprehensive assessment<sup>1</sup>.
-
-.table[
-.pull-left[
-```{r riskclim, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-| Risk Level         | Definition                                                          |  
-|:-------------------|:--------------------------------------------------------------------|
-| Low  | Low climate vulnerability ranking |
-| Low-Moderate | Moderate climate vulnerability ranking |
-| Moderate-High | High climate vulnerability ranking |
-| High | Very high climate vulnerability ranking |
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-
-```
-]
-]
-.pull-right[
-```{r NEVAvul, out.width="100%"}
-knitr::include_graphics("EDAB_images/journal.pone.0146756.g003.PNG")
-
-```
-.image-cap[https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146756.] 
-]
-.footnote[
-[1] Hare, J. A., Morrison, W. E., Nelson, M. W., Stachura, M. M., Teeters, E. J., Griffis, R. B., Alexander, M. A., et al. 2016. A Vulnerability Assessment of Fish and Invertebrates to Climate Change on the Northeast U.S. Continental Shelf. PLOS ONE, 11: e0146756.
-]
-
-Each species ranked according to position/color in the plot on the right
-
----
-## Risk assessment results
-*Species and Sector level risk elements*
-```{r mgttable, fig.align="center",out.width="85%"}
-knitr::include_graphics("EDAB_images/mgttable2019.png")
-```
-
-
----
-## Risk assessment results updated with 2019 indicators
-*Species level risk elements*
-```{r sptable, fig.align="center",out.width="95%"}
-knitr::include_graphics("EDAB_images/sptable2019.png")
-```
-*Ecosystem level risk elements*
-```{r ecotable, fig.align="center",out.width="95%"}
-knitr::include_graphics("EDAB_images/ecotable2019.png")
-```
-
-
----
-## How are they using the risk assessment? What's next?
-.pull-left[
-* Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
-
-```{r framework2, echo = F, out.width = "90%", fig.align = "center"}
-knitr::include_graphics("EDAB_images/Framework.png")
-```
-]
-.pull-right[
-* Working group of habitat, biology, stock assessment, management, economic and social scientists developed:
-
-  * draft conceptual models of high risk elements, linkages
-  * dataset identification and gap analysis for each element and link
-  * draft questions that the Council could persue with additional work
-]  
-* Final conceptual model and supporting information at December 2019 Council meeting
-
-* Council may then elect to proceed with management strategy evaluation (MSE) using the information from conceptual modeling as a basis
-
-
----
-```{r sfconceptmod, echo = F, fig.align = "center"}
-# setup for conceptual model
-PKG <- c(#"foreign","foodweb","sna", "DiagrammeR","circlize", "kableExtra", "googledrive", "readxl"
-         "RColorBrewer","QPress",
-         "chorddiag")
-
-for (p in PKG) {
-  if(!require(p,character.only = TRUE)) {
-    install.packages(p)
-    require(p,character.only = TRUE)}
-}
-
-
-#assumes this is a project and .dia file is in data directory
-edges <- model.dia(file.path(data.dir, "Summer_Flounder_July22_2019.dia"))
-
-source("R/interactive_chord_sfconsmod.R")
-
-interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
-
-```
-
----
-## Footnote: Improvements to reproducibility and provenance
-
-* Reporting the information is not enough
-* Managers appreciate the concise format, but back-end critical for describing collection, analyses, and processing
-* Streamlined workflow allowed scientists to meet management deadlines
-  
-![soe-data-flow](EDAB_images/soe-data-flow.png)  
-
-???
-This workflows also ensures that there's no information lost between SOE cycles. We know exactly how a data set was analyzed and handled so that the data can be updated for next year's reports.
-
----
-## If you want **all** the details
-
-* [Mid-Atlantic Council EAFM paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
-
-* [Mid-Atlantic Council Risk Assessment paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
-
-* [Mid-Atlantic Council Summer Flounder conceptual model and support tables](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html)
-
-* [State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
-
-* [ecodata R package](https://github.com/noaa-edab/ecodata)
-
-  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
-  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
-  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
-
-
-* Slides available at https://noaa-edab.github.io/presentations
-
----
-## Conclusions
-
-Integrated ecosystem assessment is a valuable framework for the general implementation of ecosystem approaches to natural resource management
-
-* The Council’s rapid progress in implementing EAFM resulted from positive collaboration between managers, stakeholders, and scientists. Collaboration is essential to IEA and to the success of EAFM.
-
-* Ecosystem indicators and reporting can be tailored to specific regional objectives.
-
-* Risk assessment is a rapid, familiar, scaleable, and transparent method to move forward with EAFM within a real-world operational fishery management context.
-
-* This EAFM process highlights certain species and certain management issues as posing higher cumulative risks to meeting Council-derived management objectives when considering a broad range of ecological, social, and economic factors.
-
-* Conceptual modeling links the key factors for high risk fisheries and scopes more detailed integrated analysis and management strategy evaluation.
-
-???
-The Council foresees refining the process so that ecosystem indicators monitor risks to achieving ecological, social, and economic fishery objectives, which can then be mitigated through management action. 
-
----
-## Contributors - THANK YOU!
-
-The New England and Mid-Atlantic Ecosystem reports made possible by (at least) 38 contributors from 8 institutions 
-
-.pull-left[
-.contrib[
-Donald Anderson (Woods Hole Oceanographic Institute) <br>
-Amani Bassyouni (Virginia Department of Health)<br>
-Lisa Calvo (Rutgers)<br>
-Matthew Camisa (MA Division of Marine Fisheries) <br>
-Patricia Clay<br>
-Lisa Colburn<br>
-Geret DePiper<br>
-Deb Duarte<br>
-Michael Fogarty<br>
-Paula Fratantoni <br>
-Kevin Friedland<br>
-Sarah Gaichas<br>
-James Gartland (Virginia Institute of Marine Science)<br>
-Heather Haas<br>
-Sean Hardison <br>
-Kimberly Hyde<br>
-Terry Joyce (Woods Hole Oceanographic Institute)<br>
-John Kosik<br>
-Steve Kress (National Audubon Society)<br>
-Scott Large
-]
-]
-
-.pull-right[
-.contrib[
-Don Lyons (National Audubon Society)<br>
-Loren Kellogg<br>
-David Kulis (Woods Hole Oceanographic Institute)<br>
-Sean Lucey<br>
-Chris Melrose<br>
-Ryan Morse<br>
-Kimberly Murray<br>
-Chris Orphanides<br>
-Richard Pace<br>
-Charles Perretti<br>
-Karl Roscher (Maryland Department of Natural Resources)<br>
-Vincent Saba<br>
-Laurel Smith<br>
-Mark Terceiro<br>
-John Walden<br>
-Harvey Walsh<br>
-Mark Wuenschel<br>
-Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program)
-]
-]
-
-```{r iea-logo, fig.align="center", out.width = "50%"}
-knitr::include_graphics("EDAB_images/noaa-iea.png")
-```
 
 
 
