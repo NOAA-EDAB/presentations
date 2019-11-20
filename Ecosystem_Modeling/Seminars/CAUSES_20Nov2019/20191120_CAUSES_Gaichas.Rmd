@@ -36,6 +36,54 @@ library(readr)
 
 data.dir <- here::here("data")
 
+#herring MSE outputs
+allres <- readRDS(file.path(data.dir,"allres.rds"))
+
+#herring MSE plotting
+#a better plotting theme than ggplot default? from https://rpubs.com/Koundy/71792
+theme_Publication <- function(base_size=14, base_family="") {
+      library(grid)
+      library(ggthemes)
+      (theme_foundation(base_size=base_size, base_family=base_family)
+       + theme(plot.title = element_text(face = "bold",
+                                         size = rel(1.2), hjust = 0.5),
+               text = element_text(),
+               panel.background = element_rect(colour = NA),
+               plot.background = element_rect(colour = NA),
+               panel.border = element_rect(colour = NA),
+               axis.title = element_text(face = "bold",size = rel(1)),
+               axis.title.y = element_text(angle=90,vjust =2),
+               axis.title.x = element_text(vjust = -0.2),
+               axis.text = element_text(), 
+               axis.line = element_line(colour="black"),
+               axis.ticks = element_line(),
+               panel.grid.major = element_line(colour="#f0f0f0"),
+               panel.grid.minor = element_blank(),
+               legend.key = element_rect(colour = NA),
+               legend.position = "right",
+               legend.direction = "vertical",
+               legend.key.size= unit(0.4, "cm"),
+               legend.margin = unit(0, "cm"),
+               legend.title = element_text(face="italic"),
+               plot.margin=unit(c(10,5,5,5),"mm"),
+               strip.background=element_rect(colour="#f0f0f0",fill="#f0f0f0"),
+               strip.text = element_text(face="bold")
+          ))
+      
+}
+
+scale_fill_Publication <- function(...){
+      library(scales)
+      discrete_scale("fill","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
+
+}
+
+scale_colour_Publication <- function(...){
+      library(scales)
+      discrete_scale("colour","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
+
+}
+
 
 
 ```
@@ -66,11 +114,88 @@ knitr::include_graphics("EDAB_images/fmars-06-00641-g002.jpg")
 
 ---
 ## New England Herring MSE: strategic advice
-models quantitatively linked to performance metrics, management objectives
+.pull-left[
+Models quantitatively linked to performance metrics, management objectives
 
-```{r OMdesign, echo = F, fig.align = "center", out.width="85%"}
+```{r OMdesign, echo = F, fig.align = "center", out.width="95%"}
 knitr::include_graphics("EDAB_images/OMdesign.png")
 ```
+]
+.pull-right[
+- Tern productivity at 1.0 or above > 90% of the time
+- Herring biomass > 90% of SSBmsy
+- Fishery yield > 90% of MSY
+- AND fishery closures (F=0) < 1% of the time.
+```{r}
+Nrulesgoodterns <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(MedPropYrs_goodProd_Targplustern>0.9) %>%
+  summarize(tern90 = n())
+
+Nrulesgoodfishery <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(YieldrelMSY>0.9) %>%
+  summarize(yield90 = n())
+
+Nrulesgoodherring <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(MedSSBrelSSBmsy>0.9) %>%
+  summarize(SSB90 = n())
+
+Nrulesgoodternherrfish <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  filter(MedPropYrs_goodProd_Targplustern>0.9 & MedSSBrelSSBmsy>0.9 & YieldrelMSY>0.9 & PropClosure < 0.01) %>%
+  group_by(OM,CR)%>%
+  summarize(ternfishherr90 = n(), 
+            minF = min(FracFtarg), 
+            maxF = max(FracFtarg),
+            minloB = min(FracBmsyThreshLo), 
+            maxloB = max(FracBmsyThreshLo),
+            minhiB = min(FracBmsyThreshHi),
+            maxhiB = max(FracBmsyThreshHi)
+  )
+
+CRsgoodternherrfish <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  filter(MedPropYrs_goodProd_Targplustern > 0.9 & MedSSBrelSSBmsy > 0.9 & YieldrelMSY > 0.9 & PropClosure < 0.01) %>%
+  group_by(OM,CR) %>%
+  select(OM, CR, FracBmsyThreshLo, FracBmsyThreshHi,FracFtarg) %>%
+  mutate(id = seq(1:n()),
+         Xmin = 0,
+         Xmax = 4) %>%
+  gather(CRpart, x, Xmin,FracBmsyThreshLo, FracBmsyThreshHi,Xmax) %>%
+  arrange(OM, CR, id) %>%
+  mutate(y = case_when(CRpart == "Xmin" | CRpart == "FracBmsyThreshLo" ~ 0,
+                       CRpart == "FracBmsyThreshHi" | CRpart == "Xmax" ~ FracFtarg)) %>%
+  mutate(bigkey = paste0(OM, CR, id))
+  
+#with(CRsgoodternherrfish, 
+#     plot(x=c(0,FracBmsyThreshLo, FracBmsyThreshHi, 4),
+#          y=c(0,0,FracFtarg, FracFtarg), type="l"))  
+  
+p1 <- ggplot(CRsgoodternherrfish, aes(x=x, y=y, colour=CR)) + 
+  geom_line(aes(group=bigkey), alpha=0.3) +
+  labs(y="F/Fmsy", x="SSB/SSBmsy", colour="Control rule type") +
+  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+  theme_Publication() + scale_colour_Publication()
+
+OMlabels <- c(HiM_LowSteep_AssBias_OldWt = 'LowFastBiased', 
+              HiM_LowSteep_AssBias_RecWt = 'LowSlowBiased', 
+              HiM_LowSteep_NoAssBias_OldWt = 'LowFastCorrect', 
+              HiM_LowSteep_NoAssBias_RecWt = 'LowSlowCorrect',  
+              LoM_HiSteep_AssBias_OldWt =  'HighFastBiased',  
+              LoM_HiSteep_AssBias_RecWt = 'HighSlowBiased', 
+              LoM_HiSteep_NoAssBias_OldWt = 'HighFastCorrect',
+              LoM_HiSteep_NoAssBias_RecWt = 'HighSlowCorrect'
+              )
+
+p1 + facet_wrap("OM", labeller=labeller(OM = OMlabels), nrow=2) + theme(legend.position="bottom")
+
+```
+]
 
 ---
 ## Gulf of Alaska cod harvest
@@ -82,14 +207,19 @@ knitr::include_graphics("EDAB_images/fmars-06-00641-g003.jpg")
 ---
 ## Gulf of Alaska cod harvest: tactical advice
 
-```{r AKprocess, echo = F, fig.align = "center", out.width="85%"}
+.pull-left[
+```{r AKprocess, echo = F, fig.align = "center", out.width="95%", fig.show='hold'}
 knitr::include_graphics("EDAB_images/fmars-06-00641-g004.jpg")
+knitr::include_graphics("EDAB_images/PcodKobe.png")
 ```
+]
 
----
-## Gulf of Alasks cod harvest: tactical advice
-
-pics from steves assessment
+.pull-right[
+```{r GOAcodassess, echo = F, fig.align = "center", out.width="95%", fig.show='hold'}
+knitr::include_graphics("EDAB_images/GOAheatwave.png")
+knitr::include_graphics("EDAB_images/GOAcodgrowth.png")
+```
+]
 
 ---
 ## Coastal Louisiana restoration 
@@ -114,18 +244,34 @@ knitr::include_graphics("EDAB_images/fmars-06-00641-g007.jpg")
 
 ---
 ## Conclusions
+  
+* Broad suite of tools needed that can address
+    * Biophysical factors
+    * Stock/species interactions
+    * Social and economic factors
+    
+* Must plug into policy-making process
 
+* Consider fisheries and other mandates (habitat)
+
+* Communication essential
+    * Among modelers
+    * Between modelers, managers, and stakeholders
+    
+* Iteration helps
+    * With stakeholders and managers for particular projects
+    * Annual products such as ESRs
 
 ---
 ## External Resources
 
-
+* [The paper!](https://www.frontiersin.org/articles/10.3389/fmars.2019.00641/full)
 
 * Slides available at https://noaa-edab.github.io/presentations
 
 ---
 
-background-image: url("EDAB_images/IMG_2733.jpg")
+background-image: url("EDAB_images/IMG_2809.jpg")
 background-size: cover
 
 ## Questions?
