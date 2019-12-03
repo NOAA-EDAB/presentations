@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>atlantisom: simulated  ecosystem datasets for  model performance testing</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Christine Stawitz, Sarah Gaichas, Isaac Kaplan, and Patrick Lynch   Office of Science &amp; Technology, Northeast and Northwest Fisheries Science Centers       Supported by Institute of Marine Research Norway,  and NOAA NMFS International Fellowship" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme2.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# atlantisom: simulated <br />ecosystem datasets for <br />model performance testing
+## NEMoW 5 Tool Demos
+### Christine Stawitz, Sarah Gaichas, Isaac Kaplan, and Patrick Lynch <br /> Office of Science &amp; Technology, Northeast and Northwest Fisheries Science Centers<br /> <br /> <br /> <br />Supported by Institute of Marine Research Norway, <br />and NOAA NMFS International Fellowship
+
+---
+
+class: top, left
+
+
+
+## We use models for a lot
+![NOAAlogo](EDAB_images/noaa-logo.PNG)
+![NOAA fisheries](EDAB_images/noaafisheries.png)
+
+---
+## We have a lot of models
+
+![ecomods](EDAB_images/ecomods.png)
+---
+## How do we know they are right?
+
+ * Fits to historical data (hindcast)
+ 
+ * Influence of data over time (retrospective diagnostics)
+ 
+ * Keep as simple and focused as possible
+ 
+ * Simulation testing
+
+## But What if 
+
+##   data are noisy? 
+
+##   we need to model complex interactions?
+
+##   conditions change over time?
+
+
+---
+## End-to-end ecosystem operating models as dataset generators
+
+Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-2979.2011.00412.x), [Fulton and Smith 2004](https://www.ajol.info/index.php/ajms/article/view/33182)
+
+.pull-left[
+**Norwegian-Barents Sea**
+
+[Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
+[2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
+
+![NOBA scale 90%](EDAB_images/journal.pone.0210419.g001.png)
+]
+.pull-right[
+**California Current**
+
+[Marshall et al. 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.13594), 
+[Kaplan et al. 2017](https://www.sciencedirect.com/science/article/pii/S0304380016308262?via%3Dihub)
+
+![CCAspatial scale 100%](EDAB_images/CCAspatial.png)
+]
+
+
+
+Building on global change projections:  [Hodgson et al. 2018](https://www.sciencedirect.com/science/article/pii/S0304380018301856?via%3Dihub), 
+[Olsen et al. 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00064/full)
+
+---
+## Why use Atlantis?
+
+-  Mechanistic processes create internally consistent datasets
+-  Include cumulative effects of multiple processes:
+  -  Climate drivers
+  -  Species interactions 
+  -  Spatial and seasonal variability
+  -  Fisheries
+  -  Oil spills, red tide, anything else Atlantis can do
+-  Implemented for many ecosystems worldwide
+
+## Why generate datasets instead of simulating within Atlantis?
+
+-  Not all analyses need closed loop
+-  Faster! 
+-  Test many models or model configurations with the same dataset
+-  Many dataset realizations from same "truth"; compare:
+  -  Different observation error and bias
+  -  Changing temporal and spatial survey coverage 
+  -  Improved or degraded fishery observations
+
+
+
+---
+## Climate impacts in the operating model 
+![sardine](EDAB_images/sardinetempIsaac.png)
+
+.footnote[
+Hodgson, E. E., Kaplan, I. C., Marshall, K. N., Leonard, J., Essington, T. E., Busch, D. S., Fulton, E. A., et al. 2018. Consequences of spatially variable ocean acidification in the California Current: Lower pH drives strongest declines in benthic species in southern regions while greatest economic impacts occur in northern regions. Ecological Modelling, 383: 106–117.
+
+Marshall, K. N., Kaplan, I. C., Hodgson, E. E., Hermann, A., Busch, D. S., McElhany, P., Essington, T. E., et al. 2017. Risks of ocean acidification in the California Current food web and fisheries: ecosystem model projections. Global Change Biology, 23: 1525–1539.
+
+]
+
+---
+## Climate + cumulative impacts in the operating model 
+![guild](EDAB_images/guildbioIsaac.png)
+
+---
+## Specify uncertainty in assessment "data": What Would Poseidon Do?
+
+What level of uncertainty do you want to carry through performance testing?
+.pull-left[
+1. Biological (Atlantis):
+
+    1. appropriate sigma-R?
+
+1. Survey specification (atlantisom):
+
+    1. timing and spatial coverage?
+
+    1. which species are captured?
+
+    1. species-specific survey efficiency ("q")?
+
+    1. selectivity at age for each species?
+
+] 
+.pull-right[
+1. Survey uncertainty (atlantisom):
+
+    1. additional observation error (survey cv for index)?
+    
+    1. effective sample size for biological samples?
+    
+1. Fishery uncertainty (atlantisom):
+    
+    1. additional observation error (catch cv for total)?
+    
+    1. catch sampled for length/age in all areas?
+    
+    1. effective sample size for biological samples?
+]
+
+
+---
+## Get atlantisom  https://github.com/r4atlantis/atlantisom
+.pull-left-70[
+
+
+```r
+# install.packages("devtools")
+devtools::install_github("r4atlantis/atlantisom")
+```
+
+## atlantisom acknowlegements: 
+##[Atlantis Summit December 2015](https://research.csiro.au/atlantis/atlantis-summit/)
+
+```
+atlantisom sgaichas$ git shortlog -sne
+   203  kellijohnson &lt;kellifayejohnson@gmail.com&gt;
+    65  sgaichas &lt;sgaichas@gmail.com&gt;
+    47  Alexander Keth &lt;alexander.keth@uni-hamburg.de&gt;
+    29  ChristineStawitz-NOAA &lt;cstawitz@uw.edu&gt;
+    23  allanhicks &lt;fishmanHicks@gmail.com&gt;
+    19  Sean Lucey &lt;Sean.Lucey@NOAA.gov&gt;
+    13  hodgsone &lt;emma.e.hodgson@gmail.com&gt;
+    11  gavinfay &lt;gfay42@gmail.com&gt;
+     9  Kelli Johnson &lt;kellifayejohnson@gmail.com&gt;
+     5  Emma Hodgson &lt;ehodgson@Emmas-MacBook-Pro.local&gt;
+     4  christine.stawitz &lt;christine.stawitz@noaa.gov&gt;
+     4  Christine Stawitz &lt;cstawitz@uw.edu&gt;
+     3  unknown &lt;rwildermuth@DT-322202-SMAST.UMDAR.umassd.edu&gt;
+     1  Gavin Fay &lt;gfay42@gmail.com&gt;
+     1  sgaichas &lt;sgaichas@users.noreply.github.com&gt;
+     1  thefaylab &lt;gfay@umassd.edu&gt;
+```
+
+]
+.pull-right-30[
+![summit](EDAB_images/atlantis-logo2.jpg)
+]
+
+
+---
+## Make Atlantis output into assessment model input
+
+Example atlantisom workflows: 
+
+1. Get true biomass, abundance, age composition, length composition, weight at age, fishery catch, fishery catch at age, fishery length composition, and fishery weight age age for a "sardine-like species": https://sgaichas.github.io/poseidon-dev/FullSardineTruthEx.html
+
+1. Format these outputs and get other life history parameters for input into a stock assessment model ([Stock Synthesis](https://www.sciencedirect.com/science/article/abs/pii/S0165783612003293), using [`r4ss`](https://github.com/r4ss)):
+https://sgaichas.github.io/poseidon-dev/CreateStockSynthesis.html
+
+1. Get true and observed input data, format inputs, and run the assessment model: https://sgaichas.github.io/poseidon-dev/SardinesHakeatlantisom2SStest.html
+
+1. In progress: compare assessment results with truth:
+https://sgaichas.github.io/poseidon-dev/SkillAssessInit.html
+
+---
+## What can atlantisom do so far?
+.pull-left[
+Survey census test NOBA 
+&lt;img src="EDAB_images/NOBAcensus.png" width="1792" style="display: block; margin: auto;" /&gt;
+
+True length composition NOBA
+&lt;img src="EDAB_images/NOBAherringtruelf.png" width="1792" style="display: block; margin: auto;" /&gt;
+
+]
+.pull-right[
+Standard survey test CCA
+&lt;img src="EDAB_images/CCsurveyex.png" width="1792" style="display: block; margin: auto;" /&gt;
+
+Survey length composition CCA
+&lt;img src="EDAB_images/CCV3herringlfcomp.png" width="1792" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+## A "sardine" assessment
+
+Need: assessment model data inputs and life history parameters
+
+*(model based on actual Sardine assessment in Stock Synthesis 3)*
+
+.pull-left[
+Data: 
+  * survey biomass index 
+  * survey length composition 
+  * survey age composition (conditional catch at age)
+  * fishery catch (tons) 
+  * fishery length composition 
+  * fishery age composition
+]
+.pull-right[
+Parameters:
+  * natural mortality (from total mortality)
+  * growth curve (from survey length at age)
+  * maturity at age (true)
+  * unfished recruitment and steepness (true)
+  * weight-length curve (true)
+]
+
+---
+## A "sardine" assessment: setup
+
+  * California Current Atlantis run with and without climate signal
+  * Input data generated (e.g. sardine survey, below in green)
+  * Parameters derived; simpler recruitment distribution
+
+&lt;img src="EDAB_images/CCsurvObsBiom.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+
+---
+## A "sardine" assessment: fits to data
+
+.pull-left[
+![surveyfit](EDAB_images/index2_cpuefit_Survey.png)
+![lenfit](EDAB_images/comp_lenfit_flt2mkt0_page1.png)
+]
+
+.pull-right[
+![caafit1](EDAB_images/comp_agefit_flt1mkt0_page1.png)
+![caafit2](EDAB_images/comp_agefit_flt1mkt0_page2.png)
+]
+
+---
+## A "sardine" assessment: skill? (proof of concept)
+.pull-left[
+Biomass
+&lt;img src="EDAB_images/trueBss3B.png" width="1792" style="display: block; margin: auto;" /&gt;
+Fishing mortality
+&lt;img src="EDAB_images/trueFss3F.png" width="1792" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+Recruitment
+&lt;img src="EDAB_images/trueRss3R.png" width="1792" style="display: block; margin: auto;" /&gt;
+
+Key: &lt;span style="color:teal"&gt;True&lt;/span&gt; &lt;span style="color:red"&gt;SS3 estimate&lt;/span&gt;
+]
+---
+## Full disclosure!
+
+.pull-left-60[
+Still working on:
+
+1. Functions for older Atlantis codebases (i.e., CCA model)
+
+    1. Splitting aggregate age groups into true ages
+
+    1. Interpolating aggregate age groups weight at age for true ages
+
+    1. Fishery catch weight by area
+
+1. Wrapper functions to generate data in fewer steps
+
+1. Automated skill assessment functions
+
+1. Inputs for models other than Stock Synthesis
+]
+
+.pull-right-40[
+![workinprogress scale 100%](EDAB_images/work-in-progress.png)
+]
+
+
+---
+## P.S. What else could we test?
+
+![xkcd_ensemble_model_2x.png](EDAB_images/xkcd_ensemble_model_2x.png)
+.footnote[
+https://xkcd.com/1885/
+]
+
+---
+## External Resources
+
+* [Atlantis Model Documentation](https://github.com/Atlantis-Ecosystem-Model/Atlantis_example_and_instructions)
+
+* [atlantisom R package](https://github.com/r4atlantis/atlantisom)
+
+* [Testing atlantisom](https://github.com/sgaichas/poseidon-dev)
+
+* Slides available at https://noaa-edab.github.io/presentations
+
+---
+
+background-image: url("EDAB_images/IMG_2733.jpg")
+background-size: cover
+
+## Questions?
+
+
+# Tusen Takk til Havforskningsinstituttet!
+
+---
+
+# Extra slides
+
+---
+## Test both estimation and (simple) MSE capability
+
+&lt;img src="EDAB_images/PoseidonDesign.png" width="1709" style="display: block; margin: auto;" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
