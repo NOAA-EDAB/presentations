@@ -339,12 +339,41 @@ interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
 
 ```
 
+???
+trying to ge the tooltip part working but may not by next week; xaringan doesnt handle htmlwidgets the same as pure html!
 ---
 ## Review: Important Research Results
-*Ignore predation at your peril*
-Vanessa’s paper showing importance of including species interactions
+*Ignore predation at your peril: results from multispecies state-space modeling*  
+>Ignoring trophic interactions that occur in marine ecosystems induces bias in stock assessment outputs and results in low model predictive ability with subsequently biased reference points.  
 
+.pull-left-40[
+![VanessaPaper](EDAB_images/VanessaPaper.png)
+.contrib[
+EM1: multispecies state space 
 
+EM2: multispecies, no process error 
+
+EM3: single species state space, constant M 
+
+EM4: single species state space, age-varying M 
+
+*note difference in scale of bias for single species!*
+]
+
+]
+.pull-right-60[
+![modcomp](EDAB_images/jpe13515-fig-0004-m.jpg)
+]
+.footnote[
+Trijoulet, V., Fay, G., and Miller, T. J. (2019) Performance of a state-space multispecies model: What are the consequences of ignoring predation and process errors in stock assessments? Journal of Applied Ecology n/a. doi:10.1111/1365-2664.13515.
+
+Trijoulet, V., Fay, G., Curti, K. L., Smith, B., and Miller, T. J. (2019) Performance of multispecies assessment models: insights on the influence of diet data. ICES J Mar Sci. doi:10.1093/icesjms/fsz053.
+
+]
+
+???
+This is an important paper both because it demonstrates the importance of addressing strong species interactions, and it shows that measures of fit do not indicate good model predictive performance. Ignoring process error caused bias, but much smaller than ignoring species interactions.
+See also Vanessa's earlier paper evaluating diet data interactions with multispecies models
 ---
 ## Review: Important Research Results
 Climate-condition links from Laurel
