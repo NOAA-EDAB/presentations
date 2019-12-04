@@ -9,7 +9,7 @@ interactive_chord_sfconsmod <- function(edges, width, height, margin){
   FLUKE <- adjacency.matrix(edges, labels=TRUE)
   
   FLUKE_Drivers <- c("Economic Drivers","Temperature","Shifts in Preferences","Community Vulnerability","Freshwater Influx","Nutrient Influx","Ocean Acidification",
-                     "Ocean Features","Oceanographic Transport","Dissolved Oxygen","Water Diversion")
+                     "Ocean Features","Oceanographic Transport","Offshore Wind","Dissolved Oxygen","Water Diversion")
   FLUKE_Habitat <- c("Estuarine Habitat","Food Web Changes","Offshore Habitat","Habitat Alteration","Habitat Disturbance","Loose Inert Substrate","Salinity","Water Clarity",
                      "Aquatic Vegetation")
   FLUKE_Biota <- c("Fluke Distributional Shift","Fluke Recruitment","Fluke SSB","Adults & Spawners","Age & Size Structure",
@@ -17,10 +17,10 @@ interactive_chord_sfconsmod <- function(edges, width, height, margin){
   FLUKE_Species <- c("Other Species Distributional Shifts","Protected Species")
   FLUKE_Management <- c("Allocation","Communication","Enforcement","Management Control","Other Regulations",
                         "Permit Access","Regulatory Complexity","Risk Buffering")
-  FLUKE_Benefits <- c("Commercial Profits","Consumer Surplus","Recreational Value","Seafood","Recreational Profits")
-  FLUKE_Science <- c("Assessment Process","Data Quality","Predictability of Recreational Fishing","Stock Assessment")
-  FLUKE_Fishery <- c("Compliance","Discards","Fishery Distributional Shift","Fishery Resilience",
-                     "Fleet Diversity","Landings","Perceived Inequity","Technical Interactions")
+  FLUKE_Benefits <- c("Commercial Profits","Consumer Surplus","Recreational Value","Seafood Production","Rec. Business Profits")
+  FLUKE_Science <- c("Assessment Process","Data Quality", "Rec. Fishing Predictability","Stock Assessment")
+  FLUKE_Fishery <- c("Compliance","Total Discards","Fishery Distributional Shift","Shoreside Support",
+                     "Fleet Diversity","Total Landings","Perceived Inequity","Technical Interactions")
   
   FLUKE_C <- brewer.pal(8,"Dark2")
   

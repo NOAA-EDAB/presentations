@@ -3,7 +3,7 @@
   <head>
     <title>Progress in ecosystem modeling  for resource management: NEFSC</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Scott Large   Northeast Fisheries Science Center   Contributors: Andy Beet, Joe Caracappa, Kiersten Curti, Michael Fogarty, Sarah Gaichas, Robert Gamble, Sean Lucey, Tim Miller, Ryan Morse, Laurel Smith, Brian Stock" />
+    <meta name="author" content="Scott Large   Northeast Fisheries Science Center   Contributors: Andy Beet, Joe Caracappa, Kiersten Curti, Gavin Fay (UMass Dartmouth), Michael Fogarty, Sarah Gaichas, Robert Gamble, Sean Lucey, Tim Miller, Ryan Morse, Laurel Smith, Brian Stock, Vanessa Trijoulet (DTU Aqua)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <script src="libs/htmlwidgets/htmlwidgets.js"></script>
     <script src="libs/d3/d3.min.js"></script>
@@ -19,7 +19,7 @@ class: right, middle, my-title, title-slide
 
 # Progress in ecosystem modeling <br />for resource management: NEFSC
 ## NEMoW 5, ToR 1
-### Scott Large <br /> Northeast Fisheries Science Center <br /> Contributors: Andy Beet, Joe Caracappa, Kiersten Curti, Michael Fogarty, Sarah Gaichas, Robert Gamble, Sean Lucey, Tim Miller, Ryan Morse, Laurel Smith, Brian Stock
+### Scott Large <br /> Northeast Fisheries Science Center <br /> Contributors: Andy Beet, Joe Caracappa, Kiersten Curti, Gavin Fay (UMass Dartmouth), Michael Fogarty, Sarah Gaichas, Robert Gamble, Sean Lucey, Tim Miller, Ryan Morse, Laurel Smith, Brian Stock, Vanessa Trijoulet (DTU Aqua)
 
 ---
 
@@ -35,18 +35,18 @@ class: top, left
 
 - Important Research Results
 
-- Tools available 
+- Tools Available 
 
-- Stuff in develpment
+- Tools in Develpment
 
 ]
 .pull-right[
 *Best Practices Improving Model Utility for Management*
-- Ecosystem model reviews
+- Ecosystem Model Reviews
 
-- Science-Management collaborations
+- Science-Management Collaborations
 
-- Open Science workflows
+- Open Science Workflows
 
 
 ]
@@ -55,55 +55,56 @@ class: top, left
 ???
 ---
 ## Review: Management Products
+*Atlantic herring harvest control rule selected based on multispecies MSE*
+.pull-left[
+Models quantitatively linked to stakeholder-selected performance metrics, management objectives
 
+&lt;img src="EDAB_images/OMdesign.png" width="95%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+Multiple options to meet criteria
+.contrib[
+- Tern productivity at 1.0 or above &gt; 90% of the time
+- Herring biomass &gt; 90% of SSBmsy
+- Fishery yield &gt; 90% of MSY
+- AND fishery closures (F=0) &lt; 1% of the time.
+]
+![](20191209_NEMoW_NEFSCoverview_Large_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+.footnote[
+Deroba, J. J., Gaichas, S. K., Lee, M.-Y., Feeney, R. G., Boelke, D. V., and Irwin, B. J. (2018). The dream and the reality: meeting decision-making time frames while incorporating ecosystem and economic models into management strategy evaluation. Can. J. Fish. Aquat. Sci. doi:10.1139/cjfas-2018-0128.
+]
+???
+Herring were linked to 3 sensitive predator types with adequate data to justify modeling; no exisitng model addressed all objectives and analytical time was limited to &lt;1 year.
+Three control rule types--Constant catch, conditional constant catch, and 15% restriction on change--were rejected at the second stakeholder meeting for poor fishery and predator performance.
+Supplemental food web modeling showed tradeoffs between forage groups 
 ---
-## Review: Important Research Results
+## Review: Management Products
+*Mid-Atlantic EAFM Policy Guidance, risk assessment, conceptual modeling*
+.pull-left[
+.contrib[Mid-Atlantic EAFM framework:]
 
----
-## Review: Tools available 
-
----
-## Review: Stuff in develpment
-
----
-## Best Practices: Ecosystem model reviews
-
----
-## Best Practices: Science-Management collaborations
-
----
-## Best Practices: Open Science workflows
-
-
----
-## stuff below may be helpful
-
----
-## Mid-Atlantic Council Ecosystem Approach
-
-* 2016 Ecosystem Approach to Fishery Management (EAFM) Policy Guidance document:
-http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf
-
-* Mid-Atlantic EAFM framework&lt;sup&gt;1&lt;/sup&gt;:
-
-&lt;img src="EDAB_images/Framework.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="EDAB_images/Framework.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 Details on development, including workshop presentations and white papers:
 http://www.mafmc.org/eafm
-
-.footnote[
-[1] Gaichas, S., Seagraves, R., Coakley, J., DePiper, G., Guida, V., Hare, J., Rago, P., et al. 2016. A Framework for Incorporating Species, Fleet, Habitat, and Climate Interactions into Fishery Management. Frontiers in Marine Science, 3.
 ]
 
-
----
-## How are they using the risk assessment? What's next?
-.pull-left[
-* Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
-
-&lt;img src="EDAB_images/Framework.png" width="90%" style="display: block; margin: auto;" /&gt;
-]
 .pull-right[
+.contrib[Species, Ecosystem, and Sector level risk elements:]
+&lt;img src="EDAB_images/sptable2019.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="EDAB_images/ecotable2019.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="EDAB_images/mgttable2019.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+]
+.footnote[
+Gaichas, S., Seagraves, R., Coakley, J., DePiper, G., Guida, V., Hare, J., et al. (2016). A Framework for Incorporating Species, Fleet, Habitat, and Climate Interactions into Fishery Management. Frontiers in Marine Science 3. doi:10.3389/fmars.2016.00105.  
+Gaichas, S. K., DePiper, G. S., Seagraves, R. J., Muffley, B. W., Sabo, M., Colburn, L. L., et al. (2018). Implementing Ecosystem Approaches to Fishery Management: Risk Assessment in the US Mid-Atlantic. Front. Mar. Sci. 5. doi:10.3389/fmars.2018.00442.
+]
+
+???
 * Working group of habitat, biology, stock assessment, management, economic and social scientists developed:
 
   * draft conceptual models of high risk elements, linkages
@@ -114,43 +115,89 @@ http://www.mafmc.org/eafm
 
 * Council may then elect to proceed with management strategy evaluation (MSE) using the information from conceptual modeling as a basis
 
+---
+<div id="htmlwidget-a1d5c3e7c934245b868d" style="width:710px;height:710px;" class="chorddiag html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a1d5c3e7c934245b868d">{"x":{"matrix":[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],[1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0],[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],"options":{"type":"directional","width":710,"height":710,"margin":130,"showGroupnames":true,"groupNames":["Community Vulnerability","Dissolved Oxygen","Economic Drivers","Freshwater Influx","Nutrient Influx","Ocean Acidification","Ocean Features","Oceanographic Transport","Offshore Wind","Other Species  Distributional Shifts","Shifts in Preferences","Temperature","Water Diversion","Compliance","Fishery Distributional Shift","Fleet Diversity","Perceived Inequity","Shoreside Support","Technical Interactions","Total Discards","Total Landings","Allocation","Communication","Enforcement","Management Control","Other Regulations","Permit Access","Regulatory Complexity","Risk Buffering","Adults & Spawners","Age & Size Structure","Fluke Distributional Shift","Fluke Recruitment","Fluke SSB","Growth","Maturation","Natural Mortality","Sex Ratio","Assessment Process","Data Quality","Rec. Fishing Predictability","Stock Assessment","Aquatic Vegetation","Estuarine Habitat","Food Web Changes","Habitat Alteration","Habitat Disturbance","Loose Inert Substrate","Offshore Habitat","Salinity","Water Clarity","Commercial Profits","Consumer Surplus","Rec. Business Profits","Recreational Value","Seafood Production","Protected Species"],"groupColors":["#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#A6761D","#A6761D","#A6761D","#A6761D","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E7298A"],"groupThickness":0.1,"groupPadding":0.0174532925199433,"groupnamePadding":[10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10],"groupnameFontsize":12,"groupedgeColor":["#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#A6761D","#A6761D","#A6761D","#A6761D","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E7298A"],"chordedgeColor":["#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#A6761D","#A6761D","#A6761D","#A6761D","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E7298A"],"categoryNames":null,"categorynamePadding":100,"categorynameFontsize":28,"showTicks":false,"tickInterval":0.1,"ticklabelFontsize":10,"fadeLevel":0.1,"showTooltips":true,"showZeroTooltips":true,"tooltipNames":["Community Vulnerability","Dissolved Oxygen","Economic Drivers","Freshwater Influx","Nutrient Influx","Ocean Acidification","Ocean Features","Oceanographic Transport","Offshore Wind","Other Species  Distributional Shifts","Shifts in Preferences","Temperature","Water Diversion","Compliance","Fishery Distributional Shift","Fleet Diversity","Perceived Inequity","Shoreside Support","Technical Interactions","Total Discards","Total Landings","Allocation","Communication","Enforcement","Management Control","Other Regulations","Permit Access","Regulatory Complexity","Risk Buffering","Adults & Spawners","Age & Size Structure","Fluke Distributional Shift","Fluke Recruitment","Fluke SSB","Growth","Maturation","Natural Mortality","Sex Ratio","Assessment Process","Data Quality","Rec. Fishing Predictability","Stock Assessment","Aquatic Vegetation","Estuarine Habitat","Food Web Changes","Habitat Alteration","Habitat Disturbance","Loose Inert Substrate","Offshore Habitat","Salinity","Water Clarity","Commercial Profits","Consumer Surplus","Rec. Business Profits","Recreational Value","Seafood Production","Protected Species"],"tooltipFontsize":12,"tooltipUnit":"","tooltipGroupConnector":" &#x25B6; ","precision":"null","clickAction":null,"clickGroupAction":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
-<div id="htmlwidget-204210ff565d904b4248" style="width:710px;height:710px;" class="chorddiag html-widget"></div>
-<script type="application/json" data-for="htmlwidget-204210ff565d904b4248">{"x":{"matrix":[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0],[0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],"options":{"type":"directional","width":710,"height":710,"margin":130,"showGroupnames":true,"groupNames":["Community Vulnerability","Dissolved Oxygen","Economic Drivers","Freshwater Influx","Nutrient Influx","Ocean Acidification","Ocean Features","Oceanographic Transport","Other Species Ditributional Shifts","Shifts in Preferences","Temperature","Water Diversion","Compliance","Discards","Fishery Distributional Shift","Fishery Resilience","Fleet Diversity","Landings","Perceived Inequity","Technical Interactions","Allocation","Communication","Enforcement","Management Control","Other Regulations","Permit Access","Regulatory Complexity","Risk Buffering","Adults & Spawners","Age & Size Structure","Fluke Distributional Shift","Fluke Recruitment","Fluke SSB","Growth","Maturation","Natural Mortality","Sex Ratio","Assessment Process","Data Quality","Predictability of Recreational Fishing","Stock Assessment","Aquatic Vegetation","Estuarine Habitat","Food Web Changes","Habitat Alteration","Loose Inert Substrate","Offshore Habitat","Salinity","Water Clarity","Commercial Profits","Consumer Surplus","Recreational Profits","Recreational Value","Seafood","Protected Species"],"groupColors":["#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#A6761D","#A6761D","#A6761D","#A6761D","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E7298A"],"groupThickness":0.1,"groupPadding":0.0174532925199433,"groupnamePadding":[10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10],"groupnameFontsize":12,"groupedgeColor":["#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#A6761D","#A6761D","#A6761D","#A6761D","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E7298A"],"chordedgeColor":["#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#1B9E77","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#666666","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#66A61E","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#7570B3","#A6761D","#A6761D","#A6761D","#A6761D","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E6AB02","#E7298A"],"categoryNames":null,"categorynamePadding":100,"categorynameFontsize":28,"showTicks":false,"tickInterval":0.1,"ticklabelFontsize":10,"fadeLevel":0.1,"showTooltips":true,"showZeroTooltips":true,"tooltipNames":["Community Vulnerability","Dissolved Oxygen","Economic Drivers","Freshwater Influx","Nutrient Influx","Ocean Acidification","Ocean Features","Oceanographic Transport","Other Species Ditributional Shifts","Shifts in Preferences","Temperature","Water Diversion","Compliance","Discards","Fishery Distributional Shift","Fishery Resilience","Fleet Diversity","Landings","Perceived Inequity","Technical Interactions","Allocation","Communication","Enforcement","Management Control","Other Regulations","Permit Access","Regulatory Complexity","Risk Buffering","Adults & Spawners","Age & Size Structure","Fluke Distributional Shift","Fluke Recruitment","Fluke SSB","Growth","Maturation","Natural Mortality","Sex Ratio","Assessment Process","Data Quality","Predictability of Recreational Fishing","Stock Assessment","Aquatic Vegetation","Estuarine Habitat","Food Web Changes","Habitat Alteration","Loose Inert Substrate","Offshore Habitat","Salinity","Water Clarity","Commercial Profits","Consumer Surplus","Recreational Profits","Recreational Value","Seafood","Protected Species"],"tooltipFontsize":12,"tooltipUnit":"","tooltipGroupConnector":" &#x25B6; ","precision":"null","clickAction":null,"clickGroupAction":null}},"evals":[],"jsHooks":[]}</script>
-
----
-## Conclusions
-
+## Review: Important Research Results
+*Ignore predation at your peril*
+Vanessa’s paper showing importance of including species interactions
 
 
 ---
-## Footnote: Improvements to reproducibility and provenance
+## Review: Important Research Results
+Climate-condition links from Laurel
 
-* Reporting the information is not enough
-* Managers appreciate the concise format, but back-end critical for describing collection, analyses, and processing
+---
+## Review: Tools Available 
+
+See tool demonstrations for more info on:
+* [Rpath](https://github.com/NOAA-EDAB/Rpath) 
+  - static and dynamic food web model framework in R, MSE capability
+  - collaboration with Alaska Center
+* [atlantisom](https://github.com/r4atlantis/atlantisom) 
+  - generate datasets from Atlantis for model performance testing
+  - collaboration with Northwest Center, S&amp;T, UMass, and others
+* [WHAM](https://github.com/timjmiller/wham) 
+  - state space model incorporating environmental data
+
+
+Hydra and all other models on github--links
+
+
+---
+## Review: Tools in Development
+*Addressing needs in Northeast Regional Climate Action Plan*
+Atlantis update (hydro, groups, etc)
+
+Automated evaluation of Atlantis model using review criteria from Kaplan et al and other atlantis Pethybridge et al 
+
+Atlantis climate hindcasts and forecasts
+
+---
+## Best Practices: Ecosystem Model Reviews
+CIE for Ecosystem Based Fishery Management Strategy 
+add things that have been done since then, visualizations for stakeholders  
+
+ICES WGSAM model review process 2019
+
+
+---
+## Best Practices: Science-Management collaborations
+ICES WGNARS  
+NEFMC EBFM PDT and MSE SC   
+MAFMC EAFM process  
+SOE workshops? And any other stakeholder processes  
+CAUSES  
+
+
+---
+## Best Practices: Open Science Workflows
+*Improvements to reproducibility and provenance*
+.contrib[
+* Most developed for indicator reporting; [mscatch](https://github.com/NOAA-EDAB/mscatch) standardizing data inputs across models
+* Managers appreciate concise reports, but back-end critical for describing collection, analyses, and processing
 * Streamlined workflow allowed scientists to meet management deadlines
-  
+
+]  
 ![soe-data-flow](EDAB_images/soe-data-flow.png)  
 
-???
-This workflows also ensures that there's no information lost between SOE cycles. We know exactly how a data set was analyzed and handled so that the data can be updated for next year's reports.
 
 ---
 ## If you want **all** the details
 
-* [Mid-Atlantic Council EAFM paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
+* [New England Atlantic herring management](https://www.nefmc.org/management-plans/herring)
+* [New England herring MSE stakeholder process paper](https://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2018-0125#.XTb_v5NKgWo)
+* [New England herring MSE modeling paper](https://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128#.XTb_c5NKgWo)
 
-* [Mid-Atlantic Council Risk Assessment paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
-
-* [Mid-Atlantic Council Summer Flounder conceptual model and support tables](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html)
-
+* [Mid-Atlantic EAFM paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
+* [Mid-Atlantic Risk Assessment paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
+* [Mid-Atlantic Summer Flounder conceptual model and support tables](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html)
 * [2019 Mid-Atlantic State of the Ecosystem report](http://www.mafmc.org/s/SOE-MAFMC-2019.pdf)
 
 * [State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
-
 * [ecodata R package](https://github.com/noaa-edab/ecodata)
-
   * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
   * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
   * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
