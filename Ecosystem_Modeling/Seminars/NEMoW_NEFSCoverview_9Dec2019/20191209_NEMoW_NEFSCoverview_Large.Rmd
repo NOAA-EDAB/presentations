@@ -160,7 +160,7 @@ epu_sf <- ecodata::epu_sf %>%
 
 - Tools Available 
 
-- Tools in Develpment
+- Improving Management Capabilities
 
 ]
 .pull-right[
@@ -392,25 +392,55 @@ See tool demonstrations for more info on:
   - state space model incorporating environmental data
 
 
-Hydra and all other models on github--links
+*Goal: model code and helper functions accessible on GitHub*
+.pull-left[
+length-based multispecies models:
+* [hydra-sim](https://github.com/NOAA-EDAB/hydra_sim)
+* [hydra-est](https://github.com/NOAA-EDAB/hydra_est)
+* [LeMANS](https://github.com/NOAA-EDAB/LeMANS)
+* [hydradata](https://github.com/NOAA-EDAB/hydradata)
+]
+.pull-right[
+multispecies production model: [Kraken](https://github.com/NOAA-EDAB/Kraken) 
 
+end-to-end model: [neus-atlantis](https://github.com/NOAA-EDAB/neus-atlantis) 
+
+multispecies fisheries data: [mscatch](https://github.com/NOAA-EDAB/mscatch)
+]
 
 ---
-## Review: Tools in Development
-*Addressing needs in Northeast Regional Climate Action Plan*
-Atlantis update (hydro, groups, etc)
+## Review: Improving Management Capabilities
+*Addressing needs in Northeast Regional Climate Action Plan: Atlantis climate hindcasts and forecasts*
 
-Automated evaluation of Atlantis model using review criteria from Kaplan et al and other atlantis Pethybridge et al 
+Northeast US Atlantis update <image from Rob>
 
-Atlantis climate hindcasts and forecasts
+
+Automated Atlantis model [diagnostics](https://noaa-edab.github.io/neus-atlantis/DiagnosticsDoc.html) in progress using Kaplan and Marshall 2016 and Pethybridge et al. 2019 
+
+
+.footnote[
+Pethybridge, H. R., Weijerman, M., Perrymann, H., Audzijonyte, A., Porobic, J., McGregor, V., et al. (2019). Calibrating process-based marine ecosystem models: An example case using Atlantis. Ecological Modelling 412, 108822. doi:10.1016/j.ecolmodel.2019.108822.  
+Kaplan, I. C., and Marshall, K. N. (2016). A guinea pig’s tale: learning to review end-to-end marine ecosystem models for management applications. ICES J Mar Sci 73, 1715–1724. doi:10.1093/icesjms/fsw047.
+
+]
 
 ---
 ## Best Practices: Ecosystem Model Reviews
-CIE for Ecosystem Based Fishery Management Strategy 
-add things that have been done since then, visualizations for stakeholders  
+.pull-left[
+*2018 CIE for Ecosystem Based Fishery Management Strategy* 
+* [EBFM strategy review](https://www.nefsc.noaa.gov/program_review/)
+* Based on several multispecies models, see NEMoW 4
 
-ICES WGSAM model review process 2019
+<Mike/Andy to add things that have been done since then, visualizations for stakeholders > 
+]
 
+.pull-right[
+*2019 ICES WGSAM model review process*
+* [Standardized review protocols](https://ices-eg.github.io/wg_WGSAM/ReviewCriteria.html)
+* Applied to 3 models used in 2 management processes
+  - Irish Sea EwE --> set F within range based on ecosystem state
+  - Baltic Sea multispecies models --> M for herring and sprat assessments
+]
 
 ---
 ## Best Practices: Science-Management collaborations
