@@ -1,7 +1,7 @@
 ---
 title: "Progress in ecosystem modeling <br />for resource management: NEFSC"
 subtitle: "NEMoW 5, ToR 1"
-author: "Scott Large <br /> Northeast Fisheries Science Center <br /> Contributors: Andy Beet, Joe Caracappa, Kiersten Curti, Gavin Fay (UMass Dartmouth), Michael Fogarty, Sarah Gaichas, Robert Gamble, Sean Lucey, Tim Miller, Ryan Morse, Laurel Smith, Brian Stock, Vanessa Trijoulet (DTU Aqua)"
+author: "Scott Large <br /> Northeast Fisheries Science Center <br /> Contributors: Andy Beet, Joe Caracappa, Kiersten Curti, Gavin Fay (UMass Dartmouth), Michael Fogarty, Sarah Gaichas, Robert Gamble, Sean Lucey, Tim Miller, Ryan Morse, Charles Perretti, Laurel Smith, Brian Stock, Vanessa Trijoulet (DTU Aqua)"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme2.css"]
@@ -150,7 +150,7 @@ epu_sf <- ecodata::epu_sf %>%
 
 ```
 
-## This is the update!
+## Northeast Fisheries Science Center
 
 .pull-left[
 *Review of Ecosystem Modeling Progress*
@@ -380,7 +380,17 @@ See also Vanessa's earlier paper evaluating diet data interactions with multispe
 
 >Trends in fish condition are related to temperature changes and copepod size structure, but are not likely related to density dependence for most species. 
 
+.pull-left-30[
+![reccond](EDAB_images/R_Condition_timing.png)
+]
+.pull-right-70[
+![GAMs](EDAB_images/GAMsCondition.png)
+]
 
+.footnote[
+Laurel Smith, Michael Fogarty, Charles Perretti, Mark Wuenschel and Andrew Beet, NEFSC. (in prep)  
+Perretti, C., Fogarty, M., Friedland, K., Hare, J., Lucey, S., McBride, R., et al. (2017). Regime shifts in fish recruitment on the Northeast US Continental Shelf. Marine Ecology Progress Series 574, 1–11. doi:10.3354/meps12183.
+]
 
 ---
 ## Review: Tools Available 
@@ -438,7 +448,7 @@ Mike/Andy to add things that have been done since then, visualizations for stake
 ]
 
 .pull-right[
-*2019 ICES WGSAM model review process*
+*2019 ICES multispecies assessment model review process*
 * [Standardized review protocols](https://ices-eg.github.io/wg_WGSAM/ReviewCriteria.html)
 * Applied to 3 models used in 2 management processes
 .contrib[
@@ -450,12 +460,23 @@ Mike/Andy to add things that have been done since then, visualizations for stake
 
 ---
 ## Best Practices: Science-Management collaborations
-ICES WGNARS  
-NEFMC EBFM PDT and MSE SC   
-MAFMC EAFM process  
-SOE workshops? And any other stakeholder processes  
-CAUSES  
+.pull-left[
+*Active involvement in Fishery Management Council processes*
+* New England EBFM     
+* Mid-Atlantic EAFM    
+* MSE steering committees, outreach and education 
 
+*International science contributing to management*
+* ICES Working Groups on 
+  * Norwest Atlantic Regional Seas (WGNARS) 
+  * Multispecies Assessment (WGSAM)
+* Canada-US Ecosystem Sciences (CAUSES) working group   
+]
+.pull-right[
+![meetings](EDAB_images/NEFMC-Habitat-Committee-credit-Christopher-McGuire-600px-adj.png)
+![stakeholders](EDAB_images/HerringMSEworkshopScreen.JPG) 
+
+]
 
 ---
 ## Best Practices: Open Science Workflows
@@ -472,265 +493,27 @@ CAUSES
 ---
 ## If you want **all** the details
 
-* [New England Atlantic herring management](https://www.nefmc.org/management-plans/herring)
-* [New England herring MSE stakeholder process paper](https://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2018-0125#.XTb_v5NKgWo)
-* [New England herring MSE modeling paper](https://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128#.XTb_c5NKgWo)
+* New England herring [MSE stakeholder process paper](https://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2018-0125#.XTb_v5NKgWo), [MSE modeling paper](https://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128#.XTb_c5NKgWo)
 
-* [Mid-Atlantic EAFM paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
-* [Mid-Atlantic Risk Assessment paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
-* [Mid-Atlantic Summer Flounder conceptual model and support tables](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html)
+* Mid-Atlantic [EAFM paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full), [Risk Assessment paper](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full),  [Summer Flounder conceptual model and support tables](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html) 
+
 * [2019 Mid-Atlantic State of the Ecosystem report](http://www.mafmc.org/s/SOE-MAFMC-2019.pdf)
-
 * [State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
 * [ecodata R package](https://github.com/noaa-edab/ecodata)
   * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
   * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
   * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
-
+  
+* NEFSC Ecosystem Dynamics and Assessment Branch Github https://github.com/NOAA-EDAB
 
 * Slides available at https://noaa-edab.github.io/presentations
 
-
 ---
-# Extra Slides
 
----
-## Standardized indicator visualization in reports
+background-image: url("EDAB_images/IMG_2809.jpg")
+background-size: cover
 
-Status (short-term) and trend (long-term) of components are measured as **indicators** and plotted in a standardized way
-
-Indicators are selected to
-
-1. Be broadly informative about a component in a management context<sup>1-3</sup>
-
-1. Minimize redundancy of information
-
-1. Be responsive to ecosystem change
+## Questions?
 
 
-```{r doc-orientation, echo = F, warning = F, message=F, fig.height = 3, fig.width=8, fig.align = "center"}
-m <- 0.1
-x <- 1989:2018
-y <-  m*x + rnorm(30, sd = 0.35)
-
-data <- data.frame(x = x,
-                  y = y)
-
-#Define constants for figure plot
-x.shade.max <- max(x)
-x.shade.min <- x.shade.max - 9 
-hline = mean(y)
-
-#Plot series with trend 
-ggplot2::ggplot(data = data,aes(x = x, y = y)) +
-  #Highlight last ten years
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_point(size = pcex) +
-  scale_color_manual(aesthetics = "color")+
-  guides(color = FALSE) +
-  geom_hline(aes(yintercept = hline),
-              size = hline.size,
-             alpha = hline.alpha,
-             linetype = hline.lty)+
-  geom_line() +
-  geom_gls() +
-  scale_y_continuous(labels = function(l){trans = l / 1000})+
-  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
-  ylab(expression("Invented Index, 10"^3*"widgets")) +
-  xlab("Year") +
-  ggtitle("Indicator Z") +
-  theme_ts() +
-  theme(plot.title = element_text(size = 16),
-        axis.title = element_text(size = 14))
-```
-
-
-
-.footnote[
-[1] Rice J. C.Rochet M. J. "A framework for selecting a suite of indicators for fisheries management." ICES Journal of Marine Science 62 (2005): 516–527.
-
-[2] Link J. 2010. Ecosystem-Based Fisheries Management: Confronting Tradeoffs . Cambridge University Press, New York.
-
-[3] Zador, Stephani G., et al. "Ecosystem considerations in Alaska: the value of qualitative assessments." ICES Journal of Marine Science 74.1 (2017): 421-430.
-]
-
----
-## Risk assessent indicators and ranking criteria: System productivity
-
-This element is applied at the ecosystem level, and ranks the risk of not achieving optimum yield due to changes in ecosystem productivity at the base of the food web.
-
-Four indicators are used together to assess risk of changing ecosystem productivity: primary production, zooplankton abundance, fish condition and fish recruitment. 
-
-.table[
-```{r riskecop, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-| Risk Level         | Definition                                                          |  
-|:-------------------|:--------------------------------------------------------------------|
-| Low  | No trends in ecosystem productivity |
-| Low-Moderate | Trend in ecosystem productivity (1-2 measures, increase or decrease) |
-| Moderate-High | Trend in ecosystem productivity (3+ measures, increase or decrease) |
-| High | Decreasing trend in ecosystem productivity, all measures |
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
-]
-???
-We examine trends in total primary production, zooplankton abundance for a key Mid-Atlantic species, and two aggregate fish productivity measures: condition factor (weight divided by length of individual fish) and a survey based "recruitment" (small fish to large fish) index.
-
----
-## Risk assessent indicators and ranking criteria: System productivity
-.pull-left[
-```{r pp-trends, fig.height=4}
-out_pp <- ecodata::chl_pp %>% 
-  filter(EPU %in% c("MAB", "GOM","GB"),
-         str_detect(Var, "MONTHLY_PPD_MEDIAN")) %>% 
-  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
-    mutate(Month = plyr::mapvalues(Month, from = c("01","02","03","04","05","06",
-                                                   "07","08","09","10","11","12"),
-                                   to = c(month.abb))) %>% 
-  group_by(EPU, Month) %>% 
-  mutate(hline = mean(Value))
-out_pp$Month <- factor(out_pp$Month, levels = month.abb)
-
- 
- pp_cci_mab <-out_pp %>% 
-  filter(EPU == "MAB") %>% 
- ggplot() +
-   # geom_gls(aes(x = Year, y = Value, group = Month))+
-    geom_point(aes(x = Year, y = Value, group = Month)) +
-    geom_line(aes(x = Year, y = Value, group = Month)) +
-    scale_x_discrete(name = "Time", breaks = seq(min(out_pp$Year),max(out_pp$Year),10)) +  
-    facet_wrap(Month~., ncol = 6) +
-    ggtitle("MAB Monthly median PPD") +
-    ylab(expression("PP (gC m"^-2*" d"^-1*")")) +
-        geom_hline(aes(yintercept = hline,
-                     group = Month),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty)+
-    theme_facet() +
-    theme(axis.text.x = element_text(angle=45, hjust = 1),
-          panel.spacing = unit(1, "lines"),
-          plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
- 
- pp_cci_mab 
- 
-```
-
-```{r fish-con2, fig.align="center"}
-knitr::include_graphics("EDAB_images/MAFMC_Fish_Condition_2019.jpg")
-```
-]
-
-.pull-right[
-```{r seasonal-zoo, fig.height=4}
-facet_names <- list(
-  'centropages spring'=expression(paste(italic("Centropages "), "spring")),
-  'centropages fall'=expression(paste(italic("Centropages "), "fall")),
-  'temora spring'=expression(paste(italic("Temora "), "spring")),
-  'temora fall' = expression(paste(italic("Temora "), "fall")),
-  'pseudocalanus spring'=expression(paste(italic("Pseudocalanus "), "spring")),
-  'pseudocalanus fall' = expression(paste(italic("Pseudocalanus "), "fall")))
-
-zoo_oi_mab <- ecodata::zoo_oi %>% 
-  filter(!str_detect(Var,"SD"),
-         EPU == "MAB") %>% 
-  
-  mutate(Var = str_remove(Var, " zoo"),
-         Val2 = exp(Value)) %>% 
-      group_by(Var) %>% 
-  mutate(hline = mean(Val2, na.rm = T)) %>% 
-  separate(.,col = Var, into = c("Species","Season"), remove = F)
-
-
-
-top <- zoo_oi_mab %>%  
-  filter(Species == "centropages") %>% 
-
-ggplot(aes(x = Time, y = Val2, group = Var)) +
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = 0, ymax = Inf) +
-  geom_hline(aes(yintercept = hline),
-     size = hline.size,
-     alpha = hline.alpha,
-     linetype = hline.lty)+
-  geom_gls() +
-  geom_line()+
-  geom_point()+
-  ylab("") +
-  facet_wrap(Var ~ ., ncol = 2, scales='free_x',labeller = label) +
-  ggtitle("Zooplankton abundance (OI)") +
-  scale_x_continuous(expand = c(0.01, 0.01))+
-  scale_y_continuous(trans = "log10")+
-  theme_facet() +
-    theme(strip.text=element_text(hjust=0,
-                                face = "italic"),
-          axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
-
-middle <- zoo_oi_mab %>%  
-  filter(Species == "pseudocalanus") %>% 
-ggplot(aes(x = Time, y = Val2, group = Var)) +
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = 0, ymax = Inf) +
-  geom_hline(aes(yintercept = hline),
-     size = hline.size,
-     alpha = hline.alpha,
-     linetype = hline.lty)+
-  geom_gls() +
-  geom_line()+
-  geom_point()+
-  ylab(expression("Abundance num m"^-3*"")) +
-  facet_wrap(Var ~ ., ncol = 2, scales='free_x',labeller = label) +
-  scale_x_continuous(expand = c(0.01, 0.01))+
-  scale_y_continuous(trans = "log10")+
-  theme_facet() +
-    theme(strip.text=element_text(hjust=0,
-                                face = "italic"),
-          axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
-
-bottom <- zoo_oi_mab %>%  
-  filter(Species == "temora") %>% 
-ggplot(aes(x = Time, y = Val2, group = Var)) +
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = 0, ymax = Inf) +
-  geom_hline(aes(yintercept = hline),
-     size = hline.size,
-     alpha = hline.alpha,
-     linetype = hline.lty)+
-    geom_gls() +
-  geom_line()+
-  geom_point()+
-    ylab("") +
-  facet_wrap(Var ~ ., ncol = 2,labeller = label) +
-  scale_x_continuous(breaks = seq(1980,2010,10),
-                     expand = c(0.01, 0.01))+
-
-  theme_facet() +
-    theme(strip.text=element_text(hjust=0,
-                                face = "italic")) +
-   scale_y_log10()
-
-top + middle + bottom + plot_layout(ncol = 1) & theme(plot.margin = margin(0,0,0,0,"cm"))
-```
-
-
-```{r fish-prod , fig.height=4}
-source("R/productivity_plots.R")
-prod <- productivity_plots()
-prod
-```
-]
-
-Ranked low-moderate risk due to the significant long term trends in zooplankton abundance for major species (top right plot)
-
-
-
+# Thank you!
