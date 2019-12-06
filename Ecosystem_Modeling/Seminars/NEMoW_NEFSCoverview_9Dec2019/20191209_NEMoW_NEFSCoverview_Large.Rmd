@@ -455,8 +455,11 @@ Can also mention Joe's project to put in climate hindcast and forecast for clima
 *2018 CIE for Ecosystem Based Fishery Management Strategy* 
 * [EBFM strategy review](https://www.nefsc.noaa.gov/program_review/)
 * Based on several multispecies models, see NEMoW 4
-![hydrahcr](EDAB_images/HydraHCRs2018.png)
+```{r hydrahcr, out.width="40%"}
+knitr::include_graphics("EDAB_images/ramp.png")
+```
 
+![hydrascenarios](EDAB_images/xradarScenario41-50yrs.png)
 ]
 
 .pull-right[
@@ -472,6 +475,16 @@ Can also mention Joe's project to put in climate hindcast and forecast for clima
 
 ???
 Model reviews are critical to getting models used in management. NEFSC has participated in several processes in the past 2 years, both being reviewed (2018 CIE) and setting up and conducting reviews for other processes (WGSAM)
+
+There are 6 scenarios (Top row of figure represents fixed rate scenarios . no ramping down of effort. The bottom row are scenarios where we ramp down the effort). From left to right in each row:
+
+a. Functional group level. If biomass < 0.2*B0 for any group all catch for that functional group is treated as discards
+
+b. Same as above but we also track individual species. (since a functional group as a whole may be fine but a species in it is not.). Catch is considered a discard
+
+c. same as b but the threshold for elasmobranchs are increased
+
+The vertices of each radar plot are indices we track in the model. The colors represent the initial exploitation rate used. Of course in the ramp down, we may start at 0.4 exploitation, but at year 53 it may be down to 0.1. This isn't displayed.
 ---
 ## Best Practices: Science-Management collaborations
 .pull-left[
