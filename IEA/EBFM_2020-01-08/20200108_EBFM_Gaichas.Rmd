@@ -229,7 +229,7 @@ Risk assessment highlights prority species/issues for more detailed evaluation
 
 A conceptual model maps out key interactions for high risk fisheries, specifies quantitative management strategy evaluation
 ]
---
+
 
 ```{r conceptmod, fig.align="right", out.width='78%'}
 knitr::include_graphics("EDAB_images/fmars-03-00105-g011.jpg")
@@ -291,7 +291,7 @@ elements1<-elements %>%
   select(Element, Definition, Indicators)
 
 kable(elements1, "html") %>%
-  kable_styling(bootstrap_options = c("striped", "condensed"), font_size = 14) %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"), font_size = 12) %>%
   group_rows("Ecological", 1,11) 
 
 ```
@@ -821,7 +821,7 @@ knitr::include_graphics("EDAB_images/Framework.png")
 ]  
 * Final conceptual model and supporting information at December 2019 Council meeting
 
-* Council to proceed with management strategy evaluation (MSE) using the information from conceptual modeling as a basis. Topic: addressing fishery discards with EAFM
+* Council to proceed with management strategy evaluation (MSE) using the information from conceptual modeling as a basis. Topic: addressing recreational fishery discards with EAFM
 
 
 ---
