@@ -126,12 +126,13 @@ div.remark-slide-container .fullscale p {
   font-size: 80%;
 }
 
+/* increase footnote text size for 508 compliance */
 
 .footnote {
   position: absolute;
   bottom: 1em;
   padding-right: 4em;
-  font-size: 50%;
+  font-size: 60%;
 }
 .pull-left {
   float: left;
@@ -165,7 +166,7 @@ div.remark-slide-container .fullscale p {
 .pull-right-70 ~ * { clear: both; }
 
 .image-cap{
-  font-size: 50%;
+  font-size: 60%;
 }
 
 .contrib{
@@ -184,3 +185,10 @@ div.remark-slide-container .fullscale p {
   margin: 6rem;
   padding: 1rem;
 }
+
+/*change link color for 508 compliance*/
+a, a > code {
+  color: #c20a0a; /*default: rgb(249, 38, 114); || sets color of links */
+  text-decoration: none; /* turns off background coloring of links */
+}
+

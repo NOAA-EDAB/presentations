@@ -11,6 +11,7 @@ output:
       highlightStyle: githubp
       highlightLines: true
       countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
   revealjs::revealjs_presentation:
     self_contained: false
     reveal_plugins: ["notes", "search"]
@@ -119,7 +120,7 @@ Diverse stakeholders agreed that an ecosystem approach was necessary. Developing
 .pull-right[
 *Integrated Ecosystem Assessment*
 
-![iea-loop](EDAB_images/iea-loop.png)
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
 
 .image-cap[
 https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
@@ -195,9 +196,9 @@ http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
 Visioning Project &rarr; Strategic Plan with one objective to develop 
 >"A non-regulatory umbrella document intended to guide Council policy with respect to ecosystem considerations across existing Fishery Management Plans"
 
-```{r workshops, echo = F, out.width = "80%", fig.align = "center"}
-knitr::include_graphics("EDAB_images/MAapproach.png")
-```
+.center[
+![:img Mid-Atlantic workflow, 80%](EDAB_images/MAapproach.png)
+]
 
 Details, including workshop presentations and white papers:
 http://www.mafmc.org/eafm
@@ -209,10 +210,9 @@ http://www.mafmc.org/eafm
 http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf
 
 * Mid-Atlantic EAFM framework<sup>1</sup>:
-
-```{r framework, echo = F, out.width = "70%", fig.align = "center"}
-knitr::include_graphics("EDAB_images/Framework.png")
-```
+.center[
+![:img Mid-Atlantic EAFM framework, 70%](EDAB_images/Framework.png)
+]
 https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full
 
 .footnote[
@@ -234,9 +234,9 @@ A conceptual model maps out key interactions for high risk fisheries, specifies 
 
 ]
 
-```{r conceptmod, fig.align="right", out.width='78%'}
-knitr::include_graphics("EDAB_images/fmars-03-00105-g011.jpg")
-```
+.right[
+![:img example conceptual model, 78%](EDAB_images/fmars-03-00105-g011.jpg)
+]
 
 ???
 The conceptual model is used to specify quantitative management strategy evaluation
@@ -246,10 +246,9 @@ The conceptual model is used to specify quantitative management strategy evaluat
 
 Common framework across industry, science, business; but methods matter. Assessing the risks correctly is essential to good decision making.
 
-```{r conditionalrisk, fig.align="center", out.width="70%"}
-knitr::include_graphics("EDAB_images/conditional_risk.png")
-```
-
+.center[
+![:img cartoon showing lightning strike conditional risk and incorrect calculation, 70%](EDAB_images/conditional_risk.png)
+]
 https://xkcd.com/795/
 
 ---
@@ -350,11 +349,9 @@ background-size: cover
 1. Short (< 30 pages), non-technical (but rigorous) text
 
 1. Emphasis on reproducibility 
-
-```{r nes-comp2, echo = F, out.width = "60%", fig.align = "center"}
-knitr::include_graphics("EDAB_images/nes-components-abstracted.png")
-```
-
+.center[
+![:img scaled down conceptual model, 60%](EDAB_images/nes-components-abstracted.png)
+]
 ???
 In 2016, we began taking steps to address these common critiques of the ESR model
 
@@ -480,20 +477,17 @@ ggplot2::ggplot(data = data,aes(x = x, y = y)) +
 
 
 .footnote[
-[1] Rice J. C.Rochet M. J. "A framework for selecting a suite of indicators for fisheries management." ICES Journal of Marine Science 62 (2005): 516–527.
-
-[2] Link J. 2010. Ecosystem-Based Fisheries Management: Confronting Tradeoffs . Cambridge University Press, New York.
-
+[1] Rice J. C.Rochet M. J. "A framework for selecting a suite of indicators for fisheries management." ICES Journal of Marine Science 62 (2005): 516–527.  
+[2] Link J. 2010. Ecosystem-Based Fisheries Management: Confronting Tradeoffs . Cambridge University Press, New York.  
 [3] Zador, Stephani G., et al. "Ecosystem considerations in Alaska: the value of qualitative assessments." ICES Journal of Marine Science 74.1 (2017): 421-430.
 ]
 
 ---
 ## Indicator spatial scales--already Mid-Atlantic specific
 
-```{r epus, echo = F, out.width = "70%", fig.align = "center"}
-knitr::include_graphics("EDAB_images/SOE_Map.jpg")
-```
-
+.center[
+![:img map of Northeast US ecosystem production units, 70%](EDAB_images/SOE_Map.jpg)
+]
 .footnote[
 https://noaa-edab.github.io/tech-doc/epu.html
 ]
@@ -636,9 +630,9 @@ out_pp$Month <- factor(out_pp$Month, levels = month.abb)
  
 ```
 
-```{r fish-con2, fig.align="center"}
-knitr::include_graphics("EDAB_images/MAFMC_Fish_Condition_2019.jpg")
-```
+.center[
+![fish condition 1992 to 2018 where dark is good condition and light is poor](EDAB_images/MAFMC_Fish_Condition_2019.jpg)
+]
 ]
 
 .pull-right[
@@ -771,14 +765,10 @@ cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 ]
 ]
 .pull-right[
-```{r NEVAvul, out.width="100%"}
-knitr::include_graphics("EDAB_images/journal.pone.0146756.g003.PNG")
-
-```
-.image-cap[https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146756.] 
+![:img climate vulnerability levels for all Northeast US marine species, 100%](EDAB_images/journal.pone.0146756.g003.PNG)
 ]
 .footnote[
-[1] Hare, J. A., Morrison, W. E., Nelson, M. W., Stachura, M. M., Teeters, E. J., Griffis, R. B., Alexander, M. A., et al. 2016. A Vulnerability Assessment of Fish and Invertebrates to Climate Change on the Northeast U.S. Continental Shelf. PLOS ONE, 11: e0146756.
+[1] Hare, J. A., Morrison, W. E., Nelson, M. W., Stachura, M. M., Teeters, E. J., Griffis, R. B., Alexander, M. A., et al. 2016. A Vulnerability Assessment of Fish and Invertebrates to Climate Change on the Northeast U.S. Continental Shelf. PLOS ONE, 11: e0146756. https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146756.
 ]
 
 Each species ranked according to position/color in the plot on the right
@@ -811,9 +801,7 @@ knitr::include_graphics("EDAB_images/ecotable2019.png")
 .pull-left[
 * Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
 
-```{r framework2, echo = F, out.width = "90%", fig.align = "center"}
-knitr::include_graphics("EDAB_images/Framework.png")
-```
+![:img Mid-Atlantic EAFM framework, 95%](EDAB_images/Framework.png)
 ]
 .pull-right[
 * Working group of habitat, biology, stock assessment, management, economic and social scientists developed:
@@ -849,7 +837,8 @@ source("R/interactive_chord_sfconsmod.R")
 interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
 
 ```
-
+???
+This interactive plot shows...
 ---
 ## Conclusions
 
