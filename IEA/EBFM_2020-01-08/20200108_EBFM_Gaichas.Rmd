@@ -779,25 +779,124 @@ cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 Each species ranked according to position/color in the plot on the right
 
 ---
-## Risk assessment results
-*Species and Sector level risk elements<sup>1</sup>*
-```{r mgttable, fig.align="center",out.width="85%"}
-knitr::include_graphics("EDAB_images/mgttable2019.png")
-```
+## Risk assessment results: species and sector 
+.pull-left-70[
+```{r spsectable,  echo=FALSE, message=FALSE, warnings=FALSE}
+#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
 
-.footnote[
-[1] Gaichas, S. K., DePiper, G. S., Seagraves, R. J., Muffley, B. W., Sabo, M., Colburn, L. L., and Loftus, A. L. 2018. Implementing Ecosystem Approaches to Fishery Management: Risk Assessment in the US Mid-Atlantic. Frontiers in Marine Science, 5.
+risk.sppsector<-data.frame(
+  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Unmanaged forage", "Deepsea corals"),
+  MgtControl = c(1,1,3,2,1,1,4,2,1,1,1,1,1,9,1,1,1,2,1,1,1,9,9),
+  TecInteract = c(1,1,1,3,1,3,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,9,9),
+  OceanUse = c(2,2,2,2,2,2,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,9,3),
+  RegComplex = c(1,1,4,3,3,3,4,3,1,4,4,4,2,1,1,3,3,1,2,1,3,9,9),
+  Discards = c(1,1,4,2,3,3,3,2,1,2,3,4,1,1,1,1,1,3,2,1,2,9,9),
+  Allocation = c(1,1,4,4,1,1,4,4,4,4,1,4,1,1,1,4,4,4,4,1,4,9,9) 
+)
+
+#convert to text for consistency
+risk.sppsector <- risk.sppsector %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na")}) %>%
+     as.data.frame()
+
+#make table
+risk.sppsector %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "white", "black", "white", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "green", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, booktabs = T, linesep = "") %>%
+  kable_styling(c("striped", "condensed"), font_size =  8) 
+
+```
 ]
+.pull-right-30[
+.footnote[
+Gaichas, S. K., DePiper, G. S., Seagraves, R. J., Muffley, B. W., Sabo, M., Colburn, L. L., and Loftus, A. L. 2018. Implementing Ecosystem Approaches to Fishery Management: Risk Assessment in the US Mid-Atlantic. Frontiers in Marine Science, 5.
+]
+]
+???
 
 ---
 ## Risk assessment results updated with 2019 indicators
 *Species level risk elements*
-```{r sptable, fig.align="center",out.width="95%"}
-knitr::include_graphics("EDAB_images/sptable2019.png")
+```{r sptable,  echo=FALSE, message=FALSE, warnings=FALSE}
+
+#tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+# spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
+risk.species<-data.frame(
+  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
+  Assess  = c("l", "l", "l",  "l", "l", "l",  "l", "lm", "lm", "l", "h", "l", "lm", "h", "na", "na"),
+  Fstatus = c("l", "l", "l", "l", "l", "h", "l", "lm", "lm", "l", "h", "l", "l", "lm", "na", "na"),
+  Bstatus = c("l", "l", "lm", "l", "l", "h", "l", "lm", "lm", "lm", "mh", "lm", "lm", "lm", "na", "na"),
+  FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
+  FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
+  FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
+  Climate = c("h", "mh", "lm", "lm", "mh", "lm", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
+  DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
+  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na")#,
+#  OffHabitat = c("na", "na", "l", "l", "l", "l", "l", "l", "h", "na", "na", "na", "l", "l", "na", "na")#,
+)
+
+# these elements were removed by the council
+#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
+#  FoodSafe = c(),
+
+# one column test
+# risk.species %>%
+#   mutate(Fstatus = 
+#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
+#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
+
+#convert to longer text for consistency and display in html table
+risk.species <- risk.species %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#generalize to all
+risk.species %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "white", "black", "white", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "green", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, booktabs = T, linesep = "") %>%
+  kable_styling(c("striped", "condensed"), font_size =  8)
+
 ```
+
 *Ecosystem level risk elements*
-```{r ecotable, fig.align="center",out.width="95%"}
-knitr::include_graphics("EDAB_images/ecotable2019.png")
+```{r ecotable,  echo=FALSE, message=FALSE, warnings=FALSE}
+  
+#tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.eco<-data.frame(
+  System = c("Mid-Atlantic"),
+  EcoProd = c("lm"),
+  #EcoDiv = c("lm"),
+  CommRev = c("mh"),
+  RecVal = c("h"),
+  FishRes1 = c("l"),
+  FishRes4 = c("mh"),
+  #CommJobs = c("mh"),
+  #RecJobs = c("l"),
+  FleetDiv = c("l"),
+  Social = c("lm"),
+  ComFood = c("h"),
+  RecFood = c("mh")
+)
+
+#convert to longer text for consistency and display in html table
+risk.eco <- risk.eco %>%
+     mutate_at(vars(-System), function(x){
+       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#make table
+risk.eco %>%
+  mutate_at(vars(-System), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "white", "black", "white", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "green", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, booktabs = T, linesep = "") %>%
+  kable_styling(c("striped", "condensed"), font_size =  9)
+
 ```
 
 
