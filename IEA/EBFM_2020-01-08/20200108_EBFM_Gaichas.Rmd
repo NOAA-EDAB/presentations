@@ -779,8 +779,7 @@ cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 Each species ranked according to position/color in the plot on the right
 
 ---
-## Risk assessment results: species and sector 
-.pull-left-70[
+## Risk assessment results: *Species and sector level elements<sup>1</sup>*
 ```{r spsectable,  echo=FALSE, message=FALSE, warnings=FALSE}
 #tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
 
@@ -803,17 +802,16 @@ risk.sppsector <- risk.sppsector %>%
 #make table
 risk.sppsector %>%
   mutate_at(vars(-Species), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "white", "black", "white", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "green", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, booktabs = T, linesep = "") %>%
-  kable_styling(c("striped", "condensed"), font_size =  8) 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 14) 
 
 ```
-]
-.pull-right-30[
+
 .footnote[
-Gaichas, S. K., DePiper, G. S., Seagraves, R. J., Muffley, B. W., Sabo, M., Colburn, L. L., and Loftus, A. L. 2018. Implementing Ecosystem Approaches to Fishery Management: Risk Assessment in the US Mid-Atlantic. Frontiers in Marine Science, 5.
+[1] Gaichas, S. K., DePiper, G. S., Seagraves, R. J., Muffley, B. W., Sabo, M., Colburn, L. L., and Loftus, A. L. 2018. Implementing Ecosystem Approaches to Fishery Management: Risk Assessment in the US Mid-Atlantic. Frontiers in Marine Science, 5.
 ]
-]
+
 ???
 
 ---
@@ -857,9 +855,9 @@ risk.species <- risk.species %>%
 #generalize to all
 risk.species %>%
   mutate_at(vars(-Species), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "white", "black", "white", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "green", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, booktabs = T, linesep = "") %>%
-  kable_styling(c("striped", "condensed"), font_size =  8)
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 14) 
 
 ```
 
@@ -893,9 +891,9 @@ risk.eco <- risk.eco %>%
 #make table
 risk.eco %>%
   mutate_at(vars(-System), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "white", "black", "white", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "green", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, booktabs = T, linesep = "") %>%
-  kable_styling(c("striped", "condensed"), font_size =  9)
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 14) 
 
 ```
 
@@ -1048,10 +1046,9 @@ Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program)
 ]
 ]
 
-```{r iea-logo, fig.align="center", out.width = "50%"}
-knitr::include_graphics("EDAB_images/noaa-iea.png")
-```
-
+.center[
+![:img NOAA Fisheries IEA logo, 50%](EDAB_images/noaa-iea.png)
+]
 ---
 class: inverse
 background-image: url("EDAB_images/IMG_2809.jpg")
