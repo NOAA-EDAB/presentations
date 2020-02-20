@@ -1,7 +1,7 @@
 ---
 title: "What is Ecosystem Based Fishery Management?"
 subtitle: "Marine Resource Education Program <br /> Science Workshop, February 2020"
-author: "Sarah Gaichas, Northeast Fisheries Science Center <br />with key slides from Jason Link, NOAA Senior Scientist for Ecosystem Management"
+author: "Sarah Gaichas, Northeast Fisheries Science Center <br />with key slides from <br />Jason Link, NOAA Senior Scientist for Ecosystem Management"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508.css"]
@@ -38,6 +38,7 @@ library(plotly)
 library(vegan)
 library(rpart)
 library(colorRamps)
+#remotes::install_github("noaa-edab/ecodata@0.1.0") #needed for older SOE code
 library(ecodata)
 
 #GIS libraries
@@ -102,17 +103,44 @@ epu_sf <- ecodata::epu_sf %>%
 ```
 
 # What do *you* think EBFM means?
+---
+# Policy defines EBFM as:
 
-# Policy Defines EBFM as:
+## A systematic approach to fisheries management in a geographically specified area that contributes to the resilience and sustainability of the ecosystem; recognizes the physical, biological, economic, and social interactions among the affected fishery-related components of the ecosystem, including humans; and seeks to optimize benefits among a diverse set of societal goals. 
 
->A systematic approach to fisheries management in a geographically specified area that contributes to the resilience and sustainability of the ecosystem; recognizes the physical, biological, economic, and social interactions among the affected fishery-related components of the ecosystem, including humans; and seeks to optimize benefits among a diverse set of societal goals. 
+.center[
+![:img relating environment marine habitat and the marine community to human activities social systems and objectives, 60%](EDAB_images/nes-components-abstracted.png)
+]
 
+.footnote[
 https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-policy
+]
+---
+![:img Levels of ecosystem-based management in relation to marine fisheries management, 97%](EDAB_images/acronymdecoder.png)
 
+.footnote[
+https://www.fisheries.noaa.gov/national/ecosystems/implementing-ecosystem-based-fisheries-management#understanding-the-levels-of-ecosystem-based-management
+]
+---
 ## EBFM Guiding Principles
 
 ![Five supporting EBFM steps to maintain resilient ecosystems](EDAB_images/EBFMprinciples.png)
+---
+# More concrete EBFM--two examples
 
+- Evolving ecosystem approach in the Mid-Atlantic
+  *"Can we integrate ecosystem considerations into operational fishery management?"*
+    - Why? 
+    - How? Needs to be practical!
+    - What has been done so far?
+    
+- New England Atlantic herring: fishery management strategy evaluation  
+  *"Which harvest control rules best consider herring's role as forage?"*  
+    - Balancing fishing benefits and ecological services
+    - Diverse stakeholder interests
+    - Needed timely answers!
+
+---
 ## An integrated ecosystem assessment success story (in progress)
 
 Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing an ecosystem approach to fishery management was done in collaboration between managers, stakeholders, and scientists. 
@@ -124,9 +152,7 @@ Diverse stakeholders agreed that an ecosystem approach was necessary. Developing
 
 - Mid-Atlantic EAFM risk assessment 
 
-- Mid-Atlantic EAFM conceptual modeling (towards MSE)
-
-- Improvements: open-source data and technical documentation
+- Mid-Atlantic EAFM conceptual modeling (towards strategy evaluation)
 
 ]
 .pull-right[
@@ -957,7 +983,7 @@ interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
 In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
 
 ---
-## Conclusions
+## EBFM example 1 conclusions
 
 Integrated ecosystem assessment is a valuable framework for the general implementation of ecosystem approaches to natural resource management
 
@@ -975,16 +1001,285 @@ Integrated ecosystem assessment is a valuable framework for the general implemen
 The Council foresees refining the process so that ecosystem indicators monitor risks to achieving ecological, social, and economic fishery objectives, which can then be mitigated through management action. 
 
 ---
-## Footnote: Improvements to reproducibility and provenance
+## Are any Atlantic herring harvest control rules good for both fisheries and predators?
+```{r intro}
+knitr::include_graphics("EDAB_images/allcomponents.png")
+```
 
-* Reporting the information is not enough
-* Managers appreciate the concise format, but back-end critical for describing collection, analyses, and processing
-* Streamlined workflow allowed scientists to meet management deadlines
+---
+## What is Management Strategy Evaluation?
+```{r introMSE}
+knitr::include_graphics("EDAB_images/MSECSIRO.png")
+```
+
+---
+## The Dream and The Reality
+```{r dreamreality}
+knitr::include_graphics("EDAB_images/MgtProcess.png")
+```
+
+---
+## Design: link models matching stakeholder-identified objectives
+
+```{r OMdesign, echo = F, fig.align = "center", out.width="85%"}
+knitr::include_graphics("EDAB_images/OMdesign.png")
+```
+
+---
+## Predators
+```{r predoverview}
+knitr::include_graphics("EDAB_images/herrtopreds.png")
+```
+
+---
+## Seabird stock assessment?
+.pull-left[
+![ternsr](EDAB_images/ternSR.png)
+]
+.pull-right[
+![ternprodbyprey](EDAB_images/ternprodbyprey.png)
+]
+
+- Colony adult and fledgling count data used to develop population model
+- Chick diet observations examined in relation to fledgling success
+
+---
+## Terns and herring--developing a modeled relationship
+.pull-left[
+![ternprodisland](EDAB_images/ternprodbyisland.png)
+]
+.pull-right[
+![ternherringmod](EDAB_images/ternherringmodel.png)
+]
+
+Although there were no clear significant relationships of common tern productivity and the proportion of herring in diets across all colonies, there were some correlations between herring total biomass and tern productivity. 
+
+Hence, the relationship on the right was developed to relate herring biomass to common tern productivity.
+---
+## Testing the model--does it work?
+![ternpoptrend](EDAB_images/ternpoptrend.png)
+---
+## Predator results summary
+```{r predresultsum}
+knitr::include_graphics("EDAB_images/herrtopreds_results.png")
+```
+
+Three control rule types--Constant catch, conditional constant catch, and 15% restriction on change--were rejected at the second stakeholder meeting for poor fishery and predator performance.
+
+---
+## Managing tradeoffs: What control rules give us 90% of everything we want?
+
+- Tern productivity at 1.0 or above more than 90% of the time
+- Herring biomass more than 90% of SSBmsy
+- Fishery yield more than 90% of MSY
+&nbsp;  
+&nbsp;  
+- AND fishery closures (F=0) less than 1% of the time (second plot).
+
+.pull-left[
+```{r}
+#herring MSE outputs
+allres <- readRDS(file.path(data.dir,"allres.rds"))
+
+#herring MSE plotting
+#a better plotting theme than ggplot default? from https://rpubs.com/Koundy/71792
+theme_Publication <- function(base_size=14, base_family="") {
+      library(grid)
+      library(ggthemes)
+      (theme_foundation(base_size=base_size, base_family=base_family)
+       + theme(plot.title = element_text(face = "bold",
+                                         size = rel(1.2), hjust = 0.5),
+               text = element_text(),
+               panel.background = element_rect(colour = NA),
+               plot.background = element_rect(colour = NA),
+               panel.border = element_rect(colour = NA),
+               axis.title = element_text(face = "bold",size = rel(1)),
+               axis.title.y = element_text(angle=90,vjust =2),
+               axis.title.x = element_text(vjust = -0.2),
+               axis.text = element_text(), 
+               axis.line = element_line(colour="black"),
+               axis.ticks = element_line(),
+               panel.grid.major = element_line(colour="#f0f0f0"),
+               panel.grid.minor = element_blank(),
+               legend.key = element_rect(colour = NA),
+               legend.position = "right",
+               legend.direction = "vertical",
+               legend.key.size= unit(0.4, "cm"),
+               legend.margin = unit(0, "cm"),
+               legend.title = element_text(face="italic"),
+               plot.margin=unit(c(10,5,5,5),"mm"),
+               strip.background=element_rect(colour="#f0f0f0",fill="#f0f0f0"),
+               strip.text = element_text(face="bold")
+          ))
+      
+}
+
+scale_fill_Publication <- function(...){
+      library(scales)
+      discrete_scale("fill","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
+
+}
+
+scale_colour_Publication <- function(...){
+      library(scales)
+      discrete_scale("colour","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
+}
+
+Nrulesgoodterns <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(MedPropYrs_goodProd_Targplustern>0.9) %>%
+  summarize(tern90 = n())
+
+Nrulesgoodfishery <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(YieldrelMSY>0.9) %>%
+  summarize(yield90 = n())
+
+Nrulesgoodherring <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(MedSSBrelSSBmsy>0.9) %>%
+  summarize(SSB90 = n())
+
+Nrulesgoodternherrfish <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  filter(MedPropYrs_goodProd_Targplustern>0.9 & MedSSBrelSSBmsy>0.9 & YieldrelMSY>0.9) %>%
+  group_by(OM,CR)%>%
+  summarize(ternfishherr90 = n(), 
+            minF = min(FracFtarg), 
+            maxF = max(FracFtarg),
+            minloB = min(FracBmsyThreshLo), 
+            maxloB = max(FracBmsyThreshLo),
+            minhiB = min(FracBmsyThreshHi),
+            maxhiB = max(FracBmsyThreshHi)
+  )
+
+CRsgoodternherrfish <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  filter(MedPropYrs_goodProd_Targplustern > 0.9 & MedSSBrelSSBmsy > 0.9 & YieldrelMSY > 0.9) %>%
+  group_by(OM,CR) %>%
+  select(OM, CR, FracBmsyThreshLo, FracBmsyThreshHi,FracFtarg) %>%
+  mutate(id = seq(1:n()),
+         Xmin = 0,
+         Xmax = 4) %>%
+  gather(CRpart, x, Xmin,FracBmsyThreshLo, FracBmsyThreshHi,Xmax) %>%
+  arrange(OM, CR, id) %>%
+  mutate(y = case_when(CRpart == "Xmin" | CRpart == "FracBmsyThreshLo" ~ 0,
+                       CRpart == "FracBmsyThreshHi" | CRpart == "Xmax" ~ FracFtarg)) %>%
+  mutate(bigkey = paste0(OM, CR, id))
   
-![soe-data-flow](EDAB_images/soe-data-flow.png)  
+#with(CRsgoodternherrfish, 
+#     plot(x=c(0,FracBmsyThreshLo, FracBmsyThreshHi, 4),
+#          y=c(0,0,FracFtarg, FracFtarg), type="l"))  
+  
+p1 <- ggplot(CRsgoodternherrfish, aes(x=x, y=y, colour=CR)) + 
+  geom_line(aes(group=bigkey), alpha=0.3) +
+  labs(y="F/Fmsy", x="SSB/SSBmsy", colour="Control rule type") +
+  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+  theme_Publication() + scale_colour_Publication()
 
-???
-This workflows also ensures that there's no information lost between SOE cycles. We know exactly how a data set was analyzed and handled so that the data can be updated for next year's reports.
+OMlabels <- c(HiM_LowSteep_AssBias_OldWt = 'LowFastBiased', 
+              HiM_LowSteep_AssBias_RecWt = 'LowSlowBiased', 
+              HiM_LowSteep_NoAssBias_OldWt = 'LowFastCorrect', 
+              HiM_LowSteep_NoAssBias_RecWt = 'LowSlowCorrect',  
+              LoM_HiSteep_AssBias_OldWt =  'HighFastBiased',  
+              LoM_HiSteep_AssBias_RecWt = 'HighSlowBiased', 
+              LoM_HiSteep_NoAssBias_OldWt = 'HighFastCorrect',
+              LoM_HiSteep_NoAssBias_RecWt = 'HighSlowCorrect'
+              )
+
+p1 + facet_wrap("OM", labeller=labeller(OM = OMlabels), nrow=2) + theme(legend.position="bottom")
+
+```
+]
+
+.pull-right[
+```{r}
+Nrulesgoodterns <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(MedPropYrs_goodProd_Targplustern>0.9) %>%
+  summarize(tern90 = n())
+
+Nrulesgoodfishery <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(YieldrelMSY>0.9) %>%
+  summarize(yield90 = n())
+
+Nrulesgoodherring <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(MedSSBrelSSBmsy>0.9) %>%
+  summarize(SSB90 = n())
+
+Nrulesgoodternherrfish <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  filter(MedPropYrs_goodProd_Targplustern>0.9 & MedSSBrelSSBmsy>0.9 & YieldrelMSY>0.9 & PropClosure < 0.01) %>%
+  group_by(OM,CR)%>%
+  summarize(ternfishherr90 = n(), 
+            minF = min(FracFtarg), 
+            maxF = max(FracFtarg),
+            minloB = min(FracBmsyThreshLo), 
+            maxloB = max(FracBmsyThreshLo),
+            minhiB = min(FracBmsyThreshHi),
+            maxhiB = max(FracBmsyThreshHi)
+  )
+
+CRsgoodternherrfish <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  filter(MedPropYrs_goodProd_Targplustern > 0.9 & MedSSBrelSSBmsy > 0.9 & YieldrelMSY > 0.9 & PropClosure < 0.01) %>%
+  group_by(OM,CR) %>%
+  select(OM, CR, FracBmsyThreshLo, FracBmsyThreshHi,FracFtarg) %>%
+  mutate(id = seq(1:n()),
+         Xmin = 0,
+         Xmax = 4) %>%
+  gather(CRpart, x, Xmin,FracBmsyThreshLo, FracBmsyThreshHi,Xmax) %>%
+  arrange(OM, CR, id) %>%
+  mutate(y = case_when(CRpart == "Xmin" | CRpart == "FracBmsyThreshLo" ~ 0,
+                       CRpart == "FracBmsyThreshHi" | CRpart == "Xmax" ~ FracFtarg)) %>%
+  mutate(bigkey = paste0(OM, CR, id))
+  
+#with(CRsgoodternherrfish, 
+#     plot(x=c(0,FracBmsyThreshLo, FracBmsyThreshHi, 4),
+#          y=c(0,0,FracFtarg, FracFtarg), type="l"))  
+  
+p1 <- ggplot(CRsgoodternherrfish, aes(x=x, y=y, colour=CR)) + 
+  geom_line(aes(group=bigkey), alpha=0.3) +
+  labs(y="F/Fmsy", x="SSB/SSBmsy", colour="Control rule type") +
+  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+  theme_Publication() + scale_colour_Publication()
+
+OMlabels <- c(HiM_LowSteep_AssBias_OldWt = 'LowFastBiased', 
+              HiM_LowSteep_AssBias_RecWt = 'LowSlowBiased', 
+              HiM_LowSteep_NoAssBias_OldWt = 'LowFastCorrect', 
+              HiM_LowSteep_NoAssBias_RecWt = 'LowSlowCorrect',  
+              LoM_HiSteep_AssBias_OldWt =  'HighFastBiased',  
+              LoM_HiSteep_AssBias_RecWt = 'HighSlowBiased', 
+              LoM_HiSteep_NoAssBias_OldWt = 'HighFastCorrect',
+              LoM_HiSteep_NoAssBias_RecWt = 'HighSlowCorrect'
+              )
+
+p1 + facet_wrap("OM", labeller=labeller(OM = OMlabels), nrow=2) + theme(legend.position="bottom")
+
+```
+]
+
+---
+## EBFM example 2 conclusions: testing strategies is key
+.pull-left-30[
+Complex food web, generalist predators
+- Herring is one of several important prey
+- Assessing multiple prey together will likely show stronger effects on predator productivity
+]
+.pull-right-70[
+![NEUSfw](EDAB_images/LinkNEUSfoodweb.png)
+]
+- Tern/Tuna/Groundfish/Mammal productivity is also affected by predators, weather, and other factors not modeled here
+- Even relatively weak relationships still showed which herring control rules were poor
+- Managers did select a harvest control rule considering a wide range of factors!
 
 ---
 ## If you want **all** the details
@@ -999,12 +1294,11 @@ This workflows also ensures that there's no information lost between SOE cycles.
 
 * [State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
 
-* [ecodata R package](https://github.com/noaa-edab/ecodata)
+* [New England Atlantic herring management](https://www.nefmc.org/management-plans/herring)
 
-  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
-  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
-  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
+* [New England herring MSE stakeholder process paper](https://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2018-0125#.XTb_v5NKgWo)
 
+* [New England herring MSE modeling paper](https://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128#.XTb_c5NKgWo)
 
 * Slides available at https://noaa-edab.github.io/presentations
 
@@ -1090,8 +1384,5 @@ Contacts:
 ]
 .pull-right[
 sarah.gaichas@noaa.gov  
-geret.depiper@noaa.gov  
-bmuffley@mafmc.org  
-sean.lucey@noaa.gov  
 ]
  
