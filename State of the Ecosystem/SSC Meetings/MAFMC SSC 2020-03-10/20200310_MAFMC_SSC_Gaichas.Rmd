@@ -4,13 +4,14 @@ subtitle: "Mid-Atlantic 2020<br /> with updates to EAFM Risk Assessment"
 author: "Sarah Gaichas and Kim Bastille <br /> Ecosystem Dynamics and Assessment <br /> Northeast Fisheries Science Center"
 output:
   xaringan::moon_reader:
-    css: ["default", "libs/EDAB_theme2_508.css"]
+    css: ["default", "libs/EDAB_theme3_508.css"]
     lib_dir: libs
     nature:
       titleSlideClass: ["right", "middle", "my-title"]
       highlightStyle: githubp
       highlightLines: true
       countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
   revealjs::revealjs_presentation:
     self_contained: false
     reveal_plugins: ["notes", "search"]
@@ -217,14 +218,16 @@ mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                "Relative biomass of feeding guilds, Zooplankton",
                                "Estuarine and offshore habitat conditions"))
 
-knitr::kable(mng_obj, linesep = "",
-      col.names = c("Objective Categories","Indicators reported here"),
-      caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight",
+#knitr::kable(mng_obj, linesep = "",
+mng_obj %>%
+      #col.names = c("Objective Categories","Indicators reported here") %>%
+      #caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight",
       #align = 'c',
-      booktabs = T) %>%
+      #booktabs = T) %>%
   #kable_styling(latex_options = "hold_position", "scale_down") %>%
  # column_spec(c(2), width = c("25em")) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"',
+        col.names = c("Objective Categories","Indicators reported here")) %>%
   kable_styling(font_size = 14) %>%
   row_spec(0, bold = TRUE)
 
