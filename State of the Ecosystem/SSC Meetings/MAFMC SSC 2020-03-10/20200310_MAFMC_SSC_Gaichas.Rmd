@@ -1,0 +1,469 @@
+---
+title: "State of the Ecosystem:"
+subtitle: "Mid-Atlantic 2020<br /> with updates to EAFM Risk Assessment"
+author: "Sarah Gaichas and Kim Bastille <br /> Ecosystem Dynamics and Assessment <br /> Northeast Fisheries Science Center"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme2_508.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(ecodata)
+library(here)
+library(kableExtra)
+library(ggrepel)
+library(patchwork)
+library(grid)
+library(ggiraph)
+library(vegan)
+library(rpart)
+library(ks)
+library(cowplot)
+
+#GIS libraries
+library(sf)
+library(rgdal)
+library(raster)
+library(rnaturalearth)
+
+data.dir <- here::here("data")
+gis.dir <- here::here("data")
+
+#General inline text input for report
+#Council
+council <- "Mid-Atlantic Fishery Management Council"
+council_abbr <- "MAFMC"
+
+#Region identifiers
+epu <- "Mid-Atlantic Bight"
+epu_abbr <- "MAB"
+region <- "Mid-Atlantic"
+region_abbr <- "MA" #Some commercial data organized by "MA" or "NE" regions, not by EPU 
+
+#Time series constants
+shade.alpha <- 0.3
+shade.fill <- "lightgrey"
+lwd <- 1
+pcex <- 2
+trend.alpha <- 0.5
+trend.size <- 2
+hline.size <- 1
+hline.alpha <- 0.35
+hline.lty <- "dashed"
+label.size <- 5
+hjust.label <- 1.5
+letter_size <- 4
+feeding.guilds1<- c("Piscivore","Planktivore","Benthivore","Benthos")
+feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
+x.shade.min <- 2009
+x.shade.max <- 2019
+#Function for custom ggplot facet labels
+label <- function(variable,value){
+  return(facet_names[value])
+}
+
+#CRS
+crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+
+#Coastline shapefile
+coast <- ne_countries(scale = 10,
+                          continent = "North America",
+                          returnclass = "sf") %>%
+             sf::st_transform(crs = crs)
+
+#State polygons
+ne_states <- ne_states(country = "united states of america",
+                                      returnclass = "sf") %>%
+  sf::st_transform(crs = crs)
+
+#high-res polygon of Maine
+#new_england <- read_sf(gis.dir,"new_england")
+
+#EPU shapefile
+epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB","GB","GOM"))
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -77
+xmax = -65
+ymin = 36
+ymax = 45
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+
+```
+
+# Today's Talk
+
+.pull-left[
+
+- Role of Ecosystem reporting in MAFMC EAFM
+
+- New! Response memo
+
+- 2020 Mid-Atlantic Report
+
+- EAFM risk assessment update
+
+- SSC discussion and feedback
+]
+
+.pull-right[
+*The IEA Loop<sup>1</sup>*
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
+]
+
+.footnote[
+[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+
+???
+---
+
+## State of the Ecosystem (SOE) Reporting: Context for busy people
+
+*"So what?" --John Boreman, September 2016*
+
+1. Clear linkage of ecosystem indicators with management objectives
+
+1. Synthesis across indicators for big picture
+
+1. Objectives related to human-well being placed first in report
+
+1. Short (< 30 pages), non-technical (but rigorous) text
+
+1. Emphasis on reproducibility 
+
+.center[
+![:img relating environment marine habitat and the marine community to human activities social systems and objectives, 60%](EDAB_images/nes-components-abstracted.png)
+]
+
+???
+In 2016, we began taking steps to address these common critiques of the ESR model
+
+---
+## Mid-Atlantic Council Ecosystem Approach
+
+* 2016 EAFM Policy Guidance document; revised 2019<sup>1</sup> 
+
+* MAFMC EAFM framework<sup>2</sup>
+.center[
+![:img Mid-Atlantic EAFM framework with full details in speaker notes, 70%](EDAB_images/Framework.png)
+]
+* 2017 Inital EAFM risk assessment completed; revised and published 2018<sup>3</sup>
+
+* SOE indicators to be used for annual risk assessment updates
+
+
+.footnote[
+[1] http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf
+
+[2] https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full
+
+[3] https://www.frontiersin.org/articles/10.3389/fmars.2018.00442/full
+]
+
+???
+The Council’s EAFM framework has similarities to the IEA loop on slide 2. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
+
+---
+## State of the Ecosystem 2020: Structure
+.pull-left[
+
+### Report Structure
+1. Human dimensions
+
+2. Protected species
+
+3. Fish and invertebrates (managed and otherwise)
+
+4. Habitat quality and ecosystem productivity
+]
+
+.pull-right[
+```{r management-objectives}
+mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
+                                                 "Profits","Recreation",
+                                                 "Stability","Social & Cultural",
+                                                 "Biomass","Productivity",
+                                                 "Trophic structure","Habitat"),
+"Indicators reported here" = c("Landings by feeding guild","Revenue decomposed to price and volume",
+                               "Days fished; recreational catch",
+                               "Diversity indices (fishery and species)",
+                               "Commercial engagement trends",
+                               "Biomass or abundance by feeding guild from surveys",
+                               "Condition and recruitment of managed species, Primary productivity",
+                               "Relative biomass of feeding guilds, Zooplankton",
+                               "Estuarine and offshore habitat conditions"))
+
+knitr::kable(mng_obj, linesep = "",
+      col.names = c("Objective Categories","Indicators reported here"),
+      caption = "Established ecosystem-scale objectives in the Mid-Atlantic Bight",
+      #align = 'c',
+      booktabs = T) %>%
+  #kable_styling(latex_options = "hold_position", "scale_down") %>%
+ # column_spec(c(2), width = c("25em")) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 14) %>%
+  row_spec(0, bold = TRUE)
+
+
+```
+]
+---
+## State of the Ecosystem 2020: Response Memo
+
+
+
+---
+## EAFM Risk Assessment update (I)
+
+### Decreased Risk
+
+
+### Increased Risk
+
+
+---
+## EAFM Risk Assessment update (II)
+
+### Re-evaluate Risk
+
+### New Risk Indicators
+
+---
+## EAFM Risk Assessment: 2020 update
+*Species level risk elements*
+```{r sptable}
+#tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+# spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
+risk.species<-data.frame(
+  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
+  Assess  = c("l", "l", "l",  "l", "l", "l",  "l", "lm", "lm", "l", "h", "l", "lm", "h", "na", "na"),
+  Fstatus = c("l", "l", "l", "l", "l", "h", "l", "lm", "lm", "l", "h", "l", "l", "lm", "na", "na"),
+  Bstatus = c("l", "l", "lm", "l", "l", "h", "l", "lm", "lm", "lm", "mh", "h", "lm", "lm", "na", "na"),
+  FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
+  FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
+  FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
+  Climate = c("h", "mh", "lm", "lm", "mh", "lm", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
+  DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
+  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na")#,
+#  OffHabitat = c("na", "na", "l", "l", "l", "l", "l", "l", "h", "na", "na", "na", "l", "l", "na", "na")#,
+)
+
+# these elements were removed by the council
+#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
+#  FoodSafe = c(),
+
+# one column test
+# risk.species %>%
+#   mutate(Fstatus = 
+#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
+#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
+
+#convert to longer text for consistency and display in html table
+risk.species <- risk.species %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#generalize to all
+risk.species %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 14) 
+```
+*Ecosystem level risk elements*
+```{r ecotable}
+#tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.eco<-data.frame(
+  System = c("Mid-Atlantic"),
+  EcoProd = c("lm"),
+  #EcoDiv = c("lm"),
+  CommRev = c("mh"),
+  RecVal = c("h"),
+  FishRes1 = c("l"),
+  FishRes4 = c("mh"),
+  #CommJobs = c("mh"),
+  #RecJobs = c("l"),
+  FleetDiv = c("l"),
+  Social = c("lm"),
+  ComFood = c("h"),
+  RecFood = c("mh")
+)
+
+#convert to longer text for consistency and display in html table
+risk.eco <- risk.eco %>%
+     mutate_at(vars(-System), function(x){
+       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#make table
+risk.eco %>%
+  mutate_at(vars(-System), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 14) 
+
+```
+
+---
+## EAFM Risk Assessment: 2020 update
+*Species and Sector level risk elements*
+```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
+#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.sppsector<-data.frame(
+  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
+  MgtControl = c(1,1,3,2,2,1,4,4,2,1,1,1,2,9,1,1,1,2,1,1,1,1,1,9),
+  TecInteract = c(1,1,1,3,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
+  OceanUse = c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
+  RegComplex = c(1,1,3,3,3,3,4,3,1,4,4,4,2,1,1,3,3,2,2,1,3,2,1,9),
+  Discards = c(3,3,4,3,3,3,4,4,1,2,3,4,1,1,1,1,1,3,2,1,2,1,1,9),
+  Allocation = c(1,1,4,4,4,4,4,4,2,4,1,2,4,1,1,4,4,4,4,1,3,1,1,9) 
+)
+
+
+#convert to text for consistency
+risk.sppsector <- risk.sppsector %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na")}) %>%
+     as.data.frame()
+
+#make table
+risk.sppsector %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 14) 
+
+```
+
+
+
+---
+## External Resources
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
+  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
+  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
+  
+* [ERDDAP server](https://comet.nefsc.noaa.gov/erddap/index.html)
+
+* Slides available at https://sgaichas.github.io/soe-presentation
+
+---
+## Contributors - UPDATE!!! THANK YOU!
+
+The New England and Mid-Atlantic SOEs made possible by (at least) 38 contributors from 8 intstitutions 
+
+.pull-left[
+.contrib[
+Donald Anderson (Woods Hole Oceanographic Institute) <br>
+Amani Bassyouni (Virginia Department of Health)<br>
+Lisa Calvo (Rutgers)<br>
+Matthew Camisa (MA Division of Marine Fisheries) <br>
+Patricia Clay<br>
+Lisa Colburn<br>
+Geret DePiper<br>
+Deb Duarte<br>
+Michael Fogarty<br>
+Paula Fratantoni <br>
+Kevin Friedland<br>
+Sarah Gaichas<br>
+James Gartland (Virginia Institute of Marine Science)<br>
+Heather Haas<br>
+Sean Hardison <br>
+Kimberly Hyde<br>
+Terry Joyce (Woods Hole Oceanographic Institute)<br>
+John Kosik<br>
+Steve Kress (National Audubon Society)<br>
+Scott Large
+]
+]
+
+.pull-right[
+.contrib[
+Don Lyons (National Audubon Society)<br>
+Loren Kellogg<br>
+David Kulis (Woods Hole Oceanographic Institute)<br>
+Sean Lucey<br>
+Chris Melrose<br>
+Ryan Morse<br>
+Kimberly Murray<br>
+Chris Orphanides<br>
+Richard Pace<br>
+Charles Perretti<br>
+Karl Roscher (Maryland Department of Natural Resources)<br>
+Vincent Saba<br>
+Laurel Smith<br>
+Mark Terceiro<br>
+John Walden<br>
+Harvey Walsh<br>
+Mark Wuenschel<br>
+Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program)
+]
+]
+
+.center[
+![:img NOAA Fisheries IEA logo, 50%](EDAB_images/noaa-iea.png)
+---
+## Appendix: General feeding guilds
+
+```{r guilds}
+# new table with all species listed by management entity
+df <- ecodata::species_groupings %>%
+  dplyr::select(SOE.20, COMNAME, Fed.Managed) %>%
+  filter(SOE.20 != "Other") %>%
+  distinct() %>%
+  group_by(SOE.20, Fed.Managed) %>%
+  summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
+  spread(Fed.Managed, COMNAME) %>%
+  arrange(factor(SOE.20, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
+df<-df[c(1,3,2,4,5)] %>%
+  mutate_all(tolower)
+
+
+knitr::kable(df, booktabs = TRUE, caption = 'Feeding guilds and management bodies.', 
+             col.names = c("Guild", "MAFMC", "Joint", "NEFMC", "State or Other")) %>%
+  #kable_styling(font_size=10, latex_options=c("repeat_header", "scale_down", "hold_position")) %>%
+  row_spec(0,bold=TRUE) %>%
+  column_spec(1, width="2cm") %>%
+  column_spec(2, width="4cm") %>%
+  column_spec(3, width="2cm") %>%
+  column_spec(4, width="5cm") %>%
+  column_spec(5, width="6cm") %>%
+  #column_spec(3, width="7.5cm") #%>%
+  collapse_rows(columns = 1, latex_hline = "major", valign = "middle")
+```
+
+---
+## Appendix: 
