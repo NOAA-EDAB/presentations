@@ -576,6 +576,189 @@ A time series indicator may be several years away. Until then, we seek feedback 
 [2] [https://www.aoml.noaa.gov/ocd/ocdweb/occ_oa.html]
 ]
 ---
+## Memo 7: Gulf Stream and Labrador Current
+
+.pull-left-40[
+```{r GSI, fig.width = 5, fig.asp = 0.45, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position."}
+gsi %>% 
+  mutate(Year = floor(Time)) %>% 
+  group_by(Year) %>% 
+  dplyr::summarise(Value = mean(Value)) %>% 
+  mutate(hline = mean(Value)) %>% 
+  dplyr::rename(Time = Year) %>% 
+  ggplot(aes(x = Time, y = Value)) +
+         annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_gls() +
+  geom_line() +
+  geom_point() +
+  ylab("Gulf Stream position anomaly") +
+  xlab(element_blank())+
+  ggtitle("Gulf Stream Index") +
+    scale_x_continuous(expand = c(0.01, 0.01))+
+      geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty)+
+  theme_ts() +
+  theme(axis.title.y = element_text(size = 8),
+        strip.text=element_text(hjust=0,
+                                face = "italic"))
+```
+]
+
+.pull-right-60[
+```{r wsw-prop, fig.width=6, fig.asp = 0.45, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador slope water (LSLW) entering the GOM through the Northeast Channel."}
+
+sw.df <- slopewater %>% 
+  mutate(Var, Var = plyr::mapvalues(Var, from = c("WSW proportion ne channel",
+                                                  "LSLW proportion ne channel"),
+                                    to = c("WSW","LSLW"))) %>% 
+  dplyr::rename(Flavor  = Var) %>% 
+  group_by(Flavor) %>% 
+  mutate(hline = mean(Value)) 
+
+sw.df$Origin <- factor(sw.df$Flavor, levels = c("WSW","LSLW"))
+
+ggplot(data = sw.df) +
+  geom_line(aes(x = Time, y = Value, color = Origin))+
+  geom_point(aes(x = Time, y = Value, color = Origin)) +
+  ylab("Percent of Total Slopewater") +
+  xlab(element_blank())+
+  ggtitle("Slopewater Proportions in NE Channel")+
+  scale_x_continuous(expand = c(0.01, 0.01))+
+  geom_hline(aes(yintercept = hline, color = Origin),
+           size = hline.size, alpha = hline.alpha,
+           linetype = hline.lty)+
+  theme_ts() 
+
+```
+]
+
+
+## Memo 11: Warm Core Rings
+
+.center[
+```{r warm-core-rings, fig.width = 6, fig.asp = 0.45, fig.cap= "Interannual Variability of the WCR formation between 1980 and 2019. The regime shift (denoted by the split in the red solid line) is significant at the turn of the century.  Figure reproduced with permission from Gangopadhyay, et al. (2019).  2018 and 2019 data points based on personal communication with A. Gangopadhyay (2020)."}
+upper.line<-ecodata::wcr %>%
+  filter(Time>2000) %>% 
+  mutate(hline = c(mean(Value)))
+lower.line<-ecodata::wcr%>%
+  filter(Time<2000) %>% 
+  mutate(hline = c(mean(Value)))
+wcr<- upper.line %>% 
+  rbind(lower.line)
+
+wcr %>% 
+  ggplot(aes(x = Time, y = Value))+
+  geom_point()+
+  geom_line()+
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  ylab("Warm Core Ring Births")+
+  xlab(element_blank())+
+  ggtitle("Warm Core Rings")+
+  theme_ts()+
+  geom_segment(data = upper.line, aes(x = min(Time), y = hline, 
+                                      xend = max(Time), yend = hline, color = "segment") )+
+  geom_segment(data = lower.line, aes(x = min(Time), y = hline, 
+                                      xend = max(Time), yend = hline, color = "segment") )+
+  theme(legend.position = "none")
+```
+]
+
+???
+MAFMC requested that this indicator be included (in past years it was in the New England report only).
+
+---
+## Memo 8: PP Source
+
+.pull-left-30[Satellite for all indicators]
+
+.pull-right-70[
+![:img Map of 2019 chlorophyll a anomalies by season from satellite data, 60%](EDAB_images/CHL_SEASONAL_ANOMS_2019.png)
+]
+
+## Memo 9: Shellfish Growth
+
+Roger Mann (VIMS) looking to fund student at NEFSC to evaluate
+
+## Memo 10: Power Plants
+
+Unable to address this aspect of estuarine water quality this year, but see 13
+
+---
+## Memo 12: Cold Pool Index
+
+
+
+---
+## Memo 13: Estuarine Water Quality
+
+
+---
+## Memo 14: Link Environment and Society
+
+
+---
+## Memo 15: Wind Energy Habitat Overlap
+
+
+---
+## Memo 16: Other Social Science Indicators
+
+
+## Memo 17: Management Complexity
+
+
+## Memo 18: SAFMC and ASMFC Species
+
+
+## Memo 19: Conceptual Model Social Elements
+
+
+---
+## Memo 20: Fish Diet Indicators
+
+
+---
+## Memo 21: Right Whale Calves
+
+
+---
+## Memo 22: Distinguish Managed Species
+
+## Memo 23: Marine Mammal Consumptuon
+
+## Memo 24: Small Pelagic Abundance
+
+
+---
+## Memo 25: Young of Year Index
+
+
+---
+## Memo 26: Shark Biomass
+
+## Memo 27: Trawl Species Diversity
+
+---
+## Memo 28: Ecosystem Risk Score
+
+
+
+---
+## Memo 29: Thresholds and Inflection Points
+
+
+
+---
+## SOE Take Home Messages
+
+
+---
 ## EAFM Risk Assessment update (I)
 
 ### Decreased Risk
@@ -703,7 +886,8 @@ risk.sppsector %>%
 
 ```
 
-
+---
+## EAFM Conceptual Model
 
 ---
 ## External Resources
