@@ -2,12 +2,12 @@
 title: "Creating R Packages"
 
 output:
-   html_document:
-     toc: true
-     toc_depth: 4
-     toc_float:
-       collapsed: true
-       smooth_scrol: true
+   # html_document:
+   #   toc: true
+   #   toc_depth: 4
+   #   toc_float:
+   #     collapsed: true
+   #     smooth_scrol: true
    slidy_presentation:
      font_adjustment: 0
 ---
@@ -31,17 +31,17 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Pre-requisites{-}
 
 #### _devtools_ & _remotes_ & _usethis_{-}
-A key package you will need (if you dont have it already) is `devtools`. `devtools` is a package to aid in development of packages. To check to see if you have it, type the following line:
+Three key packages you will need (if you dont have them already) are `devtools`,`remotes`, and `usethis`. `usethis` is a package to aid in development of packages. To check to see if you have it, type the following line:
 ```{r , eval = FALSE}
- "devtools" %in% row.names(installed.packages())
+ "usethis" %in% row.names(installed.packages())
 ```
 A result of FALSE means you dont have it. Install it 
 ```
-install.packages("devtools")
+install.packages("usethis")
 ```
-Another package you'll need is `remotes`. This allows you to install packages from github (Most of this code used to be in `devtools`)
+The `devtools` package was split into `remotes` and `usethis`. However there are still a few cases in which you will need `devtools`. It is advisable to install.
 ```
-install.packages(c("remotes","usethis"))
+install.packages(c("remotes","devtools"))
 ```
 
 
@@ -57,6 +57,8 @@ To check you have everything installed type in the console:
 devtools::has_devel()
  ```
 If the result is *"Your system is ready to build packages!"*, then you have all required tools.
+
+For more info regarding platform specific options: See [What they forgot to teach you about R](https://rstats.wtf/set-up-an-r-dev-environment.html#windows-system-prep)
 
 ---
 
@@ -120,7 +122,7 @@ All packages have a specific structure that needs to be adhered to. We will use 
 
 This creates the basic elements for a package (5 components)
 
-1.  A `DESCRIPTION` file - Basic information about the package, authors, contributors, version, title, description, the type of license, and the package dependencies (does it require other packages to work!)
+1.  A `DESCRIPTION` file - Basic information about the package, authors, contributors, version, title, description, the type of license, and the package dependencies (other packages required for yours to work!)
 2.  A `NAMESPACE` file - defines the list of functions in your package available to users. It also defines external functions and packages that are imported. (This is automatically generated if using `roxygen2` for documentation so dont worry about this.).
 3.  An `R/` directory where your R code will reside
 4.  A `man/` directory where documentation will reside
@@ -180,7 +182,7 @@ As you continue in this workflow loop you may realize you need to:
 
 ## Example {-}
 
-Lets create a package called `simpleStats`. It has a function called `calc_stats` which given a vector as input calculates the mean,  range, and standard deviation. The result is a list containing these 3 results. Create a data set to be bunded with the package called `myData.Rdata`. Make `myData` be a numeric vector of size 100 of a white noise time series (mean=0, sd=1). Import the package `ggplot2` and plot the data
+Lets create a package called `simpleStats`. It has a function called `calc_stats` which given a vector as input calculates the mean, range, and standard deviation. The result is a list containing these 3 results. Create a data set to be bunded with the package called `myData.Rdata`. Make `myData` be a numeric vector of size 100 of a white noise time series (mean=0, sd=1). Import the package `ggplot2` and plot the data
 
 
 ---
@@ -191,7 +193,7 @@ Documetation is a critical part of any package, since if your code isn't documen
 
 R provides a standard way of documenting functions and data in your package. These are `.Rd` files that reside in the `man/` folder are similar in structure to LaTeX. However you dont need to know any of that, since `roxygen2` will create these for you with minimal effort. The main advantages of using `roxygen2` are:
 
-* The documentation resides in the same file as your code. It is then translated to the format R requires (`.Rd` files)
+* The documentation resides in the same file as your code. It is then translated to the format R requires (`.Rd` files) and copied to the `man` folder.
 * The `NAMESPACE` is updated to reflect if code it to be made available to user
 * The `DESCRIPTIONS` file is updated to reflect use of external packages
 
@@ -220,8 +222,8 @@ All functions should be documented. Every line of documentation begins with `#'`
 #'
 #' @return A list containing
 #'
-#' \item{res1 returned}{description of res1}
-#' \item{res2 returned}{description of res2}
+#' \item{res1}{description of res1}
+#' \item{res2}{description of res2}
 #'
 #' @section sectionHheadingName:
 #' Write whatever you want
@@ -244,7 +246,7 @@ myfunction <- function(argument1, argument2) {
 
 ### Data documetnation {-#data}
 #### _External data_ {-}
-You can bundle data along with your package and make it available to the user without any effort. Any data placed in `data/` will be exported and available for users. The data can be "lazily loaded" when the package is loaded into memory. This means the data wont use any memory until it is used. This is handled in the `DESCRIPTIONS` file. (LazyData: true). Packages work well (and fast) with data files in the `.RData` format.
+You can bundle data along with your package and make it available to the user with minimal effort. Any data placed in `data/` will be exported and available for users. The data can be "lazily loaded" when the package is loaded into memory. This means the data wont use any memory until it is used. This is handled in the `DESCRIPTIONS` file. (LazyData: true). Packages work well (and fast) with data files in the `.RData` format.
 
 Data documentation has a similar feel to function documentation. 
 
@@ -351,12 +353,12 @@ This command does several things
 
 ## Sharing your code {-#sharing}
 
-At some point in your package development you should start using git (locally in RStudio) to track ongoing changes to your project/package. Eventually linking to Github so you can share your package with others. Even if you dont plan to share it is still a good option for keeping all of your packages. 
+At some point in your package development you should start using git (locally in RStudio) to track ongoing changes to your project/package. Eventually linking to GitHub so you can share your package with others. Even if you dont plan to share it is still a good option for keeping all of your packages. 
 
-* Link RStudio to github and push all of your files.
-* create a `readMe.md` file on Github to tell the world what this repository is and instructions on how to download it.
+* Link RStudio to GitHub and push all of your files.
+* create a `readMe.md` file on GitHub to tell the world what this repository is and instructions on how to download it.
 
-Packages can be downloaded from Github using:
+Packages can be downloaded from GitHub using:
 ```
 remotes::install_github(package="packageName",build_vignettes = TRUE)
 ```
