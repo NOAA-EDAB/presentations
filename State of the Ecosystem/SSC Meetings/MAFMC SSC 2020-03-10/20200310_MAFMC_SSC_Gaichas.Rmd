@@ -1367,9 +1367,102 @@ Inappropriate to combine Albatross and Bigelow--separate indices?
 
 Options from the literature, or combine existing indicators?
 
+```{r heatwave-mab, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
 
+cumu <- ecodata::heatwave %>% 
+  filter(Var == "cumulative intensity") %>% 
+  mutate(Var = dplyr::recode(Var, "cumulative intensity" = "Cumulative Intensity (°C x days)"))
 
+maxin <- ecodata::heatwave %>% 
+  dplyr::filter(Var == "maximum intensity") %>% 
+  dplyr::group_by(Time, EPU, Var, Units) %>% 
+  dplyr::summarise(Value = max(Value)) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate(Var = dplyr::recode(Var, "maximum intensity" = "Maximum Intensity (°C)"))
 
+hw<- cumu %>%
+  rbind(maxin) %>% 
+  dplyr::group_by(Var, EPU) %>% 
+  dplyr::mutate(hline = mean(Value))
+
+mab.hw<- hw %>% filter(EPU == epu_abbr)
+mab.hw %>% 
+  ggplot() +
+  geom_line(aes(x = Time, y = Value)) +
+  geom_point(aes(x = Time, y = Value)) +
+  geom_gls(aes(x = Time, y = Value, group = Var)) +
+  ylab("") +
+  xlab(element_blank())+
+  ggtitle("Mid-Atlantic Marine Heatwave Intesity") +
+  scale_x_continuous(expand = c(0.01, 0.01))+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty)+
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  facet_wrap(~Var, scales = "free")+
+  theme_ts()+
+  theme(strip.text=element_text(hjust=0,
+                                face = "italic"))
+
+```
+
+.pull-left[
+![img: January - December 2019 sea surface temperatures above 90th percentile of average](EDAB_images/MAB_heatwave.jpeg)
+]
+
+.pull-right[
+```{r mab-heatwave-max, fig.cap="Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occurring on July 22, 2019."}
+#EPU shapefile
+mab_epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB"))
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -81
+xmax = -66
+ymin = 35.5
+ymax = 43
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+hw <- ecodata::hw_anom_gridded %>% 
+  filter(EPU == "MAB")
+
+mab_map <- 
+  ggplot() +
+  geom_tile(data =hw, aes(x = Longitude, y = Latitude,fill = Value)) +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = mab_epu_sf, fill = "transparent", size = map.lwd) +
+  scale_fill_gradient2(name = "Temp.\nAnomaly (°C)",
+                       low = scales::muted("blue"),
+                       mid = "white",
+                       high = scales::muted("red"),
+                       limits = c(-5,7)) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  #facet_wrap(Season~.) +
+  theme_map() +
+  ggtitle("MAB heatwave anomaly (July 22, 2019)") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
+        legend.key = element_blank(),
+        axis.title = element_text(size = 11),
+        strip.background = element_blank(),
+        strip.text=element_text(hjust=0),
+        axis.text = element_text(size = 8), 
+        axis.title.y = element_text(angle = 90),
+        plot.margin=grid::unit(c(0,0,0,0), "mm"))
+
+mab_map 
+
+```
+]
+
+---
 ## Memo 29: Thresholds and Inflection Points
 
 
