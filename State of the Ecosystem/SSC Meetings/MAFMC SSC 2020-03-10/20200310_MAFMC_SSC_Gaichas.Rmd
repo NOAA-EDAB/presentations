@@ -813,6 +813,106 @@ ecodata::ppr %>%
 ---
 ## Memo 15: Wind Energy Habitat Overlap
 
+```{r wind-habitat-table, eval = T, echo = F, fig.cap='', out.width='80%'}
+wind1 <- ecodata::wind_occupancy
+
+wind1$trend<- ifelse(wind1$Trend == "pos", 
+                    "$\\nearrow$",
+                    ifelse(wind1$Trend == "neg",
+                    "$\\searrow$", 
+                    " ")) 
+
+
+wind2<-wind1 %>% dplyr::select(Area, Season, Species, trend)
+names<-c("Area", "Season", "Species", "trend")
+bnew<-c("Area.1", "Season.1", "Species.1", "trend.1")
+cnew<-c("Area.2", "Season.2", "Species.2", "trend.2")
+dnew<-c("Area.3", "Season.3", "Species.3", "trend.3")
+enew<-c("Area.4", "Season.4", "Species.4", "trend.4")
+
+a<-wind2 %>% filter(Area == "Existing-North") 
+b<-wind2 %>% filter(Area == "Proposed-North") %>% 
+  dplyr::rename_at(vars(names), ~ bnew)
+c<-wind2 %>% filter(Area == "Existing-Mid")%>% 
+  dplyr::rename_at(vars(names), ~ cnew)
+d<-wind2 %>% filter(Area == "Proposed-Mid")%>% 
+  dplyr::rename_at(vars(names), ~ dnew)
+e<-wind2 %>% filter(Area == "Existing-South")%>% 
+  dplyr::rename_at(vars(names), ~ enew)
+
+all<- a %>% cbind(b,c,d,e) %>% 
+  dplyr::select(2:4,7:8,11:12,15:16,19:20) #%>% 
+  # rename(Trend = trend, 
+  #        Species = Species.1, 
+  #        Trend = trend.1, 
+  #        Species = Species.2, 
+  #        Trend = trend.2, 
+  #        Species = Species.3, 
+  #        Trend = trend.3, 
+  #        Species = Species.4, 
+  #        Trend = trend.4 )
+  
+kable(all, format = "html", escape = F, table.attr='class="risktable"',
+      col.names = c("Season", "Species", "Trend", "Species", "Trend", "Species","Trend", "Species","Trend", "Species", "Trend")) %>%
+      #caption = "Species with highest probability of occupancy species each season and area, with observed trends",
+      #align = 'c',
+      #booktabs = T) %>%
+    add_header_above(c(" " = 1, "Existing - North" = 2, "Proposed - North" = 2, 
+                     "Existing - Mid" = 2, "Proposed - Mid" = 2, 
+                     "Existing - South" = 2)) %>%
+  #kable_styling(latex_options = c("hold_position", "scale_down")) 
+  kable_styling(font_size = 14) %>%
+  row_spec(0, bold = TRUE)
+```
+
+```{r wind-hab, eval = T, echo = F, fig.cap="Map of BOEM existing (black) and proposed (red) lease areas in North (N), Mid (M) and South (S) portions of the coast as of February 2019.", message=FALSE, results=FALSE}
+library(rnaturalearthhires)
+library(sf)
+library(raster)
+library(ggspatial)
+library(marmap)
+
+crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+#gis.dir <- here::here("data-raw/gis")
+nesbath <- fortify.bathy(getNOAA.bathy(lon1 = -77, lon2 = -65, lat1 = 35, lat2 = 45,
+              resolution = 5))
+
+lease_s<-st_read(file.path(gis.dir, 'BOEM lease areas/ne_existing_leasesSPoly.shp'))
+lease_n<-st_read(file.path(gis.dir, 'BOEM lease areas/ne_existing_leasesNPoly.shp'))
+lease_m<-st_read(file.path(gis.dir, 'BOEM lease areas/ne_existing_leasesMPoly.shp'))
+prop_n<-st_read(file.path(gis.dir, 'BOEM lease areas/ne_proposed_leases_NPoly.shp'))
+prop_m<-st_read(file.path(gis.dir, 'BOEM lease areas/ne_proposed_leases_MPoly.shp'))
+
+invisible(st_crs(lease_s)<-crs)
+invisible(st_crs(lease_n)<-crs)
+invisible(st_crs(lease_m)<-crs)
+invisible(st_crs(prop_n)<-crs)
+invisible(st_crs(prop_m)<-crs)
+
+ggplot() +
+  geom_raster(data = nesbath, aes(x=x,y=y, fill = z)) +
+  scale_fill_gradientn(colors =c("lightcyan","lightblue4"))+
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
+  geom_sf(data = lease_s, size = map.lwd, color = "black")+
+  geom_sf(data = lease_n, size = map.lwd, color = "black")+
+  geom_sf(data = lease_m, size = map.lwd, color = "black")+
+  geom_sf(data = prop_n, size = map.lwd, color = "red3")+
+  geom_sf(data = prop_m, size = map.lwd, color = "red3")+
+  coord_sf(crs = crs, xlim = c(-77, -69), ylim = c(36,42))+
+  geom_segment(aes(x = -74.6, y = 37.4, xend =-75.4, yend =38), colour = "blue4")+
+  geom_segment(aes(x = -71.1, y = 40.2, xend =-71.6, yend =41.1), colour = "blue4")+
+  annotate("text", x = -74.9, y = 37, label = "S")+
+  annotate("text", x = -73.5, y = 38.7, label = "M")+
+  annotate("text", x = -70.5, y = 40.2, label = "N")+
+  annotation_scale(location = "br", width_hint = 0.4) +
+  theme_bw( ) +
+  ylab("")+
+  xlab("")+
+  theme(legend.position = "none") +
+  ggtitle("BOEM lease areas")
+
+``` 
 
 ---
 ## Memo 16: Other Social Science Indicators
