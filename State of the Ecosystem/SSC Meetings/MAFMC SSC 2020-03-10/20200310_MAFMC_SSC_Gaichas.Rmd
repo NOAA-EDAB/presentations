@@ -771,9 +771,9 @@ High precipitation let to extreme low salinity event in spring 2019
 ---
 ## Memo 14: Link Environment and Society
 
-*Primary Production Required to support landings*
+*Primary Production Required to support landings (see also Memo 5, Memo 15*
 .pull-left[
-```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", fig.width = 4, fig.asp = 0.45}
+```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", fig.width = 5, fig.asp = 0.45}
 ecodata::ppr %>% 
   group_by(EPU) %>% 
   mutate(hline = mean(Value)) %>% 
@@ -796,6 +796,15 @@ ecodata::ppr %>%
   theme_ts()
 ```
 ]
+
+## Transfer efficiency 15%
+
+## Unlagged landings and primary production
+
+## Landings threshold 80%
+
+## Which sensitivities to explore?
+
 
 .pull-right[
 ![:img species included in 80% of landings in the Mid Atlantic](EDAB_images/composition-MAB-0_80.png)
