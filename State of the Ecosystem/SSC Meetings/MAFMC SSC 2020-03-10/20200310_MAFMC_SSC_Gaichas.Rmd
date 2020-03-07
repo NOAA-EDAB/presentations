@@ -692,7 +692,12 @@ Unable to address this aspect of estuarine water quality this year, but see 13
 ---
 ## Memo 12: Cold Pool Index
 
-```{r cold-pool, fig.width = 4, fig.asp = 0.45, eval = T, echo = F, fig.cap="Temperature anomaly in cold pool region, defined as the area with a mean September-October bottom temperature <12°C from 1963 to 2013." }
+.pull-left[
+![:img Three dimensional map of the Northeast US shelf showing major bottom, current, and other oceanographic features: Mid-Atlantic bight with the cold pool, circulation on Georges Bank and in the Gulf of Maine, the Scotian Shelf off Canada, the Labrador Current coming from the North and the Gulf Stream offshore with associated warm core and cold core rings spinning off. Precipitation over land affects water quality in the Chesapeake Bay.](EDAB_images/MAFMC_NE_SHELF_MAP.png)
+]
+
+.pull-right[
+```{r cold-pool, fig.width = 6, fig.asp = 0.45, eval = T, echo = F, fig.cap="Temperature anomaly in cold pool region, defined as the area with a mean September-October bottom temperature <12°C from 1963 to 2013." }
 
 ecodata::cold_pool %>% 
     mutate(hline = mean(Value, na.rm = T)) %>% 
@@ -716,7 +721,8 @@ ecodata::cold_pool %>%
   theme_ts()
 ```
 
-*add map from 2 pager*
+Temperature change within the cold pool vs volume or other metric?
+]
 
 ---
 ## Memo 13: Estuarine Water Quality
