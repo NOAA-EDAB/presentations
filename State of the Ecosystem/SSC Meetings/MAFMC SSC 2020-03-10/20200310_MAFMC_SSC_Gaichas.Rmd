@@ -694,13 +694,9 @@ Roger Mann (VIMS) looking to fund student at NEFSC to evaluate
 Unable to address this aspect of estuarine water quality this year, but see 13
 
 ---
+.pull-left[
 ## Memo 12: Cold Pool Index
 
-.pull-left[
-![:img Three dimensional map of the Northeast US shelf showing major bottom, current, and other oceanographic features: Mid-Atlantic bight with the cold pool, circulation on Georges Bank and in the Gulf of Maine, the Scotian Shelf off Canada, the Labrador Current coming from the North and the Gulf Stream offshore with associated warm core and cold core rings spinning off. Precipitation over land affects water quality in the Chesapeake Bay.](EDAB_images/MAFMC_NE_SHELF_MAP.png)
-]
-
-.pull-right[
 ```{r cold-pool, fig.width = 6, fig.asp = 0.45, eval = T, echo = F, fig.cap="Temperature anomaly in cold pool region, defined as the area with a mean September-October bottom temperature <12°C from 1963 to 2013." }
 
 ecodata::cold_pool %>% 
@@ -726,6 +722,10 @@ ecodata::cold_pool %>%
 ```
 
 Temperature change within the cold pool vs. volume or other metric?
+]
+
+.pull-right[
+![:img Three dimensional map of the Northeast US shelf showing major bottom, current, and other oceanographic features: Mid-Atlantic bight with the cold pool, circulation on Georges Bank and in the Gulf of Maine, the Scotian Shelf off Canada, the Labrador Current coming from the North and the Gulf Stream offshore with associated warm core and cold core rings spinning off. Precipitation over land affects water quality in the Chesapeake Bay., 120%](EDAB_images/MAFMC_NE_SHELF_MAP.png)
 ]
 
 ---
@@ -1115,22 +1115,261 @@ Seal diet information added, but inadequate information to estimate consumption.
 ---
 ## Memo 24: Small Pelagic Abundance
 
+```{r planktivores, fig.cap = "Spring (left) and fall (right) surveyed biomass of planktivores in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean. ", fig.width=10, fig.asp=.3}
 
+### Planktivore
+neamap.3<-neamap %>% 
+  filter(str_detect(Var,"Planktivore"))
+p3<-agg_bio %>% 
+  filter(str_detect(Var,"Planktivore")) %>% 
+  ggplot() +
+  
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max ,
+      ymin = -Inf, ymax = Inf) +
+  #Test for trend and add lines
+  geom_gls(aes(x = Time, y = Mean,
+               color = Var),
+             alpha = trend.alpha, size = trend.size) +
+  
+  #Add time series
+  geom_ribbon(aes(x = Time, ymin = pmax(lower,0), ymax = upper), 
+              alpha = 0.5,
+              fill = "grey") +
+  geom_line(aes(x = Time, y = Mean),size = lwd-0.5) +
+  geom_point(aes(x = Time, y = Mean),size = pcex-0.5) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  geom_hline(aes(yintercept = hline,
+                 group = Var),
+             size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+  facet_wrap(Var~.,ncol = 2) +
+       #Add NEAMAP
+    geom_ribbon(data = neamap.3, aes(ymax = pmax(upper, 0), ymin = lower, x = Time), 
+                fill = "pink", alpha = 0.5) +
+  geom_line(data = neamap.3, aes(x = Time, y = Value),
+            color = "#ca0020")+
+  geom_point(data = neamap.3, aes(x = Time, y = Value),
+             size = pcex-0.5,
+             color = "#ca0020")+
+
+  #Axis and theme
+  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
+  #ylim(0, 600)+
+  ylab(expression("Biomass (kg tow"^-1*")")) +
+  theme_facet()+
+  theme(strip.text=element_text(hjust=0), 
+        axis.title.x=element_blank())
+
+p3
+```
+
+Improve with VAST? Other data sources and suggestions?
+
+```{r forage, eval=T, echo=F}
+
+d<-ecodata::energy_density #%>% 
+    # rename("Mean ED (SD)" = "Mean.ED..SD.", 
+    #        "N" = "n",
+    #        "Mean ED (SD)" = "Mean.ED..SD..1", 
+    #        "N" = "n.1", 
+    #        "Mean ED (SD)" = "Mean.ED..SD..2", 
+    #        "N" = "n.2", 
+    #        "Mean ED (SD)" = "Mean.ED..SD..3", 
+    #        "N" = "n.3",
+    #        "Mean ED (SD)" = "Mean.ED..SD..4", 
+    #        "N" = "X",
+    #        "Mean ED (SD)" = "Mean.ED..SD..5", 
+    #        "Mean ED" = "Mean.ED" )
+kable(d, format = "html", escape = F, #table.attr='class="risktable"', 
+      col.names = c("Species", "ED (SD)", "N", "ED (SD)", "N",
+                    "ED (SD)", "N","ED (SD)", "N",
+                    "ED (SD)", "N","ED", "ED (SD)")) %>%
+      #caption = "Forage fish mean energy density (ED) mean and standard deviation (SD) by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values. N = number sampled.") %>% 
+  #kable_styling(latex_options = c("hold_position", "scale_down")) %>% 
+  #add_header_above(c(" " = 1, "Spring" = 2, "Fall" = 2, "Spring" = 2, "Fall" = 2, " " = 4)) %>% 
+  add_header_above(c(" " = 1, "Spring 2017" = 2, "Fall 2017" = 2, "Spring 2018" = 2,  "Fall 2018"= 2,"Total" = 2, "1980s" = 1, "1990s" = 1)) %>%
+  kable_styling(font_size = 11, full_width = T) %>%
+  row_spec(0, bold = TRUE)
+
+```
 ---
 ## Memo 25: Young of Year Index
+.center[
+```{r MAB-recruitment, fig.cap = "Small fish per large fish biomass anomaly in the Mid-Atlantic Bight. The summed anomaly across species is shown by the black line.", fig.width = 8, fig.asp = .55}
+
+#### Adjust plot properties -------------------------------
+adjustAxes <- 
+  ggplot2::theme(axis.title   = element_text(size = 18),
+                 axis.text    = element_text(size = 15),
+                 plot.title   = element_text(size = 20))
 
 
----
+#### Plot stacked bar with cpts for single var ------------
+plot_stackbarcpts_single <- function(YEAR, var2bar,
+                                     x, xlab, ylab,
+                                     titl,
+                                     file_suffix,
+                                     leg_font_size = 10,
+                                     remove_leg = FALSE,
+                                     leg_ncol = 1,
+                                     wcpts = TRUE,
+                                     wdashed = TRUE,
+                                     height = 5.5,
+                                     width = 8,
+                                     filt = TRUE,
+                                     label = label,
+                                     y.text = y.text,
+                                     aggregate = FALSE) {
+  
+  dat2bar <- data.frame(YEAR, var2bar,
+                        x)
+  if (filt == TRUE){mab_species <-  list("SUMMER FLOUNDER","SCUP","BLACK SEA BASS","BLUEFISH",
+                                         "NORTHERN SHORTFIN SQUID", "LONGFIN SQUID", "ATLANTIC MACKEREL",
+                                         "BUTTERFISH","ATLANTIC SURFCLAM", "OCEAN QUAHOG", "TILEFISH",
+                                         "BLUELINE TILEFISH","SPINY DOGFISH", "GOOSEFISH")
+  dat2plot <-
+    dat2bar %>%
+    tidyr::gather(variable, value, -YEAR, -var2bar) %>%
+    dplyr::mutate(var2bar = gsub(pattern      = "_", 
+                                 replacement  = " ", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl.", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "NS and combined", 
+                                 replacement  = "", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "YT", 
+                                 replacement  = "Yellowtail", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " GoM", 
+                                 replacement  = " GOM", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " by EPU", 
+                                 replacement  = "", 
+                                 x            = var2bar)) %>%
+    filter(var2bar %in% mab_species)
+} else if (filt == FALSE){
+    dat2plot <-
+    dat2bar %>%
+    tidyr::gather(variable, value, -YEAR, -var2bar) %>%
+    dplyr::mutate(var2bar = gsub(pattern      = "_", 
+                                 replacement  = " ", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl.", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "NS and combined", 
+                                 replacement  = "", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "YT", 
+                                 replacement  = "Yellowtail", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " GoM", 
+                                 replacement  = " GOM", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " by EPU", 
+                                 replacement  = "", 
+                                 x            = var2bar))
+}
+  if (aggregate){
+   agg <- dat2plot %>%
+     group_by(YEAR) %>%
+     dplyr::summarise(Total = sum(value, na.rm = T)) %>% 
+     mutate(Total = ifelse(Total == 0, NA, Total))
+  }
+  
+  p <-   
+    ggplot(dat2plot,
+           aes(x = YEAR)) +
+    geom_bar(data = dat2plot %>% filter(value > 0),
+             aes(y = value, fill = var2bar),
+             stat = "identity") +
+    geom_bar(data = dat2plot %>% filter(value < 0),
+             aes(y = value, fill = var2bar),
+             stat = "identity") +
+    {if(aggregate) geom_line(data = agg,aes(x = YEAR, y = Total),
+                             size = 1)} +
+    geom_hline(size = 0.3, aes(yintercept = 0)) +
+    xlab(xlab) +
+    ylab(ylab) +
+    ggtitle(titl) +
+    guides(fill = guide_legend(ncol = leg_ncol)) +
+    theme_ts()+
+    theme(axis.title   = element_text(size = 16),
+          axis.text    = element_text(size = 15),
+          plot.title   = element_text(size = 20),
+          legend.text  = element_text(size = leg_font_size),
+          legend.title = element_blank()) +
+    annotate("text", label = label, x = 1980, y = y.text,size = 8, colour = "black")
+  
+
+  
+  if(remove_leg) p <- p + theme(legend.position = "none")
+  
+  return(p)
+}
+
+bar_dat <- ecodata::productivity_anomaly %>% 
+  filter(EPU == "MAB")
+
+# mafmc <-plot_stackbarcpts_single(YEAR = bar_dat$Time,
+#                          var2bar = bar_dat$Var,
+#                          x = bar_dat$Value,
+#                          titl = "",
+#                          xlab = "",
+#                          ylab = "Small fish per large fish biomass (anomaly)",
+#                          height = 5.5,
+#                          width = 9,
+#                          filt = TRUE,
+#                          label = "A",
+#                          y.text = 4.5)
+
+# 
+mid <- plot_stackbarcpts_single(YEAR = bar_dat$Time,
+                         var2bar = bar_dat$Var,
+                         x = bar_dat$Value,
+                         titl = "",
+                         xlab = "",
+                         ylab = "Small fish per large fish biomass (anomaly)",
+                         height = 5.5,
+                         width = 9,
+                         filt = FALSE,
+                         label = "",
+                         y.text = 10,
+                         aggregate = TRUE)
+
+mid
+
+```
+]
+
 ## Memo 26: Shark Biomass
 
+Still looking for a source; HMS provided 2017-2019 landings
+
 ## Memo 27: Trawl Species Diversity
+
+Inappropriate to combine Albatross and Bigelow--separate indices?
 
 ---
 ## Memo 28: Ecosystem Risk Score
 
+Options from the literature, or combine existing indicators?
 
 
----
+
+
 ## Memo 29: Thresholds and Inflection Points
 
 
