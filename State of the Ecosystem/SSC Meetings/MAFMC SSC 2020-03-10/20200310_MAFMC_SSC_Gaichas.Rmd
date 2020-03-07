@@ -673,12 +673,16 @@ wcr %>%
 MAFMC requested that this indicator be included (in past years it was in the New England report only).
 
 ---
+.pull-left-30[
 ## Memo 8: PP Source
 
-.pull-left-30[Satellite for all indicators]
+Satellite for all indicators
+]
 
 .pull-right-70[
-![:img Map of 2019 chlorophyll a anomalies by season from satellite data, 60%](EDAB_images/CHL_SEASONAL_ANOMS_2019.png)
+.center[
+![:img Map of 2019 chlorophyll a anomalies by season from satellite data, 80%](EDAB_images/CHL_SEASONAL_ANOMS_2019.png)
+]
 ]
 
 ## Memo 9: Shellfish Growth
@@ -721,7 +725,7 @@ ecodata::cold_pool %>%
   theme_ts()
 ```
 
-Temperature change within the cold pool vs volume or other metric?
+Temperature change within the cold pool vs. volume or other metric?
 ]
 
 ---
@@ -865,7 +869,8 @@ kable(all, format = "html", escape = F, table.attr='class="risktable"',
   row_spec(0, bold = TRUE)
 ```
 
-```{r wind-hab, eval = T, echo = F, fig.height = 4, fig.cap="Map of BOEM existing (black) and proposed (red) lease areas in North (N), Mid (M) and South (S) portions of the coast as of February 2019.", message=FALSE, results=FALSE}
+.pull-left[
+```{r wind-hab, eval = T, echo = F, fig.height = 6, fig.cap="Map of BOEM existing (black) and proposed (red) lease areas in North (N), Mid (M) and South (S) portions of the coast as of February 2019.", message=FALSE, results=FALSE}
 library(rnaturalearthhires)
 library(sf)
 library(raster)
@@ -913,23 +918,126 @@ ggplot() +
   ggtitle("BOEM lease areas")
 
 ``` 
+]
 
+.pull-right[
+## Fishery overlap to be added
+
+## What habitat model outputs most useful?
+]
 ---
 ## Memo 16: Other Social Science Indicators
 
-Website linked
+Included https://www.st.nmfs.noaa.gov/humandimensions/social-indicators/
 
 ## Memo 17: Management Complexity
 
-Project initiated; discuss how this will be used in risk assessment to refine further
+Define how to use indicator in risk assessment to refine further
 
 ## Memo 18: SAFMC and ASMFC Species
 
 .pull-left[
+Splitting out SAFMC, ASMFC removed downward trend
 
+```{r rec-div, fig.width = 5, fig.asp = 0.45, fig.cap = paste0("Recreational effort diversity and diversity of recreational catch in the ",region,".")}
+
+recdat <- ecodata::recdat %>% 
+  filter(EPU == region_abbr) %>% 
+  group_by(Var) %>% 
+  mutate(hline = mean(Value))
+
+ylim_re <- c(2e7, 7e7)
+ylim_rd <- c(1.75,2.75)
+ylim_ra  <- c(1e6, 3.5e6)
+
+rec_div_catch <- recdat %>% 
+  filter(Var == "Recreational Diversity of Catch") %>% 
+  ggplot() + 
+ #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+    # annotate("text", 
+    #        x = label_loc[label_loc$Var == "Recreational anglers",]$xloc,
+    #        y = label_loc[label_loc$Var == "Recreational anglers",]$yloc,
+    #        label = label_loc[label_loc$Var == "Recreational anglers",]$labels,
+    #        size = letter_size)+
+  geom_gls(aes(x = Time, y = Value,
+               group = Var),
+             alpha = trend.alpha, size = trend.size) +
+  geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
+  geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
+
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  ggtitle("Rec. diversity of catch")+
+  ylab(expression("Effective Shannon")) +
+  xlab("Time")+
+  geom_hline(aes(yintercept = hline,
+               color = Var),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts()
+
+rec_div_catch
+
+```
 ]
 
 .pull-right[
+```{r blue-runner, fig.height = 5, fig.cap = "Blue runner presence on Northeast Shelf"}
+blue<-ecodata::blue_runner %>% 
+  separate(Var, c("Var", "Pos"), "L") %>% 
+  spread(., Pos, Value) %>% 
+  rename(Lat = at, 
+         Lon = on) %>% 
+  mutate(Var = recode(Var,
+                      "Positive Blue Runner Tows before 2001 - " = "Prior to 2000",
+                      "Positive Blue Runner Tows 2001 - 2010 - " = "2001-2010", 
+                      "Positive Blue Runner Tows since 2010 - " = "Since 2010"))
+blue$Var <- factor(blue$Var, levels = c("Prior to 2000", "2001-2010", "Since 2010"))
+  
+#EPU shapefile
+epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("GOM","GB", "MAB"))
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -77
+xmax = -65
+ymin = 35
+ymax = 45
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+
+## Map plotting blue runner
+blue_map <- 
+  ggplot() +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
+  geom_point(data = blue, aes(x = Lon, y = Lat, color = Var, shape = Var))+
+  scale_shape_manual(values=c(16, 3, 17))+
+  scale_color_manual(values = c("blue", "black", "red"))+
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  theme_map() +
+  ggtitle("Blue Runner Presence") +
+  xlab("") +
+  ylab("") +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
+        legend.key = element_blank(),
+        axis.title = element_text(size = 11),
+        strip.background = element_blank(),
+        strip.text=element_text(hjust=0),
+        axis.text = element_text(size = 8), 
+        legend.title = element_blank(), 
+        legend.position = c(0.6, 0.15))
+
+blue_map
+```
 
 ]
 
@@ -940,16 +1048,71 @@ Not added because the previous conceptual model was replaced
 ---
 ## Memo 20: Fish Diet Indicators
 
+```{r ma-stomachs, fig.cap= "Stomach fullness anomaly in the Mid-Atlantic Bight.", fig.width=10 }
+fullness <- ecodata::stom_fullness %>%
+  group_by(Var, EPU) %>% ## Remove values with missing data
+  filter(n()> 10) %>% ## at least ten years of data
+  ungroup() %>% 
+  filter(EPU == "MAB") %>%
+  ggplot(aes(x = Time, y = Value)) +
+  geom_line() +
+  #geom_point() +
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_hline(aes(yintercept = 0),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  ggtitle("MAB Stomach fullness") +
+  ylab("Stomach fullness anomaly") +
+  facet_wrap(~Var, ncol = 6)+
+  theme(strip.text=element_text(hjust=0))+
+  theme_ts()
+
+fullness
+
+```
+
+Define objectives for this indicator for further refinement.
 
 ---
 ## Memo 21: Right Whale Calves
 
+```{r NARW-calf-abundance, fig.width = 6, fig.asp = 0.45, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2019."}
 
----
+ecodata::narw %>% 
+  dplyr::filter(Var == "Calves") %>%
+  dplyr::mutate(hline = mean(Value, na.rm = T)) %>% 
+  ggplot() +
+#Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = Value), size = lwd-0.75) +
+  geom_point(aes(x = Time, y = Value), size = pcex-0.75) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  guides(color = FALSE) +
+  ggtitle("NARW calf abundance") +
+  ylab(expression("Abundance (n)")) +
+  xlab("Time")+
+  geom_hline(aes(yintercept = hline),
+           color = "black",
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts()
+```
+
 ## Memo 22: Distinguish Managed Species
 
-## Memo 23: Marine Mammal Consumptuon
+Council-managed species separated in landings plots; see Appendix table.
 
+## Memo 23: Marine Mammal Consumption
+
+Seal diet information added, but inadequate information to estimate consumption.
+
+---
 ## Memo 24: Small Pelagic Abundance
 
 
