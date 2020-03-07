@@ -771,6 +771,35 @@ High precipitation let to extreme low salinity event in spring 2019
 ---
 ## Memo 14: Link Environment and Society
 
+*Primary Production Required to support landings*
+.pull-left[
+```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", fig.width = 4, fig.asp = 0.45}
+ecodata::ppr %>% 
+  group_by(EPU) %>% 
+  mutate(hline = mean(Value)) %>% 
+  filter(EPU == "MAB") %>% 
+  ggplot() +
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_point(aes(x = Time, y = Value))+
+  geom_line(aes(x = Time, y = Value))+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty)+
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  expand_limits(y=0) +
+  ggtitle("Primary Production Required")+
+  ylab("Proportion of Total PPD")+
+  theme(axis.title.y = element_text(size = 8))+
+  theme_ts()
+```
+]
+
+.pull-right[
+![:img species included in 80% of landings in the Mid Atlantic](EDAB_images/composition-MAB-0_80.png)
+]
 
 ---
 ## Memo 15: Wind Energy Habitat Overlap
