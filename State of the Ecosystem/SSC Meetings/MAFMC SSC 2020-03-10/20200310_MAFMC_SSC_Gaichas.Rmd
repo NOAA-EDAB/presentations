@@ -1465,7 +1465,63 @@ mab_map
 ---
 ## Memo 29: Thresholds and Inflection Points
 
+Individual indicators or using many indicators at once? Single indicator example:  
+.center[
+```{r gom-heatwave, eval= T, echo = F, fig.width = 8, fig.asp = .35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) in the Gulf of Maine ."}
+cumu <- ecodata::heatwave %>% 
+  filter(Var == "cumulative intensity") %>% 
+  mutate(Var = recode(Var, "cumulative intensity" = "Cumulative Intensity (degree C x days)"))
 
+maxin <- ecodata::heatwave %>% 
+  filter(Var == "maximum intensity") %>% 
+  group_by(Time, EPU, Var, Units) %>% 
+  summarise(Value = max(Value)) %>% 
+  ungroup() %>% 
+  mutate(Var = recode(Var, "maximum intensity" = "Maximum Intensity (degree C)"))
+
+hw<- cumu %>%
+  rbind(maxin) %>% 
+  group_by(Var, EPU) %>% 
+  mutate(hline = mean(Value))
+
+gom.hw<-hw %>% filter(EPU == "GOM") %>% 
+  ggplot() +
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = Value)) +
+  geom_point(aes(x = Time, y = Value)) +
+  geom_gls(aes(x = Time, y = Value)) +
+  ylab("") +
+  xlab(element_blank())+
+  ggtitle("Gulf of Maine") +
+  scale_x_continuous(expand = c(0.01, 0.01))+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty)+
+  facet_wrap(~Var, scales = "free") +
+  theme_ts()+
+  theme(strip.text=element_text(hjust=0,
+                                face = "italic"), 
+        axis.title.y = element_text(angle = 90))
+
+gom.hw
+
+```
+]
+
+## Lots of academic work on this: what is a useful starting point?
+
+.contrib[
+Large, S. I., Fay, G., Friedland, K. D., and Link, J. S. 2013. Defining trends and thresholds in responses of ecological indicators to fishing and environmental pressures. ICES Journal of Marine Science, 70: 755–767.
+
+Large, S. I., Fay, G., Friedland, K. D., and Link, J. S. 2015. Quantifying Patterns of Change in Marine Ecosystem Response to Multiple Pressures: e0119922. PLoS One, 10. http://search.proquest.com/docview/1664222461/abstract/120C1207C54548BEPQ/1 (Accessed 14 October 2016).
+
+Samhouri, J. F., Andrews, K. S., Fay, G., Harvey, C. J., Hazen, E. L., Hennessey, S. M., Holsman, K., et al. 2017. Defining ecosystem thresholds for human activities and environmental pressures in the California Current. Ecosphere, 8: e01860.
+
+
+]
 
 ---
 ## SOE Take Home Messages
