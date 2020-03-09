@@ -572,8 +572,8 @@ Work is in progress to to bolster monitoring and to develop a baseline climatolo
 A time series indicator may be several years away. Until then, we seek feedback on what available information (for example, initial monitoring<sup>2</sup>) would be useful to the Councils right now.
 
 .footnote[
-[1] [https://sab.noaa.gov/sites/SAB/Meetings/2019_Documents/Dec_Meeting/2020%20OA%20Research%20Plan%20DRAFT%20External%20Review.pdf]
-[2] [https://www.aoml.noaa.gov/ocd/ocdweb/occ_oa.html]
+[1] https://sab.noaa.gov/sites/SAB/Meetings/2019_Documents/Dec_Meeting/2020%20OA%20Research%20Plan%20DRAFT%20External%20Review.pdf
+[2] https://www.aoml.noaa.gov/ocd/ocdweb/occ_oa.html
 ]
 ---
 ## Memo 7: Gulf Stream and Labrador Current
@@ -1167,7 +1167,7 @@ p3<-agg_bio %>%
 p3
 ```
 
-Improve with VAST? Other data sources and suggestions?
+Improve with VAST? Other data sources and suggestions? Note forage energy density:
 
 ```{r forage, eval=T, echo=F}
 
@@ -1600,9 +1600,6 @@ risk.sppsector %>%
 ```
 
 ---
-## EAFM Conceptual Model
-
----
 ## External Resources
 
 * [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
@@ -1618,27 +1615,25 @@ risk.sppsector %>%
 * Slides available at https://sgaichas.github.io/soe-presentation
 
 ---
-## Contributors - UPDATE!!! THANK YOU!
+## Contributors - THANK YOU!
 
 The New England and Mid-Atlantic SOEs made possible by (at least) 38 contributors from 8 intstitutions 
 
 .pull-left[
 .contrib[
 Donald Anderson (Woods Hole Oceanographic Institute) <br>
-Amani Bassyouni (Virginia Department of Health)<br>
-Lisa Calvo (Rutgers)<br>
-Matthew Camisa (MA Division of Marine Fisheries) <br>
+Andy Beet<br>
 Patricia Clay<br>
 Lisa Colburn<br>
 Geret DePiper<br>
-Deb Duarte<br>
 Michael Fogarty<br>
 Paula Fratantoni <br>
 Kevin Friedland<br>
 Sarah Gaichas<br>
+Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
 James Gartland (Virginia Institute of Marine Science)<br>
-Heather Haas<br>
-Sean Hardison <br>
+Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br> 
+Sean Hardison<br>
 Kimberly Hyde<br>
 Terry Joyce (Woods Hole Oceanographic Institute)<br>
 John Kosik<br>
@@ -1650,8 +1645,9 @@ Scott Large
 .pull-right[
 .contrib[
 Don Lyons (National Audubon Society)<br>
-Loren Kellogg<br>
-David Kulis (Woods Hole Oceanographic Institute)<br>
+Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
+Young-Oh Kwon (Woods Hole Oceanographic Institute)<br> 
+Zhuomin Chen (Woods Hole Oceanographic Institute)<br>
 Sean Lucey<br>
 Chris Melrose<br>
 Ryan Morse<br>
@@ -1659,14 +1655,12 @@ Kimberly Murray<br>
 Chris Orphanides<br>
 Richard Pace<br>
 Charles Perretti<br>
-Karl Roscher (Maryland Department of Natural Resources)<br>
 Vincent Saba<br>
 Laurel Smith<br>
 Mark Terceiro<br>
 John Walden<br>
 Harvey Walsh<br>
-Mark Wuenschel<br>
-Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program)
+Mark Wuenschel
 ]
 ]
 
@@ -1674,7 +1668,7 @@ Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program)
 ![:img NOAA Fisheries IEA logo, 40%](EDAB_images/noaa-iea.png)
 ]
 ---
-## Appendix: General feeding guilds
+## Appendix: Updated feeding guilds
 
 ```{r guilds}
 # new table with all species listed by management entity
@@ -1704,5 +1698,3 @@ knitr::kable(df, booktabs = TRUE, caption = 'Feeding guilds and management bodie
   collapse_rows(columns = 1, latex_hline = "major", valign = "middle")
 ```
 
----
-## Appendix: 
