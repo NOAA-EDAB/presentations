@@ -252,24 +252,24 @@ mng_obj %>%
 
 ```{r gb-biomass-ne, fig.cap = paste0("Spring (left) and fall (right) NEFSC surveyed biomass on Georges Bank. The shaded area around each annual mean represents 2 standard deviations from the mean."), fig.width=8, fig.asp = 0.75}
 
-agg<-ecodata::agg_bio %>% 
-  filter(!str_detect(Var, "Apex|inshore|offshore|managed|NEFMC|MAFMC|JOINT|NA")) %>% #remove unused datasets
-  separate(Var, c("feeding.guild", "season", "Biomass", "Var1"), sep = " ") %>% 
-  unite("Var", feeding.guild:season, sep = " ") %>% 
-  mutate(stat = recode(Var1, Index = "Mean", 
+agg<-ecodata::aggregate_biomass %>% 
+  dplyr::filter(!stringr::str_detect(Var, "Apex|inshore|offshore|managed|NEFMC|MAFMC|JOINT|NA")) %>% #remove unused datasets
+  tidyr::separate(Var, c("feeding.guild", "season", "Biomass", "Var1"), sep = " ") %>% 
+  tidyr::unite("Var", feeding.guild:season, sep = " ") %>% 
+  dplyr::mutate(stat = recode(Var1, Index = "Mean", 
                       Standard = "SD")) %>% 
   dplyr::select(-Biomass, -Var1) %>% 
-  group_by(Var, Time, EPU) %>% 
-  spread(stat, Value) %>% 
-  mutate(upper = Mean + (2*SD), 
+  dplyr::group_by(Var, Time, EPU) %>% 
+  tidyr::spread(stat, Value) %>% 
+  dplyr::mutate(upper = Mean + (2*SD), 
          lower = Mean - (2*SD))
 
 
-agg_bio<-agg %>% filter(EPU == epu_abbr,
+agg_bio<-agg %>% dplyr::filter(EPU == epu_abbr,
          Time >= 1968) %>% 
-  group_by(Var, EPU) %>% 
-  mutate(hline = mean(Mean, na.rm = T)) %>% 
-  ungroup() 
+  dplyr::group_by(Var, EPU) %>% 
+  dplyr::mutate(hline = mean(Mean, na.rm = T)) %>% 
+  dplyr::ungroup() 
 
 agg_bio$Var <- factor(agg_bio$Var,levels = c("Piscivore Spring",
                                                    "Piscivore Fall",
