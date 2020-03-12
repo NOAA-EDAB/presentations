@@ -250,7 +250,7 @@ mng_obj %>%
 ---
 ## Memo 3: Indicator uncertainty
 
-```{r gb-biomass-ne, fig.cap = paste0("Spring (left) and fall (right) NEFSC surveyed biomass on Georges Bank. The shaded area around each annual mean represents 2 standard deviations from the mean."), fig.width=8, fig.asp = 0.75}
+```{r gb-biomass-ne, fig.cap = paste0("Spring (left) and fall (right) NEFSC surveyed biomass on Georges Bank. The shaded area around each annual mean represents 2 standard deviations from the mean."), fig.width=10, fig.asp = 0.75}
 
 agg<-ecodata::aggregate_biomass %>% 
   dplyr::filter(!stringr::str_detect(Var, "Apex|inshore|offshore|managed|NEFMC|MAFMC|JOINT|NA")) %>% #remove unused datasets
@@ -265,7 +265,7 @@ agg<-ecodata::aggregate_biomass %>%
          lower = Mean - (2*SD))
 
 
-agg_bio<-agg %>% dplyr::filter(EPU == epu_abbr,
+agg_bio<-agg %>% dplyr::filter(EPU %in% c(epu_abbr),
          Time >= 1968) %>% 
   dplyr::group_by(Var, EPU) %>% 
   dplyr::mutate(hline = mean(Mean, na.rm = T)) %>% 
@@ -729,7 +729,7 @@ High precipitation let to extreme low salinity event in spring 2019
 
 *Primary Production Required to support landings (see also Memo 5, Memo 15)*
 .pull-left[
-```{r ppr-ne, fig.cap="Primary production required to support the commercial landings on Georges Bank (left) and in the Gulf of Maine (right). Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", fig.width = 8, fig.asp = 0.25}
+```{r ppr-ne, fig.cap="Primary production required to support the commercial landings on Georges Bank (left) and in the Gulf of Maine (right). Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", fig.width = 4, fig.asp = 0.75}
 
 ecodata::ppr %>% 
   group_by(EPU) %>% 
@@ -747,7 +747,8 @@ ecodata::ppr %>%
            linetype = hline.lty)+
   scale_x_continuous(expand = c(0.01, 0.01)) +
   expand_limits(y=0) +
-  facet_wrap(. ~ EPU, labeller = 
+  facet_wrap(. ~ EPU, ncol = 1,
+             labeller = 
                labeller(EPU = c(GB = "Georges Bank", 
                                 GOM = "Gulf of Maine")))+
   ggtitle("Primary Production Required")+
@@ -829,9 +830,9 @@ cowplot::plot_grid(engbar,
 ```
 ]
 
-Increase in highly engaged New Engloand communities;  changing engagement score driven by the changes in value landed for primary species such as sea scallops and lobsters? 
+Increase in highly engaged New England communities; changing score driven by scallop and lobster value? 
 
-```{r bennet-ne, fig.cap = paste0("Revenue change from the 2015 base year in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial benthos landings on Georges Bank (left) and for commercial benthivore landings in the Gulf of Maine (right)"), fig.height = 3, fig.width=8}
+```{r bennet-ne, fig.cap = paste0("Revenue change from the 2015 base year in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial benthos landings on Georges Bank (left) and for commercial benthivore landings in the Gulf of Maine (right)"), fig.height = 3.5, fig.width=10}
 
 #Filter data into two dataframes for plotting
 
@@ -1055,7 +1056,7 @@ Define how to use indicator in risk assessment to refine further
 ## Memo 18: SAFMC and ASMFC Species
 
 .pull-left[
-Splitting out SAFMC, ASMFC did not affect New England catch diversity trend
+No effect on NE rec. catch diversity trend
 
 ```{r rec-div, fig.width = 5, fig.asp = 0.45, fig.cap = paste0("Recreational effort diversity and diversity of recreational catch in the ",region,".")}
 
@@ -1341,9 +1342,9 @@ kable(d, format = "html", escape = F, #table.attr='class="risktable"',
 ```
 ---
 ## Memo 25: Young of Year Index
-.center[
-```{r GOM-recruitment, fig.cap = "Small fish per large fish biomass anomaly in the Gulf of Maine. Point cursor to a bar for species name; this will highlight that species in all years.", fig.width = 8, fig.asp = .55}
-
+.pull-left[
+```{r GOM-recruitment, fig.width = 8, fig.height = 5}
+#fig.cap = "Small fish per large fish biomass anomaly in the Gulf of Maine.", 
 #### Adjust plot properties -------------------------------
 adjustAxes <- 
   ggplot2::theme(axis.title   = element_text(size = 18),
@@ -1366,7 +1367,8 @@ plot_stackbarcpts_single <- function(YEAR, var2bar,
                                      filt = TRUE,
                                      label = label,
                                      y.text = y.text,
-                                     aggregate = FALSE) {
+                                     aggregate = FALSE, 
+                                     intplot = FALSE) {
   
   dat2bar <- data.frame(YEAR, var2bar,
                         x)
@@ -1435,12 +1437,20 @@ plot_stackbarcpts_single <- function(YEAR, var2bar,
   p <-   
     ggplot(dat2plot,
            aes(x = YEAR)) +
-    geom_bar(data = dat2plot %>% filter(value > 0),
+    {if(intplot) geom_bar_interactive(data = dat2plot %>% filter(value > 0),
+                           aes(y = value, fill = var2bar,
+                               tooltip =  var2bar, data_id =  var2bar),
+                           stat = "identity")} +
+    {if(intplot) geom_bar_interactive(data = dat2plot %>% filter(value < 0),
+                             aes(y = value, fill = var2bar,
+                                 tooltip =  var2bar, data_id =  var2bar),
+                             stat = "identity")} +
+    {if(!intplot) geom_bar(data = dat2plot %>% filter(value > 0),
              aes(y = value, fill = var2bar),
-             stat = "identity") +
-    geom_bar(data = dat2plot %>% filter(value < 0),
+             stat = "identity")} +
+    {if(!intplot) geom_bar(data = dat2plot %>% filter(value < 0),
              aes(y = value, fill = var2bar),
-             stat = "identity") +
+             stat = "identity")} +
     {if(aggregate) geom_line(data = agg,aes(x = YEAR, y = Total),
                              size = 1)} +
     geom_hline(size = 0.3, aes(yintercept = 0)) +
@@ -1455,8 +1465,6 @@ plot_stackbarcpts_single <- function(YEAR, var2bar,
           legend.text  = element_text(size = leg_font_size),
           legend.title = element_blank()) +
     annotate("text", label = label, x = 1980, y = y.text,size = 8, colour = "black")
-  
-
   
   if(remove_leg) p <- p + theme(legend.position = "none")
   
@@ -1485,6 +1493,31 @@ gom <- plot_stackbarcpts_single(YEAR = bar_dat$Time,
 #gom
 ggiraph(code = print(gom), pointsize = 14, width_svg = 8, height_svg = 6)
 
+```
+]
+
+.pull-right[
+```{r GB-recruitment, fig.width = 8, fig.height = 5}
+#fig.cap = "Small fish per large fish biomass anomaly on Georges Bank. Point cursor to a bar for species name; this will highlight that species in all years.",
+## GB
+bar_dat <- ecodata::productivity_anomaly %>% 
+  filter(EPU == "GB")
+gb <- plot_stackbarcpts_single(YEAR = bar_dat$Time,
+                         var2bar = bar_dat$Var,
+                         x = bar_dat$Value,
+                         titl = "Georges Bank",
+                         xlab = "",
+                         ylab = "Small fish per large fish biomass (anomaly)",
+                         height = 5.5,
+                         width = 9,
+                         filt = FALSE,
+                         label = "",
+                         y.text = 10,
+                         aggregate = TRUE,
+                         intplot = TRUE,
+                         remove_leg = TRUE)
+#gb
+ggiraph(code = print(gb), pointsize = 14, width_svg = 8, height_svg = 6)
 ```
 ]
 
@@ -1567,7 +1600,7 @@ ymin = 39
 ymax = 45
 xlims <- c(xmin, xmax)
 ylims <- c(ymin, ymax)
-hw <- ecodata::hw_anom_gridded %>% 
+hw <- ecodata::heatwave_anom_gridded %>% 
   filter(EPU == "GB")
 
 gb_map <- 
@@ -1664,182 +1697,44 @@ Tam, J. C., Link, J. S., Large, S. I., Andrews, K., Friedland, K. D., Gove, J., 
 ---
 ## SOE Take Home Messages  
 
-  * Primary production required to support commerical fisheries is declining along with landings and revenue (as primary production has increased) 
+  * Primary production required to support commerical fisheries has declined since 2000
 --
 
-  * Commerical fishing engagement has declined for medium-highly engaged communities 
+  * Commerical fishing engagement has increased in some communities, and New England commercial fisheries catch and revenue remain dependent on single species (lobster and scallops)
 --
 
-  * Recreational retained catch was lowest observed in 2018, and effort has been declining along with fleet effort diversity 
+  * Commercial catch and revenue increased in 2019 (due to lobster and scallops) 
 --
   
-  * Recreational catch diversity has been maintained by SAFMC/ASMFC species 
+  * Habitat models identified species most likely to ocurr in wind lease areas; habitat has improved in wind lease areas for NEFMC species except for Atlantic herring
 --
   
-  * Habitat models identified species most likely to ocurr in wind lease areas; habitat has improved in wind lease areas for these MAFMC species 
---
-  
-  * While aggregate fish biomass is stable over time, shifts to the northeast and into deeper water continue 
+  * While aggregate fish biomass is mainly stable over time (aside from high haddock), shifts to the northeast and into deeper water continue 
 --
   
   * Forage fish energy content varies by season and year; herring energy content may be half what it was in the 1980s-90s 
 --
   
-  * Heavy rains put unprecedented fresh water and nutrients into Chesapeake Bay in 2018-2019
---
-  
   * Gulf stream instability produces more warm core rings with higher likelihood of warm salty water and associated species on the shelf
 --
   
-  * Marine surface water heatwaves are increasing in duration and intensity, bottom temperatures and the cold pool are warming
+  * Almost no cold Labrador slope water has entered the Gulf of Maine for the last 3 years
+
+---
+## SOE Take Home Messages 
+
+  * The Gulf of Maine has changed over the past decade
+  
+    * Marine surface water heatwaves are increasing in duration and intensity, bottom temperatures and surface water is warming
+    * Small zooplankton are more abundant than large fatty zooplankton favored by right whales
+    * Spring blooms below average since 2013
 --
   
-  * Warmer waters increase nutrient recycling and summer primary production
-
----
-## EAFM Risk Assessment update (I)
-
-Management elements updated from original 2017 risk assessment; added risk rankings for chub mackerel and unmanaged forage fish. 
-
-### Decreased Risk (5)
-
-  * Regulatory complexity risk for summer flounder decreased from high to med-high due to increased consistency in recent years
-  * Technical interaction risk for commercial scup decreased from med-high to low-med because no accountability measures have been triggered
-  * Allocation risks for recreational Atlantic mackerel, commercial longfin squid, and commercial spiny dogfish dropped from high to low due to changes in management approaches
-
-### Increased Risk (15)
-
-  * Bluefish status went from not overfished to overfished
-  * Increased discards (5), reduced management control (4), allocation (3), other ocean uses (1), regulatory complexity (1)
+  * Georges Bank has also experienced warming and heat waves over the past decade
   
----
-## EAFM Risk Assessment update (II)
-
-### Re-evaluate Risk (2)
-
-  * Chesapeake Bay water quality
-  
-  * Recreational retained catch/seafood production
-
-### Potential New Risk Indicators (3)
-
-  * Commercial fishery engagement time series
-  
-  * Recreational diversity indices (fleet and catch)
-  
-  * Other ocean uses: fish habitat overlap with wind energy lease areas
-
----
-## EAFM Risk Assessment: 2020 update
-*Species level risk elements*
-```{r sptable}
-#tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
-
-# spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
-risk.species<-data.frame(
-  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
-  Assess  = c("l", "l", "l",  "l", "l", "l",  "l", "lm", "lm", "l", "h", "l", "lm", "h", "na", "na"),
-  Fstatus = c("l", "l", "l", "l", "l", "h", "l", "lm", "lm", "l", "h", "l", "l", "lm", "na", "na"),
-  Bstatus = c("l", "l", "lm", "l", "l", "h", "l", "lm", "lm", "lm", "mh", "h", "lm", "lm", "na", "na"),
-  FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
-  FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
-  FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
-  Climate = c("h", "mh", "lm", "lm", "mh", "lm", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
-  DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
-  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na")#,
-#  OffHabitat = c("na", "na", "l", "l", "l", "l", "l", "l", "h", "na", "na", "na", "l", "l", "na", "na")#,
-)
-
-# these elements were removed by the council
-#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
-#  FoodSafe = c(),
-
-# one column test
-# risk.species %>%
-#   mutate(Fstatus = 
-#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
-#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
-
-#convert to longer text for consistency and display in html table
-risk.species <- risk.species %>%
-     mutate_at(vars(-Species), function(x){
-       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
-     as.data.frame()
-
-#generalize to all
-risk.species %>%
-  mutate_at(vars(-Species), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 14) 
-```
-
-*Ecosystem level risk elements*
-```{r ecotable}
-#tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
-
-risk.eco<-data.frame(
-  System = c("Mid-Atlantic"),
-  EcoProd = c("lm"),
-  #EcoDiv = c("lm"),
-  CommRev = c("mh"),
-  RecVal = c("h"),
-  FishRes1 = c("l"),
-  FishRes4 = c("mh"),
-  #CommJobs = c("mh"),
-  #RecJobs = c("l"),
-  FleetDiv = c("l"),
-  Social = c("lm"),
-  ComFood = c("h"),
-  RecFood = c("mh")
-)
-
-#convert to longer text for consistency and display in html table
-risk.eco <- risk.eco %>%
-     mutate_at(vars(-System), function(x){
-       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
-     as.data.frame()
-
-#make table
-risk.eco %>%
-  mutate_at(vars(-System), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 14) 
-
-```
-
----
-## EAFM Risk Assessment: 2020 update
-*Species and Sector level risk elements*
-```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
-#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
-
-risk.sppsector<-data.frame(
-  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
-  MgtControl = c(1,1,3,2,2,1,4,4,2,1,1,1,2,9,1,1,1,2,1,1,1,1,1,9),
-  TecInteract = c(1,1,1,3,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
-  OceanUse = c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
-  RegComplex = c(1,1,3,3,3,3,4,3,1,4,4,4,2,1,1,3,3,2,2,1,3,2,1,9),
-  Discards = c(3,3,4,3,3,3,4,4,1,2,3,4,1,1,1,1,1,3,2,1,2,1,1,9),
-  Allocation = c(1,1,4,4,4,4,4,4,2,4,1,2,4,1,1,4,4,4,4,1,3,1,1,9) 
-)
-
-
-#convert to text for consistency
-risk.sppsector <- risk.sppsector %>%
-     mutate_at(vars(-Species), function(x){
-       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na")}) %>%
-     as.data.frame()
-
-#make table
-risk.sppsector %>%
-  mutate_at(vars(-Species), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 13) 
-
-```
+    * Surrounded by warm core rings in summer 2019
+    * Small zooplankton also dominant here
+    * Average phytoplankton biomass in 2019
 
 ---
 ## External Resources
