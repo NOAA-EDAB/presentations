@@ -729,11 +729,12 @@ High precipitation let to extreme low salinity event in spring 2019
 
 *Primary Production Required to support landings (see also Memo 5, Memo 15)*
 .pull-left[
-```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", fig.width = 5, fig.asp = 0.45}
+```{r ppr-ne, fig.cap="Primary production required to support the commercial landings on Georges Bank (left) and in the Gulf of Maine (right). Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", fig.width = 8, fig.asp = 0.25}
+
 ecodata::ppr %>% 
   group_by(EPU) %>% 
   mutate(hline = mean(Value)) %>% 
-  filter(EPU == "MAB") %>% 
+  filter(EPU != "MAB") %>% 
   ggplot() +
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
@@ -746,9 +747,11 @@ ecodata::ppr %>%
            linetype = hline.lty)+
   scale_x_continuous(expand = c(0.01, 0.01)) +
   expand_limits(y=0) +
+  facet_wrap(. ~ EPU, labeller = 
+               labeller(EPU = c(GB = "Georges Bank", 
+                                GOM = "Gulf of Maine")))+
   ggtitle("Primary Production Required")+
   ylab("Proportion of Total PPD")+
-  theme(axis.title.y = element_text(size = 8))+
   theme_ts()
 ```
 
@@ -763,20 +766,22 @@ ecodata::ppr %>%
 ]
 
 .pull-right[
-![:img species included in 80% of landings in the Mid Atlantic](EDAB_images/composition-MAB-0_80.png)
+*Georges Bank species comprising 80% of landings*
+![:img species included in 80% of landings on Georges Bank](EDAB_images/composition-GB-0_80.png)
 ]
 
 ---
 ## New Indicator: Fishery links to society
 
-.center[
-```{r MAB-comm-engagement-trend, fig.width = 10, fig.asp = 0.4, fig.cap = "Commercial engagement scores (total pounds landed, value landed, commercial permits, and commercial dealers in a community) for Mid-Atlantic fishing communities, 2004-2018."}
+.center[ 
+
+```{r NE-comm-eng, message=F, fig.width = 10, fig.asp = 0.4, fig.cap= "Commercial engagement scores (total pounds landed, value landed, commercial permits, and commercial dealers in a community)  for New England fishing communities, 2004-2018."}
 
 eng<-ecodata::engagement %>% 
   filter(!Var == "med.high.scores")
 eng$Var <- factor(eng$Var, levels = c("%High","%Medium High","%Moderate", "%Low"))
 
-engbar <- eng %>% filter(EPU == "MA") %>% 
+engbar <- eng %>% filter(EPU == "NE") %>% 
   ggplot()+
    #ylim(0.8, NA)+
   geom_bar(aes(x = Time, y = Value, 
@@ -787,7 +792,7 @@ engbar <- eng %>% filter(EPU == "MA") %>%
   #             label = paste0(Value,"%")), size=4) +
   theme(#legend.position="bottom", legend.direction="horizontal",
         legend.title = element_blank())+
-  coord_cartesian(ylim=c(0.85,1))+
+  coord_cartesian(ylim=c(0.75,1))+
   xlab("Time") +
   ylab("% Communities in each category (Low to High)")+
   ggtitle("Commercial Engagement")+
@@ -796,7 +801,7 @@ engbar <- eng %>% filter(EPU == "MA") %>%
 
 mhtrend <- ecodata::engagement %>% 
   filter(Var == "med.high.scores", 
-         EPU == "MA") %>% 
+         EPU == "NE") %>% 
   mutate(hline = mean(Value)) %>% 
   ggplot()+
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
@@ -813,7 +818,7 @@ mhtrend <- ecodata::engagement %>%
            alpha = hline.alpha,
            linetype = hline.lty) +
  theme_ts()
-  
+
 cowplot::plot_grid(engbar, 
                    mhtrend,
                    ncol = 2, 
@@ -824,123 +829,108 @@ cowplot::plot_grid(engbar,
 ```
 ]
 
-Fewer highly engaged Mid-Atlantic communities; engagement scores for medium-highly engaged communities decreasing, linked to landings/revenue? 
+Increase in highly engaged New Engloand communities;  changing engagement score driven by the changes in value landed for primary species such as sea scallops and lobsters? 
 
-.pull-left[
-```{r total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red)."), fig.width = 5, fig.asp = 0.45}
-#Get data for plotting
+```{r bennet-ne, fig.cap = paste0("Revenue change from the 2015 base year in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial benthos landings on Georges Bank (left) and for commercial benthivore landings in the Gulf of Maine (right)"), fig.height = 3, fig.width=8}
 
-#Define constants for figure plot
-series.col <- c("indianred","black")
+#Filter data into two dataframes for plotting
 
-#Managed landings
-managed_landings <- ecodata::comdat  %>%
-  filter(str_detect(Var, paste0(council_abbr," managed species - Landings weight|JOINT managed species - Landings weight")),
-         !str_detect(Var, "Other"),
-         Time >= 1986,
-         EPU == epu_abbr)
-
-#Total landings
-total_landings <- ecodata::comdat  %>%
-  filter(!str_detect(Var, "managed species"),
-         !str_detect(Var, "Other"),
-         str_detect(Var, "Landings"),
-         Time >= 1986,
-         EPU == epu_abbr)
-
-total_landings_agg <- total_landings %>%
-  group_by(Time) %>%
-  dplyr::summarise(Value = sum(Value)) %>% 
-  mutate(Var = "Total",hline = mean(Value))
-managed_landings_agg <- managed_landings %>%
-  group_by(Time) %>%
-  dplyr::summarise(Value = sum(Value)) %>% 
-  mutate(Var = "Managed",hline = mean(Value))
-
-landings_agg <- rbind(total_landings_agg, managed_landings_agg)
+indicators <- ecodata::bennet %>% 
+  filter(!EPU == "MAB") %>% 
+  filter(stringr::str_detect(Var, pattern="Benth"),
+         #!Var == "Total Revenue Change - Bennet", 
+         !Time < 1985) %>% 
+  mutate(Var, Var = plyr::mapvalues(Var, from = c("Benthos Value Index - Bennet","Benthos Price Index - Bennet","Benthivore Value Index - Bennet","Benthivore Price Index - Bennet"),
+                                    to = c("Benthos Volume","Benthos Price","Benthivore Volume","Benthivore Price"))) 
+revchange1<-indicators %>% 
+  group_by(Time, EPU) %>% 
+  summarise(revchange.line = sum(Value))
 
 
-ggplot(data = landings_agg)+
+revchange <- ecodata::bennet %>% 
+  filter(!EPU == "MAB",
+         Var %in% c("Total Revenue Change - Bennet"),
+         !Time<1985)
+revchange.gom<-revchange1 %>% 
+  filter(EPU == "GOM") 
+revchange.gb<-revchange1 %>% 
+  filter(EPU == "GB")
+#custom bar fill color (color-blind friendly)
+ind_fill <- c("#a6cee3", "#b2df8a")
+
+#limits
+y.lim <- c(-350,350)
+
+#plot
+
+gom_bennet <- indicators %>% 
+  filter(EPU == "GOM", 
+         stringr::str_detect(Var, pattern="Benthivore")) %>% 
+ggplot()+
   
   #Highlight last ten years
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_gls(aes(x = Time, y = Value,
-               group = Var),
-             alpha = trend.alpha, size = trend.size) +
-  geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
-  geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
+      ymin = -Inf, ymax = Inf)+
+  #guides(color = F, fill = F)+
+  geom_bar(aes(x=Time, y= Value, fill = Var), stat="identity")+
+  scale_fill_manual(name = "Indicators", values = ind_fill, guide = FALSE) +
+  geom_line(data = revchange.gom, 
+            aes(x = Time, y = revchange.line, colour = "$"))+
+  scale_colour_grey(name ="Revenue Change") +
+  ggtitle("Gulf of Maine Benthivore Component")+
+  labs(y="Value $1,000,000 ($2015)") +
+  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
+  scale_y_continuous(breaks = seq(y.lim[1], y.lim[2], by = 100), limits = y.lim,
+                     expand = c(0.01, 0.01)) +
+  theme_ts() +
+  theme(title = element_text(size = 10))+
+  theme(legend.position="bottom", legend.direction = "horizontal",
+        legend.background = element_rect(fill = "transparent"), 
+        legend.title = element_blank(), legend.text = element_blank())
 
-  scale_y_continuous(labels = function(l){trans = l / 1000})+
-  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
-  scale_color_manual(values = series.col, aesthetics = "color")+
-  guides(color = FALSE) +
-  ggtitle("Total Landings") +
-  ylab(expression("Landings (10"^3*"metric tons)")) +
-
-  geom_hline(aes(yintercept = hline,
-               
-               color = Var),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty) +
-  
-  theme(axis.title.y = element_text(size = 9))+
-    theme_ts()
-
-
-```
-]
-
-.pull-right[
-```{r comm-revenue, fig.width = 5, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."}
-
-#Filtering and aggregation step
-rev_agg <- ecodata::comdat %>% 
-  filter(str_detect(Var, "Revenue"),
-         !str_detect(Var, "prop|Other|NEFMC"), #Remove proportions, "Other" category species, NEFMC managed species in MAB
-         EPU == epu_abbr,
-         Time >= 1986) %>% 
-  mutate(Status = ifelse(str_detect(Var, "Revenue weight"), 
-                         "Managed","Total")) %>% #Create groups for aggregation
-  group_by(Status, Time) %>% 
-  dplyr::summarise(Total = sum(Value)) %>% 
-  group_by(Status) %>% 
-  mutate(hline = mean(Total))
-
-series.col <- c("indianred","black")
-
-#Plotting
-ggplot(data = rev_agg) +
+gb_bennet <- indicators %>% 
+  filter(EPU == "GB", 
+         stringr::str_detect(Var, pattern="Benthos")) %>% 
+ggplot()+
   
   #Highlight last ten years
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf)+  
+      ymin = -Inf, ymax = Inf)+
   
-  #lines
-  geom_gls(aes(x = Time, y = Total,
-               group = Status),
-             alpha = trend.alpha, size = trend.size) +
-  geom_line(aes(x = Time, y = Total, color = Status), size = lwd) +
-  geom_point(aes(x = Time, y = Total, color = Status), size = pcex) +
+  geom_bar(aes(x=Time, y= Value, fill = Var), stat="identity")+
+  scale_fill_manual(name = "Indicators", values = ind_fill) +
+  geom_line(data = revchange.gb, 
+            aes(x = Time, y = revchange.line, colour = "$"))+
+  scale_colour_grey(name ="Revenue Change") +
+  ggtitle("Georges Bank Benthos Component")+
+  labs(y="") +
+  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
+  scale_y_continuous(breaks = seq(y.lim[1], y.lim[2], by = 100), limits = y.lim, expand = c(0.01, 0.01)) +
+  theme_ts() +
+  theme(title = element_text(size = 10)) +
+  theme(legend.position="bottom", legend.direction = "horizontal",
+        legend.background = element_rect(fill = "transparent"), 
+        legend.title = element_text(size = 8), 
+        legend.text = element_text(size = 8)) +
+  guides(color = guide_legend(order = 1),
+         fill = guide_legend(order = 0))
 
-  #axes
-  scale_y_continuous(labels = function(l){trans = l / 1000000})+
-  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
-      scale_color_manual(values = series.col, aesthetics = "color")+
-  guides(color = FALSE) +
-  ggtitle("Total Revenue") +
-  ylab(expression("Revenue (10"^6*"USD)")) +
-  geom_hline(aes(yintercept = hline,
-               color = Status),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty) +
-  theme_ts()
+#cowplot::plot_grid(gom_bennet, gb_bennet, ncol = 2, rel_widths = c(0.7,1))
+
+g_legend<-function(a.gplot){
+  tmp <- ggplot_gtable(ggplot_build(a.gplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)}
+mylegend<-g_legend(gb_bennet)
+p3 <- gridExtra::grid.arrange(gridExtra::arrangeGrob(gb_bennet + theme(legend.position="none"),
+                         gom_bennet + theme(legend.position="none"),
+                         nrow=1),
+             mylegend, nrow=2,heights=c(6, 1))
+
 ```
-]
 
 ---
 ## Memo 15: Wind Energy Habitat Overlap
@@ -1065,7 +1055,7 @@ Define how to use indicator in risk assessment to refine further
 ## Memo 18: SAFMC and ASMFC Species
 
 .pull-left[
-Splitting out SAFMC, ASMFC removed downward catch diversity trend
+Splitting out SAFMC, ASMFC did not affect New England catch diversity trend
 
 ```{r rec-div, fig.width = 5, fig.asp = 0.45, fig.cap = paste0("Recreational effort diversity and diversity of recreational catch in the ",region,".")}
 
@@ -1178,12 +1168,13 @@ Not added because the previous conceptual model was replaced
 ---
 ## Memo 20: Fish Diet Indicators
 
-```{r ma-stomachs, fig.cap= "Stomach fullness anomaly in the Mid-Atlantic Bight.", fig.width=10 }
-fullness <- ecodata::stom_fullness %>%
+```{r ne-stomachs, fig.cap=" Stomach Fullness Anomaly in New England.", fig.width=10 }
+
+gb_fullness <- ecodata::stom_fullness %>%
   group_by(Var, EPU) %>% ## Remove values with missing data
-  filter(n()> 10) %>% ## at least ten years of data
+  filter(n()> 10) %>% ## at least tens years
   ungroup() %>% 
-  filter(EPU == "MAB") %>%
+  filter(EPU == "GB") %>%
   ggplot(aes(x = Time, y = Value)) +
   geom_line() +
   #geom_point() +
@@ -1194,14 +1185,39 @@ fullness <- ecodata::stom_fullness %>%
            size = hline.size,
            alpha = hline.alpha,
            linetype = hline.lty) +
-  ggtitle("MAB Stomach fullness") +
+  ggtitle("GB Stomach fullness") +
   ylab("Stomach fullness anomaly") +
   facet_wrap(~Var, ncol = 6)+
-  theme(strip.text=element_text(hjust=0))+
+  theme(strip.text=element_text(hjust=0), 
+        legend.position = "none", 
+        axis.text.x = element_text(angle = 45))+
   theme_ts()
 
-fullness
+gom_fullness <- ecodata::stom_fullness %>%
+  group_by(Var, EPU) %>% ## Remove values with missing data
+  filter(n()> 10) %>% ## at least tens years
+  ungroup() %>% 
+  filter(EPU == "GOM") %>%
+  ggplot(aes(x = Time, y = Value)) +
+  geom_line() +
+  #geom_point() +
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_hline(aes(yintercept = 0),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  ggtitle("GOM Stomach fullness") +
+  ylab("Stomach fullness anomaly") +
+  facet_wrap(~Var, ncol = 6)+
+  theme(strip.text=element_text(hjust=0), 
+        legend.position = "none", 
+        axis.text.x = element_text(angle = 45))+
+  theme_ts()
 
+#gb_fullness
+gom_fullness
 ```
 
 Define objectives for this indicator for further refinement.
@@ -1247,19 +1263,21 @@ Seal diet information added, but inadequate information to estimate consumption.
 ---
 ## Memo 24: Small Pelagic Abundance
 
-```{r planktivores, fig.cap = "Spring (left) and fall (right) surveyed biomass of planktivores in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean. ", fig.width=10, fig.asp=.3}
+```{r planktivores, fig.cap = "Spring (left) and fall (right) surveyed biomass of planktivores on Georges Bank. Data from the NEFSC Bottom Trawl Survey are shown in black. The shaded area around each annual mean represents 2 standard deviations from the mean. ", fig.width=10, fig.asp=.3}
 
-### Planktivore
-neamap.3<-neamap %>% 
-  filter(str_detect(Var,"Planktivore"))
-p3<-agg_bio %>% 
-  filter(str_detect(Var,"Planktivore")) %>% 
-  ggplot() +
+gb_surv <-agg_bio %>% 
+  filter(EPU == "GB") 
+
+## Plot 3
+p3<-gb_surv %>% 
+  filter(str_detect(Var, "Planktivore")) %>% 
+ggplot(aes(x = Time, y = Mean)) +
   
   #Highlight last ten years
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max ,
+      xmin = x.shade.min , xmax = x.shade.max,
       ymin = -Inf, ymax = Inf) +
+  
   #Test for trend and add lines
   geom_gls(aes(x = Time, y = Mean,
                color = Var),
@@ -1268,9 +1286,9 @@ p3<-agg_bio %>%
   #Add time series
   geom_ribbon(aes(x = Time, ymin = pmax(lower,0), ymax = upper), 
               alpha = 0.5,
-              fill = "grey") +
-  geom_line(aes(x = Time, y = Mean),size = lwd-0.5) +
-  geom_point(aes(x = Time, y = Mean),size = pcex-0.5) +
+              fill = "grey") + 
+  geom_line(size = lwd-0.5) +
+  geom_point(size = pcex-0.5) +
   scale_color_manual(values = series.col, aesthetics = "color")+
   guides(color = FALSE) +
   geom_hline(aes(yintercept = hline,
@@ -1278,22 +1296,15 @@ p3<-agg_bio %>%
              size = hline.size,
              alpha = hline.alpha,
              linetype = hline.lty)+
-  facet_wrap(Var~.,ncol = 2) +
-       #Add NEAMAP
-    geom_ribbon(data = neamap.3, aes(ymax = pmax(upper, 0), ymin = lower, x = Time), 
-                fill = "pink", alpha = 0.5) +
-  geom_line(data = neamap.3, aes(x = Time, y = Value),
-            color = "#ca0020")+
-  geom_point(data = neamap.3, aes(x = Time, y = Value),
-             size = pcex-0.5,
-             color = "#ca0020")+
+
+  #Facet 
+  facet_wrap(Var~., ncol = 2) +  
 
   #Axis and theme
   scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
-  #ylim(0, 600)+
   ylab(expression("Biomass (kg tow"^-1*")")) +
   theme_facet()+
-  theme(strip.text=element_text(hjust=0), 
+  theme(strip.text=element_text(hjust=0),
         axis.title.x=element_blank())
 
 p3
@@ -1331,7 +1342,7 @@ kable(d, format = "html", escape = F, #table.attr='class="risktable"',
 ---
 ## Memo 25: Young of Year Index
 .center[
-```{r MAB-recruitment, fig.cap = "Small fish per large fish biomass anomaly in the Mid-Atlantic Bight. The summed anomaly across species is shown by the black line.", fig.width = 8, fig.asp = .55}
+```{r GOM-recruitment, fig.cap = "Small fish per large fish biomass anomaly in the Gulf of Maine. Point cursor to a bar for species name; this will highlight that species in all years.", fig.width = 8, fig.asp = .55}
 
 #### Adjust plot properties -------------------------------
 adjustAxes <- 
@@ -1452,26 +1463,14 @@ plot_stackbarcpts_single <- function(YEAR, var2bar,
   return(p)
 }
 
+## GOM
 bar_dat <- ecodata::productivity_anomaly %>% 
-  filter(EPU == "MAB")
+  filter(EPU == "GOM")
 
-# mafmc <-plot_stackbarcpts_single(YEAR = bar_dat$Time,
-#                          var2bar = bar_dat$Var,
-#                          x = bar_dat$Value,
-#                          titl = "",
-#                          xlab = "",
-#                          ylab = "Small fish per large fish biomass (anomaly)",
-#                          height = 5.5,
-#                          width = 9,
-#                          filt = TRUE,
-#                          label = "A",
-#                          y.text = 4.5)
-
-# 
-mid <- plot_stackbarcpts_single(YEAR = bar_dat$Time,
+gom <- plot_stackbarcpts_single(YEAR = bar_dat$Time,
                          var2bar = bar_dat$Var,
                          x = bar_dat$Value,
-                         titl = "",
+                         titl = "Gulf of Maine",
                          xlab = "",
                          ylab = "Small fish per large fish biomass (anomaly)",
                          height = 5.5,
@@ -1479,9 +1478,12 @@ mid <- plot_stackbarcpts_single(YEAR = bar_dat$Time,
                          filt = FALSE,
                          label = "",
                          y.text = 10,
-                         aggregate = TRUE)
+                         aggregate = TRUE,
+                         intplot = TRUE,
+                         remove_leg = TRUE)
 
-mid
+#gom
+ggiraph(code = print(gom), pointsize = 14, width_svg = 8, height_svg = 6)
 
 ```
 ]
@@ -1500,7 +1502,7 @@ Inappropriate to combine Albatross and Bigelow--separate indices?
 Options from the literature, or combine existing indicators?
 
 .center[
-```{r heatwave-mab, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
+```{r heatwave-mab, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) on Georges Bank."}
 
 cumu <- ecodata::heatwave %>% 
   filter(Var == "cumulative intensity") %>% 
@@ -1514,63 +1516,65 @@ maxin <- ecodata::heatwave %>%
   dplyr::mutate(Var = dplyr::recode(Var, "maximum intensity" = "Maximum Intensity (°C)"))
 
 hw<- cumu %>%
-  rbind(maxin) %>% 
-  dplyr::group_by(Var, EPU) %>% 
-  dplyr::mutate(hline = mean(Value))
+  rbind(maxin) %>%
+  group_by(Var, EPU) %>%
+  mutate(hline = mean(Value))
 
-mab.hw<- hw %>% filter(EPU == epu_abbr)
-mab.hw %>% 
+gb.hw<-hw %>% filter(EPU == "GB") %>% 
   ggplot() +
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
   geom_line(aes(x = Time, y = Value)) +
   geom_point(aes(x = Time, y = Value)) +
-  geom_gls(aes(x = Time, y = Value, group = Var)) +
+  geom_gls(aes(x = Time, y = Value)) +
   ylab("") +
   xlab(element_blank())+
-  ggtitle("Mid-Atlantic Marine Heatwave Intesity") +
+  ggtitle("Georges Bank") +
   scale_x_continuous(expand = c(0.01, 0.01))+
   geom_hline(aes(yintercept = hline),
            size = hline.size,
            alpha = hline.alpha,
            linetype = hline.lty)+
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  facet_wrap(~Var, scales = "free")+
+  
+  facet_wrap(~Var, scales = "free") +
   theme_ts()+
   theme(strip.text=element_text(hjust=0,
-                                face = "italic"))
+                                face = "italic"), 
+        axis.title.y = element_text(angle = 90))
 
+gb.hw
 ```
 ]
 
 .pull-left[
-![img: January - December 2019 sea surface temperatures above 90th percentile of average](EDAB_images/MAB_heatwave.jpeg)
+![img: January - December 2019 sea surface temperatures above 90th percentile of average](EDAB_images/GB_heatwave.jpeg)
 ]
 
 .pull-right[
-```{r mab-heatwave-max, fig.cap="Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occurring on July 22, 2019."}
+```{r gb-heatwave-max, fig.cap="Maximum intensity heatwave anomaly on Georges Bank occurring on August 23, 2019."}
 #EPU shapefile
-mab_epu_sf <- ecodata::epu_sf %>% 
-  filter(EPU %in% c("MAB"))
+ne_epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("GOM","GB"))
 
 #Map line parameters
 map.lwd <- 0.4
 
 # Set lat/lon window for maps
-xmin = -81
-xmax = -66
-ymin = 35.5
-ymax = 43
+xmin = -73
+xmax = -65
+ymin = 39
+ymax = 45
 xlims <- c(xmin, xmax)
 ylims <- c(ymin, ymax)
 hw <- ecodata::hw_anom_gridded %>% 
-  filter(EPU == "MAB")
+  filter(EPU == "GB")
 
-mab_map <- 
+gb_map <- 
   ggplot() +
   geom_tile(data =hw, aes(x = Longitude, y = Latitude,fill = Value)) +
   geom_sf(data = coast, size = map.lwd) +
-  geom_sf(data = mab_epu_sf, fill = "transparent", size = map.lwd) +
+  geom_sf(data = ne_epu_sf, fill = "transparent", size = map.lwd) +
   scale_fill_gradient2(name = "Temp.\nAnomaly (°C)",
                        low = scales::muted("blue"),
                        mid = "white",
@@ -1579,7 +1583,7 @@ mab_map <-
   coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
   #facet_wrap(Season~.) +
   theme_map() +
-  ggtitle("MAB heatwave anomaly (July 22, 2019)") +
+  ggtitle("GB heatwave anomaly (Aug 23, 2019)") +
   xlab("Longitude") +
   ylab("Latitude") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
@@ -1587,11 +1591,10 @@ mab_map <-
         axis.title = element_text(size = 11),
         strip.background = element_blank(),
         strip.text=element_text(hjust=0),
-        axis.text = element_text(size = 8), 
-        axis.title.y = element_text(angle = 90),
-        plot.margin=grid::unit(c(0,0,0,0), "mm"))
+        axis.text = element_text(size = 8))
 
-mab_map 
+
+gb_map 
 
 ```
 ]
