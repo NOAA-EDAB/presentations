@@ -1535,7 +1535,7 @@ Inappropriate to combine Albatross and Bigelow--separate indices?
 Options from the literature, or combine existing indicators?
 
 .center[
-```{r heatwave-mab, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) on Georges Bank."}
+```{r heatwave-gb, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) on Georges Bank."}
 
 cumu <- ecodata::heatwave %>% 
   filter(Var == "cumulative intensity") %>% 
@@ -1583,9 +1583,8 @@ gb.hw
 .pull-left[
 ![img: January - December 2019 sea surface temperatures above 90th percentile of average](EDAB_images/GB_heatwave.jpeg)
 ]
-
 .pull-right[
-```{r gb-heatwave-max, fig.cap="Maximum intensity heatwave anomaly on Georges Bank occurring on August 23, 2019."}
+```{r gb-heatwave-max, fig.cap="Maximum intensity heatwave anomaly on Georges Bank occurring on August 23, 2019.", fig.height=5}
 #EPU shapefile
 ne_epu_sf <- ecodata::epu_sf %>% 
   filter(EPU %in% c("GOM","GB"))
