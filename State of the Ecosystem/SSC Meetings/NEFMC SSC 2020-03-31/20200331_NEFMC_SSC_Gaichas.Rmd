@@ -1342,8 +1342,8 @@ kable(d, format = "html", escape = F, #table.attr='class="risktable"',
 ```
 ---
 ## Memo 25: Young of Year Index
-.pull-left[
-```{r GOM-recruitment, fig.width = 8, fig.height = 5}
+.pull-left-40[
+```{r GOM-recruitment, fig.width = 6, fig.height = 5.5}
 #fig.cap = "Small fish per large fish biomass anomaly in the Gulf of Maine.", 
 #### Adjust plot properties -------------------------------
 adjustAxes <- 
@@ -1487,16 +1487,16 @@ gom <- plot_stackbarcpts_single(YEAR = bar_dat$Time,
                          label = "",
                          y.text = 10,
                          aggregate = TRUE,
-                         intplot = TRUE,
+                         intplot = FALSE,
                          remove_leg = TRUE)
 
-#gom
-ggiraph(code = print(gom), pointsize = 14, width_svg = 8, height_svg = 6)
+gom
+#ggiraph(code = print(gom), pointsize = 14, width_svg = 8, height_svg = 6)
 
 ```
 ]
 
-.pull-right[
+.pull-right-60[
 ```{r GB-recruitment, fig.width = 8, fig.height = 5}
 #fig.cap = "Small fish per large fish biomass anomaly on Georges Bank. Point cursor to a bar for species name; this will highlight that species in all years.",
 ## GB
@@ -1514,10 +1514,10 @@ gb <- plot_stackbarcpts_single(YEAR = bar_dat$Time,
                          label = "",
                          y.text = 10,
                          aggregate = TRUE,
-                         intplot = TRUE,
-                         remove_leg = TRUE)
-#gb
-ggiraph(code = print(gb), pointsize = 14, width_svg = 8, height_svg = 6)
+                         intplot = FALSE,
+                         remove_leg = FALSE)
+gb
+#ggiraph(code = print(gb), pointsize = 14, width_svg = 8, height_svg = 6)
 ```
 ]
 
