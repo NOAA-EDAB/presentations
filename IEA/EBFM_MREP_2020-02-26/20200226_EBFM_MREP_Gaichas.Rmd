@@ -4,7 +4,7 @@ subtitle: "Marine Resource Education Program <br /> Science Workshop, February 2
 author: "Sarah Gaichas, Northeast Fisheries Science Center <br />with key slides from <br />Jason Link, NOAA Senior Scientist for Ecosystem Management"
 output:
   xaringan::moon_reader:
-    css: ["default", "libs/EDAB_theme3_508.css"]
+    css: ["default", "libs/EDAB_theme3-0_508.css"]
     lib_dir: libs
     nature:
       titleSlideClass: ["right", "middle", "my-title"]
@@ -38,7 +38,7 @@ library(plotly)
 library(vegan)
 library(rpart)
 library(colorRamps)
-#remotes::install_github("noaa-edab/ecodata@0.1.0") #needed for older SOE code
+remotes::install_github("noaa-edab/ecodata@0.1.0") #needed for older SOE code
 library(ecodata)
 
 #GIS libraries
