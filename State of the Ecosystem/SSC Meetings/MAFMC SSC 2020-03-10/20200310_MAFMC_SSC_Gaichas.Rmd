@@ -276,24 +276,24 @@ mng_obj %>%
 ## Memo 3: Indicator uncertainty
 
 ```{r nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean. ", fig.width=10, fig.asp = 0.75}
-agg<-ecodata::agg_bio %>% 
-  filter(!str_detect(Var, "Apex|inshore|offshore|managed|NEFMC|MAFMC|JOINT|NA")) %>% #remove unused datasets
-  separate(Var, c("feeding.guild", "season", "Biomass", "Var1"), sep = " ") %>% 
-  unite("Var", feeding.guild:season, sep = " ") %>% 
-  mutate(stat = recode(Var1, Index = "Mean", 
+agg<-ecodata::aggregate_biomass %>% 
+  dplyr::filter(!stringr::str_detect(Var, "Apex|inshore|offshore|managed|NEFMC|MAFMC|JOINT|NA")) %>% #remove unused datasets
+  tidyr::separate(Var, c("feeding.guild", "season", "Biomass", "Var1"), sep = " ") %>% 
+  tidyr::unite("Var", feeding.guild:season, sep = " ") %>% 
+  dplyr::mutate(stat = recode(Var1, Index = "Mean", 
                       Standard = "SD")) %>% 
   dplyr::select(-Biomass, -Var1) %>% 
-  group_by(Var, Time, EPU) %>% 
-  spread(stat, Value) %>% 
-  mutate(upper = Mean + (2*SD), 
+  dplyr::group_by(Var, Time, EPU) %>% 
+  tidyr::spread(stat, Value) %>% 
+  dplyr::mutate(upper = Mean + (2*SD), 
          lower = Mean - (2*SD))
 
 
-agg_bio<-agg %>% filter(EPU == epu_abbr,
+agg_bio<-agg %>% dplyr::filter(EPU %in% c(epu_abbr),
          Time >= 1968) %>% 
-  group_by(Var, EPU) %>% 
-  mutate(hline = mean(Mean, na.rm = T)) %>% 
-  ungroup() 
+  dplyr::group_by(Var, EPU) %>% 
+  dplyr::mutate(hline = mean(Mean, na.rm = T)) %>% 
+  dplyr::ungroup() 
 
 agg_bio$Var <- factor(agg_bio$Var,levels = c("Piscivore Spring",
                                                    "Piscivore Fall",
@@ -1611,7 +1611,7 @@ ymin = 35.5
 ymax = 43
 xlims <- c(xmin, xmax)
 ylims <- c(ymin, ymax)
-hw <- ecodata::hw_anom_gridded %>% 
+hw <- ecodata::heatwave_anom_gridded %>% 
   filter(EPU == "MAB")
 
 mab_map <- 
@@ -1709,10 +1709,10 @@ Tam, J. C., Link, J. S., Large, S. I., Andrews, K., Friedland, K. D., Gove, J., 
 ---
 ## SOE Take Home Messages  
 
-  * Primary production required to support commerical fisheries is declining along with landings and revenue (as primary production has increased) 
+  * Primary production required to support commercial fisheries is declining along with landings and revenue (as primary production has increased) 
 --
 
-  * Commerical fishing engagement has declined for medium-highly engaged communities 
+  * Commercial fishing engagement has declined for medium-highly engaged communities 
 --
 
   * Recreational retained catch was lowest observed in 2018, and effort has been declining along with fleet effort diversity 
@@ -1721,7 +1721,7 @@ Tam, J. C., Link, J. S., Large, S. I., Andrews, K., Friedland, K. D., Gove, J., 
   * Recreational catch diversity has been maintained by SAFMC/ASMFC species 
 --
   
-  * Habitat models identified species most likely to ocurr in wind lease areas; habitat has improved in wind lease areas for these MAFMC species 
+  * Habitat models identified species most likely to occur in wind lease areas; habitat has improved in wind lease areas for these MAFMC species 
 --
   
   * While aggregate fish biomass is stable over time, shifts to the northeast and into deeper water continue 
