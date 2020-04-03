@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Creating R Packages</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andy Beet   Ecosystem Dynamics and Assessment   Integrated Statistics &amp; Northeast Fisheries Science Center" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs\EDAB_theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# Creating R Packages
+### Andy Beet <br /> Ecosystem Dynamics and Assessment <br /> Integrated Statistics &amp; Northeast Fisheries Science Center
+
+---
+
+
+
+
+
+## What is an R package?
+
+An R package is a collection of files (*functions* &amp; *data*) with *documentation*.
+
+You will have already installed and used many packages in your work.
+
+Packages developed by others need to be installed. Often these are installed from either CRAN ([Comprehensive R Archive Network](https://cran.r-project.org/)) or [GitHub](github.com).
+
+* To install from CRAN `install.packages("packageName")`
+
+* To install from github `remotes::install_github("packageName")`
+
+* To install vignettes associated with packages on GitHub
+
+`remotes::install_github("packageName",build_vignettes = TRUE)`
+
+---
+
+## What is an R package? cont ...
+
+The whole package can be loaded into memory using 
+
+`library(packageName)`
+
+All functions in the package can then be used by its `functionName`
+
+*For example, the package [`readxl`](https://readxl.tidyverse.org/) has a dozen or so functions that help you get data out of excel files and into R. To load all the functions into memory:*
+
+`library(readxl)`
+
+Individual functions from a package can be loaded without having to load the entire library. This becomes important when writing your own packages. Use the syntax:
+
+`packageName::functionName`
+
+*For example if you want to read a legacy excel file into R:*
+
+`readxl::read_xls("filename.xls")`
+
+
+---
+
+
+## Why create your own R packages?
+.pull-left[
+* Keeps you organized
+
+* Reduces copy and pasting of functions from project to project
+
+* Allows to to keep track of code and easily reuse it
+
+* Allow you to easily share your code (eg. through a repository on GitHub). *Important for publications*
+
+* Great options for documentation (roxygen, rmarkdown, pkgdown)
+
+* Better understanding of how R works
+
+]
+.pull-right[
+&lt;img src="EDAB_images/cover_rpackages.png" width="80%" style="display: block; margin: auto auto auto 0;" /&gt;
+    [R packages](http://r-pkgs.had.co.nz/) by H.Wickham
+]
+
+Your own package will be organized in a way akin to folders on your computer. You will keep R code in one folder, data in another, documentation in another etc.
+
+---
+
+
+## Pre-requisites: _devtools_ ,_remotes_ &amp; _usethis_
+
+Three key packages you will need (if you dont have them already) are:
+
+1. `devtools`
+2. `remotes`
+3. `usethis`.
+
+`usethis` is a package to aid in development of packages.
+
+To check you have it installed, type the following line:
+
+` "usethis" %in% row.names(installed.packages())`
+
+A result of FALSE means you dont have it. Install it 
+
+The `devtools` package was split into `remotes` and `usethis`. However there are still a few cases in which you will need `devtools`. It is advisable to install all three.
+
+`install.packages(c("remotes","devtools","usethis"))`
+
+---
+
+## Prerequisites:  _Rtools, XCode_ 
+You will also need to make sure you have another component installed (This is not an R package) and this component differs between operating sytems.
+
+1. Windows: [Rtools](https//cran.r-project.org/bin/windows/Rtools)
+1. Mac: XCode (free in app store)
+1. Linux: install R development tools.
+
+To check you have everything installed type in the console:
+
+`devtools::has_devel()`
+
+If the result is *"Your system is ready to build packages!"*, then you have all required tools.
+
+For more info regarding platform specific options: See [What they forgot to teach you about R](https://rstats.wtf/set-up-an-r-dev-environment.html#windows-system-prep)
+
+
+
+
+
+
+---
+
+## Prerequisites: _Other packages_
+
+* Rmarkdown package (to creating general documentation)
+
+* Knitr package (to convert documentation into html or pdf)
+
+* Roxygen package (for function documentation)
+
+* devtools package (for package development)
+
+* usethis package (for package development)
+
+* remotes package (for installing packages from github)
+
+To install all at once:
+
+`install.packages(c("knitr","roxygen2","rmarkdown","devtools","remotes","usethis"))`
+
+---
+
+
+## Naming your package 
+
+* Keep it concise, unique, but descriptive.
+
+* only use letters, numbers, (and periods).
+
+* no underscores or hyphens.
+
+* use abbreviations or acronyms (we should be good at that!)
+
+Hadley wickham has other recommandations in his book [R-packages](http://r-pkgs.had.co.nz/intro.html)
+
+---
+
+## Create your package
+
+`\(\underline{To \space create\space a \space project \space from\space scratch}\)`
+
+File -&gt; New Project -&gt; New Directory -&gt; R Package
+
+* Select a name for your package (this will also be the name of the folder created to store all of your files)
+
+* Select where you want to save this folder
+
+A collection of files and folders will be created for you. (next slide)
+
+`\(\underline{To\space create\space a\space project \space from \space existing \space code}\)`
+
+If you'd like to turn existing code in to a package use:
+
+`usethis::create_package()`
+
+This will create all of the same content with the exception of the `man` folder used for documentation.
+
+To include this:
+`devtools::document()`
+
+---
+
+
+
+## Package structure
+
+All packages have a specific structure that needs to be adhered to. We will use RStudios GUI to create a package (File -&gt; New Project -&gt; New Directory -&gt; R Package).
+
+This creates the basic elements for a package (5 components)
+
+*  A `DESCRIPTION` file - Basic information about the package, authors, contributors, version, title, description, the type of license, and your package dependencies (a list of other packages that your package depends on!)
+*  A `NAMESPACE` file - defines the functions in your package made available to other users. It also defines external functions and packages that are imported. (This is automatically generated if using `roxygen2` for documentation so dont worry about this.).
+*  An `R/` directory where your R code will reside
+*  A `man/` directory where function documentation will reside (this is handled by `roxygen2`)
+*  An `.rbuildignore` file where you can specify which files you do not want to include in the package
+
+Note: If you create a package this way, YOU MUST delete the `NAMESPACE` file. It will get regenerated at a later point in time.
+
+---
+
+
+
+## Project preferences
+
+You will also need to change some preferences in the project options.
+
+Tools -&gt; Project Options -&gt; Build tools
+
+Check "Generate documentation with Roxygen" then click configure. Check everything
+
+Note: If you already have a project in RStudio, you can convert it into a package at any time.
+
+---
+
+## Packages: Now what?
+
+First you should edit the `DESCRIPTIONS` file to give some basic information about your package. However this can be done at anytime prior to sharing.
+
+* `Package`: Enter the name of your package
+* `Title`: Enter a single line describing your project
+* `Author`: Enter the authors, emails, and their roles
+e.g.
+
+c(person("Joe","Bloggs",email = "joebloggs\@mydom.com"), role=c("aut","cre"),
+person("Jill","Bloggs",email = "jillbloggs\@mydom.com"), role="aut"))
+
+* `Description`: Paragraph describing your package
+* `License`: Licensing info
+
+
+
+
+
+---
+
+## Packages: Workflow
+
+At this point you are ready to enter the workflow loop:
+
+1.  Develop your code
+2.  [Document](#doc) it (Dont forget to @export)
+3.  Build your package (Ctrl+Shift+B)
+4.  See if the code does what you expect
+5.  Look at documentation using `?` to see if it looks ok
+6.  Repeat
+
+As you continue in this workflow loop you may realize you need to:
+
+* Include [data](#data) in your package. (`usethis::use_data`)
+* Do some [preprocessing](#raw) of data that you don't want in your package (just the result of the processing) (`usethis::use_data_raw`)
+* Add an [overview](#vig) of how to use your package (`usethis::use_vignette`)
+* Utilize functions in [external](#pkgs) packages (`usethis::use_package`)
+
+---
+
+## Example 
+
+Lets create a package called `simpleStats`. It has a function called `calc_stats` which given a vector as input calculates the mean, range, and standard deviation. The result is a list containing these 3 results. Create a data set to be bunded with the package called `myData.Rdata`. Make `myData` be a numeric vector of size 100 of a white noise time series (mean=0, sd=1). Import the package `ggplot2` and plot the data
+
+
+---
+
+## Documentation
+
+Documetation is a critical part of any package, since if your code isn't documented then how will anyone know how to use it. It is also useful for you. And it is super easy and straightforward. 
+
+R provides a standard way of documenting functions and data in your package. These are `.Rd` files that reside in the `man/` folder are similar in structure to LaTeX. However you dont need to know any of that, since `roxygen2` will create these for you with minimal effort. The main advantages of using `roxygen2` are:
+
+* The documentation resides in the same file as your code. It is then translated to the format R requires (`.Rd` files) and copied to the `man` folder.
+* The `NAMESPACE` is updated to reflect if code it to be made available to user
+* The `DESCRIPTIONS` file is updated to reflect use of external packages
+
+---
+
+## Documentation: Functions
+
+All functions should be documented. Every line of documentation begins with `#'`. Note the apostrophe! The order of the comments translate directly to the order they appear when typing `?`. There are quite a few tags you could use but the main tags are:
+
+* **@param**     : the name of an argument passed to the function
+* **@return**    : a description of the result returned from your function (scalar, matrix, list)
+* **@section**   : An arbitrary section you'd like to include in the help document
+* **@seealso**   : A section for you to add links to other files and functions
+* **@examples**  : Provide examples of how the function works. Include examples!
+* **@export**    : Determins if the function is to be accessed by anyone or only internally within the package
+
+---
+## Documentation: Function example
+
+```
+#' function Title
+#'
+#' function description
+#'
+#' @param argument1 description of argument1
+#' @param argument2 description of argument2
+#'
+#' @return A list containing
+#'
+#' \item{res1}{description of res1}
+#' \item{res2}{description of res2}
+#'
+#' @section sectionHeadingName:
+#' Write whatever you want
+#'
+#' @seealso \code{\link{some_other_function_name}}
+#'
+#' @examples
+#' write examples of code usage
+#' myfunction(argument1,argument2)
+#'
+#' @export
+
+myfunction &lt;- function(argument1, argument2) {
+  do something....
+  res &lt;- list(res1=res1,res2=res2)
+  return(res)
+}
+```
+
+---
+
+## Documetnation: _External data_ 
+
+You can bundle data along with your package and make it available to the user with minimal effort. Any data placed in `data/` will be exported and available for users. The data can be "lazily loaded" when the package is loaded into memory. This means the data wont use any memory until it is used. This is handled in the `DESCRIPTIONS` file. (LazyData: true). Packages work well (and fast) with data files in the `.RData` format.
+
+Data documentation has a similar feel to function documentation. 
+
+Note: If your data file is named `myData.RData` then it must contain one object with the same name as the filename (`myData`) and your documentation should be named `myData.R`. This file should reside in your `R/` folder with your other code. (`usethis::use_data()` can simplify this process). **NEVER @export data **
+
+---
+## Documetnation: _External data_ example
+
+```
+#' data Title
+#'
+#' data description
+#'
+#' @format description of data class and size (often a data frame)
+#' \describe{
+#'   \item{col1}{description of col1}
+#'   \item{col2}{description of col2}
+#'   ...
+#'  } 
+#' @section optional Section:
+#' section description
+#' 
+#' @source See authors et al (2018) \url{http:://www.somesite.com}
+"myData"
+```
+
+---
+
+## Documentation: _Internal data_ 
+
+You may create a package that requires data to function. You may not want to make this data available to a user. You can use
+
+`usethis::use_data(..., internal=TRUE)`
+
+to create a file (in your project root directory) called `sysdata.rda`. This will not get exported. No need to document.
+
+
+## Data documentation: _Processed (Raw) data_
+
+Often before you are ready to distribute your data you have to clean it up, process it in some way, or make it more user friendly. You should include the code used to do this. This code should reside in `data-raw/` and should not be bundled with your package.
+
+`usethis::use_data_raw()`
+
+will create the folder for you and include this folder in the `.RbuildIgnore` file
+
+---
+
+## Documentation: _Package_
+
+To access the package details by using `package?packageName` a file called packageName.R needs to be created:
+
+```
+#' Package Title
+#'
+#' Package description
+#'
+#'@section headingName:
+#' Write whatever you want
+#'
+#'@docType package
+#'@name packageName
+NULL
+```
+
+---
+
+## Documentation: _Vignettes_
+Package vignettes are a type of documentation (written in Rmarkdown) that give an overview of your package, explain the components and even show how the functions work. It should behave like a guide. Examples of these can be found by typing `browseVignettes("packageName")`. To create a vignette for your package type:
+
+`usethis::use_vignette("vignetteName")`
+
+This will:
+
+* Create a folder called `vignettes/`
+* Create a template rmarkdown `.rmd` file in the `vignettes` folder
+* Adds the `Suggests: knitr, rmarkdown` to your `DESCRIPTION` file
+
+---
+
+## Importing packages 
+
+You may need use other packages in your package. These are termed dependencies and are handled in the `DESCRIPTIONS` file. To add a dependency to you package simply type
+
+`usethis::use_package("packageName")`
+
+This will add the line `Imports: packageName` in your `DESCRIPTIONS` file.
+
+You can now use all of the functions in this package in your code. I recommend whenever possible to use the syntax `packageName::functionName` instead of `functionName`. This helps you in the future to debug your code and identiy which functions are imported. You can use as many packages as you like. These packages will be downloaded and installed on the users machine when they install your package so try to be efficient.
+
+---
+
+## Using C++
+
+You can speed up portions of your code by using compiled code like C++. All compiled code resides in its own folder `src/`. To include this functionality in your package you need the `Rcpp` package. This is achieved by typing:
+
+`usethis::use_rcpp()`
+
+This command does several things
+
+* Creates the `src/` folder
+* Adds the lines (`LinkingTo: Rcpp` and `Imports: Rcpp`) to the `DESCRIPTIONS` file
+* Add the necessary export info to the `NAMESPACE` file
+* Adds the compiled files to `.gitignore` (if using version control)
+* Informs you of additional lines required in your `packageName.R` documentation file
+```
+#' @useDynLib packageName
+#' @importFrom Rcpp sourceCpp
+```
+
+---
+
+## Sharing your code 
+
+At some point in your package development you should start using git (locally in RStudio) to track ongoing changes to your project/package. Eventually linking to GitHub so you can share your package with others. Even if you dont plan to share your package, GitHub is still a good option for keeping all of your packages in a central location.
+
+* Link RStudio to GitHub and push all of your files.
+* create a `readMe.md` file on GitHub to tell the world what this repository is and instructions on how to download it.
+
+Packages can be downloaded from GitHub using:
+
+`remotes::install_github(package="packageName",build_vignettes = TRUE)`
+
+---
+
+## Step by step
+
+1. File-&gt;New Project-&gt;R package -  Creates package in RStudio (Folder name = package name)
+1. Tools-&gt;Project Options-&gt;Build tools. Check Roxygen. Check All
+1. Edit `DESCRIPTIONS` file
+1. Delete `NAMESPACE` file
+1. `devtools::document()` - creates `man/` folder and new `NAMESPACE`
+1. `usthis::use_data_raw()` - creates `data-raw/` folder
+1. `usethis::use_vignette("vignetteName")` - creates `vignettes/` folder
+1. Create main package documentation, `packageName.R`, and document it.
+1. Write some code and document it. Save file as `.R` in the `R/` folder
+1. Build Tab (Rstudio)-&gt;"Run and Build" or "Install and Restart" to build package and test for errors. (Or Ctrl+Shift+B)
+1. `usethis::use_package("packagName1","packageName2")` to include external packages
+1. `usethis::use_data("dataName")` - .RData saved in /data folder
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
