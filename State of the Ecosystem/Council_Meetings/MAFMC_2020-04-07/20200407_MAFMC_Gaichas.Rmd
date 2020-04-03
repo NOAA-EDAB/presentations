@@ -288,9 +288,20 @@ A subset of objectives are currently under investigation. We plan to extend this
 ---
 ## Document Orientation
 .pull-left[
+Spatial scale
+
 ![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 100%](EDAB_images/EPU_Designations_Map.jpg)
+
+.contrib[
+This year, we mapped trawl survey strata to Ecological Production Units (EPUs)  
+
+[More information on EPUs](https://noaa-edab.github.io/tech-doc/epu.html)  
+[More information on survey data](https://noaa-edab.github.io/tech-doc/survdat.html)  
+]
 ]
 .pull-right[
+Key to figures
+
 ```{r spec-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."}
 
 spec_dist <- ecodata::species_dist %>% 
@@ -365,7 +376,15 @@ dtc <- spec_dist %>%
 asd + depth + patchwork::plot_layout(ncol = 1) 
 
 ```
+.contrib[
+Trends assessed only for 30+ years: [more information](https://noaa-edab.github.io/tech-doc/trend-analysis.html)
 
+<p style="color:#FF8C00;">Orange line = significant increase</p>
+<p style="color:#9932CC;">Purple line = significant decrease</p>
+No color line = not significant or too short
+<p style="background-color:#D3D3D3;">Grey background = last 10 years</p>
+
+]
 ]
 
 ---
@@ -908,6 +927,90 @@ ggplot() +
 ]
 ---
 ## Protected species
+
+.pull-left[
+North Atlantic right whale abundance
+
+```{r NARW-abundance, fig.width = 5, fig.asp = 0.45,fig.cap = "1990-2018 right whale abundance estimates with 95\\% credible intervals. These values represent the estimated number of animals alive sometime during the year referenced and NOT at the end of the year referenced. Three known deaths were recorded in 2018, but these deaths were not reflected in the 2018 estimate because those animals were alive sometime during the year. An additional 10 known deaths occurred in 2019."}
+#hline <- mean(narw[narw$Var == "right whale abundance median",]$Value)
+
+ecodata::narw %>% 
+  dplyr::filter(Var != "Calves") %>% 
+  tidyr::spread(Var, Value) %>% 
+  dplyr::rename(Value = Median) %>% 
+  dplyr::mutate(hline = mean(Value, na.rm = T)) %>% 
+  ggplot() +
+#Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = Value), size = lwd-0.75) +
+  geom_point(aes(x = Time, y = Value), size = pcex-0.75) +
+  geom_ribbon(aes(ymin = Lower95, ymax = Upper95, x = Time), alpha = 0.3)+
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  guides(color = FALSE) +
+  ggtitle("NARW abundance") +
+  ylab(expression("Abundance (n)")) +
+  xlab("Time")+
+  geom_hline(aes(yintercept = hline),
+          color = "black",
+          size = hline.size,
+          alpha = hline.alpha,
+          linetype = hline.lty) +
+  theme_ts()
+```
+
+**New indicator** 
+
+North Atlantic right whale calf births
+
+```{r NARW-calf-abundance, fig.width = 5, fig.asp = 0.45, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2019."}
+
+ecodata::narw %>% 
+  dplyr::filter(Var == "Calves") %>%
+  dplyr::mutate(hline = mean(Value, na.rm = T)) %>% 
+  ggplot() +
+#Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = Value), size = lwd-0.75) +
+  geom_point(aes(x = Time, y = Value), size = pcex-0.75) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  guides(color = FALSE) +
+  ggtitle("NARW calf abundance") +
+  ylab(expression("Abundance (n)")) +
+  xlab("Time")+
+  geom_hline(aes(yintercept = hline),
+           color = "black",
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts()
+```
+
+]
+
+.pull-right[
+Seal population snapshots 
+
+  + ~75,000 harbor seals, trend analysis in progress
+  
+  + 30,000 - 40,000 grey seals in US; 425,000 in Canada and &nearr;
+
+Seal diet studies in progress
+
+Unusual Mortality Events
+
+  + [North Atlantic right whales](https://www.fisheries.noaa.gov/national/marine-life-distress/2017-2020-north-atlantic-right-whale-unusual-mortality-event)  
+  
+  + [Humpback whales](https://www.fisheries.noaa.gov/national/marine-life-distress/2016-2020-humpback-whale-unusual-mortality-event-along-atlantic-coast)  
+  
+  + [Minke whales](https://www.fisheries.noaa.gov/national/marine-life-distress/2017-2020-minke-whale-unusual-mortality-event-along-atlantic-coast)  
+  
+  + [Grey, harbor, hooded, and harp seals](https://www.fisheries.noaa.gov/new-england-mid-atlantic/marine-life-distress/2018-2019-pinniped-unusual-mortality-event-along)
+  
+]
 
 ---
 ## Aggregate fish biomass generally stable
@@ -1500,44 +1603,6 @@ fullness
 ```
 
 Define objectives for this indicator for further refinement.
-
----
-## Memo 21: Right Whale Calves
-
-.center[
-```{r NARW-calf-abundance, fig.width = 6, fig.asp = 0.45, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2019."}
-
-ecodata::narw %>% 
-  dplyr::filter(Var == "Calves") %>%
-  dplyr::mutate(hline = mean(Value, na.rm = T)) %>% 
-  ggplot() +
-#Highlight last ten years
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_line(aes(x = Time, y = Value), size = lwd-0.75) +
-  geom_point(aes(x = Time, y = Value), size = pcex-0.75) +
-  scale_x_continuous(expand = c(0.01, 0.01)) +
-  guides(color = FALSE) +
-  ggtitle("NARW calf abundance") +
-  ylab(expression("Abundance (n)")) +
-  xlab("Time")+
-  geom_hline(aes(yintercept = hline),
-           color = "black",
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty) +
-  theme_ts()
-```
-]
-
-## Memo 22: Distinguish Managed Species
-
-Council-managed species separated in landings plots; see Appendix table.
-
-## Memo 23: Marine Mammal Consumption
-
-Seal diet information added, but inadequate information to estimate consumption.
 
 ---
 ## Forage energy density:
