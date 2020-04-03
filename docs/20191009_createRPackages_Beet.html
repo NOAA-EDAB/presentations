@@ -382,7 +382,7 @@ will create the folder for you and include this folder in the `.RbuildIgnore` fi
 
 ## Documentation: _Package_
 
-To access the package details by using `package?packageName` then a file called packageName.R needs to be created with a couple of additional tags
+To access the package details by using `package?packageName` a file called packageName.R needs to be created:
 
 ```
 #' Package Title
@@ -399,11 +399,11 @@ NULL
 
 ---
 
-## Package documentation: vignettes
-Package vignettes are a type of documentation (written in rmarkdown) that give an overview of your package, explain the components and even show how the functions work. It should behave like a guide. Examples of these can be found by typing `browseVignettes("packageName")`. To create a vignette for your package type:
-```
-usethis::use_vignette("vignetteName")
-```
+## Documentation: _Vignettes_
+Package vignettes are a type of documentation (written in Rmarkdown) that give an overview of your package, explain the components and even show how the functions work. It should behave like a guide. Examples of these can be found by typing `browseVignettes("packageName")`. To create a vignette for your package type:
+
+`usethis::use_vignette("vignetteName")`
+
 This will:
 
 * Create a folder called `vignettes/`
@@ -415,9 +415,9 @@ This will:
 ## Importing packages 
 
 You may need use other packages in your package. These are termed dependencies and are handled in the `DESCRIPTIONS` file. To add a dependency to you package simply type
-```
-usethis::use_package("packageName")
-```
+
+`usethis::use_package("packageName")`
+
 This will add the line `Imports: packageName` in your `DESCRIPTIONS` file.
 
 You can now use all of the functions in this package in your code. I recommend whenever possible to use the syntax `packageName::functionName` instead of `functionName`. This helps you in the future to debug your code and identiy which functions are imported. You can use as many packages as you like. These packages will be downloaded and installed on the users machine when they install your package so try to be efficient.
@@ -427,9 +427,9 @@ You can now use all of the functions in this package in your code. I recommend w
 ## Using C++
 
 You can speed up portions of your code by using compiled code like C++. All compiled code resides in its own folder `src/`. To include this functionality in your package you need the `Rcpp` package. This is achieved by typing:
-```
-usethis::use_rcpp()
-```
+
+`usethis::use_rcpp()`
+
 This command does several things
 
 * Creates the `src/` folder
@@ -446,15 +446,14 @@ This command does several things
 
 ## Sharing your code 
 
-At some point in your package development you should start using git (locally in RStudio) to track ongoing changes to your project/package. Eventually linking to GitHub so you can share your package with others. Even if you dont plan to share it is still a good option for keeping all of your packages. 
+At some point in your package development you should start using git (locally in RStudio) to track ongoing changes to your project/package. Eventually linking to GitHub so you can share your package with others. Even if you dont plan to share your package, GitHub is still a good option for keeping all of your packages in a central location.
 
 * Link RStudio to GitHub and push all of your files.
 * create a `readMe.md` file on GitHub to tell the world what this repository is and instructions on how to download it.
 
 Packages can be downloaded from GitHub using:
-```
-remotes::install_github(package="packageName",build_vignettes = TRUE)
-```
+
+`remotes::install_github(package="packageName",build_vignettes = TRUE)`
 
 ---
 
