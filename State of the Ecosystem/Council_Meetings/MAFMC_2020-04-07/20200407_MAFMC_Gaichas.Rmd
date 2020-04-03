@@ -1015,7 +1015,7 @@ Unusual Mortality Events
 
 Change from 2019: bluefish biomass below threshold
 
-```{r stock-status, warning=F, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly managed stocks (Goosefish and Spiny dogfish).", fig.width = 10, fig.asp = 0.6)}
+```{r stock-status, warning=F, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly managed stocks (Goosefish and Spiny dogfish)."), fig.width = 10, fig.asp = 0.6}
 
 stock_status <- ecodata::stock_status %>%
   mutate(Code = recode(Code, "Dogfish" = "Sp. Dogfish" )) %>% 
@@ -1477,15 +1477,20 @@ blue_map
 
 .pull-left-30[
 Female fish "fatness" from fall surveys in the MAB
-]
-.pull-right-70[
-![:img Condition factor for fish species in the MAB. MAB data are missing for 2017 due to survey delays, 150%](EDAB_images/MABcondition_2019_viridis_final.jpg)
-]
-]
-.pull-left-30[
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 Small fish per large fish biomass anomaly, MAB
 ]
 .pull-right-70[
+![:img Condition factor for fish species in the MAB. MAB data are missing for 2017 due to survey delays, 150%](EDAB_images/MABcondition_2019_viridis_final.jpg)
+
 ```{r MAB-recruitment, fig.cap = "Small fish per large fish biomass anomaly in the Mid-Atlantic Bight. The summed anomaly across species is shown by the black line.", fig.width = 8, fig.asp = .55}
 
 #### Adjust plot properties -------------------------------
@@ -1640,7 +1645,6 @@ mid
 
 ```
 ]
-]
 
 ---
 ## New information on forage fish energy density
@@ -1705,11 +1709,8 @@ ches_sal %>%
 
 Record high precipitation let to extreme low salinity event in spring 2019
 
-The high flows and associated nutrient loads contributed to summer dissolved-oxygen levels in the Bay that were the 3rd lowest recorded in Maryland waters
+High flows and nutrient loads led to 3rd lowest summer dissolved-oxygen levels recorded in Maryland Bay waters
 
-<br />
- 
-Additional nearshore data sources and indicators under investigation
 
 ]
 
@@ -1920,7 +1921,7 @@ ggplot2::ggplot() +
 
 ---
 ## Seasonal temperature and phytoplankton in 2019
-.pull-left[
+.pull-left-60[
 Sea surface temperature anomaly and trends
 ```{r MAB-SST-insitu, fig.height = 8, fig.cap = "MAB seasonal sea surface time series overlaid onto 2018 seasonal spatial anomalies."}
 annotation_custom2 <- function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data) 
@@ -2108,7 +2109,7 @@ sst_map +
 
 ]
 
-.pull-right[
+.pull-right-40[
 .center[
 Satellite chlorophyll a anomaly
 
@@ -2219,6 +2220,46 @@ mab_map
 
 ```
 ]
+
+---
+## Changing patterns primary production
+
+```{r PP-OCCI, fig.width=8, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
+out_pp <- ecodata::chl_pp %>% 
+  filter(EPU == epu_abbr,
+         str_detect(Var, "MONTHLY_PPD_MEDIAN")) %>% 
+  separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
+    mutate(Month = plyr::mapvalues(Month, from = c("01","02","03","04","05","06",
+                                                   "07","08","09","10","11","12"),
+                                   to = c(month.abb))) %>% 
+  group_by(Month) %>% 
+  mutate(hline = mean(Value))
+
+out_pp$Month <- factor(out_pp$Month, levels = month.abb)
+
+
+pp_cci <- ggplot(out_pp) +
+   # geom_gls(aes(x = Year, y = Value, group = Month))+
+    geom_point(aes(x = Year, y = Value, group = Month)) +
+    geom_line(aes(x = Year, y = Value, group = Month)) +
+    scale_x_discrete(name = "", breaks = seq(min(out_pp$Year),max(out_pp$Year),10)) +  
+        geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+    facet_wrap(Month~., ncol = 12) +
+    ggtitle("Monthly median PPD") +
+    ylab(expression("PP (gC m"^-2*" d"^-1*")")) +
+    theme_facet() +
+    theme(axis.text.x = element_text(angle=45, hjust = 1),
+          panel.spacing = unit(0.5, "lines"),
+          plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
+pp_cci
+```
+
+More production in summer months due to warmer temperatures and increased bacterial remineralization and nutrient recycling 
+
+This increased productivity is most likely from smaller-celled species that contribute less to fish production 
 
 ---
 ## SOE Take Home Messages  
