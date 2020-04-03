@@ -286,10 +286,9 @@ Conceptual model links indicators in the report with management objectives.
 A subset of objectives are currently under investigation. We plan to extend this work in 2020. 
 
 ---
-## Document Orientation
+## Document orientation
 .pull-left[
 Spatial scale
-
 ![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 100%](EDAB_images/EPU_Designations_Map.jpg)
 
 .contrib[
@@ -301,8 +300,7 @@ This year, we mapped trawl survey strata to Ecological Production Units (EPUs)
 ]
 .pull-right[
 Key to figures
-
-```{r spec-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."}
+```{r spec-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", fig.width=5, fig.asp=.9}
 
 spec_dist <- ecodata::species_dist %>% 
   dplyr::group_by(Var) %>% 
@@ -915,7 +913,7 @@ ggplot() +
   ylab("")+
   xlab("")+
   theme(legend.position = "none") +
-  ggtitle("BOEM lease areas")
+  ggtitle("BOEM lease areas, early 2019")
 
 ``` 
 ]
@@ -1011,6 +1009,95 @@ Unusual Mortality Events
   + [Grey, harbor, hooded, and harp seals](https://www.fisheries.noaa.gov/new-england-mid-atlantic/marine-life-distress/2018-2019-pinniped-unusual-mortality-event-along)
   
 ]
+
+---
+## Fish stock status
+
+Change from 2019: bluefish biomass below threshold
+
+```{r stock-status, warning=F, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly managed stocks (Goosefish and Spiny dogfish).", fig.width = 10, fig.asp = 0.6)}
+
+stock_status <- ecodata::stock_status %>%
+  mutate(Code = recode(Code, "Dogfish" = "Sp. Dogfish" )) %>% 
+  spread(.,Var,Value) %>% 
+  filter(Council %in% c("MAFMC","Both")) %>% 
+  group_by(Stock) %>% 
+  mutate(score = case_when(
+    (B.Bmsy <0.5) ~"a",
+    (F.Fmsy >1) ~ "a", 
+    (F.Fmsy < 1 & B.Bmsy > 0.5 & B.Bmsy < 1) ~ "b",
+    (F.Fmsy < 1 & B.Bmsy > 1) ~ "c"))
+#Plot constants
+y.max <- 2.0 #1.75 mackerel cut off F/Fmsy is 1.8
+x.max <- 2.6
+#A dataframe that defines custom legend for stocks with unknown status
+unknown <- data.frame(text = c("Unknown Status", "Longfin Squid",
+                              "Shortfin Squid", "N. Goosefish", "S. Goosefish"),
+                    x = rep(0.9*x.max,5), y = seq(0.93*y.max,1.4,-.1))
+
+# Custom Color
+custom_color<- c("#56B4E9", "#009E73", "#0072B2")
+#Plotting code
+ggplot(data = stock_status) +
+  geom_vline(xintercept = 1, linetype = "dotted")+
+  geom_vline(xintercept = 0.5, linetype = "dashed")+
+  geom_hline(yintercept = 1, linetype = "dashed") +
+  geom_point(aes(x = B.Bmsy,
+                 y = F.Fmsy,
+                 shape = Council,
+                 color = score)) +
+  geom_text_repel(aes(x = B.Bmsy, #geom_text_repel auto-jitters text around points
+                      y = F.Fmsy,
+                      label = Code, 
+                      color = score), 
+                  show.legend = FALSE, nudge_y = -0.01, nudge_x = 0.05) +
+  scale_color_brewer(palette = "Dark2",
+                     breaks = stock_status$score) +
+  ylim(0,y.max) +
+  xlim(0,x.max) +
+  geom_text(data = unknown, aes(x = x, y = y, label = text), #Custom legend for unknown stock status
+            size = c(4.75,rep(4,4))) +
+  annotate("rect", xmin = 0.8*x.max,
+           xmax = x.max,
+           ymin = 0.65*y.max,
+           ymax = 0.90*y.max,
+           alpha = 0.1) +
+  xlab(expression(~B/B[msy])) +
+  ylab(expression(~F/F[msy])) +
+  guides(color = FALSE) +
+  theme_ts(base_size = 25)
+```
+
+---
+## Updated feeding groups to look at aggregate biomass
+
+```{r guilds}
+# new table with all species listed by management entity
+df <- ecodata::species_groupings %>%
+  dplyr::select(SOE.20, COMNAME, Fed.Managed) %>%
+  filter(SOE.20 != "Other") %>%
+  distinct() %>%
+  group_by(SOE.20, Fed.Managed) %>%
+  summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
+  spread(Fed.Managed, COMNAME) %>%
+  arrange(factor(SOE.20, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
+df<-df[c(1,3,2,4,5)] %>%
+  mutate_all(tolower)
+
+
+knitr::kable(df, booktabs = TRUE, caption = 'Feeding groups and management bodies.', 
+             col.names = c("Feeding Group", "MAFMC", "Joint", "NEFMC", "State or Other")) %>%
+  #kable_styling(font_size=10, latex_options=c("repeat_header", "scale_down", "hold_position")) %>%
+  kable_styling(font_size = 12) %>%
+  row_spec(0,bold=TRUE) %>%
+  column_spec(1, width="2cm") %>%
+  column_spec(2, width="4cm") %>%
+  column_spec(3, width="2cm") %>%
+  column_spec(4, width="5cm") %>%
+  column_spec(5, width="6cm") %>%
+  #column_spec(3, width="7.5cm") #%>%
+  collapse_rows(columns = 1, latex_hline = "major", valign = "middle")
+```
 
 ---
 ## Aggregate fish biomass generally stable
@@ -1250,272 +1337,90 @@ plot_grid(p1, p2, p3, p4, nrow=4)
 ```
 
 ---
-## Aggregate fish trends and southern species
-
-
----
-## Memo 7: Gulf Stream and Labrador Current
-
-.pull-left-40[
-```{r GSI, fig.width = 5, fig.asp = 0.45, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position."}
-gsi %>% 
-  mutate(Year = floor(Time)) %>% 
-  group_by(Year) %>% 
-  dplyr::summarise(Value = mean(Value)) %>% 
-  mutate(hline = mean(Value)) %>% 
-  dplyr::rename(Time = Year) %>% 
-  ggplot(aes(x = Time, y = Value)) +
-         annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_gls() +
-  geom_line() +
-  geom_point() +
-  ylab("Gulf Stream position anomaly") +
-  xlab(element_blank())+
-  ggtitle("Gulf Stream Index") +
-    scale_x_continuous(expand = c(0.01, 0.01))+
-      geom_hline(aes(yintercept = hline),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty)+
-  theme_ts() +
-  theme(axis.title.y = element_text(size = 8),
-        strip.text=element_text(hjust=0,
-                                face = "italic"))
-```
-]
-
-.pull-right-60[
-```{r wsw-prop, fig.width=6, fig.asp = 0.45, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador slope water (LSLW) entering the GOM through the Northeast Channel."}
-
-sw.df <- slopewater %>% 
-  mutate(Var, Var = plyr::mapvalues(Var, from = c("WSW proportion ne channel",
-                                                  "LSLW proportion ne channel"),
-                                    to = c("WSW","LSLW"))) %>% 
-  dplyr::rename(Flavor  = Var) %>% 
-  group_by(Flavor) %>% 
-  mutate(hline = mean(Value)) 
-
-sw.df$Origin <- factor(sw.df$Flavor, levels = c("WSW","LSLW"))
-
-ggplot(data = sw.df) +
-  geom_line(aes(x = Time, y = Value, color = Origin))+
-  geom_point(aes(x = Time, y = Value, color = Origin)) +
-  ylab("Percent of Total Slopewater") +
-  xlab(element_blank())+
-  ggtitle("Slopewater Proportions in NE Channel")+
-  scale_x_continuous(expand = c(0.01, 0.01))+
-  geom_hline(aes(yintercept = hline, color = Origin),
-           size = hline.size, alpha = hline.alpha,
-           linetype = hline.lty)+
-  theme_ts() 
-
-```
-]
-
-
-## Memo 11: Warm Core Rings
-
-.center[
-```{r warm-core-rings, fig.width = 6, fig.asp = 0.45, fig.cap= "Interannual Variability of the WCR formation between 1980 and 2019. The regime shift (denoted by the split in the red solid line) is significant at the turn of the century.  Figure reproduced with permission from Gangopadhyay, et al. (2019).  2018 and 2019 data points based on personal communication with A. Gangopadhyay (2020)."}
-upper.line<-ecodata::wcr %>%
-  filter(Time>2000) %>% 
-  mutate(hline = c(mean(Value)))
-lower.line<-ecodata::wcr%>%
-  filter(Time<2000) %>% 
-  mutate(hline = c(mean(Value)))
-wcr<- upper.line %>% 
-  rbind(lower.line)
-
-wcr %>% 
-  ggplot(aes(x = Time, y = Value))+
-  geom_point()+
-  geom_line()+
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  ylab("Warm Core Ring Births")+
-  xlab(element_blank())+
-  ggtitle("Warm Core Rings")+
-  theme_ts()+
-  geom_segment(data = upper.line, aes(x = min(Time), y = hline, 
-                                      xend = max(Time), yend = hline, color = "segment") )+
-  geom_segment(data = lower.line, aes(x = min(Time), y = hline, 
-                                      xend = max(Time), yend = hline, color = "segment") )+
-  theme(legend.position = "none")
-```
-]
-
-???
-MAFMC requested that this indicator be included (in past years it was in the New England report only).
-
----
-.pull-left-30[
-## Memo 8: PP Source
-
-Satellite for all indicators
-]
-
-.pull-right-70[
-.center[
-![:img Map of 2019 chlorophyll a anomalies by season from satellite data, 80%](EDAB_images/CHL_SEASONAL_ANOMS_2019.png)
-]
-]
-
-## Memo 9: Shellfish Growth
-
-Roger Mann (VIMS) looking to fund student at NEFSC to evaluate
-
-## Memo 10: Power Plants
-
-Unable to address this aspect of estuarine water quality this year, but see 13
-
----
+## Aggregate fish distribution and southern species
 .pull-left[
-## Memo 12: Cold Pool Index
+Overall fish biomass tracking northeast and deeper
 
-```{r cold-pool, fig.width = 6, fig.asp = 0.45, eval = T, echo = F, fig.cap="Temperature anomaly in cold pool region, defined as the area with a mean September-October bottom temperature <12°C from 1963 to 2013." }
+```{r spec-dist1, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", fig.width=5, fig.asp=.9}
 
-ecodata::cold_pool %>% 
-    mutate(hline = mean(Value, na.rm = T)) %>% 
-  ggplot() + 
+spec_dist <- ecodata::species_dist %>% 
+  dplyr::group_by(Var) %>% 
+  dplyr::mutate(hline = mean(Value))
+
+asd <- spec_dist %>% 
+  dplyr::filter(Var == "along-shelf distance") %>% 
+  ggplot2::ggplot(aes(x = Time, y = Value,
+               group = Var)) + 
  #Highlight last ten years
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -3, ymax = 3) +
-  geom_gls(aes(x = Time, y = Value),
-             alpha = trend.alpha, size = trend.size) +
-  geom_line(aes(x = Time, y = Value), size = lwd) +
-  geom_point(aes(x = Time, y = Value), size = pcex) +
-    geom_hline(aes(yintercept = hline),
-     size = hline.size,
-     alpha = hline.alpha,
-     linetype = hline.lty)+
-  ggtitle("Cold Pool Index")+
-  ylab(expression("Cold Pool Temp Anomaly (C) ")) +
-  xlab("")+
-  theme(axis.title.y = element_text(size = 8))+
-  theme_ts()
-```
-
-Temperature change within the cold pool vs. volume or other metric?
-]
-
-.pull-right[
-![:img Three dimensional map of the Northeast US shelf showing major bottom, current, and other oceanographic features: Mid-Atlantic bight with the cold pool, circulation on Georges Bank and in the Gulf of Maine, the Scotian Shelf off Canada, the Labrador Current coming from the North and the Gulf Stream offshore with associated warm core and cold core rings spinning off. Precipitation over land affects water quality in the Chesapeake Bay., 120%](EDAB_images/MAFMC_NE_SHELF_MAP.png)
-]
-
----
-## Memo 13: Estuarine Water Quality
-
-.pull-left[
-*Chesapeake Bay water quality update* 
-```{r cb-salinity,fig.width = 5, fig.asp = 0.45, fig.cap = "Salinity in Chesapeake Bay throughout 2018 (blue) and 2019 (red)  as well as the daily average 2008-2019 (black) and the full observed range 2008-2019 (gray shading)."}
-
-ches_sal<-ecodata::ch_bay_sal %>% 
-  filter(!Var == "UTCTime") %>% 
-  drop_na() %>%
-  mutate(Time =  as.numeric(str_sub(Time, 2, -1)),
-         Time1 = as.Date(Time, origin = "2018-12-31")) %>% 
-  pivot_wider(names_from = Var, values_from = Value)
-
-ches_sal %>% 
-  ggplot() +
-  geom_ribbon(aes(x = Time1, ymin = AvgMinLim, ymax = AvgMaxLim))+
-  geom_ribbon(aes(x = Time1, ymin = MinDataLim, ymax = MaxDataLim), alpha = 0.3)+
-  geom_line(aes(x = Time1, y = Daily18), color = "blue") +
-  geom_line(aes(x = Time1, y = Daily19), color = "red") +
-  ylab(expression("PSU")) +
-  ggtitle("Chesapeake Bay Salinity") +
-  theme_ts()
-```
-
-High precipitation let to extreme low salinity event in spring 2019
-
-<br />
- 
-## What spatial scale to combine NERR data?
-
-## What indicators of most interest?
-
-## Use existing thresholds?
-
-]
-
-.pull-right[
-*How best to incorporate NERR data?*
-![:img Map for status of an example indicator across all National Esturarine Research Reserves, Triangle pointing up = increasing trend; Triangle pointing down = decreasing trend, Flat line = no trend.](EDAB_images/nerrs_map.png)
-
-![:img Dissolved inorganic Nitrogen at the Menauhant sampling station in Waquoit Bay, 2007-2018](EDAB_images/NERRs_MH_DIN.png)
-]
-
-
----
-## Memo 16: Other Social Science Indicators
-
-Included https://www.st.nmfs.noaa.gov/humandimensions/social-indicators/
-
-## Memo 17: Management Complexity
-
-Define how to use indicator in risk assessment to refine further
-
-## Memo 18: SAFMC and ASMFC Species
-
-.pull-left[
-Splitting out SAFMC, ASMFC removed downward catch diversity trend
-
-```{r rec-div3, fig.width = 5, fig.asp = 0.45, fig.cap = paste0("Recreational effort diversity and diversity of recreational catch in the ",region,".")}
-
-recdat <- ecodata::recdat %>% 
-  filter(EPU == region_abbr) %>% 
-  group_by(Var) %>% 
-  mutate(hline = mean(Value))
-
-series.col <- "black"
-
-ylim_re <- c(2e7, 7e7)
-ylim_rd <- c(1.75,2.75)
-ylim_ra  <- c(1e6, 3.5e6)
-
-rec_div_catch <- recdat %>% 
-  filter(Var == "Recreational Diversity of Catch") %>% 
-  ggplot() + 
- #Highlight last ten years
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+  ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
       ymin = -Inf, ymax = Inf) +
-    # annotate("text", 
-    #        x = label_loc[label_loc$Var == "Recreational anglers",]$xloc,
-    #        y = label_loc[label_loc$Var == "Recreational anglers",]$yloc,
-    #        label = label_loc[label_loc$Var == "Recreational anglers",]$labels,
-    #        size = letter_size)+
-  geom_gls(aes(x = Time, y = Value,
-               group = Var),
-             alpha = trend.alpha, size = trend.size) +
-  geom_line(aes(x = Time, y = Value, color = Var), size = lwd) +
-  geom_point(aes(x = Time, y = Value, color = Var), size = pcex) +
-
-  scale_x_continuous(expand = c(0.01, 0.01)) +
-  scale_color_manual(values = series.col, aesthetics = "color")+
-  guides(color = FALSE) +
-  ggtitle("Rec. diversity of catch")+
-  ylab(expression("Effective Shannon")) +
-  xlab("Time")+
-  geom_hline(aes(yintercept = hline,
-               color = Var),
+  ecodata::geom_gls() +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggplot2::ggtitle("Along-shelf distance")+
+  ggplot2::ylab(expression("Distance (km)")) +
+  ggplot2::xlab("")+
+  ggplot2::geom_hline(aes(yintercept = hline),
            size = hline.size,
            alpha = hline.alpha,
            linetype = hline.lty) +
-  theme_ts()
+  ecodata::theme_ts() 
 
-rec_div_catch
+depth <- spec_dist %>% 
+  dplyr::filter(Var == "depth") %>% 
+  dplyr::mutate(Value = Value* -1, 
+         hline = mean(Value)) %>% 
+  ggplot2::ggplot(aes(x = Time, y = Value,
+               group = Var)) + 
+ #Highlight last ten years
+  ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  ecodata::geom_gls() +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggplot2::ggtitle("Depth") +
+  ggplot2::ylab(expression("Depth (m)")) +
+  ggplot2::xlab("")+
+  ggplot2::geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  ecodata::theme_ts() 
+
+dtc <- spec_dist %>% 
+  dplyr::filter(Var == "distance to coast") %>% 
+  ggplot2::ggplot(aes(x = Time, y = Value,
+               group = Var)) + 
+ #Highlight last ten years
+  ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  ecodata::geom_gls() +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggplot2::ggtitle("Distance to coast")+
+  ggplot2::ylab(expression("Distance (km)")) +
+  ggplot2::xlab("Time")+
+  ggplot2::geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  ecodata::theme_ts() 
+
+asd + depth + patchwork::plot_layout(ncol = 1) 
 
 ```
-]
 
+]  
 .pull-right[
-```{r blue-runner, fig.height = 5, fig.cap = "Blue runner presence on Northeast Shelf"}
+Southern species not increasing in surveys, but further north?
+
+```{r blue-runner, fig.height = 7, fig.cap = "Blue runner presence on Northeast Shelf"}
 blue<-ecodata::blue_runner %>% 
   separate(Var, c("Var", "Pos"), "L") %>% 
   spread(., Pos, Value) %>% 
@@ -1566,77 +1471,21 @@ blue_map <-
 
 blue_map
 ```
-
 ]
-
-## Memo 19: Conceptual Model Social Elements
-
-Not added because the previous conceptual model was replaced
-
 ---
-## Memo 20: Fish Diet Indicators
+## Fish condition and productivity
 
-```{r ma-stomachs, fig.cap= "Stomach fullness anomaly in the Mid-Atlantic Bight.", fig.width=10 }
-fullness <- ecodata::stom_fullness %>%
-  group_by(Var, EPU) %>% ## Remove values with missing data
-  filter(n()> 10) %>% ## at least ten years of data
-  ungroup() %>% 
-  filter(EPU == "MAB") %>%
-  ggplot(aes(x = Time, y = Value)) +
-  geom_line() +
-  #geom_point() +
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_hline(aes(yintercept = 0),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty) +
-  ggtitle("MAB Stomach fullness") +
-  ylab("Stomach fullness anomaly") +
-  facet_wrap(~Var, ncol = 6)+
-  theme(strip.text=element_text(hjust=0))+
-  theme_ts()
-
-fullness
-
-```
-
-Define objectives for this indicator for further refinement.
-
----
-## Forage energy density:
-
-```{r forage, eval=T, echo=F}
-
-d<-ecodata::energy_density #%>% 
-    # rename("Mean ED (SD)" = "Mean.ED..SD.", 
-    #        "N" = "n",
-    #        "Mean ED (SD)" = "Mean.ED..SD..1", 
-    #        "N" = "n.1", 
-    #        "Mean ED (SD)" = "Mean.ED..SD..2", 
-    #        "N" = "n.2", 
-    #        "Mean ED (SD)" = "Mean.ED..SD..3", 
-    #        "N" = "n.3",
-    #        "Mean ED (SD)" = "Mean.ED..SD..4", 
-    #        "N" = "X",
-    #        "Mean ED (SD)" = "Mean.ED..SD..5", 
-    #        "Mean ED" = "Mean.ED" )
-kable(d, format = "html", escape = F, #table.attr='class="risktable"', 
-      col.names = c("Species", "ED (SD)", "N", "ED (SD)", "N",
-                    "ED (SD)", "N","ED (SD)", "N",
-                    "ED (SD)", "N","ED", "ED (SD)")) %>%
-      #caption = "Forage fish mean energy density (ED) mean and standard deviation (SD) by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values. N = number sampled.") %>% 
-  #kable_styling(latex_options = c("hold_position", "scale_down")) %>% 
-  #add_header_above(c(" " = 1, "Spring" = 2, "Fall" = 2, "Spring" = 2, "Fall" = 2, " " = 4)) %>% 
-  add_header_above(c(" " = 1, "Spring 2017" = 2, "Fall 2017" = 2, "Spring 2018" = 2,  "Fall 2018"= 2,"Total" = 2, "1980s" = 1, "1990s" = 1)) %>%
-  kable_styling(font_size = 11, full_width = T) %>%
-  row_spec(0, bold = TRUE)
-
-```
----
-## Memo 25: Young of Year Index
-.center[
+.pull-left-30[
+Female fish "fatness" from fall surveys in the MAB
+]
+.pull-right-70[
+![:img Condition factor for fish species in the MAB. MAB data are missing for 2017 due to survey delays, 150%](EDAB_images/MABcondition_2019_viridis_final.jpg)
+]
+]
+.pull-left-30[
+Small fish per large fish biomass anomaly, MAB
+]
+.pull-right-70[
 ```{r MAB-recruitment, fig.cap = "Small fish per large fish biomass anomaly in the Mid-Atlantic Bight. The summed anomaly across species is shown by the black line.", fig.width = 8, fig.asp = .55}
 
 #### Adjust plot properties -------------------------------
@@ -1791,19 +1640,488 @@ mid
 
 ```
 ]
-
-## Memo 26: Shark Biomass
-
-Still looking for a source; HMS provided 2017-2019 landings
-
-## Memo 27: Trawl Species Diversity
-
-Inappropriate to combine Albatross and Bigelow--separate indices?
+]
 
 ---
-## Memo 28: Ecosystem Risk Score
+## New information on forage fish energy density
 
-Options from the literature, or combine existing indicators?
+Forage fish energy content varies seasonally and annually 
+
+Atlantic herring energy content may be half what it was in the 1980s-90s
+
+```{r forage, eval=T, echo=F}
+
+d<-ecodata::energy_density #%>% 
+    # rename("Mean ED (SD)" = "Mean.ED..SD.", 
+    #        "N" = "n",
+    #        "Mean ED (SD)" = "Mean.ED..SD..1", 
+    #        "N" = "n.1", 
+    #        "Mean ED (SD)" = "Mean.ED..SD..2", 
+    #        "N" = "n.2", 
+    #        "Mean ED (SD)" = "Mean.ED..SD..3", 
+    #        "N" = "n.3",
+    #        "Mean ED (SD)" = "Mean.ED..SD..4", 
+    #        "N" = "X",
+    #        "Mean ED (SD)" = "Mean.ED..SD..5", 
+    #        "Mean ED" = "Mean.ED" )
+kable(d, format = "html", escape = F, #table.attr='class="risktable"', 
+      col.names = c("Species", "ED (SD)", "N", "ED (SD)", "N",
+                    "ED (SD)", "N","ED (SD)", "N",
+                    "ED (SD)", "N","ED", "ED (SD)")) %>%
+      #caption = "Forage fish mean energy density (ED) mean and standard deviation (SD) by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values. N = number sampled.") %>% 
+  #kable_styling(latex_options = c("hold_position", "scale_down")) %>% 
+  #add_header_above(c(" " = 1, "Spring" = 2, "Fall" = 2, "Spring" = 2, "Fall" = 2, " " = 4)) %>% 
+  add_header_above(c(" " = 1, "Spring 2017" = 2, "Fall 2017" = 2, "Spring 2018" = 2,  "Fall 2018"= 2,"Total" = 2, "1980s" = 1, "1990s" = 1)) %>%
+  kable_styling(font_size = 11, full_width = T) %>%
+  row_spec(0, bold = TRUE)
+
+```
+
+---
+## Habitat condition: nearshore environments
+
+.pull-left[
+Chesapeake Bay water quality update
+
+```{r cb-salinity,fig.width = 5, fig.asp = 0.45, fig.cap = "Salinity in Chesapeake Bay throughout 2018 (blue) and 2019 (red)  as well as the daily average 2008-2019 (black) and the full observed range 2008-2019 (gray shading)."}
+
+ches_sal<-ecodata::ch_bay_sal %>% 
+  filter(!Var == "UTCTime") %>% 
+  drop_na() %>%
+  mutate(Time =  as.numeric(str_sub(Time, 2, -1)),
+         Time1 = as.Date(Time, origin = "2018-12-31")) %>% 
+  pivot_wider(names_from = Var, values_from = Value)
+
+ches_sal %>% 
+  ggplot() +
+  geom_ribbon(aes(x = Time1, ymin = AvgMinLim, ymax = AvgMaxLim))+
+  geom_ribbon(aes(x = Time1, ymin = MinDataLim, ymax = MaxDataLim), alpha = 0.3)+
+  geom_line(aes(x = Time1, y = Daily18), color = "blue") +
+  geom_line(aes(x = Time1, y = Daily19), color = "red") +
+  ylab(expression("PSU")) +
+  ggtitle("Chesapeake Bay Salinity") +
+  theme_ts()
+```
+
+Record high precipitation let to extreme low salinity event in spring 2019
+
+The high flows and associated nutrient loads contributed to summer dissolved-oxygen levels in the Bay that were the 3rd lowest recorded in Maryland waters
+
+<br />
+ 
+Additional nearshore data sources and indicators under investigation
+
+]
+
+.pull-right[
+Virginia nesting waterbird populations declining
+
+```{r VA-cote, fig.width = 5, fig.asp = 0.5, fig.cap = "Functional group population estimates derived from Table 4 of Watts, B. D., B. J. Paxton, R. Boettcher, and A. L. Wilke. 2019. Status and distribution of colonial waterbirds in coastal Virginia: 2018 breeding season. Center for Conservation Biology Technical Report Series, CCBTR-19-06. College of William and Mary and Virginia Commonwealth University, Williamsburg, VA. 28 pp."}
+
+bird<- ecodata::seabird_mab %>% 
+  mutate(hline = mean(Value))
+
+bird %>% 
+  ggplot() +
+#Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = Value, color = Group), size = lwd-0.75) +
+  geom_point(aes(x = Time, y = Value, color = Group), size = pcex-0.75) +
+  #geom_gls(aes(x = Time, y = Value)) +
+  scale_x_continuous(expand = c(0.01, 0.01),limits = c(1991,2018)) +
+  ggtitle("Colonial Waterbird Abundance") +
+  ylab(expression("Number of Breeding Pairs")) +
+  xlab("")+
+  geom_hline(aes(yintercept = hline),
+           color = "black",
+          size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme(legend.position="bottom", legend.direction = "horizontal", 
+        legend.title = element_blank(), legend.margin=margin(t = -20)) +
+  theme_ts()
+```
+
+Declines attributed to habitat loss linked to sea level rise
+]
+
+
+---
+## Habitat condition: large ocean current changes
+
+.pull-left[
+More northerly Gulf Stream
+
+```{r GSI, fig.width = 5, fig.asp = 0.45, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position."}
+gsi %>% 
+  mutate(Year = floor(Time)) %>% 
+  group_by(Year) %>% 
+  dplyr::summarise(Value = mean(Value)) %>% 
+  mutate(hline = mean(Value)) %>% 
+  dplyr::rename(Time = Year) %>% 
+  ggplot(aes(x = Time, y = Value)) +
+         annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_gls() +
+  geom_line() +
+  geom_point() +
+  ylab("Gulf Stream position anomaly") +
+  xlab(element_blank())+
+  ggtitle("Gulf Stream Index") +
+    scale_x_continuous(expand = c(0.01, 0.01))+
+      geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty)+
+  theme_ts() +
+  theme(axis.title.y = element_text(size = 8),
+        strip.text=element_text(hjust=0,
+                                face = "italic"))
+```
+]
+.pull-right[
+More Gulf Stream warm core rings
+
+```{r warm-core-rings, fig.width = 6, fig.asp = 0.45, fig.cap= "Interannual Variability of the WCR formation between 1980 and 2019. The regime shift (denoted by the split in the red solid line) is significant at the turn of the century.  Figure reproduced with permission from Gangopadhyay, et al. (2019).  2018 and 2019 data points based on personal communication with A. Gangopadhyay (2020)."}
+upper.line<-ecodata::wcr %>%
+  filter(Time>2000) %>% 
+  mutate(hline = c(mean(Value)))
+lower.line<-ecodata::wcr%>%
+  filter(Time<2000) %>% 
+  mutate(hline = c(mean(Value)))
+wcr<- upper.line %>% 
+  rbind(lower.line)
+
+wcr %>% 
+  ggplot(aes(x = Time, y = Value))+
+  geom_point()+
+  geom_line()+
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  ylab("Warm Core Ring Births")+
+  xlab(element_blank())+
+  ggtitle("Warm Core Rings")+
+  theme_ts()+
+  geom_segment(data = upper.line, aes(x = min(Time), y = hline, 
+                                      xend = max(Time), yend = hline, color = "segment") )+
+  geom_segment(data = lower.line, aes(x = min(Time), y = hline, 
+                                      xend = max(Time), yend = hline, color = "segment") )+
+  theme(legend.position = "none")
+```
+]
+
+.center[
+
+Almost no Labrador slope water entering the Gulf of Maine 2017-2019
+
+```{r wsw-prop, fig.width=7, fig.asp = 0.45, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador slope water (LSLW) entering the GOM through the Northeast Channel."}
+
+sw.df <- slopewater %>% 
+  mutate(Var, Var = plyr::mapvalues(Var, from = c("WSW proportion ne channel",
+                                                  "LSLW proportion ne channel"),
+                                    to = c("WSW","LSLW"))) %>% 
+  dplyr::rename(Flavor  = Var) %>% 
+  group_by(Flavor) %>% 
+  mutate(hline = mean(Value)) 
+
+sw.df$Origin <- factor(sw.df$Flavor, levels = c("WSW","LSLW"))
+
+ggplot(data = sw.df) +
+  geom_line(aes(x = Time, y = Value, color = Origin))+
+  geom_point(aes(x = Time, y = Value, color = Origin)) +
+  ylab("Percent of Total Slopewater") +
+  xlab(element_blank())+
+  ggtitle("Slopewater Proportions in NE Channel")+
+  scale_x_continuous(expand = c(0.01, 0.01))+
+  geom_hline(aes(yintercept = hline, color = Origin),
+           size = hline.size, alpha = hline.alpha,
+           linetype = hline.lty)+
+  theme_ts() 
+
+```
+]
+
+???
+MAFMC requested that this indicator be included (in past years it was in the New England report only).
+
+---
+## Mid-Atlantic regional habitat conditions 
+
+.pull-left[
+Mid-Atlatic cold pool is warming
+
+```{r cold-pool, fig.width = 6, fig.asp = 0.45, eval = T, echo = F, fig.cap="Temperature anomaly in cold pool region, defined as the area with a mean September-October bottom temperature <12°C from 1963 to 2013." }
+
+ecodata::cold_pool %>% 
+    mutate(hline = mean(Value, na.rm = T)) %>% 
+  ggplot() + 
+ #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -3, ymax = 3) +
+  geom_gls(aes(x = Time, y = Value),
+             alpha = trend.alpha, size = trend.size) +
+  geom_line(aes(x = Time, y = Value), size = lwd) +
+  geom_point(aes(x = Time, y = Value), size = pcex) +
+    geom_hline(aes(yintercept = hline),
+     size = hline.size,
+     alpha = hline.alpha,
+     linetype = hline.lty)+
+  ggtitle("Cold Pool Index")+
+  ylab(expression("Cold Pool Temp Anomaly (C) ")) +
+  xlab("")+
+  theme(axis.title.y = element_text(size = 8))+
+  theme_ts()
+```
+
+Bottom temperature is increasing
+
+```{r MAB-bot-temp, fig.width = 6, fig.asp = .45, fig.cap="Annual bottom temperature in the Mid-Atlantic Bight."}
+temp_anom <- ecodata::bottom_temp %>% 
+  dplyr::filter(EPU == epu_abbr) %>% 
+  tidyr::complete(Time = tidyr::full_seq(min(bottom_temp$Time):max(bottom_temp$Time),1),
+           tidyr::nesting(Var)) %>% 
+  dplyr::mutate(hline = 0)
+
+temp_anom %>%
+ dplyr::filter(Var == "bottom temp anomaly in situ") %>%
+ggplot2::ggplot() +
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  geom_line(aes(x = Time, y = Value)) +
+  geom_gls(aes(x = Time, y = Value)) +
+  geom_point(aes(x = Time, y = Value), size = 1) +
+  ylab("Temperature (°C)") +
+  xlab(element_blank())+
+  ggtitle("Bottom temp. anomaly MAB") +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  theme_ts() +
+  theme(strip.text=element_text(hjust=0),
+        plot.title = element_text(size = 12))+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+ theme_ts()
+
+
+```
+
+]
+
+.pull-right[
+![:img Three dimensional map of the Northeast US shelf showing major bottom, current, and other oceanographic features: Mid-Atlantic bight with the cold pool, circulation on Georges Bank and in the Gulf of Maine, the Scotian Shelf off Canada, the Labrador Current coming from the North and the Gulf Stream offshore with associated warm core and cold core rings spinning off. Precipitation over land affects water quality in the Chesapeake Bay., 120%](EDAB_images/MAFMC_NE_SHELF_MAP.png)
+]
+
+---
+## Seasonal temperature and phytoplankton in 2019
+.pull-left[
+Sea surface temperature anomaly and trends
+```{r MAB-SST-insitu, fig.height = 8, fig.cap = "MAB seasonal sea surface time series overlaid onto 2018 seasonal spatial anomalies."}
+annotation_custom2 <- function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data) 
+{
+  layer(data = data, stat = StatIdentity, position = PositionIdentity, 
+        geom = ggplot2:::GeomCustomAnn,
+        inherit.aes = TRUE, params = list(grob = grob, 
+                                          xmin = xmin, xmax = xmax, 
+                                          ymin = ymin, ymax = ymax))
+}
+
+#EPU shapefile
+mab_epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB"))
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -81
+xmax = -66
+ymin = 35.5
+ymax = 43
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+sst <- seasonal_sst_anomaly_gridded 
+
+sst$Season <- factor(sst$Season, levels = c("Winter",
+                                            "Spring",
+                                            "Summer",
+                                            "Fall"))
+sst<- sst %>% mutate(Value = replace(Value, Value > 4, 4))
+sst_map <- 
+  ggplot() +
+  geom_tile(data = sst, aes(x = Longitude, y = Latitude,fill = Value)) +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = mab_epu_sf, fill = "transparent", size = map.lwd) +
+  scale_fill_gradient2(name = "Temp.\nAnomaly (°C)",
+                       low = scales::muted("blue"),
+                       mid = "white",
+                       high = scales::muted("red"),
+                       limits = c(-4,4),
+                       labels = c("<-4", "-2", "0", "2", ">4")) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  facet_wrap(Season~.) +
+  theme_map() +
+  ggtitle("SST anomaly (2019)") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
+        legend.key = element_blank(),
+        axis.title = element_text(size = 11),
+        strip.background = element_blank(),
+        strip.text=element_text(hjust=0),
+        axis.text = element_text(size = 8), 
+        axis.title.y = element_text(angle = 90))
+
+winter_anom <-  ggplotGrob( seasonal_oisst_anom %>% 
+                              filter(EPU == "MAB",
+                                     str_detect(Var, "winter")) %>% 
+                              mutate(hline = mean(Value)) %>% 
+                              ggplot(aes(x = Time, y = Value)) +
+                              annotate("rect", fill = shade.fill, alpha = shade.alpha,
+                                       xmin = x.shade.min , xmax = x.shade.max,
+                                       ymin = -Inf, ymax = Inf) +
+                              geom_line() +
+                              geom_point() +
+                              geom_gls(alpha = trend.alpha + 0.25) +
+                              ylab("SST anomaly (°C)")+
+                              xlab(element_blank())+
+                              scale_x_continuous(expand = c(0.01, 0.01)) +
+                              geom_hline(aes(yintercept = hline)) +
+                              theme_ts()+
+                              theme(axis.title = element_text(size = 6),
+                                    axis.text = element_text(size = 6),
+                                    panel.background = element_rect(fill = "transparent"), 
+                                    plot.background = element_rect(fill = "transparent", color = NA), 
+                                    panel.grid.major = element_blank(),
+                                    panel.grid.minor = element_blank(), 
+                                    legend.background = element_rect(fill = "transparent"), 
+                                    legend.box.background = element_rect(fill = "transparent"), 
+                                    legend.key = element_rect(fill = "transparent", colour = NA), 
+                                    axis.line = element_blank(),
+                                    panel.border = element_blank())
+)
+
+spring_anom <-  ggplotGrob( seasonal_oisst_anom %>% 
+                              filter(EPU == "MAB",
+                                     str_detect(Var, "spring")) %>% 
+                              mutate(hline = mean(Value)) %>% 
+                              ggplot(aes(x = Time, y = Value)) +
+                              annotate("rect", fill = shade.fill, alpha = shade.alpha,
+                                       xmin = x.shade.min , xmax = x.shade.max,
+                                       ymin = -Inf, ymax = Inf) +
+                              geom_line() +
+                              geom_point() +
+                              geom_gls(alpha = trend.alpha + 0.25) +
+                              ylab("SST anomaly (°C)")+
+                              xlab(element_blank())+
+                              scale_x_continuous(expand = c(0.01, 0.01)) +
+                              geom_hline(aes(yintercept = hline)) +
+                              theme_ts()+
+                              theme(axis.title = element_text(size = 6),
+                                    axis.text = element_text(size = 6),
+                                    panel.background = element_rect(fill = "transparent"), 
+                                    plot.background = element_rect(fill = "transparent", color = NA),
+                                    panel.grid.major = element_blank(),
+                                    panel.grid.minor = element_blank(), 
+                                    legend.background = element_rect(fill = "transparent"), 
+                                    legend.box.background = element_rect(fill = "transparent"), 
+                                    legend.key = element_rect(fill = "transparent", colour = NA), 
+                                    axis.line = element_blank(),
+                                    panel.border = element_blank())
+)
+
+summer_anom <-  ggplotGrob( seasonal_oisst_anom %>% 
+                              filter(EPU == "MAB",
+                                     str_detect(Var, "summer")) %>% 
+                              mutate(hline = mean(Value)) %>% 
+                              ggplot(aes(x = Time, y = Value)) +
+                              annotate("rect", fill = shade.fill, alpha = shade.alpha,
+                                       xmin = x.shade.min , xmax = x.shade.max,
+                                       ymin = -Inf, ymax = Inf) +
+                              geom_line() +
+                              geom_point() +
+                              geom_gls(alpha = trend.alpha + 0.25) +
+                              ylab("SST anomaly (°C)")+
+                              xlab(element_blank())+
+                              scale_x_continuous(expand = c(0.01, 0.01)) +
+                              geom_hline(aes(yintercept = hline)) +
+                              theme_ts()+
+                              theme(axis.title = element_text(size = 6),
+                                    axis.text = element_text(size = 6),
+                                    panel.background = element_rect(fill = "transparent"),
+                                    plot.background = element_rect(fill = "transparent", color = NA),
+                                    panel.grid.major = element_blank(), 
+                                    panel.grid.minor = element_blank(), 
+                                    legend.background = element_rect(fill = "transparent"),
+                                    legend.box.background = element_rect(fill = "transparent"), 
+                                    legend.key = element_rect(fill = "transparent", colour = NA), 
+                                    axis.line = element_blank(),
+                                    panel.border = element_blank())
+)
+
+fall_anom <-  ggplotGrob( seasonal_oisst_anom %>% 
+                            filter(EPU == "MAB",
+                                   str_detect(Var, "fall")) %>% 
+                            mutate(hline = mean(Value)) %>% 
+                            ggplot(aes(x = Time, y = Value)) +
+                            annotate("rect", fill = shade.fill, alpha = shade.alpha,
+                                     xmin = x.shade.min , xmax = x.shade.max,
+                                     ymin = -Inf, ymax = Inf) +
+                            geom_line() +
+                            geom_point() +
+                            geom_gls(alpha = trend.alpha + 0.25) +
+                            ylab("SST anomaly (°C)")+
+                            xlab(element_blank())+
+                            scale_x_continuous(expand = c(0.01, 0.01)) +
+                            geom_hline(aes(yintercept = hline)) +
+                            theme_ts()+
+                            theme(axis.title = element_text(size = 6),
+                                  axis.text = element_text(size = 6),
+                                  panel.background = element_rect(fill = "transparent"), 
+                                  plot.background = element_rect(fill = "transparent", color = NA), 
+                                  panel.grid.major = element_blank(), 
+                                  panel.grid.minor = element_blank(), 
+                                  legend.background = element_rect(fill = "transparent"), 
+                                  legend.box.background = element_rect(fill = "transparent"),
+                                  legend.key = element_rect(fill = "transparent", colour = NA),
+                                  axis.line = element_blank(),
+                                  panel.border = element_blank())
+)
+
+sst_map + 
+  annotation_custom2(grob = winter_anom,  xmin=-82, xmax=-73.75,
+                     ymin=39, ymax=43.5, data = data.frame(Season = "Winter")) +
+  annotation_custom2(grob = spring_anom,  xmin=-82, xmax=-73.75,
+                     ymin=39, ymax=43.5, data = data.frame(Season = "Spring")) +
+  annotation_custom2(grob = summer_anom,  xmin=-82, xmax=-73.75,
+                     ymin=39, ymax=43.5, data = data.frame(Season = "Summer")) +
+  annotation_custom2(grob = fall_anom,  xmin=-82, xmax=-73.75,
+                     ymin=39, ymax=43.5, data = data.frame(Season = "Fall"))
+
+```
+
+]
+
+.pull-right[
+.center[
+Satellite chlorophyll a anomaly
+
+![:img Map of 2019 chlorophyll a anomalies by season from satellite data, 100%](EDAB_images/CHL_SEASONAL_ANOMS_2019.png)
+]
+]
+
+
+
+---
+## Marine heatwaves in the Mid-Atlantic
+
+**New Indicator**
 
 .center[
 ```{r heatwave-mab, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
@@ -1854,7 +2172,7 @@ mab.hw %>%
 ]
 
 .pull-right[
-```{r mab-heatwave-max, fig.cap="Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occurring on July 22, 2019."}
+```{r mab-heatwave-max, fig.cap="Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occurring on July 22, 2019.",fig.height=5 }
 #EPU shapefile
 mab_epu_sf <- ecodata::epu_sf %>% 
   filter(EPU %in% c("MAB"))
@@ -1900,68 +2218,6 @@ mab_map <-
 mab_map 
 
 ```
-]
-
----
-## Memo 29: Thresholds and Inflection Points
-
-Individual indicators or using many indicators at once? Single indicator example:  
-.center[
-```{r gom-heatwave, eval= T, echo = F, fig.width = 8, fig.asp = .35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) in the Gulf of Maine ."}
-cumu <- ecodata::heatwave %>% 
-  filter(Var == "cumulative intensity") %>% 
-  mutate(Var = recode(Var, "cumulative intensity" = "Cumulative Intensity (degree C x days)"))
-
-maxin <- ecodata::heatwave %>% 
-  filter(Var == "maximum intensity") %>% 
-  group_by(Time, EPU, Var, Units) %>% 
-  summarise(Value = max(Value)) %>% 
-  ungroup() %>% 
-  mutate(Var = recode(Var, "maximum intensity" = "Maximum Intensity (degree C)"))
-
-hw<- cumu %>%
-  rbind(maxin) %>% 
-  group_by(Var, EPU) %>% 
-  mutate(hline = mean(Value))
-
-gom.hw<-hw %>% filter(EPU == "GOM") %>% 
-  ggplot() +
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_line(aes(x = Time, y = Value)) +
-  geom_point(aes(x = Time, y = Value)) +
-  geom_gls(aes(x = Time, y = Value)) +
-  ylab("") +
-  xlab(element_blank())+
-  ggtitle("Gulf of Maine") +
-  scale_x_continuous(expand = c(0.01, 0.01))+
-  geom_hline(aes(yintercept = hline),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty)+
-  facet_wrap(~Var, scales = "free") +
-  theme_ts()+
-  theme(strip.text=element_text(hjust=0,
-                                face = "italic"), 
-        axis.title.y = element_text(angle = 90))
-
-gom.hw
-
-```
-]
-
-## Lots of academic work on this: what is a useful starting point?
-
-.contrib[
-Large, S. I., Fay, G., Friedland, K. D., and Link, J. S. 2013. Defining trends and thresholds in responses of ecological indicators to fishing and environmental pressures. ICES Journal of Marine Science, 70: 755–767.
-
-Large, S. I., Fay, G., Friedland, K. D., and Link, J. S. 2015. Quantifying Patterns of Change in Marine Ecosystem Response to Multiple Pressures: e0119922. PLoS One, 10. http://search.proquest.com/docview/1664222461/abstract/120C1207C54548BEPQ/1 (Accessed 14 October 2016).
-
-Samhouri, J. F., Andrews, K. S., Fay, G., Harvey, C. J., Hazen, E. L., Hennessey, S. M., Holsman, K., et al. 2017. Defining ecosystem thresholds for human activities and environmental pressures in the California Current. Ecosphere, 8: e01860.
-
-Tam, J. C., Link, J. S., Large, S. I., Andrews, K., Friedland, K. D., Gove, J., Hazen, E., et al. 2017. Comparing Apples to Oranges: Common Trends and Thresholds in Anthropogenic and Environmental Pressures across Multiple Marine Ecosystems. Frontiers in Marine Science, 4. Frontiers. https://www.frontiersin.org/articles/10.3389/fmars.2017.00282/full (Accessed 9 March 2020).
-
 ]
 
 ---
@@ -2181,7 +2437,7 @@ Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
 Sean Hardison<br>
 Kimberly Hyde<br>
 Terry Joyce (Woods Hole Oceanographic Institute)<br>
-John Kosik<br>
+John Kocik<br>
 Steve Kress (National Audubon Society)<br>
 Scott Large
 ]
@@ -2212,36 +2468,6 @@ Mark Wuenschel
 .center[
 ![:img NOAA Fisheries IEA logo, 40%](EDAB_images/noaa-iea.png)
 ]
----
-## Appendix: Updated feeding guilds
-
-```{r guilds}
-# new table with all species listed by management entity
-df <- ecodata::species_groupings %>%
-  dplyr::select(SOE.20, COMNAME, Fed.Managed) %>%
-  filter(SOE.20 != "Other") %>%
-  distinct() %>%
-  group_by(SOE.20, Fed.Managed) %>%
-  summarize_all(funs(paste(na.omit(.), collapse = ", "))) %>%
-  spread(Fed.Managed, COMNAME) %>%
-  arrange(factor(SOE.20, levels = c("Apex Predator", "Piscivore", "Planktivore", "Benthivore", "Benthos")))
-df<-df[c(1,3,2,4,5)] %>%
-  mutate_all(tolower)
-
-
-knitr::kable(df, booktabs = TRUE, caption = 'Feeding guilds and management bodies.', 
-             col.names = c("Guild", "MAFMC", "Joint", "NEFMC", "State or Other")) %>%
-  #kable_styling(font_size=10, latex_options=c("repeat_header", "scale_down", "hold_position")) %>%
-  kable_styling(font_size = 12) %>%
-  row_spec(0,bold=TRUE) %>%
-  column_spec(1, width="2cm") %>%
-  column_spec(2, width="4cm") %>%
-  column_spec(3, width="2cm") %>%
-  column_spec(4, width="5cm") %>%
-  column_spec(5, width="6cm") %>%
-  #column_spec(3, width="7.5cm") #%>%
-  collapse_rows(columns = 1, latex_hline = "major", valign = "middle")
-```
 
 ---
 class: inverse
@@ -2271,104 +2497,3 @@ Contacts:
 sarah.gaichas@noaa.gov  
 ]
  
----
-## Memo 3: Indicator uncertainty questions: VAST?
-
-![:img VAST model Georges Bank piscivores biomass estimate with uncertainty](EDAB_images/ln_density.png)
-  
----
-## Memo 3: Indicator uncertainty questions: VAST? plus
-
-.pull-left[
-![:img VAST model Georges Bank piscivores biomass estimate with uncertainty, 100%](EDAB_images/biomass_plot.png)
-]
-
-.pull-right[
-Uncertainty already included in:
-  * Right whale abundance
-  
-Uncertainty difficult to include in:
-  * Landings
-  * Some diversity indices
-  * Condition and productivity plots
-  
-]
-
-
-## Priorities for uncertainty in other indicators?
-
-## Recommended methods?
-
----
-## Memo 24: Small Pelagic Abundance
-
-```{r planktivores, fig.cap = "Spring (left) and fall (right) surveyed biomass of planktivores in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean. ", fig.width=10, fig.asp=.3}
-
-### Planktivore
-neamap.3<-neamap %>% 
-  filter(str_detect(Var,"Planktivore"))
-p3<-agg_bio %>% 
-  filter(str_detect(Var,"Planktivore")) %>% 
-  ggplot() +
-  
-  #Highlight last ten years
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max ,
-      ymin = -Inf, ymax = Inf) +
-  #Test for trend and add lines
-  geom_gls(aes(x = Time, y = Mean,
-               color = Var),
-             alpha = trend.alpha, size = trend.size) +
-  
-  #Add time series
-  geom_ribbon(aes(x = Time, ymin = pmax(lower,0), ymax = upper), 
-              alpha = 0.5,
-              fill = "grey") +
-  geom_line(aes(x = Time, y = Mean),size = lwd-0.5) +
-  geom_point(aes(x = Time, y = Mean),size = pcex-0.5) +
-  scale_color_manual(values = series.col, aesthetics = "color")+
-  guides(color = FALSE) +
-  geom_hline(aes(yintercept = hline,
-                 group = Var),
-             size = hline.size,
-             alpha = hline.alpha,
-             linetype = hline.lty)+
-  facet_wrap(Var~.,ncol = 2) +
-       #Add NEAMAP
-    geom_ribbon(data = neamap.3, aes(ymax = pmax(upper, 0), ymin = lower, x = Time), 
-                fill = "pink", alpha = 0.5) +
-  geom_line(data = neamap.3, aes(x = Time, y = Value),
-            color = "#ca0020")+
-  geom_point(data = neamap.3, aes(x = Time, y = Value),
-             size = pcex-0.5,
-             color = "#ca0020")+
-
-  #Axis and theme
-  scale_x_continuous(breaks = seq(1965, 2015, by = 10), expand = c(0.01, 0.01)) +
-  #ylim(0, 600)+
-  ylab(expression("Biomass (kg tow"^-1*")")) +
-  theme_facet()+
-  theme(strip.text=element_text(hjust=0), 
-        axis.title.x=element_blank())
-
-p3
-```
-
-Attempt VAST? Other data sources and suggestions?
----
-## Memo 6: Ocean Acidification
-
-NOAA is finalizing an Ocean Acidification research plan<sup>1</sup>. 
-
-Work is in progress to to bolster monitoring and to develop a baseline climatology for our region. 
-
-.center[
-![:img US East Coast with ph, 40%](EDAB_images/occ_graphic3.jpg)
-]
-
-A time series indicator may be several years away. Until then, we seek feedback on what available information (for example, initial monitoring<sup>2</sup>) would be useful to the Councils right now.
-
-.footnote[
-[1] https://sab.noaa.gov/sites/SAB/Meetings/2019_Documents/Dec_Meeting/2020%20OA%20Research%20Plan%20DRAFT%20External%20Review.pdf
-[2] https://www.aoml.noaa.gov/ocd/ocdweb/occ_oa.html
-]
