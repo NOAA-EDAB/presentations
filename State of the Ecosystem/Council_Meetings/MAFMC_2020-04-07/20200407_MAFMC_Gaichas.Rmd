@@ -1069,7 +1069,7 @@ ggplot(data = stock_status) +
 ```
 
 ---
-## Updated feeding groups to look at aggregate biomass
+## Updated fish feeding groups to look at aggregate biomass
 
 ```{r guilds}
 # new table with all species listed by management entity
@@ -1923,7 +1923,7 @@ ggplot2::ggplot() +
 ## Seasonal temperature and phytoplankton in 2019
 .pull-left-60[
 Sea surface temperature anomaly and trends
-```{r MAB-SST-insitu, fig.height = 8, fig.cap = "MAB seasonal sea surface time series overlaid onto 2018 seasonal spatial anomalies."}
+```{r MAB-SST-insitu, fig.height = 7, fig.cap = "MAB seasonal sea surface time series overlaid onto 2019 seasonal spatial anomalies."}
 annotation_custom2 <- function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data) 
 {
   layer(data = data, stat = StatIdentity, position = PositionIdentity, 
@@ -1973,6 +1973,7 @@ sst_map <-
   ylab("Latitude") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
         legend.key = element_blank(),
+        legend.position="bottom",
         axis.title = element_text(size = 11),
         strip.background = element_blank(),
         strip.text=element_text(hjust=0),
@@ -2110,11 +2111,9 @@ sst_map +
 ]
 
 .pull-right-40[
-.center[
 Satellite chlorophyll a anomaly
 
 ![:img Map of 2019 chlorophyll a anomalies by season from satellite data, 100%](EDAB_images/CHL_SEASONAL_ANOMS_2019.png)
-]
 ]
 
 
@@ -2222,9 +2221,9 @@ mab_map
 ]
 
 ---
-## Changing patterns primary production
+## Changing patterns in primary production
 
-```{r PP-OCCI, fig.width=8, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
+```{r PP-OCCI, fig.width=10, fig.asp=.7, fig.cap = "Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."}
 out_pp <- ecodata::chl_pp %>% 
   filter(EPU == epu_abbr,
          str_detect(Var, "MONTHLY_PPD_MEDIAN")) %>% 
@@ -2257,9 +2256,7 @@ pp_cci <- ggplot(out_pp) +
 pp_cci
 ```
 
-More production in summer months due to warmer temperatures and increased bacterial remineralization and nutrient recycling 
-
-This increased productivity is most likely from smaller-celled species that contribute less to fish production 
+More summer production (warmer, nutrient recycling), but likely smaller-celled species that contribute less to fish production 
 
 ---
 ## SOE Take Home Messages  
@@ -2454,7 +2451,14 @@ risk.sppsector %>%
   
 * [ERDDAP server](https://comet.nefsc.noaa.gov/erddap/index.html)
 
+* [NOAA SOE summary webpage](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
 * Slides available at https://noaa-edab.github.io/presentations/
+
+
+Contacts:  <sarah.gaichas@noaa.gov>, <sean.lucey@noaa.gov>, <scott.large@noaa.gov>  
+
+
 
 ---
 ## Contributors - THANK YOU!
@@ -2511,30 +2515,7 @@ Mark Wuenschel
 ]
 
 ---
-class: inverse
-background-image: url("EDAB_images/IMG_2809.jpg")
-background-size: cover
+background-image: url("EDAB_images/SOE_feature_image.png")
+background-size: contain
 
-## Questions? Thank you!
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-.pull-left[
-Contacts:  
-]
-.pull-right[
-sarah.gaichas@noaa.gov  
-]
- 
+.footnote[Questions? Thank you!]
