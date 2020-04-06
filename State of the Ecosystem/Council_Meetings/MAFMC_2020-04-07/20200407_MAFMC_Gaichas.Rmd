@@ -1049,7 +1049,8 @@ ggplot(data = stock_status) +
   geom_text_repel(aes(x = B.Bmsy, #geom_text_repel auto-jitters text around points
                       y = F.Fmsy,
                       label = Code, 
-                      color = score), 
+                      color = score,
+                      size = 20), 
                   show.legend = FALSE, nudge_y = -0.01, nudge_x = 0.05) +
   scale_color_brewer(palette = "Dark2",
                      breaks = stock_status$score) +
@@ -1065,7 +1066,7 @@ ggplot(data = stock_status) +
   xlab(expression(~B/B[msy])) +
   ylab(expression(~F/F[msy])) +
   guides(color = FALSE) +
-  theme_ts(base_size = 25)
+  theme_ts()
 ```
 
 ---
