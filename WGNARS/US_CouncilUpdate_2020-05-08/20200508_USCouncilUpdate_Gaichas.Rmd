@@ -98,6 +98,12 @@ ne_states <- ne_states(country = "united states of america",
 epu_sf <- ecodata::epu_sf %>% 
   filter(EPU %in% c("MAB","GB","GOM"))
 
+#Region identifiers
+epu <- "Mid-Atlantic Bight"
+epu_abbr <- "MAB"
+region <- "Mid-Atlantic"
+region_abbr <- "MA" #Some commercial data organized by "MA" or "NE" regions, not by EPU 
+
 
 ```
 
@@ -149,62 +155,7 @@ https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 ![MAFMC fishery management plans and species](EDAB_images/MAFMPs2.png)
 ]
 Source: http://www.mafmc.org/fishery-management-plans
----
-## Why an ecosystem approach?
 
-*"We rebuilt all the stocks, so why is everyone still pissed off?" --Rich Seagraves*
-
-in 2011, the Council asked:
-
-.pull-left[
-![visioning project goals and objectives](EDAB_images/MA_Visioning1.png)
-]
-.pull-right[
-![visioning project responses and port meetings](EDAB_images/MA_Visioning2.png)
-]
-
-And many people answered, from commercial fishery, recreational fishery, environmental organization, and interested public perspectives.
-
-Visioning report: 
-
-http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
-
----
-## Common themes among all stakeholder groups:
-
->• There is a lack of confidence in the data that drive fishery management decisions.
->
->• Stakeholders are not as involved in the Council process as they can and should be.
->
->• Different jurisdictions and regulations among the many fishery management organizations result in complexity and inconsistency.
->
->• There is a need for increased transparency and communications in fisheries management.
->
->• The dynamics of the ecosystem and food web should be considered to a greater extent in fisheries management decisions.
->
->• Stakeholders are not adequately represented on the Council.
->
->• Pollution is negatively affecting the health of fish stocks.
-
-Visioning report, p. 3:
-
-http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
-
----
-## How did MAFMC develop their ecosystem approach?
-
-Visioning Project &rarr; Strategic Plan with one objective to develop 
->"A non-regulatory umbrella document intended to guide Council policy with respect to ecosystem considerations across existing Fishery Management Plans"
-
-.center[
-![:img Mid-Atlantic EAFM development with full details in speaker notes, 80%](EDAB_images/MAapproach.png)
-]
-
-Details, including workshop presentations and white papers:
-http://www.mafmc.org/eafm
-
-???
-The Mid-Atlantic Council identified several theme areas from the visioning project as noted in the left panel of the workflow graphic: forage fish, species interactions, social and economic issues, climate and habitat. The Council held full day workshops during Council meetings where experts on the topics provided overviews and Council members asked questions and discussed the issues. Workships on Forage fish, Climate, Climate and Governance, Interactions (species and fleet), and Habitat were held between 2013 and 2015, resulting in white papers on Forage fish, Climate (and habitat), Interactions (species, fleet, climate, and habitat). Social and economic considerations were integrated in each workshop rather than looked at separately.
 ---
 ## Mid-Atlantic Council Ecosystem Approach
 
@@ -341,166 +292,25 @@ background-size: cover
 
 ---
 
-## Meanwhile, scientists were improving ecosystem reports:
+## State of the Ecosystem Reports! 
 
-*"So what?" --John Boreman, September 2016*
+See the [SOE update presentation](https://noaa-edab.github.io/presentations/20200508_US_SOEUpdate_Gaichas.html)
 
-1. Clear linkage of ecosystem indicators with management objectives
+* Originally based on the 2017 SOE, the risk assessment was updated and published in 2018<sup>1</sup>. 
 
-1. Synthesis across indicators for big picture
+* The Council received updates in 2019 and 2020.
 
-1. Objectives related to human-well being placed first in report
-
-1. Short (< 30 pages), non-technical (but rigorous) text
-
-1. Emphasis on reproducibility 
 .center[
 ![:img scaled down conceptual model detailed in speaker notes, 60%](EDAB_images/nes-components-abstracted.png)
 ]
+
+.footnote[
+[1] Gaichas, S. K., DePiper, G. S., Seagraves, R. J., Muffley, B. W., Sabo, M., Colburn, L. L., and Loftus, A. L. 2018. Implementing Ecosystem Approaches to Fishery Management: Risk Assessment in the US Mid-Atlantic. Frontiers in Marine Science, 5.
+]
+
 ???
 State of the ecosystem reports were revised to emphasize linkages between management objectives, local social systems, human activities, marine habitat, the environment, and the marine ecological community.
 
----
-## Revised ecosystem status reporting
-.pull-left[
-
-### Report structure
-0. Synthetic overview
-
-1. Human dimensions
-
-2. Protected species
-
-3. Fish and invertebrates (managed and otherwise)
-
-4. Habitat quality and ecosystem productivity
-]
-
-.pull-right[
-.table[
-<table class="table" style="width: 50; margin-left: auto; margin-right: auto;">
-<caption>Ecosystem-scale objectives and indicators on the Northeast US shelf</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;font-weight: bold;"> Objective Categories </th>
-   <th style="text-align:left;font-weight: bold;"> Indicators </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Seafood Production </td>
-   <td style="text-align:left;"> Landings by feeding guild </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Profits </td>
-   <td style="text-align:left;"> Revenue by feeding guild </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Recreation </td>
-   <td style="text-align:left;"> Number of anglers and trips; recreational catch </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Stability </td>
-   <td style="text-align:left;"> Diversity indices (fishery and species) </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Social &amp; Cultural </td>
-   <td style="text-align:left;"> Commercial and recreational reliance </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Biomass </td>
-   <td style="text-align:left;"> Biomass or abundance by feeding guild from surveys </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Productivity </td>
-   <td style="text-align:left;"> Condition and recruitment of managed species </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Trophic structure </td>
-   <td style="text-align:left;"> Relative biomass of feeding guilds, primary productivity </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Habitat </td>
-   <td style="text-align:left;"> Estuarine and offshore habitat conditions </td>
-  </tr>
-</tbody>
-</table>
-]
-]
----
-## Standardized indicator visualization in reports
-
-Status (short-term) and trend (long-term) of components are measured as **indicators** and plotted in a standardized way
-
-Indicators are selected to
-
-1. Be broadly informative about a component in a management context<sup>1-3</sup>
-
-1. Minimize redundancy of information
-
-1. Be responsive to ecosystem change
-
-
-```{r doc-orientation, echo = F, warning = F, message=F, fig.height = 3, fig.width=8, fig.align = "center", dev='png', fig.show='hide'}
-m <- 0.1
-x <- 1989:2018
-y <-  m*x + rnorm(30, sd = 0.35)
-
-data <- data.frame(x = x,
-                  y = y)
-
-#Define constants for figure plot
-x.shade.max <- max(x)
-x.shade.min <- x.shade.max - 9 
-hline = mean(y)
-
-#Plot series with trend 
-ggplot2::ggplot(data = data,aes(x = x, y = y)) +
-  #Highlight last ten years
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  geom_point(size = pcex) +
-  scale_color_manual(aesthetics = "color")+
-  guides(color = FALSE) +
-  geom_hline(aes(yintercept = hline),
-              size = hline.size,
-             alpha = hline.alpha,
-             linetype = hline.lty)+
-  geom_line() +
-  geom_gls() +
-  scale_y_continuous(labels = function(l){trans = l / 1000})+
-  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
-  ylab(expression("Invented Index, 10"^3*"widgets")) +
-  xlab("Year") +
-  ggtitle("Indicator Z") +
-  theme_ts() +
-  theme(plot.title = element_text(size = 16),
-        axis.title = element_text(size = 14))
-```
-
-.center[
-![plot in standard reporting format described in speaker notes](`r knitr::fig_chunk('doc-orientation', 'png')`)
-]
-.footnote[
-[1] Rice J. C.Rochet M. J. "A framework for selecting a suite of indicators for fisheries management." ICES Journal of Marine Science 62 (2005): 516–527.  
-[2] Link J. 2010. Ecosystem-Based Fisheries Management: Confronting Tradeoffs . Cambridge University Press, New York.  
-[3] Zador, Stephani G., et al. "Ecosystem considerations in Alaska: the value of qualitative assessments." ICES Journal of Marine Science 74.1 (2017): 421-430.
-]
-???
-The figure format is illustrated here. Trend lines are shown when slope is significantly different from 0 at the p < 0.05 level. An orange line signifies an overall positive trend, and purple signifies a negative trend. To minimize bias introduced by small sample size, no trend is fit for < 30 year time series. Dashed lines represent mean values of time series unless the indicator is an anomaly, in which case the dashed line is equal to 0. Shaded regions indicate the past ten years. If there are no new data for the most recent year, the shaded region will still cover this time period. 
----
-## Indicator spatial scales--already Mid-Atlantic specific
-
-.center[
-![:img map of Northeast US ecosystem production units, 70%](EDAB_images/SOE_Map.jpg)
-]
-.footnote[
-https://noaa-edab.github.io/tech-doc/epu.html
-]
-
-???
-Indicators 
 
 ---
 ## Risk assessent indicators and ranking criteria: Commercial revenue 
@@ -523,32 +333,72 @@ cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 ]
 ]
 .pull-right[
-```{r total-rev, fig.height = 3}
-source("R/total_revenue_plot.R")
-mab_totalrev <- plot_total_revenue(epu_abbr = "MAB", council = "MAFMC")
+```{r total-rev, fig.width = 5, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."}
+#Filtering and aggregation step
+rev_agg <- ecodata::comdat %>% 
+  filter(str_detect(Var, "Revenue"),
+         !str_detect(Var, "prop|Other|NEFMC"), #Remove proportions, "Other" category species, NEFMC managed species in MAB
+         EPU == epu_abbr,
+         Time >= 1986) %>% 
+  mutate(Status = ifelse(str_detect(Var, "Revenue weight"), 
+                         "Managed","Total")) %>% #Create groups for aggregation
+  group_by(Status, Time) %>% 
+  dplyr::summarise(Total = sum(Value)) %>% 
+  group_by(Status) %>% 
+  mutate(hline = mean(Total))
 
-mab_totalrev
+series.col <- c("indianred","black")
+
+#Plotting
+ggplot(data = rev_agg) +
+  
+  #Highlight last ten years
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf)+  
+  
+  #lines
+  geom_gls(aes(x = Time, y = Total,
+               group = Status),
+             alpha = trend.alpha, size = trend.size) +
+  geom_line(aes(x = Time, y = Total, color = Status), size = lwd) +
+  geom_point(aes(x = Time, y = Total, color = Status), size = pcex) +
+
+  #axes
+  scale_y_continuous(labels = function(l){trans = l / 1000000})+
+  scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
+      scale_color_manual(values = series.col, aesthetics = "color")+
+  guides(color = FALSE) +
+  ggtitle("Total Revenue") +
+  ylab(expression("Revenue (10"^6*"USD)")) +
+  geom_hline(aes(yintercept = hline,
+               color = Status),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  theme_ts()
 ```
 
-```{r bennet, fig.height = 3}
+```{r bennet, fig.cap = paste0("Revenue change from the 2015 base year in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the ",region,"."), fig.width = 6, fig.asp = 0.45}
+
 #Filter data into two dataframes for plotting
 indicators <- ecodata::bennet %>% 
-  filter(EPU == "MAB",
-         Var %in% c("VI EPU aggregate",
-                    "PI EPU aggregate")) %>% 
-  mutate(Var, Var = plyr::mapvalues(Var, from = c("VI EPU aggregate","PI EPU aggregate"),
-                                    to = c("Volume","Price")))
-
+  filter(EPU == epu_abbr) %>% 
+  filter(stringr::str_detect(Var, pattern="Total"),
+         !Var == "Total Revenue Change - Bennet", 
+         !Time < 1985) %>% 
+  mutate(Var, Var = plyr::mapvalues(Var, from = c("Total Volume Index - Bennet","Total Price Index - Bennet"),
+                                    to = c("Volume","Price"))) %>% 
+  group_by(Time) %>% 
+  mutate(New = sum(Value))
 revchange <- ecodata::bennet %>% 
   filter(EPU == "MAB",
-         Var %in% c("REVCHANGE EPU aggregate"))
-
+         Var %in% c("Total Revenue Change - Bennet"),
+         !Time<1985)
 #custom bar fill color (color-blind friendly)
 ind_fill <- c("#a6cee3", "#b2df8a")
-
 #limits
-y.lim <- c(-450,450)
-
+y.lim <- c(-450,600)
 #plot
 ggplot(data = indicators)+
   
@@ -556,12 +406,12 @@ ggplot(data = indicators)+
   annotate("rect", fill = shade.fill, alpha = shade.alpha,
       xmin = x.shade.min , xmax = x.shade.max,
       ymin = -Inf, ymax = Inf)+
-  
-  geom_bar(aes(x=Time, y= Value, fill = Var), stat="identity")+
+  geom_bar(data = indicators, aes(x=Time, y= Value, fill = Var), stat="identity")+
   scale_fill_manual(name = "Indicators", values = ind_fill) +
   geom_line(data = revchange, aes(x = Time, y = Value, colour="$"))+
+  #geom_line(data = indicators, aes(x = Time, y = New, color = "blue"))+
   scale_colour_grey(name ="Revenue Change") +
-  ggtitle("Bennet Indicator")+
+  ggtitle("Revenue Components (Bennet Indicator)")+
   labs(y="Value $1,000,000 ($2015)") +
   scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
   scale_y_continuous(breaks = seq(y.lim[1], y.lim[2], by = 100), limits = y.lim, expand = c(0.01, 0.01)) +
@@ -781,46 +631,42 @@ cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 Each species ranked according to position/color in the plot on the right
 
 ---
-## Risk assessment results: *Species and sector level elements<sup>1</sup>*
-```{r spsectable,  echo=FALSE, message=FALSE, warnings=FALSE}
-#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+## EAFM Risk Assessment: 2020 update (I)
 
-risk.sppsector<-data.frame(
-  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Unmanaged forage", "Deepsea corals"),
-  MgtControl = c(1,1,3,2,1,1,4,2,1,1,1,1,1,9,1,1,1,2,1,1,1,9,9),
-  TecInteract = c(1,1,1,3,1,3,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,9,9),
-  OceanUse = c(2,2,2,2,2,2,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,9,3),
-  RegComplex = c(1,1,4,3,3,3,4,3,1,4,4,4,2,1,1,3,3,1,2,1,3,9,9),
-  Discards = c(1,1,4,2,3,3,3,2,1,2,3,4,1,1,1,1,1,3,2,1,2,9,9),
-  Allocation = c(1,1,4,4,1,1,4,4,4,4,1,4,1,1,1,4,4,4,4,1,4,9,9) 
-)
+Management elements updated from original 2017 risk assessment; added risk rankings for chub mackerel and unmanaged forage fish. 
 
-#convert to text for consistency
-risk.sppsector <- risk.sppsector %>%
-     mutate_at(vars(-Species), function(x){
-       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na")}) %>%
-     as.data.frame()
+### Decreased Risk (5)
 
-#make table
-risk.sppsector %>%
-  mutate_at(vars(-Species), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 14) 
+  * Regulatory complexity risk for summer flounder decreased from high to med-high due to increased consistency in recent years
+  * Technical interaction risk for commercial scup decreased from med-high to low-med because no accountability measures have been triggered
+  * Allocation risks for recreational Atlantic mackerel, commercial longfin squid, and commercial spiny dogfish dropped from high to low due to changes in management approaches
 
-```
+### Increased Risk (15)
 
-.footnote[
-[1] Gaichas, S. K., DePiper, G. S., Seagraves, R. J., Muffley, B. W., Sabo, M., Colburn, L. L., and Loftus, A. L. 2018. Implementing Ecosystem Approaches to Fishery Management: Risk Assessment in the US Mid-Atlantic. Frontiers in Marine Science, 5.
-]
+  * Bluefish status went from not overfished to overfished
+  * Increased discards (5), reduced management control (4), allocation (3), other ocean uses (1), regulatory complexity (1)
+  
+---
+## EAFM Risk Assessment update (II)
 
-???
+### Re-evaluate Risk (2)
+
+  * Chesapeake Bay water quality
+  
+  * Recreational retained catch/seafood production
+
+### Potential New Risk Indicators (3)
+
+  * Commercial fishery engagement time series
+  
+  * Recreational diversity indices (fleet and catch)
+  
+  * Other ocean uses: fish habitat overlap with wind energy lease areas
 
 ---
-## Risk assessment results updated with 2019 indicators
+## EAFM Risk Assessment: 2020 update
 *Species level risk elements*
-```{r sptable,  echo=FALSE, message=FALSE, warnings=FALSE}
-
+```{r sptable}
 #tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
 
 # spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
@@ -828,7 +674,7 @@ risk.species<-data.frame(
   Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
   Assess  = c("l", "l", "l",  "l", "l", "l",  "l", "lm", "lm", "l", "h", "l", "lm", "h", "na", "na"),
   Fstatus = c("l", "l", "l", "l", "l", "h", "l", "lm", "lm", "l", "h", "l", "l", "lm", "na", "na"),
-  Bstatus = c("l", "l", "lm", "l", "l", "h", "l", "lm", "lm", "lm", "mh", "lm", "lm", "lm", "na", "na"),
+  Bstatus = c("l", "l", "lm", "l", "l", "h", "l", "lm", "lm", "lm", "mh", "h", "lm", "lm", "na", "na"),
   FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
   FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
   FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
@@ -860,12 +706,10 @@ risk.species %>%
     cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
   kable(format = "html", escape = F, table.attr='class="risktable"') %>%
   kable_styling(font_size = 14) 
-
 ```
 
 *Ecosystem level risk elements*
-```{r ecotable,  echo=FALSE, message=FALSE, warnings=FALSE}
-  
+```{r ecotable}
 #tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
 
 risk.eco<-data.frame(
@@ -896,6 +740,38 @@ risk.eco %>%
     cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
   kable(format = "html", escape = F, table.attr='class="risktable"') %>%
   kable_styling(font_size = 14) 
+
+```
+
+---
+## EAFM Risk Assessment: 2020 update
+*Species and Sector level risk elements*
+```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
+#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.sppsector<-data.frame(
+  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
+  MgtControl = c(1,1,3,2,2,1,4,4,2,1,1,1,2,9,1,1,1,2,1,1,1,1,1,9),
+  TecInteract = c(1,1,1,3,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
+  OceanUse = c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
+  RegComplex = c(1,1,3,3,3,3,4,3,1,4,4,4,2,1,1,3,3,2,2,1,3,2,1,9),
+  Discards = c(3,3,4,3,3,3,4,4,1,2,3,4,1,1,1,1,1,3,2,1,2,1,1,9),
+  Allocation = c(1,1,4,4,4,4,4,4,2,4,1,2,4,1,1,4,4,4,4,1,3,1,1,9) 
+)
+
+
+#convert to text for consistency
+risk.sppsector <- risk.sppsector %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na")}) %>%
+     as.data.frame()
+
+#make table
+risk.sppsector %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 13) 
 
 ```
 
@@ -1082,4 +958,61 @@ geret.depiper@noaa.gov
 bmuffley@mafmc.org  
 sean.lucey@noaa.gov  
 ]
+
+---
+## Appendix: Why an ecosystem approach?
+
+*"We rebuilt all the stocks, so why is everyone still pissed off?" --Rich Seagraves*
+
+in 2011, the Mid-Atlantic Council asked:
+
+.pull-left[
+![visioning project goals and objectives](EDAB_images/MA_Visioning1.png)
+]
+.pull-right[
+![visioning project responses and port meetings](EDAB_images/MA_Visioning2.png)
+]
+
+And many people answered, from commercial fishery, recreational fishery, environmental organization, and interested public perspectives.
+
+Visioning report: 
+
+http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
+
+---
+## Common themes among all stakeholder groups:
+
+>• There is a lack of confidence in the data that drive fishery management decisions.
+>
+>• Stakeholders are not as involved in the Council process as they can and should be.
+>
+>• Different jurisdictions and regulations among the many fishery management organizations result in complexity and inconsistency.
+>
+>• There is a need for increased transparency and communications in fisheries management.
+>
+>• The dynamics of the ecosystem and food web should be considered to a greater extent in fisheries management decisions.
+>
+>• Stakeholders are not adequately represented on the Council.
+>
+>• Pollution is negatively affecting the health of fish stocks.
+
+Visioning report, p. 3:
+
+http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
+
+---
+## How did MAFMC develop their ecosystem approach?
+
+Visioning Project &rarr; Strategic Plan with one objective to develop 
+>"A non-regulatory umbrella document intended to guide Council policy with respect to ecosystem considerations across existing Fishery Management Plans"
+
+.center[
+![:img Mid-Atlantic EAFM development with full details in speaker notes, 80%](EDAB_images/MAapproach.png)
+]
+
+Details, including workshop presentations and white papers:
+http://www.mafmc.org/eafm
+
+???
+The Mid-Atlantic Council identified several theme areas from the visioning project as noted in the left panel of the workflow graphic: forage fish, species interactions, social and economic issues, climate and habitat. The Council held full day workshops during Council meetings where experts on the topics provided overviews and Council members asked questions and discussed the issues. Workships on Forage fish, Climate, Climate and Governance, Interactions (species and fleet), and Habitat were held between 2013 and 2015, resulting in white papers on Forage fish, Climate (and habitat), Interactions (species, fleet, climate, and habitat). Social and economic considerations were integrated in each workshop rather than looked at separately.
  
