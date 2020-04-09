@@ -170,6 +170,73 @@ In 2016, we began taking steps to address these common critiques of the ESR mode
 ---
 ## Process and timeline for 2020 reports
 
+```{r SOEtime}
+
+library(timevis)
+
+SOEtime <- data.frame(
+  id = 1:28,
+  content = c("2019 SOE MAFMC", "2019 SOE NEFMC", "2019 debrief", "SOE workshop",
+              "subgroups", "subgroups", "graphics development",  "subgroups", 
+              "data submission", "ecodata/visualization", "initial synthesis",
+              "strawman", "synthesis workshop", "SOE google doc", "SOE rmarkdown",
+              "SOE internal review", "response memo", "MAFMC risk assessment",
+              "submit Mid SSC", "2020 SOE Mid SSC", "submit NE SSC", "final editing Mid",
+              "submit MAFMC", "2020 NE SSC", "final editing NE", "submit NEFMC", 
+              "2020 SOE MAFMC","2020 SOE NEFMC"),
+  start = c("2019-04-10", "2019-04-17", "2019-04-26", "2019-08-20",
+            "2019-09-26", "2019-10-24", "2019-10-31", "2019-11-21",
+            "2019-12-13", "2019-12-13", "2019-12-18",
+            "2020-01-21", "2020-01-22", "2020-01-27", "2020-02-07",
+            "2020-02-14", "2020-02-24", "2020-02-26", 
+            "2020-03-03", "2020-03-10", "2020-03-11", "2020-03-12",
+            "2020-03-24", "2020-03-31", "2020-03-31", "2020-04-02",
+            "2020-04-07", "2020-04-14"),
+  end = c("NA", "NA", "NA", "2019-08-21",
+          "NA", "NA","2020-03-02", "NA",
+          "2020-01-22", "2020-01-22", "NA", 
+          "NA", "2020-01-24", "2020-02-06", "2020-02-13",
+          "2020-03-03", "2020-03-03", "2020-02-28",
+          "NA","NA","NA", "2020-03-24",
+          "NA","NA","2020-04-02", "NA",
+          "NA","NA")
+)
+
+timevis(SOEtime)
+```
+
+April 2019
+  + 2019 SOE Council presentations
+  + Debrief meeting. Summarize Council comments, proritize 2020 objectives
+  
+August 2019 
+  + Workshop with current and new contributors, Council staff
+  + Develop general outline and workplan for 2020 indicators
+  
+September - November 2019 
+  + Monthly subgroup check-ins
+  + Graphics development: icons, map figure, 2 page summary format
+  
+December 2019
+  + Indicator submission deadline mid-December
+  + Data wrangling and visualization by Kim Bastille, superhero
+  + 18 December initial synthesis
+
+January 2020
+  + Pre-synthesis workshop strawman developed
+  + Synthesis workshop with all contributors, develop 2 page summary bullets
+  + Collaborative text production in google doc
+  
+February 2020
+  + Google doc to .Rmd with figures
+  + Internal review Feb 14-27+
+  + Write response memo, Mid-Atlantic risk assessment
+  
+March 2020
+  + SSC presentations
+  + Final editing and submission to Councils
+  
+April 2020: SOE Council presentations
 
 ---
 ## State of the Ecosystem 2020: Response Memo
