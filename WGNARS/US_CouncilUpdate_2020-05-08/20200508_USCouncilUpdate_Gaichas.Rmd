@@ -64,7 +64,7 @@ hjust.label <- 1.5
 letter_size <- 4
 feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
 x.shade.min <- 2009
-x.shade.max <- 2018
+x.shade.max <- 2019
 map.lwd <- 0.4
 #Function for custom ggplot facet labels
 label <- function(variable,value){
@@ -107,35 +107,6 @@ region_abbr <- "MA" #Some commercial data organized by "MA" or "NE" regions, not
 
 ```
 
-## An integrated ecosystem assessment success story (in progress)
-
-Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing an ecosystem approach to fishery management was done in collaboration between managers, stakeholders, and scientists. 
-.pull-left[
-*Outline*
-- Mid-Atlantic Fishery Management Council Ecosystem Approach (EAFM)
-
-- Tailoring ecosystem reporting for fishery managers
-
-- Mid-Atlantic EAFM risk assessment 
-
-- Mid-Atlantic EAFM conceptual modeling (towards MSE)
-
-- Improvements: open-source data and technical documentation
-
-]
-.pull-right[
-*Integrated Ecosystem Assessment*
-
-![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
-
-.image-cap[
-https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
-]
-]
-
-
-???
----
 ## Fishery management in the US
 
 Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
@@ -157,6 +128,31 @@ https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 Source: http://www.mafmc.org/fishery-management-plans
 
 ---
+## An integrated ecosystem assessment success story (in progress)
+
+Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing an ecosystem approach to fishery management was done in collaboration between managers, stakeholders, and scientists. 
+.pull-left[
+*Outline*
+- Mid-Atlantic Fishery Management Council Ecosystem Approach (EAFM)
+
+- Mid-Atlantic EAFM indicator-based risk assessment 
+
+- Mid-Atlantic EAFM conceptual modeling (towards MSE)
+
+]
+.pull-right[
+*Integrated Ecosystem Assessment*
+
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
+
+.image-cap[
+https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+]
+
+
+???
+---
 ## Mid-Atlantic Council Ecosystem Approach
 
 * 2016 Ecosystem Approach to Fishery Management (EAFM) Policy Guidance document:
@@ -174,38 +170,6 @@ https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full
 
 ???
 The Council’s EAFM framework has similarities to the IEA loop on slide 2. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
----
-## Examples illustrating the use of the framework
-.pull-left-40[
-![Example risk assessment table with species in rows and risk elements in columns with green cells indicating low risks, yellow and orange cells indicating moderate risks, and red cells indicatig high risk](EDAB_images/fmars-03-00105-g010.jpg)
-
-]
-
-.pull-right-60[
-
-Risk assessment highlights prority species/issues for more detailed evaluation
-
-A conceptual model maps out key interactions for high risk fisheries, specifies quantitative management strategy evaluation
-
-]
-
-.right[
-![:img example conceptual model with details in speaker notes, 78%](EDAB_images/fmars-03-00105-g011.jpg)
-]
-
-???
-Quoted from [Gaichas et al 2016](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
-For this example, the [existing Mid Atlantic food web model](https://noaa-edab.github.io/tech-doc/conceptual-models.html) is used to define key species interactions for each managed species, habitat expertise is needed to link habitats to species, physical oceanographic and climate expertise is needed to link key climate drivers to habitats, and the expertise of fishermen, economists and other social scientists, and fishery managers is needed to link fish with fisheries and objectives for human well-being. The key link between fisheries and human well being objectives is identified as the system of regulatory allocations of total allowable catch between states along the Mid Atlantic coast. The interaction between this allocation system (based on historical catch) and climate-driven distribution shifts of the managed species has created considerable difficulty in this region. This conceptual model clearly connects climate considerations to management, as well as habitat considerations of concern to the Council but outside Council jurisdiction (water quality in coastal estuaries). 
-
----
-## Why risk assessment?
-
-Common framework across industry, science, business; but methods matter. Assessing the risks correctly is essential to good decision making.
-
-.center[
-![:img cartoon showing lightning strike conditional risk and incorrect calculation, 70%](EDAB_images/conditional_risk.png)
-]
-https://xkcd.com/795/
 
 ---
 ## Mid-Atlantic Council risk assessment framework
@@ -319,6 +283,7 @@ This element is applied at the ecosystem level. Revenue serves as a proxy for co
 
 .table[
 .pull-left[
+
 ```{r riskcomval, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
 tabl <- "
 | Risk Level         | Definition                                                          |  
@@ -379,7 +344,7 @@ ggplot(data = rev_agg) +
   theme_ts()
 ```
 
-```{r bennet, fig.cap = paste0("Revenue change from the 2015 base year in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the ",region,"."), fig.width = 6, fig.asp = 0.45}
+```{r bennet, fig.cap = paste0("Revenue change from the 2015 base year in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the ",region,"."), fig.width = 5, fig.asp = 0.57}
 
 #Filter data into two dataframes for plotting
 indicators <- ecodata::bennet %>% 
@@ -416,7 +381,7 @@ ggplot(data = indicators)+
   scale_x_continuous(breaks = seq(1985, 2015, by = 5), expand = c(0.01, 0.01)) +
   scale_y_continuous(breaks = seq(y.lim[1], y.lim[2], by = 100), limits = y.lim, expand = c(0.01, 0.01)) +
   theme_ts() +
-  theme(title = element_text(size = 10))
+  theme(legend.position="bottom", legend.direction = "horizontal", title = element_text(size = 10))
 
 ```
 
@@ -452,43 +417,39 @@ We examine trends in total primary production, zooplankton abundance for a key M
 .pull-left[
 ```{r pp-trends, fig.height=4}
 out_pp <- ecodata::chl_pp %>% 
-  filter(EPU %in% c("MAB", "GOM","GB"),
+  filter(EPU == epu_abbr,
          str_detect(Var, "MONTHLY_PPD_MEDIAN")) %>% 
   separate(.,Time, into = c("Year","Month"), sep = 4) %>% 
     mutate(Month = plyr::mapvalues(Month, from = c("01","02","03","04","05","06",
                                                    "07","08","09","10","11","12"),
                                    to = c(month.abb))) %>% 
-  group_by(EPU, Month) %>% 
+  group_by(Month) %>% 
   mutate(hline = mean(Value))
+
 out_pp$Month <- factor(out_pp$Month, levels = month.abb)
 
- 
- pp_cci_mab <-out_pp %>% 
-  filter(EPU == "MAB") %>% 
- ggplot() +
+
+pp_cci <- ggplot(out_pp) +
    # geom_gls(aes(x = Year, y = Value, group = Month))+
     geom_point(aes(x = Year, y = Value, group = Month)) +
     geom_line(aes(x = Year, y = Value, group = Month)) +
-    scale_x_discrete(name = "Time", breaks = seq(min(out_pp$Year),max(out_pp$Year),10)) +  
-    facet_wrap(Month~., ncol = 6) +
-    ggtitle("MAB Monthly median PPD") +
-    ylab(expression("PP (gC m"^-2*" d"^-1*")")) +
-        geom_hline(aes(yintercept = hline,
-                     group = Month),
+    scale_x_discrete(name = "", breaks = seq(min(out_pp$Year),max(out_pp$Year),10)) +  
+        geom_hline(aes(yintercept = hline),
            size = hline.size,
            alpha = hline.alpha,
-           linetype = hline.lty)+
+           linetype = hline.lty) +
+    facet_wrap(Month~., ncol = 12) +
+    ggtitle("Monthly median PPD") +
+    ylab(expression("PP (gC m"^-2*" d"^-1*")")) +
     theme_facet() +
     theme(axis.text.x = element_text(angle=45, hjust = 1),
-          panel.spacing = unit(1, "lines"),
+          panel.spacing = unit(0.5, "lines"),
           plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
- 
- pp_cci_mab 
- 
+pp_cci
 ```
 
 .center[
-![fish condition 1992 to 2018 where dark is good condition and light is poor](EDAB_images/MAFMC_Fish_Condition_2019.jpg)
+![:img Condition factor for fish species in the MAB. MAB data are missing for 2017 due to survey delays, 150%](EDAB_images/MABcondition_2019_viridis_final.jpg)
 ]
 ]
 
@@ -592,9 +553,156 @@ top + middle + bottom + plot_layout(ncol = 1) & theme(plot.margin = margin(0,0,0
 
 
 ```{r fish-prod , fig.height=4}
-source("R/productivity_plots.R")
-prod <- productivity_plots()
-prod
+#### Adjust plot properties -------------------------------
+adjustAxes <- 
+  ggplot2::theme(axis.title   = element_text(size = 18),
+                 axis.text    = element_text(size = 15),
+                 plot.title   = element_text(size = 20))
+
+
+#### Plot stacked bar with cpts for single var ------------
+plot_stackbarcpts_single <- function(YEAR, var2bar,
+                                     x, xlab, ylab,
+                                     titl,
+                                     file_suffix,
+                                     leg_font_size = 10,
+                                     remove_leg = FALSE,
+                                     leg_ncol = 1,
+                                     wcpts = TRUE,
+                                     wdashed = TRUE,
+                                     height = 5.5,
+                                     width = 8,
+                                     filt = TRUE,
+                                     label = label,
+                                     y.text = y.text,
+                                     aggregate = FALSE) {
+  
+  dat2bar <- data.frame(YEAR, var2bar,
+                        x)
+  if (filt == TRUE){mab_species <-  list("SUMMER FLOUNDER","SCUP","BLACK SEA BASS","BLUEFISH",
+                                         "NORTHERN SHORTFIN SQUID", "LONGFIN SQUID", "ATLANTIC MACKEREL",
+                                         "BUTTERFISH","ATLANTIC SURFCLAM", "OCEAN QUAHOG", "TILEFISH",
+                                         "BLUELINE TILEFISH","SPINY DOGFISH", "GOOSEFISH")
+  dat2plot <-
+    dat2bar %>%
+    tidyr::gather(variable, value, -YEAR, -var2bar) %>%
+    dplyr::mutate(var2bar = gsub(pattern      = "_", 
+                                 replacement  = " ", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl.", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "NS and combined", 
+                                 replacement  = "", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "YT", 
+                                 replacement  = "Yellowtail", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " GoM", 
+                                 replacement  = " GOM", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " by EPU", 
+                                 replacement  = "", 
+                                 x            = var2bar)) %>%
+    filter(var2bar %in% mab_species)
+} else if (filt == FALSE){
+    dat2plot <-
+    dat2bar %>%
+    tidyr::gather(variable, value, -YEAR, -var2bar) %>%
+    dplyr::mutate(var2bar = gsub(pattern      = "_", 
+                                 replacement  = " ", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl.", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "Atl", 
+                                 replacement  = "ATLANTIC", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "NS and combined", 
+                                 replacement  = "", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = "YT", 
+                                 replacement  = "Yellowtail", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " GoM", 
+                                 replacement  = " GOM", 
+                                 x            = var2bar),
+                  var2bar = gsub(pattern      = " by EPU", 
+                                 replacement  = "", 
+                                 x            = var2bar))
+}
+  if (aggregate){
+   agg <- dat2plot %>%
+     group_by(YEAR) %>%
+     dplyr::summarise(Total = sum(value, na.rm = T)) %>% 
+     mutate(Total = ifelse(Total == 0, NA, Total))
+  }
+  
+  p <-   
+    ggplot(dat2plot,
+           aes(x = YEAR)) +
+    geom_bar(data = dat2plot %>% filter(value > 0),
+             aes(y = value, fill = var2bar),
+             stat = "identity") +
+    geom_bar(data = dat2plot %>% filter(value < 0),
+             aes(y = value, fill = var2bar),
+             stat = "identity") +
+    {if(aggregate) geom_line(data = agg,aes(x = YEAR, y = Total),
+                             size = 1)} +
+    geom_hline(size = 0.3, aes(yintercept = 0)) +
+    xlab(xlab) +
+    ylab(ylab) +
+    ggtitle(titl) +
+    guides(fill = guide_legend(ncol = leg_ncol)) +
+    theme_ts()+
+    theme(axis.title   = element_text(size = 16),
+          axis.text    = element_text(size = 15),
+          plot.title   = element_text(size = 20),
+          legend.text  = element_text(size = leg_font_size),
+          legend.title = element_blank()) +
+    annotate("text", label = label, x = 1980, y = y.text,size = 8, colour = "black")
+  
+
+  
+  if(remove_leg) p <- p + theme(legend.position = "none")
+  
+  return(p)
+}
+
+bar_dat <- ecodata::productivity_anomaly %>% 
+  filter(EPU == "MAB")
+
+# mafmc <-plot_stackbarcpts_single(YEAR = bar_dat$Time,
+#                          var2bar = bar_dat$Var,
+#                          x = bar_dat$Value,
+#                          titl = "",
+#                          xlab = "",
+#                          ylab = "Small fish per large fish biomass (anomaly)",
+#                          height = 5.5,
+#                          width = 9,
+#                          filt = TRUE,
+#                          label = "A",
+#                          y.text = 4.5)
+
+# 
+mid <- plot_stackbarcpts_single(YEAR = bar_dat$Time,
+                         var2bar = bar_dat$Var,
+                         x = bar_dat$Value,
+                         titl = "",
+                         xlab = "",
+                         ylab = "Small fish per large fish biomass (anomaly)",
+                         remove_leg = TRUE,
+                         height = 5.5,
+                         width = 9,
+                         filt = FALSE,
+                         label = "",
+                         y.text = 10,
+                         aggregate = TRUE)
+
+mid
 ```
 ]
 
@@ -631,7 +739,7 @@ cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 Each species ranked according to position/color in the plot on the right
 
 ---
-## EAFM Risk Assessment: 2020 update (I)
+## EAFM Risk Assessment: 2020 update
 
 Management elements updated from original 2017 risk assessment; added risk rankings for chub mackerel and unmanaged forage fish. 
 
@@ -646,22 +754,6 @@ Management elements updated from original 2017 risk assessment; added risk ranki
   * Bluefish status went from not overfished to overfished
   * Increased discards (5), reduced management control (4), allocation (3), other ocean uses (1), regulatory complexity (1)
   
----
-## EAFM Risk Assessment update (II)
-
-### Re-evaluate Risk (2)
-
-  * Chesapeake Bay water quality
-  
-  * Recreational retained catch/seafood production
-
-### Potential New Risk Indicators (3)
-
-  * Commercial fishery engagement time series
-  
-  * Recreational diversity indices (fleet and catch)
-  
-  * Other ocean uses: fish habitat overlap with wind energy lease areas
 
 ---
 ## EAFM Risk Assessment: 2020 update
@@ -800,7 +892,8 @@ risk.sppsector %>%
 # setup for conceptual model
 PKG <- c(#"foreign","foodweb","sna", "DiagrammeR","circlize", "kableExtra", "googledrive", "readxl"
          "RColorBrewer","QPress",
-         "chorddiag")
+         "chorddiag",
+         "widgetframe")
 
 for (p in PKG) {
   if(!require(p,character.only = TRUE)) {
@@ -814,41 +907,77 @@ edges <- model.dia(file.path(data.dir, "Summer_Flounder_July22_2019.dia"))
 
 source("R/interactive_chord_sfconsmod.R")
 
-interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
+conmod <- interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
+
+frameWidget(conmod)
 
 ```
 ???
 In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
+
+
+---
+## New England Fishery Management Council Update
+
+.pull-left[
+*2018 CIE for Ecosystem Based Fishery Management Strategy* 
+* [EBFM strategy review](https://www.nefsc.noaa.gov/program_review/)
+* Multispecies model simulations
+![:img New England EBFM proposed harvest control rules, 75%](EDAB_images/EBFM HCR.png)
+
+![:img Example scenario results using the multispecies simulation model Hydra](EDAB_images/xradarScenario41-50yrs.png)
+]
+.pull-right[
+*Current Draft example Fishery Ecosystem Plan*
+
+[eFEP](https://s3.amazonaws.com/nefmc.org/3_Draft-example-Fishery-Ecosystem-Plan-eFEP_190830_113712.pdf) 
+![efep](EDAB_images/eFEPcover.png)
+]
+
+---
+## Mid-Atlantic EAFM next steps: management strategy evaluation
+
+* Spinning up in 2020-2021. Stay tuned!
+
+* Also embarking on a climate scenario planning exercise
+
+
+## New England EBFM
+
+* Annual State of the Ecosystem reporting
+
+* Draft example Fishery Ecosystem Plan updates ongoing
+
+* Communications/outreach for the eFEP in progress
+
+* EBFM MSE in the future
+
+## Atlantic States Marine Fisheries Commission
+
+* Ecosystem Reference Points for Atlantic menhaden
+
+   + Using single species assessment and a suite of multispecies models
+   + Passed peer review, additional analysis in May
+
 
 ---
 ## Conclusions
 
 Integrated ecosystem assessment is a valuable framework for the general implementation of ecosystem approaches to natural resource management
 
-* The Council’s rapid progress in implementing EAFM resulted from positive collaboration between managers, stakeholders, and scientists. Collaboration is essential to IEA and to the success of EAFM.
+* The Mid-Atlantic’s rapid progress in implementing EAFM resulted from positive collaboration between managers, stakeholders, and scientists. Collaboration is essential to IEA and to the success of EAFM.
 
 * Ecosystem indicators and reporting can be tailored to specific regional objectives.
 
 * Risk assessment is a rapid, familiar, scaleable, and transparent method to move forward with EAFM within a real-world operational fishery management context.
 
-* This EAFM process highlights certain species and certain management issues as posing higher cumulative risks to meeting Council-derived management objectives when considering a broad range of ecological, social, and economic factors.
+* The Mid-Atlantic process highlights certain species and certain management issues as posing higher cumulative risks to meeting Council-derived management objectives when considering a broad range of ecological, social, and economic factors.
 
 * Conceptual modeling links the key factors for high risk fisheries and scopes more detailed integrated analysis and management strategy evaluation.
 
 ???
 The Council foresees refining the process so that ecosystem indicators monitor risks to achieving ecological, social, and economic fishery objectives, which can then be mitigated through management action. 
 
----
-## Footnote: Improvements to reproducibility and provenance
-
-* Reporting the information is not enough
-* Managers appreciate the concise format, but back-end critical for describing collection, analyses, and processing
-* Streamlined workflow allowed scientists to meet management deadlines
-  
-![soe-data-flow](EDAB_images/soe-data-flow.png)  
-
-???
-This workflows also ensures that there's no information lost between SOE cycles. We know exactly how a data set was analyzed and handled so that the data can be updated for next year's reports.
 
 ---
 ## If you want **all** the details
@@ -857,77 +986,21 @@ This workflows also ensures that there's no information lost between SOE cycles.
 
 * [Mid-Atlantic Council Risk Assessment paper](https://www.frontiersin.org/articles/10.3389/fmars.2018.00442/full#h11)
 
-* [Mid-Atlantic Council Summer Flounder conceptual model and support tables](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html)
+* [Mid-Atlantic Council Summer Flounder conceptual model, support tables](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html)
+  + [model and support tables page source code](https://github.com/gdepiper/Summer_Flounder_Conceptual_Models/blob/master/sfconsmod_riskfactors_subplots.Rmd)
+  + [management questions and model page source code](https://github.com/gdepiper/Summer_Flounder_Conceptual_Models/blob/master/sfconsmod_final_2col.Rmd)
+  
+* [Mid-Atantic April 2020 EAFM updates, including SOE](https://www.mafmc.org/s/Tab01_2020-SOE-Report_2020-04.pdf)
 
-* [2019 Mid-Atlantic State of the Ecosystem report](http://www.mafmc.org/s/SOE-MAFMC-2019.pdf)
+* [New England April 2020 State of the Ecosystem](https://s3.amazonaws.com/nefmc.org/5b_SOE-NEFMC-2020-plus2pager.pdf)
 
-* [State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
-
-* [ecodata R package](https://github.com/noaa-edab/ecodata)
-
-  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
-  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
-  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
+* [Atlantic States February 2020 Menhaden Summary](http://www.asmfc.org/uploads/file/5e5e84fbAtlanticMenhadenAssessmentsOverview_Feb2020.pdf)
 
 
 * Slides available at https://noaa-edab.github.io/presentations
 
----
-## Contributors - THANK YOU!
-
-The New England and Mid-Atlantic Ecosystem reports made possible by (at least) 38 contributors from 8 institutions 
-
-.pull-left[
-.contrib[
-Donald Anderson (Woods Hole Oceanographic Institute) <br>
-Amani Bassyouni (Virginia Department of Health)<br>
-Lisa Calvo (Rutgers)<br>
-Matthew Camisa (MA Division of Marine Fisheries) <br>
-Patricia Clay<br>
-Lisa Colburn<br>
-Geret DePiper<br>
-Deb Duarte<br>
-Michael Fogarty<br>
-Paula Fratantoni <br>
-Kevin Friedland<br>
-Sarah Gaichas<br>
-James Gartland (Virginia Institute of Marine Science)<br>
-Heather Haas<br>
-Sean Hardison <br>
-Kimberly Hyde<br>
-Terry Joyce (Woods Hole Oceanographic Institute)<br>
-John Kosik<br>
-Steve Kress (National Audubon Society)<br>
-Scott Large
-]
-]
-
-.pull-right[
-.contrib[
-Don Lyons (National Audubon Society)<br>
-Loren Kellogg<br>
-David Kulis (Woods Hole Oceanographic Institute)<br>
-Sean Lucey<br>
-Chris Melrose<br>
-Ryan Morse<br>
-Kimberly Murray<br>
-Chris Orphanides<br>
-Richard Pace<br>
-Charles Perretti<br>
-Karl Roscher (Maryland Department of Natural Resources)<br>
-Vincent Saba<br>
-Laurel Smith<br>
-Mark Terceiro<br>
-John Walden<br>
-Harvey Walsh<br>
-Mark Wuenschel<br>
-Qian Zhang (Unversity of Maryland and US EPA Chesapeake Bay Program)
-]
-]
-
-.center[
-![:img NOAA Fisheries IEA logo, 50%](EDAB_images/noaa-iea.png)
-]
+  Scroll down to WGNARS
+  
 ---
 class: inverse
 background-image: url("EDAB_images/IMG_2809.jpg")
@@ -1015,4 +1088,13 @@ http://www.mafmc.org/eafm
 
 ???
 The Mid-Atlantic Council identified several theme areas from the visioning project as noted in the left panel of the workflow graphic: forage fish, species interactions, social and economic issues, climate and habitat. The Council held full day workshops during Council meetings where experts on the topics provided overviews and Council members asked questions and discussed the issues. Workships on Forage fish, Climate, Climate and Governance, Interactions (species and fleet), and Habitat were held between 2013 and 2015, resulting in white papers on Forage fish, Climate (and habitat), Interactions (species, fleet, climate, and habitat). Social and economic considerations were integrated in each workshop rather than looked at separately.
- 
+
+---
+## Web-based conceptual model presentation
+<div class="resp-container">
+    <iframe class="resp-iframe" title= "Conceptual model and management questions interactive page" src="https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_final_2col.html"></iframe>
+</div>
+
+.contrib[
+https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_final_2col.html
+]
