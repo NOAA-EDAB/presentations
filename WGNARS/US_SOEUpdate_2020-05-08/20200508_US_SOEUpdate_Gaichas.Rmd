@@ -173,6 +173,7 @@ In 2016, we began taking steps to address these common critiques of the ESR mode
 ```{r SOEtime}
 
 library(timevis)
+library(widgetframe)
 
 SOEtime <- data.frame(
   id = 1:28,
@@ -192,19 +193,21 @@ SOEtime <- data.frame(
             "2020-03-03", "2020-03-10", "2020-03-11", "2020-03-12",
             "2020-03-24", "2020-03-31", "2020-03-31", "2020-04-02",
             "2020-04-07", "2020-04-14"),
-  end = c("NA", "NA", "NA", "2019-08-21",
-          "NA", "NA","2020-03-02", "NA",
-          "2020-01-22", "2020-01-22", "NA", 
-          "NA", "2020-01-24", "2020-02-06", "2020-02-13",
+  end = c(NA, NA, NA, "2019-08-21",
+          NA, NA,"2020-03-02", NA,
+          "2020-01-22", "2020-01-22", NA, 
+          NA, "2020-01-24", "2020-02-06", "2020-02-13",
           "2020-03-03", "2020-03-03", "2020-02-28",
-          "NA","NA","NA", "2020-03-24",
-          "NA","NA","2020-04-02", "NA",
-          "NA","NA")
+          NA, NA, NA, "2020-03-24",
+          NA, NA,"2020-04-02", NA,
+          NA, NA)
 )
 
-timevis(SOEtime)
+tl <- timevis(SOEtime)
+frameWidget(tl)
 ```
 
+???
 April 2019
   + 2019 SOE Council presentations
   + Debrief meeting. Summarize Council comments, proritize 2020 objectives
