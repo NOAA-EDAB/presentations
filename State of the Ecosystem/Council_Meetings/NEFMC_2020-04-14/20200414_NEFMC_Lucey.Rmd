@@ -2115,7 +2115,7 @@ bot_temp_insitu_gom +
 ]
 
 .center[
-```{r gb-heatwave, eval= T, echo = F, fig.width = 8, fig.asp = .35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) on Georges Bank."}
+```{r gb-heatwave, eval= T, echo = F, fig.width = 10, fig.asp = .25, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) on Georges Bank."}
 cumu <- ecodata::heatwave %>%
   filter(Var == "cumulative intensity") %>%
   mutate(Var = recode(Var, "cumulative intensity" = "Cumulative Intensity (degree C x days)"))
