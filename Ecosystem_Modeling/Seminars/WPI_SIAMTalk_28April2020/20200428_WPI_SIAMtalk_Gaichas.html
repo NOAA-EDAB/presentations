@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>What does math  have to do with fish?</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas  Northeast Fisheries Science Center" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# What does math<br /> have to do with fish?
+## Data, statistics, and modeling<br /> for management advice
+### Sarah Gaichas<br /> Northeast Fisheries Science Center
+
+---
+
+class: top, left
+
+
+
+## What does modeling have to do with management?
+![NOAAlogo](EDAB_images/noaa-logo.PNG)
+![NOAA fisheries](EDAB_images/noaafisheries.png)
+
+---
+## What kinds of models are there?
+
+![ecomods](EDAB_images/ecomods.png)
+---
+## Which models are best for management decisions? (Conclusions!)
+.pull-left[
+- Based on **clearly specified questions** (from managers/stakeholders)
+
+- **Outputs** and **controls designed** to answer the questions
+
+- Using **observations** directly from the ecosystem
+
+- With clear description of **uncertainties**
+
+]
+.pull-right[
+![models](EDAB_images/xkcdphysicists.png)
+.footnote[https://xkcd.com/793/]
+]
+
+
+---
+## Food webs and fisheries--two examples
+
+- Preface: What is a "forage fish"?
+
+- Alaska pollock: ecological research with a food web model  
+  *"How does ecosystem structure affect dynamics?"*  
+    - Distinguishing climate, fishing, and food web interactions  
+    - Dealing with uncertainty  
+
+- Atlantic herring: fishery management strategy evaluation  
+  *"Which harvest control rules best consider herring's role as forage?"*  
+    - Balancing fishing benefits and ecological services
+    - Diverse stakeholder interests
+    - Needed timely answers!
+    
+---
+## What is a forage fish?
+
+&lt;img src="EDAB_images/forageSeattleTimes.png" width="67%" style="display: block; margin: auto;" /&gt;
+
+---
+## How does ecosystem structure affect dynamics? 
+![fwforcingstructure](EDAB_images/fwforcingstructuraltype.png)
+
+---
+## Alaska pollock: a tale of two ecosystems
+![EBSGOAmaps](EDAB_images/EBSGOAmap.png)
+---
+## Alaska pollock: a tale of two ecosystems
+![EBSGOAmapsfws](EDAB_images/EBSGOAmap_fws.png)  
+    
+---
+## Alaska pollock: a tale of two ecosystems
+&lt;img src="EDAB_images/EBSGOAbiodist.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+???
+Similar biomass groups up to TL 3
+
+EBS pollock dominate at TL 3.5, highest biomass of any fish
+
+GOA has highest biomass above TL 4 (halibut, arrowtooth)
+
+---
+## Alaska pollock: a tale of two ecosystems
+.pull-left[
+- Different pollock trajectories
+
+- Different pollock diets, mortality sources
+
+&lt;img src="EDAB_images/pollpic.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+]
+.pull-right[
+&lt;img src="EDAB_images/EBSGOApollassess.png" width="95%" style="display: block; margin: auto;" /&gt;
+]
+&lt;img src="EDAB_images/EBSGOApolldietmort.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+???
+diets:- copepods, krill, pollock in EBS
+      - krill, shrimp, some copepods in GOA
+
+---
+## Ecosystem models and uncertainty
+![aydinmodyield](EDAB_images/AydinModYield.png)
+---
+## Model ensemble https://xkcd.com/1885/
+![xkcd_ensemble_model_2x.png](EDAB_images/xkcd_ensemble_model_2x.png)
+---
+## What is a food web model?
+
+.pull-left-60[
+A system of linear equations
+
+For each group, `\(i\)`, specify: 
+
+   Biomass `\(B\)` [or Ecotrophic Efficiency `\(EE\)` ]  
+   Population growth rate `\(\frac{P}{B}\)`  
+   Consumption rate `\(\frac{Q}{B}\)`  
+   Diet composition `\(DC\)`  
+   Fishery catch `\(C\)`  
+   Biomass accumulation `\(BA\)`  
+   Im/emigration `\(IM\)` and `\(EM\)`  
+   
+Solving for `\(EE\)` [or `\(B\)` ] for each group:
+]
+
+.pull-right-40[
+![toyfoodweb](EDAB_images/toyfw.png)
+]
+
+`$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$`
+???
+
+---
+## Ecosystem models and uncertainty: grading inputs
+![fwpedigree](EDAB_images/fwpedigree.png)
+
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert1](EDAB_images/Foodwebmodel_uncertaintyseries/Slide1.png)
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert2](EDAB_images/Foodwebmodel_uncertaintyseries/Slide2.png)
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert3](EDAB_images/Foodwebmodel_uncertaintyseries/Slide3.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert4](EDAB_images/Foodwebmodel_uncertaintyseries/Slide4.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert5](EDAB_images/Foodwebmodel_uncertaintyseries/Slide5.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert6](EDAB_images/Foodwebmodel_uncertaintyseries/Slide6.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert7](EDAB_images/Foodwebmodel_uncertaintyseries/Slide7.png)
+
+---
+## Defining ecosystem structure in the EBS and GOA: expectations
+
+Ecosystem reaction to pollock if pollock is a "wasp waist":
+![increasepoll](EDAB_images/ecoreactstopollock.png)
+
+--
+
+Pollock reaction to other groups if control is bottom up or top down:
+![increaseothers](EDAB_images/pollockreacts.png)
+---
+## Perturbation results: ecosystem reaction to 10% pollock increase
+&lt;img src="EDAB_images/Fig6.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+## Perturbation results: pollock reaction to 10% increase in others
+&lt;img src="EDAB_images/Fig7.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+## Perturbation results: ecosystem reaction to 10% phytoplankton increase
+&lt;img src="EDAB_images/Fig8.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+## Simulated increased pollock fishing (significant changes only)
+&lt;img src="EDAB_images/FigS4.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+## Insights for fishery management
+
+- Differences in food web structure between two adjacent ecosystems with similar biological communities and fishery management
+  - Which species respond to the same perturbation
+  - Level of uncertainty / predictability in response
+  
+- EBS: Influential group at mid trophic levels
+  - Wasp waist transmits signal to other groups (neither AK system)
+  - Self regulating dominant group (beer belly) absorbs signals
+  - Beer belly systems are more predictable, stable as long as the beer belly maintains itself?
+
+- GOA: Influential groups at high trophic levels
+  - Magnifies bottom up signals and top down?
+  - A less predictable system?
+  - Subject to more radical change?
+
+- Structure of a food web may determine how predictable a system is under perturbation, and how changes in primary production propagate through systems
+
+---
+## Are any Atlantic herring harvest control rules good for both fisheries and predators?
+&lt;img src="EDAB_images/allcomponents.png" width="1701" /&gt;
+
+---
+## What is Management Strategy Evaluation?
+&lt;img src="EDAB_images/MSECSIRO.png" width="2000" /&gt;
+
+---
+## The Dream and The Reality
+&lt;img src="EDAB_images/MgtProcess.png" width="1824" /&gt;
+
+---
+## Design: link models matching stakeholder-identified objectives
+
+&lt;img src="EDAB_images/OMdesign.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+## Design: multiple (herring) operating models spanning uncertainty
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Operating Model Name &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Herring Productivity &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Herring Growth &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Assessment Bias &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LowFastBiased &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Low: high M, low h (0.44) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1976-1985: fast &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 60% overestimate &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LowSlowBiased &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Low: high M, low h (0.44) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2005-2014: slow &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 60% overestimate &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LowFastCorrect &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Low: high M, low h (0.44) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1976-1985: fast &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; None &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LowSlowCorrect &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Low: high M, low h (0.44) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2005-2014: slow &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; None &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; HighFastBiased &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; High: low M, high h (0.79) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1976-1985: fast &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 60% overestimate &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; HighSlowBiased &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; High: low M, high h (0.79) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2005-2014: slow &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 60% overestimate &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; HighFastCorrect &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; High: low M, high h (0.79) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1976-1985: fast &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; None &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; HighSlowCorrect &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; High: low M, high h (0.79) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2005-2014: slow &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; None &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+## Harvest control rules: Fishing mortality (F) based on:
+  - Biomass (SSB) (1, 3, and 5 year blocks of catch)
+&lt;!--  `$$\tilde{F}_y=\begin{cases}\psi F_{MSY}, &amp; \text{if}\ \widehat{SSB}_y \geq SSB_{up} \\\psi F_{MSY} \frac{\widehat{SSB}_y - SSB_{low}}{SSB_{up}-SSB_{low}}, &amp; \text{if}\ SSB_{low} &lt; \widehat{SSB}_y &lt; SSB_{up}\\0, &amp; \text{if}\ \widehat{SSB}_y \leq SSB_{low}\end{cases}$$`
+--&gt;
+  - Biomass with a 15% restriction on interannual change 
+  - Constant Catch (proportion of MSY)
+  - Conditional Constant Catch (not to exceed max F)
+
+---
+## Economics: Min-Yang Lee's talk last week
+
+- Some modeling, limited by project timeline
+- The dream: predator response links to ecosystem services, human well being
+- Fishery complexity rivals or exceeds that of food webs!
+
+.pull-left[
+![mytalk1](EDAB_images/Social_Sciences_and_EBFM_Page_41.png)
+]
+.pull-right[
+![mytalk2](EDAB_images/Social_Sciences_and_EBFM_Page_42.png)
+]
+
+---
+## Predators
+&lt;img src="EDAB_images/herrtopreds.png" width="1848" /&gt;
+
+---
+## Seabirds: data collected here! (and throughout Gulf of Maine)
+.pull-left[
+![ternsr](EDAB_images/ternSR.png)
+]
+.pull-right[
+![ternprodbyprey](EDAB_images/ternprodbyprey.png)
+]
+
+- Colony adult and fledgling count data used to develop population model
+- Chick diet observations examined in relation to fledgling success
+
+---
+## Terns and herring--developing a modeled relationship
+.pull-left[
+![ternprodisland](EDAB_images/ternprodbyisland.png)
+]
+.pull-right[
+![ternherringmod](EDAB_images/ternherringmodel.png)
+]
+
+Although there were no clear significant relationships of common tern productivity and the proportion of herring in diets across all colonies, there were some correlations between herring total biomass and tern productivity. 
+
+Hence, the relationship on the right was developed to relate herring biomass to common tern productivity.
+---
+## Testing the model--does it work?
+![ternpoptrend](EDAB_images/ternpoptrend.png)
+---
+## Predator results summary
+&lt;img src="EDAB_images/herrtopreds_results.png" width="1833" /&gt;
+
+Three control rule types--Constant catch, conditional constant catch, and 15% restriction on change--were rejected at the second stakeholder meeting for poor fishery and predator performance.
+---
+## Food web modeling; supplemental results
+![fw10per](EDAB_images/herrup10pann.png)
+Tradeoffs between forage groups apparent
+---
+## Compare 10% change with more extreme "herring" biomass
+![fwcompare](EDAB_images/fwcompresults.png)
+More uncertainty with increased herring biomass?
+---
+## Tradeoffs in Remaining Control Rules
+.pull-left[
+![](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/yieldSSB-close-1.png)![](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/yieldSSB-close-2.png)
+]
+.pull-right[
+![](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/yieldof-terns-1.png)![](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/yieldof-terns-2.png)
+]
+---
+## What control rules give us 90% of everything we want?
+
+- Tern productivity at 1.0 or above more than 90% of the time
+- Herring biomass more than 90% of SSBmsy
+- Fishery yield more than 90% of MSY
+&amp;nbsp;  
+&amp;nbsp;  
+- AND fishery closures (F=0) less than 1% of the time (second plot).
+
+.pull-left[
+![](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+![](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+---
+## What have we learned? Modeling allows us to test options
+.pull-left-30[
+Complex food web, generalist predators
+- Herring is one of several important prey
+- Assessing multiple prey together will likely show stronger effects on predator productivity
+]
+.pull-right-70[
+![NEUSfw](EDAB_images/LinkNEUSfoodweb.png)
+]
+- Tern/Tuna/Groundfish/Mammal productivity is also affected by predators, weather, and other factors not modeled here
+- Even relatively weak relationships still showed which herring control rules were poor
+- Managers did select a harvest control rule considering a wide range of factors!
+
+---
+## External Resources
+
+* [Wasp Waist or Beer Belly?](https://www.sciencedirect.com/science/article/pii/S0079661115002001)
+
+* [New England Atlantic herring management](https://www.nefmc.org/management-plans/herring)
+
+* [New England herring MSE stakeholder process paper](https://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2018-0125#.XTb_v5NKgWo)
+
+* [New England herring MSE modeling paper](https://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128#.XTb_c5NKgWo)
+
+* [Rpath codebase](https://github.com/NOAA-EDAB/Rpath)
+
+* Slides available at https://noaa-edab.github.io/presentations
+
+---
+
+background-image: url("EDAB_images/SOE_feature_image.png")
+background-size: contain
+
+.footnote[Questions? Thank you!]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

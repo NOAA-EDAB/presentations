@@ -1,0 +1,688 @@
+---
+title: "What does math<br /> have to do with fish?"
+subtitle: "Data, statistics, and modeling<br /> for management advice"
+author: "Sarah Gaichas<br /> Northeast Fisheries Science Center"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(here)
+library(kableExtra)
+library(ggrepel)
+library(stringr)
+library(ggthemes)
+library(readr)
+
+data.dir <- here::here("data")
+
+#herring MSE outputs
+allres <- readRDS(file.path(data.dir,"allres.rds"))
+
+#herring MSE plotting
+#a better plotting theme than ggplot default? from https://rpubs.com/Koundy/71792
+theme_Publication <- function(base_size=14, base_family="") {
+      library(grid)
+      library(ggthemes)
+      (theme_foundation(base_size=base_size, base_family=base_family)
+       + theme(plot.title = element_text(face = "bold",
+                                         size = rel(1.2), hjust = 0.5),
+               text = element_text(),
+               panel.background = element_rect(colour = NA),
+               plot.background = element_rect(colour = NA),
+               panel.border = element_rect(colour = NA),
+               axis.title = element_text(face = "bold",size = rel(1)),
+               axis.title.y = element_text(angle=90,vjust =2),
+               axis.title.x = element_text(vjust = -0.2),
+               axis.text = element_text(), 
+               axis.line = element_line(colour="black"),
+               axis.ticks = element_line(),
+               panel.grid.major = element_line(colour="#f0f0f0"),
+               panel.grid.minor = element_blank(),
+               legend.key = element_rect(colour = NA),
+               legend.position = "right",
+               legend.direction = "vertical",
+               legend.key.size= unit(0.4, "cm"),
+               legend.margin = unit(0, "cm"),
+               legend.title = element_text(face="italic"),
+               plot.margin=unit(c(10,5,5,5),"mm"),
+               strip.background=element_rect(colour="#f0f0f0",fill="#f0f0f0"),
+               strip.text = element_text(face="bold")
+          ))
+      
+}
+
+scale_fill_Publication <- function(...){
+      library(scales)
+      discrete_scale("fill","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
+
+}
+
+scale_colour_Publication <- function(...){
+      library(scales)
+      discrete_scale("colour","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
+
+}
+
+```
+
+## What does modeling have to do with management?
+![NOAAlogo](EDAB_images/noaa-logo.PNG)
+![NOAA fisheries](EDAB_images/noaafisheries.png)
+
+---
+## What kinds of models are there?
+
+![ecomods](EDAB_images/ecomods.png)
+---
+## Which models are best for management decisions? (Conclusions!)
+.pull-left[
+- Based on **clearly specified questions** (from managers/stakeholders)
+
+- **Outputs** and **controls designed** to answer the questions
+
+- Using **observations** directly from the ecosystem
+
+- With clear description of **uncertainties**
+
+]
+.pull-right[
+![models](EDAB_images/xkcdphysicists.png)
+.footnote[https://xkcd.com/793/]
+]
+
+
+---
+## Food webs and fisheries--two examples
+
+- Preface: What is a "forage fish"?
+
+- Alaska pollock: ecological research with a food web model  
+  *"How does ecosystem structure affect dynamics?"*  
+    - Distinguishing climate, fishing, and food web interactions  
+    - Dealing with uncertainty  
+
+- Atlantic herring: fishery management strategy evaluation  
+  *"Which harvest control rules best consider herring's role as forage?"*  
+    - Balancing fishing benefits and ecological services
+    - Diverse stakeholder interests
+    - Needed timely answers!
+    
+---
+## What is a forage fish?
+
+```{r forage, echo = F, fig.align = "center", out.width='67%'}
+knitr::include_graphics("EDAB_images/forageSeattleTimes.png")
+```
+
+---
+## How does ecosystem structure affect dynamics? 
+![fwforcingstructure](EDAB_images/fwforcingstructuraltype.png)
+
+---
+## Alaska pollock: a tale of two ecosystems
+![EBSGOAmaps](EDAB_images/EBSGOAmap.png)
+---
+## Alaska pollock: a tale of two ecosystems
+![EBSGOAmapsfws](EDAB_images/EBSGOAmap_fws.png)  
+    
+---
+## Alaska pollock: a tale of two ecosystems
+```{r biodist, echo = F, fig.align = "center", out.width="75%"}
+knitr::include_graphics("EDAB_images/EBSGOAbiodist.png")
+```
+
+???
+Similar biomass groups up to TL 3
+
+EBS pollock dominate at TL 3.5, highest biomass of any fish
+
+GOA has highest biomass above TL 4 (halibut, arrowtooth)
+
+---
+## Alaska pollock: a tale of two ecosystems
+.pull-left[
+- Different pollock trajectories
+
+- Different pollock diets, mortality sources
+
+```{r pollpic, echo = F, fig.align = "center", out.width="85%"}
+knitr::include_graphics("EDAB_images/pollpic.png")
+```
+
+]
+.pull-right[
+```{r pollassess, echo = F, fig.align = "center", out.width="95%"}
+knitr::include_graphics("EDAB_images/EBSGOApollassess.png")
+#knitr::include_graphics("EDAB_images/EBSGOApolldietmort.png")
+```
+]
+```{r polldietmort, echo = F, fig.align = "center", out.width="95%"}
+#knitr::include_graphics("EDAB_images/EBSGOApollassess.png")
+knitr::include_graphics("EDAB_images/EBSGOApolldietmort.png")
+```
+
+???
+diets:- copepods, krill, pollock in EBS
+      - krill, shrimp, some copepods in GOA
+
+---
+## Ecosystem models and uncertainty
+![aydinmodyield](EDAB_images/AydinModYield.png)
+---
+## Model ensemble https://xkcd.com/1885/
+![xkcd_ensemble_model_2x.png](EDAB_images/xkcd_ensemble_model_2x.png)
+---
+## What is a food web model?
+
+.pull-left-60[
+A system of linear equations
+
+For each group, $i$, specify: 
+
+   Biomass $B$ [or Ecotrophic Efficiency $EE$ ]  
+   Population growth rate $\frac{P}{B}$  
+   Consumption rate $\frac{Q}{B}$  
+   Diet composition $DC$  
+   Fishery catch $C$  
+   Biomass accumulation $BA$  
+   Im/emigration $IM$ and $EM$  
+   
+Solving for $EE$ [or $B$ ] for each group:
+]
+
+.pull-right-40[
+![toyfoodweb](EDAB_images/toyfw.png)
+]
+
+$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$
+???
+
+---
+## Ecosystem models and uncertainty: grading inputs
+![fwpedigree](EDAB_images/fwpedigree.png)
+
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert1](EDAB_images/Foodwebmodel_uncertaintyseries/Slide1.png)
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert2](EDAB_images/Foodwebmodel_uncertaintyseries/Slide2.png)
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert3](EDAB_images/Foodwebmodel_uncertaintyseries/Slide3.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert4](EDAB_images/Foodwebmodel_uncertaintyseries/Slide4.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert5](EDAB_images/Foodwebmodel_uncertaintyseries/Slide5.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert6](EDAB_images/Foodwebmodel_uncertaintyseries/Slide6.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert7](EDAB_images/Foodwebmodel_uncertaintyseries/Slide7.png)
+
+---
+## Defining ecosystem structure in the EBS and GOA: expectations
+
+Ecosystem reaction to pollock if pollock is a "wasp waist":
+![increasepoll](EDAB_images/ecoreactstopollock.png)
+
+--
+
+Pollock reaction to other groups if control is bottom up or top down:
+![increaseothers](EDAB_images/pollockreacts.png)
+---
+## Perturbation results: ecosystem reaction to 10% pollock increase
+```{r exp1, echo = F, fig.align = "center", out.width="100%"}
+knitr::include_graphics("EDAB_images/Fig6.png")
+```
+
+---
+## Perturbation results: pollock reaction to 10% increase in others
+```{r exp2, echo = F, fig.align = "center", out.width="100%"}
+knitr::include_graphics("EDAB_images/Fig7.png")
+```
+
+---
+## Perturbation results: ecosystem reaction to 10% phytoplankton increase
+```{r exp3, echo = F, fig.align = "center", out.width="100%"}
+knitr::include_graphics("EDAB_images/Fig8.png")
+```
+
+---
+## Simulated increased pollock fishing (significant changes only)
+```{r exp6, echo = F, fig.align = "center", out.width="100%"}
+knitr::include_graphics("EDAB_images/FigS4.png")
+```
+
+---
+## Insights for fishery management
+
+- Differences in food web structure between two adjacent ecosystems with similar biological communities and fishery management
+  - Which species respond to the same perturbation
+  - Level of uncertainty / predictability in response
+  
+- EBS: Influential group at mid trophic levels
+  - Wasp waist transmits signal to other groups (neither AK system)
+  - Self regulating dominant group (beer belly) absorbs signals
+  - Beer belly systems are more predictable, stable as long as the beer belly maintains itself?
+
+- GOA: Influential groups at high trophic levels
+  - Magnifies bottom up signals and top down?
+  - A less predictable system?
+  - Subject to more radical change?
+
+- Structure of a food web may determine how predictable a system is under perturbation, and how changes in primary production propagate through systems
+
+---
+## Are any Atlantic herring harvest control rules good for both fisheries and predators?
+```{r intro}
+knitr::include_graphics("EDAB_images/allcomponents.png")
+```
+
+---
+## What is Management Strategy Evaluation?
+```{r introMSE}
+knitr::include_graphics("EDAB_images/MSECSIRO.png")
+```
+
+---
+## The Dream and The Reality
+```{r dreamreality}
+knitr::include_graphics("EDAB_images/MgtProcess.png")
+```
+
+---
+## Design: link models matching stakeholder-identified objectives
+
+```{r OMdesign, echo = F, fig.align = "center", out.width="85%"}
+knitr::include_graphics("EDAB_images/OMdesign.png")
+```
+
+---
+## Design: multiple (herring) operating models spanning uncertainty
+
+```{r OMs,  echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+#tab.cap="Operating model uncertainties addressed\\label{OMs}",
+tabl <- "
+|Operating Model Name|Herring Productivity|Herring Growth|Assessment Bias|
+|:---------------------|:---------------------|:-----------------|:-----------------|
+| LowFastBiased        | Low: high M, low h (0.44)  | 1976-1985: fast | 60% overestimate |
+| LowSlowBiased        | Low: high M, low h (0.44)  | 2005-2014: slow | 60% overestimate |
+| LowFastCorrect       | Low: high M, low h (0.44)  | 1976-1985: fast | None             |
+| LowSlowCorrect       | Low: high M, low h (0.44)  | 2005-2014: slow | None             |
+| HighFastBiased       | High: low M, high h (0.79) | 1976-1985: fast | 60% overestimate |
+| HighSlowBiased       | High: low M, high h (0.79) | 2005-2014: slow | 60% overestimate |
+| HighFastCorrect      | High: low M, high h (0.79) | 1976-1985: fast | None             |
+| HighSlowCorrect      | High: low M, high h (0.79) | 2005-2014: slow | None             |
+"
+df<-read_delim(tabl, delim="|")
+df<-df[-c(1) ,c("Operating Model Name","Herring Productivity","Herring Growth","Assessment Bias")]
+knitr::kable(df, booktabs = TRUE) %>%
+  kable_styling(latex_options = "scale_down") #%>%
+  #kable_as_image()
+
+#cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+## Harvest control rules: Fishing mortality (F) based on:
+  - Biomass (SSB) (1, 3, and 5 year blocks of catch)
+<!--  $$\tilde{F}_y=\begin{cases}\psi F_{MSY}, & \text{if}\ \widehat{SSB}_y \geq SSB_{up} \\\psi F_{MSY} \frac{\widehat{SSB}_y - SSB_{low}}{SSB_{up}-SSB_{low}}, & \text{if}\ SSB_{low} < \widehat{SSB}_y < SSB_{up}\\0, & \text{if}\ \widehat{SSB}_y \leq SSB_{low}\end{cases}$$
+-->
+  - Biomass with a 15% restriction on interannual change 
+  - Constant Catch (proportion of MSY)
+  - Conditional Constant Catch (not to exceed max F)
+
+---
+## Economics: Min-Yang Lee's talk last week
+
+- Some modeling, limited by project timeline
+- The dream: predator response links to ecosystem services, human well being
+- Fishery complexity rivals or exceeds that of food webs!
+
+.pull-left[
+![mytalk1](EDAB_images/Social_Sciences_and_EBFM_Page_41.png)
+]
+.pull-right[
+![mytalk2](EDAB_images/Social_Sciences_and_EBFM_Page_42.png)
+]
+
+---
+## Predators
+```{r predoverview}
+knitr::include_graphics("EDAB_images/herrtopreds.png")
+```
+
+---
+## Seabirds: data collected here! (and throughout Gulf of Maine)
+.pull-left[
+![ternsr](EDAB_images/ternSR.png)
+]
+.pull-right[
+![ternprodbyprey](EDAB_images/ternprodbyprey.png)
+]
+
+- Colony adult and fledgling count data used to develop population model
+- Chick diet observations examined in relation to fledgling success
+
+---
+## Terns and herring--developing a modeled relationship
+.pull-left[
+![ternprodisland](EDAB_images/ternprodbyisland.png)
+]
+.pull-right[
+![ternherringmod](EDAB_images/ternherringmodel.png)
+]
+
+Although there were no clear significant relationships of common tern productivity and the proportion of herring in diets across all colonies, there were some correlations between herring total biomass and tern productivity. 
+
+Hence, the relationship on the right was developed to relate herring biomass to common tern productivity.
+---
+## Testing the model--does it work?
+![ternpoptrend](EDAB_images/ternpoptrend.png)
+---
+## Predator results summary
+```{r predresultsum}
+knitr::include_graphics("EDAB_images/herrtopreds_results.png")
+```
+
+Three control rule types--Constant catch, conditional constant catch, and 15% restriction on change--were rejected at the second stakeholder meeting for poor fishery and predator performance.
+---
+## Food web modeling; supplemental results
+![fw10per](EDAB_images/herrup10pann.png)
+Tradeoffs between forage groups apparent
+---
+## Compare 10% change with more extreme "herring" biomass
+![fwcompare](EDAB_images/fwcompresults.png)
+More uncertainty with increased herring biomass?
+---
+## Tradeoffs in Remaining Control Rules
+.pull-left[
+```{r yieldSSB-close,  message = FALSE, warning = FALSE, fig.show='hold', fig.height=5}
+#fig.cap="Tradeoff between herring relative yield, fishery and predator metrics for HighSlowCorrect operating model ",and biomass based control rules with 1 year (BB), 3 year (BB3yr), or 5 year (BB5yr) quota blocks. Each point represents the median of 100 medians taken over the final 50 years of each simulation. \\label{yieldSSB}
+# pick one OM
+HiSlowCorrectOM <- allres %>%
+  filter(OM=="LoM_HiSteep_NoAssBias_RecWt")
+
+# pick BB CRs only
+HSCOM_BBsonly <- HiSlowCorrectOM %>%
+  filter(CR %in% c("BB", "BB3yr", "BB5yr"))
+
+ggplot(HSCOM_BBsonly, aes(x=MedSSBrelSSBmsy, y=YieldrelMSY, colour=CR)) + 
+  geom_point(alpha=0.2) + 
+  scale_x_continuous(limits = c(0,3.5)) + 
+  #geom_hline(yintercept=1) + 
+  labs(y="relative yield", x="SSB/SSBmsy", colour="Control rule type") +
+  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+  theme_Publication() + scale_colour_Publication()
+
+#, fig.show='hold', out.width='0.49\\linewidth'
+#fig.cap="Tradeoff between herring relative yield and frequency of fishery closure for HighSlowCorrect operating model and biomass based control rules with 1 year (BB), 3 year (BB3yr), or 5 year (BB5yr) quota blocks. Each point represents the median of 100 medians taken over the final 50 years of each simulation.\\label{yieldPropClosure}"
+# pick one OM
+#HiSlowCorrectOM <- allres %>%
+#  filter(OM=="LoM_HiSteep_NoAssBias_RecWt")
+
+# pick BB CRs only
+#HSCOM_BBsonly <- HiSlowCorrectOM %>%
+#  filter(CR %in% c("BB", "BB3yr", "BB5yr"))
+
+ggplot(HSCOM_BBsonly, aes(x=PropClosure, y=YieldrelMSY, colour=CR)) + 
+  geom_point(alpha=0.2) + 
+  scale_x_continuous(limits = c(0,1)) + 
+  #geom_hline(yintercept=1) + 
+  labs(y="relative yield", x="frequency of closure", colour="Control rule type") +
+  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+  theme_Publication() + scale_colour_Publication()
+
+#, fig.show='hold', out.width='0.49\\linewidth'
+#fig.cap="Tradeoff between herring relative yield and probability of the stock is overfished for HighSlowCorrect operating model and biomass based control rules with 1 year (BB), 3 year (BB3yr), or 5 year (BB5yr) quota blocks. Each point represents the median of 100 medians taken over the final 50 years of each simulation.\\label{yieldProbOF}",
+# pick one OM
+#HiSlowCorrectOM <- allres %>%
+#  filter(OM=="LoM_HiSteep_NoAssBias_RecWt")
+
+# pick BB CRs only
+#HSCOM_BBsonly <- HiSlowCorrectOM %>%
+#  filter(CR %in% c("BB", "BB3yr", "BB5yr"))
+```
+]
+.pull-right[
+```{r yieldof-terns, message = FALSE, warning = FALSE, fig.show='hold', fig.height=5}
+ggplot(HSCOM_BBsonly, aes(x=PropSSBrelhalfSSBmsy, y=YieldrelMSY, colour=CR)) + 
+  geom_point(alpha=0.2) + 
+  scale_x_continuous(limits = c(0,1)) + 
+  #geom_hline(yintercept=1) + 
+  labs(y="relative yield", x="frequency of overfished", colour="Control rule type") +
+  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+  theme_Publication() + scale_colour_Publication()
+
+# fig.show='hold', out.width='0.49\\linewidth'
+# fig.cap="Tradeoff between herring relative yield and probability of good tern productivity for HighSlowCorrect operating model and biomass based control rules with 1 year (BB), 3 year (BB3yr), or 5 year (BB5yr) quota blocks. Each point represents the median of 100 medianstaken over the final 50 years of each simulation.\\label{yieldbirds}",
+# pick one OM
+#HiSlowCorrectOM <- allres %>%
+#  filter(OM=="LoM_HiSteep_NoAssBias_RecWt")
+
+# pick BB CRs only
+#HSCOM_BBsonly <- HiSlowCorrectOM %>%
+#  filter(CR %in% c("BB", "BB3yr", "BB5yr"))
+
+ggplot(HSCOM_BBsonly, aes(x=MedPropYrs_goodProd_Targplustern, y=YieldrelMSY, colour=CR)) + 
+  geom_point(alpha=0.2) + 
+  scale_x_continuous(limits = c(0,1)) + 
+  #geom_hline(yintercept=1) + 
+  labs(y="relative yield", x="frequency of good tern productivity", colour="Control rule type") +
+  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+  theme_Publication() + scale_colour_Publication()
+
+```
+]
+---
+## What control rules give us 90% of everything we want?
+
+- Tern productivity at 1.0 or above more than 90% of the time
+- Herring biomass more than 90% of SSBmsy
+- Fishery yield more than 90% of MSY
+&nbsp;  
+&nbsp;  
+- AND fishery closures (F=0) less than 1% of the time (second plot).
+
+.pull-left[
+```{r}
+Nrulesgoodterns <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(MedPropYrs_goodProd_Targplustern>0.9) %>%
+  summarize(tern90 = n())
+
+Nrulesgoodfishery <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(YieldrelMSY>0.9) %>%
+  summarize(yield90 = n())
+
+Nrulesgoodherring <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(MedSSBrelSSBmsy>0.9) %>%
+  summarize(SSB90 = n())
+
+Nrulesgoodternherrfish <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  filter(MedPropYrs_goodProd_Targplustern>0.9 & MedSSBrelSSBmsy>0.9 & YieldrelMSY>0.9) %>%
+  group_by(OM,CR)%>%
+  summarize(ternfishherr90 = n(), 
+            minF = min(FracFtarg), 
+            maxF = max(FracFtarg),
+            minloB = min(FracBmsyThreshLo), 
+            maxloB = max(FracBmsyThreshLo),
+            minhiB = min(FracBmsyThreshHi),
+            maxhiB = max(FracBmsyThreshHi)
+  )
+
+CRsgoodternherrfish <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  filter(MedPropYrs_goodProd_Targplustern > 0.9 & MedSSBrelSSBmsy > 0.9 & YieldrelMSY > 0.9) %>%
+  group_by(OM,CR) %>%
+  select(OM, CR, FracBmsyThreshLo, FracBmsyThreshHi,FracFtarg) %>%
+  mutate(id = seq(1:n()),
+         Xmin = 0,
+         Xmax = 4) %>%
+  gather(CRpart, x, Xmin,FracBmsyThreshLo, FracBmsyThreshHi,Xmax) %>%
+  arrange(OM, CR, id) %>%
+  mutate(y = case_when(CRpart == "Xmin" | CRpart == "FracBmsyThreshLo" ~ 0,
+                       CRpart == "FracBmsyThreshHi" | CRpart == "Xmax" ~ FracFtarg)) %>%
+  mutate(bigkey = paste0(OM, CR, id))
+  
+#with(CRsgoodternherrfish, 
+#     plot(x=c(0,FracBmsyThreshLo, FracBmsyThreshHi, 4),
+#          y=c(0,0,FracFtarg, FracFtarg), type="l"))  
+  
+p1 <- ggplot(CRsgoodternherrfish, aes(x=x, y=y, colour=CR)) + 
+  geom_line(aes(group=bigkey), alpha=0.3) +
+  labs(y="F/Fmsy", x="SSB/SSBmsy", colour="Control rule type") +
+  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+  theme_Publication() + scale_colour_Publication()
+
+OMlabels <- c(HiM_LowSteep_AssBias_OldWt = 'LowFastBiased', 
+              HiM_LowSteep_AssBias_RecWt = 'LowSlowBiased', 
+              HiM_LowSteep_NoAssBias_OldWt = 'LowFastCorrect', 
+              HiM_LowSteep_NoAssBias_RecWt = 'LowSlowCorrect',  
+              LoM_HiSteep_AssBias_OldWt =  'HighFastBiased',  
+              LoM_HiSteep_AssBias_RecWt = 'HighSlowBiased', 
+              LoM_HiSteep_NoAssBias_OldWt = 'HighFastCorrect',
+              LoM_HiSteep_NoAssBias_RecWt = 'HighSlowCorrect'
+              )
+
+p1 + facet_wrap("OM", labeller=labeller(OM = OMlabels), nrow=2) + theme(legend.position="bottom")
+
+```
+]
+
+.pull-right[
+```{r}
+Nrulesgoodterns <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(MedPropYrs_goodProd_Targplustern>0.9) %>%
+  summarize(tern90 = n())
+
+Nrulesgoodfishery <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(YieldrelMSY>0.9) %>%
+  summarize(yield90 = n())
+
+Nrulesgoodherring <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  group_by(OM,CR)%>%
+  filter(MedSSBrelSSBmsy>0.9) %>%
+  summarize(SSB90 = n())
+
+Nrulesgoodternherrfish <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  filter(MedPropYrs_goodProd_Targplustern>0.9 & MedSSBrelSSBmsy>0.9 & YieldrelMSY>0.9 & PropClosure < 0.01) %>%
+  group_by(OM,CR)%>%
+  summarize(ternfishherr90 = n(), 
+            minF = min(FracFtarg), 
+            maxF = max(FracFtarg),
+            minloB = min(FracBmsyThreshLo), 
+            maxloB = max(FracBmsyThreshLo),
+            minhiB = min(FracBmsyThreshHi),
+            maxhiB = max(FracBmsyThreshHi)
+  )
+
+CRsgoodternherrfish <- allres %>%
+  filter(CR %in% c("BB", "BB3yr")) %>%
+  filter(MedPropYrs_goodProd_Targplustern > 0.9 & MedSSBrelSSBmsy > 0.9 & YieldrelMSY > 0.9 & PropClosure < 0.01) %>%
+  group_by(OM,CR) %>%
+  select(OM, CR, FracBmsyThreshLo, FracBmsyThreshHi,FracFtarg) %>%
+  mutate(id = seq(1:n()),
+         Xmin = 0,
+         Xmax = 4) %>%
+  gather(CRpart, x, Xmin,FracBmsyThreshLo, FracBmsyThreshHi,Xmax) %>%
+  arrange(OM, CR, id) %>%
+  mutate(y = case_when(CRpart == "Xmin" | CRpart == "FracBmsyThreshLo" ~ 0,
+                       CRpart == "FracBmsyThreshHi" | CRpart == "Xmax" ~ FracFtarg)) %>%
+  mutate(bigkey = paste0(OM, CR, id))
+  
+#with(CRsgoodternherrfish, 
+#     plot(x=c(0,FracBmsyThreshLo, FracBmsyThreshHi, 4),
+#          y=c(0,0,FracFtarg, FracFtarg), type="l"))  
+  
+p1 <- ggplot(CRsgoodternherrfish, aes(x=x, y=y, colour=CR)) + 
+  geom_line(aes(group=bigkey), alpha=0.3) +
+  labs(y="F/Fmsy", x="SSB/SSBmsy", colour="Control rule type") +
+  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+  theme_Publication() + scale_colour_Publication()
+
+OMlabels <- c(HiM_LowSteep_AssBias_OldWt = 'LowFastBiased', 
+              HiM_LowSteep_AssBias_RecWt = 'LowSlowBiased', 
+              HiM_LowSteep_NoAssBias_OldWt = 'LowFastCorrect', 
+              HiM_LowSteep_NoAssBias_RecWt = 'LowSlowCorrect',  
+              LoM_HiSteep_AssBias_OldWt =  'HighFastBiased',  
+              LoM_HiSteep_AssBias_RecWt = 'HighSlowBiased', 
+              LoM_HiSteep_NoAssBias_OldWt = 'HighFastCorrect',
+              LoM_HiSteep_NoAssBias_RecWt = 'HighSlowCorrect'
+              )
+
+p1 + facet_wrap("OM", labeller=labeller(OM = OMlabels), nrow=2) + theme(legend.position="bottom")
+
+```
+]
+
+---
+## What have we learned? Modeling allows us to test options
+.pull-left-30[
+Complex food web, generalist predators
+- Herring is one of several important prey
+- Assessing multiple prey together will likely show stronger effects on predator productivity
+]
+.pull-right-70[
+![NEUSfw](EDAB_images/LinkNEUSfoodweb.png)
+]
+- Tern/Tuna/Groundfish/Mammal productivity is also affected by predators, weather, and other factors not modeled here
+- Even relatively weak relationships still showed which herring control rules were poor
+- Managers did select a harvest control rule considering a wide range of factors!
+
+---
+## External Resources
+
+* [Wasp Waist or Beer Belly?](https://www.sciencedirect.com/science/article/pii/S0079661115002001)
+
+* [New England Atlantic herring management](https://www.nefmc.org/management-plans/herring)
+
+* [New England herring MSE stakeholder process paper](https://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2018-0125#.XTb_v5NKgWo)
+
+* [New England herring MSE modeling paper](https://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128#.XTb_c5NKgWo)
+
+* [Rpath codebase](https://github.com/NOAA-EDAB/Rpath)
+
+* Slides available at https://noaa-edab.github.io/presentations
+
+---
+
+background-image: url("EDAB_images/SOE_feature_image.png")
+background-size: contain
+
+.footnote[Questions? Thank you!]
