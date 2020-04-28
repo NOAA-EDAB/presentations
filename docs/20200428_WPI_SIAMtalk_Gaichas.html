@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <meta name="author" content="Sarah Gaichas  Northeast Fisheries Science Center" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <script src="libs/kePrint/kePrint.js"></script>
     <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE.css" type="text/css" />
   </head>
   <body>
@@ -36,7 +35,7 @@ class: top, left
 
 * Addressing challenges: math!  
 
-* Example models
+* Examples
 ]
 
 .right-column-45[
@@ -210,15 +209,6 @@ background-size: contain
 ![NOAAlogo](EDAB_images/noaa-logo.PNG)
 ![NOAA fisheries](EDAB_images/noaafisheries.png)
 
----
-## Fishery management in the US
-
-Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
-
-![US map highlighting regions for each fishery management council](EDAB_images/USCouncils.png)
-
-More information: http://www.fisherycouncils.org/
-https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 
 ---
 ## What kinds of models are there?
@@ -226,28 +216,241 @@ https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 ![ecomods](EDAB_images/ecomods.png)
 
 ---
-## Food webs and fisheries--two examples
+## Components of assessment
 
-- Preface: What is a "forage fish"?
+Prerequisite: research
+* Biology and ecology of the resource and its habitat
+* Improving observations and sampling
+* Improving modeling and estimation methods
+    
+Mathematical modeling
+* Population or ecosystem dynamics (numbers and or biomass) 
+* Observation models: fishery catch and survey sampling
+.bluetext[    
+* Adding species interactions, climate and habitat effects
+]
+    
+Parameter estimation
+* Most often maximum likelihood, Bayesian increasingly common
+.bluetext[ 
+* Search algorithms needed for high dimensional space
+* Genetic algorithm in testing
+]
+    
+Forecasting (1-3 years out)
+* Predictions depend on modeled and unmodeled processes
+* Characterize uncertainty
 
-- Alaska pollock: ecological research with a food web model  
-  *"How does ecosystem structure affect dynamics?"*  
+
+
+---
+## Math, models, and fisheries--examples
+
+1. Preface: What is a "forage fish"?
+
+1. Pacific sardine: stock assessment performance testing  
+  .bluetext[*"How does climate change affect our stock assessments?"*]
+    - Overview of stock assessment process
+    - Testing a real assessment model with fake (but known!) "data"
+
+1. Alaska pollock: ecological research with a food web model  
+  .bluetext[*"How does ecosystem structure affect dynamics?"*]  
     - Distinguishing climate, fishing, and food web interactions  
     - Dealing with uncertainty  
 
-- Atlantic herring: fishery management strategy evaluation  
-  *"Which harvest control rules best consider herring's role as forage?"*  
+1. Atlantic herring: fishery management strategy evaluation  
+  .bluetext[*"Which harvest control rules best consider herring's role as forage?"*]  
     - Balancing fishing benefits and ecological services
     - Diverse stakeholder interests
     - Needed timely answers!
     
+1. Epilogue: Integrated ecosystem assessment
+    
 ---
-## What is a forage fish?
+## 1. Prologue: What is a forage fish?
 
 &lt;img src="EDAB_images/forageSeattleTimes.png" width="67%" style="display: block; margin: auto;" /&gt;
 
 ---
-## How does ecosystem structure affect dynamics? 
+## 2. How does climate change affect our stock assessments?
+
+.pull-left[
+
+- Changing climate and ocean conditions &amp;rarr; Shifting species distributions, changing productivity
+
+- Needs:
+  - Improve our ability to project global change impacts in the California Current and Nordic/Barents Seas (and elsewhere)
+  - Test the performance of stock assessments to these impacts
+]
+
+.pull-right[
+*Climate-Ready Management&lt;sup&gt;1&lt;/sup&gt;*
+![Climateready](EDAB_images/KarpetalFig1.png)
+
+
+]
+
+.footnote[
+[1] Karp, Melissa A. et al. 2019. Accounting for shifting distributions and changing productivity in the development of scientific advice for fishery management. – ICES Journal of Marine Science, doi:10.1093/icesjms/fsz048.
+]
+
+???
+---
+## Virtual worlds: end-to-end ecosystem models
+
+Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-2979.2011.00412.x), [Fulton and Smith 2004](https://www.ajol.info/index.php/ajms/article/view/33182)
+
+.pull-left[
+**Norwegian-Barents Sea**
+
+[Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
+[2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
+
+![NOBA scale 90%](EDAB_images/journal.pone.0210419.g001.png)
+]
+.pull-right[
+**California Current**
+
+[Marshall et al. 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.13594), 
+[Kaplan et al. 2017](https://www.sciencedirect.com/science/article/pii/S0304380016308262?via%3Dihub)
+
+![CCAspatial scale 100%](EDAB_images/CCAspatial.png)
+]
+
+
+
+Building on global change projections:  [Hodgson et al. 2018](https://www.sciencedirect.com/science/article/pii/S0304380018301856?via%3Dihub), 
+[Olsen et al. 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00064/full)
+
+
+???
+---
+## Design: Ecosystem model scenario (climate and fishing)
+
+&lt;img src="EDAB_images/projectionOMsetup.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+--
+
+.pull-left[
+* Recruitment variability in the operating model
+
+* Specify uncertainty in assessment inputs using `atlantisom`
+]
+.pull-right[
+![sardinerec scale 100%](EDAB_images/CCAsardineRecVar.png)
+]
+
+---
+## What can we do so far?
+.pull-left[
+Survey census test NOBA 
+&lt;img src="EDAB_images/NOBAcensus.png" width="1792" style="display: block; margin: auto;" /&gt;
+
+True length composition NOBA
+&lt;img src="EDAB_images/NOBAherringtruelf.png" width="1792" style="display: block; margin: auto;" /&gt;
+
+]
+.pull-right[
+Standard survey test CCA
+&lt;img src="EDAB_images/CCsurveyex.png" width="1792" style="display: block; margin: auto;" /&gt;
+
+Survey length composition CCA
+&lt;img src="EDAB_images/CCV3herringlfcomp.png" width="1792" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+## A "sardine" assessment
+
+Need: assessment model data inputs and life history parameters
+
+*(model based on actual Sardine assessment in Stock Synthesis 3)*
+
+.pull-left[
+Data: 
+  * survey biomass index 
+  * survey length composition 
+  * survey age composition (conditional catch at age)
+  * fishery catch (tons) 
+  * fishery length composition 
+  * fishery age composition
+]
+.pull-right[
+Parameters:
+  * natural mortality (from total mortality)
+  * growth curve (from survey length at age)
+  * maturity at age (true)
+  * unfished recruitment and steepness (true)
+  * weight-length curve (true)
+]
+
+---
+## A "sardine" assessment: setup
+
+  * California Current Atlantis run with and without climate signal
+  * Input data generated (e.g. sardine survey, below in green)
+  * Parameters derived; simpler recruitment distribution
+
+&lt;img src="EDAB_images/CCsurvObsBiom.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+
+---
+## A "sardine" assessment: fits to data
+
+.pull-left[
+![surveyfit](EDAB_images/index2_cpuefit_Survey.png)
+![lenfit](EDAB_images/comp_lenfit_flt2mkt0_page1.png)
+]
+
+.pull-right[
+![caafit1](EDAB_images/comp_agefit_flt1mkt0_page1.png)
+![caafit2](EDAB_images/comp_agefit_flt1mkt0_page2.png)
+]
+
+---
+## A "sardine" assessment: skill? (proof of concept)
+.pull-left[
+Biomass
+&lt;img src="EDAB_images/trueBss3B.png" width="1792" style="display: block; margin: auto;" /&gt;
+Fishing mortality
+&lt;img src="EDAB_images/trueFss3F.png" width="1792" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+Recruitment
+&lt;img src="EDAB_images/trueRss3R.png" width="1792" style="display: block; margin: auto;" /&gt;
+
+Key: &lt;span style="color:teal"&gt;True&lt;/span&gt; &lt;span style="color:red"&gt;SS3 estimate&lt;/span&gt;
+]
+
+---
+## Assessment performance under climate: in progress
+
+.pull-left-60[
+Still working on:
+
+1. Functions for more detailed assessments
+
+    1. Splitting aggregate age groups into true ages
+
+    1. Interpolating aggregate age groups weight at age for true ages
+
+    1. Fishery catch weight by area
+
+1. Wrapper functions to generate data in fewer steps
+
+1. Automated skill assessment functions
+
+1. Inputs for other common assessment models
+]
+
+.pull-right-40[
+![workinprogress scale 100%](EDAB_images/work-in-progress.png)
+]
+
+
+---
+## 3. How does ecosystem structure affect dynamics? 
 ![fwforcingstructure](EDAB_images/fwforcingstructuraltype.png)
 
 ---
@@ -256,17 +459,7 @@ https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 ---
 ## Alaska pollock: a tale of two ecosystems
 ![EBSGOAmapsfws](EDAB_images/EBSGOAmap_fws.png)  
-    
----
-## Alaska pollock: a tale of two ecosystems
-&lt;img src="EDAB_images/EBSGOAbiodist.png" width="75%" style="display: block; margin: auto;" /&gt;
-
-???
-Similar biomass groups up to TL 3
-
-EBS pollock dominate at TL 3.5, highest biomass of any fish
-
-GOA has highest biomass above TL 4 (halibut, arrowtooth)
+  
 
 ---
 ## Alaska pollock: a tale of two ecosystems
@@ -368,10 +561,6 @@ Pollock reaction to other groups if control is bottom up or top down:
 &lt;img src="EDAB_images/Fig8.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
-## Simulated increased pollock fishing (significant changes only)
-&lt;img src="EDAB_images/FigS4.png" width="100%" style="display: block; margin: auto;" /&gt;
-
----
 ## Insights for fishery management
 
 - Differences in food web structure between two adjacent ecosystems with similar biological communities and fishery management
@@ -391,7 +580,7 @@ Pollock reaction to other groups if control is bottom up or top down:
 - Structure of a food web may determine how predictable a system is under perturbation, and how changes in primary production propagate through systems
 
 ---
-## Are any Atlantic herring harvest control rules good for both fisheries and predators?
+## 4.  Are any Atlantic herring harvest control rules good for both fisheries and predators?
 &lt;img src="EDAB_images/allcomponents.png" width="1701" /&gt;
 
 ---
@@ -407,81 +596,11 @@ Pollock reaction to other groups if control is bottom up or top down:
 
 &lt;img src="EDAB_images/OMdesign.png" width="85%" style="display: block; margin: auto;" /&gt;
 
----
 ## Design: multiple (herring) operating models spanning uncertainty
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Operating Model Name &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Herring Productivity &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Herring Growth &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Assessment Bias &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; LowFastBiased &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Low: high M, low h (0.44) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1976-1985: fast &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 60% overestimate &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; LowSlowBiased &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Low: high M, low h (0.44) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2005-2014: slow &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 60% overestimate &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; LowFastCorrect &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Low: high M, low h (0.44) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1976-1985: fast &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; None &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; LowSlowCorrect &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Low: high M, low h (0.44) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2005-2014: slow &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; None &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; HighFastBiased &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; High: low M, high h (0.79) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1976-1985: fast &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 60% overestimate &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; HighSlowBiased &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; High: low M, high h (0.79) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2005-2014: slow &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 60% overestimate &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; HighFastCorrect &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; High: low M, high h (0.79) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1976-1985: fast &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; None &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; HighSlowCorrect &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; High: low M, high h (0.79) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2005-2014: slow &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; None &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-## Harvest control rules: Fishing mortality (F) based on:
-  - Biomass (SSB) (1, 3, and 5 year blocks of catch)
-&lt;!--  `$$\tilde{F}_y=\begin{cases}\psi F_{MSY}, &amp; \text{if}\ \widehat{SSB}_y \geq SSB_{up} \\\psi F_{MSY} \frac{\widehat{SSB}_y - SSB_{low}}{SSB_{up}-SSB_{low}}, &amp; \text{if}\ SSB_{low} &lt; \widehat{SSB}_y &lt; SSB_{up}\\0, &amp; \text{if}\ \widehat{SSB}_y \leq SSB_{low}\end{cases}$$`
---&gt;
-  - Biomass with a 15% restriction on interannual change 
-  - Constant Catch (proportion of MSY)
-  - Conditional Constant Catch (not to exceed max F)
-
 ---
-## Economics: Min-Yang Lee's talk last week
+## Economics: more data, models, assessments!
 
-- Some modeling, limited by project timeline
 - The dream: predator response links to ecosystem services, human well being
 - Fishery complexity rivals or exceeds that of food webs!
 
@@ -497,7 +616,7 @@ Pollock reaction to other groups if control is bottom up or top down:
 &lt;img src="EDAB_images/herrtopreds.png" width="1848" /&gt;
 
 ---
-## Seabirds: data collected here! (and throughout Gulf of Maine)
+## Seabirds: data collected throughout Gulf of Maine
 .pull-left[
 ![ternsr](EDAB_images/ternSR.png)
 ]
@@ -529,22 +648,6 @@ Hence, the relationship on the right was developed to relate herring biomass to 
 
 Three control rule types--Constant catch, conditional constant catch, and 15% restriction on change--were rejected at the second stakeholder meeting for poor fishery and predator performance.
 ---
-## Food web modeling; supplemental results
-![fw10per](EDAB_images/herrup10pann.png)
-Tradeoffs between forage groups apparent
----
-## Compare 10% change with more extreme "herring" biomass
-![fwcompare](EDAB_images/fwcompresults.png)
-More uncertainty with increased herring biomass?
----
-## Tradeoffs in Remaining Control Rules
-.pull-left[
-![](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/yieldSSB-close-1.png)![](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/yieldSSB-close-2.png)
-]
-.pull-right[
-![](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/yieldof-terns-1.png)![](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/yieldof-terns-2.png)
-]
----
 ## What control rules give us 90% of everything we want?
 
 - Tern productivity at 1.0 or above more than 90% of the time
@@ -563,7 +666,13 @@ More uncertainty with increased herring biomass?
 ]
 
 ---
-## What have we learned? Modeling allows us to test options
+## Food web modeling; supplemental results
+![fw10per](EDAB_images/herrup10pann.png)
+Tradeoffs between forage groups apparent
+
+
+---
+## What have we learned? Data-backed models allow us to test options
 .pull-left-30[
 Complex food web, generalist predators
 - Herring is one of several important prey
@@ -577,17 +686,89 @@ Complex food web, generalist predators
 - Managers did select a harvest control rule considering a wide range of factors!
 
 ---
-## External Resources
+## 5. Epilogue: integrated ecosystem assessment
+
+.pull-left[
+
+- Establish objectives
+
+- Develop indicatprs
+
+- Assess ecosystem
+
+- Risk assessment 
+
+- Management strategy evaluation
+
+- Evaluate and iterate
+
+[:img relating environment marine habitat and the marine community to human activities social systems and objectives, 60%](EDAB_images/nes-components-abstracted.png)
+]
+]
+
+.pull-right[
+*The IEA Loop&lt;sup&gt;1&lt;/sup&gt;*
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
+]
+
+.footnote[
+[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+
+???
+
+---
+## Indicator example: Marine heatwaves in the Mid-Atlantic
+
+**New Indicator 2020**
+
+.center[
+![Marine heatwave cumulative intensity (left) and maximum intensity (right) in the Mid-Atlantic Bight.](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/heatwave-mab-1.png)
+]
+
+.pull-left[
+![img: January - December 2019 sea surface temperatures above 90th percentile of average](EDAB_images/MAB_heatwave.jpeg)
+]
+
+.pull-right[
+![Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occurring on July 22, 2019.](20200428_WPI_SIAMtalk_Gaichas_files/figure-html/mab-heatwave-max-1.png)
+]
+
+---
+## Multiple objectives, multiple challenges
+
+Fisheries stock assessment and ecosystem modeling continue to develop—can we keep pace with climate? 
+
+Existing management systems are at least as complex as the ecosystems, with diverse interests and emerging industries
+ 
+Ecosystem models 
+Include key interactions
+Species
+Fisheries
+Environment
+Make tradeoffs explicit
+Account for uncertainty
+
+Mathematical innovation needed!
+
+---
+## If you want all the details
 
 * [Wasp Waist or Beer Belly?](https://www.sciencedirect.com/science/article/pii/S0079661115002001)
-
-* [New England Atlantic herring management](https://www.nefmc.org/management-plans/herring)
 
 * [New England herring MSE stakeholder process paper](https://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2018-0125#.XTb_v5NKgWo)
 
 * [New England herring MSE modeling paper](https://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128#.XTb_c5NKgWo)
 
 * [Rpath codebase](https://github.com/NOAA-EDAB/Rpath)
+
+* [NOAA State of the Ecosystem summary webpage](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+* [State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+
 
 * Slides available at https://noaa-edab.github.io/presentations
 
@@ -598,22 +779,16 @@ background-size: contain
 
 .footnote[Questions? Thank you!]
 
+
 ---
-## Which models are best for management decisions? (Conclusions!)
-.pull-left[
-- Based on **clearly specified questions** (from managers/stakeholders)
+## Appendix: Fishery management in the US
 
-- **Outputs** and **controls designed** to answer the questions
+Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
 
-- Using **observations** directly from the ecosystem
+![US map highlighting regions for each fishery management council](EDAB_images/USCouncils.png)
 
-- With clear description of **uncertainties**
-
-]
-.pull-right[
-![models](EDAB_images/xkcdphysicists.png)
-.footnote[https://xkcd.com/793/]
-]
+More information: http://www.fisherycouncils.org/
+https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

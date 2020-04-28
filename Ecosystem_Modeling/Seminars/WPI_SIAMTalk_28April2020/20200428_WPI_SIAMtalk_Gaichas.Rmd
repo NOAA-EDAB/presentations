@@ -101,7 +101,7 @@ scale_colour_Publication <- function(...){
 
 * Addressing challenges: math!  
 
-* Example models
+* Examples
 ]
 
 .right-column-45[
@@ -275,15 +275,6 @@ background-size: contain
 ![NOAAlogo](EDAB_images/noaa-logo.PNG)
 ![NOAA fisheries](EDAB_images/noaafisheries.png)
 
----
-## Fishery management in the US
-
-Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
-
-![US map highlighting regions for each fishery management council](EDAB_images/USCouncils.png)
-
-More information: http://www.fisherycouncils.org/
-https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 
 ---
 ## What kinds of models are there?
@@ -291,30 +282,261 @@ https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 ![ecomods](EDAB_images/ecomods.png)
 
 ---
-## Food webs and fisheries--two examples
+## Components of assessment
 
-- Preface: What is a "forage fish"?
+Prerequisite: research
+* Biology and ecology of the resource and its habitat
+* Improving observations and sampling
+* Improving modeling and estimation methods
+    
+Mathematical modeling
+* Population or ecosystem dynamics (numbers and or biomass) 
+* Observation models: fishery catch and survey sampling
+.bluetext[    
+* Adding species interactions, climate and habitat effects
+]
+    
+Parameter estimation
+* Most often maximum likelihood, Bayesian increasingly common
+.bluetext[ 
+* Search algorithms needed for high dimensional space
+* Genetic algorithm in testing
+]
+    
+Forecasting (1-3 years out)
+* Predictions depend on modeled and unmodeled processes
+* Characterize uncertainty
 
-- Alaska pollock: ecological research with a food web model  
-  *"How does ecosystem structure affect dynamics?"*  
+
+
+---
+## Math, models, and fisheries--examples
+
+1. Preface: What is a "forage fish"?
+
+1. Pacific sardine: stock assessment performance testing  
+  .bluetext[*"How does climate change affect our stock assessments?"*]
+    - Overview of stock assessment process
+    - Testing a real assessment model with fake (but known!) "data"
+
+1. Alaska pollock: ecological research with a food web model  
+  .bluetext[*"How does ecosystem structure affect dynamics?"*]  
     - Distinguishing climate, fishing, and food web interactions  
     - Dealing with uncertainty  
 
-- Atlantic herring: fishery management strategy evaluation  
-  *"Which harvest control rules best consider herring's role as forage?"*  
+1. Atlantic herring: fishery management strategy evaluation  
+  .bluetext[*"Which harvest control rules best consider herring's role as forage?"*]  
     - Balancing fishing benefits and ecological services
     - Diverse stakeholder interests
     - Needed timely answers!
     
+1. Epilogue: Integrated ecosystem assessment
+    
 ---
-## What is a forage fish?
+## 1. Prologue: What is a forage fish?
 
 ```{r forage, echo = F, fig.align = "center", out.width='67%'}
 knitr::include_graphics("EDAB_images/forageSeattleTimes.png")
 ```
 
 ---
-## How does ecosystem structure affect dynamics? 
+## 2. How does climate change affect our stock assessments?
+
+.pull-left[
+
+- Changing climate and ocean conditions &rarr; Shifting species distributions, changing productivity
+
+- Needs:
+  - Improve our ability to project global change impacts in the California Current and Nordic/Barents Seas (and elsewhere)
+  - Test the performance of stock assessments to these impacts
+]
+
+.pull-right[
+*Climate-Ready Management<sup>1</sup>*
+![Climateready](EDAB_images/KarpetalFig1.png)
+
+
+]
+
+.footnote[
+[1] Karp, Melissa A. et al. 2019. Accounting for shifting distributions and changing productivity in the development of scientific advice for fishery management. – ICES Journal of Marine Science, doi:10.1093/icesjms/fsz048.
+]
+
+???
+---
+## Virtual worlds: end-to-end ecosystem models
+
+Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-2979.2011.00412.x), [Fulton and Smith 2004](https://www.ajol.info/index.php/ajms/article/view/33182)
+
+.pull-left[
+**Norwegian-Barents Sea**
+
+[Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
+[2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
+
+![NOBA scale 90%](EDAB_images/journal.pone.0210419.g001.png)
+]
+.pull-right[
+**California Current**
+
+[Marshall et al. 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.13594), 
+[Kaplan et al. 2017](https://www.sciencedirect.com/science/article/pii/S0304380016308262?via%3Dihub)
+
+![CCAspatial scale 100%](EDAB_images/CCAspatial.png)
+]
+
+
+
+Building on global change projections:  [Hodgson et al. 2018](https://www.sciencedirect.com/science/article/pii/S0304380018301856?via%3Dihub), 
+[Olsen et al. 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00064/full)
+
+
+???
+---
+## Design: Ecosystem model scenario (climate and fishing)
+
+```{r atlOMdesign, echo = F, fig.align = "center", out.width="85%"}
+knitr::include_graphics("EDAB_images/projectionOMsetup.png")
+```
+
+--
+
+.pull-left[
+* Recruitment variability in the operating model
+
+* Specify uncertainty in assessment inputs using `atlantisom`
+]
+.pull-right[
+![sardinerec scale 100%](EDAB_images/CCAsardineRecVar.png)
+]
+
+---
+## What can we do so far?
+.pull-left[
+Survey census test NOBA 
+```{r ex-output1, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/NOBAcensus.png")
+```
+
+True length composition NOBA
+```{r ex-output3, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/NOBAherringtruelf.png")
+```
+
+]
+.pull-right[
+Standard survey test CCA
+```{r ex-output2, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/CCsurveyex.png")
+```
+
+Survey length composition CCA
+```{r ex-output4, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/CCV3herringlfcomp.png")
+```
+
+]
+
+
+---
+## A "sardine" assessment
+
+Need: assessment model data inputs and life history parameters
+
+*(model based on actual Sardine assessment in Stock Synthesis 3)*
+
+.pull-left[
+Data: 
+  * survey biomass index 
+  * survey length composition 
+  * survey age composition (conditional catch at age)
+  * fishery catch (tons) 
+  * fishery length composition 
+  * fishery age composition
+]
+.pull-right[
+Parameters:
+  * natural mortality (from total mortality)
+  * growth curve (from survey length at age)
+  * maturity at age (true)
+  * unfished recruitment and steepness (true)
+  * weight-length curve (true)
+]
+
+---
+## A "sardine" assessment: setup
+
+  * California Current Atlantis run with and without climate signal
+  * Input data generated (e.g. sardine survey, below in green)
+  * Parameters derived; simpler recruitment distribution
+
+```{r sardsurv, echo = F, warning = F, message=F, out.width = "90%", fig.align = "left"}
+knitr::include_graphics("EDAB_images/CCsurvObsBiom.png")
+```
+
+
+---
+## A "sardine" assessment: fits to data
+
+.pull-left[
+![surveyfit](EDAB_images/index2_cpuefit_Survey.png)
+![lenfit](EDAB_images/comp_lenfit_flt2mkt0_page1.png)
+]
+
+.pull-right[
+![caafit1](EDAB_images/comp_agefit_flt1mkt0_page1.png)
+![caafit2](EDAB_images/comp_agefit_flt1mkt0_page2.png)
+]
+
+---
+## A "sardine" assessment: skill? (proof of concept)
+.pull-left[
+Biomass
+```{r skillB, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/trueBss3B.png")
+```
+Fishing mortality
+```{r skillF, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/trueFss3F.png")
+```
+]
+.pull-right[
+Recruitment
+```{r skillR, echo = F, warning = F, message=F, fig.align = "center"}
+knitr::include_graphics("EDAB_images/trueRss3R.png")
+```
+
+Key: <span style="color:teal">True</span> <span style="color:red">SS3 estimate</span>
+]
+
+---
+## Assessment performance under climate: in progress
+
+.pull-left-60[
+Still working on:
+
+1. Functions for more detailed assessments
+
+    1. Splitting aggregate age groups into true ages
+
+    1. Interpolating aggregate age groups weight at age for true ages
+
+    1. Fishery catch weight by area
+
+1. Wrapper functions to generate data in fewer steps
+
+1. Automated skill assessment functions
+
+1. Inputs for other common assessment models
+]
+
+.pull-right-40[
+![workinprogress scale 100%](EDAB_images/work-in-progress.png)
+]
+
+
+---
+## 3. How does ecosystem structure affect dynamics? 
 ![fwforcingstructure](EDAB_images/fwforcingstructuraltype.png)
 
 ---
@@ -323,19 +545,7 @@ knitr::include_graphics("EDAB_images/forageSeattleTimes.png")
 ---
 ## Alaska pollock: a tale of two ecosystems
 ![EBSGOAmapsfws](EDAB_images/EBSGOAmap_fws.png)  
-    
----
-## Alaska pollock: a tale of two ecosystems
-```{r biodist, echo = F, fig.align = "center", out.width="75%"}
-knitr::include_graphics("EDAB_images/EBSGOAbiodist.png")
-```
-
-???
-Similar biomass groups up to TL 3
-
-EBS pollock dominate at TL 3.5, highest biomass of any fish
-
-GOA has highest biomass above TL 4 (halibut, arrowtooth)
+  
 
 ---
 ## Alaska pollock: a tale of two ecosystems
@@ -451,12 +661,6 @@ knitr::include_graphics("EDAB_images/Fig8.png")
 ```
 
 ---
-## Simulated increased pollock fishing (significant changes only)
-```{r exp6, echo = F, fig.align = "center", out.width="100%"}
-knitr::include_graphics("EDAB_images/FigS4.png")
-```
-
----
 ## Insights for fishery management
 
 - Differences in food web structure between two adjacent ecosystems with similar biological communities and fishery management
@@ -476,7 +680,7 @@ knitr::include_graphics("EDAB_images/FigS4.png")
 - Structure of a food web may determine how predictable a system is under perturbation, and how changes in primary production propagate through systems
 
 ---
-## Are any Atlantic herring harvest control rules good for both fisheries and predators?
+## 4.  Are any Atlantic herring harvest control rules good for both fisheries and predators?
 ```{r intro}
 knitr::include_graphics("EDAB_images/allcomponents.png")
 ```
@@ -500,43 +704,11 @@ knitr::include_graphics("EDAB_images/MgtProcess.png")
 knitr::include_graphics("EDAB_images/OMdesign.png")
 ```
 
----
 ## Design: multiple (herring) operating models spanning uncertainty
 
-```{r OMs,  echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-#tab.cap="Operating model uncertainties addressed\\label{OMs}",
-tabl <- "
-|Operating Model Name|Herring Productivity|Herring Growth|Assessment Bias|
-|:---------------------|:---------------------|:-----------------|:-----------------|
-| LowFastBiased        | Low: high M, low h (0.44)  | 1976-1985: fast | 60% overestimate |
-| LowSlowBiased        | Low: high M, low h (0.44)  | 2005-2014: slow | 60% overestimate |
-| LowFastCorrect       | Low: high M, low h (0.44)  | 1976-1985: fast | None             |
-| LowSlowCorrect       | Low: high M, low h (0.44)  | 2005-2014: slow | None             |
-| HighFastBiased       | High: low M, high h (0.79) | 1976-1985: fast | 60% overestimate |
-| HighSlowBiased       | High: low M, high h (0.79) | 2005-2014: slow | 60% overestimate |
-| HighFastCorrect      | High: low M, high h (0.79) | 1976-1985: fast | None             |
-| HighSlowCorrect      | High: low M, high h (0.79) | 2005-2014: slow | None             |
-"
-df<-read_delim(tabl, delim="|")
-df<-df[-c(1) ,c("Operating Model Name","Herring Productivity","Herring Growth","Assessment Bias")]
-knitr::kable(df, booktabs = TRUE) %>%
-  kable_styling(latex_options = "scale_down") #%>%
-  #kable_as_image()
-
-#cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
-## Harvest control rules: Fishing mortality (F) based on:
-  - Biomass (SSB) (1, 3, and 5 year blocks of catch)
-<!--  $$\tilde{F}_y=\begin{cases}\psi F_{MSY}, & \text{if}\ \widehat{SSB}_y \geq SSB_{up} \\\psi F_{MSY} \frac{\widehat{SSB}_y - SSB_{low}}{SSB_{up}-SSB_{low}}, & \text{if}\ SSB_{low} < \widehat{SSB}_y < SSB_{up}\\0, & \text{if}\ \widehat{SSB}_y \leq SSB_{low}\end{cases}$$
--->
-  - Biomass with a 15% restriction on interannual change 
-  - Constant Catch (proportion of MSY)
-  - Conditional Constant Catch (not to exceed max F)
-
 ---
-## Economics: Min-Yang Lee's talk last week
+## Economics: more data, models, assessments!
 
-- Some modeling, limited by project timeline
 - The dream: predator response links to ecosystem services, human well being
 - Fishery complexity rivals or exceeds that of food webs!
 
@@ -554,7 +726,7 @@ knitr::include_graphics("EDAB_images/herrtopreds.png")
 ```
 
 ---
-## Seabirds: data collected here! (and throughout Gulf of Maine)
+## Seabirds: data collected throughout Gulf of Maine
 .pull-left[
 ![ternsr](EDAB_images/ternSR.png)
 ]
@@ -587,94 +759,6 @@ knitr::include_graphics("EDAB_images/herrtopreds_results.png")
 ```
 
 Three control rule types--Constant catch, conditional constant catch, and 15% restriction on change--were rejected at the second stakeholder meeting for poor fishery and predator performance.
----
-## Food web modeling; supplemental results
-![fw10per](EDAB_images/herrup10pann.png)
-Tradeoffs between forage groups apparent
----
-## Compare 10% change with more extreme "herring" biomass
-![fwcompare](EDAB_images/fwcompresults.png)
-More uncertainty with increased herring biomass?
----
-## Tradeoffs in Remaining Control Rules
-.pull-left[
-```{r yieldSSB-close,  message = FALSE, warning = FALSE, fig.show='hold', fig.height=5}
-#fig.cap="Tradeoff between herring relative yield, fishery and predator metrics for HighSlowCorrect operating model ",and biomass based control rules with 1 year (BB), 3 year (BB3yr), or 5 year (BB5yr) quota blocks. Each point represents the median of 100 medians taken over the final 50 years of each simulation. \\label{yieldSSB}
-# pick one OM
-HiSlowCorrectOM <- allres %>%
-  filter(OM=="LoM_HiSteep_NoAssBias_RecWt")
-
-# pick BB CRs only
-HSCOM_BBsonly <- HiSlowCorrectOM %>%
-  filter(CR %in% c("BB", "BB3yr", "BB5yr"))
-
-ggplot(HSCOM_BBsonly, aes(x=MedSSBrelSSBmsy, y=YieldrelMSY, colour=CR)) + 
-  geom_point(alpha=0.2) + 
-  scale_x_continuous(limits = c(0,3.5)) + 
-  #geom_hline(yintercept=1) + 
-  labs(y="relative yield", x="SSB/SSBmsy", colour="Control rule type") +
-  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
-  theme_Publication() + scale_colour_Publication()
-
-#, fig.show='hold', out.width='0.49\\linewidth'
-#fig.cap="Tradeoff between herring relative yield and frequency of fishery closure for HighSlowCorrect operating model and biomass based control rules with 1 year (BB), 3 year (BB3yr), or 5 year (BB5yr) quota blocks. Each point represents the median of 100 medians taken over the final 50 years of each simulation.\\label{yieldPropClosure}"
-# pick one OM
-#HiSlowCorrectOM <- allres %>%
-#  filter(OM=="LoM_HiSteep_NoAssBias_RecWt")
-
-# pick BB CRs only
-#HSCOM_BBsonly <- HiSlowCorrectOM %>%
-#  filter(CR %in% c("BB", "BB3yr", "BB5yr"))
-
-ggplot(HSCOM_BBsonly, aes(x=PropClosure, y=YieldrelMSY, colour=CR)) + 
-  geom_point(alpha=0.2) + 
-  scale_x_continuous(limits = c(0,1)) + 
-  #geom_hline(yintercept=1) + 
-  labs(y="relative yield", x="frequency of closure", colour="Control rule type") +
-  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
-  theme_Publication() + scale_colour_Publication()
-
-#, fig.show='hold', out.width='0.49\\linewidth'
-#fig.cap="Tradeoff between herring relative yield and probability of the stock is overfished for HighSlowCorrect operating model and biomass based control rules with 1 year (BB), 3 year (BB3yr), or 5 year (BB5yr) quota blocks. Each point represents the median of 100 medians taken over the final 50 years of each simulation.\\label{yieldProbOF}",
-# pick one OM
-#HiSlowCorrectOM <- allres %>%
-#  filter(OM=="LoM_HiSteep_NoAssBias_RecWt")
-
-# pick BB CRs only
-#HSCOM_BBsonly <- HiSlowCorrectOM %>%
-#  filter(CR %in% c("BB", "BB3yr", "BB5yr"))
-```
-]
-.pull-right[
-```{r yieldof-terns, message = FALSE, warning = FALSE, fig.show='hold', fig.height=5}
-ggplot(HSCOM_BBsonly, aes(x=PropSSBrelhalfSSBmsy, y=YieldrelMSY, colour=CR)) + 
-  geom_point(alpha=0.2) + 
-  scale_x_continuous(limits = c(0,1)) + 
-  #geom_hline(yintercept=1) + 
-  labs(y="relative yield", x="frequency of overfished", colour="Control rule type") +
-  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
-  theme_Publication() + scale_colour_Publication()
-
-# fig.show='hold', out.width='0.49\\linewidth'
-# fig.cap="Tradeoff between herring relative yield and probability of good tern productivity for HighSlowCorrect operating model and biomass based control rules with 1 year (BB), 3 year (BB3yr), or 5 year (BB5yr) quota blocks. Each point represents the median of 100 medianstaken over the final 50 years of each simulation.\\label{yieldbirds}",
-# pick one OM
-#HiSlowCorrectOM <- allres %>%
-#  filter(OM=="LoM_HiSteep_NoAssBias_RecWt")
-
-# pick BB CRs only
-#HSCOM_BBsonly <- HiSlowCorrectOM %>%
-#  filter(CR %in% c("BB", "BB3yr", "BB5yr"))
-
-ggplot(HSCOM_BBsonly, aes(x=MedPropYrs_goodProd_Targplustern, y=YieldrelMSY, colour=CR)) + 
-  geom_point(alpha=0.2) + 
-  scale_x_continuous(limits = c(0,1)) + 
-  #geom_hline(yintercept=1) + 
-  labs(y="relative yield", x="frequency of good tern productivity", colour="Control rule type") +
-  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
-  theme_Publication() + scale_colour_Publication()
-
-```
-]
 ---
 ## What control rules give us 90% of everything we want?
 
@@ -830,7 +914,13 @@ p1 + facet_wrap("OM", labeller=labeller(OM = OMlabels), nrow=2) + theme(legend.p
 ]
 
 ---
-## What have we learned? Modeling allows us to test options
+## Food web modeling; supplemental results
+![fw10per](EDAB_images/herrup10pann.png)
+Tradeoffs between forage groups apparent
+
+
+---
+## What have we learned? Data-backed models allow us to test options
 .pull-left-30[
 Complex food web, generalist predators
 - Herring is one of several important prey
@@ -844,17 +934,249 @@ Complex food web, generalist predators
 - Managers did select a harvest control rule considering a wide range of factors!
 
 ---
-## External Resources
+## 5. Epilogue: integrated ecosystem assessment
+
+.pull-left[
+
+- Establish objectives
+
+- Develop indicatprs
+
+- Assess ecosystem
+
+- Risk assessment 
+
+- Management strategy evaluation
+
+- Evaluate and iterate
+
+[:img relating environment marine habitat and the marine community to human activities social systems and objectives, 60%](EDAB_images/nes-components-abstracted.png)
+]
+]
+
+.pull-right[
+*The IEA Loop<sup>1</sup>*
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
+]
+
+.footnote[
+[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+
+???
+
+---
+## Indicator example: Marine heatwaves in the Mid-Atlantic
+
+**New Indicator 2020**
+
+.center[
+```{r heatwave-mab, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
+
+library(ecodata)
+#GIS libraries
+library(sf)
+library(rgdal)
+library(raster)
+library(rnaturalearth)
+
+data.dir <- here::here("data")
+gis.dir <- here::here("data")
+
+#General inline text input for report
+#Council
+council <- "Mid-Atlantic Fishery Management Council"
+council_abbr <- "MAFMC"
+
+#Region identifiers
+epu <- "Mid-Atlantic Bight"
+epu_abbr <- "MAB"
+region <- "Mid-Atlantic"
+region_abbr <- "MA" #Some commercial data organized by "MA" or "NE" regions, not by EPU 
+
+#Time series constants
+shade.alpha <- 0.3
+shade.fill <- "lightgrey"
+lwd <- 1
+pcex <- 2
+trend.alpha <- 0.5
+trend.size <- 2
+hline.size <- 1
+hline.alpha <- 0.35
+hline.lty <- "dashed"
+label.size <- 5
+hjust.label <- 1.5
+letter_size <- 4
+feeding.guilds1<- c("Piscivore","Planktivore","Benthivore","Benthos")
+feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
+x.shade.min <- 2009
+x.shade.max <- 2019
+#Function for custom ggplot facet labels
+label <- function(variable,value){
+  return(facet_names[value])
+}
+
+#CRS
+crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+
+#Coastline shapefile
+coast <- ne_countries(scale = 10,
+                          continent = "North America",
+                          returnclass = "sf") %>%
+             sf::st_transform(crs = crs)
+
+#State polygons
+ne_states <- ne_states(country = "united states of america",
+                                      returnclass = "sf") %>%
+  sf::st_transform(crs = crs)
+
+#high-res polygon of Maine
+#new_england <- read_sf(gis.dir,"new_england")
+
+#EPU shapefile
+epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB","GB","GOM"))
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -77
+xmax = -65
+ymin = 36
+ymax = 45
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+
+cumu <- ecodata::heatwave %>% 
+  filter(Var == "cumulative intensity") %>% 
+  mutate(Var = dplyr::recode(Var, "cumulative intensity" = "Cumulative Intensity (°C x days)"))
+
+maxin <- ecodata::heatwave %>% 
+  dplyr::filter(Var == "maximum intensity") %>% 
+  dplyr::group_by(Time, EPU, Var, Units) %>% 
+  dplyr::summarise(Value = max(Value)) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate(Var = dplyr::recode(Var, "maximum intensity" = "Maximum Intensity (°C)"))
+
+hw<- cumu %>%
+  rbind(maxin) %>% 
+  dplyr::group_by(Var, EPU) %>% 
+  dplyr::mutate(hline = mean(Value))
+
+mab.hw<- hw %>% filter(EPU == epu_abbr)
+mab.hw %>% 
+  ggplot() +
+  geom_line(aes(x = Time, y = Value)) +
+  geom_point(aes(x = Time, y = Value)) +
+  geom_gls(aes(x = Time, y = Value, group = Var)) +
+  ylab("") +
+  xlab(element_blank())+
+  ggtitle("Mid-Atlantic Marine Heatwave Intesity") +
+  scale_x_continuous(expand = c(0.01, 0.01))+
+  geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty)+
+  annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  facet_wrap(~Var, scales = "free")+
+  theme_ts()+
+  theme(strip.text=element_text(hjust=0,
+                                face = "italic"))
+
+```
+]
+
+.pull-left[
+![img: January - December 2019 sea surface temperatures above 90th percentile of average](EDAB_images/MAB_heatwave.jpeg)
+]
+
+.pull-right[
+```{r mab-heatwave-max, fig.cap="Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occurring on July 22, 2019.",fig.height=5 }
+#EPU shapefile
+mab_epu_sf <- ecodata::epu_sf %>% 
+  filter(EPU %in% c("MAB"))
+
+#Map line parameters
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -81
+xmax = -66
+ymin = 35.5
+ymax = 43
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+hw <- ecodata::heatwave_anom_gridded %>% 
+  filter(EPU == "MAB")
+
+mab_map <- 
+  ggplot() +
+  geom_tile(data =hw, aes(x = Longitude, y = Latitude,fill = Value)) +
+  geom_sf(data = coast, size = map.lwd) +
+  geom_sf(data = mab_epu_sf, fill = "transparent", size = map.lwd) +
+  scale_fill_gradient2(name = "Temp.\nAnomaly (°C)",
+                       low = scales::muted("blue"),
+                       mid = "white",
+                       high = scales::muted("red"),
+                       limits = c(-5,7)) +
+  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+  #facet_wrap(Season~.) +
+  theme_map() +
+  ggtitle("MAB heatwave anomaly (July 22, 2019)") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
+        legend.key = element_blank(),
+        axis.title = element_text(size = 11),
+        strip.background = element_blank(),
+        strip.text=element_text(hjust=0),
+        axis.text = element_text(size = 8), 
+        axis.title.y = element_text(angle = 90),
+        plot.margin=grid::unit(c(0,0,0,0), "mm"))
+
+mab_map 
+
+```
+]
+
+---
+## Multiple objectives, multiple challenges
+
+Fisheries stock assessment and ecosystem modeling continue to develop—can we keep pace with climate? 
+
+Existing management systems are at least as complex as the ecosystems, with diverse interests and emerging industries
+ 
+Ecosystem models 
+Include key interactions
+Species
+Fisheries
+Environment
+Make tradeoffs explicit
+Account for uncertainty
+
+Mathematical innovation needed!
+
+---
+## If you want all the details
 
 * [Wasp Waist or Beer Belly?](https://www.sciencedirect.com/science/article/pii/S0079661115002001)
-
-* [New England Atlantic herring management](https://www.nefmc.org/management-plans/herring)
 
 * [New England herring MSE stakeholder process paper](https://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2018-0125#.XTb_v5NKgWo)
 
 * [New England herring MSE modeling paper](https://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128#.XTb_c5NKgWo)
 
 * [Rpath codebase](https://github.com/NOAA-EDAB/Rpath)
+
+* [NOAA State of the Ecosystem summary webpage](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+* [State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+
 
 * Slides available at https://noaa-edab.github.io/presentations
 
@@ -865,19 +1187,14 @@ background-size: contain
 
 .footnote[Questions? Thank you!]
 
+
 ---
-## Which models are best for management decisions? (Conclusions!)
-.pull-left[
-- Based on **clearly specified questions** (from managers/stakeholders)
+## Appendix: Fishery management in the US
 
-- **Outputs** and **controls designed** to answer the questions
+Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
 
-- Using **observations** directly from the ecosystem
+![US map highlighting regions for each fishery management council](EDAB_images/USCouncils.png)
 
-- With clear description of **uncertainties**
+More information: http://www.fisherycouncils.org/
+https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 
-]
-.pull-right[
-![models](EDAB_images/xkcdphysicists.png)
-.footnote[https://xkcd.com/793/]
-]
