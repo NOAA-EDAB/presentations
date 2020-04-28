@@ -312,17 +312,12 @@ Forecasting (1-3 years out)
 ---
 ## Math, models, and fisheries--examples
 
-1. Preface: What is a "forage fish"?
+1. Prologue: What is a "forage fish"?
 
 1. Pacific sardine: stock assessment performance testing  
   .bluetext[*"How does climate change affect our stock assessments?"*]
     - Overview of stock assessment process
     - Testing a real assessment model with fake (but known!) "data"
-
-1. Alaska pollock: ecological research with a food web model  
-  .bluetext[*"How does ecosystem structure affect dynamics?"*]  
-    - Distinguishing climate, fishing, and food web interactions  
-    - Dealing with uncertainty  
 
 1. Atlantic herring: fishery management strategy evaluation  
   .bluetext[*"Which harvest control rules best consider herring's role as forage?"*]  
@@ -331,6 +326,11 @@ Forecasting (1-3 years out)
     - Needed timely answers!
     
 1. Epilogue: Integrated ecosystem assessment
+
+* (Appendix) Alaska pollock: ecological research with a food web model  
+  .bluetext[*"How does ecosystem structure affect dynamics?"*]  
+    - Distinguishing climate, fishing, and food web interactions  
+    - Dealing with uncertainty  
     
 ---
 ## 1. Prologue: What is a forage fish?
@@ -535,152 +535,9 @@ Still working on:
 ]
 
 
----
-## 3. How does ecosystem structure affect dynamics? 
-![fwforcingstructure](EDAB_images/fwforcingstructuraltype.png)
 
 ---
-## Alaska pollock: a tale of two ecosystems
-![EBSGOAmaps](EDAB_images/EBSGOAmap.png)
----
-## Alaska pollock: a tale of two ecosystems
-![EBSGOAmapsfws](EDAB_images/EBSGOAmap_fws.png)  
-  
-
----
-## Alaska pollock: a tale of two ecosystems
-.pull-left[
-- Different pollock trajectories
-
-- Different pollock diets, mortality sources
-
-```{r pollpic, echo = F, fig.align = "center", out.width="85%"}
-knitr::include_graphics("EDAB_images/pollpic.png")
-```
-
-]
-.pull-right[
-```{r pollassess, echo = F, fig.align = "center", out.width="95%"}
-knitr::include_graphics("EDAB_images/EBSGOApollassess.png")
-#knitr::include_graphics("EDAB_images/EBSGOApolldietmort.png")
-```
-]
-```{r polldietmort, echo = F, fig.align = "center", out.width="95%"}
-#knitr::include_graphics("EDAB_images/EBSGOApollassess.png")
-knitr::include_graphics("EDAB_images/EBSGOApolldietmort.png")
-```
-
-???
-diets:- copepods, krill, pollock in EBS
-      - krill, shrimp, some copepods in GOA
-
----
-## Ecosystem models and uncertainty
-![aydinmodyield](EDAB_images/AydinModYield.png)
----
-## Model ensemble https://xkcd.com/1885/
-![xkcd_ensemble_model_2x.png](EDAB_images/xkcd_ensemble_model_2x.png)
----
-## What is a food web model?
-
-.pull-left-60[
-A system of linear equations
-
-For each group, $i$, specify: 
-
-   Biomass $B$ [or Ecotrophic Efficiency $EE$ ]  
-   Population growth rate $\frac{P}{B}$  
-   Consumption rate $\frac{Q}{B}$  
-   Diet composition $DC$  
-   Fishery catch $C$  
-   Biomass accumulation $BA$  
-   Im/emigration $IM$ and $EM$  
-   
-Solving for $EE$ [or $B$ ] for each group:
-]
-
-.pull-right-40[
-![toyfoodweb](EDAB_images/toyfw.png)
-]
-
-$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$
-???
-
----
-## Ecosystem models and uncertainty: grading inputs
-![fwpedigree](EDAB_images/fwpedigree.png)
-
----
-## Ecosystem models and uncertainty: run a scenario
-![fwuncert1](EDAB_images/Foodwebmodel_uncertaintyseries/Slide1.png)
----
-## Ecosystem models and uncertainty: run a scenario
-![fwuncert2](EDAB_images/Foodwebmodel_uncertaintyseries/Slide2.png)
----
-## Ecosystem models and uncertainty: run a scenario
-![fwuncert3](EDAB_images/Foodwebmodel_uncertaintyseries/Slide3.png)
----
-## Ecosystem models and uncertainty: run a scenario in an ensemble
-![fwuncert4](EDAB_images/Foodwebmodel_uncertaintyseries/Slide4.png)
----
-## Ecosystem models and uncertainty: run a scenario in an ensemble
-![fwuncert5](EDAB_images/Foodwebmodel_uncertaintyseries/Slide5.png)
----
-## Ecosystem models and uncertainty: run a scenario in an ensemble
-![fwuncert6](EDAB_images/Foodwebmodel_uncertaintyseries/Slide6.png)
----
-## Ecosystem models and uncertainty: run a scenario in an ensemble
-![fwuncert7](EDAB_images/Foodwebmodel_uncertaintyseries/Slide7.png)
-
----
-## Defining ecosystem structure in the EBS and GOA: expectations
-
-Ecosystem reaction to pollock if pollock is a "wasp waist":
-![increasepoll](EDAB_images/ecoreactstopollock.png)
-
---
-
-Pollock reaction to other groups if control is bottom up or top down:
-![increaseothers](EDAB_images/pollockreacts.png)
----
-## Perturbation results: ecosystem reaction to 10% pollock increase
-```{r exp1, echo = F, fig.align = "center", out.width="100%"}
-knitr::include_graphics("EDAB_images/Fig6.png")
-```
-
----
-## Perturbation results: pollock reaction to 10% increase in others
-```{r exp2, echo = F, fig.align = "center", out.width="100%"}
-knitr::include_graphics("EDAB_images/Fig7.png")
-```
-
----
-## Perturbation results: ecosystem reaction to 10% phytoplankton increase
-```{r exp3, echo = F, fig.align = "center", out.width="100%"}
-knitr::include_graphics("EDAB_images/Fig8.png")
-```
-
----
-## Insights for fishery management
-
-- Differences in food web structure between two adjacent ecosystems with similar biological communities and fishery management
-  - Which species respond to the same perturbation
-  - Level of uncertainty / predictability in response
-  
-- EBS: Influential group at mid trophic levels
-  - Wasp waist transmits signal to other groups (neither AK system)
-  - Self regulating dominant group (beer belly) absorbs signals
-  - Beer belly systems are more predictable, stable as long as the beer belly maintains itself?
-
-- GOA: Influential groups at high trophic levels
-  - Magnifies bottom up signals and top down?
-  - A less predictable system?
-  - Subject to more radical change?
-
-- Structure of a food web may determine how predictable a system is under perturbation, and how changes in primary production propagate through systems
-
----
-## 4.  Are any Atlantic herring harvest control rules good for both fisheries and predators?
+## 3.  Are any Atlantic herring harvest control rules good for both fisheries and predators?
 ```{r intro}
 knitr::include_graphics("EDAB_images/allcomponents.png")
 ```
@@ -934,7 +791,7 @@ Complex food web, generalist predators
 - Managers did select a harvest control rule considering a wide range of factors!
 
 ---
-## 5. Epilogue: integrated ecosystem assessment
+## 4. Epilogue: integrated ecosystem assessment
 
 .pull-left[
 
@@ -950,8 +807,7 @@ Complex food web, generalist predators
 
 - Evaluate and iterate
 
-[:img relating environment marine habitat and the marine community to human activities social systems and objectives, 60%](EDAB_images/nes-components-abstracted.png)
-]
+![:img relating environment marine habitat and the marine community to human activities social systems and objectives, 100%](EDAB_images/nes-components-abstracted.png)
 ]
 
 .pull-right[
@@ -1143,40 +999,97 @@ mab_map
 ]
 
 ---
+## Collaborators - THANK YOU!
+
+The New England and Mid-Atlantic State of the Ecosystem reports made possible by (at least) 38 contributors from 8 intstitutions 
+
+.pull-left[
+.contrib[
+Donald Anderson (Woods Hole Oceanographic Institute) <br>
+Andy Beet<br>
+Patricia Clay<br>
+Lisa Colburn<br>
+Geret DePiper<br>
+Michael Fogarty<br>
+Paula Fratantoni <br>
+Kevin Friedland<br>
+Sarah Gaichas<br>
+Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
+James Gartland (Virginia Institute of Marine Science)<br>
+Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br> 
+Sean Hardison<br>
+Kimberly Hyde<br>
+Terry Joyce (Woods Hole Oceanographic Institute)<br>
+John Kocik<br>
+Steve Kress (National Audubon Society)<br>
+Scott Large
+]
+]
+
+.pull-right[
+.contrib[
+Don Lyons (National Audubon Society)<br>
+Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
+Young-Oh Kwon (Woods Hole Oceanographic Institution)<br> 
+Zhuomin Chen (Woods Hole Oceanographic Institution)<br>
+Sean Lucey<br>
+Chris Melrose<br>
+Ryan Morse<br>
+Kimberly Murray<br>
+Chris Orphanides<br>
+Richard Pace<br>
+Charles Perretti<br>
+Vincent Saba<br>
+Laurel Smith<br>
+Mark Terceiro<br>
+John Walden<br>
+Harvey Walsh<br>
+Mark Wuenschel
+]
+]
+
+.center[
+![:img NOAA Fisheries IEA logo, 40%](EDAB_images/noaa-iea.png)
+]
+
+---
 ## Multiple objectives, multiple challenges
 
-Fisheries stock assessment and ecosystem modeling continue to develop—can we keep pace with climate? 
+Fisheries stock assessment and ecosystem modeling continue to develop  
+.bluetext[Can we keep pace with climate?]
 
 Existing management systems are at least as complex as the ecosystems, with diverse interests and emerging industries
  
-Ecosystem models 
-Include key interactions
-Species
-Fisheries
-Environment
-Make tradeoffs explicit
-Account for uncertainty
+Integrated ecosystem assessment and management strategy evaluation
+* Include key interactions
+    + Species
+    + Fisheries
+* Environment
+* Make tradeoffs explicit
+* Account for uncertainty
 
-Mathematical innovation needed!
+.bluetext[Mathematical innovation needed!]
 
 ---
-## If you want all the details
+## If you want more details
 
-* [Wasp Waist or Beer Belly?](https://www.sciencedirect.com/science/article/pii/S0079661115002001)
+* [2: Atlantis Model Documentation](https://github.com/Atlantis-Ecosystem-Model/Atlantis_example_and_instructions)
 
-* [New England herring MSE stakeholder process paper](https://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2018-0125#.XTb_v5NKgWo)
+* [2: atlantisom R package in progress](https://github.com/r4atlantis/atlantisom)
 
-* [New England herring MSE modeling paper](https://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128#.XTb_c5NKgWo)
+* [2: Testing atlantisom in progress](https://github.com/sgaichas/poseidon-dev)
 
-* [Rpath codebase](https://github.com/NOAA-EDAB/Rpath)
+* [3: New England herring MSE modeling paper](https://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128#.XTb_c5NKgWo)
 
-* [NOAA State of the Ecosystem summary webpage](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+* [3: New England herring MSE stakeholder process paper](https://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2018-0125#.XTb_v5NKgWo)
 
-* [State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
+* [4: NOAA State of the Ecosystem summary webpage](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
 
-* [ecodata R package](https://github.com/noaa-edab/ecodata)
+* [4: State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
 
+* [4: ecodata R package](https://github.com/noaa-edab/ecodata)
 
+* [Appendix: Wasp Waist or Beer Belly?](https://www.sciencedirect.com/science/article/pii/S0079661115002001)
 
 * Slides available at https://noaa-edab.github.io/presentations
 
@@ -1187,9 +1100,152 @@ background-size: contain
 
 .footnote[Questions? Thank you!]
 
+---
+## Appendix 1. How does ecosystem structure affect dynamics? 
+![fwforcingstructure](EDAB_images/fwforcingstructuraltype.png)
 
 ---
-## Appendix: Fishery management in the US
+## Alaska pollock: a tale of two ecosystems
+![EBSGOAmaps](EDAB_images/EBSGOAmap.png)
+---
+## Alaska pollock: a tale of two ecosystems
+![EBSGOAmapsfws](EDAB_images/EBSGOAmap_fws.png)  
+  
+
+---
+## Alaska pollock: a tale of two ecosystems
+.pull-left[
+- Different pollock trajectories
+
+- Different pollock diets, mortality sources
+
+```{r pollpic, echo = F, fig.align = "center", out.width="85%"}
+knitr::include_graphics("EDAB_images/pollpic.png")
+```
+
+]
+.pull-right[
+```{r pollassess, echo = F, fig.align = "center", out.width="95%"}
+knitr::include_graphics("EDAB_images/EBSGOApollassess.png")
+#knitr::include_graphics("EDAB_images/EBSGOApolldietmort.png")
+```
+]
+```{r polldietmort, echo = F, fig.align = "center", out.width="95%"}
+#knitr::include_graphics("EDAB_images/EBSGOApollassess.png")
+knitr::include_graphics("EDAB_images/EBSGOApolldietmort.png")
+```
+
+???
+diets:- copepods, krill, pollock in EBS
+      - krill, shrimp, some copepods in GOA
+
+---
+## Ecosystem models and uncertainty
+![aydinmodyield](EDAB_images/AydinModYield.png)
+---
+## Model ensemble https://xkcd.com/1885/
+![xkcd_ensemble_model_2x.png](EDAB_images/xkcd_ensemble_model_2x.png)
+---
+## What is a food web model?
+
+.pull-left-60[
+A system of linear equations
+
+For each group, $i$, specify: 
+
+   Biomass $B$ [or Ecotrophic Efficiency $EE$ ]  
+   Population growth rate $\frac{P}{B}$  
+   Consumption rate $\frac{Q}{B}$  
+   Diet composition $DC$  
+   Fishery catch $C$  
+   Biomass accumulation $BA$  
+   Im/emigration $IM$ and $EM$  
+   
+Solving for $EE$ [or $B$ ] for each group:
+]
+
+.pull-right-40[
+![toyfoodweb](EDAB_images/toyfw.png)
+]
+
+$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$
+???
+
+---
+## Ecosystem models and uncertainty: grading inputs
+![fwpedigree](EDAB_images/fwpedigree.png)
+
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert1](EDAB_images/Foodwebmodel_uncertaintyseries/Slide1.png)
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert2](EDAB_images/Foodwebmodel_uncertaintyseries/Slide2.png)
+---
+## Ecosystem models and uncertainty: run a scenario
+![fwuncert3](EDAB_images/Foodwebmodel_uncertaintyseries/Slide3.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert4](EDAB_images/Foodwebmodel_uncertaintyseries/Slide4.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert5](EDAB_images/Foodwebmodel_uncertaintyseries/Slide5.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert6](EDAB_images/Foodwebmodel_uncertaintyseries/Slide6.png)
+---
+## Ecosystem models and uncertainty: run a scenario in an ensemble
+![fwuncert7](EDAB_images/Foodwebmodel_uncertaintyseries/Slide7.png)
+
+---
+## Defining ecosystem structure in the EBS and GOA: expectations
+
+Ecosystem reaction to pollock if pollock is a "wasp waist":
+![increasepoll](EDAB_images/ecoreactstopollock.png)
+
+--
+
+Pollock reaction to other groups if control is bottom up or top down:
+![increaseothers](EDAB_images/pollockreacts.png)
+---
+## Perturbation results: ecosystem reaction to 10% pollock increase
+```{r exp1, echo = F, fig.align = "center", out.width="100%"}
+knitr::include_graphics("EDAB_images/Fig6.png")
+```
+
+---
+## Perturbation results: pollock reaction to 10% increase in others
+```{r exp2, echo = F, fig.align = "center", out.width="100%"}
+knitr::include_graphics("EDAB_images/Fig7.png")
+```
+
+---
+## Perturbation results: ecosystem reaction to 10% phytoplankton increase
+```{r exp3, echo = F, fig.align = "center", out.width="100%"}
+knitr::include_graphics("EDAB_images/Fig8.png")
+```
+
+---
+## Insights for fishery management
+
+- Differences in food web structure between two adjacent ecosystems with similar biological communities and fishery management
+  - Which species respond to the same perturbation
+  - Level of uncertainty / predictability in response
+  
+- EBS: Influential group at mid trophic levels
+  - Wasp waist transmits signal to other groups (neither AK system)
+  - Self regulating dominant group (beer belly) absorbs signals
+  - Beer belly systems are more predictable, stable as long as the beer belly maintains itself?
+
+- GOA: Influential groups at high trophic levels
+  - Magnifies bottom up signals and top down?
+  - A less predictable system?
+  - Subject to more radical change?
+
+- Structure of a food web may determine how predictable a system is under perturbation, and how changes in primary production propagate through systems
+
+---
+## Appendix 2: Fishery management in the US
 
 Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
 
