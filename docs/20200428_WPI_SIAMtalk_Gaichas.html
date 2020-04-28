@@ -220,8 +220,10 @@ background-size: contain
 
 Prerequisite: research
 * Biology and ecology of the resource and its habitat
-* Improving observations and sampling
+* Improving observations and sampling  
+.bluetext[   
 * Improving modeling and estimation methods
+]
     
 Mathematical modeling
 * Population or ecosystem dynamics (numbers and or biomass) 
@@ -363,8 +365,7 @@ Survey length composition CCA
 ---
 ## A "sardine" assessment
 
-Need: assessment model data inputs and life history parameters
-
+Need: assessment model data inputs and life history parameters 
 *(model based on actual Sardine assessment in Stock Synthesis 3)*
 
 .pull-left[
@@ -384,6 +385,8 @@ Parameters:
   * unfished recruitment and steepness (true)
   * weight-length curve (true)
 ]
+
+`\(N_{t+1,a} = \left\{\begin{array}{ll}R_{t+1} \\(N_{t,a}e^{-M/2} - C_{t,a})e^{-M/2} \\(N_{t,x-1}e^{-M/2} - C_{t,x-1})e^{-M/2} + N_{t,x}e^{-M/2} - C_{t,x})e^{-M/2}\end{array}\right.\)`
 
 ---
 ## A "sardine" assessment: setup
@@ -498,6 +501,12 @@ Still working on:
 - Colony adult and fledgling count data used to develop population model
 - Chick diet observations examined in relation to fledgling success
 
+The overall population in numbers for each predator `\(P\)` each year `\(N_{y}^P\)` is modeled with a delay-difference function, where annual predator survival `\(S_{y}^P\)` is based on annual natural mortality `\(v\)` and exploitation `\(u\)`: 
+
+`\(N_{y+1}^P = N_{y}^PS_{y}^P +  R_{y+1}^P\)` ;   `\(S_{y}^P =  (1-v_{y})(1-u)\)` ,
+
+and annual recruitment `\(R_{y}^P\)` (at recruitment age a) is a Beverton-Holt function.
+
 ---
 ## Terns and herring--developing a modeled relationship
 .pull-left[
@@ -507,9 +516,11 @@ Still working on:
 ![ternherringmod](EDAB_images/ternherringmodel.png)
 ]
 
-Although there were no clear significant relationships of common tern productivity and the proportion of herring in diets across all colonies, there were some correlations between herring total biomass and tern productivity. 
+No clear significant relationships of common tern productivity and the proportion of herring in diets across all colonies, there were some correlations between herring total biomass and tern productivity. This relationship (right plot) was developed to relate herring biomass to common tern productivity (recruitment):
 
-Hence, the relationship on the right was developed to relate herring biomass to common tern productivity.
+.center[
+`\(\bar{R}_{y+a}^P = R_{y+a}^P  * \frac{\gamma(N_{y}/N_{thresh})}{(\gamma-1)+(N_{y}/N_{thresh})}\)`
+]
 ---
 ## Testing the model--does it work?
 ![ternpoptrend](EDAB_images/ternpoptrend.png)
