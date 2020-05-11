@@ -1,7 +1,7 @@
 ---
 title: "State of the Ecosystem:"
 subtitle: "2020 Overview"
-author: "Kim Bastille, Sean Lucey, Sarah Gaichas, <br /> Geret DePiper, Kim Hyde, and Scott Large  <br /> Northeast Fisheries Science Center <br /> Integrated Statistics"
+author: "Kimberly Bastille<sup>1,2</sup>, Sean Lucey<sup>1</sup>, Sarah Gaichas<sup>1</sup>, <br /> Geret DePiper<sup>1</sup>, Kimberly Hyde<sup>1</sup>, and Scott Large<sup>1</sup>  <br /> Northeast Fisheries Science Center<sup>1</sup> <br /> Integrated Statistics<sup>2</sup>"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE.css"]
@@ -22,6 +22,7 @@ class: top, left
 
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
                       warning = F,
                       message = F)
 #Plotting and data libraries
@@ -191,7 +192,7 @@ Mapping trawl survey strata to Ecological Production Units (EPUs)
 .pull-left[
 - Both MA and NE declining since 2000
 
-```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", fig.width = 5, fig.asp = 0.45}
+```{r ppr-mab, fig.width = 5, fig.asp = 0.45}
 ecodata::ppr %>% 
   group_by(EPU) %>% 
   mutate(hline = mean(Value)) %>% 
@@ -214,7 +215,7 @@ ecodata::ppr %>%
   theme_ts()
 ```
 
-```{r ppr-gb, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels.", fig.width = 5, fig.asp = 0.45}
+```{r ppr-gb, fig.width = 5, fig.asp = 0.45}
 ecodata::ppr %>% 
   group_by(EPU) %>% 
   mutate(hline = mean(Value)) %>% 
@@ -251,7 +252,7 @@ MAB Species Compositon
 ## Commercial fisheries engagement, landings, revenue
 
 .center[
-```{r MAB-comm-engagement-trend, fig.width = 10, fig.asp = 0.4, fig.cap = "Commercial engagement scores (total pounds landed, value landed, commercial permits, and commercial dealers in a community) for Mid-Atlantic fishing communities, 2004-2018."}
+```{r MAB-comm-engagement-trend, fig.width = 10, fig.asp = 0.4}
 
 eng<-ecodata::engagement %>% 
   filter(!Var == "med.high.scores")
@@ -308,7 +309,7 @@ cowplot::plot_grid(engbar,
 Fewer highly engaged Mid-Atlantic communities; engagement scores for medium-highly engaged communities decreasing 
 
 .pull-left[
-```{r total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red)."), fig.width = 5, fig.asp = 0.45}
+```{r total-landings, fig.width = 5, fig.asp = 0.45}
 #Get data for plotting
 
 #Define constants for figure plot
@@ -375,7 +376,7 @@ ggplot(data = landings_agg)+
 ]
 
 .pull-right[
-```{r comm-revenue, fig.width = 5, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."}
+```{r comm-revenue, fig.width = 5, fig.asp = 0.45}
 
 #Filtering and aggregation step
 rev_agg <- ecodata::comdat %>% 
@@ -428,7 +429,7 @@ ggplot(data = rev_agg) +
 .pull-left[
 Lowest recreational landings recorded in 2018--why?
 
-```{r rec-landings, fig.cap = paste0("Total recreational seafood harvest in the ",region," region."), fig.width = 5, fig.asp = 0.45}
+```{r rec-landings, fig.width = 5, fig.asp = 0.45}
 
 landings_rec <- ecodata::recdat %>% 
   filter(EPU == region_abbr,
@@ -468,7 +469,7 @@ ggplot(data = landings_rec)+
 
 Effort trend similar to previous reports
 
-```{r rec-op, fig.width = 5, fig.asp = 0.45, fig.cap = paste0("Recreational effort in the ",region,".")}
+```{r rec-op, fig.width = 5, fig.asp = 0.45}
 recdat <- ecodata::recdat %>% 
   filter(EPU == region_abbr) %>% 
   group_by(Var) %>% 
@@ -544,7 +545,7 @@ cowplot::plot_grid(rec_effort,
 .pull-right[
 Significant decrease in recreational fleet diversity
 
-```{r rec-div, fig.width = 5, fig.asp = 0.45, fig.cap = paste0("Recreational effort diversity in the ",region,".")}
+```{r rec-div, fig.width = 5, fig.asp = 0.45}
 
 rec_div <- recdat %>% 
   filter(Var == "Recreational fleet effort diversity across modes") %>% 
@@ -581,7 +582,7 @@ rec_div <- recdat %>%
 
 Splitting out SAFMC, ASMFC removed downward catch diversity trend
 
-```{r rec-div2, fig.width = 5, fig.asp = 0.45, fig.cap = paste0("Diversity of recreational catch in the ",region,".")}
+```{r rec-div2, fig.width = 5, fig.asp = 0.45}
 
 recdat <- ecodata::recdat %>% 
   filter(EPU == region_abbr) %>% 
@@ -641,7 +642,7 @@ rec_div_catch
 
 .pull-left[
 **Georges Bank**
-```{r comm-revenue-gb, fig.width = 5, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from NEFMC managed species (red)."}
+```{r comm-revenue-gb, fig.width = 5, fig.asp = 0.45}
 
 #Filtering and aggregation step
 rev_agg <- ecodata::comdat %>% 
@@ -688,7 +689,7 @@ ggplot(data = rev_agg) +
   theme_ts()
 ```
 
-```{r bennet-gb, fig.cap = paste0("Revenue change from the 2015 base year in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial benthos landings on Georges Bank"), fig.width = 5, fig.asp = 0.6}
+```{r bennet-gb,  fig.width = 5, fig.asp = 0.6}
 #Filter data into two dataframes for plotting
 
 indicators <- ecodata::bennet %>% 
@@ -765,7 +766,7 @@ plot(gb_bennet)
 
 .pull-right[
 **Gulf of Maine**
-```{r comm-revenue-gom, fig.width = 5, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from NEFMC managed species (red)."}
+```{r comm-revenue-gom, fig.width = 5, fig.asp = 0.45}
 
 #Filtering and aggregation step
 rev_agg <- ecodata::comdat %>% 
@@ -812,7 +813,7 @@ ggplot(data = rev_agg) +
   theme_ts()
 ```
 
-```{r bennet-gom, fig.cap = paste0("Revenue change from the 2015 base year in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial benthivore landings in the Gulf of Maine"), fig.width = 5, fig.asp = 0.6}
+```{r bennet-gom, fig.width = 5, fig.asp = 0.6}
 #plot
 
 gom_bennet <- indicators %>% 
@@ -853,7 +854,7 @@ plot(gom_bennet)
 
 Change from 2019: bluefish biomass below threshold
 
-```{r stock-status, warning=F, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly managed stocks (Goosefish and Spiny dogfish)."), fig.width = 10, fig.asp = 0.6}
+```{r stock-status, warning=F,  fig.width = 10, fig.asp = 0.6}
 
 stock_status <- ecodata::stock_status %>%
   mutate(Code = recode(Code, "Dogfish" = "Sp. Dogfish" )) %>% 
@@ -913,7 +914,7 @@ ggplot(data = stock_status) +
 
 Very high Gulf of Maine haddock biomass
 
-```{r stock-status-ne, warning=F, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly managed stocks (Goosefish and Spiny dogfish)."), fig.width = 10, fig.asp = 0.6}
+```{r stock-status-ne, warning=F, fig.width = 10, fig.asp = 0.6}
 
 #Get data, spread for plotting, and filter
 stock_status <- ecodata::stock_status %>%
@@ -996,7 +997,7 @@ ggplot(data = stock_status) +
 
 ## Other ocean uses: wind energy fish habitat overlap
 
-```{r wind-habitat-table, eval = T, echo = F, fig.cap='', out.width='80%'}
+```{r wind-habitat-table, eval = T, echo = F, out.width='80%'}
 wind1 <- ecodata::wind_occupancy
 
 wind1$trend<- ifelse(wind1$Trend == "pos",
@@ -1049,7 +1050,7 @@ kable(all, format = "html", escape = F, table.attr='class="risktable"',
 ```
 
 .pull-left[
-```{r wind-hab, eval = T, echo = F, fig.height = 6, fig.cap="Map of BOEM existing (black) and proposed (red) lease areas in North (N), Mid (M) and South (S) portions of the coast as of February 2019.", message=FALSE, results=FALSE}
+```{r wind-hab, eval = T, echo = F, fig.height = 6,  message=FALSE, results=FALSE}
 library(rnaturalearthhires)
 library(sf)
 library(raster)
@@ -1146,7 +1147,7 @@ kable(d, format = "html", escape = F, #table.attr='class="risktable"',
 .pull-left[
 North Atlantic right whale abundance
 
-```{r NARW-abundance, fig.width = 5, fig.asp = 0.45,fig.cap = "1990-2018 right whale abundance estimates with 95\\% credible intervals. These values represent the estimated number of animals alive sometime during the year referenced and NOT at the end of the year referenced. Three known deaths were recorded in 2018, but these deaths were not reflected in the 2018 estimate because those animals were alive sometime during the year. An additional 10 known deaths occurred in 2019."}
+```{r NARW-abundance, fig.width = 5, fig.asp = 0.45}
 #hline <- mean(narw[narw$Var == "right whale abundance median",]$Value)
 
 ecodata::narw %>%
@@ -1179,7 +1180,7 @@ ecodata::narw %>%
 
 North Atlantic right whale calf births
 
-```{r NARW-calf-abundance, fig.width = 5, fig.asp = 0.45, fig.cap = "Number of North Atlantic right whale calf births, 1990 - 2019."}
+```{r NARW-calf-abundance, fig.width = 5, fig.asp = 0.45}
 
 ecodata::narw %>%
   dplyr::filter(Var == "Calves") %>%
@@ -1231,7 +1232,7 @@ Unusual Mortality Events
 .pull-left[
 Overall fish biomass tracking northeast and deeper
 
-```{r spec-dist1, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", fig.width=5, fig.asp=.9}
+```{r spec-dist1, fig.retina=3,  fig.width=5, fig.asp=.9}
 
 spec_dist <- ecodata::species_dist %>% 
   dplyr::group_by(Var) %>% 
@@ -1310,7 +1311,7 @@ asd + depth + patchwork::plot_layout(ncol = 1)
 .pull-right[
 Southern species not increasing in surveys, but further north?
 
-```{r blue-runner, fig.height = 7, fig.cap = "Blue runner presence on Northeast Shelf"}
+```{r blue-runner, fig.height = 7}
 blue<-ecodata::blue_runner %>% 
   separate(Var, c("Var", "Pos"), "L") %>% 
   spread(., Pos, Value) %>% 
@@ -1369,7 +1370,7 @@ blue_map
 .pull-left[
 Chesapeake Bay water quality update
 
-```{r cb-salinity,fig.width = 5, fig.asp = 0.45, fig.cap = "Salinity in Chesapeake Bay throughout 2018 (blue) and 2019 (red)  as well as the daily average 2008-2019 (black) and the full observed range 2008-2019 (gray shading)."}
+```{r cb-salinity,fig.width = 5, fig.asp = 0.45}
 
 ches_sal<-ecodata::ch_bay_sal %>% 
   filter(!Var == "UTCTime") %>% 
@@ -1399,7 +1400,7 @@ High flows and nutrient loads led to 3rd lowest summer dissolved-oxygen levels r
 .pull-right[
 Virginia nesting waterbird populations declining
 
-```{r VA-cote, fig.width = 5, fig.asp = 0.5, fig.cap = "Functional group population estimates derived from Table 4 of Watts, B. D., B. J. Paxton, R. Boettcher, and A. L. Wilke. 2019. Status and distribution of colonial waterbirds in coastal Virginia: 2018 breeding season. Center for Conservation Biology Technical Report Series, CCBTR-19-06. College of William and Mary and Virginia Commonwealth University, Williamsburg, VA. 28 pp."}
+```{r VA-cote, fig.width = 5, fig.asp = 0.5}
 
 bird<- ecodata::seabird_mab %>% 
   mutate(hline = mean(Value))
@@ -1444,7 +1445,7 @@ Declines attributed to habitat loss
 ]
 
 .pull-right[
-```{r bot-temp, fig.width=7, fig.asp = 0.45, fig.cap="Annual bottom temperature anomalies on the Northeast Shelf."}
+```{r bot-temp, fig.width=7, fig.asp = 0.45}
 ecodata::bottom_temp %>%
   dplyr::filter(EPU == "GOM",
                 Var == "bottom temp anomaly in situ") %>% 
@@ -1469,7 +1470,7 @@ ecodata::bottom_temp %>%
         plot.title = element_text(size = 12))
 ```
 
-```{r cold_pool, eval = T, echo = F, fig.width=7, fig.asp = 0.45, fig.cap="Cold pool index - mean bottom temperature anomaly for Sept-Oct in the MAB." }
+```{r cold_pool, eval = T, echo = F, fig.width=7, fig.asp = 0.45}
 ecodata::cold_pool %>% 
     dplyr::mutate(hline = mean(Value, na.rm = T)) %>% 
   ggplot2::ggplot() + 
@@ -1492,7 +1493,7 @@ ecodata::cold_pool %>%
 ```
 
 
-```{r wsw-prop, fig.width=7, fig.asp = 0.45, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador slope water (LSLW) entering the GOM through the Northeast Channel."}
+```{r wsw-prop, fig.width=7, fig.asp = 0.45}
 
 sw.df <- slopewater %>%
   mutate(Var, Var = plyr::mapvalues(Var, from = c("WSW proportion ne channel",
@@ -1531,7 +1532,7 @@ ggplot(data = sw.df) +
 ]
 
 .pull-right[
-```{r GSI, fig.width = 5, fig.asp = 0.45, fig.cap = "Index representing changes in the location of the Gulf Stream north wall. Positive values represent a more northerly Gulf Stream position."}
+```{r GSI, fig.width = 5, fig.asp = 0.45}
 gsi %>%
   mutate(Year = floor(Time)) %>%
   group_by(Year) %>%
@@ -1559,7 +1560,7 @@ gsi %>%
                                 face = "italic"))
 ```
 
-```{r warm-core-rings, fig.width = 6, fig.asp = 0.45, fig.cap= "Interannual Variability of the WCR formation between 1980 and 2019. The regime shift (denoted by the split in the red solid line) is significant at the turn of the century.  Figure reproduced with permission from Gangopadhyay, et al. (2019).  2018 and 2019 data points based on personal communication with A. Gangopadhyay (2020)."}
+```{r warm-core-rings, fig.width = 6, fig.asp = 0.45}
 upper.line<-ecodata::wcr %>%
   filter(Time>2000) %>%
   mutate(hline = c(mean(Value)))
@@ -1592,7 +1593,7 @@ wcr %>%
 ---
 ## Marine heatwaves: Georges Bank
 .pull-left[
-```{r seasonal-sst, fig.height=6, fig.cap="Seasonal sea surface temperature anomalies for 2019 over the Northeast US Shelf."}
+```{r seasonal-sst, fig.height=6}
 # Set lat/lon window for maps
 xmin = -77
 xmax = -65
@@ -1641,7 +1642,7 @@ ggplot2::ggplot() +
 ![img: January - December 2019 sea surface temperatures above 90th percentile of average, 50%](EDAB_images/GB_heatwave.jpeg)
 ]
 .center[
-```{r gb-heatwave, eval= T, echo = F, fig.width = 10, fig.asp = .25, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) on Georges Bank."}
+```{r gb-heatwave, eval= T, echo = F, fig.width = 10, fig.asp = .25}
 cumu <- ecodata::heatwave %>%
   filter(Var == "cumulative intensity") %>%
   mutate(Var = recode(Var, "cumulative intensity" = "Cumulative Intensity (degree C x days)"))
@@ -1758,6 +1759,33 @@ gb.hw
 --
 
 * Marine heat waves more common since 2010 in all regions
+
+---
+# SOE in action
+
+.pull-left[
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+* Feedback from FMCs
+
+* Improvements for next year
+
+* MA risk assessment 
+
+
+]
+
+.pull-right[
+*The IEA Loop<sup>1</sup>*
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
+]
+
 
 ---
 ## External Resources
