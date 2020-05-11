@@ -1,7 +1,7 @@
 ---
 title: "State of the Ecosystem:"
 subtitle: "2020 Overview"
-author: "Kim Bastille, Sean Lucey, Sarah Gaichas, <br /> Geret DePiper, Kim Hyde, and Scott Large  <br /> Northeast Fisheries Science Center"
+author: "Kim Bastille, Sean Lucey, Sarah Gaichas, <br /> Geret DePiper, Kim Hyde, and Scott Large  <br /> Northeast Fisheries Science Center <br /> Integrated Statistics"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE.css"]
@@ -121,7 +121,7 @@ ylims <- c(ymin, ymax)
 
 IEA Approach
 
-- Supports shift to EBM
+- Supports shift to ecosystem based management
 
 - Iterative
 
@@ -143,7 +143,7 @@ IEA Approach
 
 ---
 
-## State of the Ecosystem (SOE) Reporting: Context for busy people
+## State of the Ecosystem (SOE) Reporting
 
 
 1. Clear linkage of ecosystem indicators with management objectives
@@ -163,7 +163,7 @@ IEA Approach
 ???
 
 ---
-## New 2 page summary with visualizations
+## Two page summary with visualizations
 
 .pull-left[
 ![:img State of the Ecosystem page 1 summary bullets, 100%](EDAB_images/NEFMC-SOE-2-pager.png)
@@ -179,7 +179,7 @@ IEA Approach
 ]
 
 .contrib[
-This year, we mapped trawl survey strata to Ecological Production Units (EPUs)  
+Mapping trawl survey strata to Ecological Production Units (EPUs)  
 
 [More information on EPUs](https://noaa-edab.github.io/tech-doc/epu.html)  
 [More information on survey data](https://noaa-edab.github.io/tech-doc/survdat.html)  
@@ -208,7 +208,7 @@ ecodata::ppr %>%
            linetype = hline.lty)+
   scale_x_continuous(expand = c(0.01, 0.01)) +
   expand_limits(y=0) +
-  ggtitle("MAB rimary Production Required")+
+  ggtitle("MAB Primary Production Required")+
   ylab("Proportion of Total PPD")+
   theme(axis.title.y = element_text(size = 8))+
   theme_ts()
@@ -424,7 +424,7 @@ ggplot(data = rev_agg) +
 ]
 
 ---
-## Recreational fishing
+## Recreational fishing in the Mid-Atlantic
 .pull-left[
 Lowest recreational landings recorded in 2018--why?
 
@@ -910,6 +910,8 @@ ggplot(data = stock_status) +
 
 ---
 ## Fish stock status - New England
+
+Very high Gulf of Maine haddock biomass
 
 ```{r stock-status-ne, warning=F, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly managed stocks (Goosefish and Spiny dogfish)."), fig.width = 10, fig.asp = 0.6}
 
@@ -1435,9 +1437,96 @@ Declines attributed to habitat loss
 .pull-left[
 ![:img Three dimensional map of the Northeast US shelf showing major bottom, current, and other oceanographic features: Mid-Atlantic bight with the cold pool, circulation on Georges Bank and in the Gulf of Maine, the Scotian Shelf off Canada, the Labrador Current coming from the North and the Gulf Stream offshore with associated warm core and cold core rings spinning off. Precipitation over land affects water quality in the Chesapeake Bay., 120%](EDAB_images/NEFMC_NE_SHELF_MAP.png)
 
+* Bottom temp increasing on shelf
+* Cold Pool is warming
+* Almost no Labrador slope water entering the Gulf of Maine 2017-2019
+
+]
+
+.pull-right[
+```{r bot-temp, fig.width=7, fig.asp = 0.45, fig.cap="Annual bottom temperature anomalies on the Northeast Shelf."}
+ecodata::bottom_temp %>%
+  dplyr::filter(EPU == "GOM",
+                Var == "bottom temp anomaly in situ") %>% 
+  dplyr::mutate(hline = 0) %>% 
+  ggplot2::ggplot()+ #plot
+  ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  ggplot2::geom_line(aes(x = Time, y = Value), size = lwd) +
+  ecodata::geom_gls(aes(x = Time, y = Value)) +
+  ggplot2::geom_point(aes(x = Time, y = Value), size = pcex) +
+  ggplot2::ylab("Temperature Anomaly (C)") +
+  ggplot2::xlab(element_blank())+
+  ggplot2::ggtitle("GOM Bottom Temperature Anomaly") +
+  ggplot2::scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggplot2::geom_hline(aes(yintercept = hline),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  ecodata::theme_ts() +
+  ggplot2::theme(strip.text=element_text(hjust=0),
+        plot.title = element_text(size = 12))
+```
+
+```{r cold_pool, eval = T, echo = F, fig.width=7, fig.asp = 0.45, fig.cap="Cold pool index - mean bottom temperature anomaly for Sept-Oct in the MAB." }
+ecodata::cold_pool %>% 
+    dplyr::mutate(hline = mean(Value, na.rm = T)) %>% 
+  ggplot2::ggplot() + 
+ #Highlight last ten years
+  ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -3, ymax = 3) +
+  ecodata::geom_gls(aes(x = Time, y = Value),
+             alpha = trend.alpha, size = trend.size) +
+  ggplot2::geom_line(aes(x = Time, y = Value), size = lwd) +
+  ggplot2::geom_point(aes(x = Time, y = Value), size = pcex) +
+  ggplot2::geom_hline(aes(yintercept = hline),
+     size = hline.size,
+     alpha = hline.alpha,
+     linetype = hline.lty)+
+  ggplot2::ggtitle("Cold Pool Index")+
+  ggplot2::ylab(expression("Cold Pool Temp Anomaly (C) ")) +
+  ggplot2::xlab("")+
+  ecodata::theme_ts()
+```
+
+
+```{r wsw-prop, fig.width=7, fig.asp = 0.45, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador slope water (LSLW) entering the GOM through the Northeast Channel."}
+
+sw.df <- slopewater %>%
+  mutate(Var, Var = plyr::mapvalues(Var, from = c("WSW proportion ne channel",
+                                                  "LSLW proportion ne channel"),
+                                    to = c("WSW","LSLW"))) %>%
+  dplyr::rename(Flavor  = Var) %>%
+  group_by(Flavor) %>%
+  mutate(hline = mean(Value))
+
+sw.df$Origin <- factor(sw.df$Flavor, levels = c("WSW","LSLW"))
+
+ggplot(data = sw.df) +
+  geom_line(aes(x = Time, y = Value, color = Origin))+
+  geom_point(aes(x = Time, y = Value, color = Origin)) +
+  ylab("Percent of Total Slopewater") +
+  xlab(element_blank())+
+  ggtitle("Slopewater Proportions in NE Channel")+
+  scale_x_continuous(expand = c(0.01, 0.01))+
+  geom_hline(aes(yintercept = hline, color = Origin),
+           size = hline.size, alpha = hline.alpha,
+           linetype = hline.lty)+
+  theme_ts()
+
+```
+]
+
+---
+## Habitat condition: large ocean current changes
+
+.pull-left[
+![:img Three dimensional map of the Northeast US shelf showing major bottom, current, and other oceanographic features: Mid-Atlantic bight with the cold pool, circulation on Georges Bank and in the Gulf of Maine, the Scotian Shelf off Canada, the Labrador Current coming from the North and the Gulf Stream offshore with associated warm core and cold core rings spinning off. Precipitation over land affects water quality in the Chesapeake Bay., 120%](EDAB_images/NEFMC_NE_SHELF_MAP.png)
+
 * More northerly Gulf Stream
 * More Gulf Stream warm core rings
-* Almost no Labrador slope water entering the Gulf of Maine 2017-2019
 
 ]
 
@@ -1498,34 +1587,10 @@ wcr %>%
   theme(legend.position = "none")
 ```
 
-```{r wsw-prop, fig.width=7, fig.asp = 0.45, fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador slope water (LSLW) entering the GOM through the Northeast Channel."}
-
-sw.df <- slopewater %>%
-  mutate(Var, Var = plyr::mapvalues(Var, from = c("WSW proportion ne channel",
-                                                  "LSLW proportion ne channel"),
-                                    to = c("WSW","LSLW"))) %>%
-  dplyr::rename(Flavor  = Var) %>%
-  group_by(Flavor) %>%
-  mutate(hline = mean(Value))
-
-sw.df$Origin <- factor(sw.df$Flavor, levels = c("WSW","LSLW"))
-
-ggplot(data = sw.df) +
-  geom_line(aes(x = Time, y = Value, color = Origin))+
-  geom_point(aes(x = Time, y = Value, color = Origin)) +
-  ylab("Percent of Total Slopewater") +
-  xlab(element_blank())+
-  ggtitle("Slopewater Proportions in NE Channel")+
-  scale_x_continuous(expand = c(0.01, 0.01))+
-  geom_hline(aes(yintercept = hline, color = Origin),
-           size = hline.size, alpha = hline.alpha,
-           linetype = hline.lty)+
-  theme_ts()
-
-```
 ]
+
 ---
-## Marine heatwaves: Georges Bank (New)
+## Marine heatwaves: Georges Bank
 .pull-left[
 ```{r seasonal-sst, fig.height=6, fig.cap="Seasonal sea surface temperature anomalies for 2019 over the Northeast US Shelf."}
 # Set lat/lon window for maps
@@ -1628,11 +1693,13 @@ gb.hw
 ![:img Fishing icon made by EDAB, 15%](EDAB_images/5_FISHING.png) &nbsp; &nbsp; &nbsp; ![:img Fishing industry icon made by EDAB, 15%](EDAB_images/6_INDUSTRY.png) &nbsp; &nbsp; &nbsp; ![:img Other human uses icon made by EDAB, 15%](EDAB_images/8_OTHERHUMANUSES.png)
 ]
 
-* Proportion of total primary production required to support commercial landings declining
+* Proportion of total primary production required to support commercial landings declining in both New England and Mid-Atlantic
 
 --
 
-* Moderately engaged communities have increased since 2004
+* Engagement in commercial fisheries since 2004
+  * Mid-Atlantic - descrease in medium to highly engaged communities 
+  * New England - increase in moderately engagaed communities
 
 --
 
@@ -1651,8 +1718,12 @@ gb.hw
 ![:img Other fish icon made by EDAB, 15%](EDAB_images/14_OTHERFISH.png) &nbsp; &nbsp; &nbsp; ![:img Forage fish icon made by EDAB, 15%](EDAB_images/13_FORAGEFISH.png) &nbsp; &nbsp; &nbsp; ![:img Invertebrate icon made by EDAB, 15%](EDAB_images/15_INVERTEBRATES.png)
 ]
 
+
 * Forage fish energy content shows seasonal and annual variation
-  * Atlantic herring energy content half what it was in the 1980-90s
+
+--
+
+* Atlantic herring energy content half what it was in the 1980-90s
 
 --
 
@@ -1664,28 +1735,36 @@ gb.hw
 ![:img Hydrography icon made by EDAB, 15%](EDAB_images/1_HYDROGRAPHY.png) &nbsp; &nbsp; &nbsp; ![:img Phytoplankon icon made by EDAB, 15%](EDAB_images/9_PHYTOPLANKTON.png) &nbsp; &nbsp; &nbsp; ![:img Climate icon made by EDAB, 15%](EDAB_images/3_CLIMATE.png)
 ]
 
-* Gulf Stream increasingly unstable
-  * More warm core rings
-
---
 
 * Heavy rains in 2018-2019 degraded Chesepeake Bay water quality
   * Increased oyster mortality and further spread invasive catfish
 
 --
 
-* Marine heat waves more common since 2010
+* Cold pool is getting warmer
 
 --
 
 * Almost no cold Labrador slope water has entered the Gulf of Maine for the past 3 years
 
+--
+
+* Gulf Stream increasingly unstable
+
+--
+
+* More warm core rings
+
+--
+
+* Marine heat waves more common since 2010 in all regions
+
 ---
 ## External Resources
 
-* [MAFMC SOE 2020]()
+* [MAFMC SOE 2020](https://static1.squarespace.com/static/511cdc7fe4b00307a2628ac6/t/5e9612485470883fc71477d6/1586893404414/2_SOE-MAFMC-2020-plus2pager.pdf)
 
-* [NEFMC SOE 2020]()
+* [NEFMC SOE 2020](https://s3.amazonaws.com/nefmc.org/5b_SOE-NEFMC-2020-plus2pager-REVISED.pdf)
 
 * [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
 
@@ -1709,7 +1788,7 @@ Contacts:  <sarah.gaichas@noaa.gov>, <sean.lucey@noaa.gov>, <scott.large@noaa.go
 ---
 ## Contributors - THANK YOU!
 
-The New England and Mid-Atlantic SOEs made possible by (at least) 38 contributors from 8 intstitutions
+The New England and Mid-Atlantic SOEs made possible by (at least) 38 contributors from 8 institutions
 
 .pull-left[
 .contrib[
