@@ -1,0 +1,135 @@
+---
+title: "Climate and Fisheries Initiative"
+subtitle: "Management Applications"
+author: "Sarah Gaichas <br /> Ecosystem Dynamics and Assessment <br /> Northeast Fisheries Science Center"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      titleSlideClass: ["right", "middle", "my-title"]
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+
+data.dir <- here::here("data")
+
+```
+
+background-image: url("EDAB_images/ClimateFisheriesCover.png")
+background-size: 550px
+background-position: right
+
+# Management needs 
+
+- Regional climate impacts and timing
+
+- How to use the science?
+
+- Examples
+
+    + Mid-Atlantic squid
+    
+    + Assessment projection
+    
+    + MSE
+
+
+???
+
+---
+## Inseason forecasts: *Illex* squid fishery
+
+.pull-left[
+![ROFFS image of warm core ring Apri 2019](EDAB_images/IllexHabitatApril2019.jpg)
+]
+
+.pull-right[
+.center[
+![:img slide from Illex summit relating increased Gulf Stream meanders and more warm core rings in the 2000s, 60%](EDAB_images/GulfStream.png)
+]
+]
+
+???
+ 
+
+---
+## 1-3 year forecasts: climate-informed assessment projection
+
+
+
+
+
+???
+In 2016, we began taking steps to address these common critiques of the ESR model
+
+---
+## 1-3 year forecasts: MSE
+
+
+---
+## Immediate and future needs
+
+.center[
+![:img relating environment marine habitat and the marine community to human activities social systems and objectives, 60%](EDAB_images/nes-components-abstracted.png)
+]
+
+---
+## Ecosystem status--improve with forecasts
+
+.pull-left[
+.center[
+![:img State of the Ecosystem page 1 summary bullets, 80%](EDAB_images/NEFMC-SOE-2-pager.png)
+]
+]
+
+.pull-right[
+.center[
+![:img State of the Ecosystem page 2 infographic, 80%](EDAB_images/NEFMC-SOE-2-pager2.png)
+]
+]
+
+---
+## Research: linking report indicators for management use
+
+.pull-left[
+![:img Diagram with possible relationships between oceanographic and habitat indicators, food web indicators, fish condition factor, fish population indicators, fishery economics indicators, and fishery objectives such as seafood production](EDAB_images/SOEconditionfactorlinks_color.png)
+]
+
+
+
+
+
+
+.pull-right[
+![:img Three dimensional map of the Northeast US shelf showing major bottom, current, and other oceanographic features: Mid-Atlantic bight with the cold pool, circulation on Georges Bank and in the Gulf of Maine, the Scotian Shelf off Canada, the Labrador Current coming from the North and the Gulf Stream offshore with associated warm core and cold core rings spinning off. Precipitation over land affects water quality in the Chesapeake Bay., 120%](EDAB_images/MAFMC_NE_SHELF_MAP.png)
+]
+
+---
+class: inverse, bottom
+background-image: url("EDAB_images/IMG_2809.jpg")
+background-size: cover
+
+
+.pull-left[Slides: https://noaa-edab.github.io/presentations/]
+.pull-right[Contact:  <sarah.gaichas@noaa.gov>]
+
