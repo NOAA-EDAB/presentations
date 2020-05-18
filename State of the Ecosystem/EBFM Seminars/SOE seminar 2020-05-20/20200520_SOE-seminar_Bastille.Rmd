@@ -119,6 +119,7 @@ ylims <- c(ymin, ymax)
 # Integrated Ecosystem Assessment
 
 .pull-left[
+<br>
 
 IEA Approach
 
@@ -175,13 +176,33 @@ IEA Approach
 ]
 ---
 ## Document orientation
-.center[
-![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 60%](EDAB_images/EPU_Designations_Map.jpg)
+.pull-left[
+<br>
+![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 100%](EDAB_images/EPU_Designations_Map.jpg)
 ]
 
-.contrib[
+.pull-right[
+<br>
+```{r list, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+| Acronym       | Definition                                                          |  
+|:-------------------|:--------------------------------------------------------------------|
+| SOE  | State of the Ecosystem |
+| FMC | Fisheries Management Council |
+| MA | Mid-Atlantic |
+| NE | New England |
+| GOM | Gulf of Maine |
+| GB | Georges Bank |
+| MAB | Mid-Atlantic Bight |
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+]
+
+
 Mapping trawl survey strata to Ecological Production Units (EPUs)  
 
+.contrib[
 [More information on EPUs](https://noaa-edab.github.io/tech-doc/epu.html)  
 [More information on survey data](https://noaa-edab.github.io/tech-doc/survdat.html)  
 ]
@@ -580,7 +601,7 @@ rec_div <- recdat %>%
   rec_div
 ```
 
-Splitting out SAFMC, ASMFC removed downward catch diversity trend
+Splitting out SAFMC, ASFMC removed downward catch diversity trend
 
 ```{r rec-div2, fig.width = 5, fig.asp = 0.45}
 
@@ -1050,65 +1071,16 @@ kable(all, format = "html", escape = F, table.attr='class="risktable"',
 ```
 
 .pull-left[
-```{r wind-hab, fig.retina=3, eval = T, echo = F, fig.height = 6,  message=FALSE, results=FALSE}
-library(rnaturalearthhires)
-library(sf)
-library(raster)
-library(ggspatial)
-library(marmap)
-
-crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
-#gis.dir <- here::here("data-raw/gis")
-nesbath <- fortify.bathy(getNOAA.bathy(lon1 = -77, lon2 = -65, lat1 = 35, lat2 = 45,
-              resolution = 5))
-
-lease_s<-st_read(file.path(gis.dir, 'BOEM lease areas/ne_existing_leasesSPoly.shp'))
-lease_n<-st_read(file.path(gis.dir, 'BOEM lease areas/ne_existing_leasesNPoly.shp'))
-lease_m<-st_read(file.path(gis.dir, 'BOEM lease areas/ne_existing_leasesMPoly.shp'))
-prop_n<-st_read(file.path(gis.dir, 'BOEM lease areas/ne_proposed_leases_NPoly.shp'))
-prop_m<-st_read(file.path(gis.dir, 'BOEM lease areas/ne_proposed_leases_MPoly.shp'))
-
-invisible(st_crs(lease_s)<-crs)
-invisible(st_crs(lease_n)<-crs)
-invisible(st_crs(lease_m)<-crs)
-invisible(st_crs(prop_n)<-crs)
-invisible(st_crs(prop_m)<-crs)
-
-ggplot() +
-  geom_raster(data = nesbath, aes(x=x,y=y, fill = z)) +
-  scale_fill_gradientn(colors =c("lightcyan","lightblue4"))+
-  geom_sf(data = coast, size = map.lwd) +
-  geom_sf(data = epu_sf, fill = "transparent", size = map.lwd) +
-  geom_sf(data = lease_s, size = map.lwd, color = "black")+
-  geom_sf(data = lease_n, size = map.lwd, color = "black")+
-  geom_sf(data = lease_m, size = map.lwd, color = "black")+
-  geom_sf(data = prop_n, size = map.lwd, color = "red3")+
-  geom_sf(data = prop_m, size = map.lwd, color = "red3")+
-  coord_sf(crs = crs, xlim = c(-77, -69), ylim = c(36,42))+
-  geom_segment(aes(x = -74.6, y = 37.4, xend =-75.4, yend =38), colour = "blue4")+
-  geom_segment(aes(x = -71.1, y = 40.2, xend =-71.6, yend =41.1), colour = "blue4")+
-  annotate("text", x = -74.9, y = 37, label = "S")+
-  annotate("text", x = -73.5, y = 38.7, label = "M")+
-  annotate("text", x = -70.5, y = 40.2, label = "N")+
-  annotation_scale(location = "br", width_hint = 0.4) +
-  theme_bw( ) +
-  ylab("")+
-  xlab("")+
-  theme(legend.position = "none") +
-  ggtitle("BOEM lease areas, early 2019")
-
-```
+![Map of existing and proposed wind lease areas](EDAB_images/wind_map.png)
 ]
 
 .pull-right[
-
-
 ## Fishery overlap to be added
-
 ]
 
+
 ---
-## New information on forage fish energy density
+## New information on forage fish energy density (ED)
 
 Forage fish energy content varies seasonally and annually 
 
@@ -1716,7 +1688,7 @@ gb.hw
 --
 
 * Engagement in commercial fisheries since 2004
-  * Mid-Atlantic - descrease in medium to highly engaged communities 
+  * Mid-Atlantic - descrease in medium-high engaged communities 
   * New England - increase in moderately engagaed communities
 
 --
@@ -1915,30 +1887,6 @@ ggplot(data = indicators)+
 
 Ranked moderate-high risk due to the significant long term revenue decrease for Mid-Atlantic managed species
 
----
-## External Resources
-
-* [MAFMC SOE 2020](https://static1.squarespace.com/static/511cdc7fe4b00307a2628ac6/t/5e9612485470883fc71477d6/1586893404414/2_SOE-MAFMC-2020-plus2pager.pdf)
-
-* [NEFMC SOE 2020](https://s3.amazonaws.com/nefmc.org/5b_SOE-NEFMC-2020-plus2pager-REVISED.pdf)
-
-* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
-
-* [ecodata R package](https://noaa-edab.github.io/ecodata/)
-
-  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
-  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
-  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
-
-* [NOAA SOE summary webpage](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
-
-* [MAFMC Risk Assessment](https://static1.squarespace.com/static/511cdc7fe4b00307a2628ac6/t/5e96179e94960c020eaf42a2/1586894753110/4_MAB_RiskAssess_2020update.pdf)
-
-* Slides available at https://noaa-edab.github.io/presentations/
-
-
-Contacts:  <sarah.gaichas@noaa.gov>, <sean.lucey@noaa.gov>, <scott.large@noaa.gov>
-
 
 
 ---
@@ -1998,7 +1946,35 @@ Gail Wynne
 ]
 
 ---
-background-image: url("EDAB_images/SOE_feature_image.png")
-background-size: contain
+## External Resources
+.pull-left[
+* [MAFMC SOE 2020](https://static1.squarespace.com/static/511cdc7fe4b00307a2628ac6/t/5e9612485470883fc71477d6/1586893404414/2_SOE-MAFMC-2020-plus2pager.pdf)
 
-.footnote[Questions? Thank you!]
+* [NEFMC SOE 2020](https://s3.amazonaws.com/nefmc.org/5b_SOE-NEFMC-2020-plus2pager-REVISED.pdf)
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [ecodata R package](https://noaa-edab.github.io/ecodata/)
+
+  * [Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna)
+  * [Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions)
+  * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
+
+* [NOAA SOE summary webpage](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+* [MAFMC Risk Assessment](https://static1.squarespace.com/static/511cdc7fe4b00307a2628ac6/t/5e96179e94960c020eaf42a2/1586894753110/4_MAB_RiskAssess_2020update.pdf)
+
+* Slides available at https://noaa-edab.github.io/presentations/
+]
+
+.pull-right[
+
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/SOE_feature_image.png)
+
+
+Contacts: <kimberly.bastille@noaa.gov>, <sarah.gaichas@noaa.gov>, <sean.lucey@noaa.gov>, <scott.large@noaa.gov>
+
+<br>
+<br>
+Questions?
+]
