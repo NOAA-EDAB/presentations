@@ -33,41 +33,92 @@ knitr::opts_chunk$set(echo = F,
 library(tidyverse)
 library(tidyr)
 library(here)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           style = "markdown")
+myBib <- ReadBib("./DeepUncertaintyMSE.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
 
 ```
 
-# Deep Uncertainty and Management Strategy Evaluation 
+# Deep Uncertainty and Robust Decision Making 
 
 .pull-left[
+- Decision making under deep uncertainty needed when disagreement on:
 
+    - model of system relating action to consequences
+    - probability distributions for model parameters
+    - valuation of different outcomes
+    
+- Essential features of DMDU
 
-![:img](EDAB_images/)
-
+    - iterate analysis and deliberation
+    - many computer simulations of assumptions and scenarios
+    - identify scenarios with really bad outcomes
+    - plan to adapt as things change
 ]
-
 .pull-right[
-- New England Atlantic herring: fishery management strategy evaluation  
-  *"Which harvest control rules best consider herring's role as forage?"*  
-    - Balancing fishing benefits and ecological services
-    - Diverse stakeholder interests
-    - Needed timely answers!
 
+![:img DMDU def slide, 80%](EDAB_images/DMDUneeded.png)
+![:img KeyIdeas slide, 80%](EDAB_images/DMDUkeyideas.png)
+]
+---
+# RDM and Management Strategy Evaluation (MSE)
+
+.pull-left[
+- Robust Decision Making (RDM) used when
+    - future uncertainty difficult to characterize
+    - diverse stakeholders with different priorities
+    
+- RDM is "deliberation with analysis"
+    - model implications of different assumptions
+    - support stakeholder deliberations
+    - develop robust, adaptive plans
+    
+.center[![:img RDMslide, 80%](EDAB_images/RDMoutline.png)]
+]
+.pull-right[
+
+- Management Strategy Evaluation (MSE)
+
+>... involves assessing the consequences of a range of management strategies or options and presenting the results in a way which lays bare the tradeoffs in performance across a range of management objectives. `r Cite(myBib, "hancock_management_1994")`
+
+>...is a flexible approach that allows for a balance between
+multiple objectives and identifies harvest strategies robust to various types of uncertainty. Simulation can accommodate more realistic modeling of the fishery than dynamic optimization, as well as more practically implementable policies. `r Cite(myBib, "holland_uncertainty_2009")`
 ]
 
 ???
 
 ---
-background-image: url("EDAB_images/herrtopreds.png")
-background-size: 550px
-background-position: right
+## Fishery management in the US: participatory, wicked problems
 
-## Stuff about predators
+Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
+
+![US map highlighting regions for each fishery management council, 50%](EDAB_images/USCouncils.png)
+
+More information: http://www.fisherycouncils.org/
+https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 
 ---
+background-image: url("EDAB_images/allcomponents.png")
+background-size: 800px
+background-position: right
+
 ## Are any Atlantic herring harvest control rules good for both fisheries and predators?
-```{r intro}
-knitr::include_graphics("EDAB_images/allcomponents.png")
-```
+.pull-left-30[
+*"Which harvest control rules best consider herring's role as forage?"*  
+- Balancing fishing benefits and ecological services
+- Diverse stakeholder interests
+- Needed timely answers!
+]
 
 ---
 ## What is Management Strategy Evaluation?
@@ -89,10 +140,11 @@ knitr::include_graphics("EDAB_images/OMdesign.png")
 ```
 
 ---
+background-image: url("EDAB_images/herrtopreds.png")
+background-size: 550px
+background-position: right
+
 ## Predators
-```{r predoverview}
-knitr::include_graphics("EDAB_images/herrtopreds.png")
-```
 
 ---
 ## Testing the tern model--does it work?
@@ -335,4 +387,8 @@ Complex food web, generalist predators
 * Slides available at https://noaa-edab.github.io/presentations
 
 
+# References
 
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
