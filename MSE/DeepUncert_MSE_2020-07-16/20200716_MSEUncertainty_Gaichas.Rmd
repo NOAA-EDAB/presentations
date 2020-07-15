@@ -117,11 +117,11 @@ background-position: right bottom
 - plans for changing fishing based on stock status
 - pre-determined
     
-*"Which harvest control rules best consider herring's role as forage?"*  
-- no existing control rule
-- balancing fishing benefits and ecological services
-- diverse stakeholder interests
-- needed timely answers!
+*"Which harvest control rules best consider herring's role as forage?"*
+- DESIGN a harvest control rule (HCR):
+    - balancing fishing benefits and ecological services
+    - addressing diverse stakeholder interests
+    - within management time frame!
 ]
 
 ---
@@ -142,21 +142,21 @@ background-position: right
 
 ---
 background-image: url("EDAB_images/MgtProcess.png")
-background-size: 750px
+background-size: 800px
 background-position: right
 
 ## The Dream and The Reality
 .pull-left-30[
-`r Cite(myBib, "feeney_integrating_2018")`
-]
----
-background-image: url("EDAB_images/OMdesign.png")
-background-size: 750px
-background-position: right bottom
+*First MSE within US Council*  
+Scope: annual stockwide HCR
+Open stakeholder meetings (2)
+- ID objectives, uncertainties
+- ID acceptable performance
+- more diverse, interactive than "normal" process
 
-## Design: link models matching stakeholder-identified objectives
-.pull-left-30[
-`r Cite(myBib, "deroba_dream_2018")`
+Uncertainties identified
+- 
+`r Cite(myBib, "feeney_integrating_2018")`
 ]
 
 ---
@@ -175,14 +175,24 @@ tabl <- "
 | HighFastCorrect      | High: low M, high h (0.79) | 1976-1985: fast | None             |
 | HighSlowCorrect      | High: low M, high h (0.79) | 2005-2014: slow | None             |
 "
-df<-read_delim(tabl, delim="|")
-df<-df[-c(1,2) ,c("Operating Model Name","Herring Productivity","Herring Growth","Assessment Bias")]
-knitr::kable(df, booktabs = TRUE) #%>%
-  #kable_styling(latex_options = "scale_down") %>%
-  #kable_as_image()
+# df<-read_delim(tabl, delim="|")
+# df<-df[-c(1,2) ,c("Operating Model Name","Herring Productivity","Herring Growth","Assessment Bias")]
+# knitr::kable(df, booktabs = TRUE) #%>%
+#   kable_styling(latex_options = "scale_down") %>%
+#   kable_as_image()
 
-#cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 ```
+
+---
+background-image: url("EDAB_images/OMdesign.png")
+background-size: 750px
+background-position: right bottom
+
+## Design: link models matching stakeholder-identified objectives
+.pull-left-30[
+`r Cite(myBib, "deroba_dream_2018")`
+]
 
 ---
 background-image: url("EDAB_images/herrtopreds.png")
@@ -444,6 +454,10 @@ Complex food web, generalist predators
 ## MSE and uncertainty: visualizing many dimensions? Advice from DMDU and RDM?
 
 
+---
+## NOAA Fisheries supports MSE (how different from DMDU?)
+
+
 
 ---
 ## References
@@ -456,6 +470,8 @@ PrintBibliography(myBib)
 ## Additional resources
 
 * [New England Atlantic herring management](https://www.nefmc.org/management-plans/herring)
+
+* [New England MSE debrief]()
 
 * [MSE video](https://www.youtube.com/watch?v=5JG76VPnHS8)
 
