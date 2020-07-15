@@ -97,7 +97,7 @@ background-position: right bottom
 - DESIGN a harvest control rule (HCR):
     - balancing fishing benefits and ecological services
     - addressing diverse stakeholder interests
-    - within management time frame!
+- TRANSPARENTLY within management time frame!
 ]
 
 ---
@@ -124,19 +124,25 @@ background-position: right
 ## The Dream and The Reality
 .pull-left-30[
 *First MSE within US Council*  
+&lt;a name=cite-feeney_integrating_2018&gt;&lt;/a&gt;([Feeney, Boelke, Deroba, Gaichas, Irwin, and Lee, 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0125))
 Scope: annual stockwide HCR
 Open stakeholder meetings (2)
 - ID objectives, uncertainties
 - ID acceptable performance
-- more diverse, interactive than "normal" process
+- more diverse, interactive than "normal" process 
 
 Uncertainties identified
-- 
-&lt;a name=cite-feeney_integrating_2018&gt;&lt;/a&gt;([Feeney, Boelke, Deroba, Gaichas, Irwin, and Lee, 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0125))
+- herring mortality (M)
+- environmental effects on herring 
+- predator response to herring abundance
+- assessment uncertainty
+
 ]
 
 ---
-## Operating models and uncertainties
+## Operating models and uncertainties 
+.pull-left-70[
+.table[
 
 |Operating Model Name|Herring Productivity|Herring Growth|Assessment Bias|
 |:---------------------|:---------------------|:-----------------|:-----------------|
@@ -148,33 +154,41 @@ Uncertainties identified
 | HighSlowBiased       | High: low M, high h (0.79) | 2005-2014: slow | 60% overestimate |
 | HighFastCorrect      | High: low M, high h (0.79) | 1976-1985: fast | None             |
 | HighSlowCorrect      | High: low M, high h (0.79) | 2005-2014: slow | None             |
+&lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, Gaichas, Lee, Feeney, Boelke, and Irwin, 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128)) ] 
+] 
+.pull-right-30[
+### Implementation Error
+Implementation errors were included as year-specific lognormal random deviations: 
+`\(F_{a,y}=\bar{F}_yS_ae^{\varepsilon_{\theta,y}-\frac{\sigma_\theta^2}{2}} \;\;\;  \varepsilon_{\theta} \sim N(0,\sigma_\theta^2)\)`
+
+]
+### Assessment Error
+Assessment error was modeled as a year-specific lognormal random deviation common to all ages, with first-order autocorrelation and a term that created the option to include bias `\(\rho\)`:
+`\(\widehat{N}_{a,y}=[N_{a,y}(\rho+1)]e^{\varepsilon_{\phi,y}-\frac{\sigma_\phi^2}{2}}\;\;\;\; \varepsilon_{\phi,y}=\vartheta\varepsilon_{\phi,y-1}+\sqrt{1-\vartheta^2}\tau_y \;\;\;\;  \tau \sim N(0,\sigma_\phi^2)\)` 
 
 ---
 background-image: url("EDAB_images/OMdesign.png")
 background-size: 750px
-background-position: right bottom
+background-position: right
 
 ## Design: link models matching stakeholder-identified objectives
 .pull-left-30[
-&lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, Gaichas, Lee, Feeney, Boelke, and Irwin, 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))
+- 8 herring operating models linked to predator and economic models
+- range of predators defined by stakeholders
+
+([Deroba, Gaichas, Lee, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))
 ]
 
 ---
 background-image: url("EDAB_images/herrtopreds.png")
-background-size: 750px
-background-position: right
+background-size: 640px
+background-position: left
 
-## Predators
-
----
-## Testing the tern model--does it work?
-.pull-left-30[
-
+## Predators: deterministic population models and herring-predator links
+.pull-left[]
+.pull-right[
+![:img ternpoptrend, 100%](EDAB_images/ternpoptrend.png)
 ]
-.pull-right-70[
-![:img ternpoptrend, 80%](EDAB_images/ternpoptrend.png)
-]
-
 ---
 ## Predator results summary
 &lt;img src="EDAB_images/herrtopreds_results.png" width="611" /&gt;

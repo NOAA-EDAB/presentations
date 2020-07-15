@@ -121,7 +121,7 @@ background-position: right bottom
 - DESIGN a harvest control rule (HCR):
     - balancing fishing benefits and ecological services
     - addressing diverse stakeholder interests
-    - within management time frame!
+- TRANSPARENTLY within management time frame!
 ]
 
 ---
@@ -148,19 +148,25 @@ background-position: right
 ## The Dream and The Reality
 .pull-left-30[
 *First MSE within US Council*  
+`r Cite(myBib, "feeney_integrating_2018")`
 Scope: annual stockwide HCR
 Open stakeholder meetings (2)
 - ID objectives, uncertainties
 - ID acceptable performance
-- more diverse, interactive than "normal" process
+- more diverse, interactive than "normal" process 
 
 Uncertainties identified
-- 
-`r Cite(myBib, "feeney_integrating_2018")`
+- herring mortality (M)
+- environmental effects on herring 
+- predator response to herring abundance
+- assessment uncertainty
+
 ]
 
 ---
-## Operating models and uncertainties
+## Operating models and uncertainties 
+.pull-left-70[
+.table[
 ```{r OMs,  echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
 #tab.cap="Operating model uncertainties addressed\\label{OMs}",
 tabl <- "
@@ -183,33 +189,41 @@ tabl <- "
 
 cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 ```
+`r Cite(myBib, "deroba_dream_2018")` ] 
+] 
+.pull-right-30[
+### Implementation Error
+Implementation errors were included as year-specific lognormal random deviations: 
+$F_{a,y}=\bar{F}_yS_ae^{\varepsilon_{\theta,y}-\frac{\sigma_\theta^2}{2}} \;\;\;  \varepsilon_{\theta} \sim N(0,\sigma_\theta^2)$
+
+]
+### Assessment Error
+Assessment error was modeled as a year-specific lognormal random deviation common to all ages, with first-order autocorrelation and a term that created the option to include bias $\rho$:
+$\widehat{N}_{a,y}=[N_{a,y}(\rho+1)]e^{\varepsilon_{\phi,y}-\frac{\sigma_\phi^2}{2}}\;\;\;\; \varepsilon_{\phi,y}=\vartheta\varepsilon_{\phi,y-1}+\sqrt{1-\vartheta^2}\tau_y \;\;\;\;  \tau \sim N(0,\sigma_\phi^2)$ 
 
 ---
 background-image: url("EDAB_images/OMdesign.png")
 background-size: 750px
-background-position: right bottom
+background-position: right
 
 ## Design: link models matching stakeholder-identified objectives
 .pull-left-30[
+- 8 herring operating models linked to predator and economic models
+- range of predators defined by stakeholders
+
 `r Cite(myBib, "deroba_dream_2018")`
 ]
 
 ---
 background-image: url("EDAB_images/herrtopreds.png")
-background-size: 750px
-background-position: right
+background-size: 640px
+background-position: left
 
-## Predators
-
----
-## Testing the tern model--does it work?
-.pull-left-30[
-
+## Predators: deterministic population models and herring-predator links
+.pull-left[]
+.pull-right[
+![:img ternpoptrend, 100%](EDAB_images/ternpoptrend.png)
 ]
-.pull-right-70[
-![:img ternpoptrend, 80%](EDAB_images/ternpoptrend.png)
-]
-
 ---
 ## Predator results summary
 ```{r predresultsum}
