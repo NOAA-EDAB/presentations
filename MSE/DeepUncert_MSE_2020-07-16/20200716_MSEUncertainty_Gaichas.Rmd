@@ -6,8 +6,6 @@ output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
     lib_dir: libs
-    includes:
-      after_body: webcam.html
     nature:
       titleSlideClass: ["right", "middle", "my-title"]
       ratio: "16:9"
@@ -163,6 +161,28 @@ background-position: right bottom
 
 ---
 ## Operating models and uncertainties
+```{r OMs,  echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+#tab.cap="Operating model uncertainties addressed\\label{OMs}",
+tabl <- "
+|Operating Model Name|Herring Productivity|Herring Growth|Assessment Bias|
+|:---------------------|:---------------------|:-----------------|:-----------------|
+| LowFastBiased        | Low: high M, low h (0.44)  | 1976-1985: fast | 60% overestimate |
+| LowSlowBiased        | Low: high M, low h (0.44)  | 2005-2014: slow | 60% overestimate |
+| LowFastCorrect       | Low: high M, low h (0.44)  | 1976-1985: fast | None             |
+| LowSlowCorrect       | Low: high M, low h (0.44)  | 2005-2014: slow | None             |
+| HighFastBiased       | High: low M, high h (0.79) | 1976-1985: fast | 60% overestimate |
+| HighSlowBiased       | High: low M, high h (0.79) | 2005-2014: slow | 60% overestimate |
+| HighFastCorrect      | High: low M, high h (0.79) | 1976-1985: fast | None             |
+| HighSlowCorrect      | High: low M, high h (0.79) | 2005-2014: slow | None             |
+"
+df<-read_delim(tabl, delim="|")
+df<-df[-c(1,2) ,c("Operating Model Name","Herring Productivity","Herring Growth","Assessment Bias")]
+knitr::kable(df, booktabs = TRUE) #%>%
+  #kable_styling(latex_options = "scale_down") %>%
+  #kable_as_image()
+
+#cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
 
 ---
 background-image: url("EDAB_images/herrtopreds.png")
