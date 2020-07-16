@@ -47,6 +47,57 @@ myBib <- ReadBib("./DeepUncertaintyMSE.bib", check = FALSE)
 
 ```
 
+```{r}
+#herring MSE outputs
+#allres <- readRDS(file.path(data.dir,"allres.rds"))
+
+
+#herring MSE plotting
+#a better plotting theme than ggplot default? from https://rpubs.com/Koundy/71792
+theme_Publication <- function(base_size=14, base_family="") {
+      library(grid)
+      library(ggthemes)
+      (theme_foundation(base_size=base_size, base_family=base_family)
+       + theme(plot.title = element_text(face = "bold",
+                                         size = rel(1.2), hjust = 0.5),
+               text = element_text(),
+               panel.background = element_rect(colour = NA),
+               plot.background = element_rect(colour = NA),
+               panel.border = element_rect(colour = NA),
+               axis.title = element_text(face = "bold",size = rel(1)),
+               axis.title.y = element_text(angle=90,vjust =2),
+               axis.title.x = element_text(vjust = -0.2),
+               axis.text = element_text(), 
+               axis.line = element_line(colour="black"),
+               axis.ticks = element_line(),
+               panel.grid.major = element_line(colour="#f0f0f0"),
+               panel.grid.minor = element_blank(),
+               legend.key = element_rect(colour = NA),
+               legend.position = "right",
+               legend.direction = "vertical",
+               legend.key.size= unit(0.4, "cm"),
+               legend.margin = unit(0, "cm"),
+               legend.title = element_text(face="italic"),
+               plot.margin=unit(c(10,5,5,5),"mm"),
+               strip.background=element_rect(colour="#f0f0f0",fill="#f0f0f0"),
+               strip.text = element_text(face="bold")
+          ))
+      
+}
+
+scale_fill_Publication <- function(...){
+      library(scales)
+      discrete_scale("fill","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
+
+}
+
+scale_colour_Publication <- function(...){
+      library(scales)
+      discrete_scale("colour","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
+}
+
+```
+
 # Deep Uncertainty and Robust Decision Making (RDM)
 
 .pull-left[
@@ -189,16 +240,19 @@ tabl <- "
 
 cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 ```
-`r Cite(myBib, "deroba_dream_2018")` ] 
+] 
+&nbsp;
+&nbsp;
+
 ] 
 .pull-right-30[
-### Implementation Error
-Implementation errors were included as year-specific lognormal random deviations: 
+`r Cite(myBib, "deroba_dream_2018")`
+]
+
+Implementation error was included as year-specific lognormal random deviations: 
 $F_{a,y}=\bar{F}_yS_ae^{\varepsilon_{\theta,y}-\frac{\sigma_\theta^2}{2}} \;\;\;  \varepsilon_{\theta} \sim N(0,\sigma_\theta^2)$
 
-]
-### Assessment Error
-Assessment error was modeled as a year-specific lognormal random deviation common to all ages, with first-order autocorrelation and a term that created the option to include bias $\rho$:
+Assessment error was modeled similarly, with first-order autocorrelation and an optional bias term $\rho$:
 $\widehat{N}_{a,y}=[N_{a,y}(\rho+1)]e^{\varepsilon_{\phi,y}-\frac{\sigma_\phi^2}{2}}\;\;\;\; \varepsilon_{\phi,y}=\vartheta\varepsilon_{\phi,y-1}+\sqrt{1-\vartheta^2}\tau_y \;\;\;\;  \tau \sim N(0,\sigma_\phi^2)$ 
 
 ---
@@ -221,16 +275,143 @@ background-position: left
 
 ## Predators: deterministic population models and herring-predator links
 .pull-left[]
-.pull-right[
+.pull-right[.right[
 ![:img ternpoptrend, 100%](EDAB_images/ternpoptrend.png)
-]
+]]
 ---
-## Predator results summary
-```{r predresultsum}
-knitr::include_graphics("EDAB_images/herrtopreds_results.png")
-```
+background-image: url("EDAB_images/herrtopreds_results.png")
+background-size: 640px
+background-position: left
+## Results summary
+Three HCR types were rejected at the second stakeholder meeting for poor fishery and predator performance.
+.pull-left[]
+.pull-right[.right[
+```{r YAY, fig.height=14, fig.width=11.5, out.width='85%', message = FALSE, warning = FALSE}
+#fig.cap="Differences between operating models (OM) for key metrics. Boxplots represent the median (wide line within the box) and 25th and 75th percentiles (box) of the distribution of medians for final 50 years of each simulation for each performance metric (x-axis label, please see text for definitions) and operating model (see Table 2 for definitions) across all control rule types. Boxplot whiskers include the highest and lowest observations within 1.5 box lengths from the box. Observations further than 1.5 box lengths from the box (outliers) are represented by points. \\label{YAY}",
+# metrics <- c('stouffer',
+#              'stationary',
+#              'p50_NR',
+#              'PropClosure',
+#              'MedSSBrelSSBmsy',
+#              'PropSSBrelhalfSSBmsy',
+#              'YieldrelMSY',
+#              'Yvar',
+#              'MedPropYrs_goodProd_Targplustern', 
+#              'MedPropYrs_okBstatus', 
+#              'MedPropYrs_goodAvWtstatus'
+#              )
+# metlabels <- c('equilibrium1',
+#                'equilibrium2',
+#                'revenue',
+#                'closure',
+#                'relSSB',
+#                'overfished',
+#                'relyield',
+#                'yieldvar',
+#                'ternprod',
+#                'dogstatus',
+#                'tunawt'
+#                )
 
-Three control rule types--Constant catch, conditional constant catch, and 15% restriction on change--were rejected at the second stakeholder meeting for poor fishery and predator performance.
+allres <- readRDS(url("https://github.com/sgaichas/herringMSE/blob/master/data/allres.rds?raw=True"))
+
+
+metrics <- c('YieldrelMSY',
+             'Yvar',
+             'PropClosure',
+             'MedSSBrelSSBmsy',
+             'PropSSBrelhalfSSBmsy',
+             'MedPropYrs_goodProd_Targplustern', 
+             'MedPropYrs_okBstatus', 
+             'MedPropYrs_goodAvWtstatus',
+             'p50_NR',
+             'stouffer',
+             'stationary'
+             )
+
+
+metlabels <- c('relyield',
+               'yieldvar',
+               'closure',
+               'relSSB',
+               'overfished',
+               'ternprod',
+               'dogstatus',
+               'tunawt',
+               'net revenue',
+               'equil1',
+               'equil2'
+               )
+
+
+OMs <- unique(allres$OM)
+
+OMlabels <- c('LowFastBiased', 
+              'LowSlowBiased', 
+              'LowFastCorrect', 
+              'LowSlowCorrect',  
+              'HighFastBiased',  
+              'HighSlowBiased', 
+              'HighFastCorrect',
+              'HighSlowCorrect'
+              )
+
+#OM (8) x metric (11) boxplot--
+
+# plotting <- function(d, xvar, yvars, xlabs, ylabs){
+#   P <- list()
+#   for (i in 1:length(yvars)){
+#     if(i < length(yvars)){
+#       p <- ggplot(d, aes_string(x=xvar, y=yvars[i])) + 
+#       geom_boxplot() + labs(y=ylabs[i]) +
+#       theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank())
+#     }
+#     if(i == length(yvars)){
+#       p <- ggplot(d, aes_string(x=xvar, y=yvars[i])) + 
+#         geom_boxplot() + labs(y=ylabs[i]) +
+#         scale_x_discrete(labels = xlabs)
+#     }
+#     P <- c(P, list(p))
+#   }
+#   return(list(plots=P, num=length(yvars)))
+# }
+
+#trying to align left side of plots--still not working-- finally works!
+plotting <- function(d, xvar, yvars, xlabs, ylabs){
+  P <- list()
+  for (i in 1:length(yvars)){
+    if(i < length(yvars)){
+      p <- ggplot(d, aes_string(x=xvar, y=yvars[i])) + 
+        geom_boxplot() + labs(y=ylabs[i]) +
+        theme_Publication() + scale_colour_Publication() + 
+        theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank(), plot.margin=unit(c(2,1,2,1),"mm"))
+    }
+    if(i == length(yvars)){
+      p <- ggplot(d, aes_string(x=xvar, y=yvars[i])) + 
+        geom_boxplot() + labs(y=ylabs[i]) +
+        scale_x_discrete(labels = xlabs) +
+        theme_Publication() + scale_colour_Publication()+ 
+        theme(plot.margin=unit(c(0,1,2,1),"mm"))
+    }
+    #gp <- ggplotGrob(p)
+    P[[i]] <- p
+  }
+  #return(list(plots=P, num=length(yvars)))
+  gp <- lapply(P, ggplotGrob)
+  g <- do.call(rbind, c(gp, size="first"))
+  g$widths <- do.call(unit.pmax, lapply(gp, "[[", "widths"))
+  return(g)
+}
+
+#PLOTS <- plotting(d)
+#do.call(grid.arrange, c(PLOTS$plots, nrow = PLOTS$num))
+
+metOM <- plotting(allres, "OM", metrics, OMlabels, metlabels)
+grid.newpage()
+grid.draw(metOM)
+
+```
+]]
 
 ---
 ## Managing tradeoffs under uncertainty: What control rules give us 90% of everything we want?
@@ -243,54 +424,6 @@ Three control rule types--Constant catch, conditional constant catch, and 15% re
 
 .pull-left[
 ```{r}
-#herring MSE outputs
-#allres <- readRDS(file.path(data.dir,"allres.rds"))
-
-allres <- readRDS(url("https://github.com/sgaichas/herringMSE/blob/master/data/allres.rds?raw=True"))
-
-#herring MSE plotting
-#a better plotting theme than ggplot default? from https://rpubs.com/Koundy/71792
-theme_Publication <- function(base_size=14, base_family="") {
-      library(grid)
-      library(ggthemes)
-      (theme_foundation(base_size=base_size, base_family=base_family)
-       + theme(plot.title = element_text(face = "bold",
-                                         size = rel(1.2), hjust = 0.5),
-               text = element_text(),
-               panel.background = element_rect(colour = NA),
-               plot.background = element_rect(colour = NA),
-               panel.border = element_rect(colour = NA),
-               axis.title = element_text(face = "bold",size = rel(1)),
-               axis.title.y = element_text(angle=90,vjust =2),
-               axis.title.x = element_text(vjust = -0.2),
-               axis.text = element_text(), 
-               axis.line = element_line(colour="black"),
-               axis.ticks = element_line(),
-               panel.grid.major = element_line(colour="#f0f0f0"),
-               panel.grid.minor = element_blank(),
-               legend.key = element_rect(colour = NA),
-               legend.position = "right",
-               legend.direction = "vertical",
-               legend.key.size= unit(0.4, "cm"),
-               legend.margin = unit(0, "cm"),
-               legend.title = element_text(face="italic"),
-               plot.margin=unit(c(10,5,5,5),"mm"),
-               strip.background=element_rect(colour="#f0f0f0",fill="#f0f0f0"),
-               strip.text = element_text(face="bold")
-          ))
-      
-}
-
-scale_fill_Publication <- function(...){
-      library(scales)
-      discrete_scale("fill","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
-
-}
-
-scale_colour_Publication <- function(...){
-      library(scales)
-      discrete_scale("colour","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
-}
 
 Nrulesgoodterns <- allres %>%
   filter(CR %in% c("BB", "BB3yr")) %>%
