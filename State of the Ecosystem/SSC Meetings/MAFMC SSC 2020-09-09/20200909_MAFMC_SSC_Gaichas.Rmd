@@ -146,26 +146,33 @@ ylims <- c(ymin, ymax)
 
 ---
 background-image: url("EDAB_images/Framework.png")
-background-size: 550px
+background-size: 540px
 background-position: right
 
 ## Mid-Atlantic Council Ecosystem Approach
+.pull-left-60[
+2016 EAFM Policy Guidance document; revised 2019<sup>1</sup> 
 
-* 2016 EAFM Policy Guidance document; revised 2019<sup>1</sup> 
+2016 MAFMC EAFM framework<sup>2</sup>
 
-* MAFMC EAFM framework<sup>2</sup>
+2017 Inital EAFM risk assessment completed; revised and published 2018<sup>3</sup>
 
-* 2017 Inital EAFM risk assessment completed; revised and published 2018<sup>3</sup>
+2018 Council selected summer flounder as high risk fishery
 
-* SOE indicators to be used for annual risk assessment updates
+2019 EAFM conceptual model linking summer flounder drivers and risks
 
-* But can the SSC get more from the SOE and risk assessment?
+2020 Council starting EAFM MSE for summer flounder recreational discards
 
+SOE indicators to be used for annual risk assessment updates
 
+But can the SSC get more from the SOE and risk assessment?
+]
+.pull-right-40[
 .footnote[
-[1] http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf
-[2] https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full
+[1] http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf  
+[2] https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full  
 [3] https://www.frontiersin.org/articles/10.3389/fmars.2018.00442/full
+]
 ]
 
 ???
@@ -273,71 +280,6 @@ mng_obj %>%
 Conceptual model links indicators in the report with management objectives.
 
 A subset of objectives are currently under investigation using GAMs. We plan to extend this work with structural equation modeling and or other methods in 2020. 
-
----
-## Memo 15: Wind energy habitat overlap with planned extensions
-
-```{r wind-habitat-table, eval = T, echo = F, fig.cap='', out.width='80%'}
-wind1 <- ecodata::wind_occupancy
-
-wind1$trend<- ifelse(wind1$Trend == "pos", 
-                    "$\\nearrow$",
-                    ifelse(wind1$Trend == "neg",
-                    "$\\searrow$", 
-                    " ")) 
-
-
-wind2<-wind1 %>% dplyr::select(Area, Season, Species, trend)
-names<-c("Area", "Season", "Species", "trend")
-bnew<-c("Area.1", "Season.1", "Species.1", "trend.1")
-cnew<-c("Area.2", "Season.2", "Species.2", "trend.2")
-dnew<-c("Area.3", "Season.3", "Species.3", "trend.3")
-enew<-c("Area.4", "Season.4", "Species.4", "trend.4")
-
-a<-wind2 %>% filter(Area == "Existing-North") 
-b<-wind2 %>% filter(Area == "Proposed-North") %>% 
-  dplyr::rename_at(vars(names), ~ bnew)
-c<-wind2 %>% filter(Area == "Existing-Mid")%>% 
-  dplyr::rename_at(vars(names), ~ cnew)
-d<-wind2 %>% filter(Area == "Proposed-Mid")%>% 
-  dplyr::rename_at(vars(names), ~ dnew)
-e<-wind2 %>% filter(Area == "Existing-South")%>% 
-  dplyr::rename_at(vars(names), ~ enew)
-
-all<- a %>% cbind(b,c,d,e) %>% 
-  dplyr::select(2:4,7:8,11:12,15:16,19:20) #%>% 
-  # rename(Trend = trend, 
-  #        Species = Species.1, 
-  #        Trend = trend.1, 
-  #        Species = Species.2, 
-  #        Trend = trend.2, 
-  #        Species = Species.3, 
-  #        Trend = trend.3, 
-  #        Species = Species.4, 
-  #        Trend = trend.4 )
-  
-kable(all, format = "html", escape = F, table.attr='class="risktable"',
-      col.names = c("Season", "Species", "Trend", "Species", "Trend", "Species","Trend", "Species","Trend", "Species", "Trend")) %>%
-      #caption = "Species with highest probability of occupancy species each season and area, with observed trends",
-      #align = 'c',
-      #booktabs = T) %>%
-    add_header_above(c(" " = 1, "Existing - North" = 2, "Proposed - North" = 2, 
-                     "Existing - Mid" = 2, "Proposed - Mid" = 2, 
-                     "Existing - South" = 2)) %>%
-  #kable_styling(latex_options = c("hold_position", "scale_down")) 
-  kable_styling(font_size = 11) %>%
-  row_spec(0, bold = TRUE)
-```
-
-.pull-left[
-![:img wind habitat figure from SOE 2020](EDAB_images/wind-hab-1.png)
-]
-
-.pull-right[
-## Fishery overlap to be added
-
-## What habitat model outputs most useful?
-]
 
 
 ---
@@ -546,7 +488,6 @@ background-size: cover
 Contacts:  
 ]
 .pull-right[
-<sarah.gaichas@noaa.gov>
-<geret.depiper@noaa.gov>
+<sarah.gaichas@noaa.gov>,  <geret.depiper@noaa.gov>
 ]
  
