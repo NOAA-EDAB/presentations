@@ -225,18 +225,18 @@ In 2016, we began taking steps to address these common critiques of the ESR mode
 
 .pull-right[
 
-*Established ecosystem-scale objectives in the Mid-Atlantic*
+*Established ecosystem-scale objectives*
 
 ```{r management-objectives}
 mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                                  "Profits","Recreation",
-                                                 "Stability","Social & Cultural",
+                                                 "Social & Cultural", "Stability",
                                                  "Biomass","Productivity",
                                                  "Trophic structure","Habitat"),
 "Indicators reported here" = c("Landings by feeding guild","Revenue decomposed to price and volume",
                                "Days fished; recreational catch",
-                               "Diversity indices (fishery and species)",
                                "Commercial engagement trends",
+                               "Diversity indices (fishery and species)",
                                "Biomass or abundance by feeding guild from surveys",
                                "Condition and recruitment of managed species, Primary productivity",
                                "Relative biomass of feeding guilds, Zooplankton",
@@ -250,24 +250,43 @@ mng_obj %>%
       #booktabs = T) %>%
   #kable_styling(latex_options = "hold_position", "scale_down") %>%
  # column_spec(c(2), width = c("25em")) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"',
+  kable(format = "html", escape = F, #table.attr='class="risktable"',
         col.names = c("Objective Categories","Indicators reported here")) %>%
   kable_styling(font_size = 14) %>%
-  row_spec(0, bold = TRUE)
+  row_spec(0, bold = TRUE) %>%
+  group_rows("Provisioning/Cultural", 1,4) %>%
+  group_rows("Supporting/Regulating", 5,9)
 
 
 ```
 ]
 
 ---
-## Memo 1-2: Summary 2 pager with visualizations
+## Proposed ecosystem synthesis themes for 2021
+
+Characterizing ecosystem change for fishery management: plain language summary for 2 pager
+
+* Multiple drivers of abundance, defined by the competing factors that influence the amount of fish in the ocean; 
+* Regime shifts, or ecosystem change can happen rapidly as multiple drivers change; and, 
+* Reorganization of the ecosystem, multiple factors that interact that change the structure and organization of the ecosystem
+
+## Synthetic analysis in progress: environment - fish condition - market price linkages
+
+
+
+---
+## 2020 Summary 2 pager with visualizations; 2021 second page with synthesis themes, example
 
 .pull-left[
-![:img State of the Ecosystem page 1 summary bullets, 100%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft.png)
+.center[
+![:img State of the Ecosystem page 1 summary bullets, 85%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft.png)
+]
 ]
 
 .pull-right[
-![:img State of the Ecosystem page 2 infographic, 100%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft2.png)
+.center[
+![:img State of the Ecosystem page 2 infographic, 85%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft2.png)
+]
 ]
 
 
