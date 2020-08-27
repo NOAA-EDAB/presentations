@@ -268,18 +268,21 @@ Characterizing ecosystem change for fishery management: plain language summary f
 
 * Multiple drivers of abundance, defined by the competing factors that influence the amount of fish in the ocean; 
 * Regime shifts, or ecosystem change can happen rapidly as multiple drivers change; and, 
-* Reorganization of the ecosystem, multiple factors that interact that change the structure and organization of the ecosystem
+* Reorganization of the ecosystem, multiple factors that interact that change the structure and organization of the ecosystem, e.g. Tropicalization
 
 ## Synthetic analysis in progress: environment - fish condition - market price linkages
 
+![:img Bottom water temperature anomaly MAB, 20%](EDAB_images/MAB-bot-temp-1.png) ![:img Zooplankton community and primary production anomaly, 20%](EDAB_images/MAB-sli-1.png) ![:img Relative condition factor 1992-2019 for fish species in the MAB. MAB data are missing for 2017 due to survey delays, 35% ](EDAB_images/MABcondition_2019_viridis_final.jpg) ![:img Price for king silver hake 1994-2019, 22%](EDAB_images/kingsilverhakeprice.png)
 
+* Identify multiple and changing drivers of condition and market prices over time
+* Recognize regime shifts and potential system reorganization
 
 ---
-## 2020 Summary 2 pager with visualizations; 2021 second page with synthesis themes, example
+## Memo 1-2: 2020 Summary 2 pager with visualizations; 2021 visualize synthesis themes, example?
 
 .pull-left[
 .center[
-![:img State of the Ecosystem page 1 summary bullets, 85%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft.png)
+![:img State of the Ecosystem page 1 summary bullets, 80%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft.png)
 ]
 ]
 
@@ -291,7 +294,7 @@ Characterizing ecosystem change for fishery management: plain language summary f
 
 
 ---
-## Memo 5: Link zooplankton, fish condition
+## Memo 5: Synthesis analysis refinements for SSC and Council decisions?
 
 .pull-left[
 ![:img Diagram with possible relationships between oceanographic and habitat indicators, food web indicators, fish condition factor, fish population indicators, fishery economics indicators, and fishery objectives such as seafood production](EDAB_images/SOEconditionfactorlinks_color.png)
@@ -355,12 +358,14 @@ mab.hw %>%
 ```
 ]
 
-.pull-left[
-![img: January - December 2019 sea surface temperatures above 90th percentile of average](EDAB_images/MAB_heatwave.jpeg)
+.pull-left[ 
+.center[
+![:img 2019 sea surface temperatures above 90th percentile of average, 80%](EDAB_images/MAB_heatwave.jpeg)
+]
 ]
 
 .pull-right[
-```{r mab-heatwave-max, fig.cap="Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occurring on July 22, 2019."}
+```{r mab-heatwave-max, fig.cap="Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occurring on July 22, 2019.", out.width='80%'}
 #EPU shapefile
 mab_epu_sf <- ecodata::epu_sf %>% 
   filter(EPU %in% c("MAB"))
