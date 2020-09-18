@@ -1,0 +1,173 @@
+---
+title: "US Reference Points Introduction"
+subtitle: "ICES WKRPchange, 21 September 2020"
+author: "Sarah Gaichas <br /> Ecosystem Dynamics and Assessment <br /> Northeast Fisheries Science Center"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(ggrepel)
+library(here)
+library(ecodata)
+
+#General inline text input for report
+#Council
+council <- "Mid-Atlantic Fishery Management Council"
+council_abbr <- "MAFMC"
+
+#Region identifiers
+epu <- "Mid-Atlantic Bight"
+epu_abbr <- "MAB"
+region <- "Mid-Atlantic"
+region_abbr <- "MA" #Some commercial data organized by "MA" or "NE" regions, not by EPU 
+
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           style = "markdown")
+myBib <- ReadBib("./DeepUncertaintyMSE.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+
+## Fishery management in the US: participatory, with wicked problems
+
+Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.  
+.center[
+![:img US map highlighting regions for each fishery management council, 75%](EDAB_images/USCouncils.png)
+]
+
+More information: http://www.fisherycouncils.org/  
+https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
+
+---
+## Main concepts
+.pull-left-30[
+MSY
+
+Overfishing
+
+Overfished
+
+Rebuilding
+]
+.pull-right-70[
+```{r stock-status, warning=F, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly managed stocks (Goosefish and Spiny dogfish)."), fig.width = 10, fig.asp = 0.6}
+
+stock_status <- ecodata::stock_status %>%
+  mutate(Code = recode(Code, "Dogfish" = "Sp. Dogfish" )) %>% 
+  spread(.,Var,Value) %>% 
+  filter(Council %in% c("MAFMC","Both")) %>% 
+  group_by(Stock) %>% 
+  mutate(score = case_when(
+    (B.Bmsy <0.5) ~"a",
+    (F.Fmsy >1) ~ "a", 
+    (F.Fmsy < 1 & B.Bmsy > 0.5 & B.Bmsy < 1) ~ "b",
+    (F.Fmsy < 1 & B.Bmsy > 1) ~ "c"))
+#Plot constants
+y.max <- 2.0 #1.75 mackerel cut off F/Fmsy is 1.8
+x.max <- 2.6
+#A dataframe that defines custom legend for stocks with unknown status
+unknown <- data.frame(text = c("Unknown Status", "Longfin Squid",
+                              "Shortfin Squid", "N. Goosefish", "S. Goosefish"),
+                    x = rep(0.9*x.max,5), y = seq(0.93*y.max,1.4,-.1))
+
+# Custom Color
+custom_color<- c("#56B4E9", "#009E73", "#0072B2")
+#Plotting code
+ggplot(data = stock_status) +
+  geom_vline(xintercept = 1, linetype = "dotted")+
+  geom_vline(xintercept = 0.5, linetype = "dashed")+
+  geom_hline(yintercept = 1, linetype = "dashed") +
+  geom_point(aes(x = B.Bmsy,
+                 y = F.Fmsy,
+                 shape = Council,
+                 color = score)) +
+  geom_text_repel(aes(x = B.Bmsy, #geom_text_repel auto-jitters text around points
+                      y = F.Fmsy,
+                      label = Code, 
+                      color = score,
+                      size = 20), 
+                  show.legend = FALSE, nudge_y = -0.01, nudge_x = 0.05) +
+  scale_color_brewer(palette = "Dark2",
+                     breaks = stock_status$score) +
+  ylim(0,y.max) +
+  xlim(0,x.max) +
+  geom_text(data = unknown, aes(x = x, y = y, label = text), #Custom legend for unknown stock status
+            size = c(4.75,rep(4,4))) +
+  annotate("rect", xmin = 0.8*x.max,
+           xmax = x.max,
+           ymin = 0.65*y.max,
+           ymax = 0.90*y.max,
+           alpha = 0.1) +
+  xlab(expression(~B/B[msy])) +
+  ylab(expression(~F/F[msy])) +
+  guides(color = FALSE) +
+  theme_ts()
+```
+
+]
+
+---
+## Details
+
+Optimum Yield (OY) definition
+
+National standards
+
+Regional and Fishery Management Plan (FMP) specific implementation
+
+---
+## Where can environmental change come in?
+
+National standard 1
+
+
+---
+## Additional resources
+
+* [National Standard 1--Optimum Yield](https://www.ecfr.gov/cgi-bin/text-idx?SID=71b8c6026001cb90e4b0925328dce685&mc=true&node=se50.12.600_1310&rgn=div8)
+
+* [US Fisheries Stock Status 2019](https://www.fisheries.noaa.gov/national/sustainable-fisheries/status-stocks-2019)
+
+* [2019 Stock Status Determination Criteria](https://www.fisheries.noaa.gov/webdam/download/109102767)
+
+* [2019 Stock Status Table](https://www.fisheries.noaa.gov/webdam/download/109102769)
+
+* Slides available at https://noaa-edab.github.io/presentations
+
+* Contact: <Sarah.Gaichas@noaa.gov>
+
+# Thank you!
