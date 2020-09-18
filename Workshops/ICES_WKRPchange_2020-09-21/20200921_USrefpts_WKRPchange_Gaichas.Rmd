@@ -73,19 +73,27 @@ More information: http://www.fisherycouncils.org/
 https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 
 ---
-## Main concepts
+## Main concepts  `r Citep(myBib, "dicosimo_use_2010", "methot_implementing_2014")`
 .pull-left-30[
-MSY
+MSY: *the largest long-term average catch or yield that can be taken from a stock or stock complex**  
 
-Overfishing
+Overfishing 
+- *too much catch*
+- $F > F_{MSY}$
 
-Overfished
+Overfished 
+- *too little biomass*
+- $B < \frac12 B_{MSY}$
 
 Rebuilding
+- *grow overfished stock back*
+- $B = B_{MSY}$
+
+
 ]
 .pull-right-70[
-```{r stock-status, warning=F, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly managed stocks (Goosefish and Spiny dogfish)."), fig.width = 10, fig.asp = 0.6}
-
+```{r stock-status, warning=F, fig.width = 10, fig.asp = 0.6}
+#fig.cap = paste0("Mid-Atlantic Fishery Management Council stock status"),
 stock_status <- ecodata::stock_status %>%
   mutate(Code = recode(Code, "Dogfish" = "Sp. Dogfish" )) %>% 
   spread(.,Var,Value) %>% 
@@ -137,9 +145,15 @@ ggplot(data = stock_status) +
   guides(color = FALSE) +
   theme_ts()
 ```
-
+.center[Mid-Atlantic Fishery Management Council stock status]
 ]
 
+<p style="color:#FF8C00;">*<i>under prevailing ecological, environmental conditions and fishery technological characteristics (e.g., gear selectivity), and the distribution of catch among fleets.</i></p>
+
+
+---
+background-image: url("EDAB_images/2019 Status of Stocks RtC_FINAL_7-15-20_Page_07.png")
+background-size: cover
 ---
 ## Details
 
@@ -154,8 +168,13 @@ Regional and Fishery Management Plan (FMP) specific implementation
 
 National standard 1
 
-
 ---
+## References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+
 ## Additional resources
 
 * [National Standard 1--Optimum Yield](https://www.ecfr.gov/cgi-bin/text-idx?SID=71b8c6026001cb90e4b0925328dce685&mc=true&node=se50.12.600_1310&rgn=div8)
@@ -166,8 +185,8 @@ National standard 1
 
 * [2019 Stock Status Table](https://www.fisheries.noaa.gov/webdam/download/109102769)
 
-* Slides available at https://noaa-edab.github.io/presentations
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: <Sarah.Gaichas@noaa.gov>
 
-* Contact: <Sarah.Gaichas@noaa.gov>
-
-# Thank you!
+]

@@ -1,6 +1,6 @@
 ---
-title: "Uncertainty in management <br />strategy evaluation (MSE):"
-subtitle: "Case study of the <br />New England Fishery Management Council Herring MSE"
+title: "Herring HCR accounting for its role as forage"
+subtitle: "US New England Fishery Management Council Herring MSE"
 author: "Sarah Gaichas <br /> Ecosystem Dynamics and Assessment <br /> Northeast Fisheries Science Center"
 output:
   xaringan::moon_reader:
@@ -113,22 +113,6 @@ background-position: right bottom
     - balancing fishing benefits and ecological services
     - addressing diverse stakeholder interests
 - TRANSPARENTLY within management time frame!
-]
-
----
-background-image: url("EDAB_images/MSECSIRO.png")
-background-size: 800px
-background-position: right
-
-## What is Management Strategy Evaluation?
-.pull-left-30[
-- Process to develop fishery management procedures  
-
-- First used in S. Africa, Australia, and at International Whaling Commission  late 1980s - early 1990s
-
-.contrib[
->Under this approach, management advice is based on a fully specified set of rules that have been tested in simulations of a wide variety of scenarios that specifically take uncertainty into account. The full procedure includes specifications for the data to be collected and how those data are to be used to provide management advice, in a manner that incorporates a feedback mechanism. `r Cite(myBib, "punt_developing_2007")`
-]
 ]
 
 ---
@@ -533,7 +517,7 @@ p1 + facet_wrap("OM", labeller=labeller(OM = OMlabels), nrow=2) + theme(legend.p
 ]
 
 ---
-## Lessons: testing strategies is key, but uncertainty still difficult to convey
+## Lessons: 
 .pull-left-30[
 Complex food web, generalist predators
 - Herring is one of several important prey
@@ -547,42 +531,10 @@ Complex food web, generalist predators
 ]
 
 ---
-background-image: url("EDAB_images/salmonscenarios.png")
-background-size: 700px
-background-position: right
-## MSE and uncertainty: incorporate scenario planning?
-.pull-left-40[
-- Standalone process with stakeholders
-    - salmon example
-    - right whale example
-    - climate example just starting
-    - many others!
-
-- Scenarios could specify a set of MSE operating models
-    - fewer operating models spanning more uncertainty
-    - easier to describe 
-    - limits results dimensionality
-    
-- Climate scenarios for a region could be used in many MSEs
-]
-
-.footnote[
-Source: [Salmon Climate Scenario Planning Pilot Report](https://www.greateratlantic.fisheries.noaa.gov/policyseries/index.php/GARPS/article/view/15/14)
-]
----
-background-image: url("EDAB_images/boxscatterbag2.png")
-background-size: 800px
-background-position: center
-## MSE and uncertainty: visualizing many dimensions? Advice from DMDU and RDM?
-`r Cite(myBib, "feeney_integrating_2018")`
---
-
-![:img plots developed later, 90%](EDAB_images/radardecision.png)
----
 background-image: url("EDAB_images/climatescenarioarrow.png")
 background-size: 800px
 background-position: right
-# Conclusions
+# Conclusions: addressing a changing environment
 
 - NOAA Fisheries supports MSE
     - Dedicated FTE at each Science Center
@@ -592,7 +544,6 @@ background-position: right
     - Scenario planning
     - MSE
     
-- Enhance with DMDU
 
 .footnote[
 Source: [Salmon Climate Scenario Planning Pilot Report](https://www.greateratlantic.fisheries.noaa.gov/policyseries/index.php/GARPS/article/view/15/14)
@@ -611,10 +562,6 @@ PrintBibliography(myBib)
 * [New England Atlantic herring management](https://www.nefmc.org/management-plans/herring)
 
 * [New England MSE debrief](https://s3.amazonaws.com/nefmc.org/3_Herring-MSE-debrief-final-report.pdf)
-
-* [MSE video](https://www.youtube.com/watch?v=5JG76VPnHS8)
-
-* [Management procedures video](https://www.youtube.com/watch?v=V9QEG4R4-w0)
 
 * Slides available at https://noaa-edab.github.io/presentations
 
