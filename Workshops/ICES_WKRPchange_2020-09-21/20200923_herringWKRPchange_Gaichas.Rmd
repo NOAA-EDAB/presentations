@@ -120,7 +120,7 @@ background-image: url("EDAB_images/MgtProcess.png")
 background-size: 800px
 background-position: right
 
-## The Dream and The Reality
+## The MSE process
 .pull-left-30[
 *First MSE within US Council*  
 `r Cite(myBib, "feeney_integrating_2018")`
@@ -229,55 +229,49 @@ Time constraints forced:
 ]
 ---
 background-image: url("EDAB_images/herrtopreds_results.png")
-background-size: 640px
+background-size: 650px
 background-position: left center
 ## Results summary
 Three HCR types were rejected at the second stakeholder meeting for poor fishery and predator performance.
 .pull-left[]
 .pull-right[.right[
-```{r YAY, fig.height=14, fig.width=11.5, out.width='85%', message = FALSE, warning = FALSE, }
-# fig.cap="Differences between operating models (OM) for key metrics. Boxplots represent the median (wide line within the box) and 25th and 75th percentiles (box) of the distribution of medians for final 50 years of each simulation for each performance metric (x-axis label, please see text for definitions) and operating model (see Table 2 for definitions) across all control rule types. Boxplot whiskers include the highest and lowest observations within 1.5 box lengths from the box. Observations further than 1.5 box lengths from the box (outliers) are represented by points."\\label{YAY}",
-# metrics <- c('stouffer',
-#              'stationary',
-#              'p50_NR',
+```{r ZZZ, fig.height=11, fig.width=8.5, out.width='80%', message = FALSE, warning = FALSE}
+#fig.cap="Differences between control rule types for key metrics. Boxplots represent the median (wide line within the box) and 25th and 75th percentiles (box) of the distribution of medians for final 50 years of each simulation for each performance metric (x-axis label, please see text for definitions) and control rule type (CR; described in the text Harvest control rules section: biomass based with 1 (BB), 3 (BB3yr), and 5 (BB5yr) quota blocks, biomass based 3 year quota block with a 15\\% restriction on interannual quota change (BB3yrPerc), constant catch (CC), and conditional constant catch(CCC)) across all operating models. Boxplot whiskers include the highest and lowest observations within 1.5 box lengths from the box. Observations further than 1.5 box lengths from the box (outliers) are represented by points.\\label{ZZZ}",
+#note this one is over ALL OM
+
+# metrics <- c(
 #              'PropClosure',
 #              'MedSSBrelSSBmsy',
 #              'PropSSBrelhalfSSBmsy',
 #              'YieldrelMSY',
 #              'Yvar',
-#              'MedPropYrs_goodProd_Targplustern', 
-#              'MedPropYrs_okBstatus', 
-#              'MedPropYrs_goodAvWtstatus'
+#              'MedPropYrs_goodProd_Targplustern',
+#              'stouffer',
+#              'p50_NR'
 #              )
-# metlabels <- c('equilibrium1',
-#                'equilibrium2',
-#                'revenue',
+# 
+# metlabels <- c(
 #                'closure',
 #                'relSSB',
 #                'overfished',
 #                'relyield',
 #                'yieldvar',
 #                'ternprod',
-#                'dogstatus',
-#                'tunawt'
+#                'equil1',
+#                'net revenue'
 #                )
 
 allres <- readRDS(url("https://github.com/sgaichas/herringMSE/blob/master/data/allres.rds?raw=True"))
-
 
 metrics <- c('YieldrelMSY',
              'Yvar',
              'PropClosure',
              'MedSSBrelSSBmsy',
              'PropSSBrelhalfSSBmsy',
-             'MedPropYrs_goodProd_Targplustern', 
-             'MedPropYrs_okBstatus', 
-             'MedPropYrs_goodAvWtstatus',
-             'p50_NR',
+             'MedPropYrs_goodProd_Targplustern',
              'stouffer',
-             'stationary'
+             'p50_NR'
              )
-
 
 metlabels <- c('relyield',
                'yieldvar',
@@ -285,61 +279,22 @@ metlabels <- c('relyield',
                'relSSB',
                'overfished',
                'ternprod',
-               'dogstatus',
-               'tunawt',
-               'net revenue',
                'equil1',
-               'equil2'
+               'net revenue'
                )
-
-
-OMs <- unique(allres$OM)
-
-OMlabels <- c('LowFastBiased', 
-              'LowSlowBiased', 
-              'LowFastCorrect', 
-              'LowSlowCorrect',  
-              'HighFastBiased',  
-              'HighSlowBiased', 
-              'HighFastCorrect',
-              'HighSlowCorrect'
-              )
-
-#OM (8) x metric (11) boxplot--
-
-# plotting <- function(d, xvar, yvars, xlabs, ylabs){
-#   P <- list()
-#   for (i in 1:length(yvars)){
-#     if(i < length(yvars)){
-#       p <- ggplot(d, aes_string(x=xvar, y=yvars[i])) + 
-#       geom_boxplot() + labs(y=ylabs[i]) +
-#       theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank())
-#     }
-#     if(i == length(yvars)){
-#       p <- ggplot(d, aes_string(x=xvar, y=yvars[i])) + 
-#         geom_boxplot() + labs(y=ylabs[i]) +
-#         scale_x_discrete(labels = xlabs)
-#     }
-#     P <- c(P, list(p))
-#   }
-#   return(list(plots=P, num=length(yvars)))
-# }
-
-#trying to align left side of plots--still not working-- finally works!
-plotting <- function(d, xvar, yvars, xlabs, ylabs){
+plotting2 <- function(d, xvar, yvars, ylabs){
   P <- list()
   for (i in 1:length(yvars)){
     if(i < length(yvars)){
-      p <- ggplot(d, aes_string(x=xvar, y=yvars[i])) + 
+      p <- ggplot(d, aes_string(x=xvar, y=yvars[i])) +
         geom_boxplot() + labs(y=ylabs[i]) +
         theme_Publication() + scale_colour_Publication() + 
         theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank(), plot.margin=unit(c(2,1,2,1),"mm"))
     }
     if(i == length(yvars)){
-      p <- ggplot(d, aes_string(x=xvar, y=yvars[i])) + 
+      p <- ggplot(d, aes_string(x=xvar, y=yvars[i])) +
         geom_boxplot() + labs(y=ylabs[i]) +
-        scale_x_discrete(labels = xlabs) +
-        theme_Publication() + scale_colour_Publication()+ 
+        theme_Publication() + scale_colour_Publication() + 
         theme(plot.margin=unit(c(0,1,2,1),"mm"))
     }
     #gp <- ggplotGrob(p)
@@ -355,9 +310,10 @@ plotting <- function(d, xvar, yvars, xlabs, ylabs){
 #PLOTS <- plotting(d)
 #do.call(grid.arrange, c(PLOTS$plots, nrow = PLOTS$num))
 
-metOM <- plotting(allres, "OM", metrics, OMlabels, metlabels)
+metCR <- plotting2(allres, "CR", metrics, metlabels)
+#do.call(grid.arrange, c(metCR$plots, nrow = metCR$num))
 grid.newpage()
-grid.draw(metOM)
+grid.draw(metCR)
 
 ```
 ]]
@@ -534,19 +490,24 @@ Complex food web, generalist predators
 background-image: url("EDAB_images/climatescenarioarrow.png")
 background-size: 700px
 background-position: right
-## Conclusions: addressing a changing environment
+## Conclusions: robust harvest control rules in a changing environment
 
-- MSE peer review said next time:
-    - Consider non-stationarity
+- Herring MSE peer review said next time:
+    - Consider non-stationarity in herring parameters
     - Mis-specify reference points
     - Consider climate change
-    - Include full food web
+    - Include assessment model
+    - Include full food web, lots more economic info
     
 - NOAA Fisheries MSE support
-    - Dedicated FTE at each Science Center
-    - National working group
+    - Dedicated analyst in each region
+    - Climate related MSEs
+        - California coastal pelagics
+        - Pacific hake
+        - Pacific sablefish
+        - New England groundfish
     
-- Climate and EBFM Roadmaps include
+- NOAA Climate and EBFM Roadmaps
     - Scenario planning
     - MSE
     
