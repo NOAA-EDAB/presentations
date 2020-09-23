@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Intro to Docker</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andy Beet   Ecosystem Dynamics and Assessment   IBSS &amp; Northeast Fisheries Science Center" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs\EDAB_theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# Intro to Docker
+### Andy Beet <br /> Ecosystem Dynamics and Assessment <br /> IBSS &amp; Northeast Fisheries Science Center
+
+---
+
+
+
+
+
+
+## Docker 
+
+
+.pull-left[
+What is Docker?
+
+Why do we need Docker?
+
+What can it do?
+
+
+How is Docker different from a virtual machine?
+
+What are images?
+
+What are containers?
+
+How are images related to containers?
+
+What is Docker Hub?
+
+What is a dockerfile?
+
+What are some basic Docker commands?
+]
+
+.pull-right[
+&lt;img src="images/docker_logo.png" width="90%" /&gt;
+]
+
+
+---
+
+## What is Docker?
+
+From docker.com: 
+
+*"In 2013, Docker introduced what would become the industry standard for containers. Containers are a standardized unit of software that allows developers to isolate their app from its environment, solving the “it works on my machine” headache. For millions of developers today, Docker is the de facto standard to build and share containerized apps - from desktop, to the cloud."*
+
+--
+
+From freecodecamp.org:
+
+*There are many good things about Docker. It packs, ships, and runs applications as a lightweight, portable, and self-sufficient containerization tool. ... When you are working on a piece of code in a small team, it eliminates the “but it works on my machine” problem.*
+
+--
+
+.pull-left[
+* Can seem confusing
+* Can seem complex
+* New terminology to learn]
+.pull-right[
+&lt;img src="images/build_ship_run.png" width="70%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+]
+
+---
+
+## Why do we need Docker?
+
+The problem:
+
+*A developer creates a product and sends instructions to team members on how to run it.
+Some team members can't run it, because their machine requires installation of additional software. Others can't run it because they were on a different operating sytem.*
+
+--
+
+* A developer can't guarantee things will run in different environments. This makes the develop, build, ship process difficult
+
+--
+
+*Example* Atlantis Ecosystem model
+
+
+* Atlantis code written in C++.
+* Developers are primarily Linux users.
+* The code needs to be compiled before it can be run. 
+* NEFSC Atlantis team are mostly windows users.
+* On a Windows machine, a user needs to install Visual Studio C++ and NETCDF4 with dependencies before you can complile and run the code. This all takes time and some finger crossing
+
+---
+
+## How can Docker solve this problem?
+
+* Containerize the problem
+
+* Create product in a container. Include all required dependencies in the container.
+
+* These containers can be run on any physical machine, virtual machine and on the cloud.
+
+--
+
+So how are containers made?
+
+--
+
+* A `Dockerfile` (a text file containing commands to assemble an `image`) is created.
+* Use `docker build` to create an `image` from the `Dockerfile`
+* Use `docker run` to create a run time instance of the `image` called a `container`
+* The container will run the same on any computer regardless of the OS. All that a user requires is to have Docker installed. 
+
+&lt;img src="images/build_run.jpg" width="425" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## What are containers?
+
+* Containers are isolated enviroments. 
+
+--
+
+* Like a virtual machine but lightweight, they are smaller in size (MB rather than GB), they boot up faster (seconds rather that minutes, example Travis CI). 
+
+--
+
+Differences between a VM and a docker image:
+
+* Docker image does not package whole virtual operating system. 
+* It uses the OS resources just like other processes on developer’s machine.
+* Only application and it’s runtime specific dependencies are packaged (Containerization).
+
+&lt;img src="images/what_are_containers.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Container example
+
+Example: Linux has many flavors (distibutions) of OS:
+
+  + Ubuntu
+  + Fedora
+  + Debian
+  + CentOS etc. 
+
+The main difference is the software included in the distribution
+
+Say you develop on one distribution there is no guarentee it will run on another. However with docker you can create a container which includes a specific distribution to run your application. Anyone can run that container on any of their distributions. Since everything needed to run it are contained within the container. The container is it's own isolated environment.
+
+* This extends to Windows and Mac OS's
+
+---
+
+## Docker images + Docker Hub
+
+This is where things can get a little confusing.
+--
+
+*  A Docker `image` is a template that contains a set of instructions for creating a `container` that runs on the Docker platform.
+
+--
+
+* Specifically, when the `docker run` command is used, an instance of the `image` is created. This instance is called a `container`. Multiple instances of the same image can be run at the same time since each container is an isolated environment.
+
+--
+
+* A Container lives only as long as the processes inside it are running. Containers are ephemeral
+
+--
+
+.pull-left[
+[Docker Hub](hub.docker.com) is a public repository (like GitHub) for storing images. These images can easily be downloaded (pulled) using the `docker pull` command.
+
+
+To "dockerize" an application refers to creating an image. This image can then be pushed to Docker Hub for others to pull.]
+.pull-right[
+
+&lt;img src="images/docker_hub.png" width="150%" style="display: block; margin: auto;" /&gt;
+]
+---
+
+
+## Examples of `images`
+
+There are a collection of Docker images (by some of the ropensci folks) that include R related products. 
+They can be found on docker hub @ https://hub.docker.com/u/rocker with source code info on GitHub @ https://github.com/rocker-org
+
+--
+
+* RStudio image - allows you to create an RStudio instance (using any version of R) without having to install RStudio or a specific verison of R on your local machine (https://hub.docker.com/r/rocker/rstudio)
+
+ ####docker run -d -p 8787:8787 -e PASSWORD=pass rocker/rstudio:3.2.0
+
+--
+
+* RStudio image with tidyverse and publishing packages
+
+ ####docker run -d -p 8787:8787 -e PASSWORD=pass rocker/verse:3.3.1
+
+--
+
+* Shiny server image
+
+ ####docker run --rm -p 3838:3838 rocker/shiny:3.4.4
+
+---
+
+## Using Docker at NEFSC
+
+* Windows machine: docker runs under elevated access so you need permission every time you launch docker on your local machine. Not really a viable option for a government computer. Home use will be fine.
+
+--
+
+* Linux/mac: Good to go (Not aware of any problems)
+
+--
+
+* Internal server: docker is installed on an internal server (mars) at NEFSC so anyone can use it. You just need to be added to the `user group`
+
+--
+
+Let's try this out.
+
+1. Rstudio inside a container
+1. Shiny server inside a container
+1. Atlantis
+
+--
+
+Thanks to ITD:
+
+* Max - addressed our need for Docker with the network team
+* Dave Hiltz - For installing and setting up Docker on the mars server
+* Dave Chevrier - For agreeing to be the lead on this project. He will be our point of contact
+
+
+---
+
+## Creating images using Dockerfiles
+
+Specification of an image are stored in a `Dockerfile`. This is just a set of instruction on what to include in the image and how to build the image.
+
+--
+
+Sample Atlantis `dockerfile`
+
+``` r
+FROM debian:jessie
+RUN apt-get update &amp;&amp; apt-get install -yq build-essential autoconf 
+libnetcdf-dev libxml2-dev libproj-dev subversion valgrind dos2unix nano
+
+COPY .svn /app/.svn
+COPY atlantis /app/atlantis
+
+RUN cd /app/atlantis &amp;&amp; aclocal &amp;&amp; autoheader &amp;&amp; autoconf &amp;&amp; automake 
+-a &amp;&amp; ./configure &amp;&amp; make &amp;&amp; make install
+
+WORKDIR /app/model
+CMD ./RunAtlantis.sh
+
+```
+
+--
+
+This `Dockerfile` is built into an image called `atlantis` with a tag of `6420` indicating the version of the Atlantis code being used.
+
+`docker build -t atlantis:6420`
+
+---
+
+## Docker commands
+
+`docker run &lt;image name&gt;` - run container from an image
+
+`docker ps` - lists all running containers
+
+`docker ps -a` - lists all running or exited containers
+
+`docker stop &lt;container ID&gt;` - stops container from running
+
+`docker rm`  - remove stopped or exited container
+
+`docker images` - lists images
+
+`docker rmi &lt;image name&gt;` - remove image . must reomove all running containers based off image first
+
+`docker pull &lt;image name&gt;` - pull image but doesn't run
+
+
+ctrl+C  - exits running container
+
+`docker run -d &lt;image name&gt;` - runs container in background. (docker ps to show list of running containers)
+
+`docker logs &lt;container ID&gt;`
+
+`docker attach &lt;containerID&gt;` - to reattach to container
+
+`docker run &lt;containername&gt;:&lt;tag id&gt;` - run a container with a tag
+
+---
+
+
+## Useful links
+
+[Docker manual](https://docs.docker.com/) Official site documentation
+
+[Docker Tutorial for beginners](https://www.youtube.com/watch?v=fqMOX6JJhGo) Video (2h 10m) 
+
+[Docker Course](https://kodekloud.com/p/docker-labs) Interactive hands on course. Free 
+
+[7 Cases when not to use docker](https://www.freecodecamp.org/news/7-cases-when-not-to-use-docker/) Article
+
+[r-docker tutorial](https://ropenscilabs.github.io/r-docker-tutorial/). A little less techy
+
+[Docker Hub](hub.docker.com). Repository for Docker images
+
+[rocker](https://hub.docker.com/u/rocker) All R related Docker images on Docker Hub by ropensci
+
+[rocker.org on GitHub](https://github.com/rocker-org) Code behind the images on Docker Hub
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
