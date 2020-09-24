@@ -128,7 +128,7 @@ So how are containers made?
 
 ---
 
-## What are containers?
+## What are `containers`?
 
 * Containers are isolated enviroments. 
 
@@ -149,7 +149,7 @@ Differences between a VM and a docker image:
 
 ---
 
-## Container example
+## `container` example
 
 Example: Linux has many flavors (distibutions) of OS:
 
@@ -166,7 +166,7 @@ Say you develop on one distribution there is no guarentee it will run on another
 
 ---
 
-## Docker images + Docker Hub
+## Docker `images` + Docker Hub
 
 This is where things can get a little confusing.
 --
@@ -244,7 +244,7 @@ Let's try this out.
 
 Thanks to ITD:
 
-* Max - addressed our need for Docker with the network team
+* Maksim Litvinskiy - addressed our need for Docker with the network team
 * Dave Hiltz - For installing and setting up Docker on the mars server
 * Dave Chevrier - For agreeing to be the lead on this project. He will be our point of contact
 
@@ -285,7 +285,15 @@ This `Dockerfile` is built into an image called `atlantis` with a tag of `6420` 
 
 ## Docker commands
 
-`docker run &lt;image name&gt;` - run container from an image
+`docker images` - lists images
+
+`docker pull &lt;image name&gt;` - pull image from Docker Hub but doesn't run it
+
+`docker run &lt;image name&gt;` - run container from an image. Will pull image if can't find locally
+
+`docker run -d &lt;image name&gt;` - runs container in background.
+
+`docker run &lt;containername&gt;:&lt;tag id&gt;` - run a container with a tag
 
 `docker ps` - lists all running containers
 
@@ -293,24 +301,12 @@ This `Dockerfile` is built into an image called `atlantis` with a tag of `6420` 
 
 `docker stop &lt;container ID&gt;` - stops container from running
 
-`docker rm`  - remove stopped or exited container
-
-`docker images` - lists images
+`docker rm &lt;container ID&gt;`  - remove stopped or exited container
 
 `docker rmi &lt;image name&gt;` - remove image . must reomove all running containers based off image first
 
-`docker pull &lt;image name&gt;` - pull image but doesn't run
-
-
 ctrl+C  - exits running container
 
-`docker run -d &lt;image name&gt;` - runs container in background. (docker ps to show list of running containers)
-
-`docker logs &lt;container ID&gt;`
-
-`docker attach &lt;containerID&gt;` - to reattach to container
-
-`docker run &lt;containername&gt;:&lt;tag id&gt;` - run a container with a tag
 
 ---
 
