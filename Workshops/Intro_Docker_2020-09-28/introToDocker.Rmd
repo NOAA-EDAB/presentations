@@ -138,7 +138,7 @@ knitr::include_graphics(file.path(image.dir,"build_run.jpg"))
 
 ---
 
-## What are containers?
+## What are `containers`?
 
 * Containers are isolated enviroments. 
 
@@ -161,7 +161,7 @@ knitr::include_graphics(file.path(image.dir,"what_are_containers.jpg"))
 
 ---
 
-## Container example
+## `container` example
 
 Example: Linux has many flavors (distibutions) of OS:
 
@@ -178,7 +178,7 @@ Say you develop on one distribution there is no guarentee it will run on another
 
 ---
 
-## Docker images + Docker Hub
+## Docker `images` + Docker Hub
 
 This is where things can get a little confusing.
 --
@@ -299,7 +299,15 @@ This `Dockerfile` is built into an image called `atlantis` with a tag of `6420` 
 
 ## Docker commands
 
-`docker run <image name>` - run container from an image
+`docker images` - lists images
+
+`docker pull <image name>` - pull image from Docker Hub but doesn't run it
+
+`docker run <image name>` - run container from an image. Will pull image if can't find locally
+
+`docker run -d <image name>` - runs container in background.
+
+`docker run <containername>:<tag id>` - run a container with a tag
 
 `docker ps` - lists all running containers
 
@@ -307,24 +315,12 @@ This `Dockerfile` is built into an image called `atlantis` with a tag of `6420` 
 
 `docker stop <container ID>` - stops container from running
 
-`docker rm`  - remove stopped or exited container
-
-`docker images` - lists images
+`docker rm <container ID>`  - remove stopped or exited container
 
 `docker rmi <image name>` - remove image . must reomove all running containers based off image first
 
-`docker pull <image name>` - pull image but doesn't run
-
-
 ctrl+C  - exits running container
 
-`docker run -d <image name>` - runs container in background. (docker ps to show list of running containers)
-
-`docker logs <container ID>`
-
-`docker attach <containerID>` - to reattach to container
-
-`docker run <containername>:<tag id>` - run a container with a tag
 
 ---
 
