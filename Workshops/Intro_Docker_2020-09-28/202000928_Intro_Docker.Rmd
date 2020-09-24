@@ -21,7 +21,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 options(htmltools.dir.version = FALSE)
-image.dir <- "images"
+image.dir <- "EDAB_images"
 r.dir <- here::here("R")
 ```
 
@@ -81,7 +81,7 @@ From freecodecamp.org:
 * New terminology to learn]
 .pull-right[
 ```{r psb, out.width = "70%", fig.align = "left",echo=FALSE}
-knitr::include_graphics(file.path(image.dir,"build_ship_run.png"))
+knitr::include_graphics(file.path(image.dir,"docker_build_ship_run.png"))
 ```
 
 ]
@@ -132,7 +132,7 @@ So how are containers made?
 * The container will run the same on any computer regardless of the OS. All that a user requires is to have Docker installed. 
 
 ```{r br, fig.align = "center",echo=FALSE}
-knitr::include_graphics(file.path(image.dir,"build_run.jpg"))
+knitr::include_graphics(file.path(image.dir,"docker_build_run.jpg"))
 ```
 
 
@@ -155,7 +155,7 @@ Differences between a VM and a docker image:
 * Only application and it’s runtime specific dependencies are packaged (Containerization).
 
 ```{r cont, out.width="50%", fig.align = "center",echo=FALSE}
-knitr::include_graphics(file.path(image.dir,"what_are_containers.jpg"))
+knitr::include_graphics(file.path(image.dir,"docker_what_are_containers.jpg"))
 ```
 
 
