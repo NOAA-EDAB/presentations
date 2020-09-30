@@ -68,47 +68,138 @@ See also Vanessa's earlier paper evaluating diet data interactions with multispe
 ---
 ## Multispecies catch at age: *seeking catchy name* 
 
+Species interactions: 
+- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)
+
+MSVPA predation equation
+
+Depends on per capita consumption parameter and predator/prey weight ratio
+
+Also sensitive to "other food"
+
+
+[FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
+
 ---
 ## Multispecies catch at length: Hydra
+
+Species interactions: 
+- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)
+
+But:
+- Covariates on growth, maturity, recruitment possible; intended for environmental variables
+- So could hack in prey-dependent growth but making it dynamic is difficult
+
+Same MSVPA predation equation as MSCAA (but length based), same dependencies and caveats
+
+*Model code and helper functions accessible on GitHub*
+.pull-left[
+length-based multispecies models:
+* [hydra-sim](https://github.com/NOAA-EDAB/hydra_sim)
+* [hydra-est](https://github.com/NOAA-EDAB/hydra_est)
+* [LeMANS](https://github.com/NOAA-EDAB/LeMANS)
+* [hydradata](https://github.com/NOAA-EDAB/hydradata)
+
+multispecies fisheries data: [mscatch](https://github.com/NOAA-EDAB/mscatch)
+
+]  
+
+---
+## Hydra: details and current uses
+.pull-left[
+*2018 CIE for Ecosystem Based Fishery Management Strategy* 
+* [EBFM strategy review](https://www.nefsc.noaa.gov/program_review/)
+* Multispecies model simulations
+&lt;img src="EDAB_images/EBFM HCR.png" width="75%" /&gt;
+
+]
+.pull-right[
+![hydrascenarios](EDAB_images/xradarScenario41-50yrs.png)
+]
 
 ---
 ## Multispecies production: Kraken
 
+Species interactions: 
+- Predation: Top down 
+- Prey dependence: sort of
+- Competition: affects?
+
+Equation
+
+
+[Kraken](https://github.com/NOAA-EDAB/Kraken) 
+
+[FIT: MSSPM](https://nmfs-ecosystem-tools.github.io/MSSPM/)
+
 ---
-## Food web: Rpath
+## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
+
+Species interactions:
+- Full predator-prey feedback: Predator consumption leads to prey mortality and predator growth
+- Static and dynamic model components; dynamic model with MSE capability
+.pull-left[
+Static model: 
+For each group, `\(i\)`, specify: 
+
+   Biomass `\(B\)` [or Ecotrophic Efficiency `\(EE\)` ]  
+   Population growth rate `\(\frac{P}{B}\)`  
+   Consumption rate `\(\frac{Q}{B}\)`  
+   Diet composition `\(DC\)`  
+   Fishery catch `\(C\)`  
+   Biomass accumulation `\(BA\)`  
+   Im/emigration `\(IM\)` and `\(EM\)`  
+   
+Solving for `\(EE\)` [or `\(B\)` ] for each group:
+
+`$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$`
+]
+.pull-right[
 
 
+]
+???
+[Rpath](https://github.com/NOAA-EDAB/Rpath) 
+  - static and dynamic food web model framework in R, MSE capability
+  - collaboration with Alaska Center
+---
+
+## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
+
+.pull-left-70[
+Dynamic model:
+
+`$$\frac{dB_i}{dt} = \left(1 - A_i - U_i \right) \sum_{j} Q \left(B_i, B_j \right) -  \sum_{j} Q \left( B_j, B_i \right) - M0_iB_i  - C_m B_i$$`
+Consumption: 
+
+`$$Q \left( B_i, B_j \right) = Q_{ij}^* \Bigg( \frac{V_{ij} Ypred_j}{V_{ij} - 1 + \left( 1 - S_{ij} \right) Ypred_j + S_{i} \sum_k \left( \alpha_{kj} Ypred_k \right)} \Bigg) \times \\\Bigg( \frac{D_{ij} Yprey_i^{\theta_{ij}}}{D_{ij} - 1 + \big( \left( 1 - H_{ij} \right) Yprey_i + H_{i} \sum_k \left( \beta_{ik} Yprey_k \right) \big)^{\theta_{ij}}} \Bigg)$$`
+
+]
+
+.pull-right-30[
+
+]
+  
 ---
 background-image: url("EDAB_images/OMdesign.png")
 background-size: 750px
 background-position: right
 
-## MICE for MSE: Linked models matching stakeholder-identified objectives
+## MICE for MSE: Linked models
+
 .pull-left-30[
-The Dream:&lt;sup&gt;1&lt;/sup&gt;
-Convert the effects of control rules on 4 user groups to dollars:
-.contrib[
-1. Users of landed herring (Demand)
-    - Lobster industry, aquariums
-1. Herring harvesters (Supply)
-1. Direct users of herring in the ocean (not people)
-    - Terns and Whales
-    -  Striped Bass, Dogfish
-1. Indirect users of herring in the ocean (people, Derived Demand)
-    - Bird- and whale-watchers
-    - Recreational and Commercial Fishing
+*Develop a harvest control rule considering herring's role as prey*
+
+Species interactions:
+- Bottom up only: Predators with herring dependent dynamics
+- NO predator feedback to herring
+- Alternative Herring operating models with high and low M
+
+(Also, done in ~ 6 months)
+
 ]
-The Reality
-.contrib[
-- 8 herring operating models linked to simple predator and economic models, developed in parallel
-- limited range of predator response
-- limited economic effects, directed fishery only
-]
-([Deroba, Gaichas, Lee, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))
-]
-.footnote[
-&lt;sup&gt;1&lt;/sup&gt; Credit: [Min-Yang Lee](https://s3.amazonaws.com/nefmc.org/13.Economic-Models_Lee.pdf)
-]
+.pull-right-70[]
+
 ---
 background-image: url("EDAB_images/herrtopreds.png")
 background-size: 640px
@@ -127,66 +218,6 @@ Time constraints forced:
 ]
 ]
 
----
-## Managing tradeoffs under uncertainty: What control rules give us 90% of everything we want?
-
-- Tern productivity at 1.0 or above more than 90% of the time
-- Herring biomass more than 90% of SSBmsy
-- Fishery yield more than 90% of MSY
-&amp;nbsp;
-- AND fishery closures (F=0) less than 1% of the time (plot on right).
-
-.pull-left[
-&lt;img src="20201008_FIT_MSmods_Gaichas_files/figure-html/unnamed-chunk-2-1.png" width="504" /&gt;
-]
-
-.pull-right[
-&lt;img src="20201008_FIT_MSmods_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="504" /&gt;
-]
-
----
-## Lessons: 
-.pull-left-30[
-Complex food web, generalist predators
-- Herring is one of several important prey
-- Assess multiple prey together for stronger effects on predator productivity
-- Tern/Tuna/Groundfish/Mammal productivity also affected by predators, weather, and other uncertain factors
-- Still showed which herring control rules were poor
-- Managers selected a harvest control rule considering a wide range of factors!
-]
-.pull-right-70[
-![NEUSfw](EDAB_images/LinkNEUSfoodweb.png)
-]
-
----
-background-image: url("EDAB_images/climatescenarioarrow.png")
-background-size: 700px
-background-position: right
-## Conclusions: robust harvest control rules in a changing environment
-
-- Herring MSE peer review said next time:
-    - Consider non-stationarity in herring parameters
-    - Mis-specify reference points
-    - Consider climate change
-    - Include assessment model
-    - Include full food web, lots more economic info
-    
-- NOAA Fisheries MSE support
-    - Dedicated analyst in each region
-    - Climate related MSEs
-        - California coastal pelagics
-        - Pacific hake
-        - Pacific sablefish
-        - New England groundfish
-    
-- NOAA Climate and EBFM Roadmaps
-    - Scenario planning
-    - MSE
-    
-
-.footnote[
-Source: [Salmon Climate Scenario Planning Pilot Report](https://www.greateratlantic.fisheries.noaa.gov/policyseries/index.php/GARPS/article/view/15/14)
-]
 
 ---
 ## References
@@ -266,23 +297,6 @@ Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
 
 ---
 
----
-background-image: url("EDAB_images/allcomponents.png")
-background-size: 800px
-background-position: right bottom
-
-## Herring MSE background: Are any harvest control rules good for both fisheries and predators?
-.pull-left-30[
-**Harvest control rules** are:
-- plans for changing fishing based on stock status
-- pre-determined
-    
-*"Which harvest control rules best consider herring's role as forage?"*
-- DESIGN a harvest control rule (HCR):
-    - balancing fishing benefits and ecological services
-    - addressing diverse stakeholder interests
-- TRANSPARENTLY within management time frame!
-]
 
 ---
 ## Herring MSE details: Operating models and uncertainties 
@@ -324,6 +338,23 @@ Three HCR types were rejected at the second stakeholder meeting for poor fishery
 .pull-right[.right[
 &lt;img src="20201008_FIT_MSmods_Gaichas_files/figure-html/ZZZ-1.png" width="80%" /&gt;
 ]]
+
+---
+## Managing tradeoffs under uncertainty: What control rules give us 90% of everything we want?
+
+- Tern productivity at 1.0 or above more than 90% of the time
+- Herring biomass more than 90% of SSBmsy
+- Fishery yield more than 90% of MSY
+&amp;nbsp;
+- AND fishery closures (F=0) less than 1% of the time (plot on right).
+
+.pull-left[
+&lt;img src="20201008_FIT_MSmods_Gaichas_files/figure-html/unnamed-chunk-2-1.png" width="504" /&gt;
+]
+
+.pull-right[
+&lt;img src="20201008_FIT_MSmods_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="504" /&gt;
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
