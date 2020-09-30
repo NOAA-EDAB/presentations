@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Multispecies models</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas, Andy Beet, and Kiersten Curti   Northeast Fisheries Science Center" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# Multispecies models
+## NOAA FIT Workshop, 8 October 2020
+### Sarah Gaichas, Andy Beet, and Kiersten Curti <br /> Northeast Fisheries Science Center
+
+---
+
+class: top, left
+
+
+
+
+
+
+
+background-image: url("EDAB_images/ecomods.png")
+background-size: contain 
+
+???
+Alt text: Fisheries models range from single and multispecies models to full ecosystem models
+---
+## Why multispecies?
+*Ignore predation at your peril: results from multispecies state-space modeling  *  &lt;a name=cite-trijoulet_performance_2020&gt;&lt;/a&gt;([Trijoulet, Fay, and Miller, 2020](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.13515))
+&gt;Ignoring trophic interactions that occur in marine ecosystems induces bias in stock assessment outputs and results in low model predictive ability with subsequently biased reference points.  
+
+.pull-left-40[
+![VanessaPaper](EDAB_images/VanessaPaper.png)
+
+EM1: multispecies state space 
+
+EM2: multispecies, no process error 
+
+EM3: single sp. state space, constant M 
+
+EM4: single sp. state space, age-varying M 
+
+*note difference in scale of bias for single species!*
+
+]
+.pull-right-60[
+![modcomp](EDAB_images/jpe13515-fig-0004-m.jpg)
+]
+
+???
+This is an important paper both because it demonstrates the importance of addressing strong species interactions, and it shows that measures of fit do not indicate good model predictive performance. Ignoring process error caused bias, but much smaller than ignoring species interactions.
+See also Vanessa's earlier paper evaluating diet data interactions with multispecies models
+---
+## Today
+
+- Multispecies catch at age &lt;a name=cite-curti_evaluating_2013&gt;&lt;/a&gt;([Curti, Collie, Legault, and Link, 2013](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229))  
+- Multispecies catch at length &lt;a name=cite-gaichas_combining_2017&gt;&lt;/a&gt;([Gaichas, Fogarty, Fay, Gamble, Lucey, and Smith, 2017](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)) 
+- Multispecies production &lt;a name=cite-gamble_analyzing_2009&gt;&lt;/a&gt;([Gamble and Link, 2009](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998))  
+- Food web &lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Lucey, Gaichas, and Aydin, 2020](http://www.sciencedirect.com/science/article/pii/S0304380020301290))  
+- MICE for MSE &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, Gaichas, Lee, Feeney, Boelke, and Irwin, 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))  
+
+---
+## Multispecies catch at age: *seeking catchy name* 
+
+---
+## Multispecies catch at length: Hydra
+
+---
+## Multispecies production: Kraken
+
+---
+## Food web: Rpath
+
+
+---
+background-image: url("EDAB_images/OMdesign.png")
+background-size: 750px
+background-position: right
+
+## MICE for MSE: Linked models matching stakeholder-identified objectives
+.pull-left-30[
+The Dream:&lt;sup&gt;1&lt;/sup&gt;
+Convert the effects of control rules on 4 user groups to dollars:
+.contrib[
+1. Users of landed herring (Demand)
+    - Lobster industry, aquariums
+1. Herring harvesters (Supply)
+1. Direct users of herring in the ocean (not people)
+    - Terns and Whales
+    -  Striped Bass, Dogfish
+1. Indirect users of herring in the ocean (people, Derived Demand)
+    - Bird- and whale-watchers
+    - Recreational and Commercial Fishing
+]
+The Reality
+.contrib[
+- 8 herring operating models linked to simple predator and economic models, developed in parallel
+- limited range of predator response
+- limited economic effects, directed fishery only
+]
+([Deroba, Gaichas, Lee, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))
+]
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt; Credit: [Min-Yang Lee](https://s3.amazonaws.com/nefmc.org/13.Economic-Models_Lee.pdf)
+]
+---
+background-image: url("EDAB_images/herrtopreds.png")
+background-size: 640px
+background-position: left
+
+## Predators: deterministic population models and herring-predator links
+.pull-left[]
+.pull-right[.right[
+![:img ternpoptrend, 100%](EDAB_images/ternpoptrend.png)
+]
+.table[
+Time constraints forced:
+- selection of predators with previous modeling and readily available data
+- selection of single strongest herring-predator relationship
+- models ignoring high variance in prey-predator relationships 
+]
+]
+
+---
+## Managing tradeoffs under uncertainty: What control rules give us 90% of everything we want?
+
+- Tern productivity at 1.0 or above more than 90% of the time
+- Herring biomass more than 90% of SSBmsy
+- Fishery yield more than 90% of MSY
+&amp;nbsp;
+- AND fishery closures (F=0) less than 1% of the time (plot on right).
+
+.pull-left[
+&lt;img src="20201008_FIT_MSmods_Gaichas_files/figure-html/unnamed-chunk-2-1.png" width="504" /&gt;
+]
+
+.pull-right[
+&lt;img src="20201008_FIT_MSmods_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="504" /&gt;
+]
+
+---
+## Lessons: 
+.pull-left-30[
+Complex food web, generalist predators
+- Herring is one of several important prey
+- Assess multiple prey together for stronger effects on predator productivity
+- Tern/Tuna/Groundfish/Mammal productivity also affected by predators, weather, and other uncertain factors
+- Still showed which herring control rules were poor
+- Managers selected a harvest control rule considering a wide range of factors!
+]
+.pull-right-70[
+![NEUSfw](EDAB_images/LinkNEUSfoodweb.png)
+]
+
+---
+background-image: url("EDAB_images/climatescenarioarrow.png")
+background-size: 700px
+background-position: right
+## Conclusions: robust harvest control rules in a changing environment
+
+- Herring MSE peer review said next time:
+    - Consider non-stationarity in herring parameters
+    - Mis-specify reference points
+    - Consider climate change
+    - Include assessment model
+    - Include full food web, lots more economic info
+    
+- NOAA Fisheries MSE support
+    - Dedicated analyst in each region
+    - Climate related MSEs
+        - California coastal pelagics
+        - Pacific hake
+        - Pacific sablefish
+        - New England groundfish
+    
+- NOAA Climate and EBFM Roadmaps
+    - Scenario planning
+    - MSE
+    
+
+.footnote[
+Source: [Salmon Climate Scenario Planning Pilot Report](https://www.greateratlantic.fisheries.noaa.gov/policyseries/index.php/GARPS/article/view/15/14)
+]
+
+---
+## References
+.contrib[
+&lt;a name=bib-curti_evaluating_2013&gt;&lt;/a&gt;[Curti, K. L, J. S. Collie, C. M.
+Legault, et al.](#cite-curti_evaluating_2013) (2013). "Evaluating the
+performance of a multispecies statistical catch-at-age model". En. In:
+_Canadian Journal of Fisheries and Aquatic Sciences_ 70.3, pp. 470-484.
+ISSN: 0706-652X, 1205-7533. DOI:
+[10.1139/cjfas-2012-0229](https://doi.org/10.1139%2Fcjfas-2012-0229).
+URL:
+[http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229)
+(visited on Jan. 13, 2016).
+
+&lt;a name=bib-deroba_dream_2018&gt;&lt;/a&gt;[Deroba, J. J, S. K. Gaichas, M. Lee,
+et al.](#cite-deroba_dream_2018) (2018). "The dream and the reality:
+meeting decision-making time frames while incorporating ecosystem and
+economic models into management strategy evaluation". In: _Canadian
+Journal of Fisheries and Aquatic Sciences_. ISSN: 0706-652X. DOI:
+[10.1139/cjfas-2018-0128](https://doi.org/10.1139%2Fcjfas-2018-0128).
+URL:
+[http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128)
+(visited on Jul. 20, 2018).
+
+&lt;a name=bib-gaichas_combining_2017&gt;&lt;/a&gt;[Gaichas, S. K, M. Fogarty, G.
+Fay, et al.](#cite-gaichas_combining_2017) (2017). "Combining stock,
+multispecies, and ecosystem level fishery objectives within an
+operational management procedure: simulations to start the
+conversation". In: _ICES Journal of Marine Science_ 74.2, pp. 552-565.
+ISSN: 1054-3139. DOI:
+[10.1093/icesjms/fsw119](https://doi.org/10.1093%2Ficesjms%2Ffsw119).
+URL:
+[https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)
+(visited on Oct. 18, 2017).
+
+&lt;a name=bib-gamble_analyzing_2009&gt;&lt;/a&gt;[Gamble, R. J. and J. S.
+Link](#cite-gamble_analyzing_2009) (2009). "Analyzing the tradeoffs
+among ecological and fishing effects on an example fish community: A
+multispecies (fisheries) production model". En. In: _Ecological
+Modelling_ 220.19, pp. 2570-2582. ISSN: 03043800. DOI:
+[10.1016/j.ecolmodel.2009.06.022](https://doi.org/10.1016%2Fj.ecolmodel.2009.06.022).
+URL:
+[http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998)
+(visited on Oct. 13, 2016).
+
+&lt;a name=bib-lucey_conducting_2020&gt;&lt;/a&gt;[Lucey, S. M, S. K. Gaichas, and
+K. Y. Aydin](#cite-lucey_conducting_2020) (2020). "Conducting
+reproducible ecosystem modeling using the open source mass balance
+model Rpath". En. In: _Ecological Modelling_ 427, p. 109057. ISSN:
+0304-3800. DOI:
+[10.1016/j.ecolmodel.2020.109057](https://doi.org/10.1016%2Fj.ecolmodel.2020.109057).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0304380020301290](http://www.sciencedirect.com/science/article/pii/S0304380020301290)
+(visited on Apr. 27, 2020).
+
+&lt;a name=bib-trijoulet_performance_2020&gt;&lt;/a&gt;[Trijoulet, V, G. Fay, and
+T. J. Miller](#cite-trijoulet_performance_2020) (2020). "Performance of
+a state-space multispecies model: What are the consequences of ignoring
+predation and process errors in stock assessments?" En. In: _Journal of
+Applied Ecology_ n/a.n/a. ISSN: 1365-2664. DOI:
+[10.1111/1365-2664.13515](https://doi.org/10.1111%2F1365-2664.13515).
+URL:
+[https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.13515](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.13515)
+(visited on Dec. 04, 2019).
+]
+
+## Additional resources
+
+* [New England herring MSE peer review](https://s3.amazonaws.com/nefmc.org/Final-Peer-review-report.pdf)
+
+* [New England herring MSE debrief](https://s3.amazonaws.com/nefmc.org/3_Herring-MSE-debrief-final-report.pdf)
+
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
+]
+
+---
+
+---
+background-image: url("EDAB_images/allcomponents.png")
+background-size: 800px
+background-position: right bottom
+
+## Herring MSE background: Are any harvest control rules good for both fisheries and predators?
+.pull-left-30[
+**Harvest control rules** are:
+- plans for changing fishing based on stock status
+- pre-determined
+    
+*"Which harvest control rules best consider herring's role as forage?"*
+- DESIGN a harvest control rule (HCR):
+    - balancing fishing benefits and ecological services
+    - addressing diverse stakeholder interests
+- TRANSPARENTLY within management time frame!
+]
+
+---
+## Herring MSE details: Operating models and uncertainties 
+.pull-left-70[
+.table[
+
+|Operating Model Name|Herring Productivity|Herring Growth|Assessment Bias|
+|:---------------------|:---------------------|:-----------------|:-----------------|
+| LowFastBiased        | Low: high M, low h (0.44)  | 1976-1985: fast | 60% overestimate |
+| LowSlowBiased        | Low: high M, low h (0.44)  | 2005-2014: slow | 60% overestimate |
+| LowFastCorrect       | Low: high M, low h (0.44)  | 1976-1985: fast | None             |
+| LowSlowCorrect       | Low: high M, low h (0.44)  | 2005-2014: slow | None             |
+| HighFastBiased       | High: low M, high h (0.79) | 1976-1985: fast | 60% overestimate |
+| HighSlowBiased       | High: low M, high h (0.79) | 2005-2014: slow | 60% overestimate |
+| HighFastCorrect      | High: low M, high h (0.79) | 1976-1985: fast | None             |
+| HighSlowCorrect      | High: low M, high h (0.79) | 2005-2014: slow | None             |
+] 
+&amp;nbsp;
+&amp;nbsp;
+
+] 
+.pull-right-30[
+([Deroba, Gaichas, Lee, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))
+]
+
+Implementation error was included as year-specific lognormal random deviations: 
+`\(F_{a,y}=\bar{F}_yS_ae^{\varepsilon_{\theta,y}-\frac{\sigma_\theta^2}{2}} \;\;\;  \varepsilon_{\theta} \sim N(0,\sigma_\theta^2)\)`
+
+Assessment error was modeled similarly, with first-order autocorrelation and an optional bias term `\(\rho\)`:
+`\(\widehat{N}_{a,y}=[N_{a,y}(\rho+1)]e^{\varepsilon_{\phi,y}-\frac{\sigma_\phi^2}{2}}\;\;\;\; \varepsilon_{\phi,y}=\vartheta\varepsilon_{\phi,y-1}+\sqrt{1-\vartheta^2}\tau_y \;\;\;\;  \tau \sim N(0,\sigma_\phi^2)\)` 
+
+---
+background-image: url("EDAB_images/herrtopreds_results.png")
+background-size: 650px
+background-position: left center
+## Herring MSE details: Results summary
+Three HCR types were rejected at the second stakeholder meeting for poor fishery and predator performance.
+.pull-left[]
+.pull-right[.right[
+&lt;img src="20201008_FIT_MSmods_Gaichas_files/figure-html/ZZZ-1.png" width="80%" /&gt;
+]]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
