@@ -57,52 +57,58 @@ EM4: single sp. state space, age-varying M
 This is an important paper both because it demonstrates the importance of addressing strong species interactions, and it shows that measures of fit do not indicate good model predictive performance. Ignoring process error caused bias, but much smaller than ignoring species interactions.
 See also Vanessa's earlier paper evaluating diet data interactions with multispecies models
 ---
-## Today
+# Today: species interactions in different models
 
-- Multispecies catch at age &lt;a name=cite-curti_evaluating_2013&gt;&lt;/a&gt;([Curti, Collie, Legault, and Link, 2013](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229))  
-- Multispecies catch at length &lt;a name=cite-gaichas_combining_2017&gt;&lt;/a&gt;([Gaichas, Fogarty, Fay, Gamble, Lucey, and Smith, 2017](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)) 
-- Multispecies production &lt;a name=cite-gamble_analyzing_2009&gt;&lt;/a&gt;([Gamble and Link, 2009](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998))  
-- Food web &lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Lucey, Gaichas, and Aydin, 2020](http://www.sciencedirect.com/science/article/pii/S0304380020301290))  
-- MICE for MSE &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, Gaichas, Lee, Feeney, Boelke, and Irwin, 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))  
+## Multispecies catch at age &lt;a name=cite-curti_evaluating_2013&gt;&lt;/a&gt;([Curti, Collie, Legault, and Link, 2013](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229))  
+## Multispecies catch at length &lt;a name=cite-gaichas_combining_2017&gt;&lt;/a&gt;([Gaichas, Fogarty, Fay, Gamble, Lucey, and Smith, 2017](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)) 
+## Multispecies production &lt;a name=cite-gamble_analyzing_2009&gt;&lt;/a&gt;([Gamble and Link, 2009](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998))  
+## Food web &lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Lucey, Gaichas, and Aydin, 2020](http://www.sciencedirect.com/science/article/pii/S0304380020301290))  
+## MICE for MSE &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, Gaichas, Lee, Feeney, Boelke, and Irwin, 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))  
 
 ---
-## Multispecies catch at age: *seeking catchy name* 
+## Multispecies catch at age estimation model: *seeking catchy name* 
 
 Species interactions: 
 - Predation: Top down only (predators increase M of prey, predators grow regardless of prey)
 
-MSVPA predation equation
+*Based on standard age structured stock assessment population dynamics equations*
+- First, split `\(M\)` for species `\(i\)` age `\(a\)` into components: `$$M_{i,a,t} = M1_i + M2_{i,a,t}$$`  
+- Calculate `\(M2\)` with MSVPA predation equation, which applies a predator consumption:biomass ratio to the suitable prey biomass for that predator. 
+- Suitability is a function of predator size preference (based on an age-specific predator:prey weight ratio) and prey vulnerability (everything about the prey that isn't size related). 
+- Also sensitive to "other food"
 
-Depends on per capita consumption parameter and predator/prey weight ratio
-
-Also sensitive to "other food"
-
-
+`$$M2_{i,a,t} = \frac{1}{N_{i,a,t}W_{i,a,t}}\sum_j \sum_b CB_{j,b} B_{j,b,t} \frac{\phi_{i,a,j,b,t}}{\phi_{j,b,t}}$$`
 [FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
 
 ---
-## Multispecies catch at length: Hydra
+## Multispecies catch at length simulation model: [Hydra](https://github.com/NOAA-EDAB/hydra_sim)
 
 Species interactions: 
-- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)
+- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)  
 
+*Same MSVPA predation equation as MSCAA (but length based), same dependencies and caveats*
+
+Suitability, `\(\rho\)`, of prey species `\(m\)` size `\(n\)` for a given predator species `\(i\)` size `\(j\)` a function of size preference, `\(\vartheta\)`, and vulnerability, `\(\lambda\)` {0,1}. 
+Food intake `\(I\)` for each predator-at-size is temperature dependent consumption rate times mean stomach content weight. 
+
+`$$M2_{m,n,t} = \sum_i \sum_j I_{i,j,t} N_{i,j,t} \frac{\rho_{i,j,m,n}}{\sum_a \sum_b \rho_{i,j,a,b} W_{a,b} N_{a,b} + \Omega}$$`
+
+*Associated GitHub repositories*
+* [hydra-sim Wiki](https://github.com/NOAA-EDAB/hydra_sim/wiki)
+* [hydradata](https://github.com/NOAA-EDAB/hydradata)
+* [LeMANS](https://github.com/NOAA-EDAB/LeMANS)
+* [hydra-est](https://github.com/NOAA-EDAB/hydra_est)
+
+multispecies fisheries data: [mscatch](https://github.com/NOAA-EDAB/mscatch)
+
+???
 But:
 - Covariates on growth, maturity, recruitment possible; intended for environmental variables
 - So could hack in prey-dependent growth but making it dynamic is difficult
 
-Same MSVPA predation equation as MSCAA (but length based), same dependencies and caveats
+We specify 'preferred' predator-prey weight ratio (log scale) `\(\Psi_j\)` and variance in predator size preference `\(\sigma_j\)` to compare with the actual predator-prey weight ratio `\((w_n / w_j)\)`. 
 
-*Model code and helper functions accessible on GitHub*
-.pull-left[
-length-based multispecies models:
-* [hydra-sim](https://github.com/NOAA-EDAB/hydra_sim)
-* [hydra-est](https://github.com/NOAA-EDAB/hydra_est)
-* [LeMANS](https://github.com/NOAA-EDAB/LeMANS)
-* [hydradata](https://github.com/NOAA-EDAB/hydradata)
-
-multispecies fisheries data: [mscatch](https://github.com/NOAA-EDAB/mscatch)
-
-]  
+`$$\vartheta_{n,j} = \frac{1}{(w_n / w_j)\sigma_j \sqrt{2\pi}} e^{-\frac{[log_e(w_n / w_j) - \Psi_j]}{2\sigma_j^2}}$$`
 
 ---
 ## Hydra: details and current uses
