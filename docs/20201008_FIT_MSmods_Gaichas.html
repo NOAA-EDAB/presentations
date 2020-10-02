@@ -70,7 +70,7 @@ background-position: right bottom
 ## MICE for MSE &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, Gaichas, Lee, Feeney, Boelke, and Irwin, 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))  
 
 ---
-## Multispecies catch at age estimation model: *seeking catchy name* 
+## Multispecies catch at age estimation model: *seeking catchy name* [FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
 
 Species interactions: 
 - Predation: Top down only (predators increase M of prey, predators grow regardless of prey)
@@ -82,7 +82,6 @@ Species interactions:
 - Also sensitive to "other food"
 
 `$$M2_{i,a,t} = \frac{1}{N_{i,a,t}W_{i,a,t}}\sum_j \sum_b CB_{j,b} B_{j,b,t} \frac{\phi_{i,a,j,b,t}}{\phi_{j,b,t}}$$`
-[FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
 
 ---
 ## Multispecies catch at length simulation model: [Hydra](https://github.com/NOAA-EDAB/hydra_sim)
@@ -92,8 +91,8 @@ Species interactions:
 
 *Same MSVPA predation equation as MSCAA (but length based), same dependencies and caveats*
 
-Suitability, `\(\rho\)`, of prey species `\(m\)` size `\(n\)` for a given predator species `\(i\)` size `\(j\)` a function of size preference, `\(\vartheta\)`, and vulnerability, `\(\lambda\)` {0,1}. 
-Food intake `\(I\)` for each predator-at-size is temperature dependent consumption rate times mean stomach content weight. 
+- Suitability, `\(\rho\)`, of prey species `\(m\)` size `\(n\)` for a given predator species `\(i\)` size `\(j\)` a function of size preference and vulnerability  {0,1}. 
+- Food intake `\(I\)` for each predator-at-size is temperature dependent consumption rate times mean stomach content weight. 
 
 `$$M2_{m,n,t} = \sum_i \sum_j I_{i,j,t} N_{i,j,t} \frac{\rho_{i,j,m,n}}{\sum_a \sum_b \rho_{i,j,a,b} W_{a,b} N_{a,b} + \Omega}$$`
 
@@ -101,58 +100,52 @@ Food intake `\(I\)` for each predator-at-size is temperature dependent consumpti
 * [hydra-sim Wiki](https://github.com/NOAA-EDAB/hydra_sim/wiki)
 * [hydradata](https://github.com/NOAA-EDAB/hydradata)
 * [LeMANS](https://github.com/NOAA-EDAB/LeMANS)
-* [hydra-est](https://github.com/NOAA-EDAB/hydra_est)
-
-multispecies fisheries data: [mscatch](https://github.com/NOAA-EDAB/mscatch)
+* [hydra-est](https://github.com/NOAA-EDAB/hydra_est) Work in progress to convert to estimation model
+* [mscatch](https://github.com/NOAA-EDAB/mscatch) Multispecies fishery catch data
 
 ???
 But:
 - Covariates on growth, maturity, recruitment possible; intended for environmental variables
 - So could hack in prey-dependent growth but making it dynamic is difficult
 
-We specify 'preferred' predator-prey weight ratio (log scale) `\(\Psi_j\)` and variance in predator size preference `\(\sigma_j\)` to compare with the actual predator-prey weight ratio `\((w_n / w_j)\)`. 
+We specify 'preferred' predator-prey weight ratio (log scale) `\(\Psi_j\)` and variance in predator size preference `\(\sigma_j\)` to compare with the actual predator-prey weight ratio `\((w_n / w_j)\)` to get the size preference `\(\vartheta\)`. 
 
 `$$\vartheta_{n,j} = \frac{1}{(w_n / w_j)\sigma_j \sqrt{2\pi}} e^{-\frac{[log_e(w_n / w_j) - \Psi_j]}{2\sigma_j^2}}$$`
 
----
-## Hydra: details and current uses
-.pull-left[
-*2018 CIE for Ecosystem Based Fishery Management Strategy* 
-* [EBFM strategy review](https://www.nefsc.noaa.gov/program_review/)
-* Multispecies model simulations
-&lt;img src="EDAB_images/EBFM HCR.png" width="75%" /&gt;
-
-]
-.pull-right[
-![hydrascenarios](EDAB_images/xradarScenario41-50yrs.png)
-]
+Food intake is `$$I_{i,j,t} = 24 [\delta_j e^{\omega_i T}]\bar{C}_{i,j,k,t}$$`
 
 ---
-## Multispecies production: Kraken
+## Multispecies production simulation: [Kraken](https://github.com/NOAA-EDAB/Kraken) and estimation [FIT: MSSPM](https://nmfs-ecosystem-tools.github.io/MSSPM/)
 
 Species interactions: 
-- Predation: Top down 
-- Prey dependence: sort of
-- Competition: affects?
+- Predation: Top down (predation decreases population growth of prey, predator population growth independent of prey)
+- Competition: Within and between species groups
 
-Equation
+*Based on Shaefer and Lotka-Volterra population dynamics and predation equations*
+- Species have intrinsic population growth rate `\(r_i\)`
+- Carrying capacity `\(K\)` at the species group level `\(K_G\)` and at the full system level `\(K_\sigma\)`
+- Within group competition `\(\beta_{ig}\)` and between group competition `\(\beta_{iG}\)` slow population growth near `\(K\)`
+- Predation `\(\alpha_{ip}\)` and harvest `\(H_i\)` reduce population
 
+`$$\frac{dN_i}{dt} = r_iN_i \bigg(1 - \frac{N_i}{K_G} - \frac{\sum_g \beta_{ig}N_g}{K_G} - \frac{\sum_G \beta_{iG}N_G}{K_\sigma - K_G} \bigg) - N_i\sum_p\alpha_{ip}N_p - H_iN_i$$`
 
-[Kraken](https://github.com/NOAA-EDAB/Kraken) 
-
-[FIT: MSSPM](https://nmfs-ecosystem-tools.github.io/MSSPM/)
 
 ---
+background-image: url("EDAB_images/toyfw.png")
+background-size: 340px
+background-position: right
+
 ## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
 
 Species interactions:
-- Full predator-prey feedback: Predator consumption leads to prey mortality and predator growth
+- Full predator-prey: Consumption leads to prey mortality and predator growth
 - Static and dynamic model components; dynamic model with MSE capability
-.pull-left[
+
+.pull-left[ 
 Static model: 
 For each group, `\(i\)`, specify: 
 
-   Biomass `\(B\)` [or Ecotrophic Efficiency `\(EE\)` ]  
+   Biomass `\(B\)` (or Ecotrophic Efficiency `\(EE\)`)  
    Population growth rate `\(\frac{P}{B}\)`  
    Consumption rate `\(\frac{Q}{B}\)`  
    Diet composition `\(DC\)`  
@@ -160,29 +153,32 @@ For each group, `\(i\)`, specify:
    Biomass accumulation `\(BA\)`  
    Im/emigration `\(IM\)` and `\(EM\)`  
    
-Solving for `\(EE\)` [or `\(B\)` ] for each group:
+Solving for `\(EE\)` (or `\(B\)`) for each group:
 
-`$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$`
+`$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$`  
 ]
+
 .pull-right[
 
-
 ]
+
 ???
-[Rpath](https://github.com/NOAA-EDAB/Rpath) 
-  - static and dynamic food web model framework in R, MSE capability
-  - collaboration with Alaska Center
+Predation mortality `$$M2_{ij} = \frac{DC_{ij}QB_jB_j}{B_i}$$`
+
+Fishing mortality `$$F_i = \frac{\sum_{g = 1}^n C_{ig,land} + C_{ig,disc}}{B_i}$$`
+
+Other mortality `$$M0_i = PB_i \left( 1 - EE_i \right)$$`
 ---
 
 ## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
 
-.pull-left-70[
+.pull-left-70[ 
 Dynamic model:
 
 `$$\frac{dB_i}{dt} = \left(1 - A_i - U_i \right) \sum_{j} Q \left(B_i, B_j \right) -  \sum_{j} Q \left( B_j, B_i \right) - M0_iB_i  - C_m B_i$$`
 Consumption: 
 
-`$$Q \left( B_i, B_j \right) = Q_{ij}^* \Bigg( \frac{V_{ij} Ypred_j}{V_{ij} - 1 + \left( 1 - S_{ij} \right) Ypred_j + S_{i} \sum_k \left( \alpha_{kj} Ypred_k \right)} \Bigg) \times \\\Bigg( \frac{D_{ij} Yprey_i^{\theta_{ij}}}{D_{ij} - 1 + \big( \left( 1 - H_{ij} \right) Yprey_i + H_{i} \sum_k \left( \beta_{ik} Yprey_k \right) \big)^{\theta_{ij}}} \Bigg)$$`
+`$$Q \left( B_i, B_j \right) = Q_{ij}^* \Bigg( \frac{V_{ij} Ypred_j}{V_{ij} - 1 + \left( 1 - S_{ij} \right) Ypred_j + S_{i} \sum_k \left( \alpha_{kj} Ypred_k \right)} \Bigg) \times \\\Bigg( \frac{D_{ij} Yprey_i^{\theta_{ij}}}{D_{ij} - 1 + \big( \left( 1 - H_{ij} \right) Yprey_i + H_{i} \sum_k \left( \beta_{ik} Yprey_k \right) \big)^{\theta_{ij}}} \Bigg)$$`  
 
 ]
 
@@ -307,6 +303,18 @@ Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
 
 ---
 
+---
+## Hydra: details and current uses
+.pull-left[
+*2018 CIE for Ecosystem Based Fishery Management Strategy* 
+* [EBFM strategy review](https://www.nefsc.noaa.gov/program_review/)
+* Multispecies model simulations
+&lt;img src="EDAB_images/EBFM HCR.png" width="75%" /&gt;
+
+]
+.pull-right[
+![hydrascenarios](EDAB_images/xradarScenario41-50yrs.png)
+]
 
 ---
 ## Herring MSE details: Operating models and uncertainties 
