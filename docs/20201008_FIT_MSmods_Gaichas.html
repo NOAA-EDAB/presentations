@@ -84,11 +84,21 @@ Species interactions:
 `$$M2_{i,a,t} = \frac{1}{N_{i,a,t}W_{i,a,t}}\sum_j \sum_b CB_{j,b} B_{j,b,t} \frac{\phi_{i,a,j,b,t}}{\phi_{j,b,t}}$$`
 ???
 
-Size preference is
+Size preference is `$$g_{i,a,j,b,t}=\exp\bigg[\frac{-1}{2\sigma_{i,j}^2}\bigg(\ln\frac{W_{j,b,t}}{W_{i,a,t}}-\eta_{i,j}\bigg)^2\bigg]$$`
 
-Other food folded into suitability 
+Suitability, `\(\nu\)` of prey `\(i\)` to predator `\(j\)`:
+`$$\nu_{i,a,j,b,t}=\rho_{i,j}g_{i,a,j,b,t}$$`
 
+Scaled suitability: 
+`$$\tilde\nu_{i,a,j,b,t}=\frac{\nu_{i,a,j,b,t}}{\sum_i \sum_a \nu_{i,a,j,b,t} + \nu_{other}}$$`
 
+Suitable biomass of prey `\(i\)` to predator `\(j\)`:
+`$$\phi_{i,a,j,b,t}=\tilde\nu_{i,a,j,b,t}B_{i,a,t}$$`
+
+Available biomass of other food, where `\(B_other\)` is system biomass minus modeled species biomass:
+`$$\phi_{other}=\tilde\nu_{other}B_{other,t}$$`
+Total available prey biomass:
+`$$\phi_{j,b,t}=\phi_{other} + \sum_i \sum_a \phi_{i,a,j,b,t}$$`
 ---
 ## Multispecies catch at length simulation model: [Hydra](https://github.com/NOAA-EDAB/hydra_sim)
 
