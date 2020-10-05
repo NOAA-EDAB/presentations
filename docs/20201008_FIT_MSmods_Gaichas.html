@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Multispecies models</title>
+    <title>Species Interactions in Multispecies models</title>
     <meta charset="utf-8" />
     <meta name="author" content="Sarah Gaichas, Andy Beet, Kiersten Curti, Robert Gamble, and Sean Lucey   Northeast Fisheries Science Center" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
@@ -11,8 +11,8 @@
     <textarea id="source">
 class: right, middle, my-title, title-slide
 
-# Multispecies models
-## NOAA FIT Workshop, 8 October 2020
+# Species Interactions in Multispecies models
+## NEFSC examples <br />NOAA FIT Workshop, 8 October 2020
 ### Sarah Gaichas, Andy Beet, Kiersten Curti, Robert Gamble, and Sean Lucey <br /> Northeast Fisheries Science Center
 
 ---
@@ -31,7 +31,7 @@ background-size: contain
 ???
 Alt text: Fisheries models range from single and multispecies models to full ecosystem models
 ---
-## Why multispecies?
+## Why include species interactions?
 *Ignore predation at your peril: results from multispecies state-space modeling  *  &lt;a name=cite-trijoulet_performance_2020&gt;&lt;/a&gt;([Trijoulet, Fay, and Miller, 2020](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.13515))
 &gt;Ignoring trophic interactions that occur in marine ecosystems induces bias in stock assessment outputs and results in low model predictive ability with subsequently biased reference points.  
 
@@ -61,7 +61,7 @@ background-image: url("EDAB_images/modeling_study.png")
 background-size: 380px
 background-position: right bottom
 
-# Today: species interactions in different models
+# Today: compare and contrast species interactions
 
 ## Multispecies catch at age &lt;a name=cite-curti_evaluating_2013&gt;&lt;/a&gt;([Curti, Collie, Legault, and Link, 2013](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229))  
 ## Multispecies catch at length &lt;a name=cite-gaichas_combining_2017&gt;&lt;/a&gt;([Gaichas, Fogarty, Fay, Gamble, Lucey, and Smith, 2017](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)) 
@@ -238,7 +238,7 @@ background-image: url("EDAB_images/herrtopreds.png")
 background-size: 640px
 background-position: left
 
-## Predators: deterministic delay-difference population models with herring-predator links
+## MICE for MSE Predators: deterministic delay-difference population models with herring-predator links
 .pull-left[]
 .pull-right[.right[
 ![:img ternpoptrend, 100%](EDAB_images/ternpoptrend.png)
@@ -281,12 +281,14 @@ background-position: right bottom
 
 ## Epilogue: Herring MSE food web modeling supplemental results
 
-- Tradeoffs between forage groups and mixed impacts to predators apparent when multiple species and full feedbacks can be included
+- Tradeoffs between forage groups and mixed impacts to predators apparent when multiple species and full predator prey interaction feedbacks can be included
 
 .pull-left-30[
 - Rpath Ecosense functions evaluate parameter uncertainty within a scenario
 
 - Now we have MSE closed loop possibilities in Rpath!
+
+- Can implement HCRs with predator prey interactions (Lucey et al. in revision)
 
 ]
 .pull-right-70[

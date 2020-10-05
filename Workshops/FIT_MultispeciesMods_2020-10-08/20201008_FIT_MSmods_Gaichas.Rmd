@@ -1,6 +1,6 @@
 ---
-title: "Multispecies models"
-subtitle: "NOAA FIT Workshop, 8 October 2020"
+title: "Species Interactions in Multispecies models"
+subtitle: "NEFSC examples <br />NOAA FIT Workshop, 8 October 2020"
 author: "Sarah Gaichas, Andy Beet, Kiersten Curti, Robert Gamble, and Sean Lucey <br /> Northeast Fisheries Science Center"
 output:
   xaringan::moon_reader:
@@ -105,7 +105,7 @@ background-size: contain
 ???
 Alt text: Fisheries models range from single and multispecies models to full ecosystem models
 ---
-## Why multispecies?
+## Why include species interactions?
 *Ignore predation at your peril: results from multispecies state-space modeling  *  `r Cite(myBib, "trijoulet_performance_2020")`
 >Ignoring trophic interactions that occur in marine ecosystems induces bias in stock assessment outputs and results in low model predictive ability with subsequently biased reference points.  
 
@@ -135,7 +135,7 @@ background-image: url("EDAB_images/modeling_study.png")
 background-size: 380px
 background-position: right bottom
 
-# Today: species interactions in different models
+# Today: compare and contrast species interactions
 
 ## Multispecies catch at age `r Cite(myBib, "curti_evaluating_2013")`  
 ## Multispecies catch at length `r Cite(myBib, "gaichas_combining_2017")` 
@@ -312,7 +312,7 @@ background-image: url("EDAB_images/herrtopreds.png")
 background-size: 640px
 background-position: left
 
-## Predators: deterministic delay-difference population models with herring-predator links
+## MICE for MSE Predators: deterministic delay-difference population models with herring-predator links
 .pull-left[]
 .pull-right[.right[
 ![:img ternpoptrend, 100%](EDAB_images/ternpoptrend.png)
@@ -355,12 +355,14 @@ background-position: right bottom
 
 ## Epilogue: Herring MSE food web modeling supplemental results
 
-- Tradeoffs between forage groups and mixed impacts to predators apparent when multiple species and full feedbacks can be included
+- Tradeoffs between forage groups and mixed impacts to predators apparent when multiple species and full predator prey interaction feedbacks can be included
 
 .pull-left-30[
 - Rpath Ecosense functions evaluate parameter uncertainty within a scenario
 
 - Now we have MSE closed loop possibilities in Rpath!
+
+- Can implement HCRs with predator prey interactions (Lucey et al. in revision)
 
 ]
 .pull-right-70[
