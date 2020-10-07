@@ -221,7 +221,7 @@ Species interactions:
 $$\frac{dN_i}{dt} = r_iN_i \bigg(1 - \frac{N_i}{K_G} - \frac{\sum_g \beta_{ig}N_g}{K_G} - \frac{\sum_G \beta_{iG}N_G}{K_\sigma - K_G} \bigg) - N_i\sum_p\alpha_{ip}N_p - H_iN_i$$
 
 - Simpler version used in most applications has interaction coefficient $\alpha$ that incorporates carrying capacity
-$$B_{i,t+1}=B_{i,t} + r_iB_{i,t} + B_{i,t}\sum_j\alpha_{i,j}B_{j,t} - C_{i,t}$$
+$$B_{i,t+1}=B_{i,t} + r_iB_{i,t} - B_{i,t}\sum_j\alpha_{i,j}B_{j,t} - C_{i,t}$$
 ???
 Interaction coefficients $\alpha_{i,j}$ can be positive or negative
 
