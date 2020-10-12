@@ -1,7 +1,7 @@
 ---
 title: "Multispecies models: US update"
 subtitle: "WGSAM, 12 October 2020"
-author: "Sarah Gaichas, Andy Beet, Sean Lucey"
+author: "Sarah Gaichas, Sean Lucey, Andy Beet"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -47,205 +47,75 @@ myBib <- ReadBib("./DeepUncertaintyMSE.bib", check = FALSE)
 
 ```
 
+## Climate projections with multispecies model `r Cite(myBib, "holsman_ecosystem-based_2020")`
 
-background-image: url("EDAB_images/modeling_study.png")
-background-size: 380px
-background-position: right bottom
+.center[
+![:img Holsman et al Fig 1 Model Coupling Framework, 75%](EDAB_images/Holsmanetal2020_fig1.png)
+]
 
-# US update for 2020
+???
+a Regional downscaling where three global climate models driven by the IPCC AR5 CMIP5 emission scenarios determine boundary conditions of the coupled ROMSNPZ high resolution oceanographic model for the Bering Sea, AK. b Biological downscaling of annual indices from the ROMSNPZ were used to drive thermal parameters in the CEATTLE model (i.e., weight-at-age and predation) as well as climate-enhanced spawner-recruitment relationships. c Annual harvest recommendations (ABC) from the assessment model which were translated into annual catch using the ATTACH social-economic model of the effect of EBFM policies on harvest
+---
+## Ecosystem harvest control rules `r Cite(myBib, "kaplan_ecosystem-based_2020")`
 
-## Climate - multispecies model projections `r Cite(myBib, "holsman ..._2020")`
-## Ecosystem harveyst control rules `r Cite(myBib, "kaplan ..._2020")`
-## Food web model and MSE `r Cite(myBib, "lucey_conducting_2020")`  
+![:img Kaplan et al Fig 2 Top left panel: Threshold harvest control rule and constant fishing mortality rate at FMSY. Top right panel: Threshold harvest control rule that decreases F when the forage base declines. Bottom panel: Threshold harvest control rule that increases F when the forage base declines, 90%](EDAB_images/fmars-07-00652-g002.jpg)
 
 ---
-## Climate projections with multispecies model
+## [Rpath](https://github.com/NOAA-EDAB/Rpath) `r Cite(myBib, "lucey_conducting_2020")` with MSE capability (Lucey et al. accepted)
 
-
----
-## Ecosystem harvest control rules
-
-
-
----
-background-image: url("EDAB_images/Balance_concept.png")
-background-size: 700px
-background-position: right
-
-## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
-.pull-left[ 
-Species interactions:
-- Full predator-prey: Consumption leads to prey mortality and predator growth
-- Static and dynamic model components
-
-Static model: 
-For each group, $i$, specify: 
-
-   Biomass $B$ (or Ecotrophic Efficiency $EE$)  
-   Population growth rate $\frac{P}{B}$  
-   Consumption rate $\frac{Q}{B}$  
-   Diet composition $DC$  
-   Fishery catch $C$  
-   Biomass accumulation $BA$  
-   Im/emigration $IM$ and $EM$  
-   
-Solving for $EE$ (or $B$) for each group:
-
-$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$  
+.pull-left[
+![](EDAB_images/MSE_Rpath_Page_05.png)
 ]
 
 .pull-right[
-
+![](EDAB_images/MSE_Rpath_Page_14.png)
 ]
 
-???
-Predation mortality $$M2_{ij} = \frac{DC_{ij}QB_jB_j}{B_i}$$
-
-Fishing mortality $$F_i = \frac{\sum_{g = 1}^n (C_{ig,land} + C_{ig,disc})}{B_i}$$
-
-Other mortality $$M0_i = PB_i \left( 1 - EE_i \right)$$
+Lucey, Sean M., Kerim Y. Aydin, Sarah K. Gaichas, Steven X. Cadrin, Gavin Fay, Michael J. Fogarty, and Andre Punt. Accepted. Evaluating fishery management strategies using an ecosystem model as an operating model. Fisheries Research. 
 ---
-background-image: url("EDAB_images/ForagingArena.png")
-background-size: 380px
-background-position: right
+## Ongoing EBFM modeling for New England
 
-## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
-
-.pull-left-70[ 
-Dynamic model (with MSE capability):
-
-$$\frac{dB_i}{dt} = \left(1 - A_i - U_i \right) \sum_{j} Q \left(B_i, B_j \right) -  \sum_{j} Q \left( B_j, B_i \right) - M0_iB_i  - C_m B_i$$
-Consumption: 
-
-$$Q \left( B_i, B_j \right) = Q_{ij}^* \Bigg( \frac{V_{ij} Ypred_j}{V_{ij} - 1 + \left( 1 - S_{ij} \right) Ypred_j + S_{i} \sum_k \left( \alpha_{kj} Ypred_k \right)} \Bigg) \times \\\Bigg( \frac{D_{ij} Yprey_i^{\theta_{ij}}}{D_{ij} - 1 + \big( \left( 1 - H_{ij} \right) Yprey_i + H_{i} \sum_k \left( \beta_{ik} Yprey_k \right) \big)^{\theta_{ij}}} \Bigg)$$  
-Where $V_{ij}$ is vulnerability, $D_{ij}$ is “handling time” accounting for predator saturation, and $Y$ is relative biomass which may be modified by a foraging time multiplier $Ftime$,
-
-$$Y[pred|prey]_j =  Ftime_j \frac {B_j}{B_j^*}$$
-
-]
-
-.pull-right-30[
-
-]
-???
-The parameters $S_{ij}$ and $H_{ij}$ are flags that control whether the predator density dependence $S_{ij}$ or prey density dependence $H_{ij}$ are affected solely by the biomass levels of the particular predator and prey, or whether a suite of other species’ biomasses in similar roles impact the relationship. 
-
-For the default value for $S_{ij}$ of 0 (off), the predator density dependence is only a function of that predator biomass and likewise for prey with the default value of 0 for $H_{ij}$.  
-
-Values greater than 0 allow for a density-dependent effects to be affected by a weighted sum across all species for predators, and for prey.  The weights $\alpha_{kj}$ and $\beta_{kj}$ are normalized such that the sum for each functional response (i.e. $\sum_k\alpha_{kj}$ and $\sum_k\beta_{kj}$ for the functional response between predator *j* and prey *i*) sum to 1.  The weights are calculated from the density-independent search rates for each predator/prey pair, which is equal to $2Q_{ij}^*V_{ij} / (V_{ij} - 1)B_i^*B_j^*$.  
-
-
----
-background-image: url("EDAB_images/herrup10pann.png")
-background-size: 830px
-background-position: right bottom
-
-## Epilogue: Herring MSE food web modeling supplemental results
-
-- Tradeoffs between forage groups and mixed impacts to predators apparent when multiple species and full predator prey interaction feedbacks can be included
-
-.pull-left-30[
-- Rpath Ecosense functions evaluate parameter uncertainty within a scenario
-
-- Now we have MSE closed loop possibilities in Rpath!
-
-- Can implement HCRs with predator prey interactions (Lucey et al. accepted)
-
-]
-.pull-right-70[
-
-]
----
-## References
-.contrib[
-```{r refs, echo=FALSE, results="asis"}
-PrintBibliography(myBib)
-```
-]
-
-## Additional resources
-
-
-.footnote[
-Slides available at https://noaa-edab.github.io/presentations  
-Contact: <Sarah.Gaichas@noaa.gov>
-]
-
----
----
-## Multispecies catch at age estimation model: *seeking catchy name* [FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
-
-Species interactions: 
-- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)
-
-*Based on standard age structured stock assessment population dynamics equations*
-- First, split $M$ for species $i$ age $a$ into components: $$M_{i,a,t} = M1_i + M2_{i,a,t}$$  
-- Calculate $M2$ with MSVPA predation equation, which applies a predator consumption:biomass ratio to the suitable prey biomass for that predator. 
-- Suitability is a function of predator size preference (based on an age-specific predator:prey weight ratio) and prey vulnerability (everything about the prey that isn't size related). 
-- Also sensitive to "other food"
-
-$$M2_{i,a,t} = \frac{1}{N_{i,a,t}W_{i,a,t}}\sum_j \sum_b CB_{j,b} B_{j,b,t} \frac{\phi_{i,a,j,b,t}}{\phi_{j,b,t}}$$
-???
-
-Size preference is $$g_{i,a,j,b,t}=\exp\bigg[\frac{-1}{2\sigma_{i,j}^2}\bigg(\ln\frac{W_{j,b,t}}{W_{i,a,t}}-\eta_{i,j}\bigg)^2\bigg]$$
-
-Suitability, $\nu$ of prey $i$ to predator $j$:
-$$\nu_{i,a,j,b,t}=\rho_{i,j}g_{i,a,j,b,t}$$
-
-Scaled suitability: 
-$$\tilde\nu_{i,a,j,b,t}=\frac{\nu_{i,a,j,b,t}}{\sum_i \sum_a \nu_{i,a,j,b,t} + \nu_{other}}$$
-
-Suitable biomass of prey $i$ to predator $j$:
-$$\phi_{i,a,j,b,t}=\tilde\nu_{i,a,j,b,t}B_{i,a,t}$$
-
-Available biomass of other food, where $B_other$ is system biomass minus modeled species biomass:
-$$\phi_{other}=\tilde\nu_{other}B_{other,t}$$
-Total available prey biomass:
-$$\phi_{j,b,t}=\phi_{other} + \sum_i \sum_a \phi_{i,a,j,b,t}$$
----
-## Multispecies catch at length simulation model: [Hydra](https://github.com/NOAA-EDAB/hydra_sim)
-
-Species interactions: 
-- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)  
-
-*Same MSVPA predation equation as MSCAA (but length based), same dependencies and caveats*
-
-- Suitability, $\rho$, of prey species $m$ size $n$ for a given predator species $i$ size $j$ a function of size preference and vulnerability  {0,1}. 
-- Food intake $I$ for each predator-at-size is temperature dependent consumption rate times mean stomach content weight. 
-
-$$M2_{m,n,t} = \sum_i \sum_j I_{i,j,t} N_{i,j,t} \frac{\rho_{i,j,m,n}}{\sum_a \sum_b \rho_{i,j,a,b} W_{a,b} N_{a,b} + \Omega}$$
+.pull-left-40[
+![](EDAB_images/foodweb.png)
 
 *Associated GitHub repositories*
 * [hydra-sim Wiki](https://github.com/NOAA-EDAB/hydra_sim/wiki)
 * [hydradata](https://github.com/NOAA-EDAB/hydradata)
 * [LeMANS](https://github.com/NOAA-EDAB/LeMANS)
-* [hydra-est](https://github.com/NOAA-EDAB/hydra_est) Work in progress to convert to estimation model
 * [mscatch](https://github.com/NOAA-EDAB/mscatch) Multispecies fishery catch data
 
+]
+.pull-right-60[
+![](EDAB_images/xradarScenario41-50yrs.png)
+]
 ???
-But:
-- Covariates on growth, maturity, recruitment possible; intended for environmental variables
-- So could hack in prey-dependent growth but making it dynamic is difficult
+Scenario 1: Fixed exploitation rate. Exploitation rates = 0.05-0.4 in increments of 0.05. Floor assessed at the complex level. If the floor*  of any complex is breached any further catch of this complex is considered a discard.
 
-We specify 'preferred' predator-prey weight ratio (log scale) $\Psi_j$ and variance in predator size preference $\sigma_j$ to compare with the actual predator-prey weight ratio $(w_n / w_j)$ to get the size preference $\vartheta$. 
+Scenario 2: The same as Scenario 1 with one addition. Floors assessed as the species level.  If the floor*  of any species is breached any further catch of this species is considered a discard.
 
-$$\vartheta_{n,j} = \frac{1}{(w_n / w_j)\sigma_j \sqrt{2\pi}} e^{-\frac{[log_e(w_n / w_j) - \Psi_j]}{2\sigma_j^2}}$$
+Scenario 3: Variable exploitation rate. Starting exploitation rates = 0.05-0.4 in increments of 0.05. Each species complex is associated with a single fishing fleet. Species are still caught by multiple fleets, but when a species/complex becomes depleted, management actions only occur on the associated fleet. Each species complex is associated with the fleet that is considered the largest exploiter of the complex. The fishing fleets impact (exploitation) on the complex is adjusted through time5 (as depicted in HCR figure) when the complex biomass falls below 40% unfished biomass.
 
-Food intake is $$I_{i,j,t} = 24 [\delta_j e^{\omega_i T}]\bar{C}_{i,j,k,t}$$
-
-
+Scenario 4: The same as Scenario 3 with one addition. The fishing fleets impact on the complex is adjusted through time (as depicted in Figure 4) as the biomass of an individual species within the complex falls below 40% unfished biomass (50% for Elasmobranchs). This can be thought of as additional species protection
 ---
-## Hydra: details and current uses
-.pull-left[
-*2018 CIE for Ecosystem Based Fishery Management Strategy* 
-* [EBFM strategy review](https://www.nefsc.noaa.gov/program_review/)
-* Multispecies model simulations
-```{r hydrahcr, out.width="75%"}
-knitr::include_graphics("EDAB_images/EBFM HCR.png")
+## References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
 ```
 
+
+## Additional resources
+.pull-left[
+[Alaska multispecies and ecosystem models](https://www.integratedecosystemassessment.noaa.gov/regions/alaska/ebs-integrated-modeling)
+
+[California Current Future Seas MSEs](https://www.integratedecosystemassessment.noaa.gov/regions/california-current/cc-projects-future-seas)
 ]
 .pull-right[
-![hydrascenarios](EDAB_images/xradarScenario41-50yrs.png)
-]
+[Mid-Atlantic ecosystem approach](https://www.mafmc.org/eafm)
 
+[New England example fishery ecosystem plan](https://s3.amazonaws.com/nefmc.org/3_Draft-example-Fishery-Ecosystem-Plan-eFEP_190830_113712.pdf)
+]
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: <Sarah.Gaichas@noaa.gov>
+]
