@@ -33,6 +33,9 @@ library(tidyr)
 library(here)
 library(kableExtra)
 library(ecodata)
+library(readxl); library(data.table)
+library(DT)
+library(widgetframe)
 
 #Region identifiers
 epu <- "Mid-Atlantic Bight"
@@ -69,8 +72,10 @@ library(RefManageR)
 BibOptions(check.entries = FALSE,
            bib.style = "authoryear",
            cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
            style = "markdown")
-myBib <- ReadBib("./DeepUncertaintyMSE.bib", check = FALSE)
+myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 
 #,
 #           hyperlink = FALSE,
@@ -83,28 +88,26 @@ myBib <- ReadBib("./DeepUncertaintyMSE.bib", check = FALSE)
 
 .pull-left[
 
-- Ecosystem indicators linked to management objectives `r Cite(myBib, "deroba_dream_2018")`
+- Ecosystem indicators linked to management objectives `r Cite(myBib, "depiper_operationalizing_2017")`
     + Contextual information
     + Report evolving since 2016
     + Fishery-relevant subset of full Ecosystem Status Reprorts
 
-- Open science emphasis `r Cite(myBib, "deroba_dream_2018")`
+- Open science emphasis `r Cite(myBib, "bastille_improving_2020")`
 
-- Used within Mid-Atlantic Fishery Management Council's Ecosystem Process
-    + Decisions where SOE report could help
-    + Synthesis themes and management connections
-    + Suggestions for 2021+
+- Used within Mid-Atlantic Fishery Management Council's Ecosystem Process `r Cite(myBib, "muffley_there_2020")`
+ 
 ]
 
 .pull-right[
 *The IEA Loop<sup>1</sup>*
 ![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
-]
+
 
 .footnote[
 [1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
 ]
-
+]
 ???
 Meeting Purpose:
 ● Deliver emerging science and improve cross-jurisdictional collaboration to improve
@@ -124,44 +127,29 @@ membership audience.
 ○ Technical slides focusing on project methodology
 ■ Feel free to still include method slides (at the end of your presentation) to
 have as an available resource during group discussion
----
-## 2020 Summary 2 pager with visualizations, ~28 pages of narrative
-
-.pull-left[
-.center[
-![:img State of the Ecosystem page 1 summary bullets, 80%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft.png)
-]
-]
-
-.pull-right[
-.center[
-![:img State of the Ecosystem page 2 infographic, 85%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft2.png)
-]
-]
-
 
 ---
 background-image: url("EDAB_images/Framework.png")
 background-size: 540px
 background-position: right
 
-## Mid-Atlantic Council Ecosystem Approach `r Cite(myBib, "deroba_dream_2018")`
+## Mid-Atlantic Fishery Management Council Ecosystem Approach `r Cite(myBib, "muffley_there_2020")`
 .pull-left-60[
 2016 EAFM Policy Guidance document; revised 2019<sup>1</sup> 
 
-2016 MAFMC EAFM framework `r Cite(myBib, "deroba_dream_2018")`
+2016 MAFMC EAFM framework `r Cite(myBib, "gaichas_framework_2016")`
 
-2017 Inital EAFM risk assessment completed; revised and published 2018 `r Cite(myBib, "deroba_dream_2018")`
+2017 Inital EAFM risk assessment completed; revised and published 2018 `r Cite(myBib, "gaichas_implementing_2018")`
 
 2018 Council selected summer flounder as high risk fishery
 
-2019 EAFM conceptual model linking summer flounder drivers and risks
+2019 EAFM conceptual model linking summer flounder drivers and risks (DePiper et al., in review)
 
 2020 Council starting EAFM MSE for summer flounder recreational discards
 
 SOE indicators to be used for annual risk assessment updates
 
-But can the SSC get more from the SOE and risk assessment?
+*But can managers get more from the SOE and risk assessment?*
 ]
 .pull-right-40[
 .footnote[
@@ -195,25 +183,23 @@ background-position: right bottom
 ???
 In 2016, we began taking steps to address these common critiques of the ESR model
 
-
-
 ---
 ## State of the Ecosystem: Structure
 .pull-left[
 
-### 2020 Report
+## 2020 Report
 1. Summary 2 pager
 1. Human dimensions
 1. Protected species
 1. Fish and invertebrates (managed and otherwise)
 1. Habitat quality and ecosystem productivity
 
-### 2021 Possibilities
+## 2021 Draft
 1. Summary 2 pager
     + Page 1 summary bullets
     + Page 2 synthesis themes
-1. Provisioning and cultural services indicators
-1. Supporting and regulating services indicators
+1. Performance against management objectives
+1. Risks
 
 ]
 
@@ -254,6 +240,63 @@ mng_obj %>%
 
 ```
 ]
+
+---
+## [2020 Report](https://doi.org/10.25923/1f8j-d564): Summary 2 pager with visualizations, 28 pages of narrative/plots, 1 page orientation
+
+.pull-left[
+.center[
+![:img State of the Ecosystem page 1 summary bullets, 85%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft.png)
+]
+]
+
+.pull-right[
+.center[
+![:img State of the Ecosystem page 2 infographic, 85%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft2.png)
+]
+]
+
+---
+## 2020 Mid-Atlantic SOE Take Home Messages
+.center[
+![:img Fishing icon made by EDAB, 15%](EDAB_images/5_FISHING.png) &nbsp; &nbsp; &nbsp; ![:img Fishing industry icon made by EDAB, 15%](EDAB_images/6_INDUSTRY.png) &nbsp; &nbsp; &nbsp; ![:img Other human uses icon made by EDAB, 15%](EDAB_images/8_OTHERHUMANUSES.png)
+]
+
+* The fraction of ecosystem energy removed by fisheries is declining (commercial landings declined while primary production remained steady) 
+
+* Commercial fishing engagement has declined for medium-highly engaged communities, possibly linked to continued declines in revenue 
+
+* Recreational retained catch was lowest observed in 2018, and effort has been declining along with fleet effort diversity  
+
+* Recreational catch diversity has been maintained by SAFMC/ASMFC species  
+
+---
+## 2020 Mid-Atlantic SOE Take Home Messages
+
+.center[
+![:img Other fish icon made by EDAB, 15%](EDAB_images/14_OTHERFISH.png) &nbsp; &nbsp; &nbsp; ![:img Forage fish icon made by EDAB, 15%](EDAB_images/13_FORAGEFISH.png) &nbsp; &nbsp; &nbsp; ![:img Invertebrate icon made by EDAB, 15%](EDAB_images/15_INVERTEBRATES.png)
+]
+
+* Habitat models identified species most likely to occur in wind lease areas; habitat has improved in wind lease areas for these MAFMC species 
+
+* While aggregate fish biomass is stable over time, shifts to the northeast and into deeper water continue 
+
+* Forage fish energy content varies by season and year; herring energy content may be half what it was in the 1980s-90s 
+
+---
+## 2020 Mid-Atlantic SOE Take Home Messages
+
+.center[
+![:img Hydrography icon made by EDAB, 15%](EDAB_images/1_HYDROGRAPHY.png) &nbsp; &nbsp; &nbsp; ![:img Phytoplankon icon made by EDAB, 15%](EDAB_images/9_PHYTOPLANKTON.png) &nbsp; &nbsp; &nbsp; ![:img Climate icon made by EDAB, 15%](EDAB_images/3_CLIMATE.png)
+]
+
+* Heavy rains put unprecedented fresh water and nutrients into Chesapeake Bay in 2018-2019, increasing oyster mortality and spreading invasive catfish
+
+* Gulf stream instability produces more warm core rings with higher likelihood of warm salty water and associated species on the shelf
+
+* Marine surface water heatwaves are increasing in duration and intensity, bottom temperatures and the cold pool are warming
+
+* Warmer waters increase nutrient recycling and summer primary production
 
 ---
 ## Proposed ecosystem synthesis themes for 2021
@@ -313,20 +356,6 @@ knitr::include_graphics(file.path("EDAB_images/ches_bay_salinity_map3.png"))
 - Invasive freshwater species (blue catfish) spread
 ]
 
----
-## Synthesis analysis refinements for SSC and Council decisions? Example
-
-.pull-left[
-![:img Diagram with possible relationships between oceanographic and habitat indicators, food web indicators, fish condition factor, fish population indicators, fishery economics indicators, and fishery objectives such as seafood production](EDAB_images/SOEconditionfactorlinks_color.png)
-]
-
-.pull-right[
-![:img Same diagram as on the left, but with only phytoplankton, temperature, stomach fullness, condition, biomass, and stock productivity highlighted ](EDAB_images/SOEconditionfactorlinks_keycolor_price.png)
-]
-
-Conceptual model links indicators in the report with management objectives.
-
-A subset of objectives are currently under investigation using GAMs and hedonic price functions. We plan to extend this work with structural equation modeling and or other methods in 2020. 
 
 ---
 ## Current management use: EAFM risk assessment
@@ -443,13 +472,115 @@ risk.sppsector %>%
 
 ]
 
+---
+## Future: Better integration of estuarine-nearshore habitats with offshore for managers
+
+* Mid-Atlantic Council very interested in estuarine conditions and habitat supporting managed stocks
+* Chesapeake Bay has excellent indicators and synthesis
+* Prioritize next steps for identifying high risk combinations: Key species, habitats, and drivers
+* 2021 SOE introduces Habitat Climate Vulerability Assessment results linked to species
+
+```{r midHabTable}
+#Read in Mid-Atlantic table
+
+src <- "https://github.com/NOAA-EDAB/ecodata/blob/master/data-raw/habitat_vulnerability.xlsx?raw=true"
+lcl <- basename(src)
+download.file(url = src, destfile = lcl)
+
+mid <- as.data.table(readxl::read_xlsx(lcl, 
+                         sheet = 'Mid-Atlantic', skip = 1))
+
+#Identify individual species climate vulnerability
+vhigh.vul <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Very high', Species])
+high.vul  <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'High', Species])
+mod.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Moderate', Species])
+low.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Low', Species])
+
+#Grab habitat vulnerability 
+hab.vul <- unique(mid[, c('Habitat Name', 'Habitat Vulnerability Rank (HVCA)')])
+habitats <- hab.vul[, 'Habitat Name']
+hab.vul <- data.table('Habitat Vulnerability' = c(NA, NA, t(hab.vul[, 'Habitat Vulnerability Rank (HVCA)'])))
+
+#Rearrange table
+mid <- data.table::melt.data.table(mid, id.vars = c('Habitat Name', 'Species'),
+                                   measure.vars = c('Eggs/Larva', 'Juvenile/YOY',
+                                                    'Adult', 'Spawning Adult'),
+                                   variable.name = 'Stage', value.name = 'Dependence')
+mid[, Habitat := as.factor(mid$'Habitat Name')]
+mid <- data.table::dcast.data.table(mid, Species + Stage ~ Habitat,
+                                    value.var = 'Dependence')
+setcolorder(mid, c('Species', 'Stage', habitats$'Habitat Name'))
+
+#Add Habitat Vulnerbaility
+hab.table <- rbindlist(list(as.data.table(t(hab.vul)), mid), use.names = F)
+#Add names back in
+names(hab.table) <- names(mid)
+
+#from examples here https://rstudio.github.io/DT/010-style.html
+
+#color coding cells works
+#need to add column with species vulnerability and color code species by it but not show it, like #hideV6 example at link
+#if we show it we can sort by species vulnerability though... alphabetical doesnt work so use numbers to go lowest-highest
+#still need to color code headers
+hab.table <- hab.table %>%
+  mutate(spVul = #Color code species based on climate vul
+    # case_when(Species %in% low.vul ~ "low.vul",
+    #           Species %in% mod.vul ~ "mod.vul",
+    #           Species %in% high.vul ~ "high.vul",
+    #           Species %in% vhigh.vul ~ "vhigh.vul")
+    # )
+    case_when(Species %in% low.vul ~ 1,
+              Species %in% mod.vul ~ 2,
+              Species %in% high.vul ~ 3,
+              Species %in% vhigh.vul ~ 4)
+    )
+
+#colnames(hab.table)[c(3,4)] <- paste0('<span style="background-color:',c("red"),'">',colnames(hab.table)[c(3,4)],'</span>')
+
+dt <- datatable(hab.table, rownames = FALSE, 
+          extensions = c('Scroller', 'FixedColumns'), #add scrolling and fixed column
+          options = list(deferRender = TRUE,
+          scrollY = 300, scroller = TRUE,
+          dom = 't',scrollX = TRUE,fixedColumns = TRUE)
+          #, options = list(columnDefs = list(list(targets = 16, visible = FALSE)))
+  ) %>% 
+  formatStyle(
+    names(hab.table)[3:4],
+    backgroundColor = '#FF000080'
+  ) %>%
+  formatStyle(
+    names(hab.table)[5:10],
+    backgroundColor = '#FFA50080'
+  ) %>%
+  formatStyle(
+    names(hab.table)[11:15],
+    backgroundColor = '#FFFF0080'
+  ) %>%
+
+  formatStyle(#Color code base on dependence
+    'Species', "spVul",
+    backgroundColor = styleEqual(#c("low.vul", "mod.vul", "high.vul", "vhigh.vul"),
+                                 c(1,2,3,4),
+                                 c('lightgreen', 'yellow', 'orange', 'red')) #Color code base on dependence)
+    ) %>%
+    formatStyle(
+    names(hab.table)[2:15],
+    backgroundColor = styleEqual(c("Low", "Moderate", "High", "Very high"), 
+                                 c('lightgreen', 'yellow', 'orange', 'red'))  
+  )
+
+frameWidget(dt)
+```
+
 
 ---
 ## References
 
+.contrib[
 ```{r refs, echo=FALSE, results="asis"}
 PrintBibliography(myBib)
 ```
+]
 
 
 ## Additional resources
@@ -463,16 +594,19 @@ PrintBibliography(myBib)
   * [Lower trophic level indicators](http://noaa-edab.github.io/ecodata/LTL)
 ]
 .pull-right[
-[Mid-Atlantic ecosystem approach](https://www.mafmc.org/eafm)
+* [Mid-Atlantic ecosystem approach](https://www.mafmc.org/eafm)
 
-[New England example fishery ecosystem plan](https://s3.amazonaws.com/nefmc.org/3_Draft-example-Fishery-Ecosystem-Plan-eFEP_190830_113712.pdf)
+* [State of the Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+* [Draft indicator catalogue](https://noaa-edab.github.io/catalog/)
+
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: <Sarah.Gaichas@noaa.gov>
 ]
-.footnote[
-Slides available at https://noaa-edab.github.io/presentations  
-Contact: <Sarah.Gaichas@noaa.gov>
 ]
 
----
 ---
 ## Methods: Risk assessent indicators and ranking criteria, Commercial revenue example
 
@@ -587,3 +721,17 @@ ggplot(data = indicators)+
 
 ]
 
+---
+## Methods: Synthesis analysis refinements for SSC and Council decisions? Example
+
+.pull-left[
+![:img Diagram with possible relationships between oceanographic and habitat indicators, food web indicators, fish condition factor, fish population indicators, fishery economics indicators, and fishery objectives such as seafood production](EDAB_images/SOEconditionfactorlinks_color.png)
+]
+
+.pull-right[
+![:img Same diagram as on the left, but with only phytoplankton, temperature, stomach fullness, condition, biomass, and stock productivity highlighted ](EDAB_images/SOEconditionfactorlinks_keycolor_price.png)
+]
+
+Conceptual model links indicators in the report with management objectives.
+
+A subset of objectives are currently under investigation using GAMs and hedonic price functions. We plan to extend this work with structural equation modeling and or other methods in 2020. 
