@@ -512,7 +512,8 @@ mid <- data.table::dcast.data.table(mid, Species + Stage ~ Habitat,
 setcolorder(mid, c('Species', 'Stage', habitats$'Habitat Name'))
 
 #Add Habitat Vulnerbaility
-hab.table <- rbindlist(list(as.data.table(t(hab.vul)), mid), use.names = F)
+#hab.table <- rbindlist(list(as.data.table(t(hab.vul)), mid), use.names = F)
+hab.table <- mid
 #Add names back in
 names(hab.table) <- names(mid)
 
@@ -535,9 +536,11 @@ hab.table <- hab.table %>%
               Species %in% vhigh.vul ~ 4)
     )
 
-#colnames(hab.table)[c(3,4)] <- paste0('<span style="background-color:',c("red"),'">',colnames(hab.table)[c(3,4)],'</span>')
+colnames(hab.table)[c(3,4)] <- paste0('<span style="background-color:',c("red"),'">',colnames(hab.table)[c(3,4)],'</span>')
+colnames(hab.table)[c(5:10)] <- paste0('<span style="background-color:',c("orange"),'">',colnames(hab.table)[c(5:10)],'</span>')
+colnames(hab.table)[c(11:15)] <- paste0('<span style="background-color:',c("yellow"),'">',colnames(hab.table)[c(11:15)],'</span>')
 
-dt <- datatable(hab.table, rownames = FALSE, 
+dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
           extensions = c('Scroller', 'FixedColumns'), #add scrolling and fixed column
           options = list(deferRender = TRUE,
           scrollY = 300, scroller = TRUE,
