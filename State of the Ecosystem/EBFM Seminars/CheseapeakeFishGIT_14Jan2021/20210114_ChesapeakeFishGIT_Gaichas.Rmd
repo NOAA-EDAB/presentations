@@ -1,7 +1,7 @@
 ---
 title: "Mid-Atlantic State of the Ecosystem Report"
 subtitle: "Chesapeake Bay Program Goal Implementation Team Meeting<br /> 14 January 2021"
-author: "Sarah Gaichas<br /> Northeast Fisheries Science Center"
+author: "Sarah Gaichas<br /> Northeast Fisheries Science Center<br /> <br /> Many thanks to:<br /> Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Bruce Vogt,<br /> and all SOE contributors"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -567,7 +567,7 @@ dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
                                  c('lightgreen', 'yellow', 'orange', 'red')) #Color code base on dependence)
     ) %>%
     formatStyle(
-    names(hab.table)[2:15],
+    names(hab.table),
     backgroundColor = styleEqual(c("Low", "Moderate", "High", "Very high"), 
                                  c('lightgreen', 'yellow', 'orange', 'red'))  
   )
