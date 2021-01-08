@@ -339,7 +339,7 @@ ches_sal %>%
   theme_ts()
 ```
 
-High precipitation let to extreme low salinity event in spring 2019
+High precipitation led to extreme low salinity event in spring 2019
 
 ]
 
@@ -516,6 +516,7 @@ setcolorder(mid, c('Species', 'Stage', habitats$'Habitat Name'))
 hab.table <- mid
 #Add names back in
 names(hab.table) <- names(mid)
+hab.table <- hab.table %>% mutate_if(is.character, str_trim)
 
 #from examples here https://rstudio.github.io/DT/010-style.html
 
@@ -536,9 +537,9 @@ hab.table <- hab.table %>%
               Species %in% vhigh.vul ~ 4)
     )
 
-colnames(hab.table)[c(3,4)] <- paste0('<span style="background-color:',c("red"),'">',colnames(hab.table)[c(3,4)],'</span>')
-colnames(hab.table)[c(5:10)] <- paste0('<span style="background-color:',c("orange"),'">',colnames(hab.table)[c(5:10)],'</span>')
-colnames(hab.table)[c(11:15)] <- paste0('<span style="background-color:',c("yellow"),'">',colnames(hab.table)[c(11:15)],'</span>')
+colnames(hab.table)[c(3:4)] <- paste0('<span style="box-shadow: -10px 0 0 red, 10px 0 0 red; background-color:red; color:white">',colnames(hab.table)[c(3:4)],'</span>')
+colnames(hab.table)[c(5:10)] <- paste0('<span style="box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:',c("orange"),'">',colnames(hab.table)[c(5:10)],'</span>')
+colnames(hab.table)[c(11:15)] <- paste0('<span style="box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:',c("yellow"),'">',colnames(hab.table)[c(11:15)],'</span>')
 
 dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
           extensions = c('Scroller', 'FixedColumns'), #add scrolling and fixed column
@@ -564,12 +565,16 @@ dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
     'Species', "spVul",
     backgroundColor = styleEqual(#c("low.vul", "mod.vul", "high.vul", "vhigh.vul"),
                                  c(1,2,3,4),
-                                 c('lightgreen', 'yellow', 'orange', 'red')) #Color code base on dependence)
+                                 c('lightgreen', 'yellow', 'orange', 'red')), #Color code base on dependence)
+    color = styleEqual(c(1,2,3,4),
+                                 c('black', 'black', 'black', 'white'))
     ) %>%
     formatStyle(
     names(hab.table),
     backgroundColor = styleEqual(c("Low", "Moderate", "High", "Very high"), 
-                                 c('lightgreen', 'yellow', 'orange', 'red'))  
+                                 c('lightgreen', 'yellow', 'orange', 'red')), 
+    color = styleEqual(c("Low", "Moderate", "High", "Very high"), 
+                                 c('black', 'black', 'black', 'white'))
   )
 
 frameWidget(dt)
