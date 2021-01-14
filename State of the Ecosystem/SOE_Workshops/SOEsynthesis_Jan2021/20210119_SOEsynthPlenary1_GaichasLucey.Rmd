@@ -203,12 +203,14 @@ Characterizing ecosystem change for fishery management: plain language summary f
 * Regime shifts, or ecosystem change can happen rapidly as multiple drivers change; and, 
 * Reorganization of the ecosystem, multiple factors that interact that change the structure and organization of the ecosystem, e.g. Tropicalization
 
-## Synthetic analysis in progress: environment - fish condition - market price linkages
+.pull-left[
 
-![:img Bottom water temperature anomaly MAB, 20%](EDAB_images/MAB-bot-temp-1.png) ![:img Zooplankton community and primary production anomaly, 20%](EDAB_images/MAB-sli-1.png) ![:img Relative condition factor 1992-2019 for fish species in the MAB. MAB data are missing for 2017 due to survey delays, 35% ](EDAB_images/MABcondition_2019_viridis_final.jpg) ![:img Price for king silver hake 1994-2019, 22%](EDAB_images/kingsilverhakeprice.png)
+![:img](EDAB_images/multipledrivers.png)
+]
 
-* Identify multiple and changing drivers of condition and market prices over time
-* Recognize regime shifts and potential system reorganization
+.pull-right[
+![:img](EDAB_images/RegimeReorg.png)
+]
 
 ---
 ## Proposed outline: two sections, each with "what" and "why"
@@ -255,7 +257,7 @@ Mid-Atlantic
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.height=3}
 ```
 New England  
-```{r, https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-setup.R}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-setup.R")}
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-total-landings.R"), fig.height=3}
@@ -264,26 +266,42 @@ New England
 ]
 
 .pull-right[
-Why: multiple drivers, some with apparent regime shifts
-
-```{r}
-
+Why: multiple drivers: stock status/management, engagement, markets, fish population drivers
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
 ```
 
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.height=3 }
+```
+
+.center[![:img Condition conceptual model, 50%](EDAB_images/SOEconditionfactorlinks_keycolor_price.png)]
 ]
+
+---
+## Synthetic analysis in progress: environment - fish condition - market price linkages
+
+![:img Bottom water temperature anomaly MAB, 20%](EDAB_images/MAB-bot-temp-1.png) ![:img Zooplankton community and primary production anomaly, 20%](EDAB_images/MAB-sli-1.png) ![:img Relative condition factor 1992-2019 for fish species in the MAB. MAB data are missing for 2017 due to survey delays, 35% ](EDAB_images/MABcondition_2019_viridis_final.jpg) ![:img Price for king silver hake 1994-2019, 22%](EDAB_images/kingsilverhakeprice.png)
+
+* Identify multiple and changing drivers of condition and market prices over time
+* Recognize regime shifts and potential system reorganization
 
 ---
 ## Example: Climate risks
 .pull-left[
-Indicators: gulf stream index, bottom and surface temperature, heat waves, ocean acidification
-Trends: northerly Gulf Stream, increasing temperature, more numerous and intense heatwaves, increased acidification
-```{r}
+Indicators: Gulf Stream index, bottom and surface temperature, heat waves  
+Trends:
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.height=3, out.width='60%'}
+```
+
+```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.height=3, out.width='60%'}
 
 ```
 
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R"), fig.height=3, out.width='70%'}
+```
 ]
 
 .pull-right[
+
 Why this matters: 
 Habitat change from multiple drivers alters:
     - species distributions--allocation
