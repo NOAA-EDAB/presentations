@@ -250,9 +250,15 @@ Characterizing ecosystem change for fishery management: plain language summary f
 ## Example: Seafood production objective
 
 .pull-left[
-Indicator: total landings
-Trend: decreasing
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R")}
+Indicator: Total landings Trend: Decreasing  
+Mid-Atlantic  
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.height=3}
+```
+New England  
+```{r, https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-setup.R}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-total-landings.R"), fig.height=3}
 ```
 
 ]
