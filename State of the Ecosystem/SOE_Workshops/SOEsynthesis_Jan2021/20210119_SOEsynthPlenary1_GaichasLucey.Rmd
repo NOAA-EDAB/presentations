@@ -290,12 +290,72 @@ Why: multiple drivers: stock status/management, engagement, markets, fish popula
 
 ---
 ## Example: Profits objective
+.pull-left[
+Indicator: Total Revenue   
+Mid-Atlantic  
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"), fig.height=3}
+```
+New England
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-comm-revenue.R"), fig.height=3}
+```
+
+]
+
+.pull-right[
+Why: multiple drivers: Revenue decomposed to price and volume
+Mid-Atlantic
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"), fig.height=3}
+```
+New England  
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet.R"), fig.height=3}
+```
+]
 
 ---
 ## Example: Recreational opportunities objective
+.pull-left[
+Indicator: Recreational Landings   
+Mid-Atlantic  
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"), fig.height=3}
+```
+New England
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-landings.R"), fig.height=3}
+```
+
+]
+
+.pull-right[
+Why: multiple drivers: Engagement and diversity
+Mid-Atlantic
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R"), fig.height=6}
+```
+]
 
 ---
 ## Example: Stability objective
+.pull-left[
+Indicator: Diversity in fishery/species   
+Fishery (Mid-Atlantic) 
+
+]
+
+.pull-right[
+Why: multiple drivers:
+Mid-Atlantic
+
+]
 
 ---
 ## Example: Social and cultural objectives
@@ -366,17 +426,17 @@ Habitat change from multiple drivers alters:
 ```{r midHabTable}
 #Read in Mid-Atlantic table
 
-src <- "https://github.com/NOAA-EDAB/ecodata/blob/master/data-raw/habitat_vulnerability.xlsx?raw=true"
-lcl <- basename(src)
-download.file(url = src, destfile = lcl)
+#src <- "https://github.com/NOAA-EDAB/ecodata/blob/master/data-raw/habitat_vulnerability.xlsx"
+#lcl <- basename(src)
+#download.file(url = src, destfile = lcl)
 
-mid <- as.data.table(readxl::read_xlsx(lcl, 
+mid <- as.data.table(readxl::read_xlsx(here('habitat_vulnerability.xlsx'), 
                          sheet = 'Mid-Atlantic', skip = 1))
 
-if (file.exists(lcl)) {
+#if (file.exists(lcl)) {
   #Delete file if it exists
-  file.remove(lcl)
-}
+#  file.remove(lcl)
+#}
 
 #Identify individual species climate vulnerability
 vhigh.vul <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Very high', Species])
