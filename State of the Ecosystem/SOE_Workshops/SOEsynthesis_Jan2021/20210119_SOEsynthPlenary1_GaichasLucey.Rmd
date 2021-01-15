@@ -373,6 +373,11 @@ download.file(url = src, destfile = lcl)
 mid <- as.data.table(readxl::read_xlsx(lcl, 
                          sheet = 'Mid-Atlantic', skip = 1))
 
+if (file.exists(lcl)) {
+  #Delete file if it exists
+  file.remove(lcl)
+}
+
 #Identify individual species climate vulnerability
 vhigh.vul <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Very high', Species])
 high.vul  <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'High', Species])
