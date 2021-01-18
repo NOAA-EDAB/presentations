@@ -473,20 +473,20 @@ Habitat change from multiple drivers alters:
 
 .pull-right[
 * Habitat conditions, habitat vulnerability
-```{r midHabTable1}
+```{r midHabTable1, message=FALSE}
 #Read in Mid-Atlantic table
 
-#src <- "https://github.com/NOAA-EDAB/ecodata/blob/master/data-raw/habitat_vulnerability.xlsx"
-#lcl <- basename(src)
-#download.file(url = src, destfile = lcl)
+src <- "https://github.com/NOAA-EDAB/ecodata/raw/master/data-raw/habitat_vulnerability.xlsx"
+lcl <- basename(src)
+download.file(url = src, destfile = lcl)
 
 mid <- as.data.table(readxl::read_xlsx(here('habitat_vulnerability.xlsx'), 
                          sheet = 'Mid-Atlantic', skip = 1))
 
-#if (file.exists(lcl)) {
+if (file.exists(lcl)) {
   #Delete file if it exists
-#  file.remove(lcl)
-#}
+  file.remove(lcl)
+}
 
 #Identify individual species climate vulnerability
 vhigh.vul <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Very high', Species])
@@ -619,7 +619,7 @@ frameWidget(dt)
 * Prioritize next steps for identifying high risk combinations: Key species, habitats, and drivers
 * 2021 SOE introduces Habitat Climate Vulerability Assessment results linked to species
 
-```{r midHabTable}
+```{r midHabTable, message=FALSE}
 #Read in Mid-Atlantic table
 
 src <- "https://github.com/NOAA-EDAB/ecodata/raw/master/data-raw/habitat_vulnerability.xlsx"
