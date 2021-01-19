@@ -195,6 +195,41 @@ mng_obj %>%
 ]
 
 ---
+## 2020 Request tracking memo
+
+```{r, results='hide'}
+resultfile <- googledrive::drive_find(pattern = "SOE_Request_Checklist", type = "spreadsheet")
+
+requests <- googledrive::drive_download(resultfile, type = "csv", overwrite = TRUE) %>%
+  {read.csv(.$local_path)} 
+
+```
+
+```{r memo}
+
+# resultfile <- googledrive::drive_find(pattern = "SOE_Request_Checklist", type = "spreadsheet")
+# 
+# requests <- googledrive::drive_download(resultfile, type = "csv", overwrite = TRUE) %>%
+#   {read.csv(.$local_path)} 
+
+requeststab <- requests %>%
+  select(Request, Year, Source, Progress) %>%
+  mutate("Memo Section" = rownames(.))
+
+knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
+  kable_styling(font_size=9#, latex_options = c("hold_position", "striped", "repeat_header")
+                ) %>%
+  row_spec(0,bold=TRUE) %>%
+  column_spec(1, width="8cm") %>%
+  column_spec(2, width="1cm") %>%
+  column_spec(3, width="2cm") %>%
+  column_spec(4, width="10cm") %>%
+  column_spec(5, width="2cm")
+
+```
+
+
+---
 ## Proposed ecosystem synthesis themes for 2021
 
 Characterizing ecosystem change for fishery management: plain language summary for 2 pager
