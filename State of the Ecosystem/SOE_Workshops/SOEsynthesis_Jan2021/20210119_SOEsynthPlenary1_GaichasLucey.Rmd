@@ -314,12 +314,17 @@ Mid-Atlantic
 ```
 
 New England 
+
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-GIS-setup.R")}
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet.R"), fig.height=3}
 
 ```
+
 ]
 
 ---
@@ -337,12 +342,14 @@ New England
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-landings.R"), fig.height=3}
+```
 
 ]
 
 .pull-right[
 Why: multiple drivers: Diversity
-Mid-Atlantic
+Mid-Atlantic  
+
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
 ```
 
@@ -412,7 +419,7 @@ Why?
 ...
 
 ---
-## Example: Protected species objectives
+## Example: Protected species objectives--add the "Why" linking to other SOE indicators
 .pull-left[
 Indicators: Species By-catch
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.height=3}
@@ -455,8 +462,8 @@ Trends:
 
 Why this matters: 
 Habitat change from multiple drivers alters:
-    - species distributions--allocation
-    - system productivity--fishery resource productivity
+- species distributions--allocation
+- system productivity--fishery resource productivity
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-nefsc-survey-disaggregated-mafmc-spp-in-ne.R"), fig.height=6}
 ```
 
@@ -478,14 +485,14 @@ Habitat change from multiple drivers alters:
 
 src <- "https://github.com/NOAA-EDAB/ecodata/raw/master/data-raw/habitat_vulnerability.xlsx"
 lcl <- basename(src)
-download.file(url = src, destfile = lcl)
+download.file(url = src, destfile = lcl, quiet=TRUE)
 
 mid <- as.data.table(readxl::read_xlsx(here('habitat_vulnerability.xlsx'), 
                          sheet = 'Mid-Atlantic', skip = 1))
 
 if (file.exists(lcl)) {
   #Delete file if it exists
-  file.remove(lcl)
+  invisible(file.remove(lcl))
 }
 
 #Identify individual species climate vulnerability
@@ -624,14 +631,14 @@ frameWidget(dt)
 
 src <- "https://github.com/NOAA-EDAB/ecodata/raw/master/data-raw/habitat_vulnerability.xlsx"
 lcl <- basename(src)
-download.file(url = src, destfile = lcl)
+download.file(url = src, destfile = lcl, quiet=TRUE)
 
 mid <- as.data.table(readxl::read_xlsx(here('habitat_vulnerability.xlsx'),
                          sheet = 'Mid-Atlantic', skip = 1))
 
 if (file.exists(lcl)) {
   #Delete file if it exists
-  file.remove(lcl)
+  invisible(file.remove(lcl))
 }
 
 #Identify individual species climate vulnerability
