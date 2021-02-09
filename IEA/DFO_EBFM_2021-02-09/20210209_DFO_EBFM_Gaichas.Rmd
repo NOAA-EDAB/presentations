@@ -108,7 +108,7 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 
 - Used within Mid-Atlantic Fishery Management Council's Ecosystem Process `r Cite(myBib, "muffley_there_2020")`
     + Risk assessment `r Cite(myBib,"gaichas_implementing_2018")`
-    + Conceptual modeling
+    + Conceptual modeling `r Cite(myBib,"depiper_learning_nodate")`
     + Management strategy evaluation (MSE)
  
 ]
@@ -128,7 +128,10 @@ an iterative, collaborative process has evolved to formulate ecosystem advice an
 ## International scientific collaboration: [ICES WGNARS](https://www.ices.dk/community/groups/Pages/WGNARS.aspx)
 
 .pull-left[
+.center[
 ![:img ICES WGNARS webpage, 75%](EDAB_images/ICESWGNARS.png)
+]
+  
 Deep dive into components of the IEA process from a scientific perspective
 *  Outlining potential management objectives to start conversations with managers
 *  Example ecosystem indicators, conceptual models, and risk assessments
@@ -187,7 +190,7 @@ Feedback from fishery managers redesigned reporting to align with objectives out
 
 ## 2021 Report
 1. Summary 2 pager
-    + Page 1 summary bullets
+    + Page 1 summary table
     + Page 2 synthesis themes
 1. Performance against management objectives
 1. Risks
@@ -539,7 +542,7 @@ Visioning Project &rarr; Strategic Plan with one objective to develop
 >"A non-regulatory umbrella document intended to guide Council policy with respect to ecosystem considerations across existing Fishery Management Plans"
 
 .center[
-![:img Mid-Atlantic EAFM development with full details in speaker notes, 70%](EDAB_images/MAapproach.png)
+![:img Mid-Atlantic EAFM development with full details in speaker notes, 60%](EDAB_images/MAapproach.png)
 ]
 
 Details, including workshop presentations and white papers: http://www.mafmc.org/eafm
@@ -554,14 +557,18 @@ http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf
 
 * Mid-Atlantic EAFM framework `r Cite(myBib,"gaichas_framework_2016")`:
 .center[
-![:img Mid-Atlantic EAFM framework with full details in speaker notes, 50%](EDAB_images/Framework.png)
+![:img Mid-Atlantic EAFM framework with full details in speaker notes, 60%](EDAB_images/Framework.png)
 ]
-https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full
 
 
 ???
 The Council’s EAFM framework has similarities to the IEA loop on slide 2. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
+
 ---
+background-image: url("EDAB_images/fmars-03-00105-g011.jpg")
+background-size: 700px
+background-position: right bottom
+
 ## Examples illustrating the use of the framework
 .pull-left-40[
 ![Example risk assessment table with species in rows and risk elements in columns with green cells indicating low risks, yellow and orange cells indicating moderate risks, and red cells indicatig high risk](EDAB_images/fmars-03-00105-g010.jpg)
@@ -576,9 +583,6 @@ A conceptual model maps out key interactions for high risk fisheries, specifies 
 
 ]
 
-.right[
-![:img example conceptual model with details in speaker notes, 60%](EDAB_images/fmars-03-00105-g011.jpg)
-]
 
 ???
 Quoted from [Gaichas et al 2016](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
@@ -682,22 +686,19 @@ knitr::kable(tabl, format="html",
   column_spec(1:2, width = "20em")%>%
   row_spec(3, bold = T, background = "orange")
 ```
+
+  
 Ranked moderate-high risk due to the significant long term revenue decrease for Mid-Atlantic managed species (red points in top plot)
 
 ]
 ]
 .pull-right[
-```{r total-rev, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"), fig.width = 5, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."}
+```{r total-rev, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"), fig.width = 6, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."}
 
 ```
 
-```{r bennet, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"), fig.cap = paste0("Revenue change from the 2015 base year in 2015 dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the ",region,"."), fig.width = 5, fig.asp = 0.57}
-
-```
 
 ]
-
-
 
 ---
 ## EAFM Risk Assessment: 2020 update
@@ -797,8 +798,9 @@ risk.eco %>%
   kable_styling(font_size = 9) 
 
 ```
-]
-.pull-right[
+]  
+
+.pull-right[ 
 *Species and Sector level risk elements*
 ```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
 #tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
@@ -828,7 +830,7 @@ risk.sppsector %>%
   kable_styling(font_size = 11) 
 
 ```
-
+]
 
 ---
 ## How is MAFMC using the risk assessment? What's next?
@@ -843,8 +845,9 @@ risk.sppsector %>%
   * draft conceptual models of high risk elements, linkages
   * dataset identification and gap analysis for each element and link
   * draft questions that the Council could persue with additional work
-]  
+ 
 * Final conceptual model and supporting information at December 2019 Council meeting
+] 
 
 * Council to proceed with management strategy evaluation (MSE) using the information from conceptual modeling as a basis. Topic: addressing recreational fishery discards with EAFM
 
@@ -895,131 +898,39 @@ In this interactive circular graph visualization, model elements identified as i
 ]
 
 ---
-# Mid-Atlantic EAFM next steps: management strategy evaluation
+## Mid-Atlantic EAFM next steps: management strategy evaluation
 
 .pull-left-40[
-* Spinning up in 2020-2021 
-* Gathering technical committee/working group
-* Intro to MSE next
+* Technical working group with similar approach and membership as used in conceptual model process
+    + Diverse interdisciplinary and inter-agency membership – additional MSE expertise 
+    + Independent facilitator from outside the region 
+* Introductory MSE workshop September 2020  
+    + Joint federal and state management advisory panels
+    + Stakeholdrs likley to participate in MSE process
+    + Introduced MSE process, concepts, expectations
+    + Simulated stakeholder workshop to understand participant role
+
 ]
 
 .pull-right-60[
-![:img Mid-Atlantic EAFM framework, 95%](EDAB_images/Framework.png)
+![:img MSE kickoff example slide Walleye MSE Workshop](EDAB_images/walleyeMSE.png)
 ]
 
 ---
+## MSE approach and timeline
 
-## Future: Better integration of habitats with managed species for managers
+.pull-left-40[
+Anticipating 3 stakeholder workshops (next 12 – 15 months)
+* W1: Identify management objectives, performance metrics, and uncertainties
+* W2: Input on initial model development and results
+* W3: Review updated model and “final” results
 
-* Mid-Atlantic Council very interested in estuarine conditions and habitat supporting managed stocks
-* Prioritize next steps for identifying high risk combinations: Key species, habitats, and drivers
-* 2021 SOE introduces Habitat Climate Vulerability Assessment results linked to species
+Iterative process with Committees/Council/Board
+]
 
-```{r midHabTable, message=FALSE}
-#Read in Mid-Atlantic table
-
-src <- "https://github.com/NOAA-EDAB/ecodata/raw/master/data-raw/habitat_vulnerability.xlsx"
-lcl <- basename(src)
-download.file(url = src, destfile = lcl, quiet=TRUE)
-
-mid <- as.data.table(readxl::read_xlsx(here('habitat_vulnerability.xlsx'),
-                         sheet = 'Mid-Atlantic', skip = 1))
-
-if (file.exists(lcl)) {
-  #Delete file if it exists
-  invisible(file.remove(lcl))
-}
-
-#Identify individual species climate vulnerability
-vhigh.vul <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Very high', Species])
-high.vul  <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'High', Species])
-mod.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Moderate', Species])
-low.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Low', Species])
-
-#Grab habitat vulnerability 
-hab.vul <- unique(mid[, c('Habitat Name', 'Habitat Vulnerability Rank (HVCA)')])
-habitats <- hab.vul[, 'Habitat Name']
-hab.vul <- data.table('Habitat Vulnerability' = c(NA, NA, t(hab.vul[, 'Habitat Vulnerability Rank (HVCA)'])))
-
-#Rearrange table
-mid <- data.table::melt.data.table(mid, id.vars = c('Habitat Name', 'Species'),
-                                   measure.vars = c('Eggs/Larva', 'Juvenile/YOY',
-                                                    'Adult', 'Spawning Adult'),
-                                   variable.name = 'Stage', value.name = 'Dependence')
-mid[, Habitat := as.factor(mid$'Habitat Name')]
-mid <- data.table::dcast.data.table(mid, Species + Stage ~ Habitat,
-                                    value.var = 'Dependence')
-setcolorder(mid, c('Species', 'Stage', habitats$'Habitat Name'))
-
-#Add Habitat Vulnerbaility
-#hab.table <- rbindlist(list(as.data.table(t(hab.vul)), mid), use.names = F)
-hab.table <- mid
-#Add names back in
-names(hab.table) <- names(mid)
-hab.table <- hab.table %>% mutate_if(is.character, str_trim)
-
-#from examples here https://rstudio.github.io/DT/010-style.html
-
-#color coding cells works
-#need to add column with species vulnerability and color code species by it but not show it, like #hideV6 example at link
-#if we show it we can sort by species vulnerability though... alphabetical doesnt work so use numbers to go lowest-highest
-#still need to color code headers
-hab.table <- hab.table %>%
-  mutate(spVul = #Color code species based on climate vul
-    # case_when(Species %in% low.vul ~ "low.vul",
-    #           Species %in% mod.vul ~ "mod.vul",
-    #           Species %in% high.vul ~ "high.vul",
-    #           Species %in% vhigh.vul ~ "vhigh.vul")
-    # )
-    case_when(Species %in% low.vul ~ 1,
-              Species %in% mod.vul ~ 2,
-              Species %in% high.vul ~ 3,
-              Species %in% vhigh.vul ~ 4)
-    )
-
-colnames(hab.table)[c(3:4)] <- paste0('<span style="box-shadow: -10px 0 0 red, 10px 0 0 red; background-color:red; color:white">',colnames(hab.table)[c(3:4)],'</span>')
-colnames(hab.table)[c(5:10)] <- paste0('<span style="box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:',c("orange"),'">',colnames(hab.table)[c(5:10)],'</span>')
-colnames(hab.table)[c(11:15)] <- paste0('<span style="box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:',c("yellow"),'">',colnames(hab.table)[c(11:15)],'</span>')
-
-dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
-          extensions = c('Scroller', 'FixedColumns'), #add scrolling and fixed column
-          options = list(deferRender = TRUE,
-          scrollY = 300, scroller = TRUE,
-          dom = 't',scrollX = TRUE,fixedColumns = TRUE)
-          #, options = list(columnDefs = list(list(targets = 16, visible = FALSE)))
-  ) %>% 
-  formatStyle(
-    names(hab.table)[3:4],
-    backgroundColor = '#FF000080'
-  ) %>%
-  formatStyle(
-    names(hab.table)[5:10],
-    backgroundColor = '#FFA50080'
-  ) %>%
-  formatStyle(
-    names(hab.table)[11:15],
-    backgroundColor = '#FFFF0080'
-  ) %>%
-
-  formatStyle(#Color code base on dependence
-    'Species', "spVul",
-    backgroundColor = styleEqual(#c("low.vul", "mod.vul", "high.vul", "vhigh.vul"),
-                                 c(1,2,3,4),
-                                 c('lightgreen', 'yellow', 'orange', 'red')), #Color code base on dependence)
-    color = styleEqual(c(1,2,3,4),
-                                 c('black', 'black', 'black', 'white'))
-    ) %>%
-    formatStyle(
-    names(hab.table),
-    backgroundColor = styleEqual(c("Low", "Moderate", "High", "Very high"), 
-                                 c('lightgreen', 'yellow', 'orange', 'red')), 
-    color = styleEqual(c("Low", "Moderate", "High", "Very high"), 
-                                 c('black', 'black', 'black', 'white'))
-  )
-
-frameWidget(dt)
-```
-
+.pull-right-60[
+![](EDAB_images/flukeMSEprocess.png)
+]
 
 ---
 ## References
@@ -1030,6 +941,7 @@ PrintBibliography(myBib)
 ```
 ]
 
+---
 
 ## Additional resources
 .pull-left[
