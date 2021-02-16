@@ -3,10 +3,23 @@
   <head>
     <title>State of the Ecosystem   NEFSC/GARFO Feedback</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Kimberly Bastille   Many thanks to:  Sarah Gaichas, Sean Lucey, Geret DePiper, Kimberly Hyde, Scott Large,  and all SOE contributors" />
+    <meta name="author" content="Kimberly Bastille     Many thanks to:  Sarah Gaichas, Sean Lucey, Geret DePiper, Kimberly Hyde, Scott Large,  and all SOE contributors" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/dt-ext-scroller/css/scroller.dataTables.min.css" rel="stylesheet" />
+    <script src="libs/dt-ext-scroller/js/dataTables.scroller.min.js"></script>
+    <link href="libs/dt-ext-fixedcolumns/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+    <script src="libs/dt-ext-fixedcolumns/js/dataTables.fixedColumns.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
     <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
   </head>
   <body>
@@ -15,11 +28,12 @@ class: right, middle, my-title, title-slide
 
 # State of the Ecosystem <br /> NEFSC/GARFO Feedback
 ## 23 February 2021
-### Kimberly Bastille <br /> Many thanks to:<br /> Sarah Gaichas, Sean Lucey, Geret DePiper, Kimberly Hyde, Scott Large,<br /> and all SOE contributors
+### Kimberly Bastille <br /> <br /> Many thanks to:<br /> Sarah Gaichas, Sean Lucey, Geret DePiper, Kimberly Hyde, Scott Large,<br /> and all SOE contributors
 
 ---
 
 class: top, left
+
 
 
 
@@ -52,7 +66,9 @@ class: top, left
 ]
 ???
 
----background-image: url("EDAB_images/nes-components-abstracted.png")
+---
+
+background-image: url("EDAB_images/nes-components-abstracted.png")
 background-size: 700px
 background-position: right bottom
 
@@ -80,13 +96,6 @@ Feedback from fishery managers redesigned reporting to align with objectives out
 ---
 ## State of the Ecosystem Report Structure
 .pull-left[
-
-## 2020 Report
-1. Summary 2 pager
-1. Human dimensions
-1. Protected species
-1. Fish and invertebrates (managed and otherwise)
-1. Habitat quality and ecosystem productivity
 
 ## 2021 Report
 1. Summary 2 pager
@@ -152,25 +161,16 @@ Feedback from fishery managers redesigned reporting to align with objectives out
 ]
 
 ---
-## [2020 Report](https://doi.org/10.25923/1f8j-d564): Summary 2 pager with visualizations, 28 pages of narrative/plots, 1 page orientation
+## [2021 Report](https://doi.org/10.25923/1f8j-d564): Summary with visualizations 
 
-.pull-left[
-.center[
-![:img State of the Ecosystem page 1 summary bullets, 85%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft.png)
-]
-]
 
-.pull-right[
-.center[
-![:img State of the Ecosystem page 2 infographic, 85%](EDAB_images/MAFMC-SOE-2-pager-SSCdraft2.png)
-]
-]
+Summary Table from 2-pager
 
 
 ---
 ## Ecosystem synthesis themes for 2021
 
-Characterizing ecosystem change for fishery management: plain language summary for 2 pager
+Characterizing ecosystem change for fishery management 
 
 * Multiple drivers of abundance, defined by the competing factors that influence the amount of fish in the ocean;
 * Regime shifts, or ecosystem change can happen rapidly as multiple drivers change; and,
@@ -186,46 +186,30 @@ Characterizing ecosystem change for fishery management: plain language summary f
 ]
 
 ---
-## 2021 outline: two sections, each with "what" and "why"
+## 2021 reports: two sections, each with "what" and "why"
 
-.pull-left[
+
+
 * Performance against management objectives
     - *What* does the indicator say--up, down, stable?
     - *Why* do we think it is changing: integrates synthesis themes
         - Multiple drivers
         - Regime shifts
         - Ecosystem reorganization
-* Objectives
-    - Seafood production
-    - Profits
-    - Recreational opportunities
-    - Stability
-    - Social and cultural
-    - Protected species
-]
 
-.pull-right[
 * Risks
     - *What* does the indicator say--up, down, stable?
     - *Why* this is important to managers: integrates synthesis themes
         - Multiple drivers
         - Regime shifts
         - Ecosystem reorganization
-* Risk categories
-    - Climate: warming, ocean currents, acidification
-        - Habitat changes (incl. vulnerability analysis)
-        - Productivity changes (system and fish)
-        - Species interaction changes
-        - Community structure changes
-    - Other ocean uses
-        - Wind
-]
+
 
 ---
 ## Objective: Seafood production
-
 .pull-left[
-Indicator: Total landings Trend: Decreasing
+
+
 Mid-Atlantic
 
 
@@ -239,82 +223,107 @@ Mid-Atlantic
 
 New England
 
+
+![](EDAB_images/NE-comdat-total-landings.png)
+
  
 &lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-5-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
 ]
 
 
 ---
 ## Objective: Seafood production
 
-Why?: multiple drivers: stock status/management, engagement, markets, fish population drivers
-
 .pull-left[
 
+Mid-Atlantic
 
 
 &lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-7-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-8-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-
 ]
 
 .pull-right[
 
+New England
+
+ 
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-9-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 &lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-10-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
 ]
 
 ---
-## Objective: Profits
+## Objective: Seafood production
+
 .pull-left[
-Mid-Atlantic
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-11-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+MId-Atlantic
+
 
 &lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-12-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-13-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
 
 ]
 
 .pull-right[
+
 New England
 
 
-
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-14-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 &lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-15-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-16-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
+
 ## Objective: Profits
-
-
-
-
-
----
-
-## Objective: Recreation
+.pull-left[
 Mid-Atlantic
 
 
-
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-17-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-
-New England
-
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-18-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 &lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-19-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 
+]
+
+.pull-right[
+New England
+
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-21-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-22-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+]
+
+
 ---
 
 ## Objective: Recreation
+
+.pull-left[
+Mid-Atlantic
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-24-1.png" width="504" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+New England
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-26-1.png" width="504" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
@@ -325,26 +334,46 @@ Mid-Atlantic
 
 
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-21-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-28-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-22-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-29-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
 New England
 
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-24-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-25-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-31-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-32-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
 ## Objective: Stability - Ecological Diversity
 
-Zooplankton
+.pull-left[
+Mid-Atlantic
 
-Expected N 
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-34-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-35-1.png" width="504" style="display: block; margin: auto;" /&gt;
+]
+
+
+.pull-right[
+New England
+
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-37-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-38-1.png" width="504" style="display: block; margin: auto;" /&gt;&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-38-2.png" width="504" style="display: block; margin: auto;" /&gt;
+
+]
 
 ---
 
@@ -354,16 +383,16 @@ Expected N
 Indicator: Recreational engagement, reliance, vulnerability
 
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-27-1.png" width="504" style="display: block; margin: auto;" /&gt;
-Mid-Atlantic communities
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-40-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
 ]
 
 .pull-right[
-Indicator: Commercial Vulnerability engagement, reliance, vulnerability
-&lt;br /&gt;
+Indicator: Commercial engagement, reliance, vulnerability
 
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-29-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-42-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -375,16 +404,16 @@ Indicator: Commercial Vulnerability engagement, reliance, vulnerability
 Indicator: Recreational engagement, reliance, vulnerability
 
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-31-1.png" width="504" style="display: block; margin: auto;" /&gt;
-Mid-Atlantic communities
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-44-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
 ]
 
 .pull-right[
-Indicator: Commercial Vulnerability engagement, reliance, vulnerability
-&lt;br /&gt;
+Indicator: Commercial engagement, reliance, vulnerability
 
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-33-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-46-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -396,78 +425,240 @@ Indicator: Commercial Vulnerability engagement, reliance, vulnerability
 
 .pull-left[
 Indicators: Species By-catch
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-34-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-35-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-47-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-48-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
 Indicators: Endangered Species Populations
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-36-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-37-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-49-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-50-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 
 
 ---
 
-## Risks to Meeting fishery management objectives
-### Climate indicators
+## Risks to meeting fishery management objectives -  Climate indicators
+Indicators: Gulf Stream index, warm core rings, bottom temperature, slopewater
 .pull-left[
-Indicators: Gulf Stream index, bottom and surface temperature, heat waves
-Trends:
+
+Mid-Atlantic
 
 
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-39-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-40-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-52-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-41-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-53-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-54-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+
+]
+.pull-right[
+New England
+
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-56-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-57-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+## Risks to meeting fishery management objectives - Climate indicators
+Indicators:  sea surface temperature, marine heatwaves
+.pull-left[
+
+Shelfwide
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-59-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+.pull-right[
+Mid-Atlantic
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-61-1.png" width="504" style="display: block; margin: auto;" /&gt;
+New England
+
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-63-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+]
+---
+## Risks to meeting fishery management objectives - Climate indicators
+Indicators:  cold pool
+
+
+![:img cold pool, 70%](EDAB_images/cold_pool_area.png)
+---
+## Risks to meeting fishery management objectives - Climate indicators
+Indicators:  ocean acidification
+
+.pull-left[
+![:img ches bay temp](EDAB_images/Seasonal PH on MAB shelf - Grace Saba.jpg)
+]
+.pull-right[
+![:img ches bay temp](EDAB_images/PH glider transect map - Grace Saba.jpg)
+]
+---
+## Risks to meeting fishery management objectives - Climate indicators
+Indicators:  Chesapeake Bay
+.pull-left[
+![:img ches bay temp, 75%](EDAB_images/ches-temp-temp.png)
 ]
 
 .pull-right[
 
-Why this matters:
-Habitat change from multiple drivers alters:
-- species distributions--allocation
-- system productivity--fishery resource productivity
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-42-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-65-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+]
+---
+
+## Risks to meeting fishery management objectives - Climate indicators - Habitat Vulnerability
+
+
+
+&lt;style type="text/css"&gt;
+/*alter risk assessment table formatting*/
+.risktable {
+    border-collapse: collapse;
+}
+.risktable th {
+    padding: 2px;
+}
+.risktable td {
+    padding: 1px;
+}
+.risktable tbody tr:nth-of-type(even) {
+  background-color:transparent;
+}
+&lt;/style&gt;
+
+Mid-Atlantic Habitat Vulnerability Table
+
+
+
+<div id="htmlwidget-e75d665b99d2367919e9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e75d665b99d2367919e9">{"x":{"filter":"none","extensions":["Scroller","FixedColumns"],"data":[["Alewife","Alewife","Alewife","Alewife","Black sea bass","Black sea bass","Black sea bass","Black sea bass","Blueback herring","Blueback herring","Blueback herring","Blueback herring","Little skate","Little skate","Little skate","Little skate","Ocean pout","Ocean pout","Ocean pout","Ocean pout","Pollock","Pollock","Pollock","Pollock","Red hake","Red hake","Red hake","Red hake","Scup","Scup","Scup","Scup","Summer flounder","Summer flounder","Summer flounder","Summer flounder","Windowpane flounder","Windowpane flounder","Windowpane flounder","Windowpane flounder","Winter flounder","Winter flounder","Winter flounder","Winter flounder"],["Eggs/Larva","Juvenile/YOY","Adult","Spawning Adult","Eggs/Larva","Juvenile/YOY","Adult","Spawning Adult","Eggs/Larva","Juvenile/YOY","Adult","Spawning Adult","Eggs/Larva","Juvenile/YOY","Adult","Spawning Adult","Eggs/Larva","Juvenile/YOY","Adult","Spawning Adult","Eggs/Larva","Juvenile/YOY","Adult","Spawning Adult","Eggs/Larva","Juvenile/YOY","Adult","Spawning Adult","Eggs/Larva","Juvenile/YOY","Adult","Spawning Adult","Eggs/Larva","Juvenile/YOY","Adult","Spawning Adult","Eggs/Larva","Juvenile/YOY","Adult","Spawning Adult","Eggs/Larva","Juvenile/YOY","Adult","Spawning Adult"],[null,null,null,null,null,null,null,null,null,"Moderate",null,null,null,null,null,null,null,null,null,null,null,"Moderate",null,null,null,null,null,null,null,null,null,null,null,"High","Moderate",null,null,null,null,null,"High","Moderate",null,"High"],[null,null,null,null,null,"High","High",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"Moderate","Moderate",null,null,"Moderate",null,null,null,null,null,null,null,"Moderate",null,null],[null,null,null,null,null,"High","High",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"Moderate",null,null,null,null,null,null,null,null,null,null],["Very high","Very high",null,"Very high",null,"High",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"Very high",null,null,"Very high",null,"High","Moderate",null,null,null,null,null,null,null,null,null],[null,null,null,null,null,"High","High",null,null,null,null,null,null,null,null,null,"High",null,"High","Very high",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,"Very high","High","High",null,null,null,null,null,null,null,null,null,null,null,null,null,"Very high","High",null,null,null,"High","High","High",null,"High","High",null,"Very high","High","High","Very high"],[null,null,null,null,null,null,null,null,null,null,null,null,"Very high","High","High",null,null,null,null,null,null,null,null,null,null,"High",null,null,"Very high","High",null,null,null,"High","High","High",null,"High","High",null,"Very high","High","High","Very high"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"Moderate",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"Very high",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"Very high",null,null,"Very high"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"Very high",null,null,"Very high"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"Very high",null,null,"Very high"],["Very high","Very high",null,"Very high",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[4,4,4,4,3,3,3,3,4,4,4,4,1,1,1,1,3,3,3,3,2,2,2,2,1,1,1,1,2,2,2,2,2,2,2,2,1,1,1,1,4,4,4,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Species<\/th>\n      <th>Stage<\/th>\n      <th><span style=\"box-shadow: -10px 0 0 red, 10px 0 0 red; background-color:red; color:white\">Mid-Atlantic native salt marsh<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 red, 10px 0 0 red; background-color:red; color:white\">Marine/estuarine intertidal shellfish reef<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:orange\">Marine/estuarine subtidal shellfish reef<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:orange\">Marine/estuarine submerged aquatic vegetation<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:orange\">Marine intertidal rocky bottom<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:orange\">Marine intertidal mud<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:orange\">Marine intertidal sand<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:orange\">Marine/estuarine kelp<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:yellow\">Estuarine intertidal rocky bottom<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:yellow\">Estuarine intertidal mud<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:yellow\">Estuarine intertidal sand<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:yellow\">Estuarine subtidal mud<\/span><\/th>\n      <th><span style=\"box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:yellow\">Riverine sand<\/span><\/th>\n      <th>spVul<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"deferRender":true,"scrollY":300,"scroller":true,"dom":"t","scrollX":true,"fixedColumns":true,"columnDefs":[{"className":"dt-right","targets":15}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':'#FF000080'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':'#FF000080'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':'#FFA50080'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':'#FFA50080'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':'#FFA50080'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'background-color':'#FFA50080'});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':'#FFA50080'});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'background-color':'#FFA50080'});\nvar value=data[10]; $(this.api().cell(row, 10).node()).css({'background-color':'#FFFF0080'});\nvar value=data[11]; $(this.api().cell(row, 11).node()).css({'background-color':'#FFFF0080'});\nvar value=data[12]; $(this.api().cell(row, 12).node()).css({'background-color':'#FFFF0080'});\nvar value=data[13]; $(this.api().cell(row, 13).node()).css({'background-color':'#FFFF0080'});\nvar value=data[14]; $(this.api().cell(row, 14).node()).css({'background-color':'#FFFF0080'});\nvar value=data[15]; $(this.api().cell(row, 0).node()).css({'color':value == 1 ? \"black\" : value == 2 ? \"black\" : value == 3 ? \"black\" : value == 4 ? \"white\" : null,'background-color':value == 1 ? \"lightgreen\" : value == 2 ? \"yellow\" : value == 3 ? \"orange\" : value == 4 ? \"red\" : null});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[10]; $(this.api().cell(row, 10).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[11]; $(this.api().cell(row, 11).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[12]; $(this.api().cell(row, 12).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[13]; $(this.api().cell(row, 13).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[14]; $(this.api().cell(row, 14).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\nvar value=data[15]; $(this.api().cell(row, 15).node()).css({'color':value == \"Low\" ? \"black\" : value == \"Moderate\" ? \"black\" : value == \"High\" ? \"black\" : value == \"Very high\" ? \"white\" : null,'background-color':value == \"Low\" ? \"lightgreen\" : value == \"Moderate\" ? \"yellow\" : value == \"High\" ? \"orange\" : value == \"Very high\" ? \"red\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+
+.footnote[
+[] https://noaa-edab.github.io/ecodata/Hab_table
+]
+???
+---
+
+## Risks to Meeting fishery management objectives - Ecosystem productivity indicators - Primary production
+.pull-left[
+
+Mid-Atlantic
+
+
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-69-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+
+]
+.pull-right[
+New England
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-71-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-72-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+
 
 ]
 
----
-
-## Risks to Meeting fishery management objectives
-### Ecosystem productivity indicators
-
 
 ---
 
-## Risks to Meeting fishery management objectives
-### Ecosystem structure indicators
+## Risks to Meeting fishery management objectives - Ecosystem productivity indicators - Zooplankton
+.pull-left[
+
+Mid-Atlantic
 
 
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-74-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+
+]
+.pull-right[
+New England
+
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-76-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+
+
+]
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-77-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Risks to Meeting fishery management objectives
-### Wind indicators
+## Risks to Meeting fishery management objectives - Ecosystem productivity indicators - Forage Fish
+
+
+
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-79-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Risks to Meeting fishery management objectives - Ecosystem productivity indicators - Fish Condition
+
+.pull-left[
+![Condition Conceptual Model](EDAB_images/SOEconditionfactorlinks_keycolor_price.png)
+]
+
+.pull-left[
+![Condition GAM output](EDAB_images/Condition_table.png)
+]
+
+---
+## Risks to Meeting fishery management objectives - Ecosystem Structure
+
+![:img species dist](EDAB_images/species-dist.png)
+
+---
+## Risks to Meeting fishery management objectives - Wind indicators
 
 .pull-left[
 ![:img Survey wind area](EDAB_images/SurveysWindFarmAreas_20201229.jpg)
 ]
 
 .pull-right[
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-43-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-80-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-44-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="2021_02_23_NEFSC_GARFO_SOE_files/figure-html/unnamed-chunk-81-1.png" width="504" style="display: block; margin: auto;" /&gt;
+]
 
 ---
+## Thank You
 
+LIST OF CONTRIBUTORS
+
+---
 ## Additional resources
-.pull-left[
+
 * [2020 State of the Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
 
 * [ecodata R package](https://github.com/noaa-edab/ecodata)
@@ -484,8 +675,8 @@ Habitat change from multiple drivers alters:
 
 * [Draft indicator catalogue](https://noaa-edab.github.io/catalog/)
 
-]
-.pull-right[
+
+
 
 
 .contrib[
@@ -493,8 +684,8 @@ Habitat change from multiple drivers alters:
 * Slides available at https://noaa-edab.github.io/presentations
 * Contact: &lt;Kimberly.bastille@noaa.gov&gt;, &lt;Sarah.gaichas@noaa.gov&gt;, &lt;Sean.Lucey@noaa.gov&gt;
 ]
-]
----
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
