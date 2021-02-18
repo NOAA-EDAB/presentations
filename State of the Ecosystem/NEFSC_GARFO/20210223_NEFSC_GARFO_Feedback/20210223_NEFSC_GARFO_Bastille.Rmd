@@ -170,24 +170,35 @@ Shorter, fishery specific State of the Ecosystem (SOE) report with conceptual mo
 Feedback from fishery managers redesigned reporting to align with objectives outlined by WGNARS
 
 ---
-## State of the Ecosystem Scope
+## State of the Ecosystem - Document Orientation
 
 .pull-left[
+Spatial scale
 ![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 100%](EDAB_images/EPU_Designations_Map.jpg)
 
-]
-.pull-right[
-Mapping trawl survey strata to Ecological Production Units (EPUs)  
-
 .contrib[
+This year, we mapped trawl survey strata to Ecological Production Units (EPUs)  
+
 [More information on EPUs](https://noaa-edab.github.io/tech-doc/epu.html)  
 [More information on survey data](https://noaa-edab.github.io/tech-doc/survdat.html)  
 ]
 ]
 
+.pull-right[
+Key to figures
 
+![:img](EDAB_images/species-dist.png)
 
+.contrib[
+Trends assessed only for 30+ years: [more information](https://noaa-edab.github.io/tech-doc/trend-analysis.html)
 
+<p style="color:#FF8C00;">Orange line = significant increase</p>
+<p style="color:#9932CC;">Purple line = significant decrease</p>
+No color line = not significant or too short
+<p style="background-color:#D3D3D3;">Grey background = last 10 years</p>
+
+]
+]
 
 ---
 ## State of the Ecosystem Report Structure
@@ -525,7 +536,8 @@ Shelfwide - Endangered species abundance
 * New observations show that acidification in surfclam summer habitat is approaching, but not yet at, levels affecting surf clam growth. 
 
 .pull-left[
-![OA](EDAB_images/Seasonal PH on MAB shelf - Grace Saba.jpg)
+
+![img: OA](EDAB_images/Seasonal PH on MAB shelf - Grace Saba.jpg)
 ]
 
 .pull-right[
@@ -647,10 +659,11 @@ library(widgetframe)
 SOEtime <- data.frame(
   id = 1:12,
   content = c("internal review", "MAFMC SSC", "NEFMC SSC","MAFMC Council","NEFMC Council","2021 debrief", 
-              "SOE 2022 workshop","subgroups",  "data submission", "initial synthesis", "synthesis workshop",
+              "SOE 2022 workshop","subgroups",  "data submission", "initial synthesis", 
+              "synthesis workshop",
               "internal review"),
   start = c("2021-02-15","2021-03-9", "2021-03-26", "2021-04-06", "2021-04-13",
-            "2021-05-01", "2021-08-17", "2021-08-25", "2021-12-10",
+            "2021-05-01", "2021-08-17", "2021-08-01", "2021-12-10",
             "2021-12-17", "2022-01-18", "2022-02-15"),
   end = c(NA,NA, NA, NA, 
           NA, NA,NA, 
