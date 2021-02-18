@@ -276,23 +276,26 @@ Characterizing ecosystem change for fishery management
 
 Mid-Atlantic - Landings
 .pull-left[
-
+* Surfclams/Ocean quahogs driving decline
+* Likely market driven
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.height=3}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.height=4}
 ```
  
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"), fig.height=3}
-```
 
 ]
 
 .pull-right[
 
-* Surfclams/Ocean quahogs driving decline
-* Likely market driven
+
+
 * Recreational decline do to different drivers
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"), fig.height=4}
+```
+
 ]
 
 
@@ -333,8 +336,11 @@ New England - Revenue & Bennet
 .pull-left[
 
 * Driven by single species.
+
 * GB: High revenue caused by high volume/price from scallops.
+
 * GB: Fluctuations associated with rotational management areas.
+
 * GOM: Total regional revenue high due to high lobster prices, despite lower volume.
 
 ]
@@ -356,6 +362,7 @@ New England - Revenue & Bennet
 
 Mid-Atlantic - Recreational effort and diversity
 .pull-left[
+* Effort near long-term average. 
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
 ```
@@ -363,16 +370,17 @@ Mid-Atlantic - Recreational effort and diversity
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R"), fig.height=3 }
 ```
 
+
+]
+
+.pull-right[
+
+* Fleet diversity decreasing due to a shift away from party/charter to shore-based fishing. 
+
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R"), fig.height=3 }
 ```
 ]
 
-.pull-right[
-* Effort near long-term average. 
-* Fleet diversity decreasing due to a shift away from party/charter to shore-based fishing. 
-* Shore-based anglers access different species/sizes than vessel-based anglers.
-
-]
 
 ---
 
@@ -381,21 +389,27 @@ Mid-Atlantic - Recreational effort and diversity
 New England - Commercial Diversity & Zooplankton Diversity
 .pull-left[
 
+
+
 * Commercial fleet diversity indicates a shift toward reliance on fewer species, as noted under revenue.
-<br>
-<br>
-<br>
-<br>
-* Overall indicators suggest stability but several metrics are increasing and should be monitored as warning signs for potential regime shift or ecosystem restructuring.
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div.R"), fig.height=5 }
+```
+
+
 
 ]
 
 .pull-right[
+
+* Overall indicators suggest stability but several metrics are increasing and should be monitored as warning signs for potential regime shift or ecosystem restructuring.
+
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-setup.R")}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div.R"), fig.height=3 }
-```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-zoo-diversity.R"), fig.height=2 }
 ```
@@ -432,25 +446,42 @@ Mid-Atlantic - Recreational and Commercial engagement, reliance & vulnerability
 
 ## Objective: Protected Species
 Shelfwide - Species by-catch and endangered species abundance
+
+* Shifts in population distribution combined with fishery shifts
+* Population increase for seals
+
 .pull-left[
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.height=3}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.height=4}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.height=3}
+]
+
+.pull-right[
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.height=4}
+```
+]
+
+---
+
+## Objective: Protected Species
+Shelfwide - Endangered species abundance
+
+* NARW combined fishery interactions/ship strikes and distribution shifts and copepod availability
+* Unusual mortality events for 3 large whale species, harbor and gray seals
+
+.pull-left[
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R"), fig.height=3}
 ```
 ]
 
 .pull-right[
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R"), fig.height=3}
-```
-
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R"), fig.height=3}
 ```
 ]
-
-
 
 ---
 
@@ -475,7 +506,17 @@ Shelfwide - Species by-catch and endangered species abundance
 
 .pull-right[
 * Gulf stream continues to push further north. 
+
 * Little to no Labrador Slope Water entering the Gulf of Maine. 
+
+* Bottom temp continues to increase in all regions.
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.height=3}
+```
+
 ]
 
 ---
@@ -484,8 +525,9 @@ Shelfwide - Species by-catch and endangered species abundance
 * New observations show that acidification in surfclam summer habitat is approaching, but not yet at, levels affecting surf clam growth. 
 
 .pull-left[
-![](EDAB_images/Seasonal PH on MAB shelf - Grace Saba.jpg)
+![OA](EDAB_images/Seasonal PH on MAB shelf - Grace Saba.jpg)
 ]
+
 .pull-right[
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
 ```
@@ -503,7 +545,7 @@ Shelfwide - Species by-catch and endangered species abundance
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-setup.R")}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-heatwave-year-gb.R"), fig.height=3}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-heatwave-year-gb.R"), fig.height=5}
 ```
 ]
 
@@ -521,10 +563,11 @@ Shelfwide - Species by-catch and endangered species abundance
 ]
 
 ---
-## Risks to meeting fishery management objectives - Climate indicators
-Indicators:  Chesapeake Bay
+## Risks to meeting fishery management objectives - Climate
+
+
 .pull-left[
-![:img ches bay temp, 75%](EDAB_images/ches-temp-temp.png)
+![:img ches bay temp, 80%](EDAB_images/ches-temp-temp.png)
 ]
 
 .pull-right[
@@ -539,151 +582,6 @@ Indicators:  Chesapeake Bay
 * Striped Bass - low recruitment success
 ]
 
-<!-- --- -->
-
-<!-- ## Risks to meeting fishery management objectives - Climate indicators - Habitat Vulnerability -->
-
-<!-- ```{r setup1, include=FALSE} -->
-<!-- library(here); library(kableExtra); library(dplyr); library(readxl); library(data.table); library(DT); -->
-<!-- library(stringr) -->
-<!-- knitr::opts_chunk$set(echo = FALSE) -->
-<!-- options(knitr.kable.NA = '') -->
-<!-- ``` -->
-
-<!-- ```{css, echo=FALSE} -->
-<!-- /*alter risk assessment table formatting*/ -->
-<!-- .risktable { -->
-<!--     border-collapse: collapse; -->
-<!-- } -->
-<!-- .risktable th { -->
-<!--     padding: 2px; -->
-<!-- } -->
-<!-- .risktable td { -->
-<!--     padding: 1px; -->
-<!-- } -->
-<!-- .risktable tbody tr:nth-of-type(even) { -->
-<!--   background-color:transparent; -->
-<!-- } -->
-<!-- ``` -->
-
-<!-- Mid-Atlantic Habitat Vulnerability Table -->
-
-<!-- ```{r class.source="risktable"} -->
-<!-- #Read in Mid-Atlantic table -->
-
-
-<!-- mid <- as.data.table(readxl::read_xlsx(here('EDAB_images/habitat_vulnerability.xlsx'), -->
-<!--                          sheet = 'Mid-Atlantic', skip = 1)) -->
-<!-- #Identify individual species climate vulnerability -->
-<!-- vhigh.vul <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Very high', Species]) -->
-<!-- high.vul  <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'High', Species]) -->
-<!-- mod.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Moderate', Species]) -->
-<!-- low.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Low', Species]) -->
-<!-- #Grab habitat vulnerability -->
-<!-- hab.vul <- unique(mid[, c('Habitat Name', 'Habitat Vulnerability Rank (HVCA)')]) -->
-<!-- habitats <- hab.vul[, 'Habitat Name'] -->
-<!-- hab.vul <- data.table('Habitat Vulnerability' = c(NA, NA, t(hab.vul[, 'Habitat Vulnerability Rank (HVCA)']))) -->
-<!-- #Rearrange table -->
-<!-- mid <- data.table::melt.data.table(mid, id.vars = c('Habitat Name', 'Species'), -->
-<!--                                    measure.vars = c('Eggs/Larva', 'Juvenile/YOY', -->
-<!--                                                     'Adult', 'Spawning Adult'), -->
-<!--                                    variable.name = 'Stage', value.name = 'Dependence') -->
-<!-- mid[, Habitat := as.factor(mid$'Habitat Name')] -->
-<!-- mid <- data.table::dcast.data.table(mid, Species + Stage ~ Habitat, -->
-<!--                                     value.var = 'Dependence') -->
-<!-- setcolorder(mid, c('Species', 'Stage', habitats$'Habitat Name')) -->
-<!-- #Add Habitat Vulnerbaility -->
-<!-- hab.table <- rbindlist(list(as.data.table(t(hab.vul)), mid), use.names = F) -->
-<!-- #Add names back in -->
-<!-- names(hab.table) <- names(mid) -->
-<!-- hab.table <- hab.table %>% mutate_if(is.character, str_trim) #one cell has a space, not getting color -->
-<!-- #generalize to all -->
-<!-- # hab.table %>% -->
-<!-- #   mutate_at(vars(Species), function(x){ #Color code species based on climate vul -->
-<!-- #     case_when(x %in% low.vul ~ cell_spec(x, format = "html", color = "black", -->
-<!-- #                                      background = "lightgreen"), -->
-<!-- #               x %in% mod.vul ~ cell_spec(x, format = "html", color = "black", -->
-<!-- #                                      background = "yellow"), -->
-<!-- #               x %in% high.vul ~ cell_spec(x, format = "html", color = "black", -->
-<!-- #                                      background = "orange"), -->
-<!-- #               x %in% vhigh.vul ~ cell_spec(x, format = "html", color = "white", -->
-<!-- #                                      background = "red"))}) %>% -->
-<!-- #   mutate_at(vars(-c(Species, Stage)), function(x){ #Color code base on dependence -->
-<!-- #     case_when(x == "Low" ~ cell_spec(x, format = "html", color = "black", -->
-<!-- #                                      background = "lightgreen"), -->
-<!-- #               x == "Moderate" ~ cell_spec(x, format = "html", color = "black", -->
-<!-- #                                      background = "yellow"), -->
-<!-- #               x == "High" ~ cell_spec(x, format = "html", color = "black", -->
-<!-- #                                      background = "orange"), -->
-<!-- #               x == "Very high" ~ cell_spec(x, format = "html", color = "white", -->
-<!-- #                                      background = "red"))}) %>% -->
-<!-- #   kable(format = "html", escape = F, table.attr='class="risktable"') %>% -->
-<!-- #   kable_styling(font_size = 14, fixed_thead = T) -->
-<!-- ``` -->
-
-<!-- ```{r midDT} -->
-<!-- #from examples here https://rstudio.github.io/DT/010-style.html -->
-<!-- #color coding cells works -->
-<!-- #need to add column with species vulnerability and color code species by it but not show it, like #hideV6 example at link -->
-<!-- #if we show it we can sort by species vulnerability though... alphabetical doesnt work so use numbers to go lowest-highest -->
-<!-- #still need to color code headers--done with spans below -->
-<!-- hab.table <- hab.table %>% -->
-<!--   filter(Species != "") %>% #remove row with habitat vul because headers now in color -->
-<!--   mutate(spVul = #Color code species based on climate vul -->
-<!--     # case_when(Species %in% low.vul ~ "low.vul", -->
-<!--     #           Species %in% mod.vul ~ "mod.vul", -->
-<!--     #           Species %in% high.vul ~ "high.vul", -->
-<!--     #           Species %in% vhigh.vul ~ "vhigh.vul") -->
-<!--     # ) -->
-<!--     case_when(Species %in% low.vul ~ 1, -->
-<!--               Species %in% mod.vul ~ 2, -->
-<!--               Species %in% high.vul ~ 3, -->
-<!--               Species %in% vhigh.vul ~ 4) -->
-<!--     ) -->
-<!-- colnames(hab.table)[c(3:4)] <- paste0('<span style="box-shadow: -10px 0 0 red, 10px 0 0 red; background-color:red; color:white">',colnames(hab.table)[c(3:4)],'</span>') -->
-<!-- colnames(hab.table)[c(5:10)] <- paste0('<span style="box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:',c("orange"),'">',colnames(hab.table)[c(5:10)],'</span>') -->
-<!-- colnames(hab.table)[c(11:15)] <- paste0('<span style="box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:',c("yellow"),'">',colnames(hab.table)[c(11:15)],'</span>') -->
-<!-- dt <- datatable(hab.table, rownames = FALSE, escape = FALSE, -->
-<!--           extensions = c('Scroller', 'FixedColumns'), #add scrolling and fixed column -->
-<!--           options = list(deferRender = TRUE, -->
-<!--           scrollY = 300, scroller = TRUE, -->
-<!--           dom = 't',scrollX = TRUE,fixedColumns = TRUE) -->
-<!--           #, options = list(columnDefs = list(list(targets = 16, visible = FALSE))) -->
-<!--   ) %>%  -->
-<!--   formatStyle( -->
-<!--     names(hab.table)[3:4], -->
-<!--     backgroundColor = '#FF000080' -->
-<!--   ) %>% -->
-<!--   formatStyle( -->
-<!--     names(hab.table)[5:10], -->
-<!--     backgroundColor = '#FFA50080' -->
-<!--   ) %>% -->
-<!--   formatStyle( -->
-<!--     names(hab.table)[11:15], -->
-<!--     backgroundColor = '#FFFF0080' -->
-<!--   ) %>% -->
-<!--   formatStyle(#Color code base on dependence -->
-<!--     'Species', "spVul", -->
-<!--     backgroundColor = styleEqual(#c("low.vul", "mod.vul", "high.vul", "vhigh.vul"), -->
-<!--                                  c(1,2,3,4), -->
-<!--                                  c('lightgreen', 'yellow', 'orange', 'red')), #Color code base on dependence) -->
-<!--     color = styleEqual(c(1,2,3,4), -->
-<!--                                  c('black', 'black', 'black', 'white')) -->
-<!--     ) %>% -->
-<!--     formatStyle( -->
-<!--     names(hab.table), -->
-<!--     backgroundColor = styleEqual(c("Low", "Moderate", "High", "Very high"),  -->
-<!--                                  c('lightgreen', 'yellow', 'orange', 'red')),  -->
-<!--     color = styleEqual(c("Low", "Moderate", "High", "Very high"),  -->
-<!--                                  c('black', 'black', 'black', 'white')) -->
-<!--   ) -->
-<!-- dt -->
-<!-- ``` -->
-
-<!-- .footnote[ -->
-<!-- [] https://noaa-edab.github.io/ecodata/Hab_table -->
-<!-- ] -->
-<!-- ??? -->
 ---
 
 ## Risks to Meeting fishery management objectives - Climate
@@ -711,9 +609,11 @@ Indicators:  Chesapeake Bay
 ```
 
 * More than 20 offshore wind development projects proposed. 
-* Offshore wind areas may cover more than 1.7 million acres by 2030. 
-* Scientific surveys collecting data for ocean and ecosystem conditions, fish, and protected species will be altered, potentially increasing uncertainty for management decision-making. 
 
+* Offshore wind areas may cover more than 1.7 million acres by 2030. 
+
+* Scientific surveys collecting data for ocean and ecosystem conditions, fish, and protected species will be altered, potentially increasing uncertainty for management decision-making. 
+]
 ---
 
 ## Risks to Meeting fishery management objectives - Wind
@@ -721,41 +621,46 @@ Indicators:  Chesapeake Bay
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-revenue.R"), fig.height=3}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-revenue.R"), fig.height=5}
 ```
 ]
 
 .pull-right[
 * If all sites are developed, 2-24% of total average revenue could be displaced for major Mid-Atlantic species in lease areas.
+
+
 * Displaced fishing effort can alter fishing methods, which can in turn change habitat, species (managed and protected), and fleet interactions.
+
+
 * Right whales may be displaced, and altered local oceanography could affect distribution of their zooplankton prey.
 
 ]
 
 ---
-## How to get involved - Timeline
+
+## SOE - Timeline
 
 
-```{r SOEtime, out.width="100%"}
+```{r SOEtime, out.height="110%"}
 library(timevis)
 library(widgetframe)
 SOEtime <- data.frame(
-  id = 1:11,
-  content = c("MAFMC SSC", "NEFMC SSC","MAFMC Council","NEFMC Council","2021 debrief", "SOE 2022 workshop",
-              "subgroups",  "data submission", "initial synthesis", "synthesis workshop",
+  id = 1:12,
+  content = c("internal review", "MAFMC SSC", "NEFMC SSC","MAFMC Council","NEFMC Council","2021 debrief", 
+              "SOE 2022 workshop","subgroups",  "data submission", "initial synthesis", "synthesis workshop",
               "internal review"),
-  start = c("2021-03-9", "2021-03-26", "2021-04-06", "2021-04-13",
+  start = c("2021-02-15","2021-03-9", "2021-03-26", "2021-04-06", "2021-04-13",
             "2021-05-01", "2021-08-17", "2021-08-25", "2021-12-10",
             "2021-12-17", "2022-01-18", "2022-02-15"),
-  end = c(NA, NA, NA, 
+  end = c(NA,NA, NA, NA, 
           NA, NA,NA, 
           "2021-12-01",  NA, NA,
-          "2022-01-20", "2022-02-29"),
-  type = c("point","point","point",
-           "point","point","point", "range",
-           "box", "point","range",
+          NA, "2022-02-29"),
+  type = c("box","point","point","point",
+           "point","box","box", "range",
+           "box", "box","box",
            "range"),
-  group = c( rep("Both", 11))
+  group = c( rep("Both", 12))
 )
 
 fulltl <- timevis(SOEtime)
@@ -764,10 +669,11 @@ frameWidget(fulltl)
 ```
 
 
---- 
+---
+
 ## How to get involved
 
-Questions to ask:
+### Questions to ask:
 
 * Is my data relevant to a management objective?
 
@@ -777,7 +683,7 @@ Questions to ask:
 
 * Is my data private? Can an aggregated version be made available to the public? 
 
-Next Steps: 
+### Next Steps: 
 
 * Fill out the linked form. 
 
