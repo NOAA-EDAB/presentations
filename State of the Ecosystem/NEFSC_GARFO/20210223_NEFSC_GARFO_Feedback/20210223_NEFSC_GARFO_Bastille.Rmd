@@ -158,7 +158,7 @@ background-position: right bottom
 
 1. Objectives related to human-well being placed first in report
 
-1. Short (< 30 pages), non-technical (but rigorous) text
+1. Relatively short (< 30 pages), non-technical (but rigorous) text
 
 1. Emphasis on reproducibility
 
@@ -210,10 +210,10 @@ No color line = not significant or too short
     + possible risks
     + synthesis themes
     
-1. Performance against management objectives
+1. Performance relative to management objectives
     + ------------------------------------>
     
-1. Risks
+1. Risks to meeting fishery management objectives
     + Climate
     + Wind
 
@@ -221,11 +221,11 @@ No color line = not significant or too short
 
 .pull-right[
 
-*Established ecosystem-scale objectives*
+*Ecosystem-scale objectives*
 
 ```{r management-objectives}
 mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
-                                                 "Profits","Recreation",
+                                                 "Commercial Profits","Recreation",
                                                  "Social & Cultural", "Stability",
                                                  "Biomass","Productivity",
                                                  "Trophic structure","Habitat"),
@@ -257,21 +257,15 @@ mng_obj %>%
 ```
 ]
 
----
-## [2021 Report](https://doi.org/10.25923/1f8j-d564): Summary with visualizations 
-
-
- Table from Summary Pages
-
 
 ---
 ## Ecosystem synthesis themes for 2021
 
 Characterizing ecosystem change for fishery management 
 
-* **Multiple drivers** - Societal, biological, physical and chemical factors that influence the marine ecosystems. 
-* **Regime shifts** - large, abrupt and persistent changes in the structure and function of an ecosystem
-* **Ecosystem Reorganization** - e.g. Tropicalization
+* **Multiple drivers** - Societal, biological, physical, and chemical factors that influence the marine ecosystems
+* **Regime shifts** - large, abrupt, and persistent changes in the structure and function of an ecosystem
+* **Ecosystem Reorganization** - New way humans and other species respond to regime shift e.g. Tropicalization
 
 .pull-left[
 
@@ -282,6 +276,17 @@ Characterizing ecosystem change for fishery management
 ![:img](EDAB_images/RegimeShift_V5.jpg)
 ]
 
+---
+## 2021 Report: Summary with visualizations 
+
+.pull-left[
+![:img summary table, 90%](EDAB_images/soe-summary-table.png)
+]
+
+.pull-right[
+![:img summary risks, 90%](EDAB_images/soe-summary-risks.png)
+]
+ 
 ---
 ## Objective: Seafood production 
 
@@ -309,36 +314,9 @@ Mid-Atlantic - Landings
 
 ]
 
-
-
----
-## Objective: Seafood production
-
-
-Mid-Atlantic - Stock status & Ecosystem overfishing
-.pull-left[
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.height=3 }
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R"), fig.height=3}
-```
-]
-
-.pull-right[
-* Ecosystem overfishing unlikely
-* Stock status mostly good
-* System biomass trends stable
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R"), fig.height=3}
-```
-
-]
 ---
 
-## Objective: Profits
+## Objective: Commercial Profits
 
 New England - Revenue & Bennet
 
@@ -456,7 +434,7 @@ Mid-Atlantic - Recreational and Commercial engagement, reliance & vulnerability
 ---
 
 ## Objective: Protected Species
-Shelfwide - Species by-catch and endangered species abundance
+Shelfwide - Species by-catch 
 
 * Shifts in population distribution combined with fishery shifts
 * Population increase for seals
@@ -533,7 +511,8 @@ Shelfwide - Endangered species abundance
 ---
 
 ## Risks to meeting fishery management objectives - Climate 
-* New observations show that acidification in surfclam summer habitat is approaching, but not yet at, levels affecting surf clam growth. 
+* Surfclams and ocean quahogs sensitive to warming and ocean acidifcation
+* Acidification in surfclam summer habitat is approaching, but not yet at, levels affecting surf clam growth. 
 
 .pull-left[
 
@@ -596,7 +575,7 @@ Shelfwide - Endangered species abundance
 
 ---
 
-## Risks to Meeting fishery management objectives - Climate
+## Risks to meeting fishery management objectives - Climate
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-setup.R")}
 ```
@@ -684,23 +663,43 @@ frameWidget(fulltl)
 
 ---
 
-## How to get involved
+## SOE Workflow - Focus on open science
 
-### Questions to ask:
+![:img SOE product ecosystem, 90%](EDAB_images/SOE_product_ecosystem.png)
+.pull-left[
+.contrib[
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+* [Technical Documentation](https://noaa-edab.github.io/tech-doc)
+* [Indicator catalogue](https://noaa-edab.github.io/catalog/)
+]
+]
 
-* Is my data relevant to a management objective?
+.pull-right[
+.contrib[
+* [NEFMC SOE](https://github.com/NOAA-EDAB/SOE-NEFMC)
+* [MAFMC SOE](https://github.com/NOAA-EDAB/SOE-MAFMC)
+]
+]
+---
+## Indicator Catalog
 
-* How could my data/work be used to support a story relevant to the fisheries managers?
+.pull-left[
+![:img SOE product ecosystem, 80%](EDAB_images/ches-bay-sal-cat.png)
+.contrib[
 
-* Is this data already being included in the report or is it missing?
+* [Chesapeake Bay Salinity Catalog Chapter](https://noaa-edab.github.io/catalog/chesapeake-bay-salinity.html)
+]
 
-* Is my data private? Can an aggregated version be made available to the public? 
+]
+.pull-right[
+* Example of open data science tools
 
-### Next Steps: 
+* Collate the indicator information
 
-* Fill out the linked form. 
+* Provide place for further explanation and context
 
-
+* Starting point for full ESR
+]
 
 ---
 ## Contributors - THANK YOU!
@@ -730,7 +729,6 @@ Sean Hardison<br>
 Kimberly Hyde<br>
 Terry Joyce (Woods Hole Oceanographic Institute)<br>
 John Kocik<br>
-Steve Kress (National Audubon Society)<br>
 Scott Large
 ]
 ]
@@ -759,12 +757,13 @@ Mark Terceiro<br>
 John Walden<br>
 Changhua Weng<br<
 Harvey Walsh<br>
+Steve Kress (National Audubon Society)<br>
 Mark Wuenschel
 ]
 ]
 
 .center[
-![:img NOAA Fisheries IEA logo, 40%](EDAB_images/noaa-iea.png)
+![:img NOAA Fisheries IEA logo, 30%](EDAB_images/noaa-iea.png)
 ]
 
 
