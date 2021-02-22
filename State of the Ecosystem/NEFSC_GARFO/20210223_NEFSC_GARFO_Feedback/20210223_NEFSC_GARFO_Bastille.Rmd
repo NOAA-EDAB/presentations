@@ -107,7 +107,7 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 
 * Highlights from the 2021 reports
 
-* How we develop open science reports and future ESR
+* Open data science and future product development
 
 
 ]
@@ -300,7 +300,7 @@ Characterizing ecosystem change for fishery management
 ]
 
 ---
-## 2021 Report: Summary with visualizations 
+## 2021 Report: Summary with visualizations (Draft)
 
 .pull-left[
 ![:img summary table, 90%](EDAB_images/soe-summary-table.png)
@@ -322,7 +322,9 @@ Mid-Atlantic - Landings
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.height=4}
 ```
- 
+.contrib[
+Black line = total landings and red line = total landings from council-managed species
+]
 
 ]
 
@@ -330,7 +332,7 @@ Mid-Atlantic - Landings
 
 
 
-* Recreational decline do to different drivers
+* Multiple Drivers of recreational decline
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"), fig.height=4}
 ```
@@ -341,7 +343,7 @@ Mid-Atlantic - Landings
 
 ## Objective: Commercial Profits
 
-New England - Revenue & Bennet
+New England - Revenue and Bennet
 
 
 
@@ -363,7 +365,9 @@ New England - Revenue & Bennet
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-comm-revenue.R"), fig.height=3 }
 ```
-
+.contrib[
+Black line = total revenue and red line = total revenue from council-managed species
+]
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet-all.R"), fig.height=3 }
 ```
 ]
@@ -398,7 +402,7 @@ Mid-Atlantic - Recreational effort and diversity
 
 ## Objective: Stability 
 
-New England - Commercial Diversity & Zooplankton Diversity
+New England - Fisheries and Ecological Diversity
 .pull-left[
 
 
@@ -430,7 +434,7 @@ New England - Commercial Diversity & Zooplankton Diversity
 
 ## Objective: Social & Cultural
 
-Mid-Atlantic - Recreational and Commercial engagement, reliance & vulnerability
+Mid-Atlantic - Recreational and Commercial engagement, reliance, and social vulnerability
 
 * Highlighted communities vulnerable to changes in fishing patterns. 
 * May have lower ability to successfully respond to change. 
@@ -457,7 +461,7 @@ Mid-Atlantic - Recreational and Commercial engagement, reliance & vulnerability
 ---
 
 ## Objective: Protected Species
-Shelfwide - Species by-catch 
+Shelfwide - Species bycatch 
 
 * Shifts in population distribution combined with fishery shifts
 * Population increase for seals
@@ -480,7 +484,7 @@ Shelfwide - Species by-catch
 ## Objective: Protected Species
 Shelfwide - Endangered species abundance
 
-* NARW combined fishery interactions/ship strikes and distribution shifts and copepod availability
+* NARW combined fishery interactions/ship strikes, distribution shifts, and copepod availability
 * Unusual mortality events for 3 large whale species, harbor and gray seals
 
 .pull-left[
@@ -528,7 +532,9 @@ Shelfwide - Endangered species abundance
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.height=3}
 ```
-
+.contrib[
+Black line = in situ bottom temp and red line = GLORYS bottom temp
+]
 ]
 
 ---
@@ -693,7 +699,7 @@ frameWidget(fulltl)
 .contrib[
 * [ecodata R package](https://github.com/noaa-edab/ecodata)
 * [Technical Documentation](https://noaa-edab.github.io/tech-doc)
-* [Indicator catalogue](https://noaa-edab.github.io/catalog/)
+* [Indicator catalog](https://noaa-edab.github.io/catalog/)
 ]
 ]
 
@@ -722,7 +728,7 @@ frameWidget(fulltl)
 
 * Provide place for further explanation and context
 
-* Starting point for full ESR
+* Starting point for other ecosystem reporting products
 
 * Link to [get involved](https://docs.google.com/forms/d/e/1FAIpQLSeJTAXRIxncwePR9lsVGtVY24SA_YOXGXPFL_IKV-n7hnRjJw/viewform?usp=sf_link)
 ]
@@ -730,61 +736,63 @@ frameWidget(fulltl)
 ---
 ## Contributors - THANK YOU!
 
-The New England and Mid-Atlantic SOEs made possible by (at least) 38 contributors from 8 intstitutions 
+The New England and Mid-Atlantic SOEs made possible by (at least) 38 contributors from 8 institutions 
 
 .pull-left[
 .contrib[
-Donald Anderson (Woods Hole Oceanographic Institute) <br>
 Andy Beet<br>
-Jennifer Cudney (NMFS Atlantic HMS Management Division) <br>
+Kimberly Bastille<br>
+Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
+Zhuomin Chen (Woods Hole Oceanographic Institute)<br>
 Doug Christel (GARFO)<br>
 Patricia Clay<br>
 Lisa Colburn<br>
+Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
+Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
 Geret DePiper<br>
 Michael Fogarty<br>
-Paula Fratantoni <br>
+Paula Fratantoni<br>
 Kevin Friedland<br>
 Sarah Gaichas<br>
-Andrew Lipsky<br>
-Shannon Meseck<br>
-Chris Schillaci (GARFO)<br>
-Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
+Avijit Ben Galuardi (GARFO)<br>
+Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
 James Gartland (Virginia Institute of Marine Science)<br>
-Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br> 
+Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
 Sean Hardison<br>
 Kimberly Hyde<br>
-Terry Joyce (Woods Hole Oceanographic Institute)<br>
-John Kocik<br>
-Scott Large
+John Kosik<br>
+Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
+Young-Oh Kwon (Woods Hole Oceanographic Institute)<br>
+Scott Large<br>
+Andrew Lipsky<br>
+Sean Lucey
+
+
 ]
 ]
 
 .pull-right[
 .contrib[
-Don Lyons (National Audubon Society)<br>
-Young-Oh Kwon (Woods Hole Oceanographic Institution)<br> 
-Zhuomin Chen (Woods Hole Oceanographic Institution)<br>
-Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
-Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
-Sean Lucey<br>
-Young-Oh Kwon (Woods Hole Oceanographic Institute)<br>
-Talya tenBrink (GARFO)<br>
+Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
 Chris Melrose<br>
+Shannon Meseck<br>
 Ryan Morse<br>
 Kimberly Murray<br>
-Angela Silva<br>
 Chris Orphanides<br>
 Richard Pace<br>
 Charles Perretti<br>
-Vincent Saba<br>
 Grace Saba (Rutgers)<br>
+Vincent Saba<br>
+Chris Schillaci (GARFO)<br>
+Angela Silva<br>
+Emily Slesinger (Rutgers University)<br>
 Laurel Smith<br>
-Mark Terceiro<br>
+Talya tenBrink (GARFO)<br>
 John Walden<br>
-Changhua Weng<br<
 Harvey Walsh<br>
-Steve Kress (National Audubon Society)<br>
-Mark Wuenschel
+Changhua Weng<br>
+Mark Wuenschel.  
+
 ]
 ]
 
@@ -811,7 +819,7 @@ Mark Wuenschel
 
 * [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
 
-* [Draft indicator catalogue](https://noaa-edab.github.io/catalog/)
+* [Draft indicator catalog](https://noaa-edab.github.io/catalog/)
 
 
 
