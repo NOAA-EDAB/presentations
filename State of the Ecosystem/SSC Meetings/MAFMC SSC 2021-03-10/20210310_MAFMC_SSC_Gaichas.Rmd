@@ -20,11 +20,20 @@ output:
 ---
 class: top, left
 
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+
 ```{r setup, include=FALSE}
 
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = F,
                       fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
                       warning = F,
                       message = F)
 #Plotting and data libraries
@@ -268,36 +277,89 @@ Characterizing ecosystem change for fishery management
 Indicators: Commercial and recreational landings 
 Trends: Decreasing  
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.height=3}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.4}
+#total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
 ```
 .contrib[
-Black line = total landings and red line = total landings from council-managed species
+Key: Black = Landings of all species combined; <p style="color:#FF6A6A;">Red = Landings of MAFMC managed species</p>
 ]
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"), fig.height=3}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
+#, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
+
 ```
 
+]
 
 .pull-right[
-Multiple drivers: combinations of ecosystem and stock production, management actions, market conditions, and environmental change
+Multiple drivers: ecosystem and stock production, management, market conditions, and environment
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.height=3 }
+Biomass?
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
+
+#nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean."
 ```
 
+.contrib[
+Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
+]
+]
+
+---
+## Landings drivers: Ecosystem and stock production? (Memo 2-3)
+
+.pull-left[
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
+
+#fogarty, fig.cap="Fogarty Index; the ratio of total landings to total primary production in the MAB. Link and Watson (2019) give an optimal range (green shading) of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that index values exceeding 1 to 2 PPT (orange shading) led to ecosystem tipping points."
+
+```
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
+
+#ryther, fig.cap="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green shading) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange shading). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded)."
+```
+
+]
+
+.pull-right[
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R")}
+
+#ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels. PPD is total primary production. The solid line is based on satellite-derived PPD and the dashed line is based on primary production reconstructed using the mean of satellite-derived PPD from 1998-2010."
+```
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
+
+#stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing).")
+```
 
 ]
 
 ---
-## Multiple drivers of fish production analysis in progress: environment - fish condition - market price linkages
+## Implications: Seafood Production
+.pull-left[
+Because ecosystem overfishing seems unlikely, stock status is mostly acceptable, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by **market dynamics affecting the landings of surfclams and ocean quahogs**, as quotas are not binding for these species. 
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.4}
+# comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."),
+```
 
-![:img Bottom water temperature anomaly MAB, 20%](EDAB_images/MAB-bot-temp-1.png) ![:img Zooplankton community and primary production anomaly, 20%](EDAB_images/MAB-sli-1.png) ![:img Relative condition factor 1992-2019 for fish species in the MAB. MAB data are missing for 2017 due to survey delays, 35% ](EDAB_images/MABcondition_2019_viridis_final.jpg) ![:img Price for king silver hake 1994-2019, 22%](EDAB_images/kingsilverhakeprice.png)
 
-* Identify multiple and changing drivers of condition and market prices over time
-* Recognize regime shifts and potential system reorganization
+]
 
-* Work in progress has identified the following potential drivers
-    - *Temperature?*
-    - *Zooplankton...? Laurel and team to specify*
+.pull-right[
+The decline in recreational seafood landings stems from other drivers, including shark fishery management and possibly survey methodology. 
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5, fig.asp=.35}
+#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey."
+
+```
+
+]
+
+
+???
+
+Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
+
 
 ---
 ## Example: Profits objective
