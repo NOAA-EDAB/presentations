@@ -284,7 +284,7 @@ Trends: Decreasing
 Key: Black = Landings of all species combined; <p style="color:#FF6A6A;">Red = Landings of MAFMC managed species</p>
 ]
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R")}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"), fig.asp=.4}
 #, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
 
 ```
@@ -320,6 +320,12 @@ Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
 #ryther, fig.cap="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green shading) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange shading). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded)."
 ```
 
+.contrib[
+Key: 
+<p style="background-color:#FFA500;">Orange background = Tipping point overfishing threshold;</p> 
+<p style="background-color:#00FF00;">Green background= Optimal range</p>
+]
+
 ]
 
 .pull-right[
@@ -338,8 +344,13 @@ Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
 ---
 ## Implications: Seafood Production
 .pull-left[
-Because ecosystem overfishing seems unlikely, stock status is mostly acceptable, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by **market dynamics affecting the landings of surfclams and ocean quahogs**, as quotas are not binding for these species. 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.asp=1.4}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.width=5, fig.asp=1.4}
 # comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."),
 ```
 
@@ -347,9 +358,11 @@ Because ecosystem overfishing seems unlikely, stock status is mostly acceptable,
 ]
 
 .pull-right[
-The decline in recreational seafood landings stems from other drivers, including shark fishery management and possibly survey methodology. 
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5, fig.asp=.35}
-#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey."
+* Commercial landings decline most likely driven by **market dynamics affecting the landings of surfclams and ocean quahogs**  
+
+* Recreational seafood landings decline from other drivers, including shark fishery management and possibly survey methodology 
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R")}
+#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
 
 ```
 
@@ -357,6 +370,7 @@ The decline in recreational seafood landings stems from other drivers, including
 
 
 ???
+Because ecosystem overfishing seems unlikely, stock status is mostly acceptable, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species.
 
 Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
 
