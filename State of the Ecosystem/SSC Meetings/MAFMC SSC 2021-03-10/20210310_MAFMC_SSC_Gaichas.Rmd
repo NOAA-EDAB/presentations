@@ -297,6 +297,9 @@ No color line = not significant or < 30 years
 ---
 # Performance relative to management objectives
 
+.center[
+![:img Fishing icon made by EDAB, 15%](EDAB_images/5_FISHING.png) &nbsp; &nbsp; &nbsp; ![:img Fishing industry icon made by EDAB, 15%](EDAB_images/6_INDUSTRY.png) &nbsp; &nbsp; &nbsp; ![:img Multiple drivers icon made by EDAB, 25%](EDAB_images/18.MULTIPLE_SYSTEM_DRIVERS.png) &nbsp; &nbsp; &nbsp; ![:img Spiritual cultural icon made by EDAB, 15%](EDAB_images/22.SPIRITUAL_CULTURAL.png) &nbsp; &nbsp; &nbsp; ![:img Protected species icon made by EDAB, 15%](EDAB_images/16.PROTECTEDSPECIES.png)
+]
 
 ---
 ## Objective: Seafood production 
@@ -506,11 +509,14 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 #exp-n, fig.cap = "Adult fish diversity the Mid-Atlantic Bight, based on expected number of species."
 ```
 
-Implications: Commercial fleet diversity metrics suggests stable capacity to respond to the current range of fishing opportunities. Recreational species catch diversity has been maintained by a different set of species over time.
-While larval and adult fish diversity indices are stable, a few warm-southern larval species are becoming more dominant. Increasing zooplankton diversity is driven by declining dominance of an important species, which warrants continued monitoring.
+Implications:  
+* stable capacity to respond to the current range of commercial fishing opportunities  
+* recreational catch diversity maintained by a different set of species over time  
+* monitor zooplankton diversity driven by declining dominant species  
 
 ]
-
+???
+While larval and adult fish diversity indices are stable, a few warm-southern larval species are becoming more dominant. Increasing zooplankton diversity is driven by declining dominance of an important species, which warrants continued monitoring.
 
 ---
 ## Objective: Fishing community status (Memo 8)  
@@ -574,37 +580,41 @@ Implications:
 ---
 # Risks to meeting fishery management objectives
 
+.center[
+![:img Climate icon made by EDAB, 25%](EDAB_images/3_CLIMATE.png) &nbsp; &nbsp; &nbsp; ![:img Wind icon made by EDAB, 25%](EDAB_images/24.WIND.png)
+] 
+
+.center[
+![:img Hydrography icon made by EDAB, 15%](EDAB_images/1_HYDROGRAPHY.png) &nbsp; &nbsp; &nbsp; ![:img Phytoplankon icon made by EDAB, 15%](EDAB_images/9_PHYTOPLANKTON.png) &nbsp; &nbsp; &nbsp; ![:img Forage fish icon made by EDAB, 15%](EDAB_images/13_FORAGEFISH.png) &nbsp; &nbsp; &nbsp; ![:img Apex predators icon made by EDAB, 15%](EDAB_images/17.APEXPREDATORS.png)  &nbsp; &nbsp; &nbsp; ![:img Other human uses icon made by EDAB, 15%](EDAB_images/8_OTHERHUMANUSES.png) 
+]
+
+
+
 ---
 ## Risks: Climate change (Memo 4)
 .pull-left[
-Indicators: ocean currents, temperature, heatwaves, acidification (Memo 7)
-  
-Trends:
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
+Indicators: ocean currents, temperature, heatwaves 
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
 ```
 
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.height=3, out.width='60%'}
-```
-
-```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.height=3, out.width='60%'}
+```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R")}
 
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R"), fig.height=3, out.width='70%'}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R")}
 ```
 ]
 
 .pull-right[
-
-Why this matters: 
-Habitat change from multiple drivers alters:
-- species distributions--allocation
-- system productivity--fishery resource productivity
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-nefsc-survey-disaggregated-mafmc-spp-in-ne.R"), fig.height=6}
-```
-
+Indicator: acidification (Memo 7)
+![:img Seasonal pH](EDAB_images/Seasonal pH on MAB shelf - Grace Saba.jpg)
 ]
+---
+## Risks: Climate change
+
+Indicators: Estuarine conditions (Memo 16), Chesapeake Bay
+
+
 
 ---
 ## Risks: Ecosystem productivity
@@ -749,7 +759,7 @@ frameWidget(dt)
 ]
 
 .pull-right[
-![:img Seasonal pH](EDAB_images/Seasonal pH on MAB shelf - Grace Saba.jpg)
+
 
 ]
 
