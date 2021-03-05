@@ -593,11 +593,12 @@ Implications:
 ---
 ## Risks: Climate change (Memo 4)
 .pull-left[
-Indicators: ocean currents, temperature, heatwaves 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
+Indicators: ocean currents, bottom temperature, marine heatwaves
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.width=4.5}
 ```
 
-```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R")}
+
+```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.width=4.5}
 
 ```
 
@@ -606,20 +607,55 @@ Indicators: ocean currents, temperature, heatwaves
 ]
 
 .pull-right[
+Indicators: 2020 surface temperature, marine heatwaves 
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.asp = 1}
+#seasonal-sst-anom-gridded, fig.cap="MAB seasonal sea surface temperature (SST) time series overlaid onto 2020 seasonal spatial anomalies." , fig.width = 8,
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
+#heatwave-year, fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2020."
+```
+
+]
+---
+## Risks: Climate change (Memo 4)
+.pull-left[
+Indicator: cold pool area (Memo 10)
+![:img cold pool area](EDAB_images/cold_pool_area.png)
+]
+.pull-right[
 Indicator: acidification (Memo 7)
 ![:img Seasonal pH](EDAB_images/Seasonal pH on MAB shelf - Grace Saba.jpg)
 ]
 ---
-## Risks: Climate change
+## Risks: Climate change (Memo 4)
 
 Indicators: Estuarine conditions (Memo 16), Chesapeake Bay
+```{r ches-temp, fig.show='hold', out.width='49%', fig.cap="Left panel: Chesapeake Bay sea surface temperature (SST) seasonal spatial anomalies for 2020, from NOAA multisatellite SST composite. Positive values (red) above 2008-2019 average; negative values (blue) below 2008-2019 average. A) Jan, Feb, Mar; B) Apr, May, Jun; C) Jul, Aug, Sep; D) Oct, Nov, Dec. Right panel: NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature; Blue = 2020, red = Long term average 2010-2019.", fig.align = "default", fig.asp=1.2 }
 
+knitr::include_graphics("EDAB_images/ches-temp-temp.png")
+
+ecodata::ch_bay_temp %>%
+  tidyr::pivot_wider(names_from = Var, values_from = Value) %>% 
+  ggplot2::ggplot() +
+  ggplot2::geom_ribbon(aes(x = Time, ymin = minLTA, ymax = maxLTA), fill = "grey", alpha = 0.5)+
+  
+  ggplot2::geom_line(aes(x = Time, y = YearLTA, color= "Long Term Average 2010-2019")) +
+  ggplot2::geom_line(aes(x = Time, y = Year2020, color = "Daily 2020")) +
+  ggplot2::ylab("Temperature (F)") +
+  ggplot2::ggtitle("Chesapeake Bay Temperature") +
+  ggplot2::theme(legend.position = "bottom", 
+                 legend.title = element_blank())+
+  ecodata::theme_ts()+
+  ecodata::theme_title()
+```
 
 
 ---
 ## Risks: Ecosystem productivity
 
 Indicators: primary production, zooplankton, forage fish (Memo 17), fish condition (Memo 18)
+
 
 ---
 ## Risks: Ecosystem structure
