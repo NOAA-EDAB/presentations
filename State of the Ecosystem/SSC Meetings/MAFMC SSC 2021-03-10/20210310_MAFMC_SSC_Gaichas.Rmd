@@ -118,7 +118,7 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 
 ## 2021 Report
 1. Graphical summary
-    + Page 1 report card objectives &rarr;
+    + Page 1 report card re: objectives &rarr;
     + Page 2 risk summary bullets
     + Page 3 synthesis themes
 1. Performance relative to management objectives
@@ -242,7 +242,7 @@ A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html) (Memo 
 
 .pull-right[
 Key to figures
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.width=5, fig.asp=.9}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.width=5.5, fig.asp=.9}
 #species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
 ```  
 
@@ -421,7 +421,7 @@ Indicator: Commercial Revenue
 .contrib[
 Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of MAFMC managed species</p>
 ]
-Recent change driven by benthos:
+Recent change driven by benthos    
 Monitor changes in climate and landings drivers:  
 -  Surfclams and ocean quahogs are sensitive to ocean warming and acidification.   
 -  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth
@@ -432,7 +432,7 @@ Indicator: Bennet--price and volume indices
 #bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), fig.width=6,
 ```
 
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.35}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.45}
 #bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight."
 ```
 ]
@@ -471,8 +471,7 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 ---
 ## Objective: Stability
 .pull-left[
-*Fishery*  
-Indicators: Commercial fleet count, fleet diversity   
+*Fishery*  Indicators: Commercial fleet count, fleet diversity   
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=.9}
 ```
@@ -480,7 +479,7 @@ Indicators: Commercial fleet count, fleet diversity
 ]
 
 .pull-right[
-Indicators: commerical species revenue diversity, recreational species catch diversity
+*Fishery*  Indicators: commerical species revenue diversity, recreational species catch diversity
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")}
 ```
 
@@ -492,8 +491,7 @@ Indicators: commerical species revenue diversity, recreational species catch div
 ---
 ## Objective: Stability
 .pull-left[
-*Ecological*  
-Indicators: zooplankton and larval fish diversity
+*Ecological* Indicators: zooplankton and larval fish diversity
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
 ```
 
@@ -503,12 +501,13 @@ Indicators: zooplankton and larval fish diversity
 ]
 
 .pull-right[
-Indicator (Memo 11): expected number of species, NEFSC bottom trawl survey
+*Ecological* Indicator: expected number of species, NEFSC bottom trawl survey  (Memo 11)
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-exp-n.R")}
 #exp-n, fig.cap = "Adult fish diversity the Mid-Atlantic Bight, based on expected number of species."
 ```
 
-Implications
+Implications: Commercial fleet diversity metrics suggests stable capacity to respond to the current range of fishing opportunities. Recreational species catch diversity has been maintained by a different set of species over time.
+While larval and adult fish diversity indices are stable, a few warm-southern larval species are becoming more dominant. Increasing zooplankton diversity is driven by declining dominance of an important species, which warrants continued monitoring.
 
 ]
 
@@ -530,11 +529,10 @@ Mid-Atlantic recreational fishing communities
 Mid-Atlantic commercial fishing communities
 ]
 
-Implications:
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability, they may have lower ability to successfully respond to change. These indicators may also point to communities that are vulnerable to environmental justice issues.
 ---
-## Objectives: Protected species
+## Objectives: Protected species *Maintain bycatch below thresholds*
 .pull-left[
-*Maintain bycatch below thresholds*
 Indicators: Harbor porpoise and gray seal bycatch (Memo 14)
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.height=3}
 ```
@@ -544,7 +542,18 @@ Indicators: Harbor porpoise and gray seal bycatch (Memo 14)
 ]
 
 .pull-right[
-*Recover endangered populations*
+Implications: 
+
+* Currently meeting objectives
+
+* The downward trend in harbor porpoise bycatch can also be due to a decrease in harbor porpoise abundance in US waters, reducing their overlap with fisheries, and a decrease in gillnet effort. 
+
+* The increasing trend in gray seal bycatch may be related to an increase in the gray seal population (U.S. pup counts).
+]
+
+---
+## Objectives: Protected species *Recover endangered populations*
+.pull-left[
 Indicators: North Atlantic right whale population, calf counts
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R"), fig.height=3}
 ```
@@ -552,6 +561,15 @@ Indicators: North Atlantic right whale population, calf counts
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R"), fig.height=3}
 ```
 ]
+
+.pull-right[
+Implications:  
+
+* Population drivers for North Atlantic Right Whales (NARW) include combined fishery interactions/ship strikes, distribution shifts, and copepod availability.
+
+* Unusual mortality events continue for 3 large whale species, harbor and gray seals.
+]
+
 
 ---
 # Risks to meeting fishery management objectives
