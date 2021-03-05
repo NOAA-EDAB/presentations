@@ -118,10 +118,10 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 
 ## 2021 Report
 1. Graphical summary
-    + Page 1 objectives summary table &rarr;
+    + Page 1 report card objectives &rarr;
     + Page 2 risk summary bullets
     + Page 3 synthesis themes
-1. Performance relative to management objectives &rarr;
+1. Performance relative to management objectives
 1. Risks to meeting management objectives
 
 ]
@@ -198,7 +198,7 @@ knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
 
 
 ---
-## Memo 1: 2 page graphical summary
+## Memo 1: Report card page 1, risk summary bullets page 2
 
 .pull-left[
 .center[
@@ -213,7 +213,7 @@ knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
 ]
 
 ---
-## Memo 1: Graphical summary of ecosystem synthesis themes
+## Memo 1: Graphical summary of ecosystem synthesis themes, page 3
 
 Characterizing ecosystem change for fishery management
 
@@ -236,11 +236,13 @@ Characterizing ecosystem change for fishery management
 .pull-left[
 Spatial scale
 ![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 80%](EDAB_images/EPU_Designations_Map.jpg)
+
+A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html) (Memo 5), detailed [technical methods documentation](https://NOAA-EDAB.github.io/tech-doc) and [indicator data](https://github.com/NOAA-EDAB/ecodata) are available online.  
 ]
 
 .pull-right[
 Key to figures
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.asp=.8}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.width=5, fig.asp=.9}
 #species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
 ```  
 
@@ -254,10 +256,10 @@ No color line = not significant or < 30 years
 ]
 ]
 
-A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html) (Memo 5), detailed [technical methods documentation](https://NOAA-EDAB.github.io/tech-doc) and [indicator data](https://github.com/NOAA-EDAB/ecodata) are available online.  
+
 
 ---
-## Revised structure to address Council requests and improve synthesis 
+## Revised structure to address Council requests (Memo 4, 6) and improve synthesis 
 
 .pull-left[
 * Performance relative to management objectives
@@ -276,7 +278,7 @@ A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html) (Memo 
 ]
 
 .pull-right[
-* Risks to meeting fishery management objectives (Memo 4,6)
+* Risks to meeting fishery management objectives
     - *What* does the indicator say--up, down, stable?
     - *Why* this is important to managers: integrates synthesis themes
         - Multiple drivers
@@ -391,7 +393,7 @@ Drivers:
 
 * other drivers affecting recreational landings: shark fishery management, possibly survey methodology  
 
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R")}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5}
 #rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
 
 ```
@@ -413,28 +415,27 @@ Climate change also seems to be shifting the distribution of surfclams and ocean
 ## Objective: Commercial Profits
 .pull-left[
 Indicator: Commercial Revenue   
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"), fig.width = 5, fig.asp = 0.45}
 #comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
 ```
 .contrib[
 Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of MAFMC managed species</p>
 ]
+Recent change driven by benthos:
+Monitor changes in climate and landings drivers:  
+-  Surfclams and ocean quahogs are sensitive to ocean warming and acidification.   
+-  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth
 ]
 .pull-right[
 Indicator: Bennet--price and volume indices
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"),  fig.asp=.35}
 #bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), fig.width=6,
 ```
-]
 
-Recent change driven by benthos: 
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.35}
 #bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight."
 ```
-Monitor changes in climate and landings drivers:  
-
--  Surfclams and ocean quahogs are sensitive to warming ocean temperatures and ocean acidification.   
--  Acidification levels in surfclam summer habitat are approaching, but not yet at, levels affecting surfclam growth
+]
 
 ???
 Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
@@ -470,7 +471,7 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 ---
 ## Objective: Stability
 .pull-left[
-*Fishery* 
+*Fishery*  
 Indicators: Commercial fleet count, fleet diversity   
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=.9}
@@ -483,53 +484,53 @@ Indicators: commerical species revenue diversity, recreational species catch div
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")}
 ```
 
-
-Implications
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")}
+#recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
+```
 
 ]
 ---
-## Objective: Stability  (Memo 11)
+## Objective: Stability
+.pull-left[
+*Ecological*  
+Indicators: zooplankton and larval fish diversity
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-ichthyo-diversity.R")}
+```
+
+]
+
 .pull-right[
-*Ecological*
-Indicators: zooplankton, larval fish, and adult fish diversity
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R"), fig.height=3}
+Indicator (Memo 11): expected number of species, NEFSC bottom trawl survey
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-exp-n.R")}
+#exp-n, fig.cap = "Adult fish diversity the Mid-Atlantic Bight, based on expected number of species."
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-ichthyo-diversity.R"), fig.height=3}
-```
-
-]
-
-.pull-left[
 Implications
 
 ]
 
 
 ---
-## Objective: Fishing community status (Memo 8)
+## Objective: Fishing community status (Memo 8)  
+Indicators: Social vulnerability, fishery engagement and reliance  
 .pull-left[
-Indicators: Social vulnerability, fishery engagement and reliance
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), fig.height=6}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
+#recreational-engagement, fig.cap= "Recreational engagement, reliance, and social vulnerability for the top recreational fishing communities in the Mid-Atlantic."
 ```
 Mid-Atlantic recreational fishing communities
 ]
 
 .pull-right[
-Indicator: Commercial Vulnerability
-<br />
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.height=6}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
+#commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in the Mid-Atlantic."
 ```
 Mid-Atlantic commercial fishing communities
 ]
 
-Implications
+Implications:
 ---
 ## Objectives: Protected species
 .pull-left[
