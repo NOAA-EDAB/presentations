@@ -636,6 +636,8 @@ Indicators: ocean currents, bottom and surface temperature, marine heatwaves
 ```
 
 ]
+???
+A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
 ---
 ## Risks: Climate change (Memo 4)
 
@@ -665,9 +667,73 @@ Indicator: acidification (Memo 7)
 ---
 ## Risks: Ecosystem productivity
 
-Indicators: primary production, zooplankton, forage fish (Memo 17), fish condition (Memo 18)
+Indicators: primary production, zooplankton
+
+.pull-left[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-pp-monthly.R"), fig.width=8}
+#pp-monthly,  fig.cap="Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.55}
+#weekly-phyto-size, fig.cap="The annual climatology (1998-2019) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations."
+```
+
+]
+
+.pull-right[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-strat-abun.R"), fig.width=8, fig.asp=.25}
+#zoo-strat-abun, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-abund.R")}
+#zoo-abund,  fig.cap= "Large (red) and small-bodied (blue) copepod abundance in the Mid-Atlantic Bight."
+```
+Implications: increased production by smaller phytoplankton implies less efficient transfer of primary production to higher trophic levels. Monitor implications of increasing gelatinous zooplankton and krill.
+]
+
+  
+???
+Increased temperatures, as reported above, can increase the rate of photosynthesis by phytoplankton (i.e. primary productivity). Annual primary production has increased over time, primarily driven by increased productivity in the summer months. 
+
+Larger zooplankton (i.e. *Calanus finmarchicus*) had above average abundance in 2018-2019, while smaller-bodied copepods were near or below average.
+
+---
+## Risks: Ecosystem productivity
+
+Indicators: plankton-based forage anomaly and forage fish energy content (Memo 17)
+
+.pull-left-30[
+```{r  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-anomaly.R")}
+#forage-anomaly, fig.cap="Changes from 2000-2019 average abundance for an aggregate of 13 zooplankton and 16 ichthyoplankton groups sampled on NEFSC ECOMON surveys.",
+```
+]
+.pull-right-70[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 8, fig.asp = 0.5}
+#energy-density, fig.cap="Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values."
+```
+]
+
+Implications: fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring
+
+---
+## Risks: Ecosystem productivity
+
+Indicators: fish condition (Memo 18)
+.pull-left[
+![:img Fish condition figure from 2020 SOE](EDAB_images/MABcondition_2019_viridis_final.jpg)
+Preliminary results:  
+* Multiple, different condition drivers by species  
+* Acadian redfish, butterfish and winter flounder more affected by fishing pressure and stock size  
+* Weakfish, windowpane flounder,and American plaice more affected by local bottom temperatures and zooplankton   
+]
+.pull-right[
+![:img Fish condition links conceptual model](EDAB_images/SOEconditionfactorlinks_keycolor_price.png)
+]
 
 
+???
+See memo for preliminary results
+These relationships can potentially provide insights on which species may be more vulnerable to environmental changes such as climate change, as well as what biomass changes may be expected from certain species given current environmental conditions
 ---
 ## Risks: Ecosystem structure
 
