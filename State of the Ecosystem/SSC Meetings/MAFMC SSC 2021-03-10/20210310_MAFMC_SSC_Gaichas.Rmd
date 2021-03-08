@@ -724,7 +724,7 @@ Indicators: fish condition (Memo 18)
 Preliminary results:  
 * Multiple, different condition drivers by species  
 * Acadian redfish, butterfish and winter flounder more affected by fishing pressure and stock size  
-* Weakfish, windowpane flounder,and American plaice more affected by local bottom temperatures and zooplankton   
+* Weakfish, windowpane flounder, and American plaice more affected by local bottom temperatures and zooplankton   
 ]
 .pull-right[
 ![:img Fish condition links conceptual model](EDAB_images/SOEconditionfactorlinks_keycolor_price.png)
@@ -737,7 +737,32 @@ These relationships can potentially provide insights on which species may be mor
 ---
 ## Risks: Ecosystem structure
 
-Indicators: distribution shifts, diversity, predators (Memo 12, 15, 25)
+Indicators: distribution shifts (slide 7), diversity (slide 16), predators (Memo 12, 15, 25)
+.pull-left[
+*No trend in aggregate sharks*
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-observed-sharks.R")}
+#observed-sharks, fig.cap="Estimated number of sharks per unit effort from Northeast Fisheries Observer Program data."
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-hms-cpue-sharks.R")}
+#hms-cpue-sharks, fig.cap="Estimated number of sharks per unit effort from Highly Migratory Species Pelagic Observer Program data."
+```
+
+
+]
+.pull-right[
+*Gray seals increasing*
+* Breeding season ~ 27,000 US gray seals, Canada's population ~ 425,000 (2016) 
+* Canada's population increasing at ~ 4% per year
+* U.S. pupping sites increased from 1 (1988) to 9 (2019)
+* Harbor and gray seals are generalist predators that consume more than 30 different prey species: red, white and silver hake, sand lance, yellowtail flounder, four-spotted flounder, Gulf-stream flounder, haddock, herring, redfish, and squids.
+
+Implications: stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
+]  
+
+
+???
+A survey conducted in 2021 in both countries will provide updated estimates of abundance. 
 
 ---
 ## Risks: Habitat climate vulnerability
