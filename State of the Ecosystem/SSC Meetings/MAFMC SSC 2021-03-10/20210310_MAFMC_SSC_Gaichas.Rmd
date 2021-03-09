@@ -185,14 +185,14 @@ requeststab <- requests %>%
   dplyr::mutate("Memo Section" = rownames(.))
 
 knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
-  kable_styling(font_size=9#, latex_options = c("hold_position", "striped", "repeat_header")
+  kable_styling(font_size=12#, latex_options = c("hold_position", "striped", "repeat_header")
                 ) %>%
   row_spec(0,bold=TRUE) %>%
-  column_spec(1, width="8cm") %>%
+  column_spec(1, width="9.5cm") %>%
   column_spec(2, width="1cm") %>%
-  column_spec(3, width="2cm") %>%
-  column_spec(4, width="10cm") %>%
-  column_spec(5, width="2cm")
+  column_spec(3, width="2.5cm") %>%
+  column_spec(4, width="13.5cm") %>%
+  column_spec(5, width="1.5cm")
 
 ```
 
@@ -302,11 +302,10 @@ No color line = not significant or < 30 years
 ]
 
 ---
-## Objective: Seafood production 
+## Objective: Seafood production ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
 
 .pull-left[
 Indicators: Commercial and recreational landings 
-Trends: Decreasing  
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.4}
 #total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
@@ -325,7 +324,7 @@ Key: Black = Landings of all species combined; <p style="color:#FF6A6A;">Red = L
 .pull-right[
 Multiple drivers: ecosystem and stock production, management, market conditions, and environment
 
-Biomass?
+Is biomass driving?
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
 
 #nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean."
@@ -415,7 +414,8 @@ Climate change also seems to be shifting the distribution of surfclams and ocean
 
 
 ---
-## Objective: Commercial Profits
+## Objective: Commercial Profits ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
+
 .pull-left[
 Indicator: Commercial Revenue   
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"), fig.width = 5, fig.asp = 0.45}
@@ -444,7 +444,7 @@ Indicator: Bennet--price and volume indices
 Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
 
 ---
-## Objective: Recreational opportunities
+## Objective: Recreational opportunities ![:img no trend icon, 2%](EDAB_images/no trend.png) ![:img near average icon icon, 1%](EDAB_images/near long term average.png);  ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
 .pull-left[
 Indicators: Recreational effort and fleet diversity   
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")}
@@ -472,7 +472,8 @@ Implications
 Changes in recreational fleet diversity can be considered when managers seek options to maintain recreational opportunities. Shore anglers will have access to different species than vessel-based anglers, and when the same species, typically smaller fish. Many states have developed shore-based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector. 
 
 ---
-## Objective: Stability
+## Objective: Stability ![:img no trend icon, 2%](EDAB_images/no trend.png) ![:img near average icon icon, 1%](EDAB_images/near long term average.png)
+
 .pull-left[
 *Fishery*  Indicators: Commercial fleet count, fleet diversity   
 
@@ -492,7 +493,8 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 
 ]
 ---
-## Objective: Stability
+## Objective: Stability ![:img mixed trend icon, 2%](EDAB_images/Mixed trends.png) ![:img near average icon icon, 1%](EDAB_images/near long term average.png)
+
 .pull-left[
 *Ecological* Indicators: zooplankton and larval fish diversity
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
@@ -537,7 +539,8 @@ Mid-Atlantic commercial fishing communities
 
 Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability, they may have lower ability to successfully respond to change. These indicators may also point to communities that are vulnerable to environmental justice issues.
 ---
-## Objectives: Protected species *Maintain bycatch below thresholds*
+## Objectives: Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](EDAB_images/Mixed trends.png) ![:img meeting objectives icon, 2%](EDAB_images/checked.png)
+
 .pull-left[
 Indicators: Harbor porpoise and gray seal bycatch (Memo 14)
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.height=3}
@@ -558,7 +561,8 @@ Implications:
 ]
 
 ---
-## Objectives: Protected species *Recover endangered populations*
+## Objectives: Protected species *Recover endangered populations* ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
+
 .pull-left[
 Indicators: North Atlantic right whale population, calf counts
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R"), fig.height=3}
