@@ -1,5 +1,5 @@
 ---
-title: "What does math<br /> have to do with fish?"
+title: "How is our ocean doing?"
 subtitle: "Data, statistics, and modeling<br /> for management advice"
 author: "Sarah Gaichas<br /> Northeast Fisheries Science Center"
 output:
@@ -23,6 +23,10 @@ class: top, left
 
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
                       warning = F,
                       message = F)
 #Plotting and data libraries
@@ -36,94 +40,62 @@ library(stringr)
 library(ggthemes)
 library(readr)
 
-data.dir <- here::here("data")
 
-#herring MSE outputs
-allres <- readRDS(file.path(data.dir,"allres.rds"))
-
-#herring MSE plotting
-#a better plotting theme than ggplot default? from https://rpubs.com/Koundy/71792
-theme_Publication <- function(base_size=14, base_family="") {
-      library(grid)
-      library(ggthemes)
-      (theme_foundation(base_size=base_size, base_family=base_family)
-       + theme(plot.title = element_text(face = "bold",
-                                         size = rel(1.2), hjust = 0.5),
-               text = element_text(),
-               panel.background = element_rect(colour = NA),
-               plot.background = element_rect(colour = NA),
-               panel.border = element_rect(colour = NA),
-               axis.title = element_text(face = "bold",size = rel(1)),
-               axis.title.y = element_text(angle=90,vjust =2),
-               axis.title.x = element_text(vjust = -0.2),
-               axis.text = element_text(), 
-               axis.line = element_line(colour="black"),
-               axis.ticks = element_line(),
-               panel.grid.major = element_line(colour="#f0f0f0"),
-               panel.grid.minor = element_blank(),
-               legend.key = element_rect(colour = NA),
-               legend.position = "right",
-               legend.direction = "vertical",
-               legend.key.size= unit(0.4, "cm"),
-               legend.margin = unit(0, "cm"),
-               legend.title = element_text(face="italic"),
-               plot.margin=unit(c(10,5,5,5),"mm"),
-               strip.background=element_rect(colour="#f0f0f0",fill="#f0f0f0"),
-               strip.text = element_text(face="bold")
-          ))
-      
-}
-
-scale_fill_Publication <- function(...){
-      library(scales)
-      discrete_scale("fill","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
-
-}
-
-scale_colour_Publication <- function(...){
-      library(scales)
-      discrete_scale("colour","Publication",manual_pal(values = c("#386cb0","#fdb462","#7fc97f","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
-
-}
 
 ```
 
-.left-column-45[
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
+```
+
+.pull-left[
 # Outline
 
+* My background
 
-* My path to NOAA  
+* What is NOAA?  
 
-* What is NOAA anyway?  
+    * What we do  
 
-* What we do  
+    * Challenges with what we do  
 
-* Challenges with what we do  
+    * Addressing challenges  
 
-* Addressing challenges: math!  
+* What do I do?
 
-* Examples
+1. Integrated ecosystem assessment
+
+1. Modeling management strategies
+
 ]
 
-.right-column-45[
-![:img xkcd comic, 95%](EDAB_images/the_difference.png)
+.pull-right[
+![:img xkcd comic, 65%](EDAB_images/the_difference.png)
 .center[https://xkcd.com/242/]
 ]
 
 ---
 background-image: url("EDAB_images/EnglishLitArt.png")
-background-size: 95%
+background-size: 85%
 
 ## My (circuitous) path to NOAA
 
 --
 
 .pull-left[
-![:img NHMI, 100%](EDAB_images/NHMI.png)
+![:img NHMI, 80%](EDAB_images/NHMI.png)
 
 .center[
-![:img ponies, 60%](EDAB_images/assateagueponies.png)
-![:img Aedes solicitans, 50%](EDAB_images/mosquito.png)
+![:img ponies, 40%](EDAB_images/assateagueponies.png)
+![:img Aedes solicitans, 40%](EDAB_images/mosquito.png)
 
 ]
 ]
@@ -131,14 +103,14 @@ background-size: 95%
 --
 .pull-right[
 
-![:img summer flounder with tag, 100%](EDAB_images/taggedfluke.png)
+![:img summer flounder with tag, 70%](EDAB_images/taggedfluke.png)
 
 
 &nbsp;
 
 &nbsp;
 
-![:img Spanish mackerel with otoliths for ageing, 100%](EDAB_images/SpMackOtoliths.png)
+![:img Spanish mackerel with otoliths for ageing, 70%](EDAB_images/SpMackOtoliths.png)
 
 ]
 
@@ -149,24 +121,27 @@ background-size: 95% 95%
 ## What is NOAA?
 --
 
-![:img NOAA regions, 110%](EDAB_images/NOAAregionsSCs.png)
+.center[
+![:img NOAA regions, 90%](EDAB_images/NOAAregionsSCs.png)
+]
 
 ---
-.left-column-45[
+.pull-left[
 ## Working at NOAA Fisheries
 
-![:img observers assessment phd, 80%](EDAB_images/jobs12.png)
+![:img observers assessment phd, 65%](EDAB_images/jobs12.png)
 ]
-.right-column-45[
+.pull-right[
 Alaska:
 * Observer program analyst
 * Stock assessment + PhD at UW
 * Ecosystem modeling
-![:img GOA food web, 70%](EDAB_images/job3.png)
+![:img GOA food web, 50%](EDAB_images/job3.png)
 
 Northeast:
 * Integrated ecosystem assessment, management strategy evaluation
-![:img multispecies harvest, 60%](EDAB_images/Fig8_opt12_all_Ofood_on.png)
+
+![:img multispecies harvest, 50%](EDAB_images/Fig8_opt12_all_Ofood_on.png)
 
 ]
 ---
@@ -197,7 +172,7 @@ Northeast:
 ]
 
 ---
-## Challenges addressed with math
+## Challenges, how we address them
 .pull-left[
 * We don’t live in the ocean; can’t see or directly count what we manage 
 
@@ -247,103 +222,326 @@ Northeast:
 * Validation, quality control, transparency
 ]
 ]
----
-background-image: url("EDAB_images/surveyvessels.png")
-background-size: cover
-
-## Trawl surveys
-
-**How many fish are there now?**
-
----
-background-image: url("EDAB_images/AKgroundfish_insitu.png")
-background-size: cover
-
----
-background-image: url("EDAB_images/AFSCnetloft.png")
-background-size: contain
-
----
-background-image: url("EDAB_images/AKsurveytow.png")
-background-size: contain
-
----
-background-image: url("EDAB_images/AKsurveysort.png")
-background-size: contain
-
----
-## What does math have to do with management?
-![NOAAlogo](EDAB_images/noaa-logo.PNG)
-![NOAA fisheries](EDAB_images/noaafisheries.png)
 
 
 ---
-## What kinds of models are there?
+## What do I do? 1. Integrated ecosystem assessment
 
-![ecomods](EDAB_images/ecomods.png)
+.pull-left[
 
----
-## Components of assessment
+- Establish objectives
 
-Prerequisite: research
-* Biology and ecology of the resource and its habitat
-* Improving observations and sampling  
-.bluetext[   
-* Improving modeling and estimation methods
+- Develop indicators
+
+- Assess ecosystem
+
+- Risk assessment 
+
+- Management strategy evaluation
+
+- Evaluate and iterate
+
 ]
-    
-Mathematical modeling
-* Population or ecosystem dynamics (numbers and or biomass) 
-* Observation models: fishery catch and survey sampling  
-.bluetext[    
-* Adding species interactions, climate and habitat effects
+
+.pull-right[
+*The IEA Loop<sup>1</sup>*
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
 ]
-    
-Parameter estimation
-* Most often maximum likelihood, Bayesian increasingly common  
-.bluetext[ 
-* Search algorithms needed for high dimensional space
-* Genetic algorithms, others in testing
+
+.footnote[
+[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
 ]
-    
-Forecasting (1-3 years out)
-* Predictions depend on modeled and unmodeled processes
-* Characterize uncertainty
+
+???
+---
+## State of the Ecosystem Report
+.pull-left[
+
+- Ecosystem indicators linked to management objectives 
+
+- Open science emphasis 
+
+- Used within Mid-Atlantic Fishery Management Council's Ecosystem Process 
+
+## 2021 Report
+1. Graphical summary
+    + Page 1 report card re: objectives &rarr;
+    + Page 2 risk summary bullets
+    + Page 3 synthesis themes
+1. Performance relative to management objectives
+1. Risks to meeting management objectives
+
+]
+
+.pull-right[
+
+```{r management-objectives}
+mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
+                                                 "Profits","Recreation",
+                                                 "Stability","Social & Cultural",
+                                                 "Protected Species",
+                                                 "Biomass","Productivity",
+                                                 "Trophic structure","Habitat"),
+"Indicators reported here" = c("Landings; commercial total and by feeding guild; recreational harvest",
+                               "Revenue decomposed to price and volume",
+                               "Days fished; recreational fleet diversity",
+                               "Diversity indices (fishery and ecosystem)",
+                               "Community engagement/reliance status",
+                               "Bycatch; population (adult and juvenile) numbers, mortalities",
+                               "Biomass or abundance by feeding guild from surveys",
+                               "Condition and recruitment of managed species, Primary productivity",
+                               "Relative biomass of feeding guilds, Zooplankton",
+                               "Estuarine and offshore habitat conditions"))
+
+knitr::kable(mng_obj, linesep = "",
+      col.names = c("Objective Categories","Indicators reported here"),
+      caption = "Ecosystem-scale fishery management objectives",
+      #align = 'c',
+      booktabs = T) %>%
+  kable_styling(font_size = 14) %>%
+ # kable_styling(latex_options = "hold_position", "scale_down") %>%
+ # column_spec(c(2), width = c("25em")) %>%
+  row_spec(0, bold = TRUE) %>%
+ # group_rows("Provisioning/Cultural", 1,4) %>%
+ # group_rows("Supporting/Regulating", 5,9)
+  pack_rows("Provisioning and Cultural Services", 1,6) %>%
+  pack_rows("Supporting and Regulating Services", 7,10)
 
 
+```
+]
 
 ---
-## Math, models, and fisheries--examples
+## State of the Ecosystem summary
 
-1. Prologue: What is a "forage fish"?
+.pull-left[
+.center[
+![:img State of the Ecosystem page 1 summary table, 85%](EDAB_images/MAFMC-2021table.png)
+]
+]
 
-1. Pacific sardine: stock assessment performance testing  
-  .bluetext[*"How does climate change affect our stock assessments?"*]
-    - Overview of stock assessment process
-    - Testing a real assessment model with fake (but known!) "data"
+.pull-right[
+.center[
+![:img State of the Ecosystem page 2 risk bullets, 85%](EDAB_images/MAFMC-2021riskbullets.png)
+]
+]
 
-1. Atlantic herring: fishery management strategy evaluation  
-  .bluetext[*"Which harvest control rules best consider herring's role as forage?"*]  
-    - Balancing fishing benefits and ecological services
-    - Diverse stakeholder interests
-    - Needed timely answers!
-    
-1. Epilogue: Integrated ecosystem assessment
-
-* (Appendix) Alaska pollock: ecological research with a food web model  
-  .bluetext[*"How does ecosystem structure affect dynamics?"*]  
-    - Distinguishing climate, fishing, and food web interactions  
-    - Dealing with uncertainty  
-    
 ---
-## 1. Prologue: What is a forage fish?
+## Ecosystem synthesis themes
 
-```{r forage, echo = F, fig.align = "center", out.width='67%'}
-knitr::include_graphics("EDAB_images/forageSeattleTimes.png")
+Characterizing ecosystem change for fishery management
+
+* Societal, biological, physical and chemical factors comprise the **multiple system drivers** that influence marine ecosystems through a variety of different pathways. 
+* Changes in the multiple drivers can lead to **regime shifts** — large, abrupt and persistent changes in the structure and function of an ecosystem.  
+* Regime shifts and changes in how the multiple system drivers interact can result in **ecosystem reorganization** as species and humans respond and adapt to the new environment.
+
+.pull-left[
+
+![:img](EDAB_images/SystemDrivers_v5.jpg)
+]
+
+.pull-right[
+![:img](EDAB_images/RegimeShift_V5.jpg)
+]
+
+---
+# Performance relative to management objectives
+
+.center[
+![:img Fishing icon made by EDAB, 15%](EDAB_images/5_FISHING.png) &nbsp; &nbsp; &nbsp; ![:img Fishing industry icon made by EDAB, 15%](EDAB_images/6_INDUSTRY.png) &nbsp; &nbsp; &nbsp; ![:img Multiple drivers icon made by EDAB, 25%](EDAB_images/18.MULTIPLE_SYSTEM_DRIVERS.png) &nbsp; &nbsp; &nbsp; ![:img Spiritual cultural icon made by EDAB, 15%](EDAB_images/22.SPIRITUAL_CULTURAL.png) &nbsp; &nbsp; &nbsp; ![:img Protected species icon made by EDAB, 15%](EDAB_images/16.PROTECTEDSPECIES.png)
+]
+
+---
+## Objective: Seafood production ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
+
+.pull-left[
+Indicators: Commercial and recreational landings 
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.4}
+#total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
+```
+.contrib[
+Key: Black = Landings of all species combined; <p style="color:#FF6A6A;">Red = Landings of MAFMC managed species</p>
+]
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"), fig.asp=.4}
+#, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
+
 ```
 
+]
+
+.pull-right[
+Multiple drivers: ecosystem and stock production, management, market conditions, and environment
+
+Is biomass driving?
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
+
+#nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean."
+```
+
+.contrib[
+Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
+]
+]
+
 ---
-## 2. How does climate change affect our stock assessments?
+## Landings drivers: Ecosystem and stock production?
+
+.pull-left[
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
+
+#fogarty, fig.cap="Fogarty Index; the ratio of total landings to total primary production in the MAB. Link and Watson (2019) give an optimal range (green shading) of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that index values exceeding 1 to 2 PPT (orange shading) led to ecosystem tipping points."
+
+```
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
+
+#ryther, fig.cap="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green shading) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange shading). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded)."
+```
+
+.contrib[
+Key: 
+<p style="background-color:#f4a460;">Orange background = Tipping point overfishing threshold, Link and Watson 2019</p> 
+<p style="background-color:#a2cd5a;">Green background = Optimal range, Link and Watson 2019</p>
+]
+
+]
+
+.pull-right[
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R")}
+
+#ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels. PPD is total primary production. The solid line is based on satellite-derived PPD and the dashed line is based on primary production reconstructed using the mean of satellite-derived PPD from 1998-2010."
+```
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
+
+#stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing).")
+```
+
+]
+
+---
+## Implications: Seafood Production
+.pull-left[
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.width=5, fig.asp=1.35}
+# comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."),
+```
+
+.contrib[
+Key: Black = Landings of all species combined; <p style="color:#FF6A6A;">Red = Landings of MAFMC managed species</p>
+]
+]
+
+.pull-right[
+Drivers:
+* market dynamics affecting commercial landings of surfclams and ocean quahogs  
+
+* other drivers affecting recreational landings: shark fishery management, possibly survey methodology  
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5}
+#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
+
+```
+Monitor: 
+* climate risks including warming, ocean acidification, and shifting distributions  
+* ecosystem composition and production changes  
+* fishing engagement  
+
+]
+
+
+???
+Because ecosystem overfishing seems unlikely, stock status is mostly acceptable, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species.
+
+Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
+
+---
+# Risks to meeting fishery management objectives
+
+.center[
+![:img Climate icon made by EDAB, 25%](EDAB_images/3_CLIMATE.png) &nbsp; &nbsp; &nbsp; ![:img Wind icon made by EDAB, 25%](EDAB_images/24.WIND.png)
+] 
+
+.center[
+![:img Hydrography icon made by EDAB, 15%](EDAB_images/1_HYDROGRAPHY.png) &nbsp; &nbsp; &nbsp; ![:img Phytoplankon icon made by EDAB, 15%](EDAB_images/9_PHYTOPLANKTON.png) &nbsp; &nbsp; &nbsp; ![:img Forage fish icon made by EDAB, 15%](EDAB_images/13_FORAGEFISH.png) &nbsp; &nbsp; &nbsp; ![:img Apex predators icon made by EDAB, 15%](EDAB_images/17.APEXPREDATORS.png)  &nbsp; &nbsp; &nbsp; ![:img Other human uses icon made by EDAB, 15%](EDAB_images/8_OTHERHUMANUSES.png) 
+]
+
+
+---
+background-image: url("EDAB_images/SST2020seasonalmaps.png")
+background-size: 700px
+background-position: right top
+
+## Risks: Climate change 
+.pull-left[
+Indicators: ocean currents, bottom and surface temperature, marine heatwaves
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.width=4}
+```
+
+
+```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.width=4}
+
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R")}
+```
+]
+
+.pull-right[
+
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
+#heatwave-year, fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2020."
+```
+
+]
+???
+A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
+
+---
+## Risks: Climate change 
+.pull-left[
+Indicator: cold pool area 
+![:img cold pool area](EDAB_images/cold_pool_area.png)
+]
+.pull-right[
+Indicator: acidification 
+![:img Seasonal pH](EDAB_images/Seasonal pH on MAB shelf - Grace Saba.jpg)
+]
+
+???
+Implications: 
+* Surfclams vulnerable to increased temperature and acidification  
+* Areas of low pH identified in surfclam and scallop habitat  
+* Lab work in progress identified pH thresholds for surfclam growth: *approaching threshold*   
+
+---
+## What do I do? 2. Modeling management strategies
 
 .pull-left[
 
@@ -356,7 +554,7 @@ knitr::include_graphics("EDAB_images/forageSeattleTimes.png")
 
 .pull-right[
 *Climate-Ready Management<sup>1</sup>*
-![Climateready](EDAB_images/KarpetalFig1.png)
+![:img Climateready, 90%](EDAB_images/KarpetalFig1.png)
 
 
 ]
@@ -377,7 +575,7 @@ Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.co
 [Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
 [2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
 
-![NOBA scale 90%](EDAB_images/journal.pone.0210419.g001.png)
+![NOBA scale 70%](EDAB_images/journal.pone.0210419.g001.png)
 ]
 .pull-right[
 **California Current**
@@ -385,7 +583,7 @@ Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.co
 [Marshall et al. 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.13594), 
 [Kaplan et al. 2017](https://www.sciencedirect.com/science/article/pii/S0304380016308262?via%3Dihub)
 
-![CCAspatial scale 100%](EDAB_images/CCAspatial.png)
+![CCAspatial scale 80%](EDAB_images/CCAspatial.png)
 ]
 
 
@@ -402,7 +600,7 @@ Building on global change projections:  [Hodgson et al. 2018](https://www.scienc
 knitr::include_graphics("EDAB_images/projectionOMsetup.png")
 ```
 
---
+???
 
 .pull-left[
 * Recruitment variability in the operating model
@@ -413,666 +611,38 @@ knitr::include_graphics("EDAB_images/projectionOMsetup.png")
 ![sardinerec scale 100%](EDAB_images/CCAsardineRecVar.png)
 ]
 
----
-## What can we do so far?
-.pull-left[
-Survey census test NOBA 
-```{r ex-output1, echo = F, warning = F, message=F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/NOBAcensus.png")
-```
-
-True length composition NOBA
-```{r ex-output3, echo = F, warning = F, message=F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/NOBAherringtruelf.png")
-```
-
-]
-.pull-right[
-Standard survey test CCA
-```{r ex-output2, echo = F, warning = F, message=F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/CCsurveyex.png")
-```
-
-Survey length composition CCA
-```{r ex-output4, echo = F, warning = F, message=F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/CCV3herringlfcomp.png")
-```
-
-]
 
 
 ---
-## A "sardine" assessment
-
-Need: assessment model data inputs and life history parameters 
-*(model based on actual Sardine assessment in Stock Synthesis 3)*
-
-.pull-left[
-Data: 
-  * survey biomass index 
-  * survey length composition 
-  * survey age composition (conditional catch at age)
-  * fishery catch (tons) 
-  * fishery length composition 
-  * fishery age composition
-]
-.pull-right[
-Parameters:
-  * natural mortality (from total mortality)
-  * growth curve (from survey length at age)
-  * maturity at age (true)
-  * unfished recruitment and steepness (true)
-  * weight-length curve (true)
-]
-
-$N_{t+1,a} = \left\{\begin{array}{ll}R_{t+1} \\(N_{t,a}e^{-M/2} - C_{t,a})e^{-M/2} \\(N_{t,x-1}e^{-M/2} - C_{t,x-1})e^{-M/2} + (N_{t,x}e^{-M/2} - C_{t,x})e^{-M/2}\end{array}\right.$
-
----
-## A "sardine" assessment: setup
-
-  * California Current Atlantis run with and without climate signal
-  * Input data generated (e.g. sardine survey, below in green)
-  * Parameters derived; simpler recruitment distribution
-
-```{r sardsurv, echo = F, warning = F, message=F, out.width = "90%", fig.align = "left"}
-knitr::include_graphics("EDAB_images/CCsurvObsBiom.png")
-```
-
-
----
-## A "sardine" assessment: fits to data
-
-.pull-left[
-![surveyfit](EDAB_images/index2_cpuefit_Survey.png)
-![lenfit](EDAB_images/comp_lenfit_flt2mkt0_page1.png)
-]
-
-.pull-right[
-![caafit1](EDAB_images/comp_agefit_flt1mkt0_page1.png)
-![caafit2](EDAB_images/comp_agefit_flt1mkt0_page2.png)
-]
-
----
-## A "sardine" assessment: skill? (proof of concept)
+## Testing a simple "sardine" assessment (in progress)
 .pull-left[
 Biomass
-```{r skillB, echo = F, warning = F, message=F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/trueBss3B.png")
-```
+![:img true biomass compared with assessment biomass, 70%](EDAB_images/trueBss3B.png) 
+
 Fishing mortality
-```{r skillF, echo = F, warning = F, message=F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/trueFss3F.png")
-```
+![:img true fishing mortality compared with assessment fishing mortality, 70%](EDAB_images/trueFss3F.png) 
+
 ]
+
 .pull-right[
 Recruitment
-```{r skillR, echo = F, warning = F, message=F, fig.align = "center"}
-knitr::include_graphics("EDAB_images/trueRss3R.png")
-```
+![:img true recruitement compared with assessment recruitment, 70%](EDAB_images/trueRss3R.png) 
 
 Key: <span style="color:teal">True</span> <span style="color:red">SS3 estimate</span>
+
+![:img workinprogress, 30%](EDAB_images/work-in-progress.png)
 ]
 
----
-## Assessment performance under climate: in progress
-
-.pull-left-60[
-Still working on:
-
-1. Functions for more detailed assessments
-
-    1. Splitting aggregate age groups into true ages
-
-    1. Interpolating aggregate age groups weight at age for true ages
-
-    1. Fishery catch weight by area
-
-1. Wrapper functions to generate data in fewer steps
-
-1. Automated skill assessment functions
-
-1. Inputs for other common assessment models
-]
-
-.pull-right-40[
-![workinprogress scale 100%](EDAB_images/work-in-progress.png)
-]
-
-
-
----
-## 3.  Are any Atlantic herring harvest control rules good for both fisheries and predators?
-```{r intro}
-knitr::include_graphics("EDAB_images/allcomponents.png")
-```
-
----
-## What is Management Strategy Evaluation?
-```{r introMSE}
-knitr::include_graphics("EDAB_images/MSECSIRO.png")
-```
-
----
-## The Dream and The Reality
-```{r dreamreality}
-knitr::include_graphics("EDAB_images/MgtProcess.png")
-```
-
----
-## Design: link models matching stakeholder-identified objectives
-
-```{r OMdesign, echo = F, fig.align = "center", out.width="85%"}
-knitr::include_graphics("EDAB_images/OMdesign.png")
-```
-
-## Design: multiple (herring) operating models spanning uncertainty
-
----
-## Economics: more data, models, assessments!
-
-- The dream: predator response links to ecosystem services, human well being
-- Fishery complexity rivals or exceeds that of food webs!
-
-.pull-left[
-![mytalk1](EDAB_images/Social_Sciences_and_EBFM_Page_41.png)
-]
-.pull-right[
-![mytalk2](EDAB_images/Social_Sciences_and_EBFM_Page_42.png)
-]
-
----
-## Predators
-```{r predoverview}
-knitr::include_graphics("EDAB_images/herrtopreds.png")
-```
-
----
-## Seabirds: data collected throughout Gulf of Maine
-.pull-left[
-![ternsr](EDAB_images/ternSR.png)
-]
-.pull-right[
-![ternprodbyprey](EDAB_images/ternprodbyprey.png)
-]
-
-- Colony adult and fledgling count data used to develop population model
-- Chick diet observations examined in relation to fledgling success
-
-The overall population in numbers for each predator $P$ each year $N_{y}^P$ is modeled with a delay-difference function, where annual predator survival $S_{y}^P$ is based on annual natural mortality $v$ and exploitation $u$: 
-
-$N_{y+1}^P = N_{y}^PS_{y}^P +  R_{y+1}^P$ ;   $S_{y}^P =  (1-v_{y})(1-u)$ ,
-
-and annual recruitment $R_{y}^P$ (at recruitment age a) is a Beverton-Holt function.
-
----
-## Terns and herring--developing a modeled relationship
-.pull-left[
-![ternprodisland](EDAB_images/ternprodbyisland.png)
-]
-.pull-right[
-![ternherringmod](EDAB_images/ternherringmodel.png)
-]
-
-No clear significant relationships of common tern productivity and the proportion of herring in diets across all colonies, there were some correlations between herring total biomass and tern productivity. This relationship (right plot) was developed to relate herring biomass to common tern productivity (recruitment):
-
-.center[
-$\bar{R}_{y+a}^P = R_{y+a}^P  * \frac{\gamma(N_{y}/N_{thresh})}{(\gamma-1)+(N_{y}/N_{thresh})}$
-]
----
-## Testing the model--does it work?
-![ternpoptrend](EDAB_images/ternpoptrend.png)
----
-## Predator results summary
-```{r predresultsum}
-knitr::include_graphics("EDAB_images/herrtopreds_results.png")
-```
-
-Three control rule types--Constant catch, conditional constant catch, and 15% restriction on change--were rejected at the second stakeholder meeting for poor fishery and predator performance.
----
-## What control rules give us 90% of everything we want?
-
-- Tern productivity at 1.0 or above more than 90% of the time
-- Herring biomass more than 90% of SSBmsy
-- Fishery yield more than 90% of MSY
-&nbsp;  
-&nbsp;  
-- AND fishery closures (F=0) less than 1% of the time (second plot).
-
-.pull-left[
-```{r}
-Nrulesgoodterns <- allres %>%
-  filter(CR %in% c("BB", "BB3yr")) %>%
-  group_by(OM,CR)%>%
-  filter(MedPropYrs_goodProd_Targplustern>0.9) %>%
-  summarize(tern90 = n())
-
-Nrulesgoodfishery <- allres %>%
-  filter(CR %in% c("BB", "BB3yr")) %>%
-  group_by(OM,CR)%>%
-  filter(YieldrelMSY>0.9) %>%
-  summarize(yield90 = n())
-
-Nrulesgoodherring <- allres %>%
-  filter(CR %in% c("BB", "BB3yr")) %>%
-  group_by(OM,CR)%>%
-  filter(MedSSBrelSSBmsy>0.9) %>%
-  summarize(SSB90 = n())
-
-Nrulesgoodternherrfish <- allres %>%
-  filter(CR %in% c("BB", "BB3yr")) %>%
-  filter(MedPropYrs_goodProd_Targplustern>0.9 & MedSSBrelSSBmsy>0.9 & YieldrelMSY>0.9) %>%
-  group_by(OM,CR)%>%
-  summarize(ternfishherr90 = n(), 
-            minF = min(FracFtarg), 
-            maxF = max(FracFtarg),
-            minloB = min(FracBmsyThreshLo), 
-            maxloB = max(FracBmsyThreshLo),
-            minhiB = min(FracBmsyThreshHi),
-            maxhiB = max(FracBmsyThreshHi)
-  )
-
-CRsgoodternherrfish <- allres %>%
-  filter(CR %in% c("BB", "BB3yr")) %>%
-  filter(MedPropYrs_goodProd_Targplustern > 0.9 & MedSSBrelSSBmsy > 0.9 & YieldrelMSY > 0.9) %>%
-  group_by(OM,CR) %>%
-  select(OM, CR, FracBmsyThreshLo, FracBmsyThreshHi,FracFtarg) %>%
-  mutate(id = seq(1:n()),
-         Xmin = 0,
-         Xmax = 4) %>%
-  gather(CRpart, x, Xmin,FracBmsyThreshLo, FracBmsyThreshHi,Xmax) %>%
-  arrange(OM, CR, id) %>%
-  mutate(y = case_when(CRpart == "Xmin" | CRpart == "FracBmsyThreshLo" ~ 0,
-                       CRpart == "FracBmsyThreshHi" | CRpart == "Xmax" ~ FracFtarg)) %>%
-  mutate(bigkey = paste0(OM, CR, id))
-  
-#with(CRsgoodternherrfish, 
-#     plot(x=c(0,FracBmsyThreshLo, FracBmsyThreshHi, 4),
-#          y=c(0,0,FracFtarg, FracFtarg), type="l"))  
-  
-p1 <- ggplot(CRsgoodternherrfish, aes(x=x, y=y, colour=CR)) + 
-  geom_line(aes(group=bigkey), alpha=0.3) +
-  labs(y="F/Fmsy", x="SSB/SSBmsy", colour="Control rule type") +
-  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
-  theme_Publication() + scale_colour_Publication()
-
-OMlabels <- c(HiM_LowSteep_AssBias_OldWt = 'LowFastBiased', 
-              HiM_LowSteep_AssBias_RecWt = 'LowSlowBiased', 
-              HiM_LowSteep_NoAssBias_OldWt = 'LowFastCorrect', 
-              HiM_LowSteep_NoAssBias_RecWt = 'LowSlowCorrect',  
-              LoM_HiSteep_AssBias_OldWt =  'HighFastBiased',  
-              LoM_HiSteep_AssBias_RecWt = 'HighSlowBiased', 
-              LoM_HiSteep_NoAssBias_OldWt = 'HighFastCorrect',
-              LoM_HiSteep_NoAssBias_RecWt = 'HighSlowCorrect'
-              )
-
-p1 + facet_wrap("OM", labeller=labeller(OM = OMlabels), nrow=2) + theme(legend.position="bottom")
-
-```
-]
-
-.pull-right[
-```{r}
-Nrulesgoodterns <- allres %>%
-  filter(CR %in% c("BB", "BB3yr")) %>%
-  group_by(OM,CR)%>%
-  filter(MedPropYrs_goodProd_Targplustern>0.9) %>%
-  summarize(tern90 = n())
-
-Nrulesgoodfishery <- allres %>%
-  filter(CR %in% c("BB", "BB3yr")) %>%
-  group_by(OM,CR)%>%
-  filter(YieldrelMSY>0.9) %>%
-  summarize(yield90 = n())
-
-Nrulesgoodherring <- allres %>%
-  filter(CR %in% c("BB", "BB3yr")) %>%
-  group_by(OM,CR)%>%
-  filter(MedSSBrelSSBmsy>0.9) %>%
-  summarize(SSB90 = n())
-
-Nrulesgoodternherrfish <- allres %>%
-  filter(CR %in% c("BB", "BB3yr")) %>%
-  filter(MedPropYrs_goodProd_Targplustern>0.9 & MedSSBrelSSBmsy>0.9 & YieldrelMSY>0.9 & PropClosure < 0.01) %>%
-  group_by(OM,CR)%>%
-  summarize(ternfishherr90 = n(), 
-            minF = min(FracFtarg), 
-            maxF = max(FracFtarg),
-            minloB = min(FracBmsyThreshLo), 
-            maxloB = max(FracBmsyThreshLo),
-            minhiB = min(FracBmsyThreshHi),
-            maxhiB = max(FracBmsyThreshHi)
-  )
-
-CRsgoodternherrfish <- allres %>%
-  filter(CR %in% c("BB", "BB3yr")) %>%
-  filter(MedPropYrs_goodProd_Targplustern > 0.9 & MedSSBrelSSBmsy > 0.9 & YieldrelMSY > 0.9 & PropClosure < 0.01) %>%
-  group_by(OM,CR) %>%
-  select(OM, CR, FracBmsyThreshLo, FracBmsyThreshHi,FracFtarg) %>%
-  mutate(id = seq(1:n()),
-         Xmin = 0,
-         Xmax = 4) %>%
-  gather(CRpart, x, Xmin,FracBmsyThreshLo, FracBmsyThreshHi,Xmax) %>%
-  arrange(OM, CR, id) %>%
-  mutate(y = case_when(CRpart == "Xmin" | CRpart == "FracBmsyThreshLo" ~ 0,
-                       CRpart == "FracBmsyThreshHi" | CRpart == "Xmax" ~ FracFtarg)) %>%
-  mutate(bigkey = paste0(OM, CR, id))
-  
-#with(CRsgoodternherrfish, 
-#     plot(x=c(0,FracBmsyThreshLo, FracBmsyThreshHi, 4),
-#          y=c(0,0,FracFtarg, FracFtarg), type="l"))  
-  
-p1 <- ggplot(CRsgoodternherrfish, aes(x=x, y=y, colour=CR)) + 
-  geom_line(aes(group=bigkey), alpha=0.3) +
-  labs(y="F/Fmsy", x="SSB/SSBmsy", colour="Control rule type") +
-  guides(colour = guide_legend(override.aes = list(alpha = 1))) +
-  theme_Publication() + scale_colour_Publication()
-
-OMlabels <- c(HiM_LowSteep_AssBias_OldWt = 'LowFastBiased', 
-              HiM_LowSteep_AssBias_RecWt = 'LowSlowBiased', 
-              HiM_LowSteep_NoAssBias_OldWt = 'LowFastCorrect', 
-              HiM_LowSteep_NoAssBias_RecWt = 'LowSlowCorrect',  
-              LoM_HiSteep_AssBias_OldWt =  'HighFastBiased',  
-              LoM_HiSteep_AssBias_RecWt = 'HighSlowBiased', 
-              LoM_HiSteep_NoAssBias_OldWt = 'HighFastCorrect',
-              LoM_HiSteep_NoAssBias_RecWt = 'HighSlowCorrect'
-              )
-
-p1 + facet_wrap("OM", labeller=labeller(OM = OMlabels), nrow=2) + theme(legend.position="bottom")
-
-```
-]
-
----
-## Food web modeling; supplemental results
-![fw10per](EDAB_images/herrup10pann.png)
-Tradeoffs between forage groups apparent
-
-
----
-## What have we learned? Data-backed models allow us to test options
-.pull-left-30[
-Complex food web, generalist predators
-- Herring is one of several important prey
-- Assessing multiple prey together will likely show stronger effects on predator productivity
-]
-.pull-right-70[
-![NEUSfw](EDAB_images/LinkNEUSfoodweb.png)
-]
-- Tern/Tuna/Groundfish/Mammal productivity is also affected by predators, weather, and other factors not modeled here
-- Even relatively weak relationships still showed which herring control rules were poor
-- Managers did select a harvest control rule considering a wide range of factors!
-
----
-## 4. Epilogue: integrated ecosystem assessment
-
-.pull-left[
-
-- Establish objectives
-
-- Develop indicatprs
-
-- Assess ecosystem
-
-- Risk assessment 
-
-- Management strategy evaluation
-
-- Evaluate and iterate
-
-![:img relating environment marine habitat and the marine community to human activities social systems and objectives, 100%](EDAB_images/nes-components-abstracted.png)
-]
-
-.pull-right[
-*The IEA Loop<sup>1</sup>*
-![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
-]
-
-.footnote[
-[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
-]
-
-???
-
----
-## Indicator example: Marine heatwaves in the Mid-Atlantic
-
-**New Indicator 2020**
-
-.center[
-```{r heatwave-mab, fig.width = 8, fig.asp = 0.35, fig.cap="Marine heatwave cumulative intensity (left) and maximum intensity (right) in the Mid-Atlantic Bight."}
-
-library(ecodata)
-#GIS libraries
-library(sf)
-library(rgdal)
-library(raster)
-library(rnaturalearth)
-
-data.dir <- here::here("data")
-gis.dir <- here::here("data")
-
-#General inline text input for report
-#Council
-council <- "Mid-Atlantic Fishery Management Council"
-council_abbr <- "MAFMC"
-
-#Region identifiers
-epu <- "Mid-Atlantic Bight"
-epu_abbr <- "MAB"
-region <- "Mid-Atlantic"
-region_abbr <- "MA" #Some commercial data organized by "MA" or "NE" regions, not by EPU 
-
-#Time series constants
-shade.alpha <- 0.3
-shade.fill <- "lightgrey"
-lwd <- 1
-pcex <- 2
-trend.alpha <- 0.5
-trend.size <- 2
-hline.size <- 1
-hline.alpha <- 0.35
-hline.lty <- "dashed"
-label.size <- 5
-hjust.label <- 1.5
-letter_size <- 4
-feeding.guilds1<- c("Piscivore","Planktivore","Benthivore","Benthos")
-feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
-x.shade.min <- 2009
-x.shade.max <- 2019
-#Function for custom ggplot facet labels
-label <- function(variable,value){
-  return(facet_names[value])
-}
-
-#CRS
-crs <- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
-
-#Coastline shapefile
-coast <- ne_countries(scale = 10,
-                          continent = "North America",
-                          returnclass = "sf") %>%
-             sf::st_transform(crs = crs)
-
-#State polygons
-ne_states <- ne_states(country = "united states of america",
-                                      returnclass = "sf") %>%
-  sf::st_transform(crs = crs)
-
-#high-res polygon of Maine
-#new_england <- read_sf(gis.dir,"new_england")
-
-#EPU shapefile
-epu_sf <- ecodata::epu_sf %>% 
-  filter(EPU %in% c("MAB","GB","GOM"))
-
-#Map line parameters
-map.lwd <- 0.4
-
-# Set lat/lon window for maps
-xmin = -77
-xmax = -65
-ymin = 36
-ymax = 45
-xlims <- c(xmin, xmax)
-ylims <- c(ymin, ymax)
-
-cumu <- ecodata::heatwave %>% 
-  filter(Var == "cumulative intensity") %>% 
-  mutate(Var = dplyr::recode(Var, "cumulative intensity" = "Cumulative Intensity (°C x days)"))
-
-maxin <- ecodata::heatwave %>% 
-  dplyr::filter(Var == "maximum intensity") %>% 
-  dplyr::group_by(Time, EPU, Var, Units) %>% 
-  dplyr::summarise(Value = max(Value)) %>% 
-  dplyr::ungroup() %>% 
-  dplyr::mutate(Var = dplyr::recode(Var, "maximum intensity" = "Maximum Intensity (°C)"))
-
-hw<- cumu %>%
-  rbind(maxin) %>% 
-  dplyr::group_by(Var, EPU) %>% 
-  dplyr::mutate(hline = mean(Value))
-
-mab.hw<- hw %>% filter(EPU == epu_abbr)
-mab.hw %>% 
-  ggplot() +
-  geom_line(aes(x = Time, y = Value)) +
-  geom_point(aes(x = Time, y = Value)) +
-  geom_gls(aes(x = Time, y = Value, group = Var)) +
-  ylab("") +
-  xlab(element_blank())+
-  ggtitle("Mid-Atlantic Marine Heatwave Intesity") +
-  scale_x_continuous(expand = c(0.01, 0.01))+
-  geom_hline(aes(yintercept = hline),
-           size = hline.size,
-           alpha = hline.alpha,
-           linetype = hline.lty)+
-  annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max,
-      ymin = -Inf, ymax = Inf) +
-  facet_wrap(~Var, scales = "free")+
-  theme_ts()+
-  theme(strip.text=element_text(hjust=0,
-                                face = "italic"))
-
-```
-]
-
-.pull-left[
-![img: January - December 2019 sea surface temperatures above 90th percentile of average](EDAB_images/MAB_heatwave.jpeg)
-]
-
-.pull-right[
-```{r mab-heatwave-max, fig.cap="Maximum intensity heatwave anomaly in the Mid-Atlantic Bight occurring on July 22, 2019.",fig.height=5 }
-#EPU shapefile
-mab_epu_sf <- ecodata::epu_sf %>% 
-  filter(EPU %in% c("MAB"))
-
-#Map line parameters
-map.lwd <- 0.4
-
-# Set lat/lon window for maps
-xmin = -81
-xmax = -66
-ymin = 35.5
-ymax = 43
-xlims <- c(xmin, xmax)
-ylims <- c(ymin, ymax)
-hw <- ecodata::heatwave_anom_gridded %>% 
-  filter(EPU == "MAB")
-
-mab_map <- 
-  ggplot() +
-  geom_tile(data =hw, aes(x = Longitude, y = Latitude,fill = Value)) +
-  geom_sf(data = coast, size = map.lwd) +
-  geom_sf(data = mab_epu_sf, fill = "transparent", size = map.lwd) +
-  scale_fill_gradient2(name = "Temp.\nAnomaly (°C)",
-                       low = scales::muted("blue"),
-                       mid = "white",
-                       high = scales::muted("red"),
-                       limits = c(-5,7)) +
-  coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
-  #facet_wrap(Season~.) +
-  theme_map() +
-  ggtitle("MAB heatwave anomaly (July 22, 2019)") +
-  xlab("Longitude") +
-  ylab("Latitude") +
-  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
-        legend.key = element_blank(),
-        axis.title = element_text(size = 11),
-        strip.background = element_blank(),
-        strip.text=element_text(hjust=0),
-        axis.text = element_text(size = 8), 
-        axis.title.y = element_text(angle = 90),
-        plot.margin=grid::unit(c(0,0,0,0), "mm"))
-
-mab_map 
-
-```
-]
-
----
-## Collaborators - THANK YOU!
-
-The New England and Mid-Atlantic State of the Ecosystem reports made possible by (at least) 38 contributors from 8 intstitutions 
-
-.pull-left[
-.contrib[
-Donald Anderson (Woods Hole Oceanographic Institute) <br>
-Andy Beet<br>
-Patricia Clay<br>
-Lisa Colburn<br>
-Geret DePiper<br>
-Michael Fogarty<br>
-Paula Fratantoni <br>
-Kevin Friedland<br>
-Sarah Gaichas<br>
-Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
-James Gartland (Virginia Institute of Marine Science)<br>
-Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br> 
-Sean Hardison<br>
-Kimberly Hyde<br>
-Terry Joyce (Woods Hole Oceanographic Institute)<br>
-John Kocik<br>
-Steve Kress (National Audubon Society)<br>
-Scott Large
-]
-]
-
-.pull-right[
-.contrib[
-Don Lyons (National Audubon Society)<br>
-Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
-Young-Oh Kwon (Woods Hole Oceanographic Institution)<br> 
-Zhuomin Chen (Woods Hole Oceanographic Institution)<br>
-Sean Lucey<br>
-Chris Melrose<br>
-Ryan Morse<br>
-Kimberly Murray<br>
-Chris Orphanides<br>
-Richard Pace<br>
-Charles Perretti<br>
-Vincent Saba<br>
-Laurel Smith<br>
-Mark Terceiro<br>
-John Walden<br>
-Harvey Walsh<br>
-Mark Wuenschel
-]
-]
-
-.center[
-![:img NOAA Fisheries IEA logo, 40%](EDAB_images/noaa-iea.png)
-]
 
 ---
 # Multiple objectives, multiple challenges
 
+.pull-left[
 Fisheries stock assessment and ecosystem modeling continue to develop  
 .bluetext[Can we keep pace with climate?]
 
 Existing management systems are at least as complex as the ecosystems, with diverse interests and emerging industries
- 
-.pull-left[
+
 Integrated ecosystem assessment and management strategy evaluation
 * Include key interactions
     + Species
@@ -1089,25 +659,93 @@ Integrated ecosystem assessment and management strategy evaluation
 ]
 
 ---
+background-image: url("EDAB_images/noaa-iea.png")
+background-size: 350px
+background-position: right bottom
+
+## State of the Ecosystem Collaborators --- THANK YOU!
+
+The New England and Mid-Atlantic SOEs made possible by (at least) 52 contributors from 10 institutions 
+
+.pull-left[
+.contrib[
+Andy Beet<br>
+Kimberly Bastille<br>
+Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
+Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
+Zhuomin Chen (Woods Hole Oceanographic Institute)<br>
+Joseph Caracappa<br>
+Doug Christel (GARFO)<br>
+Patricia Clay<br>
+Lisa Colburn<br>
+Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
+Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
+Geret DePiper<br>
+Emily Farr (NMFS Office of Habitat Conservation)<br>
+Michael Fogarty<br>
+Paula Fratantoni<br>
+Kevin Friedland<br>
+Sarah Gaichas<br>
+Ben Galuardi (GARFO)<br>
+Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
+James Gartland (Virginia Institute of Marine Science)<br>
+Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
+Sean Hardison<br>
+Kimberly Hyde<br>
+John Kosik<br>
+Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
+Young-Oh Kwon (Woods Hole Oceanographic Institute)<br>
+
+]
+]
+
+.pull-right[
+.contrib[
+Scott Large<br>
+Andrew Lipsky<br>
+Sean Lucey
+Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
+Chris Melrose<br>
+Shannon Meseck<br>
+Ryan Morse<br>
+Kimberly Murray<br>
+Chris Orphanides<br>
+Richard Pace<br>
+Charles Perretti<br>
+CJ Pellerin (NOAA Chesapeake Bay Office)<br>
+Grace Roskar (NMFS Office of Habitat Conservation)<br>
+Grace Saba (Rutgers)<br>
+Vincent Saba<br>
+Chris Schillaci (GARFO)<br>
+Angela Silva<br>
+Emily Slesinger (Rutgers University)<br>
+Laurel Smith<br>
+Talya tenBrink (GARFO)<br>
+Bruce Vogt (NOAA Chesapeake Bay Office)<br>
+Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
+John Walden<br>
+Harvey Walsh<br>
+Changhua Weng<br>
+Mark Wuenschel  
+
+]
+]
+
+
+---
 ## If you want more details
+
+* [1: NOAA State of the Ecosystem summary webpage](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+* [1: State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [1: ecodata R package](https://github.com/noaa-edab/ecodata)
 
 * [2: Atlantis Model Documentation](https://github.com/Atlantis-Ecosystem-Model/Atlantis_example_and_instructions)
 
 * [2: atlantisom R package in progress](https://github.com/r4atlantis/atlantisom)
 
 * [2: Testing atlantisom in progress](https://github.com/sgaichas/poseidon-dev)
-
-* [3: New England herring MSE modeling paper](https://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128#.XTb_c5NKgWo)
-
-* [3: New England herring MSE stakeholder process paper](https://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2018-0125#.XTb_v5NKgWo)
-
-* [4: NOAA State of the Ecosystem summary webpage](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
-
-* [4: State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
-
-* [4: ecodata R package](https://github.com/noaa-edab/ecodata)
-
-* [Appendix: Wasp Waist or Beer Belly?](https://www.sciencedirect.com/science/article/pii/S0079661115002001)
 
 * Slides available at https://noaa-edab.github.io/presentations
 
@@ -1119,151 +757,7 @@ background-size: contain
 .footnote[Questions? Thank you!]
 
 ---
-## Appendix 1. How does ecosystem structure affect dynamics? 
-![fwforcingstructure](EDAB_images/fwforcingstructuraltype.png)
-
----
-## Alaska pollock: a tale of two ecosystems
-![EBSGOAmaps](EDAB_images/EBSGOAmap.png)
----
-## Alaska pollock: a tale of two ecosystems
-![EBSGOAmapsfws](EDAB_images/EBSGOAmap_fws.png)  
-  
-
----
-## Alaska pollock: a tale of two ecosystems
-.pull-left[
-- Different pollock trajectories
-
-- Different pollock diets, mortality sources
-
-```{r pollpic, echo = F, fig.align = "center", out.width="85%"}
-knitr::include_graphics("EDAB_images/pollpic.png")
-```
-
-]
-.pull-right[
-```{r pollassess, echo = F, fig.align = "center", out.width="95%"}
-knitr::include_graphics("EDAB_images/EBSGOApollassess.png")
-#knitr::include_graphics("EDAB_images/EBSGOApolldietmort.png")
-```
-]
-```{r polldietmort, echo = F, fig.align = "center", out.width="95%"}
-#knitr::include_graphics("EDAB_images/EBSGOApollassess.png")
-knitr::include_graphics("EDAB_images/EBSGOApolldietmort.png")
-```
-
-???
-diets:- copepods, krill, pollock in EBS
-      - krill, shrimp, some copepods in GOA
-
----
-## Ecosystem models and uncertainty
-![aydinmodyield](EDAB_images/AydinModYield.png)
----
-## Model ensemble https://xkcd.com/1885/
-![xkcd_ensemble_model_2x.png](EDAB_images/xkcd_ensemble_model_2x.png)
----
-## What is a food web model?
-
-.pull-left-60[
-A system of linear equations
-
-For each group, $i$, specify: 
-
-   Biomass $B$ [or Ecotrophic Efficiency $EE$ ]  
-   Population growth rate $\frac{P}{B}$  
-   Consumption rate $\frac{Q}{B}$  
-   Diet composition $DC$  
-   Fishery catch $C$  
-   Biomass accumulation $BA$  
-   Im/emigration $IM$ and $EM$  
-   
-Solving for $EE$ [or $B$ ] for each group:
-]
-
-.pull-right-40[
-![toyfoodweb](EDAB_images/toyfw.png)
-]
-
-$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$
-???
-
----
-## Ecosystem models and uncertainty: grading inputs
-![fwpedigree](EDAB_images/fwpedigree.png)
-
----
-## Ecosystem models and uncertainty: run a scenario
-![fwuncert1](EDAB_images/Foodwebmodel_uncertaintyseries/Slide1.png)
----
-## Ecosystem models and uncertainty: run a scenario
-![fwuncert2](EDAB_images/Foodwebmodel_uncertaintyseries/Slide2.png)
----
-## Ecosystem models and uncertainty: run a scenario
-![fwuncert3](EDAB_images/Foodwebmodel_uncertaintyseries/Slide3.png)
----
-## Ecosystem models and uncertainty: run a scenario in an ensemble
-![fwuncert4](EDAB_images/Foodwebmodel_uncertaintyseries/Slide4.png)
----
-## Ecosystem models and uncertainty: run a scenario in an ensemble
-![fwuncert5](EDAB_images/Foodwebmodel_uncertaintyseries/Slide5.png)
----
-## Ecosystem models and uncertainty: run a scenario in an ensemble
-![fwuncert6](EDAB_images/Foodwebmodel_uncertaintyseries/Slide6.png)
----
-## Ecosystem models and uncertainty: run a scenario in an ensemble
-![fwuncert7](EDAB_images/Foodwebmodel_uncertaintyseries/Slide7.png)
-
----
-## Defining ecosystem structure in the EBS and GOA: expectations
-
-Ecosystem reaction to pollock if pollock is a "wasp waist":
-![increasepoll](EDAB_images/ecoreactstopollock.png)
-
---
-
-Pollock reaction to other groups if control is bottom up or top down:
-![increaseothers](EDAB_images/pollockreacts.png)
----
-## Perturbation results: ecosystem reaction to 10% pollock increase
-```{r exp1, echo = F, fig.align = "center", out.width="100%"}
-knitr::include_graphics("EDAB_images/Fig6.png")
-```
-
----
-## Perturbation results: pollock reaction to 10% increase in others
-```{r exp2, echo = F, fig.align = "center", out.width="100%"}
-knitr::include_graphics("EDAB_images/Fig7.png")
-```
-
----
-## Perturbation results: ecosystem reaction to 10% phytoplankton increase
-```{r exp3, echo = F, fig.align = "center", out.width="100%"}
-knitr::include_graphics("EDAB_images/Fig8.png")
-```
-
----
-## Insights for fishery management
-
-- Differences in food web structure between two adjacent ecosystems with similar biological communities and fishery management
-  - Which species respond to the same perturbation
-  - Level of uncertainty / predictability in response
-  
-- EBS: Influential group at mid trophic levels
-  - Wasp waist transmits signal to other groups (neither AK system)
-  - Self regulating dominant group (beer belly) absorbs signals
-  - Beer belly systems are more predictable, stable as long as the beer belly maintains itself?
-
-- GOA: Influential groups at high trophic levels
-  - Magnifies bottom up signals and top down?
-  - A less predictable system?
-  - Subject to more radical change?
-
-- Structure of a food web may determine how predictable a system is under perturbation, and how changes in primary production propagate through systems
-
----
-## Appendix 2: Fishery management in the US
+## Appendix 1: Fishery management in the US
 
 Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
 
@@ -1271,4 +765,27 @@ Eight regional Fishery Management Councils establish plans for sustainable manag
 
 More information: http://www.fisherycouncils.org/
 https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
+
+---
+background-image: url("EDAB_images/surveyvessels.png")
+background-size: cover
+
+## Appendic 2: Trawl surveys-- *how many fish are there?*
+
+---
+background-image: url("EDAB_images/AKgroundfish_insitu.png")
+background-size: cover
+
+---
+background-image: url("EDAB_images/AFSCnetloft.png")
+background-size: contain
+
+---
+background-image: url("EDAB_images/AKsurveytow.png")
+background-size: contain
+
+---
+background-image: url("EDAB_images/AKsurveysort.png")
+background-size: contain
+
 

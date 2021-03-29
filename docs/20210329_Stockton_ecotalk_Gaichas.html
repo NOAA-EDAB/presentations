@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>How is our ocean doing?</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas  Northeast Fisheries Science Center" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# How is our ocean doing?
+## Data, statistics, and modeling<br /> for management advice
+### Sarah Gaichas<br /> Northeast Fisheries Science Center
+
+---
+
+class: top, left
+
+
+
+
+
+
+
+
+
+
+
+.pull-left[
+# Outline
+
+* My background
+
+* What is NOAA?  
+
+    * What we do  
+
+    * Challenges with what we do  
+
+    * Addressing challenges  
+
+* What do I do?
+
+1. Integrated ecosystem assessment
+
+1. Modeling management strategies
+
+]
+
+.pull-right[
+![:img xkcd comic, 65%](EDAB_images/the_difference.png)
+.center[https://xkcd.com/242/]
+]
+
+---
+background-image: url("EDAB_images/EnglishLitArt.png")
+background-size: 85%
+
+## My (circuitous) path to NOAA
+
+--
+
+.pull-left[
+![:img NHMI, 80%](EDAB_images/NHMI.png)
+
+.center[
+![:img ponies, 40%](EDAB_images/assateagueponies.png)
+![:img Aedes solicitans, 40%](EDAB_images/mosquito.png)
+
+]
+]
+
+--
+.pull-right[
+
+![:img summer flounder with tag, 70%](EDAB_images/taggedfluke.png)
+
+
+&amp;nbsp;
+
+&amp;nbsp;
+
+![:img Spanish mackerel with otoliths for ageing, 70%](EDAB_images/SpMackOtoliths.png)
+
+]
+
+---
+background-image: url("EDAB_images/NOAAtable.png")
+background-size: 95% 95%
+
+## What is NOAA?
+--
+
+.center[
+![:img NOAA regions, 90%](EDAB_images/NOAAregionsSCs.png)
+]
+
+---
+.pull-left[
+## Working at NOAA Fisheries
+
+![:img observers assessment phd, 65%](EDAB_images/jobs12.png)
+]
+.pull-right[
+Alaska:
+* Observer program analyst
+* Stock assessment + PhD at UW
+* Ecosystem modeling
+![:img GOA food web, 50%](EDAB_images/job3.png)
+
+Northeast:
+* Integrated ecosystem assessment, management strategy evaluation
+
+![:img multispecies harvest, 50%](EDAB_images/Fig8_opt12_all_Ofood_on.png)
+
+]
+---
+## Fisheries: what do we need to know?
+
+**How many fish can be caught sustainably?**
+
+.pull-left[
+* How many are caught right now?
+* How many were caught historically?
+* How many are there right now?
+* How many were there historically?
+* How productive are they (growth, reproduction)? 
+]
+
+.pull-right[
+![:img school of forage fish](EDAB_images/forageschool.png)
+]
+
+--
+
+.bluetext[
+* What supports their productivity?
+* What does their productivity support, besides fishing?
+* How do they interact with other fish, fisheries, marine animals?
+* How do environmental changes affect them?
+* What is their ecological, economic, and social value to people?
+]
+
+---
+## Challenges, how we address them
+.pull-left[
+* We don’t live in the ocean; can’t see or directly count what we manage 
+
+
+* We know only basic biological properties of species; data are expensive
+
+
+* Catch coming to land is not the only fishing effect
+
+
+.bluetext[
+* We manage species separately but they interact
+]
+
+
+.bluetext[
+* Different laws govern different species, activities
+]
+
+
+.bluetext[
+* People depend on these estimates for livelihoods
+]
+]
+
+--
+
+.pull-right[
+.greentext[
+* Statistical design of surveys, sampling and estimation
+* Observation models for data
+
+
+* Sampling and estimation
+* Model structure and parameterization
+
+
+* Discarded catch estimation, habitat and other alterations
+
+
+* Multispecies and integrated assessment
+
+
+* Integrated assessment, management strategy evaluation
+
+
+* Validation, quality control, transparency
+]
+]
+
+
+---
+## What do I do? 1. Integrated ecosystem assessment
+
+.pull-left[
+
+- Establish objectives
+
+- Develop indicators
+
+- Assess ecosystem
+
+- Risk assessment 
+
+- Management strategy evaluation
+
+- Evaluate and iterate
+
+]
+
+.pull-right[
+*The IEA Loop&lt;sup&gt;1&lt;/sup&gt;*
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
+]
+
+.footnote[
+[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+
+???
+---
+## State of the Ecosystem Report
+.pull-left[
+
+- Ecosystem indicators linked to management objectives 
+
+- Open science emphasis 
+
+- Used within Mid-Atlantic Fishery Management Council's Ecosystem Process 
+
+## 2021 Report
+1. Graphical summary
+    + Page 1 report card re: objectives &amp;rarr;
+    + Page 2 risk summary bullets
+    + Page 3 synthesis themes
+1. Performance relative to management objectives
+1. Risks to meeting management objectives
+
+]
+
+.pull-right[
+
+&lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption style="font-size: initial !important;"&gt;Ecosystem-scale fishery management objectives&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;font-weight: bold;"&gt; Objective Categories &lt;/th&gt;
+   &lt;th style="text-align:left;font-weight: bold;"&gt; Indicators reported here &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr grouplength="6"&gt;&lt;td colspan="2" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;Provisioning and Cultural Services&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Seafood Production &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Landings; commercial total and by feeding guild; recreational harvest &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Profits &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Revenue decomposed to price and volume &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Recreation &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Days fished; recreational fleet diversity &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Stability &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Diversity indices (fishery and ecosystem) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Social &amp;amp; Cultural &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Community engagement/reliance status &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Protected Species &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Bycatch; population (adult and juvenile) numbers, mortalities &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr grouplength="4"&gt;&lt;td colspan="2" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;Supporting and Regulating Services&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Biomass &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Biomass or abundance by feeding guild from surveys &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Productivity &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Condition and recruitment of managed species, Primary productivity &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Trophic structure &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Relative biomass of feeding guilds, Zooplankton &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Habitat &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Estuarine and offshore habitat conditions &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+## State of the Ecosystem summary
+
+.pull-left[
+.center[
+![:img State of the Ecosystem page 1 summary table, 85%](EDAB_images/MAFMC-2021table.png)
+]
+]
+
+.pull-right[
+.center[
+![:img State of the Ecosystem page 2 risk bullets, 85%](EDAB_images/MAFMC-2021riskbullets.png)
+]
+]
+
+---
+## Ecosystem synthesis themes
+
+Characterizing ecosystem change for fishery management
+
+* Societal, biological, physical and chemical factors comprise the **multiple system drivers** that influence marine ecosystems through a variety of different pathways. 
+* Changes in the multiple drivers can lead to **regime shifts** — large, abrupt and persistent changes in the structure and function of an ecosystem.  
+* Regime shifts and changes in how the multiple system drivers interact can result in **ecosystem reorganization** as species and humans respond and adapt to the new environment.
+
+.pull-left[
+
+![:img](EDAB_images/SystemDrivers_v5.jpg)
+]
+
+.pull-right[
+![:img](EDAB_images/RegimeShift_V5.jpg)
+]
+
+---
+# Performance relative to management objectives
+
+.center[
+![:img Fishing icon made by EDAB, 15%](EDAB_images/5_FISHING.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Fishing industry icon made by EDAB, 15%](EDAB_images/6_INDUSTRY.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Multiple drivers icon made by EDAB, 25%](EDAB_images/18.MULTIPLE_SYSTEM_DRIVERS.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Spiritual cultural icon made by EDAB, 15%](EDAB_images/22.SPIRITUAL_CULTURAL.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Protected species icon made by EDAB, 15%](EDAB_images/16.PROTECTEDSPECIES.png)
+]
+
+---
+## Objective: Seafood production ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
+
+.pull-left[
+Indicators: Commercial and recreational landings 
+
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-5-1.png" width="504" style="display: block; margin: auto;" /&gt;
+.contrib[
+Key: Black = Landings of all species combined; &lt;p style="color:#FF6A6A;"&gt;Red = Landings of MAFMC managed species&lt;/p&gt;
+]
+
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-6-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+Multiple drivers: ecosystem and stock production, management, market conditions, and environment
+
+Is biomass driving?
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" /&gt;
+
+.contrib[
+Key: Black = NEFSC survey; &lt;p style="color:#FF6A6A;"&gt;Red = NEAMAP survey&lt;/p&gt;
+]
+]
+
+---
+## Landings drivers: Ecosystem and stock production?
+
+.pull-left[
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-8-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-9-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+.contrib[
+Key: 
+&lt;p style="background-color:#f4a460;"&gt;Orange background = Tipping point overfishing threshold, Link and Watson 2019&lt;/p&gt; 
+&lt;p style="background-color:#a2cd5a;"&gt;Green background = Optimal range, Link and Watson 2019&lt;/p&gt;
+]
+
+]
+
+.pull-right[
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-10-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-11-1.png" width="540" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+## Implications: Seafood Production
+.pull-left[
+
+
+
+
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-14-1.png" width="360" style="display: block; margin: auto;" /&gt;
+
+.contrib[
+Key: Black = Landings of all species combined; &lt;p style="color:#FF6A6A;"&gt;Red = Landings of MAFMC managed species&lt;/p&gt;
+]
+]
+
+.pull-right[
+Drivers:
+* market dynamics affecting commercial landings of surfclams and ocean quahogs  
+
+* other drivers affecting recreational landings: shark fishery management, possibly survey methodology  
+
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-15-1.png" width="360" style="display: block; margin: auto;" /&gt;
+Monitor: 
+* climate risks including warming, ocean acidification, and shifting distributions  
+* ecosystem composition and production changes  
+* fishing engagement  
+
+]
+
+
+???
+Because ecosystem overfishing seems unlikely, stock status is mostly acceptable, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species.
+
+Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
+
+---
+# Risks to meeting fishery management objectives
+
+.center[
+![:img Climate icon made by EDAB, 25%](EDAB_images/3_CLIMATE.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Wind icon made by EDAB, 25%](EDAB_images/24.WIND.png)
+] 
+
+.center[
+![:img Hydrography icon made by EDAB, 15%](EDAB_images/1_HYDROGRAPHY.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Phytoplankon icon made by EDAB, 15%](EDAB_images/9_PHYTOPLANKTON.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Forage fish icon made by EDAB, 15%](EDAB_images/13_FORAGEFISH.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Apex predators icon made by EDAB, 15%](EDAB_images/17.APEXPREDATORS.png)  &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Other human uses icon made by EDAB, 15%](EDAB_images/8_OTHERHUMANUSES.png) 
+]
+
+
+---
+background-image: url("EDAB_images/SST2020seasonalmaps.png")
+background-size: 700px
+background-position: right top
+
+## Risks: Climate change 
+.pull-left[
+Indicators: ocean currents, bottom and surface temperature, marine heatwaves
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-16-1.png" width="288" style="display: block; margin: auto;" /&gt;
+
+
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-17-1.png" width="288" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-18-1.png" width="504" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+&amp;nbsp;  
+&amp;nbsp;  
+&amp;nbsp; 
+&amp;nbsp; 
+&amp;nbsp;  
+&amp;nbsp;  
+&amp;nbsp;  
+&amp;nbsp; 
+&amp;nbsp;  
+&amp;nbsp;  
+&amp;nbsp; 
+&amp;nbsp;  
+&amp;nbsp; 
+&amp;nbsp;  
+&amp;nbsp;  
+&amp;nbsp; 
+&amp;nbsp;  
+&amp;nbsp;  
+
+&lt;img src="20210329_Stockton_ecotalk_Gaichas_files/figure-html/unnamed-chunk-19-1.png" width="360" style="display: block; margin: auto;" /&gt;
+
+]
+???
+A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
+
+---
+## Risks: Climate change 
+.pull-left[
+Indicator: cold pool area 
+![:img cold pool area](EDAB_images/cold_pool_area.png)
+]
+.pull-right[
+Indicator: acidification 
+![:img Seasonal pH](EDAB_images/Seasonal pH on MAB shelf - Grace Saba.jpg)
+]
+
+???
+Implications: 
+* Surfclams vulnerable to increased temperature and acidification  
+* Areas of low pH identified in surfclam and scallop habitat  
+* Lab work in progress identified pH thresholds for surfclam growth: *approaching threshold*   
+
+---
+## What do I do? 2. Modeling management strategies
+
+.pull-left[
+
+- Changing climate and ocean conditions &amp;rarr; Shifting species distributions, changing productivity
+
+- Needs:
+  - Improve our ability to project global change impacts in the California Current and Nordic/Barents Seas (and elsewhere)
+  - Test the performance of stock assessments to these impacts
+]
+
+.pull-right[
+*Climate-Ready Management&lt;sup&gt;1&lt;/sup&gt;*
+![:img Climateready, 90%](EDAB_images/KarpetalFig1.png)
+
+
+]
+
+.footnote[
+[1] Karp, Melissa A. et al. 2019. Accounting for shifting distributions and changing productivity in the development of scientific advice for fishery management. – ICES Journal of Marine Science, doi:10.1093/icesjms/fsz048.
+]
+
+???
+---
+## Virtual worlds: end-to-end ecosystem models
+
+Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-2979.2011.00412.x), [Fulton and Smith 2004](https://www.ajol.info/index.php/ajms/article/view/33182)
+
+.pull-left[
+**Norwegian-Barents Sea**
+
+[Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
+[2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
+
+![NOBA scale 70%](EDAB_images/journal.pone.0210419.g001.png)
+]
+.pull-right[
+**California Current**
+
+[Marshall et al. 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.13594), 
+[Kaplan et al. 2017](https://www.sciencedirect.com/science/article/pii/S0304380016308262?via%3Dihub)
+
+![CCAspatial scale 80%](EDAB_images/CCAspatial.png)
+]
+
+
+
+Building on global change projections:  [Hodgson et al. 2018](https://www.sciencedirect.com/science/article/pii/S0304380018301856?via%3Dihub), 
+[Olsen et al. 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00064/full)
+
+
+???
+---
+## Design: Ecosystem model scenario (climate and fishing)
+
+&lt;img src="EDAB_images/projectionOMsetup.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+???
+
+.pull-left[
+* Recruitment variability in the operating model
+
+* Specify uncertainty in assessment inputs using `atlantisom`
+]
+.pull-right[
+![sardinerec scale 100%](EDAB_images/CCAsardineRecVar.png)
+]
+
+
+
+---
+## Testing a simple "sardine" assessment (in progress)
+.pull-left[
+Biomass
+![:img true biomass compared with assessment biomass, 70%](EDAB_images/trueBss3B.png) 
+
+Fishing mortality
+![:img true fishing mortality compared with assessment fishing mortality, 70%](EDAB_images/trueFss3F.png) 
+
+]
+
+.pull-right[
+Recruitment
+![:img true recruitement compared with assessment recruitment, 70%](EDAB_images/trueRss3R.png) 
+
+Key: &lt;span style="color:teal"&gt;True&lt;/span&gt; &lt;span style="color:red"&gt;SS3 estimate&lt;/span&gt;
+
+![:img workinprogress, 30%](EDAB_images/work-in-progress.png)
+]
+
+
+---
+# Multiple objectives, multiple challenges
+
+.pull-left[
+Fisheries stock assessment and ecosystem modeling continue to develop  
+.bluetext[Can we keep pace with climate?]
+
+Existing management systems are at least as complex as the ecosystems, with diverse interests and emerging industries
+
+Integrated ecosystem assessment and management strategy evaluation
+* Include key interactions
+    + Species
+    + Fisheries
+* Environment
+* Make tradeoffs explicit
+* Account for uncertainty
+
+.bluetext[Mathematical innovation needed!]
+]
+
+.pull-right[
+![:img Three dimensional map of the Northeast US shelf showing major bottom, current, and other oceanographic features: Mid-Atlantic bight with the cold pool, circulation on Georges Bank and in the Gulf of Maine, the Scotian Shelf off Canada, the Labrador Current coming from the North and the Gulf Stream offshore with associated warm core and cold core rings spinning off. Precipitation over land affects water quality in the Chesapeake Bay., 100%](EDAB_images/MAFMC_NE_SHELF_MAP.png)
+]
+
+---
+background-image: url("EDAB_images/noaa-iea.png")
+background-size: 350px
+background-position: right bottom
+
+## State of the Ecosystem Collaborators --- THANK YOU!
+
+The New England and Mid-Atlantic SOEs made possible by (at least) 52 contributors from 10 institutions 
+
+.pull-left[
+.contrib[
+Andy Beet&lt;br&gt;
+Kimberly Bastille&lt;br&gt;
+Ruth Boettcher (Virginia Department of Game and Inland Fisheries)&lt;br&gt;
+Mandy Bromilow (NOAA Chesapeake Bay Office)&lt;br&gt;
+Zhuomin Chen (Woods Hole Oceanographic Institute)&lt;br&gt;
+Joseph Caracappa&lt;br&gt;
+Doug Christel (GARFO)&lt;br&gt;
+Patricia Clay&lt;br&gt;
+Lisa Colburn&lt;br&gt;
+Jennifer Cudney (NMFS Atlantic HMS Management Division)&lt;br&gt;
+Tobey Curtis (NMFS Atlantic HMS Management Division)&lt;br&gt;
+Geret DePiper&lt;br&gt;
+Emily Farr (NMFS Office of Habitat Conservation)&lt;br&gt;
+Michael Fogarty&lt;br&gt;
+Paula Fratantoni&lt;br&gt;
+Kevin Friedland&lt;br&gt;
+Sarah Gaichas&lt;br&gt;
+Ben Galuardi (GARFO)&lt;br&gt;
+Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)&lt;br&gt;
+James Gartland (Virginia Institute of Marine Science)&lt;br&gt;
+Glen Gawarkiewicz (Woods Hole Oceanographic Institution)&lt;br&gt;
+Sean Hardison&lt;br&gt;
+Kimberly Hyde&lt;br&gt;
+John Kosik&lt;br&gt;
+Steve Kress (National Audubon Society’s Seabird Restoration Program)&lt;br&gt;
+Young-Oh Kwon (Woods Hole Oceanographic Institute)&lt;br&gt;
+
+]
+]
+
+.pull-right[
+.contrib[
+Scott Large&lt;br&gt;
+Andrew Lipsky&lt;br&gt;
+Sean Lucey
+Don Lyons (National Audubon Society’s Seabird Restoration Program)&lt;br&gt;
+Chris Melrose&lt;br&gt;
+Shannon Meseck&lt;br&gt;
+Ryan Morse&lt;br&gt;
+Kimberly Murray&lt;br&gt;
+Chris Orphanides&lt;br&gt;
+Richard Pace&lt;br&gt;
+Charles Perretti&lt;br&gt;
+CJ Pellerin (NOAA Chesapeake Bay Office)&lt;br&gt;
+Grace Roskar (NMFS Office of Habitat Conservation)&lt;br&gt;
+Grace Saba (Rutgers)&lt;br&gt;
+Vincent Saba&lt;br&gt;
+Chris Schillaci (GARFO)&lt;br&gt;
+Angela Silva&lt;br&gt;
+Emily Slesinger (Rutgers University)&lt;br&gt;
+Laurel Smith&lt;br&gt;
+Talya tenBrink (GARFO)&lt;br&gt;
+Bruce Vogt (NOAA Chesapeake Bay Office)&lt;br&gt;
+Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)&lt;br&gt;
+John Walden&lt;br&gt;
+Harvey Walsh&lt;br&gt;
+Changhua Weng&lt;br&gt;
+Mark Wuenschel  
+
+]
+]
+
+
+---
+## If you want more details
+
+* [1: NOAA State of the Ecosystem summary webpage](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+* [1: State of the Ecosystem Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [1: ecodata R package](https://github.com/noaa-edab/ecodata)
+
+* [2: Atlantis Model Documentation](https://github.com/Atlantis-Ecosystem-Model/Atlantis_example_and_instructions)
+
+* [2: atlantisom R package in progress](https://github.com/r4atlantis/atlantisom)
+
+* [2: Testing atlantisom in progress](https://github.com/sgaichas/poseidon-dev)
+
+* Slides available at https://noaa-edab.github.io/presentations
+
+---
+
+background-image: url("EDAB_images/SOE_feature_image.png")
+background-size: contain
+
+.footnote[Questions? Thank you!]
+
+---
+## Appendix 1: Fishery management in the US
+
+Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
+
+![US map highlighting regions for each fishery management council](EDAB_images/USCouncils.png)
+
+More information: http://www.fisherycouncils.org/
+https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
+
+---
+background-image: url("EDAB_images/surveyvessels.png")
+background-size: cover
+
+## Appendic 2: Trawl surveys-- *how many fish are there?*
+
+---
+background-image: url("EDAB_images/AKgroundfish_insitu.png")
+background-size: cover
+
+---
+background-image: url("EDAB_images/AFSCnetloft.png")
+background-size: contain
+
+---
+background-image: url("EDAB_images/AKsurveytow.png")
+background-size: contain
+
+---
+background-image: url("EDAB_images/AKsurveysort.png")
+background-size: contain
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
