@@ -340,9 +340,12 @@ Ranked moderate-high risk due to the significant long term revenue decrease for 
 
 Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of MAFMC managed species</p>
 
-
-
 ]
+
+--
+
+## Risk element: <span style="background-color:orange;">CommRev</span>, unchanged
+
 
 ---
 # Performance relative to management objectives
@@ -386,7 +389,8 @@ Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
 ]
 
 ---
-## Landings drivers: Ecosystem and stock production?
+## Landings drivers: Ecosystem and stock production? 
+##Risk elements: Fstatus, Bstatus, unchanged except <span style="background-color:yellow;">Butterfish Bstatus</span>, add element?
 
 .pull-left[
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
@@ -419,9 +423,6 @@ Key:
 #stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing).")
 ```
 
-.contrib[
-Risk elements: Assess, Fstatus, most Bstatus unchanged. <span style="background-color:yellow;">Butterfish Bstatus</span> risk increased
-]
 ]
 
 ---
@@ -497,7 +498,7 @@ Indicator: Bennet--price and volume indices
 Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
 
 ---
-## Objective: Recreational opportunities ![:img no trend icon, 2%](EDAB_images/no trend.png) ![:img near average icon icon, 1%](EDAB_images/near long term average.png);  ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png) &emsp; Risk elements: <span style="background-color:red;">RecValue</span>,  unchanged; add diversity?
+## Objective: Recreational opportunities ![:img no trend icon, 2%](EDAB_images/no trend.png) ![:img near average icon icon, 1%](EDAB_images/near long term average.png);  ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png) &emsp; Risk element: <span style="background-color:red;">RecValue</span>,  unchanged; add diversity?
 .pull-left[
 Indicators: Recreational effort and fleet diversity   
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")}
@@ -546,7 +547,7 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 
 ]
 ---
-## Objective: Stability ![:img mixed trend icon, 2%](EDAB_images/Mixed trends.png) ![:img near average icon icon, 1%](EDAB_images/near long term average.png) &emsp; Risk elements: ecological diversity put aside, new indices
+## Objective: Stability ![:img mixed trend icon, 2%](EDAB_images/Mixed trends.png) ![:img near average icon icon, 1%](EDAB_images/near long term average.png) &emsp; Risk element: ecological diversity put aside, new indices
 
 .pull-left[
 *Ecological* Indicators: zooplankton and larval fish diversity
@@ -574,7 +575,7 @@ Implications:
 While larval and adult fish diversity indices are stable, a few warm-southern larval species are becoming more dominant. Increasing zooplankton diversity is driven by declining dominance of an important species, which warrants continued monitoring.
 
 ---
-## Objective: Fishing community status &emsp; Risk elements: <span style="background-color:yellow;">Social</span>, unchanged; new community level info
+## Objective: Fishing community status &emsp; Risk element: <span style="background-color:yellow;">Social</span>, unchanged; new community level info
 Indicators: Social vulnerability, fishery engagement and reliance  
 .pull-left[
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
@@ -658,7 +659,7 @@ background-image: url("EDAB_images/SST2020seasonalmaps.png")
 background-size: 700px
 background-position: right top
 
-## Risks: Climate change
+## Risks: Climate change, multiple elements
 .pull-left[
 Indicators: ocean currents, bottom and surface temperature, marine heatwaves
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.width=4}
@@ -702,7 +703,7 @@ Indicators: ocean currents, bottom and surface temperature, marine heatwaves
 ???
 A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
 ---
-## Risks: Climate change
+## Risks: Climate change &emsp; Risk element: EstHabitat 10 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk species, unchanged, new indices
 
 Indicators: Estuarine conditions, Chesapeake Bay
 .pull-left[
@@ -717,7 +718,7 @@ Indicators: Estuarine conditions, Chesapeake Bay
 ]
 
 ---
-## Risks: Climate change
+## Risks: Climate change &emsp; Risk element: offshore habiat put aside, new indices
 .pull-left[
 Indicator: cold pool area
 ![:img cold pool area](EDAB_images/cold_pool_area.png)
@@ -728,7 +729,7 @@ Indicator: acidification
 ]
 
 ---
-## Risks: Ecosystem productivity 
+## Risks: Ecosystem productivity &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>, unchanged, new indices
 
 Indicators: primary production, zooplankton
 
@@ -761,7 +762,7 @@ Increased temperatures, as reported above, can increase the rate of photosynthes
 Larger zooplankton (i.e. *Calanus finmarchicus*) had above average abundance in 2018-2019, while smaller-bodied copepods were near or below average.
 
 ---
-## Risks: Ecosystem productivity
+## Risks: Ecosystem productivity &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>, unchanged, new indices
 
 Indicators: plankton-based forage anomaly and forage fish energy content (Memo 17)
 
@@ -779,7 +780,7 @@ Indicators: plankton-based forage anomaly and forage fish energy content (Memo 1
 Implications: fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring
 
 ---
-## Risks: Ecosystem productivity
+## Risks: Ecosystem productivity &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>, unchanged, new analyses
 
 Indicators: fish condition (Memo 18)
 .pull-left[
@@ -798,7 +799,7 @@ Preliminary results:
 See memo for preliminary results
 These relationships can potentially provide insights on which species may be more vulnerable to environmental changes such as climate change, as well as what biomass changes may be expected from certain species given current environmental conditions
 ---
-## Risks: Ecosystem structure
+## Risks: Ecosystem structure &emsp; Risk element: DistShift, unchanged, add elements?
 
 Indicators: distribution shifts (slide 7), diversity (slide 16), predators (Memo 12, 15, 25)
 .pull-left[
@@ -828,7 +829,7 @@ Implications: stable predator populations suggest stable predation pressure on m
 A survey conducted in 2021 in both countries will provide updated estimates of abundance. 
 
 ---
-## Risks: Habitat climate vulnerability
+## Risks: Habitat climate vulnerability &emsp; New, opportunity to refine habitat risks
 
 Indicators: climate sensitive species life stages mapped to climate vulnerable habitats  
 
@@ -940,8 +941,10 @@ frameWidget(dt)
 
 
 ---
-## Implications: Links between climate change and managed species
+## Implications: Climate change and managed species &emsp; Risk elements unchanged, new info:
 .pull-left[
+Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk
+
 *Multiple drivers with different impacts by species*    
 * Chesapeake Bay warm winter, low freshwater flow  
     - Striped bass poor recruitment observed  
@@ -958,9 +961,11 @@ frameWidget(dt)
 ]
 
 .pull-right[
+DistShift: 2 <span style="background-color:lightgreen;">low</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species
+
 Shifting species distributions alter both species interactions and fishery interactions. In particular, shifting species distributions can alter expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
 .center[
-![:img summer flounder survey distribution change over time from 2018 SOE, 70%](EDAB_images/black_sea_bass_kde.png)
+![:img black sea bass survey distribution change over time from 2018 SOE, 70%](EDAB_images/black_sea_bass_kde.png)
 ]
 ]
 
@@ -970,7 +975,7 @@ background-image: url("EDAB_images/SurveyMap202133.png")
 background-size: 700px
 background-position: right
 
-## Risks: Offshore Wind Development
+## Risks: Offshore Wind Development &emsp; Element: OceanUse
 .pull-left[
 Indicators: development timeline, revenue in lease areas, survey overlap ([full map](https://noaa-edab.github.io/ecodata/human_dimensions_MAB#Shelfwide_Indicators))
 ![:img Rate and extend of offshore wind devevelopment by project end year, 90%](EDAB_images/wind-figure-1yaxis.png)
@@ -987,7 +992,7 @@ background-image: url("EDAB_images/MidAtlantic_2021128-01.jpg")
 background-size: 500px
 background-position: right
 
-## Risks: Offshore Wind Development
+## Risks: Offshore Wind Development &emsp; Element: OceanUse
 .pull-left[
 Implications: 
 * Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region  
