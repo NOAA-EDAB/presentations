@@ -389,9 +389,7 @@ Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
 ]
 
 ---
-## Landings drivers: Ecosystem and stock production? 
-##Risk elements: Fstatus, Bstatus, unchanged except <span style="background-color:yellow;">Butterfish Bstatus</span>, add element?
-
+## Landings drivers: Ecosystem or stock production? &emsp; Risk elements: Fstatus, Bstatus mostly unchanged
 .pull-left[
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
 
@@ -417,6 +415,8 @@ Key:
 
 #ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels. PPD is total primary production. The solid line is based on satellite-derived PPD and the dashed line is based on primary production reconstructed using the mean of satellite-derived PPD from 1998-2010."
 ```
+
+One change: <span style="background-color:yellow;">Butterfish Bstatus</span>
 
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
 
@@ -718,7 +718,7 @@ Indicators: Estuarine conditions, Chesapeake Bay
 ]
 
 ---
-## Risks: Climate change &emsp; Risk element: offshore habiat put aside, new indices
+## Risks: Climate change &emsp; Risk element: offshore habitat put aside, new indices
 .pull-left[
 Indicator: cold pool area
 ![:img cold pool area](EDAB_images/cold_pool_area.png)
@@ -963,9 +963,9 @@ Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style=
 .pull-right[
 DistShift: 2 <span style="background-color:lightgreen;">low</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species
 
-Shifting species distributions alter both species interactions and fishery interactions. In particular, shifting species distributions can alter expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
+Shifting species distributions alter both species interactions, fishery interactions, and expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
 .center[
-![:img black sea bass survey distribution change over time from 2018 SOE, 70%](EDAB_images/black_sea_bass_kde.png)
+![:img black sea bass survey distribution change over time from 2018 SOE, 65%](EDAB_images/black_sea_bass_kde.png)
 ]
 ]
 
