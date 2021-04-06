@@ -1,7 +1,7 @@
 ---
-title: "State of the Ecosystem <br /> Mid-Atlantic"
+title: "State of the Ecosystem and <br /> EAFM Risk Assessment: Mid-Atlantic"
 subtitle: "MAFMC<br /> 07 April 2021"
-author: "Sarah Gaichas<br /> Northeast Fisheries Science Center<br /> <br /> Many thanks to:<br /> Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey,<br /> and all SOE contributors"
+author: "Sarah Gaichas<br /> Northeast Fisheries Science Center<br /> <br /> Many thanks to:<br /> Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey,<br /> and all SOE contributors; <br /> Brandon Muffley and all MAFMC Staff <br /> for Risk Assessment updates"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -203,13 +203,13 @@ knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
 
 .pull-left[
 .center[
-![:img State of the Ecosystem page 1 summary table, 85%](EDAB_images/MAFMC-2021table.png)
+![:img State of the Ecosystem page 1 summary table, 90%](EDAB_images/SOE-MAFMC-2021-plusgraphicsummary_Page_02.png)
 ]
 ]
 
 .pull-right[
 .center[
-![:img State of the Ecosystem page 2 risk bullets, 85%](EDAB_images/MAFMC-2021riskbullets.png)
+![:img State of the Ecosystem page 2 risk bullets, 90%](EDAB_images/SOE-MAFMC-2021-plusgraphicsummary_Page_03.png)
 ]
 ]
 
@@ -296,7 +296,7 @@ No color line = not significant or < 30 years
 ]
 
 ---
-## SOE &rarr; Risk assessent example: Commercial revenue
+## State of the Ecosystem &rarr; Risk assessent example: Commercial revenue
 
 This element is applied at the ecosystem level. Revenue serves as a proxy for commercial profits.
 
@@ -515,7 +515,7 @@ Implications
 
 * Decline in recreational fleet diversity suggests a potentially reduced range of opportunities. 
 
-* Driven by party/charter contraction (from a high of 24% of angler trips to 7% currently), and a shift toward shorebased angling.
+* Driven by party/charter contraction (from a high of 24% of angler trips to 7% currently), and a shift toward shore based angling.
 
 * Absence of a long-term trend in recreational effort suggests relative stability in the overall number of recreational opportunities in the MAB.
 
@@ -537,7 +537,7 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 ]
 
 .pull-right[
-*Fishery*  Indicators: commerical species revenue diversity, recreational species catch diversity
+*Fishery*  Indicators: commercial species revenue diversity, recreational species catch diversity
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")}
 ```
 
@@ -636,7 +636,7 @@ Implications:
 * Unusual mortality events continue for 3 large whale species, harbor and gray seals.
 
 * Risk elements: 
-    - FW2Prey evaluted by species: 13 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span> risk, unchanged 
+    - FW2Prey evaluated by species: 13 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span> risk, unchanged 
     - TechInteract, evaluated by species and sector, unchanged
 ]
 
@@ -870,7 +870,7 @@ mid <- data.table::dcast.data.table(mid, Species + Stage ~ Habitat,
                                     value.var = 'Dependence')
 setcolorder(mid, c('Species', 'Stage', habitats$'Habitat Name'))
 
-#Add Habitat Vulnerbaility
+#Add Habitat Vulnerability
 #hab.table <- rbindlist(list(as.data.table(t(hab.vul)), mid), use.names = F)
 hab.table <- mid
 #Add names back in
@@ -997,7 +997,7 @@ background-position: right
 Implications: 
 * Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region  
 
-* 2-24% of total average revenue for major Mid-Atlantic commerical species in lease areas could be displaced if all sites are developed. Displaced fishing effort can alter fishing methods, which can in turn change habitat, species (managed and protected), and fleet interactions. 
+* 2-24% of total average revenue for major Mid-Atlantic commercial species in lease areas could be displaced if all sites are developed. Displaced fishing effort can alter fishing methods, which can in turn change habitat, species (managed and protected), and fleet interactions. 
 
 * Right whales may be displaced, and altered local oceanography could affect distribution of their zooplankton prey.
 
@@ -1244,19 +1244,19 @@ PrintBibliography(myBib)
 ]
 
 ---
-background-image: url("EDAB_images/2021MAFMCreportcardSSC.png")
+background-image: url("EDAB_images/SOE-MAFMC-2021-plusgraphicsummary_Page_01.png")
 background-size: 600px
-background-position: right
+background-position: bottom right
 
 # Discussion
 .pull-left[
-1. Feedback on structure: keep this one, or adjust further?
-1. Feedback on synthesis themes: multiple drivers, regime shifts, system reorganization
-1. Feedback on Memo points
+1. Feedback on structure?
+1. Feedback on synthesis themes? multiple drivers, regime shifts, system reorganization
+1. Feedback on Memo points?
     - 1 to 18 included in SOE
     - 19 to 25 in progress
     - 26 to 33 less progress
-1. Prorities for 2022 and future reports
+1. Prorities for 2022, risk assessment updates?
 
 # Thank you!
 ]
