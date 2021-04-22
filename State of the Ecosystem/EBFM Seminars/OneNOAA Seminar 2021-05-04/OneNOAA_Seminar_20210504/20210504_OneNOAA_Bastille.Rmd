@@ -339,10 +339,10 @@ Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Re
 
 .pull-right[
 ### *Fishery*  Indicators: commerical species revenue diversity, recreational species catch diversity
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div-species-div.R")}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div-species-div.R"), fig.asp=0.40}
 ```
 
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-div-catch.R"), fig.asp=0.45}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-div-catch.R"), fig.asp=0.40}
 #recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
 ```
 
@@ -364,18 +364,18 @@ Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Re
 ```
 
 ]
-
 .pull-right[
 ### *Ecological* Indicator: expected number of species, NEFSC bottom trawl survey
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-exp-n.R")}
 #exp-n, fig.cap = "Adult fish diversity the Mid-Atlantic Bight, based on expected number of species."
 ```
 
- 
 * commercial fishery diversity driven by small number of species
 * diminished capacity to respond to future fishing opportunities
 * recreational diversity due to species distributions and regulations
 * mixed trends need further monitoring
+<br />
+<br />
 <br />
 ]
 ---
@@ -400,7 +400,7 @@ Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Re
 * May also be vulnerable to environmental justice issues.
 
 ---
-## Objectives: Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](EDAB_images/Mixed trends.png) ![:img meeting objectives icon, 2%](EDAB_images/checked.png) *Northeast Shelf*
+## Objective: Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](EDAB_images/Mixed trends.png) ![:img meeting objectives icon, 2%](EDAB_images/checked.png) *Northeast Shelf*
 ### Indicators: Harbor porpoise and gray seal bycatch
 .pull-left[
 
@@ -579,10 +579,10 @@ record at 4.3 degrees above average
 .pull-left[
 .center[
 ![:img Fish condition links conceptual model, 70%](EDAB_images/SOEconditionfactorlinks_keycolor_price.png)
+]
+<br />
 Preliminary results:  
 * Multiple, different condition drivers by species 
-]
-  
 ]
 .pull-right[
 
@@ -748,9 +748,10 @@ Implications:
 ]
 
 .pull-right[
-*The IEA Loop<sup>1</sup>*
-![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
 
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
+<br />
+*The IEA Loop<sup>1</sup>*
 .footnote[
 [1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
 ]
@@ -782,10 +783,12 @@ Ranked moderate-high risk due to the significant long term revenue decrease for 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"), fig.width = 6, fig.asp = 0.65}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"), fig.width = 6, fig.asp = 0.45}
 ```
-
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"), fig.width = 6, fig.asp = 0.65}
+.contrib[
+Key: Black = Total Landings; <p style="color:#FF6A6A;">Red = Landings of MAFMC managed species</p>
+]
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"), fig.width = 6, fig.asp = 0.45}
 #bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), fig.width=6,
 ```
 ]
@@ -898,10 +901,21 @@ PrintBibliography(myBib)
 
 ---
 background-image: url("EDAB_images/SOE_feature_image.png")
-<!-- background-size: 600px -->
+background-size: 1200px
 background-position: center
 
-
+.right[
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 # Thank you!
 
 # Questions?
+]
