@@ -693,6 +693,15 @@ dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
 frameWidget(dt)
 ```
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+[Habitat tables](https://noaa-edab.github.io/ecodata/Hab_table)
 ---
 background-image: url("EDAB_images/SurveyMap202133.png")
 background-size: 700px
@@ -702,11 +711,10 @@ background-position: right
 ### Indicators: development timeline, revenue in lease <br />areas, survey overlap ([full map](https://noaa-edab.github.io/ecodata/human_dimensions_MAB#Shelfwide_Indicators))
 .pull-left[
 
-
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-dev-speed0.R"), fig.width=7, fig.asp=.4}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-wind-revenue.R"), fig.width = 7}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-revenue.R"), fig.width = 7}
 ```
 
 ]
@@ -717,10 +725,9 @@ background-position: right
 ---
 ## Risks: Offshore Wind Development
 .pull-left[
-Implications: 
 * Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region  
 
-* 1-12% of total average revenue for major New England commerical species in lease areas could be displaced if all sites are developed. Displaced fishing effort can alter fishing methods, which can in turn change habitat, species (managed and protected), and fleet interactions. 
+* 2-24% of total average revenue for major Mid-Atlantic commercial species in lease areas could be displaced if all sites are developed. Displaced fishing effort can alter fishing methods, which can in turn change habitat, species (managed and protected), and fleet interactions. 
 
 * Right whales may be displaced, and altered local oceanography could affect distribution of their zooplankton prey.
 
@@ -888,8 +895,15 @@ PrintBibliography(myBib)
   * [New England Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_NE)
   * [New England Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_NE)
   * [New England Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_NE)
+  * [Mid-Atlantic Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_MAB)
+  * [Mid-Atlantic Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_MAB)
+  * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
 ]
 .pull-right[
+* [SOE MAFMC 2021](https://apps-nefsc.fisheries.noaa.gov/rcb/publications/SOE-MAFMC-2021-508-Final.pdf)
+
+* [SOE NEFMC 2021](https://apps-nefsc.fisheries.noaa.gov/rcb/publications/SOE-NEFMC-2021-508-Final.pdf)
+
 * [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
 
 * [Draft indicator catalog](https://noaa-edab.github.io/catalog/)
