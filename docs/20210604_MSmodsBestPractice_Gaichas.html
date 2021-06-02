@@ -13,7 +13,7 @@
 class: right, middle, my-title, title-slide
 
 # What makes a good multispecies model?
-## Goal 4 Keynote <br />Multispecies Modeling Workshop, June 2021
+## Goal 4 Keynote <br />Multispecies Modeling Applications Workshop, June 2021
 ### Sarah Gaichas <br /> Northeast Fisheries Science Center
 
 ---
@@ -26,14 +26,55 @@ class: top, left
 
 
 
-background-image: url("EDAB_images/ecomods.png")
-background-size: contain 
+# What makes a good model? &lt;a name=cite-nrc_chapter_2007&gt;&lt;/a&gt;([NRC, 2007](https://www.nap.edu/read/11972/chapter/6)), p 108
 
-???
-Alt text: Fisheries models range from single and multispecies models to full ecosystem models
+.pull-left-30[
+&gt;Is the model based on generally accepted science and computational methods?  
+
+&gt;Does it work, that is, does it fulfill its designated task or serve its intended purpose? 
+
+&gt;Does its behavior approximate that observed in the system being modeled?  
+]
+
+.pull-right-70[
+![Fisheries models range from single and multispecies models to full ecosystem models](EDAB_images/ecomods.png)
+]
+
+---
+## Best practices 1: Why are we building a model? Identify the problem
+
+.pull-left[
+![whybuild](EDAB_images/piggiehippowhy.png)
+]
+
+--
+
+.pull-right[
+![whyindeed](EDAB_images/whyindeed.png)
+]
+
+
+
+---
+## ms-keyrun project objectives
+
+EBFM Objective 1: what happens with all the species in the region under a certain management regime? (Rpath)
+* Paper! DONE!
+* What do we need to do
+* Fitting routines
+* Time series of data
+* Doing actual fitting
+EBFM Objective 2: how well do multispecies models perform for assessment? (Hydra, MSCAA/VADER, Kraken)
+* Which models are better at what (size/age structured and biomass dynamics)
+* What data are necessary?
+* Which species actually need to be included? Use Rpath to id
+* Need a fleet based model? Add econ?
+The above includes fits to historical data for all the models
+Overall goal: tools vetted and ready to go with any of further questions from the Council
+
 ---
 ## Why include species interactions?
-*Ignore predation at your peril: results from multispecies state-space modeling  *  &lt;a name=cite-trijoulet_performance_2020&gt;&lt;/a&gt;([Trijoulet, Fay, and Miller, 2020](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.13515))
+*Ignore predation at your peril: results from multispecies state-space modeling  *  &lt;a name=cite-trijoulet_performance_2020&gt;&lt;/a&gt;([Trijoulet, et al., 2020](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.13515))
 &gt;Ignoring trophic interactions that occur in marine ecosystems induces bias in stock assessment outputs and results in low model predictive ability with subsequently biased reference points.  
 
 .pull-left-40[
@@ -64,11 +105,11 @@ background-position: right bottom
 
 # Today: compare and contrast species interactions
 
-## Multispecies catch at age &lt;a name=cite-curti_evaluating_2013&gt;&lt;/a&gt;([Curti, Collie, Legault, and Link, 2013](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229))  
-## Multispecies catch at length &lt;a name=cite-gaichas_combining_2017&gt;&lt;/a&gt;([Gaichas, Fogarty, Fay, Gamble, Lucey, and Smith, 2017](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)) 
-## Multispecies production &lt;a name=cite-gamble_analyzing_2009&gt;&lt;/a&gt;([Gamble and Link, 2009](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998))  
-## Food web &lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Lucey, Gaichas, and Aydin, 2020](http://www.sciencedirect.com/science/article/pii/S0304380020301290))  
-## MICE for MSE &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, Gaichas, Lee, Feeney, Boelke, and Irwin, 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))  
+## Multispecies catch at age &lt;a name=cite-curti_evaluating_2013&gt;&lt;/a&gt;([Curti, et al., 2013](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229))  
+## Multispecies catch at length &lt;a name=cite-gaichas_combining_2017&gt;&lt;/a&gt;([Gaichas, et al., 2017](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)) 
+## Multispecies production &lt;a name=cite-gamble_analyzing_2009&gt;&lt;/a&gt;([Gamble, et al., 2009](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998))  
+## Food web &lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Lucey, et al., 2020](http://www.sciencedirect.com/science/article/pii/S0304380020301290))  
+## MICE for MSE &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))  
 
 ---
 ## Multispecies catch at age estimation model: *seeking catchy name* [FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
@@ -308,29 +349,28 @@ background-position: right bottom
 ---
 ## References
 .contrib[
-&lt;a name=bib-curti_evaluating_2013&gt;&lt;/a&gt;[Curti, K. L., J. S. Collie, C.
-M. Legault, et al.](#cite-curti_evaluating_2013) (2013). "Evaluating
-the performance of a multispecies statistical catch-at-age model". En.
-In: _Canadian Journal of Fisheries and Aquatic Sciences_ 70.3, pp.
-470-484. ISSN: 0706-652X, 1205-7533. DOI:
+&lt;a name=bib-curti_evaluating_2013&gt;&lt;/a&gt;[Curti, K. L. et
+al.](#cite-curti_evaluating_2013) (2013). "Evaluating the performance
+of a multispecies statistical catch-at-age model". En. In: _Canadian
+Journal of Fisheries and Aquatic Sciences_ 70.3, pp. 470-484. ISSN:
+0706-652X, 1205-7533. DOI:
 [10.1139/cjfas-2012-0229](https://doi.org/10.1139%2Fcjfas-2012-0229).
 URL:
 [http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229)
 (visited on Jan. 13, 2016).
 
-&lt;a name=bib-deroba_dream_2018&gt;&lt;/a&gt;[Deroba, J. J., S. K. Gaichas, M.
-Lee, et al.](#cite-deroba_dream_2018) (2018). "The dream and the
-reality: meeting decision-making time frames while incorporating
-ecosystem and economic models into management strategy evaluation". In:
-_Canadian Journal of Fisheries and Aquatic Sciences_. ISSN: 0706-652X.
-DOI:
+&lt;a name=bib-deroba_dream_2018&gt;&lt;/a&gt;[Deroba, J. J. et
+al.](#cite-deroba_dream_2018) (2018). "The dream and the reality:
+meeting decision-making time frames while incorporating ecosystem and
+economic models into management strategy evaluation". In: _Canadian
+Journal of Fisheries and Aquatic Sciences_. ISSN: 0706-652X. DOI:
 [10.1139/cjfas-2018-0128](https://doi.org/10.1139%2Fcjfas-2018-0128).
 URL:
 [http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128)
 (visited on Jul. 20, 2018).
 
-&lt;a name=bib-gaichas_combining_2017&gt;&lt;/a&gt;[Gaichas, S. K., M. Fogarty, G.
-Fay, et al.](#cite-gaichas_combining_2017) (2017). "Combining stock,
+&lt;a name=bib-gaichas_combining_2017&gt;&lt;/a&gt;[Gaichas, S. K. et
+al.](#cite-gaichas_combining_2017) (2017). "Combining stock,
 multispecies, and ecosystem level fishery objectives within an
 operational management procedure: simulations to start the
 conversation". In: _ICES Journal of Marine Science_ 74.2, pp. 552-565.
@@ -340,8 +380,8 @@ URL:
 [https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)
 (visited on Oct. 18, 2017).
 
-&lt;a name=bib-gamble_analyzing_2009&gt;&lt;/a&gt;[Gamble, R. J. and J. S.
-Link](#cite-gamble_analyzing_2009) (2009). "Analyzing the tradeoffs
+&lt;a name=bib-gamble_analyzing_2009&gt;&lt;/a&gt;[Gamble, R. J. et
+al.](#cite-gamble_analyzing_2009) (2009). "Analyzing the tradeoffs
 among ecological and fishing effects on an example fish community: A
 multispecies (fisheries) production model". En. In: _Ecological
 Modelling_ 220.19, pp. 2570-2582. ISSN: 03043800. DOI:
@@ -350,19 +390,26 @@ URL:
 [http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998)
 (visited on Oct. 13, 2016).
 
-&lt;a name=bib-lucey_conducting_2020&gt;&lt;/a&gt;[Lucey, S. M., S. K. Gaichas, and
-K. Y. Aydin](#cite-lucey_conducting_2020) (2020). "Conducting
-reproducible ecosystem modeling using the open source mass balance
-model Rpath". En. In: _Ecological Modelling_ 427, p. 109057. ISSN:
-0304-3800. DOI:
+&lt;a name=bib-lucey_conducting_2020&gt;&lt;/a&gt;[Lucey, S. M. et
+al.](#cite-lucey_conducting_2020) (2020). "Conducting reproducible
+ecosystem modeling using the open source mass balance model Rpath". En.
+In: _Ecological Modelling_ 427, p. 109057. ISSN: 0304-3800. DOI:
 [10.1016/j.ecolmodel.2020.109057](https://doi.org/10.1016%2Fj.ecolmodel.2020.109057).
 URL:
 [http://www.sciencedirect.com/science/article/pii/S0304380020301290](http://www.sciencedirect.com/science/article/pii/S0304380020301290)
 (visited on Apr. 27, 2020).
 
-&lt;a name=bib-trijoulet_performance_2020&gt;&lt;/a&gt;[Trijoulet, V., G. Fay, and
-T. J. Miller](#cite-trijoulet_performance_2020) (2020). "Performance of
-a state-space multispecies model: What are the consequences of ignoring
+&lt;a name=bib-nrc_chapter_2007&gt;&lt;/a&gt;[NRC](#cite-nrc_chapter_2007) (2007).
+"Chapter 4. Model Evaluation". En. In: _Models in Environmental
+Regulatory Decision Making_. Washington D.C.: The National Academies
+Press, pp. 104-169. DOI:
+[10.17226/11972](https://doi.org/10.17226%2F11972). URL:
+[https://www.nap.edu/read/11972/chapter/6](https://www.nap.edu/read/11972/chapter/6)
+(visited on Aug. 29, 2019).
+
+&lt;a name=bib-trijoulet_performance_2020&gt;&lt;/a&gt;[Trijoulet, V. et
+al.](#cite-trijoulet_performance_2020) (2020). "Performance of a
+state-space multispecies model: What are the consequences of ignoring
 predation and process errors in stock assessments?" En. In: _Journal of
 Applied Ecology_ n/a.n/a. ISSN: 1365-2664. DOI:
 [10.1111/1365-2664.13515](https://doi.org/10.1111%2F1365-2664.13515).
@@ -418,7 +465,7 @@ Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
 
 ] 
 .pull-right-30[
-([Deroba, Gaichas, Lee, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))
+([Deroba, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))
 ]
 
 Implementation error was included as year-specific lognormal random deviations: 

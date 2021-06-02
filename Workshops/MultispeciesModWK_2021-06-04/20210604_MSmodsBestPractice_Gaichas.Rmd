@@ -1,6 +1,6 @@
 ---
 title: "What makes a good multispecies model?"
-subtitle: "Goal 4 Keynote <br />Multispecies Modeling Workshop, June 2021"
+subtitle: "Goal 4 Keynote <br />Multispecies Modeling Applications Workshop, June 2021"
 author: "Sarah Gaichas <br /> Northeast Fisheries Science Center"
 output:
   xaringan::moon_reader:
@@ -38,8 +38,10 @@ library(RefManageR)
 BibOptions(check.entries = FALSE,
            bib.style = "authoryear",
            cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
            style = "markdown")
-myBib <- ReadBib("./DeepUncertaintyMSE.bib", check = FALSE)
+myBib <- ReadBib("./modreview2.bib", check = FALSE)
 
 #,
 #           hyperlink = FALSE,
@@ -99,11 +101,52 @@ scale_colour_Publication <- function(...){
 
 ```
 
-background-image: url("EDAB_images/ecomods.png")
-background-size: contain 
+# What makes a good model? `r Cite(myBib, "nrc_chapter_2007")`, p 108
 
-???
-Alt text: Fisheries models range from single and multispecies models to full ecosystem models
+.pull-left-30[
+>Is the model based on generally accepted science and computational methods?  
+
+>Does it work, that is, does it fulfill its designated task or serve its intended purpose? 
+
+>Does its behavior approximate that observed in the system being modeled?  
+]
+
+.pull-right-70[
+![Fisheries models range from single and multispecies models to full ecosystem models](EDAB_images/ecomods.png)
+]
+
+---
+## Best practices 1: Why are we building a model? Identify the problem
+
+.pull-left[
+![whybuild](EDAB_images/piggiehippowhy.png)
+]
+
+--
+
+.pull-right[
+![whyindeed](EDAB_images/whyindeed.png)
+]
+
+
+
+---
+## ms-keyrun project objectives
+
+EBFM Objective 1: what happens with all the species in the region under a certain management regime? (Rpath)
+* Paper! DONE!
+* What do we need to do
+* Fitting routines
+* Time series of data
+* Doing actual fitting
+EBFM Objective 2: how well do multispecies models perform for assessment? (Hydra, MSCAA/VADER, Kraken)
+* Which models are better at what (size/age structured and biomass dynamics)
+* What data are necessary?
+* Which species actually need to be included? Use Rpath to id
+* Need a fleet based model? Add econ?
+The above includes fits to historical data for all the models
+Overall goal: tools vetted and ready to go with any of further questions from the Council
+
 ---
 ## Why include species interactions?
 *Ignore predation at your peril: results from multispecies state-space modeling  *  `r Cite(myBib, "trijoulet_performance_2020")`
