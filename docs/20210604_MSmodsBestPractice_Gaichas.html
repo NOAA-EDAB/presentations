@@ -25,7 +25,6 @@ class: top, left
 
 
 
-
 # What makes a good model? &lt;a name=cite-nrc_chapter_2007&gt;&lt;/a&gt;([NRC, 2007](https://www.nap.edu/read/11972/chapter/6)), p 108
 
 .pull-left-30[
@@ -76,9 +75,11 @@ Define the problem, and why this model is (or reviewers to explain why it is not
 
 Define the focal species, spatial, and temporal resolution needed to address the problem. 
 
-Current uses:
+Example problem:
 
-For example, we are asked to provide M-at-age time series for North Sea and Baltic herring, cod, whiting, haddock, sprat, sandeel, and possibly other species. Spatial scale is at the stock level and temporal resolution is annual, starting at a stock-specific year and going to 2018. 
+Changing natural mortality resulting from predation is desired input for in single species assessments
+
+ICES WGSAM is asked to provide M-at-age time series for North Sea and Baltic herring, cod, whiting, haddock, sprat, sandeel, and possibly other species. Spatial scale is at the stock level and temporal resolution is annual, starting at a stock-specific year and going to 2018. 
 
 Therefore, the multispecies model(s) must provide this output and sensitivity in this particular output is most important. However, there are other potential uses for these models that have yet to be defined.
 
@@ -96,18 +97,22 @@ For the Irish Sea EwE model, key outputs will be used to determine where the ref
 
 ms-keyrun project objectives
 
-EBFM Objective 1: what happens with all the species in the region under a certain management regime? (Rpath)
-* Paper! DONE!
-* What do we need to do
-* Fitting routines
-* Time series of data
-* Doing actual fitting
-EBFM Objective 2: how well do multispecies models perform for assessment? (Hydra, MSCAA/VADER, Kraken)
+EBFM Objective 1: what happens with all the species in the region under a certain management regime?
+* Model needs to minimally
+    - Include all the species in the region
+    - Implement the alternative management regimes
+* Define "what happens"
+    - Increase/decrease relative to base?
+    - Status relative to reference points? (model needs to estimate reference points)
+    - Details on distribution, demographics needed? 
+
+EBFM Objective 2: how well do multispecies models perform for assessment?  
 * Which models are better at what (size/age structured and biomass dynamics)
 * What data are necessary?
 * Which species actually need to be included? Use Rpath to id
 * Need a fleet based model? Add econ?
 The above includes fits to historical data for all the models
+
 Overall goal: tools vetted and ready to go with any of further questions from the Council
 
 ---
@@ -468,77 +473,6 @@ Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
 ]
 
 ---
-
----
-## Hydra: details and current uses
-.pull-left[
-*2018 CIE for Ecosystem Based Fishery Management Strategy* 
-* [EBFM strategy review](https://www.nefsc.noaa.gov/program_review/)
-* Multispecies model simulations
-&lt;img src="EDAB_images/EBFM HCR.png" width="75%" /&gt;
-
-]
-.pull-right[
-![hydrascenarios](EDAB_images/xradarScenario41-50yrs.png)
-]
-
----
-## Herring MSE details: Operating models and uncertainties 
-.pull-left-70[
-.table[
-
-|Operating Model Name|Herring Productivity|Herring Growth|Assessment Bias|
-|:---------------------|:---------------------|:-----------------|:-----------------|
-| LowFastBiased        | Low: high M, low h (0.44)  | 1976-1985: fast | 60% overestimate |
-| LowSlowBiased        | Low: high M, low h (0.44)  | 2005-2014: slow | 60% overestimate |
-| LowFastCorrect       | Low: high M, low h (0.44)  | 1976-1985: fast | None             |
-| LowSlowCorrect       | Low: high M, low h (0.44)  | 2005-2014: slow | None             |
-| HighFastBiased       | High: low M, high h (0.79) | 1976-1985: fast | 60% overestimate |
-| HighSlowBiased       | High: low M, high h (0.79) | 2005-2014: slow | 60% overestimate |
-| HighFastCorrect      | High: low M, high h (0.79) | 1976-1985: fast | None             |
-| HighSlowCorrect      | High: low M, high h (0.79) | 2005-2014: slow | None             |
-] 
-&amp;nbsp;
-&amp;nbsp;
-
-] 
-.pull-right-30[
-([Deroba, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))
-]
-
-Implementation error was included as year-specific lognormal random deviations: 
-`\(F_{a,y}=\bar{F}_yS_ae^{\varepsilon_{\theta,y}-\frac{\sigma_\theta^2}{2}} \;\;\;  \varepsilon_{\theta} \sim N(0,\sigma_\theta^2)\)`
-
-Assessment error was modeled similarly, with first-order autocorrelation and an optional bias term `\(\rho\)`:
-`\(\widehat{N}_{a,y}=[N_{a,y}(\rho+1)]e^{\varepsilon_{\phi,y}-\frac{\sigma_\phi^2}{2}}\;\;\;\; \varepsilon_{\phi,y}=\vartheta\varepsilon_{\phi,y-1}+\sqrt{1-\vartheta^2}\tau_y \;\;\;\;  \tau \sim N(0,\sigma_\phi^2)\)` 
-
----
-background-image: url("EDAB_images/herrtopreds_results.png")
-background-size: 650px
-background-position: left center
-## Herring MSE details: Results summary
-Three HCR types were rejected at the second stakeholder meeting for poor fishery and predator performance.
-.pull-left[]
-.pull-right[.right[
-&lt;img src="20210604_MSmodsBestPractice_Gaichas_files/figure-html/ZZZ-1.png" width="80%" /&gt;
-]]
-
----
-## Managing tradeoffs under uncertainty: What control rules give us 90% of everything we want?
-
-- Tern productivity at 1.0 or above more than 90% of the time
-- Herring biomass more than 90% of SSBmsy
-- Fishery yield more than 90% of MSY
-&amp;nbsp;
-- AND fishery closures (F=0) less than 1% of the time (plot on right).
-
-.pull-left[
-&lt;img src="20210604_MSmodsBestPractice_Gaichas_files/figure-html/unnamed-chunk-2-1.png" width="504" /&gt;
-]
-
-.pull-right[
-&lt;img src="20210604_MSmodsBestPractice_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="504" /&gt;
-]
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
