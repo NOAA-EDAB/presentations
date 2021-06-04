@@ -81,7 +81,7 @@ What makes a good model?
 * Common themes
 
 ---
-## Best practices 1: Why are we building a model? Identify the problem
+## Best practices 1: Why do we need a model? Identify the problem
 
 .pull-left-70[
 ![whybuild](EDAB_images/piggiehippowhy.png)
@@ -98,50 +98,90 @@ What makes a good model?
 
 Define the problem, and why this model is (or reviewers to explain why it is not) appropriate. 
 
-Define the focal species, spatial, and temporal resolution needed to address the problem. 
+* What focal species, spatial, and temporal resolution are needed to address the problem?
+
+* What processes need to be modeled to address the problem?
 
 Example problem:
 
-Changing natural mortality resulting from predation is desired input for in single species assessments
+Multiple predators feed on multiple fished prey stocks within a particular ecosystem. There is a need to include predation mortality within assessments for individual prey stocks in that ecosystem. 
 
-ICES WGSAM is asked to provide M-at-age time series for North Sea and Baltic herring, cod, whiting, haddock, sprat, sandeel, and possibly other species. Spatial scale is at the stock level and temporal resolution is annual, starting at a stock-specific year and going to 2018. 
+Model(s) must estimate predation mortality at age, and to provide M-at-age time series for North Sea and Baltic herring, cod, whiting, haddock, sprat, sandeel, and possibly other species. Spatial scale is at the stock level and temporal resolution is annual, starting at a stock-specific year and going to 2018. 
 
-Therefore, the multispecies model(s) must provide this output and sensitivity in this particular output is most important. However, there are other potential uses for these models that have yet to be defined.
+Therefore, the multispecies model(s) must provide this output and sensitivity to model assumptions in this particular output is most important. 
 
 ---
 ## Problem identification &harr; Appropriateness of model for problem
 
-A new use for WKIRISH:
+A different example problem (ICES WKIRISH, `r Cite(myBib, "bentley_refining_2021")`):
 
+.pull-left[
 >The aim with the Irish Sea Ecopath is to use the model to “fine tune” the quota advice within the predefined EU Fmsy ranges. In “good” conditions you could fish at the top of the range, in “poor” conditions you should fish lower in the range. The range has already been evaluated as giving good yield while still being precautionary, so this should be fine for ICES to use in advice, so any reviewers should have this in mind.
 
-For the Irish Sea EwE model, key outputs will be used to determine where the reference point should be within the MSY range for each species. Therefore, outputs defining Ecosystem conditions and both ecosystem and species productivity under the prevailing conditions are most important.
+]
+
+.pull-right[
+![Harvest control rule with accpetable ranges for fishing mortality (F) given stock size as spawning stock biomass (SSB)](EDAB_images/fmars-08-602072-g001.jpg)
+.contrib[
+ https://www.frontiersin.org/files/Articles/602072/fmars-08-602072-HTML-r1/image_m/fmars-08-602072-g001.jpg
+]
+]
+
+For the Irish Sea EwE model, key outputs will be used to determine where the catch advice should be within the MSY range for each species. Therefore, outputs defining ecosystem conditions and both ecosystem and species productivity under the prevailing conditions are most important.
 
 ---
-## Problem identification &harr; Appropriateness of model for problem
+## Best Practices 2: Is the scientific basis of the model sound?
 
-ms-keyrun project objectives
+Previously used models often skip this step, reasoning that if the science was sound previously it still is.
 
-EBFM Objective 1: what happens with all the species in the region under a certain management regime?
-* Model needs to minimally
-    - Include all the species in the region
-    - Implement the alternative management regimes
-* Define "what happens"
-    - Increase/decrease relative to base?
-    - Status relative to reference points? (model needs to estimate reference points)
-    - Details on distribution, demographics needed? 
+(Discuss...)
 
-EBFM Objective 2: how well do multispecies models perform for assessment?  
-* Which models are better at what (size/age structured and biomass dynamics)
-* What data are necessary?
-* Which species actually need to be included? Use Rpath to id
-* Need a fleet based model? Add econ?
-The above includes fits to historical data for all the models
+WGSAM has provided model framework reviews for the LeMans ensemble (2016), FLBEIA (2017), and a multispecies state-space model (2017). “Constructed Model” evaluation issues and best practices apply here: 
 
-Overall goal: tools vetted and ready to go with any of further questions from the Council
+1. Spatial and temporal resolution
+1. Algorithm choices
+1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
+1. Data availability/software tools
+1. Quality assurance/quality control (code testing)
+1. Test scenarios
+1. Corroboration with observations
+1. Uncertainty/sensitivity analysis
+1. Peer review (WGSAM's role, but consider previous reviews from prior steps)
+
+Note linkages between problem identification and scientific basis
 
 ---
-## Why include species interactions?
+## Best Practices 3: Is the input data quality and parameterization sufficient for the problem?
+
+See above defining the problem. Which datasets are adequate, which could be improved, and which are missing?
+
+Show the input data as a simple chart: beginning and end of time series, gaps, different length of time series, spatial resolution of data.
+
+Give information on input data pedigree/quality, reference for where it comes from, whether it is survey data or comes from other model output, whether confidence intervals or other uncertainty measures are available and used in the model.
+
+Categorize the assumptions behind modeled ecological or biological processes. Emphasize those related to species interactions (predation, competition), environmental pressures, and also fleet dynamics if needed to address the problem. If the model is spatial, how do these processes happen in space?
+
+Is the parameterization consistent with scientific knowledge (e.g. (PREBAL) diagnostics `r Cite(myBib, "link_adding_2010")` for general relationships across trophic levels, sizes, etc).
+
+---
+## Best Practices 4: Does model output compare well with observations? `r Cite(myBib, "kaplan_guinea_2016")`
+
+Characterize the reference dataset used for comparisons. Has the data been used to construct this model? Is the reference dataset from another model? Describe referece data source(s). 
+
+1. (if important--projection) All functional groups persist in an unfished unperturbed run  
+1. (if important--projection) Model stabilizes for the last ~20 years of an unfished, unperturbed 80-100 year run  
+1. The keyrun should define the hindcast time period where agreement with other data sources or assessments is needed. Review will determine if the model fits adequately within that time period. Error ranges are needed for comparison or reference datasets.  
+1. Focal species should match biomass and catch trends over the hindcast time period. For full system models, species comprising a majority of biomass should also match general hindcast trends. Suggested tests include modeling efficiency, RMSE, etc. `r Cite(myBib, c("sterman_appropriate_1984", "stow_skill_2009", "joliff_summary_2009", "allen_multivariate_2009", "lehuta_selection_2013", "lehuta_reconciling_2016", "olsen_ecosystem_2016"))` 
+1. Patterns of temporal variability captured (emergent or forced with e.g. recruitment time series)  
+1. Productivity for focal species (or groups totaling ~80% of system biomass in full system models) should qualitatively match life history expectations (prebal diagnostics)  
+1. Natural mortality decreases with age for majority of groups  
+1. Age and length structure qualitatively matches expectations for majority of groups  
+1. Diet predicted qualitatively matches empirical diet comp for majority of groups  
+1. Spatial distribution of outputs match reference datasets for spatial models (most important if output required at spatial resolution of model, comment if a match in aggregate but not at higher resolution)  
+1. Ecosystem indicators (relationship between abundance and body size, pelagic to demersal, Large Fish Indicator) match reference data if needed for problem
+
+---
+## Example: Why include species interactions? ...and why fit criteria alone are not sufficient
 *Ignore predation at your peril: results from multispecies state-space modeling  *  `r Cite(myBib, "trijoulet_performance_2020")`
 >Ignoring trophic interactions that occur in marine ecosystems induces bias in stock assessment outputs and results in low model predictive ability with subsequently biased reference points.  
 
@@ -165,7 +205,91 @@ EM4: single sp. state space, age-varying M
 
 ???
 This is an important paper both because it demonstrates the importance of addressing strong species interactions, and it shows that measures of fit do not indicate good model predictive performance. Ignoring process error caused bias, but much smaller than ignoring species interactions.
-See also Vanessa's earlier paper evaluating diet data interactions with multispecies models
+See also Vanessa's earlier paper evaluating diet data interactions with multispecies models  
+
+---
+## Best Practices 5: Uncertainty
+
+Has uncertainty been assessed in the output of interest? Has sensitivity analysis been performed and how does it affect those outputs?
+
+The key-run should show estimates of uncertainty in the output quantity of interest. Uncertainty analysis is best if possible to estimate confidence intervals. If not possible list key sources of uncertainty, expected bounds on outputs based on those (possibly from sensitivity analysis)--i.e. design sensitivity analysis to approximate uncertainty analysis. 
+
+Specific analyses, sensitivity of key output in:
+
+1. Retrospective analysis (5 year peel of all input data)
+
+1. Forecast uncertainty: remove last 3-5 years of survey index only to see how well the model works in forecast mode, given the catch that actually happened. 
+
+1. Sensitivity to stomach data and other key or low-confidence data sources
+
+1. Sensitivity to key parameters: consumption rates, residual mortality (M1, M0)
+
+1. Sensitivity to initial conditions 
+
+For complex models with long runtimes, simpler ways to address uncertainty may be appropriate `r Cite(myBib, "kaplan_guinea_2016")`.
+
+Best practice is to retain multiple parameterizations that meet the above criteria to allow scenario testing across a range of parameterizations. Parameter uncertainty can be addressed even in complex models. A simple method uses bounding (e.g. base, low bound, and high bound productivity scenarios; `r Cite(myBib, "saltelli_how_2010")`.
+
+---
+## Best Practices 6: Previous peer review
+
+What did they point out and have issues been addressed?
+
+Review of constructed models should have evaluated spatial and temporal resolution, algorithm choices, data availability and software tools, quality assurance/quality control of code, and test scenarios. 
+
+`r Cite(myBib, "bentley_refining_2021")` conclude that continuous peer review throughout a process is itself a best practice
+
+Also that you need to be part of a management process to have the model used, see Townsend et al 2019
+
+
+
+## How about a real life problem?
+
+---
+background-image: url("EDAB_images/allcomponents.png")
+background-size: 800px
+background-position: right bottom
+
+## Are any Atlantic herring harvest control rules good for both fisheries and predators?
+.pull-left-30[
+**Harvest control rules** are:
+- plans for changing fishing based on stock status
+- pre-determined
+    
+*"Which harvest control rules best consider herring's role as forage?"*
+- DESIGN a harvest control rule (HCR):
+    - balancing fishing benefits and ecological services
+    - addressing diverse stakeholder interests
+- TRANSPARENTLY within management time frame!
+]
+
+---
+## Problem identification &harr; Appropriateness of model for problem
+
+ms-keyrun project objectives
+
+EBFM Objective 1: what happens with all the species in the region under a certain management regime?
+* Model needs to minimally
+    - Include all the species in the region
+    - Implement the alternative management regimes
+* Define "what happens"
+    - Increase/decrease relative to base?
+    - Status relative to reference points? (model needs to estimate reference points)
+    - Details on distribution, demographics needed? 
+
+EBFM Objective 2: how well do multispecies models perform for assessment?  
+* Which models are better at what (size/age structured and biomass dynamics)
+    - Define "better"
+    - Define "what" key outputs are most important, what are we assessing
+* What data are necessary?
+* Which species actually need to be included? Use Rpath to id
+* Need a fleet based model? Add econ?
+
+The above includes fits to historical data for all the models
+
+Overall goal: tools vetted and ready to go with any of further questions from the Council
+
+
 ---
 background-image: url("EDAB_images/modeling_study.png")
 background-size: 380px
@@ -422,6 +546,7 @@ PrintBibliography(myBib)
 ```
 ]
 
+---
 ## Additional resources
 
 * [New England herring MSE peer review](https://s3.amazonaws.com/nefmc.org/Final-Peer-review-report.pdf)
