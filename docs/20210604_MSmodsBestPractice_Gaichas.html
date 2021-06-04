@@ -206,19 +206,24 @@ For complex models with long runtimes, simpler ways to address uncertainty may b
 Best practice is to retain multiple parameterizations that meet the above criteria to allow scenario testing across a range of parameterizations. Parameter uncertainty can be addressed even in complex models. A simple method uses bounding (e.g. base, low bound, and high bound productivity scenarios; &lt;a name=cite-saltelli_how_2010&gt;&lt;/a&gt;([Saltelli, et al., 2010](https://linkinghub.elsevier.com/retrieve/pii/S1364815210001180)).
 
 ---
+background-image: url("EDAB_images/modeling_study.png")
+background-size: 400px
+background-position: right bottom
+
 ## Best Practices 6: Previous peer review
 
+.pull-left-60[
 What did they point out and have issues been addressed?
 
 Review of constructed models should have evaluated spatial and temporal resolution, algorithm choices, data availability and software tools, quality assurance/quality control of code, and test scenarios. 
 
 ([Bentley, et al., 2021](https://www.frontiersin.org/articles/10.3389/fmars.2021.602072/full)) conclude that continuous peer review throughout a process is itself a best practice
 
-Also that you need to be part of a management process to have the model used, see Townsend et al 2019
-
-
-
+Also that you need to be part of a management process to improve likelihood that the model will address a management problem of interest, and ultimately to have the model used, see also &lt;a name=cite-townsend_progress_2019&gt;&lt;/a&gt;([Townsend, et al., 2019](https://www.frontiersin.org/articles/10.3389/fmars.2019.00641/full)).
+]
+.pull-right-40[
 ## How about a real life problem?
+]
 
 ---
 background-image: url("EDAB_images/allcomponents.png")
@@ -237,46 +242,21 @@ background-position: right bottom
     - addressing diverse stakeholder interests
 - TRANSPARENTLY within management time frame!
 ]
+.pull-right-70[]
 
 ---
 ## Problem identification &amp;harr; Appropriateness of model for problem
 
-ms-keyrun project objectives
-
-EBFM Objective 1: what happens with all the species in the region under a certain management regime?
-* Model needs to minimally
-    - Include all the species in the region
-    - Implement the alternative management regimes
-* Define "what happens"
-    - Increase/decrease relative to base?
-    - Status relative to reference points? (model needs to estimate reference points)
-    - Details on distribution, demographics needed? 
-
-EBFM Objective 2: how well do multispecies models perform for assessment?  
-* Which models are better at what (size/age structured and biomass dynamics)
-    - Define "better"
-    - Define "what" key outputs are most important, what are we assessing
-* What data are necessary?
-* Which species actually need to be included? Use Rpath to id
-* Need a fleet based model? Add econ?
-
-The above includes fits to historical data for all the models
-
-Overall goal: tools vetted and ready to go with any of further questions from the Council
-
 
 ---
-background-image: url("EDAB_images/modeling_study.png")
-background-size: 380px
-background-position: right bottom
 
-# Today: compare and contrast species interactions
+# Which models were available?
 
 ## Multispecies catch at age &lt;a name=cite-curti_evaluating_2013&gt;&lt;/a&gt;([Curti, et al., 2013](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229))  
 ## Multispecies catch at length &lt;a name=cite-gaichas_combining_2017&gt;&lt;/a&gt;([Gaichas, et al., 2017](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)) 
 ## Multispecies production &lt;a name=cite-gamble_analyzing_2009&gt;&lt;/a&gt;([Gamble, et al., 2009](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998))  
-## Food web &lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Lucey, et al., 2020](http://www.sciencedirect.com/science/article/pii/S0304380020301290))  
-## MICE for MSE &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))  
+## Food web &lt;a name=cite-link_northeast_2008&gt;&lt;/a&gt;&lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Link, et al., 2008](http://www.sciencedirect.com/science/article/pii/S0924796308000560); [Lucey, et al., 2020](http://www.sciencedirect.com/science/article/pii/S0304380020301290))  
+
 
 ---
 ## Multispecies catch at age estimation model: *seeking catchy name* [FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
@@ -437,7 +417,7 @@ background-image: url("EDAB_images/OMdesign.png")
 background-size: 750px
 background-position: right
 
-## MICE for MSE: Linked models
+## MICE for MSE: Linked single species models &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))  
 
 .pull-left-30[
 *Develop a harvest control rule considering herring's role as prey*
@@ -613,6 +593,16 @@ URL:
 [http://www.sciencedirect.com/science/article/pii/S0304380010001468](http://www.sciencedirect.com/science/article/pii/S0304380010001468)
 (visited on Nov. 20, 2019).
 
+&lt;a name=bib-link_northeast_2008&gt;&lt;/a&gt;[Link, J. et
+al.](#cite-link_northeast_2008) (2008). "The Northeast U.S. continental
+shelf Energy Modeling and Analysis exercise (EMAX): Ecological network
+model development and basic ecosystem metrics". In: _Journal of Marine
+Systems_ 74.1–2, pp. 453-474. ISSN: 0924-7963. DOI:
+[10.1016/j.jmarsys.2008.03.007](https://doi.org/10.1016%2Fj.jmarsys.2008.03.007).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0924796308000560](http://www.sciencedirect.com/science/article/pii/S0924796308000560)
+(visited on Jan. 13, 2016).
+
 &lt;a name=bib-lucey_conducting_2020&gt;&lt;/a&gt;[Lucey, S. M. et
 al.](#cite-lucey_conducting_2020) (2020). "Conducting reproducible
 ecosystem modeling using the open source mass balance model Rpath". En.
@@ -665,6 +655,16 @@ URL:
 [http://www.sciencedirect.com/science/article/pii/S0924796308001103](http://www.sciencedirect.com/science/article/pii/S0924796308001103)
 (visited on Nov. 15, 2019).
 
+&lt;a name=bib-townsend_progress_2019&gt;&lt;/a&gt;[Townsend, H. et
+al.](#cite-townsend_progress_2019) (2019). "Progress on Implementing
+Ecosystem-Based Fisheries Management in the United States Through the
+Use of Ecosystem Models and Analysis". In: _Frontiers in Marine
+Science_ 6. ISSN: 2296-7745. DOI:
+[10.3389/fmars.2019.00641](https://doi.org/10.3389%2Ffmars.2019.00641).
+URL:
+[https://www.frontiersin.org/articles/10.3389/fmars.2019.00641/full](https://www.frontiersin.org/articles/10.3389/fmars.2019.00641/full)
+(visited on Nov. 19, 2019).
+
 &lt;a name=bib-trijoulet_performance_2020&gt;&lt;/a&gt;[Trijoulet, V. et
 al.](#cite-trijoulet_performance_2020) (2020). "Performance of a
 state-space multispecies model: What are the consequences of ignoring
@@ -689,6 +689,29 @@ Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
 ]
 
 ---
+## ms-keyrun project objectives
+
+EBFM Objective 1: what happens with all the species in the region under a certain management regime?
+* Model needs to minimally
+    - Include all the species in the region
+    - Implement the alternative management regimes
+* Define "what happens"
+    - Increase/decrease relative to base?
+    - Status relative to reference points? (model needs to estimate reference points)
+    - Details on distribution, demographics needed? 
+
+EBFM Objective 2: how well do multispecies models perform for assessment?  
+* Which models are better at what (size/age structured and biomass dynamics)
+    - Define "better"
+    - Define "what" key outputs are most important, what are we assessing
+* What data are necessary?
+* Which species actually need to be included? Use Rpath to id
+* Need a fleet based model? Add econ?
+
+The above includes fits to historical data for all the models
+
+Overall goal: tools vetted and ready to go with any of further questions from the Council
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
