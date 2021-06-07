@@ -25,6 +25,7 @@ class: top, left
 
 
 
+
 # What makes a good model? &lt;a name=cite-nrc_chapter_2007&gt;&lt;/a&gt;([NRC, 2007](https://www.nap.edu/read/11972/chapter/6)), p 108
 
 .pull-left-30[
@@ -69,21 +70,29 @@ What makes a good model?
 ]
 
 ---
+background-image: url("EDAB_images/2020NSeaherringM2.png")
+background-size: 540px
+background-position: right bottom
+
 ## Problem identification &amp;harr; Appropriateness of model for problem
 
-Define the problem, and why this model is (or reviewers to explain why it is not) appropriate. 
-
-* What focal species, spatial, and temporal resolution are needed to address the problem?
+Define the problem, and why this model is appropriate. 
 
 * What processes need to be modeled to address the problem?
 
-Example problem:
+* What focal species, spatial, and temporal resolution are needed to address the problem? 
+
+.pull-left-60[
+Example problem &lt;a name=cite-ices_working_2019&gt;&lt;/a&gt;([ICES, 2019](http://www.ices.dk/sites/pub/Publication Reports/Forms/DispForm.aspx?ID=36455)):
 
 Multiple predators feed on multiple fished prey stocks within a particular ecosystem. There is a need to include predation mortality within assessments for individual prey stocks in that ecosystem. 
 
-Model(s) must estimate predation mortality at age, and to provide M-at-age time series for North Sea and Baltic herring, cod, whiting, haddock, sprat, sandeel, and possibly other species. Spatial scale is at the stock level and temporal resolution is annual, starting at a stock-specific year and going to 2018. 
+Model(s) must estimate predation mortality at age, and to provide M-at-age time series for herring, cod, whiting, haddock, sprat, sandeel, etc. Spatial scale is at the stock level and temporal resolution is annual, starting at a stock-specific year and going to the present. 
 
-Therefore, the multispecies model(s) must provide this output and sensitivity to model assumptions in this particular output is most important. 
+Model(s) must provide this output and sensitivity to model assumptions in the output M at age must be evaluated. 
+]
+.pull-right-40[
+]
 
 ---
 ## Problem identification &amp;harr; Appropriateness of model for problem
@@ -111,17 +120,19 @@ Previously used models often skip this step, reasoning that if the science was s
 
 (Discuss...)
 
-WGSAM has provided model framework reviews for the LeMans ensemble (2016), FLBEIA (2017), and a multispecies state-space model (2017). “Constructed Model” evaluation issues and best practices apply here: 
+ICES WGSAM has provided model framework reviews for the LeMans ensemble (2016), FLBEIA (2017), and a multispecies state-space model (2017). “Constructed Model” evaluation issues and best practices apply here: 
 
 1. Spatial and temporal resolution
 1. Algorithm choices
 1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
 1. Data availability/software tools
 1. Quality assurance/quality control (code testing)
-1. Test scenarios
+1. Test scenarios (for example, stability &lt;a name=cite-kaplan_guinea_2016&gt;&lt;/a&gt;([Kaplan, et al., 2016](https://academic.oup.com/icesjms/article/73/7/1715/2458746))):
+    1. All functional groups persist in an unfished unperturbed run  
+    1. Model stabilizes for the last ~20 years of an unfished, unperturbed 80-100 year run  
 1. Corroboration with observations
 1. Uncertainty/sensitivity analysis
-1. Peer review (WGSAM's role, but consider previous reviews from prior steps)
+1. Peer review
 
 Note linkages between problem identification and scientific basis
 
@@ -130,24 +141,30 @@ Note linkages between problem identification and scientific basis
 
 See above defining the problem. Which datasets are adequate, which could be improved, and which are missing?
 
+--
+
 Show the input data as a simple chart: beginning and end of time series, gaps, different length of time series, spatial resolution of data.
+
+--
 
 Give information on input data pedigree/quality, reference for where it comes from, whether it is survey data or comes from other model output, whether confidence intervals or other uncertainty measures are available and used in the model.
 
+--
+
 Categorize the assumptions behind modeled ecological or biological processes. Emphasize those related to species interactions (predation, competition), environmental pressures, and also fleet dynamics if needed to address the problem. If the model is spatial, how do these processes happen in space?
+
+--
 
 Is the parameterization consistent with scientific knowledge (e.g. (PREBAL) diagnostics &lt;a name=cite-link_adding_2010&gt;&lt;/a&gt;([Link, 2010](http://www.sciencedirect.com/science/article/pii/S0304380010001468)) for general relationships across trophic levels, sizes, etc).
 
 ---
-## Best Practices 4: Does model output compare well with observations? &lt;a name=cite-kaplan_guinea_2016&gt;&lt;/a&gt;([Kaplan, et al., 2016](https://academic.oup.com/icesjms/article/73/7/1715/2458746))
+## Best Practices 4: Does model output compare well with observations? ([Kaplan, et al., 2016](https://academic.oup.com/icesjms/article/73/7/1715/2458746))
 
 Characterize the reference dataset used for comparisons. Has the data been used to construct this model? Is the reference dataset from another model? Describe referece data source(s). 
 
-1. (if important--projection) All functional groups persist in an unfished unperturbed run  
-1. (if important--projection) Model stabilizes for the last ~20 years of an unfished, unperturbed 80-100 year run  
-1. The keyrun should define the hindcast time period where agreement with other data sources or assessments is needed. Review will determine if the model fits adequately within that time period. Error ranges are needed for comparison or reference datasets.  
+1. Define the hindcast time period where agreement with other data sources or assessments is needed. Error ranges of model output and reference datasets are needed for comparison.  
 1. Focal species should match biomass and catch trends over the hindcast time period. For full system models, species comprising a majority of biomass should also match general hindcast trends. Suggested tests include modeling efficiency, RMSE, etc. &lt;a name=cite-sterman_appropriate_1984&gt;&lt;/a&gt;&lt;a name=cite-stow_skill_2009&gt;&lt;/a&gt;&lt;a name=cite-allen_multivariate_2009&gt;&lt;/a&gt;&lt;a name=cite-lehuta_selection_2013&gt;&lt;/a&gt;&lt;a name=cite-lehuta_reconciling_2016&gt;&lt;/a&gt;&lt;a name=cite-olsen_ecosystem_2016&gt;&lt;/a&gt;([Sterman, 1984](https://www.systemdynamics.org/assets/dynamica/102/4.pdf); [Stow, et al., 2009](http://www.sciencedirect.com/science/article/pii/S0924796308001103); [Allen, et al., 2009](http://www.sciencedirect.com/science/article/pii/S0924796308001152); [Lehuta, et al., 2013](http://www.sciencedirect.com/science/article/pii/S0165783613000118); [Lehuta, et al., 2016](https://www.alr-journal.org/articles/alr/abs/2016/02/alr150069/alr150069.html); [Olsen, et al., 2016](http://dx.plos.org/10.1371/journal.pone.0146467)) 
-1. Patterns of temporal variability captured (emergent or forced with e.g. recruitment time series)  
+1. Patterns of temporal variability should be captured as appropriate to the problem (emergent or forced with e.g. recruitment time series)  
 1. Productivity for focal species (or groups totaling ~80% of system biomass in full system models) should qualitatively match life history expectations (prebal diagnostics)  
 1. Natural mortality decreases with age for majority of groups  
 1. Age and length structure qualitatively matches expectations for majority of groups  
@@ -156,7 +173,7 @@ Characterize the reference dataset used for comparisons. Has the data been used 
 1. Ecosystem indicators (relationship between abundance and body size, pelagic to demersal, Large Fish Indicator) match reference data if needed for problem
 
 ---
-## Example: Why include species interactions? ...and why fit criteria alone are not sufficient
+## Intermission: Why include species interactions? ...and why fit criteria alone are not sufficient
 *Ignore predation at your peril: results from multispecies state-space modeling  *  &lt;a name=cite-trijoulet_performance_2020&gt;&lt;/a&gt;([Trijoulet, et al., 2020](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.13515))
 &gt;Ignoring trophic interactions that occur in marine ecosystems induces bias in stock assessment outputs and results in low model predictive ability with subsequently biased reference points.  
 
@@ -187,42 +204,44 @@ See also Vanessa's earlier paper evaluating diet data interactions with multispe
 
 Has uncertainty been assessed in the output of interest? Has sensitivity analysis been performed and how does it affect those outputs?
 
-The key-run should show estimates of uncertainty in the output quantity of interest. Uncertainty analysis is best if possible to estimate confidence intervals. If not possible list key sources of uncertainty, expected bounds on outputs based on those (possibly from sensitivity analysis)--i.e. design sensitivity analysis to approximate uncertainty analysis. 
+--
 
-Specific analyses, sensitivity of key output in:
+Show estimates of uncertainty in the output quantity of interest. Uncertainty analysis estimating confidence intervals is ideal. Otherwise list key sources of uncertainty and expected bounds on outputs based on those (possibly from sensitivity analysis)--i.e. design sensitivity analysis to approximate uncertainty analysis. 
 
-1. Retrospective analysis (5 year peel of all input data)
+--
 
+Specific analyses:
+
+1. Retrospective analysis (5 year peel of all input data, [example](https://ices-eg.github.io/wg_WGSAM/NS_2020_key_run.html#retrospective_analysis))
 1. Forecast uncertainty: remove last 3-5 years of survey index only to see how well the model works in forecast mode, given the catch that actually happened. 
-
 1. Sensitivity to stomach data and other key or low-confidence data sources
-
 1. Sensitivity to key parameters: consumption rates, residual mortality (M1, M0)
-
 1. Sensitivity to initial conditions 
 
-For complex models with long runtimes, simpler ways to address uncertainty may be appropriate ([Kaplan, et al., 2016](https://academic.oup.com/icesjms/article/73/7/1715/2458746)).
+Simpler investigation of uncertainty can be appropriate for complex models with long runtimes ([Kaplan, et al., 2016](https://academic.oup.com/icesjms/article/73/7/1715/2458746)).
 
-Best practice is to retain multiple parameterizations that meet the above criteria to allow scenario testing across a range of parameterizations. Parameter uncertainty can be addressed even in complex models. A simple method uses bounding (e.g. base, low bound, and high bound productivity scenarios; &lt;a name=cite-saltelli_how_2010&gt;&lt;/a&gt;([Saltelli, et al., 2010](https://linkinghub.elsevier.com/retrieve/pii/S1364815210001180)).
+Retain multiple parameterizations that meet the above criteria to allow scenario testing across a range of parameterizations. A simple method uses bounding (e.g. base, low bound, and high bound productivity scenarios; &lt;a name=cite-saltelli_how_2010&gt;&lt;/a&gt;([Saltelli, et al., 2010](https://linkinghub.elsevier.com/retrieve/pii/S1364815210001180)).
 
 ---
-background-image: url("EDAB_images/modeling_study.png")
-background-size: 400px
-background-position: right bottom
+background-image: url("EDAB_images/fmars-06-00641-g001.jpg")
+background-size: 600px
+background-position: right
 
-## Best Practices 6: Previous peer review
+## Best Practices 6: Peer review
 
-.pull-left-60[
+.pull-left[
 What did they point out and have issues been addressed?
 
 Review of constructed models should have evaluated spatial and temporal resolution, algorithm choices, data availability and software tools, quality assurance/quality control of code, and test scenarios. 
 
-([Bentley, et al., 2021](https://www.frontiersin.org/articles/10.3389/fmars.2021.602072/full)) conclude that continuous peer review throughout a process is itself a best practice
 
-Also that you need to be part of a management process to improve likelihood that the model will address a management problem of interest, and ultimately to have the model used, see also &lt;a name=cite-townsend_progress_2019&gt;&lt;/a&gt;([Townsend, et al., 2019](https://www.frontiersin.org/articles/10.3389/fmars.2019.00641/full)).
-]
-.pull-right-40[
+([Bentley, et al., 2021](https://www.frontiersin.org/articles/10.3389/fmars.2021.602072/full)) conclude that continuous peer review throughout a process is itself a best practice. 
+
+Also, being part of a management process improves likelihood that the model will address a management problem of interest, and ultimately to have the model used; see also &lt;a name=cite-townsend_progress_2019&gt;&lt;/a&gt;([Townsend, et al., 2019](https://www.frontiersin.org/articles/10.3389/fmars.2019.00641/full)) &amp;rarr;
+
 ## How about a real life problem?
+]
+.pull-right[
 ]
 
 ---
@@ -245,181 +264,93 @@ background-position: right bottom
 .pull-right-70[]
 
 ---
-## Problem identification &amp;harr; Appropriateness of model for problem
+background-image: url("EDAB_images/fmars-06-00641-g002.jpg")
+background-size: 600px
+background-position: right
+
+## Problem identification: New England Herring MSE 
+
+.pull-left[
+What is the goal of the model?
+* Evaluate effects of herring harvest strategies
+    - on herring
+    - on herring fisheries
+    - on herring predators
+
+Who will use it?
+* Modelers, in support of New England Fishery Management Council
+
+What types of decsions will it support?
+* Decision on harvest strategy &amp;rarr; *strategic advice*
+
+What data are available to support the model?
+* Herring assessment inputs
+* Groundfish diet data
+* Groundfish assessment inputs
+* Seabird diet/population data
+]
+.pull-right[]
 
 
 ---
+background-image: url("EDAB_images/modeling_study.png")
+background-size: 450px
+background-position: right
 
-# Which models were available?
+## Appropriateness of model for problem
+
+*How do changes in herring populations affect predators?*
+
+Availble models:
 
 ## Multispecies catch at age &lt;a name=cite-curti_evaluating_2013&gt;&lt;/a&gt;([Curti, et al., 2013](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229))  
 ## Multispecies catch at length &lt;a name=cite-gaichas_combining_2017&gt;&lt;/a&gt;([Gaichas, et al., 2017](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)) 
 ## Multispecies production &lt;a name=cite-gamble_analyzing_2009&gt;&lt;/a&gt;([Gamble, et al., 2009](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998))  
+
+--
+
+all model predation mortality but not prey effects on predators!
+
+--
+
 ## Food web &lt;a name=cite-link_northeast_2008&gt;&lt;/a&gt;&lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Link, et al., 2008](http://www.sciencedirect.com/science/article/pii/S0924796308000560); [Lucey, et al., 2020](http://www.sciencedirect.com/science/article/pii/S0304380020301290))  
 
-
----
-## Multispecies catch at age estimation model: *seeking catchy name* [FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
-
-Species interactions: 
-- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)
-
-*Based on standard age structured stock assessment population dynamics equations*
-- First, split `\(M\)` for species `\(i\)` age `\(a\)` into components: `$$M_{i,a,t} = M1_i + M2_{i,a,t}$$`  
-- Calculate `\(M2\)` with MSVPA predation equation, which applies a predator consumption:biomass ratio to the suitable prey biomass for that predator. 
-- Suitability is a function of predator size preference (based on an age-specific predator:prey weight ratio) and prey vulnerability (everything about the prey that isn't size related). 
-- Also sensitive to "other food"
-
-`$$M2_{i,a,t} = \frac{1}{N_{i,a,t}W_{i,a,t}}\sum_j \sum_b CB_{j,b} B_{j,b,t} \frac{\phi_{i,a,j,b,t}}{\phi_{j,b,t}}$$`
-???
-
-Size preference is `$$g_{i,a,j,b,t}=\exp\bigg[\frac{-1}{2\sigma_{i,j}^2}\bigg(\ln\frac{W_{j,b,t}}{W_{i,a,t}}-\eta_{i,j}\bigg)^2\bigg]$$`
-
-Suitability, `\(\nu\)` of prey `\(i\)` to predator `\(j\)`:
-`$$\nu_{i,a,j,b,t}=\rho_{i,j}g_{i,a,j,b,t}$$`
-
-Scaled suitability: 
-`$$\tilde\nu_{i,a,j,b,t}=\frac{\nu_{i,a,j,b,t}}{\sum_i \sum_a \nu_{i,a,j,b,t} + \nu_{other}}$$`
-
-Suitable biomass of prey `\(i\)` to predator `\(j\)`:
-`$$\phi_{i,a,j,b,t}=\tilde\nu_{i,a,j,b,t}B_{i,a,t}$$`
-
-Available biomass of other food, where `\(B_other\)` is system biomass minus modeled species biomass:
-`$$\phi_{other}=\tilde\nu_{other}B_{other,t}$$`
-Total available prey biomass:
-`$$\phi_{j,b,t}=\phi_{other} + \sum_i \sum_a \phi_{i,a,j,b,t}$$`
----
-## Multispecies catch at length simulation model: [Hydra](https://github.com/NOAA-EDAB/hydra_sim)
-
-Species interactions: 
-- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)  
-
-*Same MSVPA predation equation as MSCAA (but length based), same dependencies and caveats*
-
-- Suitability, `\(\rho\)`, of prey species `\(m\)` size `\(n\)` for a given predator species `\(i\)` size `\(j\)` a function of size preference and vulnerability  {0,1}. 
-- Food intake `\(I\)` for each predator-at-size is temperature dependent consumption rate times mean stomach content weight. 
-
-`$$M2_{m,n,t} = \sum_i \sum_j I_{i,j,t} N_{i,j,t} \frac{\rho_{i,j,m,n}}{\sum_a \sum_b \rho_{i,j,a,b} W_{a,b} N_{a,b} + \Omega}$$`
-
-*Associated GitHub repositories*
-* [hydra-sim Wiki](https://github.com/NOAA-EDAB/hydra_sim/wiki)
-* [hydradata](https://github.com/NOAA-EDAB/hydradata)
-* [LeMANS](https://github.com/NOAA-EDAB/LeMANS)
-* [hydra-est](https://github.com/NOAA-EDAB/hydra_est) Work in progress to convert to estimation model
-* [mscatch](https://github.com/NOAA-EDAB/mscatch) Multispecies fishery catch data
-
-???
-But:
-- Covariates on growth, maturity, recruitment possible; intended for environmental variables
-- So could hack in prey-dependent growth but making it dynamic is difficult
-
-We specify 'preferred' predator-prey weight ratio (log scale) `\(\Psi_j\)` and variance in predator size preference `\(\sigma_j\)` to compare with the actual predator-prey weight ratio `\((w_n / w_j)\)` to get the size preference `\(\vartheta\)`. 
-
-`$$\vartheta_{n,j} = \frac{1}{(w_n / w_j)\sigma_j \sqrt{2\pi}} e^{-\frac{[log_e(w_n / w_j) - \Psi_j]}{2\sigma_j^2}}$$`
-
-Food intake is `$$I_{i,j,t} = 24 [\delta_j e^{\omega_i T}]\bar{C}_{i,j,k,t}$$`
-
----
-## Multispecies production simulation: [Kraken](https://github.com/NOAA-EDAB/Kraken) and estimation [FIT: MSSPM](https://nmfs-ecosystem-tools.github.io/MSSPM/)
-
-Species interactions: 
-- Predation: Top down (predation decreases population growth of prey, predator population growth independent of prey)
-- Competition: Within and between species groups
-
-*Based on Shaefer and Lotka-Volterra population dynamics and predation equations*
-- Species have intrinsic population growth rate `\(r_i\)`
-- Full model has 
-    - Carrying capacity `\(K\)` at the species group level `\(K_G\)` and at the full system level `\(K_\sigma\)`
-    - Within group competition `\(\beta_{ig}\)` and between group competition `\(\beta_{iG}\)` slow population growth near `\(K\)`
-    - Predation `\(\alpha_{ip}\)` and harvest `\(H_i\)` reduce population
-
-`$$\frac{dN_i}{dt} = r_iN_i \bigg(1 - \frac{N_i}{K_G} - \frac{\sum_g \beta_{ig}N_g}{K_G} - \frac{\sum_G \beta_{iG}N_G}{K_\sigma - K_G} \bigg) - N_i\sum_p\alpha_{ip}N_p - H_iN_i$$`
-
-- Simpler version used in most applications has interaction coefficient `\(\alpha\)` that incorporates carrying capacity
-`$$B_{i,t+1}=B_{i,t} + r_iB_{i,t} - B_{i,t}\sum_j\alpha_{i,j}B_{j,t} - C_{i,t}$$`
-???
-Interaction coefficients `\(\alpha_{i,j}\)` can be positive or negative
-
-`\(C\)` can be a Catch time series, an exploitation rate time series `\(B_{i,t}*F_{i,t}\)` or an `\(qE\)` (catchability/Effort) time series.
-
-Environmental covariates can be included on growth or carrying capacity (in the model forms that have an explicit carrying capacity).
-
-
----
-background-image: url("EDAB_images/Balance_concept.png")
-background-size: 700px
-background-position: right
-
-## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
-.pull-left[ 
-Species interactions:
-- Full predator-prey: Consumption leads to prey mortality and predator growth
-- Static and dynamic model components
-
-Static model: 
-For each group, `\(i\)`, specify: 
-
-   Biomass `\(B\)` (or Ecotrophic Efficiency `\(EE\)`)  
-   Population growth rate `\(\frac{P}{B}\)`  
-   Consumption rate `\(\frac{Q}{B}\)`  
-   Diet composition `\(DC\)`  
-   Fishery catch `\(C\)`  
-   Biomass accumulation `\(BA\)`  
-   Im/emigration `\(IM\)` and `\(EM\)`  
-   
-Solving for `\(EE\)` (or `\(B\)`) for each group:
-
-`$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$`  
-]
-
-.pull-right[
-
-]
-
-???
-Predation mortality `$$M2_{ij} = \frac{DC_{ij}QB_jB_j}{B_i}$$`
-
-Fishing mortality `$$F_i = \frac{\sum_{g = 1}^n (C_{ig,land} + C_{ig,disc})}{B_i}$$`
-
-Other mortality `$$M0_i = PB_i \left( 1 - EE_i \right)$$`
----
-background-image: url("EDAB_images/ForagingArena.png")
-background-size: 380px
-background-position: right
-
-## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
-
-.pull-left-70[ 
-Dynamic model (with MSE capability):
-
-`$$\frac{dB_i}{dt} = \left(1 - A_i - U_i \right) \sum_{j} Q \left(B_i, B_j \right) -  \sum_{j} Q \left( B_j, B_i \right) - M0_iB_i  - C_m B_i$$`
-Consumption: 
-
-`$$Q \left( B_i, B_j \right) = Q_{ij}^* \Bigg( \frac{V_{ij} Ypred_j}{V_{ij} - 1 + \left( 1 - S_{ij} \right) Ypred_j + S_{i} \sum_k \left( \alpha_{kj} Ypred_k \right)} \Bigg) \times \\\Bigg( \frac{D_{ij} Yprey_i^{\theta_{ij}}}{D_{ij} - 1 + \big( \left( 1 - H_{ij} \right) Yprey_i + H_{i} \sum_k \left( \beta_{ik} Yprey_k \right) \big)^{\theta_{ij}}} \Bigg)$$`  
-Where `\(V_{ij}\)` is vulnerability, `\(D_{ij}\)` is “handling time” accounting for predator saturation, and `\(Y\)` is relative biomass which may be modified by a foraging time multiplier `\(Ftime\)`,
-
-`$$Y[pred|prey]_j =  Ftime_j \frac {B_j}{B_j^*}$$`
-
-]
-
-.pull-right-30[
-
-]
-???
-The parameters `\(S_{ij}\)` and `\(H_{ij}\)` are flags that control whether the predator density dependence `\(S_{ij}\)` or prey density dependence `\(H_{ij}\)` are affected solely by the biomass levels of the particular predator and prey, or whether a suite of other species’ biomasses in similar roles impact the relationship. 
-
-For the default value for `\(S_{ij}\)` of 0 (off), the predator density dependence is only a function of that predator biomass and likewise for prey with the default value of 0 for `\(H_{ij}\)`.  
-
-Values greater than 0 allow for a density-dependent effects to be affected by a weighted sum across all species for predators, and for prey.  The weights `\(\alpha_{kj}\)` and `\(\beta_{kj}\)` are normalized such that the sum for each functional response (i.e. `\(\sum_k\alpha_{kj}\)` and `\(\sum_k\beta_{kj}\)` for the functional response between predator *j* and prey *i*) sum to 1.  The weights are calculated from the density-independent search rates for each predator/prey pair, which is equal to `\(2Q_{ij}^*V_{ij} / (V_{ij} - 1)B_i^*B_j^*\)`.  
+models 2 way interactions but aggregated species groups and fishery
 
 ---
 background-image: url("EDAB_images/OMdesign.png")
 background-size: 750px
 background-position: right
 
-## MICE for MSE: Linked single species models &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))  
-
+## MICE for MSE: Addressing stakeholder objectives &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))  
 .pull-left-30[
+*The Dream*&lt;sup&gt;1&lt;/sup&gt;
+Convert the effects of control rules on 4 user groups to dollars:
+.table[
+1. Users of landed herring (Demand)
+    - Lobster industry, aquariums
+1. Herring harvesters (Supply)
+1. Direct users of herring in the ocean (not people)
+    - Terns and Whales
+    - Striped Bass, Dogfish
+1. Indirect users of herring in the ocean (people, Derived Demand)
+    - Bird- and whale-watchers
+    - Recreational and Commercial Fishing
+]     
+
+*The Reality*
+.table[
+- parallel development of herring, predator, economic models
+- limited predator responses, economic effects
+]
+]
+.pull-right-70[
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt; Credit: [Min-Yang Lee](https://s3.amazonaws.com/nefmc.org/13.Economic-Models_Lee.pdf)
+]
+]
+
+???
 *Develop a harvest control rule considering herring's role as prey*
 
 Species interactions:
@@ -428,9 +359,6 @@ Species interactions:
 - Alternative Herring operating models with high and low M
 
 (Also, done in ~ 6 months)
-
-]
-.pull-right-70[]
 
 ---
 background-image: url("EDAB_images/herrtopreds.png")
@@ -474,6 +402,42 @@ Finally, herring population size `\(N_{y}\)` could be related to predator surviv
 where 0 &lt; `\(\delta\)` &lt;1 links herring population size to predator survival.
 
 ---
+## Uncertainty bracketed by herring population and assessment assumptions
+
+Managing tradeoffs under uncertainty: What control rules give us 90% of everything we want?
+.pull-left[
+.table[
+Tern productivity  1.0 &gt; 90% of the time, Herring biomass &gt; 90% of SSBmsy, and Fishery yield &gt; 90% of MSY
+]
+&lt;img src="20210604_MSmodsBestPractice_Gaichas_files/figure-html/unnamed-chunk-2-1.png" width="504" /&gt;
+]
+
+.pull-right[
+.table[
+All three of the conditions on the left, AND fishery closures (F=0) less than 1% of the time
+]
+&lt;img src="20210604_MSmodsBestPractice_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="504" /&gt;
+]
+
+---
+## Peer review, March 2017
+
+[Report](https://s3.amazonaws.com/nefmc.org/Final-Peer-review-report.pdf)
+
+&gt;The Panel agreed that the NEFSC technical team constructed a series of models (Atlantic
+herring, predator, and economic) appropriate for evaluating ABC control rules for the Atlantic
+herring fishery in the context of herring’s role as a forage fish. The Panel detailed areas of
+strength and areas for improvement in the MSE workshop process, modeling, and synthesis. The
+Panel concluded that the data, methods, and results of the MSE are sufficient for the Council to
+use when identifying and analyzing a range of ABC control rule alternatives for the Atlantic
+Herring Fishery Management Plan. Overall, the Panel concluded that the Atlantic herring MSE
+represents the best available science at this time for evaluating the performance of herring
+control rules and their potential impact on key predators. 
+
+But, predator models were simple and may not capture all important effects, combination of approaches may be better, integrate impacts of predators on herring, consider predator's alternative prey, include process error in predator models.
+
+
+---
 background-image: url("EDAB_images/herrup10pann.png")
 background-size: 830px
 background-position: right bottom
@@ -485,9 +449,9 @@ background-position: right bottom
 .pull-left-30[
 - Rpath Ecosense functions evaluate parameter uncertainty within a scenario
 
-- Now we have MSE closed loop possibilities in Rpath!
+- Now we have MSE closed loop possibilities in Rpath &lt;a name=cite-lucey_evaluating_2021&gt;&lt;/a&gt;([Lucey, et al., 2021](http://www.sciencedirect.com/science/article/pii/S0165783620302976))
 
-- Can implement HCRs with predator prey interactions (Lucey et al. accepted)
+- Can implement HCRs with predator prey interactions 
 
 ]
 .pull-right-70[
@@ -556,6 +520,14 @@ URL:
 [http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998)
 (visited on Oct. 13, 2016).
 
+&lt;a name=bib-ices_working_2019&gt;&lt;/a&gt;[ICES](#cite-ices_working_2019)
+(2019). "Working Group on Multispecies Assessment Methods (WGSAM)". .
+Publisher: ICES. DOI:
+[10.17895/ICES.PUB.5758](https://doi.org/10.17895%2FICES.PUB.5758).
+URL: [http://www.ices.dk/sites/pub/Publication
+Reports/Forms/DispForm.aspx?ID=36455](http://www.ices.dk/sites/pub/Publication
+Reports/Forms/DispForm.aspx?ID=36455) (visited on Jun. 07, 2021).
+
 &lt;a name=bib-kaplan_guinea_2016&gt;&lt;/a&gt;[Kaplan, I. C. et
 al.](#cite-kaplan_guinea_2016) (2016). "A guinea pig's tale: learning
 to review end-to-end marine ecosystem models for management
@@ -602,6 +574,15 @@ Systems_ 74.1–2, pp. 453-474. ISSN: 0924-7963. DOI:
 URL:
 [http://www.sciencedirect.com/science/article/pii/S0924796308000560](http://www.sciencedirect.com/science/article/pii/S0924796308000560)
 (visited on Jan. 13, 2016).
+
+&lt;a name=bib-lucey_evaluating_2021&gt;&lt;/a&gt;[Lucey, S. M. et
+al.](#cite-lucey_evaluating_2021) (2021). "Evaluating fishery
+management strategies using an ecosystem model as an operating model".
+En. In: _Fisheries Research_ 234, p. 105780. ISSN: 0165-7836. DOI:
+[10.1016/j.fishres.2020.105780](https://doi.org/10.1016%2Fj.fishres.2020.105780).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0165783620302976](http://www.sciencedirect.com/science/article/pii/S0165783620302976)
+(visited on Dec. 09, 2020).
 
 &lt;a name=bib-lucey_conducting_2020&gt;&lt;/a&gt;[Lucey, S. M. et
 al.](#cite-lucey_conducting_2020) (2020). "Conducting reproducible
@@ -713,6 +694,159 @@ The above includes fits to historical data for all the models
 Overall goal: tools vetted and ready to go with any of further questions from the Council
 
 
+---
+## Appendix: Multispecies catch at age estimation model: *seeking catchy name* [FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
+
+Species interactions: 
+- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)
+
+*Based on standard age structured stock assessment population dynamics equations*
+- First, split `\(M\)` for species `\(i\)` age `\(a\)` into components: `$$M_{i,a,t} = M1_i + M2_{i,a,t}$$`  
+- Calculate `\(M2\)` with MSVPA predation equation, which applies a predator consumption:biomass ratio to the suitable prey biomass for that predator. 
+- Suitability is a function of predator size preference (based on an age-specific predator:prey weight ratio) and prey vulnerability (everything about the prey that isn't size related). 
+- Also sensitive to "other food"
+
+`$$M2_{i,a,t} = \frac{1}{N_{i,a,t}W_{i,a,t}}\sum_j \sum_b CB_{j,b} B_{j,b,t} \frac{\phi_{i,a,j,b,t}}{\phi_{j,b,t}}$$`
+???
+
+Size preference is `$$g_{i,a,j,b,t}=\exp\bigg[\frac{-1}{2\sigma_{i,j}^2}\bigg(\ln\frac{W_{j,b,t}}{W_{i,a,t}}-\eta_{i,j}\bigg)^2\bigg]$$`
+
+Suitability, `\(\nu\)` of prey `\(i\)` to predator `\(j\)`:
+`$$\nu_{i,a,j,b,t}=\rho_{i,j}g_{i,a,j,b,t}$$`
+
+Scaled suitability: 
+`$$\tilde\nu_{i,a,j,b,t}=\frac{\nu_{i,a,j,b,t}}{\sum_i \sum_a \nu_{i,a,j,b,t} + \nu_{other}}$$`
+
+Suitable biomass of prey `\(i\)` to predator `\(j\)`:
+`$$\phi_{i,a,j,b,t}=\tilde\nu_{i,a,j,b,t}B_{i,a,t}$$`
+
+Available biomass of other food, where `\(B_other\)` is system biomass minus modeled species biomass:
+`$$\phi_{other}=\tilde\nu_{other}B_{other,t}$$`
+Total available prey biomass:
+`$$\phi_{j,b,t}=\phi_{other} + \sum_i \sum_a \phi_{i,a,j,b,t}$$`
+---
+## Appendix: Multispecies catch at length simulation model: [Hydra](https://github.com/NOAA-EDAB/hydra_sim)
+
+Species interactions: 
+- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)  
+
+*Same MSVPA predation equation as MSCAA (but length based), same dependencies and caveats*
+
+- Suitability, `\(\rho\)`, of prey species `\(m\)` size `\(n\)` for a given predator species `\(i\)` size `\(j\)` a function of size preference and vulnerability  {0,1}. 
+- Food intake `\(I\)` for each predator-at-size is temperature dependent consumption rate times mean stomach content weight. 
+
+`$$M2_{m,n,t} = \sum_i \sum_j I_{i,j,t} N_{i,j,t} \frac{\rho_{i,j,m,n}}{\sum_a \sum_b \rho_{i,j,a,b} W_{a,b} N_{a,b} + \Omega}$$`
+
+*Associated GitHub repositories*
+* [hydra-sim Wiki](https://github.com/NOAA-EDAB/hydra_sim/wiki)
+* [hydradata](https://github.com/NOAA-EDAB/hydradata)
+* [LeMANS](https://github.com/NOAA-EDAB/LeMANS)
+* [hydra-est](https://github.com/NOAA-EDAB/hydra_est) Work in progress to convert to estimation model
+* [mscatch](https://github.com/NOAA-EDAB/mscatch) Multispecies fishery catch data
+
+???
+But:
+- Covariates on growth, maturity, recruitment possible; intended for environmental variables
+- So could hack in prey-dependent growth but making it dynamic is difficult
+
+We specify 'preferred' predator-prey weight ratio (log scale) `\(\Psi_j\)` and variance in predator size preference `\(\sigma_j\)` to compare with the actual predator-prey weight ratio `\((w_n / w_j)\)` to get the size preference `\(\vartheta\)`. 
+
+`$$\vartheta_{n,j} = \frac{1}{(w_n / w_j)\sigma_j \sqrt{2\pi}} e^{-\frac{[log_e(w_n / w_j) - \Psi_j]}{2\sigma_j^2}}$$`
+
+Food intake is `$$I_{i,j,t} = 24 [\delta_j e^{\omega_i T}]\bar{C}_{i,j,k,t}$$`
+
+---
+## Appendix: Multispecies production simulation: [Kraken](https://github.com/NOAA-EDAB/Kraken) and estimation [FIT: MSSPM](https://nmfs-ecosystem-tools.github.io/MSSPM/)
+
+Species interactions: 
+- Predation: Top down (predation decreases population growth of prey, predator population growth independent of prey)
+- Competition: Within and between species groups
+
+*Based on Shaefer and Lotka-Volterra population dynamics and predation equations*
+- Species have intrinsic population growth rate `\(r_i\)`
+- Full model has 
+    - Carrying capacity `\(K\)` at the species group level `\(K_G\)` and at the full system level `\(K_\sigma\)`
+    - Within group competition `\(\beta_{ig}\)` and between group competition `\(\beta_{iG}\)` slow population growth near `\(K\)`
+    - Predation `\(\alpha_{ip}\)` and harvest `\(H_i\)` reduce population
+
+`$$\frac{dN_i}{dt} = r_iN_i \bigg(1 - \frac{N_i}{K_G} - \frac{\sum_g \beta_{ig}N_g}{K_G} - \frac{\sum_G \beta_{iG}N_G}{K_\sigma - K_G} \bigg) - N_i\sum_p\alpha_{ip}N_p - H_iN_i$$`
+
+- Simpler version used in most applications has interaction coefficient `\(\alpha\)` that incorporates carrying capacity
+`$$B_{i,t+1}=B_{i,t} + r_iB_{i,t} - B_{i,t}\sum_j\alpha_{i,j}B_{j,t} - C_{i,t}$$`
+???
+Interaction coefficients `\(\alpha_{i,j}\)` can be positive or negative
+
+`\(C\)` can be a Catch time series, an exploitation rate time series `\(B_{i,t}*F_{i,t}\)` or an `\(qE\)` (catchability/Effort) time series.
+
+Environmental covariates can be included on growth or carrying capacity (in the model forms that have an explicit carrying capacity).
+
+
+---
+background-image: url("EDAB_images/Balance_concept.png")
+background-size: 700px
+background-position: right
+
+## Appendix: Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
+.pull-left[ 
+Species interactions:
+- Full predator-prey: Consumption leads to prey mortality and predator growth
+- Static and dynamic model components
+
+Static model: 
+For each group, `\(i\)`, specify: 
+
+   Biomass `\(B\)` (or Ecotrophic Efficiency `\(EE\)`)  
+   Population growth rate `\(\frac{P}{B}\)`  
+   Consumption rate `\(\frac{Q}{B}\)`  
+   Diet composition `\(DC\)`  
+   Fishery catch `\(C\)`  
+   Biomass accumulation `\(BA\)`  
+   Im/emigration `\(IM\)` and `\(EM\)`  
+   
+Solving for `\(EE\)` (or `\(B\)`) for each group:
+
+`$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$`  
+]
+
+.pull-right[
+
+]
+
+???
+Predation mortality `$$M2_{ij} = \frac{DC_{ij}QB_jB_j}{B_i}$$`
+
+Fishing mortality `$$F_i = \frac{\sum_{g = 1}^n (C_{ig,land} + C_{ig,disc})}{B_i}$$`
+
+Other mortality `$$M0_i = PB_i \left( 1 - EE_i \right)$$`
+---
+background-image: url("EDAB_images/ForagingArena.png")
+background-size: 380px
+background-position: right
+
+## Appendix: Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
+
+.pull-left-70[ 
+Dynamic model (with MSE capability):
+
+`$$\frac{dB_i}{dt} = \left(1 - A_i - U_i \right) \sum_{j} Q \left(B_i, B_j \right) -  \sum_{j} Q \left( B_j, B_i \right) - M0_iB_i  - C_m B_i$$`
+Consumption: 
+
+`$$Q \left( B_i, B_j \right) = Q_{ij}^* \Bigg( \frac{V_{ij} Ypred_j}{V_{ij} - 1 + \left( 1 - S_{ij} \right) Ypred_j + S_{i} \sum_k \left( \alpha_{kj} Ypred_k \right)} \Bigg) \times \\\Bigg( \frac{D_{ij} Yprey_i^{\theta_{ij}}}{D_{ij} - 1 + \big( \left( 1 - H_{ij} \right) Yprey_i + H_{i} \sum_k \left( \beta_{ik} Yprey_k \right) \big)^{\theta_{ij}}} \Bigg)$$`  
+Where `\(V_{ij}\)` is vulnerability, `\(D_{ij}\)` is “handling time” accounting for predator saturation, and `\(Y\)` is relative biomass which may be modified by a foraging time multiplier `\(Ftime\)`,
+
+`$$Y[pred|prey]_j =  Ftime_j \frac {B_j}{B_j^*}$$`
+
+]
+
+.pull-right-30[
+
+]
+???
+The parameters `\(S_{ij}\)` and `\(H_{ij}\)` are flags that control whether the predator density dependence `\(S_{ij}\)` or prey density dependence `\(H_{ij}\)` are affected solely by the biomass levels of the particular predator and prey, or whether a suite of other species’ biomasses in similar roles impact the relationship. 
+
+For the default value for `\(S_{ij}\)` of 0 (off), the predator density dependence is only a function of that predator biomass and likewise for prey with the default value of 0 for `\(H_{ij}\)`.  
+
+Values greater than 0 allow for a density-dependent effects to be affected by a weighted sum across all species for predators, and for prey.  The weights `\(\alpha_{kj}\)` and `\(\beta_{kj}\)` are normalized such that the sum for each functional response (i.e. `\(\sum_k\alpha_{kj}\)` and `\(\sum_k\beta_{kj}\)` for the functional response between predator *j* and prey *i*) sum to 1.  The weights are calculated from the density-independent search rates for each predator/prey pair, which is equal to `\(2Q_{ij}^*V_{ij} / (V_{ij} - 1)B_i^*B_j^*\)`.  
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
