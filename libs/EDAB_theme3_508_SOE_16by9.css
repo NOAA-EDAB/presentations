@@ -211,6 +211,28 @@ a, a > code {
   background-color:transparent;
 }
 
+
+.scroll-output {
+  height: 90%;
+  overflow-y: scroll;
+}
+
 /*text colors*/
-.bluetext { color: blue !important; }
-.greentext { color: green !important; }
+.bluetext { color: blue; }
+.greentext { color: green; }
+
+.rotate20-right {
+  -webkit-transform:rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+  transform: rotate(20deg);
+}
+
+.rotate20-left {
+  -webkit-transform:rotate(-20deg);
+  -moz-transform: rotate(-20deg);
+  -ms-transform: rotate(-20deg);
+  -o-transform: rotate(-20deg);
+  transform: rotate(-20deg);
+}
