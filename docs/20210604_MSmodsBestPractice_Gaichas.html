@@ -83,7 +83,7 @@ Define the problem, and why this model is appropriate.
 * What focal species, spatial, and temporal resolution are needed to address the problem? 
 
 .pull-left-60[
-Example problem &lt;a name=cite-ices_working_2019&gt;&lt;/a&gt;([ICES, 2019](http://www.ices.dk/sites/pub/Publication Reports/Forms/DispForm.aspx?ID=36455)):
+Example problem &lt;a name=cite-ices_working_2019&gt;&lt;/a&gt;&lt;a name=cite-ices_working_2021&gt;&lt;/a&gt;([ICES, 2019](http://www.ices.dk/sites/pub/Publication Reports/Forms/DispForm.aspx?ID=36455); [ICES, 2021](http://www.ices.dk/sites/pub/Publication Reports/Forms/DispForm.aspx?ID=37316)):
 
 Multiple predators feed on multiple fished prey stocks within a particular ecosystem. There is a need to include predation mortality within assessments for individual prey stocks in that ecosystem. 
 
@@ -97,7 +97,7 @@ Model(s) must provide this output and sensitivity to model assumptions in the ou
 ---
 ## Problem identification &amp;harr; Appropriateness of model for problem
 
-A different example problem (ICES WKIRISH, &lt;a name=cite-bentley_refining_2021&gt;&lt;/a&gt;([Bentley, et al., 2021](https://www.frontiersin.org/articles/10.3389/fmars.2021.602072/full))):
+A different example problem (ICES WKIRISH, &lt;a name=cite-bentley_refining_2021&gt;&lt;/a&gt;[Bentley, et al. (2021)](https://www.frontiersin.org/articles/10.3389/fmars.2021.602072/full)):
 
 .pull-left[
 &gt;The aim with the Irish Sea Ecopath is to use the model to “fine tune” the quota advice within the predefined EU Fmsy ranges. In “good” conditions you could fish at the top of the range, in “poor” conditions you should fish lower in the range. The range has already been evaluated as giving good yield while still being precautionary, so this should be fine for ICES to use in advice, so any reviewers should have this in mind.
@@ -127,7 +127,7 @@ ICES WGSAM has provided model framework reviews for the LeMans ensemble (2016), 
 1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
 1. Data availability/software tools
 1. Quality assurance/quality control (code testing)
-1. Test scenarios (for example, stability &lt;a name=cite-kaplan_guinea_2016&gt;&lt;/a&gt;([Kaplan, et al., 2016](https://academic.oup.com/icesjms/article/73/7/1715/2458746))):
+1. Test scenarios (for example, stability; &lt;a name=cite-kaplan_guinea_2016&gt;&lt;/a&gt;[Kaplan, et al. (2016)](https://academic.oup.com/icesjms/article/73/7/1715/2458746)):
     1. All functional groups persist in an unfished unperturbed run  
     1. Model stabilizes for the last ~20 years of an unfished, unperturbed 80-100 year run  
 1. Corroboration with observations
@@ -145,7 +145,10 @@ See above defining the problem. Which datasets are adequate, which could be impr
 
 Show the input data as a simple chart: beginning and end of time series, gaps, different length of time series, spatial resolution of data.
 
---
+![Baltic Gadget sprat data inputs from ICES WGSAM 2019](EDAB_images/DataEx.png)
+![Baltic Gadget cod data inputs from ICES WGSAM 2019](EDAB_images/DataEx2.png)
+---
+## Best Practices 3: Is the input data quality and parameterization sufficient for the problem?
 
 Give information on input data pedigree/quality, reference for where it comes from, whether it is survey data or comes from other model output, whether confidence intervals or other uncertainty measures are available and used in the model.
 
@@ -153,9 +156,15 @@ Give information on input data pedigree/quality, reference for where it comes fr
 
 Categorize the assumptions behind modeled ecological or biological processes. Emphasize those related to species interactions (predation, competition), environmental pressures, and also fleet dynamics if needed to address the problem. If the model is spatial, how do these processes happen in space?
 
---
+.pull-left-30[
+![:img Baltic Gadget conceptual model from ICES WGSAM 2019, 80%](EDAB_images/ConsModex.png)
+]
+.pull-right-70[
+![Baltic Gadget timing conceptual model from ICES WGSAM 2019](EDAB_images/ConsModEx2.png)
+]
 
 Is the parameterization consistent with scientific knowledge (e.g. (PREBAL) diagnostics &lt;a name=cite-link_adding_2010&gt;&lt;/a&gt;([Link, 2010](http://www.sciencedirect.com/science/article/pii/S0304380010001468)) for general relationships across trophic levels, sizes, etc).
+
 
 ---
 ## Best Practices 4: Does model output compare well with observations? ([Kaplan, et al., 2016](https://academic.oup.com/icesjms/article/73/7/1715/2458746))
@@ -235,9 +244,9 @@ What did they point out and have issues been addressed?
 Review of constructed models should have evaluated spatial and temporal resolution, algorithm choices, data availability and software tools, quality assurance/quality control of code, and test scenarios. 
 
 
-([Bentley, et al., 2021](https://www.frontiersin.org/articles/10.3389/fmars.2021.602072/full)) conclude that continuous peer review throughout a process is itself a best practice. 
+[Bentley, et al. (2021)](https://www.frontiersin.org/articles/10.3389/fmars.2021.602072/full) conclude that continuous peer review throughout a process is itself a best practice. 
 
-Also, being part of a management process improves likelihood that the model will address a management problem of interest, and ultimately to have the model used; see also &lt;a name=cite-townsend_progress_2019&gt;&lt;/a&gt;([Townsend, et al., 2019](https://www.frontiersin.org/articles/10.3389/fmars.2019.00641/full)) &amp;rarr;
+Also, being part of a management process improves likelihood that the model will address a management problem of interest, and that the model will be used; see also &lt;a name=cite-townsend_progress_2019&gt;&lt;/a&gt;[Townsend, et al. (2019)](https://www.frontiersin.org/articles/10.3389/fmars.2019.00641/full) &amp;rarr;
 
 ## How about a real life problem?
 ]
@@ -307,6 +316,10 @@ Availble models:
 ## Multispecies catch at length &lt;a name=cite-gaichas_combining_2017&gt;&lt;/a&gt;([Gaichas, et al., 2017](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)) 
 ## Multispecies production &lt;a name=cite-gamble_analyzing_2009&gt;&lt;/a&gt;([Gamble, et al., 2009](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998))  
 
+.footnote[
+https://xkcd.com/2323/
+]
+
 --
 
 all model predation mortality but not prey effects on predators!
@@ -316,6 +329,7 @@ all model predation mortality but not prey effects on predators!
 ## Food web &lt;a name=cite-link_northeast_2008&gt;&lt;/a&gt;&lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Link, et al., 2008](http://www.sciencedirect.com/science/article/pii/S0924796308000560); [Lucey, et al., 2020](http://www.sciencedirect.com/science/article/pii/S0304380020301290))  
 
 models 2 way interactions but aggregated species groups and fishery
+
 
 ---
 background-image: url("EDAB_images/OMdesign.png")
@@ -457,6 +471,34 @@ background-position: right bottom
 .pull-right-70[
 
 ]
+
+---
+background-image: url("EDAB_images/scenario_4.png")
+background-size: 500px
+background-position: right
+
+## Conclusions: What makes a good multispecies model?
+
+.pull-left-60[
+1. Identify the problem
+    - Does it require modeling multispecies dynamics?
+    - What is the output of interest?
+1. Scientific basis: are model assumptions appropriate for the problem? 
+1. Input data and parameterization: sufficient for the problem?
+    - Identify data sources, series length, quality, gaps
+    - Identify key assumptions related to the output of interest
+1. Does model output compare well with observations?
+1. Has uncertainty been assessed in the output of interest?
+1. Peer review
+]
+
+.pull-right-40[
+.center[
+.footnote[
+https://xkcd.com/2289/
+]
+]
+]
 ---
 ## References
 
@@ -530,6 +572,14 @@ Publisher: ICES. DOI:
 URL: [http://www.ices.dk/sites/pub/Publication
 Reports/Forms/DispForm.aspx?ID=36455](http://www.ices.dk/sites/pub/Publication
 Reports/Forms/DispForm.aspx?ID=36455) (visited on Jun. 07, 2021).
+
+&lt;a name=bib-ices_working_2021&gt;&lt;/a&gt;[ICES](#cite-ices_working_2021)
+(2021). "Working Group on Multispecies Assessment Methods (WGSAM)". En.
+. Publisher: ICES. DOI:
+[10.17895/ICES.PUB.7695](https://doi.org/10.17895%2FICES.PUB.7695).
+URL: [http://www.ices.dk/sites/pub/Publication
+Reports/Forms/DispForm.aspx?ID=37316](http://www.ices.dk/sites/pub/Publication
+Reports/Forms/DispForm.aspx?ID=37316) (visited on Jun. 07, 2021).
 
 &lt;a name=bib-kaplan_guinea_2016&gt;&lt;/a&gt;[Kaplan, I. C. et
 al.](#cite-kaplan_guinea_2016) (2016). "A guinea pig's tale: learning
@@ -663,15 +713,37 @@ URL:
 ]
 
 ---
+background-image: url("EDAB_images/types_of_scientific_paper_2x.png")
+background-size: 500px
+background-position: right top
+
 ## Additional resources
+
+.pull-left[
+
+* [US National Research Council: Models in Environmental Regulatory Decision Making](https://www.nap.edu/read/11972/chapter/6)
+
+* [ICES WGNARS model review criteria](https://ices-eg.github.io/wg_WGSAM/ReviewCriteria.html#ref-nrc_chapter_2007)
 
 * [New England herring MSE peer review](https://s3.amazonaws.com/nefmc.org/Final-Peer-review-report.pdf)
 
 * [New England herring MSE debrief](https://s3.amazonaws.com/nefmc.org/3_Herring-MSE-debrief-final-report.pdf)
+]
+
+.pull-right[
+
+]  
+
+
+# Thank you!  
+
 
 .footnote[
-Slides available at https://noaa-edab.github.io/presentations  
+Slides available at https://noaa-edab.github.io/presentations
+
 Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
+
+Image: https://xkcd.com/2456/
 ]
 
 ???
