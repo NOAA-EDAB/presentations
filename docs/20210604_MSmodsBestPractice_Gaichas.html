@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>What makes a good multispecies model?</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas   Northeast Fisheries Science Center" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# What makes a good multispecies model?
+## Goal 4 Keynote <br />Multispecies Modeling Applications Workshop, June 2021
+### Sarah Gaichas <br /> Northeast Fisheries Science Center
+
+---
+
+class: top, left
+
+
+
+
+
+
+
+# What makes a good model? &lt;a name=cite-nrc_chapter_2007&gt;&lt;/a&gt;([NRC, 2007](https://www.nap.edu/read/11972/chapter/6)), p 108
+
+.pull-left-30[
+&gt;Is the model based on generally accepted science and computational methods?  
+
+&gt;Does it work, that is, does it fulfill its designated task or serve its intended purpose? 
+
+&gt;Does its behavior approximate that observed in the system being modeled?  
+]
+
+.pull-right-70[
+![Fisheries models range from single and multispecies models to full ecosystem models](EDAB_images/ecomods.png)
+]
+
+---
+background-image: url("EDAB_images/NRCmodelLifeCycle.png")
+background-size: 650px
+background-position: right
+
+# Model life cycle 
+##([NRC, 2007](https://www.nap.edu/read/11972/chapter/6))
+
+What makes a good model?
+
+* Differs by life stage 
+
+* Each builds on the next
+
+* Common themes
+
+---
+## Best practices 1: Why do we need a model? Identify the problem
+
+.pull-left-70[
+![whybuild](EDAB_images/piggiehippowhy.png)
+]
+
+--
+
+.pull-right-30[
+![whyindeed](EDAB_images/whyindeed.png)
+]
+
+---
+background-image: url("EDAB_images/2020NSeaherringM2.png")
+background-size: 540px
+background-position: right bottom
+
+## Problem identification &amp;harr; Appropriateness of model for problem
+
+Define the problem, and why this model is appropriate. 
+
+* What processes need to be modeled to address the problem?
+
+* What focal species, spatial, and temporal resolution are needed to address the problem? 
+
+.pull-left-60[
+Example problem &lt;a name=cite-ices_working_2019&gt;&lt;/a&gt;&lt;a name=cite-ices_working_2021&gt;&lt;/a&gt;([ICES, 2019](http://www.ices.dk/sites/pub/Publication Reports/Forms/DispForm.aspx?ID=36455); [ICES, 2021](http://www.ices.dk/sites/pub/Publication Reports/Forms/DispForm.aspx?ID=37316)):
+
+Multiple predators feed on multiple fished prey stocks within a particular ecosystem. There is a need to include predation mortality within assessments for individual prey stocks in that ecosystem. 
+
+Model(s) must estimate predation mortality at age, and to provide M-at-age time series for herring, cod, whiting, haddock, sprat, sandeel, etc. Spatial scale is at the stock level and temporal resolution is annual, starting at a stock-specific year and going to the present. 
+
+Model(s) must provide this output and sensitivity to model assumptions in the output M at age must be evaluated. 
+]
+.pull-right-40[
+]
+
+---
+## Problem identification &amp;harr; Appropriateness of model for problem
+
+A different example problem (ICES WKIRISH, &lt;a name=cite-bentley_refining_2021&gt;&lt;/a&gt;[Bentley, et al. (2021)](https://www.frontiersin.org/articles/10.3389/fmars.2021.602072/full)):
+
+.pull-left[
+&gt;The aim with the Irish Sea Ecopath is to use the model to “fine tune” the quota advice within the predefined EU Fmsy ranges. In “good” conditions you could fish at the top of the range, in “poor” conditions you should fish lower in the range. The range has already been evaluated as giving good yield while still being precautionary, so this should be fine for ICES to use in advice, so any reviewers should have this in mind.
+
+]
+
+.pull-right[
+![Harvest control rule with accpetable ranges for fishing mortality (F) given stock size as spawning stock biomass (SSB)](EDAB_images/fmars-08-602072-g001.jpg)
+.contrib[
+ https://www.frontiersin.org/files/Articles/602072/fmars-08-602072-HTML-r1/image_m/fmars-08-602072-g001.jpg
+]
+]
+
+For the Irish Sea EwE model, key outputs will be used to determine where the catch advice should be within the MSY range for each species. Therefore, outputs defining ecosystem conditions and both ecosystem and species productivity under the prevailing conditions are most important.
+
+---
+## Best Practices 2: Is the scientific basis of the model sound?
+
+Previously used models often skip this step, reasoning that if the science was sound previously it still is.
+
+(Discuss...)
+
+ICES WGSAM has provided model framework reviews for the LeMans ensemble (2016), FLBEIA (2017), and a multispecies state-space model (2017). “Constructed Model” evaluation issues and best practices apply here: 
+
+1. Spatial and temporal resolution
+1. Algorithm choices
+1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
+1. Data availability/software tools
+1. Quality assurance/quality control (code testing)
+1. Test scenarios (for example, stability; &lt;a name=cite-kaplan_guinea_2016&gt;&lt;/a&gt;[Kaplan, et al. (2016)](https://academic.oup.com/icesjms/article/73/7/1715/2458746)):
+    1. All functional groups persist in an unfished unperturbed run  
+    1. Model stabilizes for the last ~20 years of an unfished, unperturbed 80-100 year run  
+1. Corroboration with observations
+1. Uncertainty/sensitivity analysis
+1. Peer review
+
+Note linkages between problem identification and scientific basis
+
+---
+## Best Practices 3: Is the input data quality and parameterization sufficient for the problem?
+
+See above defining the problem. Which datasets are adequate, which could be improved, and which are missing?
+
+--
+
+Show the input data as a simple chart: beginning and end of time series, gaps, different length of time series, spatial resolution of data.
+
+![Baltic Gadget sprat data inputs from ICES WGSAM 2019](EDAB_images/DataEx.png)
+![Baltic Gadget cod data inputs from ICES WGSAM 2019](EDAB_images/Dataex2.png)
+---
+## Best Practices 3: Is the input data quality and parameterization sufficient for the problem?
+
+Give information on input data pedigree/quality, reference for where it comes from, whether it is survey data or comes from other model output, whether confidence intervals or other uncertainty measures are available and used in the model.
+
+--
+
+Categorize the assumptions behind modeled ecological or biological processes. Emphasize those related to species interactions (predation, competition), environmental pressures, and also fleet dynamics if needed to address the problem. If the model is spatial, how do these processes happen in space?
+
+.pull-left-30[
+![:img Baltic Gadget conceptual model from ICES WGSAM 2019, 80%](EDAB_images/ConsModex.png)
+]
+.pull-right-70[
+![Baltic Gadget timing conceptual model from ICES WGSAM 2019](EDAB_images/ConsModEx2.png)
+]
+
+Is the parameterization consistent with scientific knowledge (e.g. (PREBAL) diagnostics &lt;a name=cite-link_adding_2010&gt;&lt;/a&gt;([Link, 2010](http://www.sciencedirect.com/science/article/pii/S0304380010001468)) for general relationships across trophic levels, sizes, etc).
+
+
+---
+## Best Practices 4: Does model output compare well with observations? ([Kaplan, et al., 2016](https://academic.oup.com/icesjms/article/73/7/1715/2458746))
+
+Characterize the reference dataset used for comparisons. Has the data been used to construct this model? Is the reference dataset from another model? Describe referece data source(s). 
+
+1. Define the hindcast time period where agreement with other data sources or assessments is needed. Error ranges of model output and reference datasets are needed for comparison.  
+1. Focal species should match biomass and catch trends over the hindcast time period. For full system models, species comprising a majority of biomass should also match general hindcast trends. Suggested tests include modeling efficiency, RMSE, etc. &lt;a name=cite-sterman_appropriate_1984&gt;&lt;/a&gt;&lt;a name=cite-stow_skill_2009&gt;&lt;/a&gt;&lt;a name=cite-allen_multivariate_2009&gt;&lt;/a&gt;&lt;a name=cite-lehuta_selection_2013&gt;&lt;/a&gt;&lt;a name=cite-lehuta_reconciling_2016&gt;&lt;/a&gt;&lt;a name=cite-olsen_ecosystem_2016&gt;&lt;/a&gt;([Sterman, 1984](https://www.systemdynamics.org/assets/dynamica/102/4.pdf); [Stow, et al., 2009](http://www.sciencedirect.com/science/article/pii/S0924796308001103); [Allen, et al., 2009](http://www.sciencedirect.com/science/article/pii/S0924796308001152); [Lehuta, et al., 2013](http://www.sciencedirect.com/science/article/pii/S0165783613000118); [Lehuta, et al., 2016](https://www.alr-journal.org/articles/alr/abs/2016/02/alr150069/alr150069.html); [Olsen, et al., 2016](http://dx.plos.org/10.1371/journal.pone.0146467)) 
+1. Patterns of temporal variability should be captured as appropriate to the problem (emergent or forced with e.g. recruitment time series)  
+1. Productivity for focal species (or groups totaling ~80% of system biomass in full system models) should qualitatively match life history expectations (prebal diagnostics)  
+1. Natural mortality decreases with age for majority of groups  
+1. Age and length structure qualitatively matches expectations for majority of groups  
+1. Diet predicted qualitatively matches empirical diet comp for majority of groups  
+1. Spatial distribution of outputs match reference datasets for spatial models (most important if output required at spatial resolution of model, comment if a match in aggregate but not at higher resolution)  
+1. Ecosystem indicators (relationship between abundance and body size, pelagic to demersal, Large Fish Indicator) match reference data if needed for problem
+
+---
+## Intermission: Why include species interactions? ...and why fit criteria alone are not sufficient
+*Ignore predation at your peril: results from multispecies state-space modeling  *  &lt;a name=cite-trijoulet_performance_2020&gt;&lt;/a&gt;([Trijoulet, et al., 2020](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.13515))
+&gt;Ignoring trophic interactions that occur in marine ecosystems induces bias in stock assessment outputs and results in low model predictive ability with subsequently biased reference points.  
+
+.pull-left-40[
+![VanessaPaper](EDAB_images/VanessaPaper.png)
+
+EM1: multispecies state space 
+
+EM2: multispecies, no process error 
+
+EM3: single sp. state space, constant M 
+
+EM4: single sp. state space, age-varying M 
+
+*note difference in scale of bias for single species!*
+
+]
+.pull-right-60[
+![modcomp](EDAB_images/jpe13515-fig-0004-m.jpg)
+]
+
+???
+This is an important paper both because it demonstrates the importance of addressing strong species interactions, and it shows that measures of fit do not indicate good model predictive performance. Ignoring process error caused bias, but much smaller than ignoring species interactions.
+See also Vanessa's earlier paper evaluating diet data interactions with multispecies models  
+
+---
+## Best Practices 5: Uncertainty
+
+Has uncertainty been assessed in the output of interest? Has sensitivity analysis been performed and how does it affect those outputs?
+
+--
+
+Show estimates of uncertainty in the output quantity of interest. Uncertainty analysis estimating confidence intervals is ideal. Otherwise list key sources of uncertainty and expected bounds on outputs based on those (possibly from sensitivity analysis)--i.e. design sensitivity analysis to approximate uncertainty analysis. 
+
+--
+
+Specific analyses:
+
+1. Retrospective analysis (5 year peel of all input data, [example](https://ices-eg.github.io/wg_WGSAM/NS_2020_key_run.html#retrospective_analysis))
+1. Forecast uncertainty: remove last 3-5 years of survey index only to see how well the model works in forecast mode, given the catch that actually happened. 
+1. Sensitivity to stomach data and other key or low-confidence data sources
+1. Sensitivity to key parameters: consumption rates, residual mortality (M1, M0)
+1. Sensitivity to initial conditions 
+
+Simpler investigation of uncertainty can be appropriate for complex models with long runtimes ([Kaplan, et al., 2016](https://academic.oup.com/icesjms/article/73/7/1715/2458746)).
+
+Retain multiple parameterizations that meet the above criteria to allow scenario testing across a range of parameterizations. A simple method uses bounding (e.g. base, low bound, and high bound productivity scenarios; &lt;a name=cite-saltelli_how_2010&gt;&lt;/a&gt;([Saltelli, et al., 2010](https://linkinghub.elsevier.com/retrieve/pii/S1364815210001180)).
+
+---
+background-image: url("EDAB_images/fmars-06-00641-g001.jpg")
+background-size: 600px
+background-position: right
+
+## Best Practices 6: Peer review
+
+.pull-left[
+What did they point out and have issues been addressed?
+
+Review of constructed models should have evaluated spatial and temporal resolution, algorithm choices, data availability and software tools, quality assurance/quality control of code, and test scenarios. 
+
+
+[Bentley, et al. (2021)](https://www.frontiersin.org/articles/10.3389/fmars.2021.602072/full) conclude that continuous peer review throughout a process is itself a best practice. 
+
+Also, being part of a management process improves likelihood that the model will address a management problem of interest, and that the model will be used; see also &lt;a name=cite-townsend_progress_2019&gt;&lt;/a&gt;[Townsend, et al. (2019)](https://www.frontiersin.org/articles/10.3389/fmars.2019.00641/full) &amp;rarr;
+
+## How about a real life problem?
+]
+.pull-right[
+]
+
+---
+background-image: url("EDAB_images/allcomponents.png")
+background-size: 800px
+background-position: right bottom
+
+## Are any Atlantic herring harvest control rules good for both fisheries and predators?
+.pull-left-30[
+**Harvest control rules** are:
+- plans for changing fishing based on stock status
+- pre-determined
+    
+*"Which harvest control rules best consider herring's role as forage?"*
+- DESIGN a harvest control rule (HCR):
+    - balancing fishing benefits and ecological services
+    - addressing diverse stakeholder interests
+- TRANSPARENTLY within management time frame!
+]
+.pull-right-70[]
+
+---
+background-image: url("EDAB_images/fmars-06-00641-g002.jpg")
+background-size: 600px
+background-position: right
+
+## Problem identification: New England Herring MSE 
+
+.pull-left[
+What is the goal of the model?
+* Evaluate effects of herring harvest strategies
+    - on herring
+    - on herring fisheries
+    - on herring predators
+
+Who will use it?
+* Modelers, in support of New England Fishery Management Council
+
+What types of decsions will it support?
+* Decision on harvest strategy &amp;rarr; *strategic advice*
+
+What data are available to support the model?
+* Herring assessment inputs
+* Groundfish diet data
+* Groundfish assessment inputs
+* Seabird diet/population data
+]
+.pull-right[]
+
+
+---
+background-image: url("EDAB_images/modeling_study.png")
+background-size: 450px
+background-position: right
+
+## Appropriateness of model for problem
+
+*How do changes in herring populations affect predators?*
+
+Availble models:
+
+## Multispecies catch at age &lt;a name=cite-curti_evaluating_2013&gt;&lt;/a&gt;([Curti, et al., 2013](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229))  
+## Multispecies catch at length &lt;a name=cite-gaichas_combining_2017&gt;&lt;/a&gt;([Gaichas, et al., 2017](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)) 
+## Multispecies production &lt;a name=cite-gamble_analyzing_2009&gt;&lt;/a&gt;([Gamble, et al., 2009](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998))  
+
+.footnote[
+https://xkcd.com/2323/
+]
+
+--
+
+all model predation mortality but not prey effects on predators!
+
+--
+
+## Food web &lt;a name=cite-link_northeast_2008&gt;&lt;/a&gt;&lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Link, et al., 2008](http://www.sciencedirect.com/science/article/pii/S0924796308000560); [Lucey, et al., 2020](http://www.sciencedirect.com/science/article/pii/S0304380020301290))  
+
+models 2 way interactions but aggregated species groups and fishery
+
+
+---
+background-image: url("EDAB_images/OMdesign.png")
+background-size: 750px
+background-position: right
+
+## MICE for MSE: Addressing stakeholder objectives &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128))  
+.pull-left-30[
+*The Dream*&lt;sup&gt;1&lt;/sup&gt;
+Convert the effects of control rules on 4 user groups to dollars:
+.table[
+1. Users of landed herring (Demand)
+    - Lobster industry, aquariums
+1. Herring harvesters (Supply)
+1. Direct users of herring in the ocean (not people)
+    - Terns and Whales
+    - Striped Bass, Dogfish
+1. Indirect users of herring in the ocean (people, Derived Demand)
+    - Bird- and whale-watchers
+    - Recreational and Commercial Fishing
+]     
+
+*The Reality*
+.table[
+- parallel development of herring, predator, economic models
+- limited predator responses, economic effects
+]
+]
+.pull-right-70[
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt; Credit: [Min-Yang Lee](https://s3.amazonaws.com/nefmc.org/13.Economic-Models_Lee.pdf)
+]
+]
+
+???
+*Develop a harvest control rule considering herring's role as prey*
+
+Species interactions:
+- Bottom up only: Predators with herring dependent dynamics
+- NO predator feedback to herring
+- Alternative Herring operating models with high and low M
+
+(Also, done in ~ 6 months)
+
+---
+background-image: url("EDAB_images/herrtopreds.png")
+background-size: 640px
+background-position: left
+
+## MICE for MSE Predators: deterministic delay-difference population models with herring-predator links
+.pull-left[]
+.pull-right[.right[
+![:img ternpoptrend, 100%](EDAB_images/ternpoptrend.png)
+]
+.table[
+Time constraints forced:
+- selection of predators with previous modeling and readily available data
+- selection of single strongest herring-predator relationship
+- models ignoring high variance in prey-predator relationships 
+]
+]
+
+???
+In general, if support for a relationship between herring and predator recruitment was evident, it was modeled as a predator recruitment multiplier based on the herring population `\(N_{y}\)` relative to a specified threshold `\(N_{thresh}\)`:
+
+`$$\bar{R}_{y+a}^P = R_{y+a}^P  * \frac{\gamma(N_{y}/N_{thresh})}{(\gamma-1)+(N_{y}/N_{thresh})}$$` 
+
+where `\(\gamma\)` &gt; 1 links herring population size relative to the threshold level to predator recruitment.
+
+If a relationship between predator growth and herring population size was evident, annual changes in growth were modeled by modifying either the Ford-Walford intercept `\(\alpha_y^P\)` or slope `\(\rho_y^P\)`:
+
+
+`$$B_{y+1}^P = S_{y}^P (\alpha_y^P N_{y}^P + Fw_{slope} B_{y}^P) + \alpha_y^PR_{y+1}^P$$`
+or 
+
+`$$B_{y+1}^P = S_{y}^P (Fw_{int} N_{y}^P + \rho_y^P B_{y}^P) + Fw_{int} R_{y+1}^P$$`
+
+where either `\(\alpha_y^P\)` or `\(\rho_y^P\)` are defined for a predator using herring population parameters.
+
+Finally, herring population size `\(N_{y}\)` could be related to predator survival using an annual multiplier on constant predator annual natural mortality `\(v\)`: 
+
+`$$v_{y} =  v e ^ {-(\frac{N_{y}}{N_{F=0}})\delta}$$`
+
+where 0 &lt; `\(\delta\)` &lt;1 links herring population size to predator survival.
+
+---
+## Uncertainty bracketed by herring population and assessment assumptions
+
+Managing tradeoffs under uncertainty: What control rules give us 90% of everything we want?
+.pull-left[
+.table[
+Tern productivity  1.0 &gt; 90% of the time, Herring biomass &gt; 90% of SSBmsy, and Fishery yield &gt; 90% of MSY
+]
+&lt;img src="20210604_MSmodsBestPractice_Gaichas_files/figure-html/unnamed-chunk-2-1.png" width="504" /&gt;
+]
+
+.pull-right[
+.table[
+All three of the conditions on the left, AND fishery closures (F=0) less than 1% of the time
+]
+&lt;img src="20210604_MSmodsBestPractice_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="504" /&gt;
+]
+
+---
+## Peer review, March 2017
+
+[Report](https://s3.amazonaws.com/nefmc.org/Final-Peer-review-report.pdf)
+
+&gt;The Panel agreed that the NEFSC technical team constructed a series of models (Atlantic
+herring, predator, and economic) appropriate for evaluating ABC control rules for the Atlantic
+herring fishery in the context of herring’s role as a forage fish. The Panel detailed areas of
+strength and areas for improvement in the MSE workshop process, modeling, and synthesis. The
+Panel concluded that the data, methods, and results of the MSE are sufficient for the Council to
+use when identifying and analyzing a range of ABC control rule alternatives for the Atlantic
+Herring Fishery Management Plan. Overall, the Panel concluded that the Atlantic herring MSE
+represents the best available science at this time for evaluating the performance of herring
+control rules and their potential impact on key predators. 
+
+But, predator models were simple and may not capture all important effects, combination of approaches may be better, integrate impacts of predators on herring, consider predator's alternative prey, include process error in predator models.
+
+
+---
+background-image: url("EDAB_images/herrup10pann.png")
+background-size: 830px
+background-position: right bottom
+
+## Epilogue: Herring MSE food web modeling supplemental results
+
+- Tradeoffs between forage groups and mixed impacts to predators apparent when multiple species and full predator prey interaction feedbacks can be included
+
+.pull-left-30[
+- Rpath Ecosense functions evaluate parameter uncertainty within a scenario
+
+- Now we have MSE closed loop possibilities in Rpath &lt;a name=cite-lucey_evaluating_2021&gt;&lt;/a&gt;([Lucey, et al., 2021](http://www.sciencedirect.com/science/article/pii/S0165783620302976))
+
+- Can implement HCRs with predator prey interactions 
+
+]
+.pull-right-70[
+
+]
+
+---
+background-image: url("EDAB_images/scenario_4.png")
+background-size: 500px
+background-position: right
+
+## Conclusions: What makes a good multispecies model?
+
+.pull-left-60[
+1. Identify the problem
+    - Does it require modeling multispecies dynamics?
+    - What is the output of interest?
+1. Scientific basis: are model assumptions appropriate for the problem? 
+1. Input data and parameterization: sufficient for the problem?
+    - Identify data sources, series length, quality, gaps
+    - Identify key assumptions related to the output of interest
+1. Does model output compare well with observations?
+1. Has uncertainty been assessed in the output of interest?
+1. Peer review
+]
+
+.pull-right-40[
+.center[
+.footnote[
+https://xkcd.com/2289/
+]
+]
+]
+---
+## References
+
+.scroll-output[
+
+.contrib[
+&lt;a name=bib-allen_multivariate_2009&gt;&lt;/a&gt;[Allen, J. I. et
+al.](#cite-allen_multivariate_2009) (2009). "A multivariate approach to
+model skill assessment". En. In: _Journal of Marine Systems_. Skill
+assessment for coupled biological/physical models of marine systems
+76.1, pp. 83-94. ISSN: 0924-7963. DOI:
+[10.1016/j.jmarsys.2008.05.009](https://doi.org/10.1016%2Fj.jmarsys.2008.05.009).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0924796308001152](http://www.sciencedirect.com/science/article/pii/S0924796308001152)
+(visited on Nov. 15, 2019).
+
+&lt;a name=bib-bentley_refining_2021&gt;&lt;/a&gt;[Bentley, J. W. et
+al.](#cite-bentley_refining_2021) (2021). "Refining Fisheries Advice
+With Stock-Specific Ecosystem Information". In: _Frontiers in Marine
+Science_ 8. Publisher: Frontiers. ISSN: 2296-7745. DOI:
+[10.3389/fmars.2021.602072](https://doi.org/10.3389%2Ffmars.2021.602072).
+URL:
+[https://www.frontiersin.org/articles/10.3389/fmars.2021.602072/full](https://www.frontiersin.org/articles/10.3389/fmars.2021.602072/full)
+(visited on Jun. 04, 2021).
+
+&lt;a name=bib-curti_evaluating_2013&gt;&lt;/a&gt;[Curti, K. L. et
+al.](#cite-curti_evaluating_2013) (2013). "Evaluating the performance
+of a multispecies statistical catch-at-age model". En. In: _Canadian
+Journal of Fisheries and Aquatic Sciences_ 70.3, pp. 470-484. ISSN:
+0706-652X, 1205-7533. DOI:
+[10.1139/cjfas-2012-0229](https://doi.org/10.1139%2Fcjfas-2012-0229).
+URL:
+[http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2012-0229)
+(visited on Jan. 13, 2016).
+
+&lt;a name=bib-deroba_dream_2018&gt;&lt;/a&gt;[Deroba, J. J. et
+al.](#cite-deroba_dream_2018) (2018). "The dream and the reality:
+meeting decision-making time frames while incorporating ecosystem and
+economic models into management strategy evaluation". In: _Canadian
+Journal of Fisheries and Aquatic Sciences_. ISSN: 0706-652X. DOI:
+[10.1139/cjfas-2018-0128](https://doi.org/10.1139%2Fcjfas-2018-0128).
+URL:
+[http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128)
+(visited on Jul. 20, 2018).
+
+&lt;a name=bib-gaichas_combining_2017&gt;&lt;/a&gt;[Gaichas, S. K. et
+al.](#cite-gaichas_combining_2017) (2017). "Combining stock,
+multispecies, and ecosystem level fishery objectives within an
+operational management procedure: simulations to start the
+conversation". In: _ICES Journal of Marine Science_ 74.2, pp. 552-565.
+ISSN: 1054-3139. DOI:
+[10.1093/icesjms/fsw119](https://doi.org/10.1093%2Ficesjms%2Ffsw119).
+URL:
+[https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level](https://academic.oup.com/icesjms/article/74/2/552/2669545/Combining-stock-multispecies-and-ecosystem-level)
+(visited on Oct. 18, 2017).
+
+&lt;a name=bib-gamble_analyzing_2009&gt;&lt;/a&gt;[Gamble, R. J. et
+al.](#cite-gamble_analyzing_2009) (2009). "Analyzing the tradeoffs
+among ecological and fishing effects on an example fish community: A
+multispecies (fisheries) production model". En. In: _Ecological
+Modelling_ 220.19, pp. 2570-2582. ISSN: 03043800. DOI:
+[10.1016/j.ecolmodel.2009.06.022](https://doi.org/10.1016%2Fj.ecolmodel.2009.06.022).
+URL:
+[http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998](http://linkinghub.elsevier.com/retrieve/pii/S0304380009003998)
+(visited on Oct. 13, 2016).
+
+&lt;a name=bib-ices_working_2019&gt;&lt;/a&gt;[ICES](#cite-ices_working_2019)
+(2019). "Working Group on Multispecies Assessment Methods (WGSAM)". .
+Publisher: ICES. DOI:
+[10.17895/ICES.PUB.5758](https://doi.org/10.17895%2FICES.PUB.5758).
+URL: [http://www.ices.dk/sites/pub/Publication
+Reports/Forms/DispForm.aspx?ID=36455](http://www.ices.dk/sites/pub/Publication
+Reports/Forms/DispForm.aspx?ID=36455) (visited on Jun. 07, 2021).
+
+&lt;a name=bib-ices_working_2021&gt;&lt;/a&gt;[ICES](#cite-ices_working_2021)
+(2021). "Working Group on Multispecies Assessment Methods (WGSAM)". En.
+. Publisher: ICES. DOI:
+[10.17895/ICES.PUB.7695](https://doi.org/10.17895%2FICES.PUB.7695).
+URL: [http://www.ices.dk/sites/pub/Publication
+Reports/Forms/DispForm.aspx?ID=37316](http://www.ices.dk/sites/pub/Publication
+Reports/Forms/DispForm.aspx?ID=37316) (visited on Jun. 07, 2021).
+
+&lt;a name=bib-kaplan_guinea_2016&gt;&lt;/a&gt;[Kaplan, I. C. et
+al.](#cite-kaplan_guinea_2016) (2016). "A guinea pig's tale: learning
+to review end-to-end marine ecosystem models for management
+applications". En. In: _ICES Journal of Marine Science_ 73.7, pp.
+1715-1724. ISSN: 1054-3139. DOI:
+[10.1093/icesjms/fsw047](https://doi.org/10.1093%2Ficesjms%2Ffsw047).
+URL:
+[https://academic.oup.com/icesjms/article/73/7/1715/2458746](https://academic.oup.com/icesjms/article/73/7/1715/2458746)
+(visited on Aug. 30, 2019).
+
+&lt;a name=bib-lehuta_reconciling_2016&gt;&lt;/a&gt;[Lehuta, S. et
+al.](#cite-lehuta_reconciling_2016) (2016). "Reconciling complex system
+models and fisheries advice: Practical examples and leads". En. In:
+_Aquatic Living Resources_ 29.2, p. 208. ISSN: 0990-7440, 1765-2952.
+DOI: [10.1051/alr/2016022](https://doi.org/10.1051%2Falr%2F2016022).
+URL:
+[https://www.alr-journal.org/articles/alr/abs/2016/02/alr150069/alr150069.html](https://www.alr-journal.org/articles/alr/abs/2016/02/alr150069/alr150069.html)
+(visited on Nov. 15, 2019).
+
+&lt;a name=bib-lehuta_selection_2013&gt;&lt;/a&gt;[Lehuta, S. et
+al.](#cite-lehuta_selection_2013) (2013). "Selection and validation of
+a complex fishery model using an uncertainty hierarchy". En. In:
+_Fisheries Research_ 143, pp. 57-66. ISSN: 0165-7836. DOI:
+[10.1016/j.fishres.2013.01.008](https://doi.org/10.1016%2Fj.fishres.2013.01.008).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0165783613000118](http://www.sciencedirect.com/science/article/pii/S0165783613000118)
+(visited on Nov. 15, 2019).
+
+&lt;a name=bib-link_adding_2010&gt;&lt;/a&gt;[Link, J. S.](#cite-link_adding_2010)
+(2010). "Adding rigor to ecological network models by evaluating a set
+of pre-balance diagnostics: A plea for PREBAL". En. In: _Ecological
+Modelling_ 221.12, pp. 1580-1591. ISSN: 0304-3800. DOI:
+[10.1016/j.ecolmodel.2010.03.012](https://doi.org/10.1016%2Fj.ecolmodel.2010.03.012).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0304380010001468](http://www.sciencedirect.com/science/article/pii/S0304380010001468)
+(visited on Nov. 20, 2019).
+
+&lt;a name=bib-link_northeast_2008&gt;&lt;/a&gt;[Link, J. et
+al.](#cite-link_northeast_2008) (2008). "The Northeast U.S. continental
+shelf Energy Modeling and Analysis exercise (EMAX): Ecological network
+model development and basic ecosystem metrics". In: _Journal of Marine
+Systems_ 74.1–2, pp. 453-474. ISSN: 0924-7963. DOI:
+[10.1016/j.jmarsys.2008.03.007](https://doi.org/10.1016%2Fj.jmarsys.2008.03.007).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0924796308000560](http://www.sciencedirect.com/science/article/pii/S0924796308000560)
+(visited on Jan. 13, 2016).
+
+&lt;a name=bib-lucey_evaluating_2021&gt;&lt;/a&gt;[Lucey, S. M. et
+al.](#cite-lucey_evaluating_2021) (2021). "Evaluating fishery
+management strategies using an ecosystem model as an operating model".
+En. In: _Fisheries Research_ 234, p. 105780. ISSN: 0165-7836. DOI:
+[10.1016/j.fishres.2020.105780](https://doi.org/10.1016%2Fj.fishres.2020.105780).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0165783620302976](http://www.sciencedirect.com/science/article/pii/S0165783620302976)
+(visited on Dec. 09, 2020).
+
+&lt;a name=bib-lucey_conducting_2020&gt;&lt;/a&gt;[Lucey, S. M. et
+al.](#cite-lucey_conducting_2020) (2020). "Conducting reproducible
+ecosystem modeling using the open source mass balance model Rpath". En.
+In: _Ecological Modelling_ 427, p. 109057. ISSN: 0304-3800. DOI:
+[10.1016/j.ecolmodel.2020.109057](https://doi.org/10.1016%2Fj.ecolmodel.2020.109057).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0304380020301290](http://www.sciencedirect.com/science/article/pii/S0304380020301290)
+(visited on Apr. 27, 2020).
+
+&lt;a name=bib-nrc_chapter_2007&gt;&lt;/a&gt;[NRC](#cite-nrc_chapter_2007) (2007).
+"Chapter 4. Model Evaluation". En. In: _Models in Environmental
+Regulatory Decision Making_. Washington D.C.: The National Academies
+Press, pp. 104-169. DOI:
+[10.17226/11972](https://doi.org/10.17226%2F11972). URL:
+[https://www.nap.edu/read/11972/chapter/6](https://www.nap.edu/read/11972/chapter/6)
+(visited on Aug. 29, 2019).
+
+&lt;a name=bib-olsen_ecosystem_2016&gt;&lt;/a&gt;[Olsen, E. et
+al.](#cite-olsen_ecosystem_2016) (2016). "Ecosystem Model Skill
+Assessment. Yes We Can!" En. In: _PLOS ONE_ 11.1. Ed. by C. N. Bianchi,
+p. e0146467. ISSN: 1932-6203. DOI:
+[10.1371/journal.pone.0146467](https://doi.org/10.1371%2Fjournal.pone.0146467).
+URL:
+[http://dx.plos.org/10.1371/journal.pone.0146467](http://dx.plos.org/10.1371/journal.pone.0146467)
+(visited on Jan. 08, 2016).
+
+&lt;a name=bib-saltelli_how_2010&gt;&lt;/a&gt;[Saltelli, A. et
+al.](#cite-saltelli_how_2010) (2010). "How to avoid a perfunctory
+sensitivity analysis". En. In: _Environmental Modelling &amp; Software_
+25.12, pp. 1508-1517. ISSN: 13648152. DOI:
+[10.1016/j.envsoft.2010.04.012](https://doi.org/10.1016%2Fj.envsoft.2010.04.012).
+URL:
+[https://linkinghub.elsevier.com/retrieve/pii/S1364815210001180](https://linkinghub.elsevier.com/retrieve/pii/S1364815210001180)
+(visited on Nov. 15, 2019).
+
+&lt;a name=bib-sterman_appropriate_1984&gt;&lt;/a&gt;[Sterman, J.
+D.](#cite-sterman_appropriate_1984) (1984). "Appropriate summary
+statistics for evaluating the historical fit of system dynamics
+models". In: _Dynamica_ 10 Part II Winter (1984), pp. 51-66. URL:
+[https://www.systemdynamics.org/assets/dynamica/102/4.pdf](https://www.systemdynamics.org/assets/dynamica/102/4.pdf)
+(visited on Nov. 15, 2019).
+
+&lt;a name=bib-stow_skill_2009&gt;&lt;/a&gt;[Stow, C. A. et
+al.](#cite-stow_skill_2009) (2009). "Skill assessment for coupled
+biological/physical models of marine systems". En. In: _Journal of
+Marine Systems_. Skill assessment for coupled biological/physical
+models of marine systems 76.1, pp. 4-15. ISSN: 0924-7963. DOI:
+[10.1016/j.jmarsys.2008.03.011](https://doi.org/10.1016%2Fj.jmarsys.2008.03.011).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0924796308001103](http://www.sciencedirect.com/science/article/pii/S0924796308001103)
+(visited on Nov. 15, 2019).
+
+&lt;a name=bib-townsend_progress_2019&gt;&lt;/a&gt;[Townsend, H. et
+al.](#cite-townsend_progress_2019) (2019). "Progress on Implementing
+Ecosystem-Based Fisheries Management in the United States Through the
+Use of Ecosystem Models and Analysis". In: _Frontiers in Marine
+Science_ 6. ISSN: 2296-7745. DOI:
+[10.3389/fmars.2019.00641](https://doi.org/10.3389%2Ffmars.2019.00641).
+URL:
+[https://www.frontiersin.org/articles/10.3389/fmars.2019.00641/full](https://www.frontiersin.org/articles/10.3389/fmars.2019.00641/full)
+(visited on Nov. 19, 2019).
+
+&lt;a name=bib-trijoulet_performance_2020&gt;&lt;/a&gt;[Trijoulet, V. et
+al.](#cite-trijoulet_performance_2020) (2020). "Performance of a
+state-space multispecies model: What are the consequences of ignoring
+predation and process errors in stock assessments?" En. In: _Journal of
+Applied Ecology_ n/a.n/a. ISSN: 1365-2664. DOI:
+[10.1111/1365-2664.13515](https://doi.org/10.1111%2F1365-2664.13515).
+URL:
+[https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.13515](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.13515)
+(visited on Dec. 04, 2019).
+]
+
+]
+
+---
+background-image: url("EDAB_images/types_of_scientific_paper_2x.png")
+background-size: 500px
+background-position: right top
+
+## Additional resources
+
+.pull-left[
+
+* [US National Research Council: Models in Environmental Regulatory Decision Making](https://www.nap.edu/read/11972/chapter/6)
+
+* [ICES WGNARS model review criteria](https://ices-eg.github.io/wg_WGSAM/ReviewCriteria.html#ref-nrc_chapter_2007)
+
+* [New England herring MSE peer review](https://s3.amazonaws.com/nefmc.org/Final-Peer-review-report.pdf)
+
+* [New England herring MSE debrief](https://s3.amazonaws.com/nefmc.org/3_Herring-MSE-debrief-final-report.pdf)
+]
+
+.pull-right[
+
+]  
+
+
+# Thank you!  
+
+
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations
+
+Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
+
+Image: https://xkcd.com/2456/
+]
+
+???
+## ms-keyrun project objectives
+
+EBFM Objective 1: what happens with all the species in the region under a certain management regime?
+* Model needs to minimally
+    - Include all the species in the region
+    - Implement the alternative management regimes
+* Define "what happens"
+    - Increase/decrease relative to base?
+    - Status relative to reference points? (model needs to estimate reference points)
+    - Details on distribution, demographics needed? 
+
+EBFM Objective 2: how well do multispecies models perform for assessment?  
+* Which models are better at what (size/age structured and biomass dynamics)
+    - Define "better"
+    - Define "what" key outputs are most important, what are we assessing
+* What data are necessary?
+* Which species actually need to be included? Use Rpath to id
+* Need a fleet based model? Add econ?
+
+The above includes fits to historical data for all the models
+
+Overall goal: tools vetted and ready to go with any of further questions from the Council
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
