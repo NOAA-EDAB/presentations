@@ -83,12 +83,16 @@ Presentation Overview
 ---
 
 # State of the Ecosystem Overview
-## Improving ecosystem information and synthesis for fishery managers
+## Integrated Ecosystem Assessment (IEA)
 
 .pull-left[
 
-- Integrated Ecosystem Assessment (IEA)
-- Part of IEA loop
+IEA Approach 
+- Supports shift to ecosystem-based management
+- Iterative
+- Collaborative
+
+State of the Ecosystem as part of IEA loop
  - Develop indicators
  - Assess ecosystem
 
@@ -110,7 +114,10 @@ Presentation Overview
 # State of the Ecosystem Overview
 
 .pull-left[
-
+## Improving ecosystem information and synthesis for fishery managers
+- Two reports delivered to two fisheries management councils
+  - New England
+  - Mid Atlantic
 - Fishery-relevant subset of full Ecosystem Status Reports
   - Report evolving since 2016
   - Contextual information
@@ -120,7 +127,7 @@ Presentation Overview
 ]
 
 .pull-right[
-
+![EPU map, 85%](EDAB_images/EPU_Designations_Map.jpg)
 
 ]
 
@@ -130,12 +137,11 @@ Presentation Overview
 
 ## Report Structure
 1. Graphical summary
-    + Page 1 report card re: objectives &rarr;
-    + Page 2 risk summary bullets
-    + Page 3 synthesis themes
 1. Performance relative to management objectives
+ + ------------------------->
 1. Risks to meeting management objectives
-
+ + Climate
+ + Wind Development
 ]
 .pull-right[
 
@@ -178,21 +184,84 @@ knitr::kable(mng_obj, linesep = "",
 ![:img tree analogy, 85%](EDAB_images/soe_workflow_tree.png)
 ---
 # Data Needed
-image of icons??
+
+![:img icons, 85%](EDAB_images/icon_background.png)
+
 ---
 # Data Structure
 
-image of ideal data set
+.pull-left[
+[Desired data structure for delivery](https://noaa-edab.github.io/ecodata/data_guidelines)
+- Long format 
+- Five Columns
+ - Time
+ - Var
+ - Value
+ - Units
+ - EPU
+- [Metadata and Methods description](https://noaa-edab.github.io/tech-doc/right-whale-abundance.html)
+]
+
+.pull-right[
+Example North Atlantic Right Whale Adult Abundance and Calf Births
+- `ecodata::narw`
+
+
+```{r}
+library(ecodata)
+
+head(ecodata::narw)
+
+```
+
+]
+
 ---
 # Data Delivery Pathways
-- Google form
-- Data Uploader
+
+![:img data delivery flowchart, 85%](EDAB_images/data_delivery_flowchart.png)
+
 ---
 # Expectations
 
 ## What we expect of data contributors
-
+- Dataset - Format doesn't matter so much (.csv, .xls, .rda, .netcdf, etc)
+  - metadata/methods - for technical documentation
+  - participation in meetings relevant to your data and edits on that section of the final documents. 
+  
+  
 ## What data contributors can expect from us
+- Credit for your work
+ - Acknowledgments in SOEs
+ - Authorship in Technical Documentation in NOAA Institutional Repository
+- Venue for presenting information to Councils/SSCs
+- Lots of emails :(
 
 ---
- 
+## References
+
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]
+
+
+## Additional resources
+
+* [Notes page for meeting](https://docs.google.com/document/d/1f8ScxKfMVqeBLJyjk1DD8H8lRJyfSTyBXz9WfK4g9bs/edit)
+
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [Draft indicator catalog](https://noaa-edab.github.io/catalog/)
+
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: <kimberly.bastille@noaa.gov>
+]
+
+
+## Thank You!
