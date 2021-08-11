@@ -1,0 +1,267 @@
+---
+title: "State of the Ecosystem 101"
+subtitle: "Crash course in all things SOE"
+author: "Kim Bastille"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
+---
+class: top, left
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+library(kableExtra)
+library(ecodata)
+library(readxl); library(data.table)
+library(DT)
+library(widgetframe)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./MidSOE.bib", check = FALSE)
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+```
+
+# State of the Ecosystem 101
+.pull-left[
+Presentation Overview 
+- State of the Ecosystem (SOE)
+  - Overview
+  - Structure
+  - Workflow
+- Data
+  - Information Needed
+  - Desired Structure
+  - Delivery Pathways
+- Expectations
+  - What we expect from Contributors
+  - What Contributors can expect from us 
+]
+
+.pull-right[
+![:img SOE icon, 85%](EDAB_images/SOE_logo.png)
+]
+
+---
+
+# State of the Ecosystem Overview
+## Integrated Ecosystem Assessment (IEA)
+
+.pull-left[
+
+IEA Approach 
+- Supports shift to ecosystem-based management
+- Iterative
+- Collaborative
+
+State of the Ecosystem as part of IEA loop
+ - Develop indicators
+ - Assess ecosystem
+
+
+]
+
+.pull-right[
+*The IEA Loop<sup>1</sup>*
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
+
+.footnote[
+[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+]
+
+
+---
+
+# State of the Ecosystem Overview
+
+.pull-left[
+## Improving ecosystem information and synthesis for fishery managers
+- Two reports delivered to two fisheries management councils
+  - New England
+  - Mid Atlantic
+- Fishery-relevant subset of full Ecosystem Status Reports
+  - Report evolving since 2016
+  - Contextual information
+- Ecosystem indicators linked to management objectives `r Cite(myBib, "depiper_operationalizing_2017")`
+- Open science emphasis `r Cite(myBib, "bastille_improving_2020")`
+
+]
+
+.pull-right[
+![EPU map, 85%](EDAB_images/EPU_Designations_Map.jpg)
+
+]
+
+---
+## State of the Ecosystem Structure
+.pull-left[
+
+## Report Structure
+1. Graphical summary
+1. Performance relative to management objectives
+ + ------------------------->
+1. Risks to meeting management objectives
+ + Climate
+ + Wind Development
+]
+.pull-right[
+
+```{r management-objectives}
+mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
+                                                 "Profits","Recreation",
+                                                 "Stability","Social & Cultural",
+                                                 "Protected Species",
+                                                 "Biomass","Productivity",
+                                                 "Trophic structure","Habitat"),
+"Indicators reported here" = c("Landings; commercial total and by feeding guild; recreational harvest",
+                               "Revenue decomposed to price and volume",
+                               "Days fished; recreational fleet diversity",
+                               "Diversity indices (fishery and ecosystem)",
+                               "Community engagement/reliance status",
+                               "Bycatch; population (adult and juvenile) numbers, mortalities",
+                               "Biomass or abundance by feeding guild from surveys",
+                               "Condition and recruitment of managed species, Primary productivity",
+                               "Relative biomass of feeding guilds, Zooplankton",
+                               "Estuarine and offshore habitat conditions"))
+knitr::kable(mng_obj, linesep = "",
+      col.names = c("Objective Categories","Indicators reported here"),
+      caption = "Example ecosystem-scale fishery management objectives",
+      #align = 'c',
+      booktabs = T) %>%
+  kable_styling(font_size = 14) %>%
+ # kable_styling(latex_options = "hold_position", "scale_down") %>%
+ # column_spec(c(2), width = c("25em")) %>%
+  row_spec(0, bold = TRUE) %>%
+ # group_rows("Provisioning/Cultural", 1,4) %>%
+ # group_rows("Supporting/Regulating", 5,9)
+  pack_rows("Provisioning and Cultural Services", 1,6) %>%
+  pack_rows("Supporting and Regulating Services", 7,10)
+```
+]
+
+---
+# State of the Ecosystem Workflow
+
+![:img tree analogy, 85%](EDAB_images/soe_workflow_tree.png)
+---
+# Data Needed
+
+![:img icons, 85%](EDAB_images/icon_background.png)
+
+---
+# Data Structure
+
+.pull-left[
+[Desired data structure for delivery](https://noaa-edab.github.io/ecodata/data_guidelines)
+- Long format 
+- Five Columns
+ - Time
+ - Var
+ - Value
+ - Units
+ - EPU
+- [Metadata and Methods description](https://noaa-edab.github.io/tech-doc/right-whale-abundance.html)
+]
+
+.pull-right[
+Example North Atlantic Right Whale Adult Abundance and Calf Births
+- `ecodata::narw`
+
+
+```{r}
+library(ecodata)
+
+head(ecodata::narw)
+
+```
+
+]
+
+---
+# Data Delivery Pathways
+
+![:img data delivery flowchart, 85%](EDAB_images/data_delivery_flowchart.png)
+
+---
+# Expectations
+
+## What we expect of data contributors
+- Dataset - Format doesn't matter so much (.csv, .xls, .rda, .netcdf, etc)
+  - metadata/methods - for technical documentation
+  - participation in meetings relevant to your data and edits on that section of the final documents. 
+  
+  
+## What data contributors can expect from us
+- Credit for your work
+ - Acknowledgments in SOEs
+ - Authorship in Technical Documentation in NOAA Institutional Repository
+- Venue for presenting information to Councils/SSCs
+- Lots of emails :(
+
+---
+## References
+
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]
+
+
+## Additional resources
+
+* [Notes page for meeting](https://docs.google.com/document/d/1f8ScxKfMVqeBLJyjk1DD8H8lRJyfSTyBXz9WfK4g9bs/edit)
+
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [Draft indicator catalog](https://noaa-edab.github.io/catalog/)
+
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: <kimberly.bastille@noaa.gov>
+]
+
+
+## Thank You!
