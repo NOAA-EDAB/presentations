@@ -1,0 +1,175 @@
+---
+title: "State of the Ecosystem <br /> Product and Workflow Development"
+subtitle: "Openscapes<br /> 15 October 2021"
+author: "Kim Bastille"
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
+---
+class: top, left
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+
+#General inline text input for report
+#Council
+council <- "Mid-Atlantic Fishery Management Council"
+council_abbr <- "MAFMC"
+#Region identifiers
+epu <- "Mid-Atlantic Bight"
+epu_abbr <- "MAB"
+region <- "Mid-Atlantic"
+region_abbr <- "MA" 
+
+#Time series constants
+shade.alpha <- 0.3
+shade.fill <- "lightgrey"
+lwd <- 1
+pcex <- 2
+trend.alpha <- 0.5
+trend.size <- 2
+hline.size <- 1
+hline.alpha <- 0.35
+hline.lty <- "dashed"
+label.size <- 5
+hjust.label <- 1.5
+letter_size <- 4
+feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
+x.shade.min <- 2010
+x.shade.max <- 2020
+```
+
+# Presentation Overview
+.pull-left[
+
+* What is the Product?
+</br>
+* What is the Workflow?
+</br>
+* Cool technique for propogating plots throughout workflow.
+
+]
+
+.pull-right[
+![:img SOE-logo, 80%](EDAB_images/SOE_logo.png)
+]
+
+.contrib[
+
+* https://noaa-edab.github.io/ecodata/macrofauna_MAB#Forage_Anomaly
+]
+
+---
+
+
+# What is the Product? 
+
+## State of the Ecosystem Reports
+.pull-left[
+* Annual reports that give ecosystem context to fisheries managers.
+* 2 councils, 3 Ecological Production Units
+* ~50 Indicator datasets, Over 60 data contributors
+* Evolving since 2016
+* Supporting products
+  * Technical Documentation 
+  * Response Memo
+  * Presentations, etc.
+  
+]
+
+.pull-right[
+![:img soe-map, 80%](EDAB_images/SOE_map.jpg)
+]
+
+---
+
+# What is the Workflow?
+
+## State of the Ecosystem workflow tree
+
+![:img soe-tree, 80%](EDAB_images/SOE_workflow_tree.png)
+---
+# ecodata
+
+.pull-left[
+![:img ecodata_logo, 80%](EDAB_images/ecodata_logo.png)
+]
+
+.pull-right[
+## ecodata package purpose
+
+* Data Processing
+* Data Sharing
+* Data Visualization
+
+### Data Processing
+* Rscipts that format contributor data
+
+### Data Sharing
+* Data saved in `data` folder
+* Can be lazyloaded with package
+  * mtcars
+]
+
+---
+## Data Visualization and Propagation
+
+Plots built in Visualization.Rmd 
+
+```{r, fig.asp = 0.55, fig.width=12, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-anomaly.R")}
+
+```
+
+.contrib[
+
+* https://noaa-edab.github.io/ecodata/macrofauna_MAB#Forage_Anomaly
+]
+
+---
+## Data Visualization and Propagation
+
+Rmd Code Chunks converted to Individual R scripts
+
+Rscripts stored on github
+
+![:img ecodata_snap, 80%](EDAB_images/ecodata_screen_shot.PNG)
+
+
+.contrib[
+
+* https://github.com/NOAA-EDAB/ecodata/blob/master/data-raw/code_chunks_to_scripts.R
+* https://github.com/NOAA-EDAB/ecodata/tree/master/chunk-scripts
+]
+
+---
+## Data Visualization and Propagation
+
+use `readLines` in Rmd
+
+![:img report_rmd, 80%](EDAB_images/report_RMD.PNG)
+![:img forage_anom, 80%](EDAB_images/forage_anomaly.png)
+---
