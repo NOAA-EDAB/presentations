@@ -1,0 +1,218 @@
+---
+title: "Integrated Ecosystem Assessment and <br />Ecological Forecasting: Let’s Do This"
+subtitle: "AFS 2021  <br />Ecological Forecasting: <br />Bridging fish, ecosystems, weather, water, climate and communities"
+author: "Sarah Gaichas, Vincent Saba, and Sean Lucey <br /> Ecosystem Dynamics and Assessment <br /> Northeast Fisheries Science Center"
+output:
+  xaringan::moon_reader:
+    chakra: libs/remark-latest.min.js
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      titleSlideClass: ["right", "middle", "my-title"]
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+
+#data.dir <- here::here("data")
+
+```
+
+# Talk outline:  
+* Integrated Ecosystem Assessment: what is it? (loop plus illustrative examples)
+* Where would ecological forecasts fit in the loop? (example--statistical bottom temp)
+* How do we get there?
+   * IEA: Work with managers to determine highest priority forecasts
+   * Research connecting physics-fishery outcomes through complex pathways (examples--BSB habitat forecasts based on multiple attributes)
+   * Climate Fisheries Initiative (regional modeling capability--very needed in NE US where global model skill is poor!)
+   
+---
+
+## Integrated Ecosystem Assessment: what is it?
+.pull-left[
+.center[
+![:img IEA process from goal setting to assessment to strategy evaluation with feedbacks, 105%](EDAB_images/iea-loop.png)
+]
+.footnote[
+https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+] 
+.pull-right[
+![MAFMC ecosystem indicator report leads to risk assessment, conceptual modeling, and MSE](EDAB_images/MAFMC-iea.png)
+]
+
+???
+Integrated ecosystem assessment (IEA) is a collaborative process between managers, scientists, and stakeholders that uses multiple analyses and decision support tools to provide scientific advice for ecosystem-based management. The process begins with the definition of goals and objectives for management, then identifies information and indicators associated with these goals and objectives. Assessment of indicators relative to historical baselines or management thresholds gives information on current performance--status and trends--relative to management objectives. Indicators can also be used within risk assessment frameworks to identify and mitigate risks to meeting objectives. Indicator based assessments and risk analyses can also inform simulation-based management strategy evaluations that characterize potential performance of alternative management actions and tradeoffs between objectives associated with those actions. We illustrate the use of IEA in fisheries management with examples from the Northeast US. 
+---
+
+## Where would ecological forecasts fit?
+
+???
+While ecological forecasts would be extremely useful in IEA, current applications mainly rely on historical indicator trends because few marine fisheries ecological forecasts exist. The most useful ecological forecasts for fisheries management may be among the most difficult to achieve: seasonal to decadal ecological forecasts of multiple system attributes in particular regions. 
+---
+
+## How do we get there?
+
+Example management applications of ecological forecasts in the remainder of the presentation
+???
+However, process-based research connecting biophysical variables to managed species physiology and population dynamics is in progress. Further, both statistical and dynamical forecasts of marine habitat are in development. A Climate Fisheries Initiative within NOAA aims to improve regional ocean modeling capabilities and develop interdisciplinary communities of practice--including managers--that will be essential to operational ecological forecasts. Finally, the iterative, collaborative IEA process itself provides opportunities to prioritize which ecological forecasts to develop.
+---
+
+background-image: url("EDAB_images/ClimateFisheriesCover.png")
+background-size: 550px
+background-position: right
+
+# Management needs 
+
+- Real world examples
+
+- Immediately useful
+
+    + Inseason management
+    
+    + Quota specification
+    
+    + Management strategy evaluation
+    
+    + Ecosystem based management
+    
+
+???
+
+---
+## Inseason forecasts: *Illex* squid fishery
+
+.pull-left[
+.center[
+![ROFFS image of warm core ring Apri 2019](EDAB_images/IllexHabitatApril2019.jpg)
+]
+]
+
+.pull-right[
+.center[
+![:img proposed use of seasonal forecast in managment for coastal pelagic by Tommasi et al 2017, 60%](EDAB_images/SSTforecastTommasi.png)
+]
+]
+
+.footnote[
+
+Manderson, J. 2020. Summary report Northern shortfin squid (*Illex illecebrosus*) population ecology and the fishery Summit, November 25-26, 2019 Wakefield, Rhode Island, available [here](https://www.dropbox.com/s/k3x0v53kyhaoj2a/DraftSummary_NorthernShortfinSquidPopulationEcologyAndTheFisherySummit_03242020.pdf?dl=0). 
+
+Tommasi, D., Stock, C.A., Pegion, K., Vecchi, G.A., Methot, R.D., Alexander, M.A., and Checkley, D.M. 2017. Improved management of small pelagic fisheries through seasonal climate prediction. Ecological Applications 27(2): 378–388. doi:10.1002/eap.1458.
+]
+
+
+
+???
+ 
+
+---
+## 1-3 year forecasts: yellowtail flounder climate-informed assessment
+
+.pull-left[
+![:img Mean near‐bottom temperatures for July in the Middle Atlantic Bight and southern Gulf of Maine (the data set and processing are described in section 3). Temperature time series station locations (circles); boundaries between four subregions of the MAB (separated by dashed lines): the southern flank of Georges Bank, the New England Shelf, the New York Bight, and the Southern Middle Atlantic Bight; and the 50, 75, 100, and 1000 m isobaths (thin black lines) are shown. Inset shows entire region of compiled temperature profiles with the region encompassing the Cold Pool highlighted in red.](EDAB_images/jgrc22105-fig-0001-m.jpg)
+
+]
+
+.pull-right[
+![:img WHAM model estimate of yellowtail flounder recruitment with no cold pool index, 50%](EDAB_images/SSB_Rec_m3.png)![:img now with CPI, 50%](EDAB_images/SSB_Rec_m4.png)
+
+.contrib[
+https://timjmiller.github.io/wham/articles/ex2_CPI_recruitment_SNEMA_yellowtail.html
+]
+]
+
+.footnote[
+Lentz, S.J. 2017. Seasonal warming of the Middle Atlantic Bight Cold Pool. Journal of Geophysical Research: Oceans 122(2): 941–954. doi:10.1002/2016JC012201.
+
+Miller, T.J., Hare, J.A., and Alade, L.A. 2016. A state-space approach to incorporating environmental effects on recruitment in an age-structured assessment model with an application to southern New England yellowtail flounder. Can. J. Fish. Aquat. Sci. 73(8): 1261–1270. doi:10.1139/cjfas-2015-0339.
+
+]
+
+???
+---
+## 1-3 year forecasts: yellowtail flounder climate-informed assessment
+
+.pull-left[
+![:img Comparisons of across-shelf temperature and salinity profiles between glider observation one particular autonomous underwater glider vehicles mission during 14–29 June 2006 and the correspondent model interpolated result. a-trajectory of the glider mission; Right four panels: Hovmöller diagrams of b-Glider Temperature c-Model Temperature d- Glider Salinity and e-Model Salinity profiles with depth in the y axis and time in the x axis, 100%](EDAB_images/ROMScp1.png)
+]
+
+.pull-right[
+![:img Same as Figure B1 but during 18–29 July 2007, with a zigzag trajectory of glider mission, starting from nearshore region off Rhode Island traveling across-shelf to the shelf-break region and then traveling down-shelf and shoreward to the 60 m isobath region south off Long Island Sound and finally seaward to the shelf break, 100%](EDAB_images/ROMScp2.png)
+
+]
+.footnote[
+Chen, Z., Curchitser, E., Chant, R., and Kang, D. 2018. Seasonal Variability of the Cold Pool Over the Mid-Atlantic Bight Continental Shelf. Journal of Geophysical Research: Oceans 123(11): 8203–8226. doi:10.1029/2018JC014148.
+]
+
+---
+## Forecasts and projections: management strategy evaluation
+
+.center[
+![:img COCA groundfish project overview from Lisa Kerr](EDAB_images/COCAgfishMSE2.png)
+]
+
+.footnote[
+Lisa A. Kerr, Sam Truesdell, Gavin Fay, Jonathan Cummings, Ashley Weston, Steven X. Cadrin, Sarah Gaichas, Min-Yang Lee, Anna Birkenbach, Andrew Pershing. Evaluating the Performance of Northeast Groundfish Fisheries Management in a Changing Climate (funded by NOAA COCA:NA17OAR4310272, 7/1/17-6/30/20)
+]
+---
+## Forecasts and projections: ecosystem based fishery management
+
+.pull-left[
+.center[
+![:img relating environment marine habitat and the marine community to human activities social systems and objectives, 100%](EDAB_images/nes-components-abstracted.png)
+]
+Bering Sea FEP Action Module 1: Evaluate short- and long-term effects of climate change on fish and fisheries, and develop management considerations
+]
+
+.pull-right[
+.center[
+![:img Bering Sea Fishery Ecosystem Plan cover, 80%](EDAB_images/BeringFEPcover.png)
+]
+]
+
+???
+Objectives: (1) coordinate to synthesize results of various ongoing and completed climate change research projects; (2) evaluate the scope of impacts on priority species identified in initial studies; and (3) strategically revaluate management strategies every 5-7 years; (4) include synthesis to evaluate climate-resilient management tools. The climate change Action Module team will work with the Council to iteratively identify and assess the performance of potential short-term, medium and long-term management actions for climate adaptation (i.e., derive alternative strategies for MSEs).
+---
+## Ecosystem status--improve with forecasts
+
+.pull-left[
+.center[
+![:img State of the Ecosystem page 1 summary bullets, 80%](EDAB_images/SOE-MAFMC-2021-plusgraphicsummary_Page_02.png)
+]
+]
+
+.pull-right[
+.center[
+![:img State of the Ecosystem page 2 infographic, 80%](EDAB_images/SOE-MAFMC-2021-plusgraphicsummary_Page_03.png)
+]
+]
+
+
+---
+class: inverse, bottom
+background-image: url("EDAB_images/IMG_2809.jpg")
+background-size: cover
+
+
+.pull-left[Slides: https://noaa-edab.github.io/presentations/]
+.pull-right[Contact:  <sarah.gaichas@noaa.gov>]
+
