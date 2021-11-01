@@ -4,7 +4,6 @@ subtitle: "AFS 2021  <br />Ecological Forecasting: <br />Bridging fish, ecosyste
 author: "Sarah Gaichas, Vincent Saba, and Sean Lucey <br /> Ecosystem Dynamics and Assessment <br /> Northeast Fisheries Science Center"
 output:
   xaringan::moon_reader:
-    chakra: libs/remark-latest.min.js
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
     lib_dir: libs
     nature:
@@ -22,9 +21,13 @@ class: top, left
 
 ```{r setup, include=FALSE}
 
+# add back to yaml after xaringan:moon-reader for local knitting
+#    chakra: libs/remark-latest.min.js
+
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = F,
                       fig.retina = 3,
+                      fig.asp = 0.45,
                       warning = F,
                       message = F)
 #Plotting and data libraries
@@ -36,13 +39,18 @@ library(here)
 
 ```
 
-# Talk outline:  
-* Integrated Ecosystem Assessment: what is it? (loop plus illustrative examples)
-* Where would ecological forecasts fit in the loop? (example--statistical bottom temp)
+## Talk outline:  
+* Integrated Ecosystem Assessment (IEA): what is it? 
+* Where would ecological forecasts fit? Management needs
 * How do we get there?
-   * IEA: Work with managers to determine highest priority forecasts
-   * Research connecting physics-fishery outcomes through complex pathways (examples--BSB habitat forecasts based on multiple attributes)
-   * Climate Fisheries Initiative (regional modeling capability--very needed in NE US where global model skill is poor!)
+   * Work with managers to determine highest priority forecasts (example--bottom temperature)
+   * Research connecting physics-fishery outcomes through complex pathways (example--habitat forecasts based on multiple attributes)
+   * Improve and integrate regional forecasting capability (example--[Climate Fisheries Initiative](https://www.fisheries.noaa.gov/topic/climate-change#noaa-climate-and-fisheries-initiative))
+   
+.center[
+![:img Climate Fisheries Initiative graphic, 70%](EDAB_images/CFI-Graphic-web-02_0.jpg)
+
+]
    
 ---
 
@@ -57,28 +65,22 @@ https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
 ] 
 .pull-right[
 ![MAFMC ecosystem indicator report leads to risk assessment, conceptual modeling, and MSE](EDAB_images/MAFMC-iea.png)
+.footnote[
+https://www.mafmc.org/eafm https://www.mafmc.org/actions/summer-flounder-mse
+]
 ]
 
 ???
-Integrated ecosystem assessment (IEA) is a collaborative process between managers, scientists, and stakeholders that uses multiple analyses and decision support tools to provide scientific advice for ecosystem-based management. The process begins with the definition of goals and objectives for management, then identifies information and indicators associated with these goals and objectives. Assessment of indicators relative to historical baselines or management thresholds gives information on current performance--status and trends--relative to management objectives. Indicators can also be used within risk assessment frameworks to identify and mitigate risks to meeting objectives. Indicator based assessments and risk analyses can also inform simulation-based management strategy evaluations that characterize potential performance of alternative management actions and tradeoffs between objectives associated with those actions. We illustrate the use of IEA in fisheries management with examples from the Northeast US. 
----
+Integrated ecosystem assessment (IEA) is a collaborative process between managers, scientists, and stakeholders that uses multiple analyses and decision support tools to provide scientific advice for ecosystem-based management. The process begins with the definition of goals and objectives for management, then identifies information and indicators associated with these goals and objectives. Assessment of indicators relative to historical baselines or management thresholds gives information on current performance--status and trends--relative to management objectives. Indicators can also be used within risk assessment frameworks to identify and mitigate risks to meeting objectives. Indicator based assessments and risk analyses can also inform simulation-based management strategy evaluations that characterize potential performance of alternative management actions and tradeoffs between objectives associated with those actions. We illustrate the use of IEA in fisheries management with examples from the Northeast US.
 
-## Where would ecological forecasts fit?
 
-???
-While ecological forecasts would be extremely useful in IEA, current applications mainly rely on historical indicator trends because few marine fisheries ecological forecasts exist. The most useful ecological forecasts for fisheries management may be among the most difficult to achieve: seasonal to decadal ecological forecasts of multiple system attributes in particular regions. 
----
-
-## How do we get there?
-
-Example management applications of ecological forecasts in the remainder of the presentation
-???
-However, process-based research connecting biophysical variables to managed species physiology and population dynamics is in progress. Further, both statistical and dynamical forecasts of marine habitat are in development. A Climate Fisheries Initiative within NOAA aims to improve regional ocean modeling capabilities and develop interdisciplinary communities of practice--including managers--that will be essential to operational ecological forecasts. Finally, the iterative, collaborative IEA process itself provides opportunities to prioritize which ecological forecasts to develop.
 ---
 
 background-image: url("EDAB_images/ClimateFisheriesCover.png")
 background-size: 550px
 background-position: right
+
+## Where would ecological forecasts fit? 
 
 # Management needs 
 
@@ -96,9 +98,11 @@ background-position: right
     
 
 ???
+???
+While ecological forecasts would be extremely useful in IEA, current applications mainly rely on historical indicator trends because few marine fisheries ecological forecasts exist. The most useful ecological forecasts for fisheries management may be among the most difficult to achieve: seasonal to decadal ecological forecasts of multiple system attributes in particular regions. 
 
 ---
-## Inseason forecasts: *Illex* squid fishery
+## Subannual ecological forecasts: *Illex* squid fishery
 
 .pull-left[
 .center[
@@ -148,6 +152,13 @@ Miller, T.J., Hare, J.A., and Alade, L.A. 2016. A state-space approach to incorp
 ]
 
 ???
+note:
+1. the improved fits from including the cold pool index in the stock-recruit function
+2. the increased uncertainty in projections as we no longer have cold pool index observations
+If we had good projections of the inputs to the cold pool index from a regional ocean model, WHAM could incorporate this modeled cold pool index into projections, addressing one of the issues for fishery management (fitting to an index in the past is great, but how do we project?).
+
+Brian Stock: "the lag between CPI and recruitment means the CPI doesn't need to be projected as far as you'd think at first. In this case you could use 3-4 month projected CPI to project 2 years of recruitment. The CPI uses Sept-Oct bottom temp data from the fall trawl survey, and the assessment is done ~Sept. Since the 2019 assessment uses fish data thru 2018, to use a projected 2019 CPI you'd only need to forecast Sept-Oct temps from ~July. And the 1st year of projected recruitment (2019) would use an observed CPI (fall 2018), don't even need a projection."
+
 ---
 ## 1-3 year forecasts: yellowtail flounder climate-informed assessment
 
@@ -162,6 +173,9 @@ Miller, T.J., Hare, J.A., and Alade, L.A. 2016. A state-space approach to incorp
 .footnote[
 Chen, Z., Curchitser, E., Chant, R., and Kang, D. 2018. Seasonal Variability of the Cold Pool Over the Mid-Atlantic Bight Continental Shelf. Journal of Geophysical Research: Oceans 123(11): 8203–8226. doi:10.1029/2018JC014148.
 ]
+
+???
+One regional ocean model compared with observations from a glider demonstrates that regional ocean modeling capability exists, and the point of the new NOAA Climate and Fisheries Initiative would be to bring such capability together with assessments using tools like WHAM
 
 ---
 ## Forecasts and projections: management strategy evaluation
@@ -206,6 +220,71 @@ Objectives: (1) coordinate to synthesize results of various ongoing and complete
 ]
 ]
 
+---
+## How do we get there? 1. Integrate data sources
+
+.pull-left[
+![:img , 48%](EDAB_images/Nazzaro2021habdat.png)![:img , 50%](EDAB_images/Nazzaro2021habgams.png)
+
+Black sea bass thermal habitat:
+Spring (left column) and Fall (right column) 
+*  NEFSC trawl survey (top)
+*  Fishery observers (center)
+*  Lab experiments (bottom)
+]
+.pull-right[
+![:img , 98%](EDAB_images/Nazzaro2021habproj.png)
+]
+.footnote[
+Nazzaro, L., E. Slesinger, J. Kohut, G. K. Saba, and V. S. Saba. 2021. Sensitivity of marine fish thermal habitat models to fishery data sources. Ecology and Evolution 11(19):13001–13013.
+]
+
+???
+Process-based research connecting biophysical variables to managed species physiology and population dynamics is in progress. 
+---
+## How do we get there? 2. Evaluate skill
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
+```
+
+.pull-left[
+*Observed bottom temperature*
+```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.width=5}
+
+```
+
+![:img Chen et al 2021 Fig 1a Northeast Shelf regions, 80%](EDAB_images/Chenetal21_NESregions.png)
+]
+.pull-right[
+*Bottom temperature forecast skill*
+![:img Chen et al 2021 Fig 5abde prediction skill for each month up to 12 months out in MAB, 80%](EDAB_images/Chenetal21_BTApersistadvectskill.png)
+]
+
+.footnote[
+Chen, Z., Y.-O. Kwon, K. Chen, P. Fratantoni, G. Gawarkiewicz, T. M. Joyce, T. J. Miller, J. A. Nye, V. S. Saba, and B. C. Stock. 2021. Seasonal Prediction of Bottom Temperature on the Northeast U.S. Continental Shelf. Journal of Geophysical Research: Oceans 126(5):e2021JC017187.
+]
+
+???
+Further, both statistical and dynamical forecasts of marine habitat are in development.
+---
+## How do we get there? 3. Collaborate and iterate together
+
+.pull-left-40[
+![](EDAB_images/ScenPlanningOptions.png)
+
+]
+.pull-right-60[
+![](EDAB_images/ScenPlanningOrgs.png)
+![](EDAB_images/ScenPlanningWho.png)
+![](EDAB_images/CFI-Graphic-web-02_0.jpg)
+]
+
+.footnote[
+https://www.mafmc.org/climate-change-scenario-planning
+]
+
+???
+A Climate Fisheries Initiative within NOAA aims to improve regional ocean modeling capabilities and develop interdisciplinary communities of practice--including managers--that will be essential to operational ecological forecasts. Finally, the iterative, collaborative IEA process itself provides opportunities to prioritize which ecological forecasts to develop.
 
 ---
 class: inverse, bottom
