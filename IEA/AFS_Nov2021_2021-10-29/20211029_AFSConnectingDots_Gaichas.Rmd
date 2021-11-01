@@ -1,5 +1,5 @@
 ---
-title: "Climate news you can use: <br />risk assessment and ecosystem reporting in the US Mid-Atlantic"
+title: "Climate news you can use: <br />risk assessment and ecosystem reporting <br />in the US Mid-Atlantic"
 subtitle: "AFS 2021<br /> Connecting the dots, management approaches for climate-ready fisheries"
 author: "Sarah Gaichas, Brandon Muffley, and Geret DePiper<br /> Northeast Fisheries Science Center and Mid-Atlantic Fishery Management Council"
 output:
@@ -77,30 +77,81 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
 ```
 
-# Talk outline:
+## Talk outline:
 
 
-* Much information on climate presented to the Council, always appreciated and well received, but how best to use it?
-* MAFMC strategic plan specifically mentions “implement EAFM” and “development of ecosystem approaches that are responsive to the effects of climate change”
-* EAFM process: integrates climate with other Council concerns and priorities
+* Background on the Mid-Atlantic Fishery Management Council (MAFMC) 
+* MAFMC [strategic plan](https://www.mafmc.org/strategic-plan) prioritizes “development of ecosystem approaches that are responsive to the effects of climate change”
+* MAFMC's [Ecosystem Approach to Fishery Management](https://www.mafmc.org/eafm) (EAFM) process integrates climate with other Council concerns and priorities
+* [Ecosystem reporting](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf): one stop shopping for current conditions and recent research, presented annually and used to update risk assessment--evolving to better meet Council needs. 
+* Current/future: [East coast climate scenario planning](https://www.mafmc.org/climate-change-scenario-planning), [NOAA Climate Fisheries Initiative](https://www.fisheries.noaa.gov/topic/climate-change#noaa-climate-and-fisheries-initiative) for forecasts
+* Success hinges on collaboration, stakeholder engagement throughout, learning by doing
+
+???
+EAFM approach
    * Climate in risk assessment--uses NCVA, distribution shifts separate element
    * Climate in conceptual model--links across risk elements for individual species
    * Climate in MSE? Indirect, but not off the table (unlike “traditional” MSE)
-* Ecosystem reporting: one stop shopping for current conditions and recent research, presented annually and used to update risk assessment--evolving to better meet Council needs. 
+Ecosystem reporting
    * Climate a central theme in 2021 in response to Council request
    * More effort to connect climate attributes with species outcomes to refine risk assessment
    * Habitat climate vulnerability introduced with links to species
    * All will be used to further refine the risk assessment
    * Currently working on how to use in SSC decisions like OFL CV → ABC
-* Current/fiuture: climate scenario planning (add Kiley?), CFI for forecasts (see other talk)
-* Success hinges on collaboration, stakeholder engagement throughout, learning by doing
+
+
+---
+## The Mid-Atlantic Fishery Management Council (MAFMC)
+
+.pull-left-30[
+![:img US East Coast map highlighting Mid-Atlantic council jurisdiction, 95%](EDAB_images/MACouncil.png)
+]
+.pull-right-70[
+![:img MAFMC fishery management plans and species, 95%](EDAB_images/MAFMPs3.png)
+]
+
+---
+## How did MAFMC develop their ecosystem approach?
+
+Visioning Project &rarr; [Strategic Plan](https://www.mafmc.org/strategic-plan) that developed the 2016 Ecosystem Approach to Fishery Management (EAFM) Policy Guidance document:
+http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf
+>"A non-regulatory umbrella document intended to guide Council policy with respect to ecosystem considerations across existing Fishery Management Plans"
+
+.center[
+![:img Mid-Atlantic EAFM development with full details in speaker notes, 60%](EDAB_images/MAapproach.png)
+]
+
+Details, including workshop presentations and white papers: http://www.mafmc.org/eafm
+
+???
+The Mid-Atlantic Council identified several theme areas from the visioning project as noted in the left panel of the workflow graphic: forage fish, species interactions, social and economic issues, climate and habitat. The Council held full day workshops during Council meetings where experts on the topics provided overviews and Council members asked questions and discussed the issues. Workships on Forage fish, Climate, Climate and Governance, Interactions (species and fleet), and Habitat were held between 2013 and 2015, resulting in white papers on Forage fish, Climate (and habitat), Interactions (species, fleet, climate, and habitat). Social and economic considerations were integrated in each workshop rather than looked at separately.
+---
+## Integrated Ecosystem Assessment and the MAFMC Ecosystem Approach
+
+.pull-left[
+![:img IEA process from goal setting to assessment to strategy evaluation with feedbacks, 110%](EDAB_images/iea-loop.png)
+.footnote[
+https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+]
+.pull-right[
+![:img Mid-Atlantic EAFM framework with full details in speaker notes, 90%](EDAB_images/Framework.png)
+   * Direct link between ecosystem reporting and risk assessment
+   * Climate in risk assessment from species and habitat perspective
+   * Climate in conceptual model linking across risk elements for individual species
+.footnote[
+https://www.mafmc.org/eafm
+]
+]
+???
+The Council’s EAFM framework has similarities to the IEA loop. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
 
 ---
 
 # State of the Ecosystem (SOE) reporting
 ## Improving ecosystem information and synthesis for fishery managers
 
-.pull-left[
+.pull-left-70[
 
 - Ecosystem indicators linked to management objectives `r Cite(myBib, "depiper_operationalizing_2017")`
     + Contextual information
@@ -117,94 +168,16 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
  
 ]
 
-.pull-right[
-*The IEA Loop<sup>1</sup>*
-![IEA process from goal setting to assessment to strategy evaluation with feedbacks](EDAB_images/iea-loop.png)
+.pull-right-30[
+![:img , 80%](EDAB_images/SOE-MAFMC-2021-plusgraphicsummary_Page_01.png)
 
 
-.footnote[
-[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
-]
+
 ]
 ???
 
 ---
-## Mid-Atlantic Council Ecosystem Approach
-
-* 2016 Ecosystem Approach to Fishery Management (EAFM) Policy Guidance document:
-http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf
-
-* Mid-Atlantic EAFM framework:
-.center[
-![:img Mid-Atlantic EAFM framework with full details in speaker notes, 60%](EDAB_images/Framework.png)
-]
-
-
-???
-The Council’s EAFM framework has similarities to the IEA loop on slide 2. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
-
----
-## State of the Ecosystem: Updated structure
-.pull-left[
-
-## 2020 Report
-1. Summary 2 pager
-1. Human dimensions
-1. Protected species
-1. Fish and invertebrates (managed and otherwise)
-1. Habitat quality and ecosystem productivity
-
-## 2021 Report
-1. Graphical summary
-    + Page 1 report card re: objectives &rarr;
-    + Page 2 risk summary bullets
-    + Page 3 synthesis themes
-1. Performance relative to management objectives
-1. Risks to meeting management objectives
-
-]
-
-.pull-right[
-
-```{r management-objectives}
-mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
-                                                 "Profits","Recreation",
-                                                 "Stability","Social & Cultural",
-                                                 "Protected Species",
-                                                 "Biomass","Productivity",
-                                                 "Trophic structure","Habitat"),
-"Indicators reported here" = c("Landings; commercial total and by feeding guild; recreational harvest",
-                               "Revenue decomposed to price and volume",
-                               "Days fished; recreational fleet diversity",
-                               "Diversity indices (fishery and ecosystem)",
-                               "Community engagement/reliance status",
-                               "Bycatch; population (adult and juvenile) numbers, mortalities",
-                               "Biomass or abundance by feeding guild from surveys",
-                               "Condition and recruitment of managed species, Primary productivity",
-                               "Relative biomass of feeding guilds, Zooplankton",
-                               "Estuarine and offshore habitat conditions"))
-
-knitr::kable(mng_obj, linesep = "",
-      col.names = c("Objective Categories","Indicators reported here"),
-      caption = "Ecosystem-scale fishery management objectives",
-      #align = 'c',
-      booktabs = T) %>%
-  kable_styling(font_size = 14) %>%
- # kable_styling(latex_options = "hold_position", "scale_down") %>%
- # column_spec(c(2), width = c("25em")) %>%
-  row_spec(0, bold = TRUE) %>%
- # group_rows("Provisioning/Cultural", 1,4) %>%
- # group_rows("Supporting/Regulating", 5,9)
-  pack_rows("Provisioning and Cultural Services", 1,6) %>%
-  pack_rows("Supporting and Regulating Services", 7,10)
-
-
-```
-]
-
-
----
-## State of the Ecosystem summary
+## State of the Ecosystem summary emphasizing climate risk
 
 .pull-left[
 .center[
@@ -216,24 +189,6 @@ knitr::kable(mng_obj, linesep = "",
 .center[
 ![:img State of the Ecosystem page 2 risk bullets, 90%](EDAB_images/SOE-MAFMC-2021-plusgraphicsummary_Page_03.png)
 ]
-]
-
----
-## Ecosystem synthesis themes
-
-Characterizing ecosystem change for fishery management
-
-* Societal, biological, physical and chemical factors comprise the **multiple system drivers** that influence marine ecosystems through a variety of different pathways. 
-* Changes in the multiple drivers can lead to **regime shifts** — large, abrupt and persistent changes in the structure and function of an ecosystem.  
-* Regime shifts and changes in how the multiple system drivers interact can result in **ecosystem reorganization** as species and humans respond and adapt to the new environment.
-
-.pull-left[
-
-![:img](EDAB_images/SystemDrivers_v5.jpg)
-]
-
-.pull-right[
-![:img](EDAB_images/RegimeShift_V5.jpg)
 ]
 
 
@@ -281,136 +236,18 @@ Ranked moderate-high risk due to the significant long term revenue decrease for 
 ```
 
 Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of MAFMC managed species</p>
-
 ]
 
 --
 
-## Risk element: <span style="background-color:orange;">CommRev</span>, unchanged
+## Risk element: <span style="background-color:orange;">CommRev</span>, unchanged  
 
-
----
-# Performance relative to management objectives
-
-.center[
-![:img Fishing icon made by EDAB, 15%](EDAB_images/5_FISHING.png) &nbsp; &nbsp; &nbsp; ![:img Fishing industry icon made by EDAB, 15%](EDAB_images/6_INDUSTRY.png) &nbsp; &nbsp; &nbsp; ![:img Multiple drivers icon made by EDAB, 25%](EDAB_images/18.MULTIPLE_SYSTEM_DRIVERS.png) &nbsp; &nbsp; &nbsp; ![:img Spiritual cultural icon made by EDAB, 15%](EDAB_images/22.SPIRITUAL_CULTURAL.png) &nbsp; &nbsp; &nbsp; ![:img Protected species icon made by EDAB, 15%](EDAB_images/16.PROTECTEDSPECIES.png)
-]
-
----
-## Objective: Seafood production ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png) &emsp; Risk elements: <span style="background-color:red;">ComFood</span> and <span style="background-color:orange;">RecFood</span>, unchanged
-
-.pull-left[
-Indicators: Commercial and recreational landings 
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.4}
-#total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
-```
-.contrib[
-Key: Black = Landings of all species combined; <p style="color:#FF6A6A;">Red = Landings of MAFMC managed species</p>
-]
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"), fig.asp=.4}
-#, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
-
-```
-
-]
-
-.pull-right[
-Multiple drivers: ecosystem and stock production, management, market conditions, and environment
-
-Is biomass driving?
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
-
-#nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean."
-```
-
-.contrib[
-Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
-]
-]
-
----
-## Landings drivers: Ecosystem or stock production? &emsp; Risk elements: Fstatus, Bstatus mostly unchanged
-.pull-left[
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
-
-#fogarty, fig.cap="Fogarty Index; the ratio of total landings to total primary production in the MAB. Link and Watson (2019) give an optimal range (green shading) of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that index values exceeding 1 to 2 PPT (orange shading) led to ecosystem tipping points."
-
-```
-
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
-
-#ryther, fig.cap="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green shading) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange shading). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded)."
-```
-
-.contrib[
-Key: 
-<span style="background-color:#f4a460;">Orange background = Tipping point overfishing threshold, Link and Watson 2019</span> 
-<span style="background-color:#a2cd5a;">Green background = Optimal range, Link and Watson 2019</span>
-]
-
-]
-
-.pull-right[
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R")}
-
-#ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels. PPD is total primary production. The solid line is based on satellite-derived PPD and the dashed line is based on primary production reconstructed using the mean of satellite-derived PPD from 1998-2010."
-```
-
-One change: <span style="background-color:yellow;">Butterfish Bstatus</span>
-
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
-
-#stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing).")
-```
-
-]
-
----
-## Implications: Seafood Production
-.pull-left[
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.width=5, fig.asp=1.35}
-# comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."),
-```
-
-.contrib[
-Key: Black = Landings of all species combined; <p style="color:#FF6A6A;">Red = Landings of MAFMC managed species</p>
-]
-]
-
-.pull-right[
-Drivers:
-* market dynamics affecting commercial landings of surfclams and ocean quahogs  
-
-* other drivers affecting recreational landings: shark fishery management, possibly survey methodology  
-
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5}
-#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
-
-```
-Monitor: 
-* climate risks including warming, ocean acidification, and shifting distributions  
-* ecosystem composition and production changes  
-* fishing engagement  
-
-]
-
-
-???
-Because ecosystem overfishing seems unlikely, stock status is mostly acceptable, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species.
-
-Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
+SOE Implications: Recent change driven by benthos. Monitor changes in climate and landings drivers:  
+-  Climate risk element: <span style="background-color:orange;">Surfclams</span> and <span style="background-color:red;">ocean quahogs</span> are sensitive to ocean warming and acidification.   
+-  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth
 
 
 
-]
 ---
 # Risks to meeting fishery management objectives
 
@@ -424,39 +261,194 @@ Climate change also seems to be shifting the distribution of surfclams and ocean
 
 
 ---
-background-image: url("EDAB_images/SurveyMap202133.png")
+background-image: url("EDAB_images/SST2020seasonalmaps.png")
 background-size: 700px
-background-position: right
+background-position: right top
 
-## Risks: Offshore Wind Development &emsp; Element: OceanUse
+## Risks: Climate change, multiple elements
 .pull-left[
-Indicators: development timeline, revenue in lease areas, survey overlap ([full map](https://noaa-edab.github.io/ecodata/human_dimensions_MAB#Shelfwide_Indicators))
-![:img Rate and extend of offshore wind devevelopment by project end year, 90%](EDAB_images/wind-figure-1yaxis.png)
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-revenue.R"), fig.height=3}
+Indicators: ocean currents, bottom and surface temperature, marine heatwaves
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.width=4}
 ```
+
+
+```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.width=4}
+
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R")}
+```
+]
+
+.pull-right[
+
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
+#heatwave-year, fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2020."
+```
+
+]
+???
+A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
+
+---
+## Implications: Climate change and managed species &emsp; Risk elements unchanged, new info:
+.pull-left[
+Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk
+
+*Multiple drivers with different impacts by species*    
+* Chesapeake Bay warm winter, low freshwater flow  
+    - Striped bass poor recruitment observed  
+        - plankton prey too early?  
+        - poor plankton transport?  
+    - Blue crab better survival over winter  
+    
+* Ocean acidification impact on shellfish growth  
+    - Surfclams vulnerable to increased temperature and acidification  
+    - Areas of low pH identified in surfclam and scallop habitat  
+    - Lab work in progress identified pH thresholds for surfclam growth: *approaching threshold*   
+
 
 ]
 
 .pull-right[
+DistShift: 2 <span style="background-color:lightgreen;">low</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species
+
+Shifting species distributions alter both species interactions, fishery interactions, and expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
+.center[
+![:img black sea bass survey distribution change over time from 2018 SOE, 65%](EDAB_images/black_sea_bass_kde.png)
+]
 ]
 
 ---
-background-image: url("EDAB_images/MidAtlantic_2021128-01.jpg")
-background-size: 500px
-background-position: right
+## Risks: Habitat climate vulnerability &emsp; New, opportunity to refine habitat risks
 
-## Risks: Offshore Wind Development &emsp; Element: OceanUse
-.pull-left[
-Implications: 
-* Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region  
+Indicators: climate sensitive species life stages mapped to climate vulnerable habitats  
 
-* 2-24% of total average revenue for major Mid-Atlantic commercial species in lease areas could be displaced if all sites are developed. Displaced fishing effort can alter fishing methods, which can in turn change habitat, species (managed and protected), and fleet interactions. 
+*See EAFM risk assessment for example species narratives*  
+```{r midHabTable, message=FALSE}
+#Read in Mid-Atlantic table
 
-* Right whales may be displaced, and altered local oceanography could affect distribution of their zooplankton prey.
+src <- "https://github.com/NOAA-EDAB/ecodata/raw/master/data-raw/habitat_vulnerability.xlsx"
+lcl <- basename(src)
+download.file(url = src, destfile = lcl, quiet=TRUE)
 
-* Scientific data collection surveys for ocean and ecosystem conditions, fish, and protected species will be altered, potentially increasing uncertainty for management decision making. 
-]
-.pull-right[]
+mid <- as.data.table(readxl::read_xlsx(here('habitat_vulnerability.xlsx'),
+                         sheet = 'Mid-Atlantic', skip = 1))
+
+if (file.exists(lcl)) {
+  #Delete file if it exists
+  invisible(file.remove(lcl))
+}
+
+#Identify individual species climate vulnerability
+vhigh.vul <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Very high', Species])
+high.vul  <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'High', Species])
+mod.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Moderate', Species])
+low.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Low', Species])
+
+#Grab habitat vulnerability 
+hab.vul <- unique(mid[, c('Habitat Name', 'Habitat Vulnerability Rank (HVCA)')])
+habitats <- hab.vul[, 'Habitat Name']
+hab.vul <- data.table('Habitat Vulnerability' = c(NA, NA, t(hab.vul[, 'Habitat Vulnerability Rank (HVCA)'])))
+
+#Rearrange table
+mid <- data.table::melt.data.table(mid, id.vars = c('Habitat Name', 'Species'),
+                                   measure.vars = c('Eggs/Larva', 'Juvenile/YOY',
+                                                    'Adult', 'Spawning Adult'),
+                                   variable.name = 'Stage', value.name = 'Dependence')
+mid[, Habitat := as.factor(mid$'Habitat Name')]
+mid <- data.table::dcast.data.table(mid, Species + Stage ~ Habitat,
+                                    value.var = 'Dependence')
+setcolorder(mid, c('Species', 'Stage', habitats$'Habitat Name'))
+
+#Add Habitat Vulnerability
+#hab.table <- rbindlist(list(as.data.table(t(hab.vul)), mid), use.names = F)
+hab.table <- mid
+#Add names back in
+names(hab.table) <- names(mid)
+hab.table <- hab.table %>% mutate_if(is.character, str_trim)
+
+#from examples here https://rstudio.github.io/DT/010-style.html
+
+#color coding cells works
+#need to add column with species vulnerability and color code species by it but not show it, like #hideV6 example at link
+#if we show it we can sort by species vulnerability though... alphabetical doesnt work so use numbers to go lowest-highest
+#still need to color code headers
+hab.table <- hab.table %>%
+  mutate(spVul = #Color code species based on climate vul
+    # case_when(Species %in% low.vul ~ "low.vul",
+    #           Species %in% mod.vul ~ "mod.vul",
+    #           Species %in% high.vul ~ "high.vul",
+    #           Species %in% vhigh.vul ~ "vhigh.vul")
+    # )
+    case_when(Species %in% low.vul ~ 1,
+              Species %in% mod.vul ~ 2,
+              Species %in% high.vul ~ 3,
+              Species %in% vhigh.vul ~ 4)
+    )
+
+colnames(hab.table)[c(3:4)] <- paste0('<span style="box-shadow: -10px 0 0 red, 10px 0 0 red; background-color:red; color:white">',colnames(hab.table)[c(3:4)],'</span>')
+colnames(hab.table)[c(5:10)] <- paste0('<span style="box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:',c("orange"),'">',colnames(hab.table)[c(5:10)],'</span>')
+colnames(hab.table)[c(11:15)] <- paste0('<span style="box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:',c("yellow"),'">',colnames(hab.table)[c(11:15)],'</span>')
+
+dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
+          extensions = c('Scroller', 'FixedColumns'), #add scrolling and fixed column
+          options = list(deferRender = TRUE,
+          scrollY = 300, scroller = TRUE,
+          dom = 't',scrollX = TRUE,fixedColumns = TRUE)
+          #, options = list(columnDefs = list(list(targets = 16, visible = FALSE)))
+  ) %>% 
+  formatStyle(
+    names(hab.table)[3:4],
+    backgroundColor = '#FF000080'
+  ) %>%
+  formatStyle(
+    names(hab.table)[5:10],
+    backgroundColor = '#FFA50080'
+  ) %>%
+  formatStyle(
+    names(hab.table)[11:15],
+    backgroundColor = '#FFFF0080'
+  ) %>%
+
+  formatStyle(#Color code base on dependence
+    'Species', "spVul",
+    backgroundColor = styleEqual(#c("low.vul", "mod.vul", "high.vul", "vhigh.vul"),
+                                 c(1,2,3,4),
+                                 c('lightgreen', 'yellow', 'orange', 'red')), #Color code base on dependence)
+    color = styleEqual(c(1,2,3,4),
+                                 c('black', 'black', 'black', 'white'))
+    ) %>%
+    formatStyle(
+    names(hab.table),
+    backgroundColor = styleEqual(c("Low", "Moderate", "High", "Very high"), 
+                                 c('lightgreen', 'yellow', 'orange', 'red')), 
+    color = styleEqual(c("Low", "Moderate", "High", "Very high"), 
+                                 c('black', 'black', 'black', 'white'))
+  )
+
+frameWidget(dt)
+```
+
 
 ---
 ## EAFM Risk Assessment: 2021 Update
@@ -592,6 +584,79 @@ Potential new indicators from new SOE sections on climate risk, habitat vulnerab
 Habitat vulnerability analysis writeups--comments?
 
 ---
+## How is MAFMC using the risk assessment? What's next?
+.pull-left[
+* Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
+
+![:img Mid-Atlantic EAFM framework, 95%](EDAB_images/Framework.png)
+]
+.pull-right[
+* Working group of habitat, biology, stock assessment, management, economic and social scientists developed:
+
+  * draft conceptual models of high risk elements, linkages
+  * dataset identification and gap analysis for each element and link
+  * draft questions that the Council could persue with additional work
+ 
+* Final conceptual model and supporting information at December 2019 Council meeting
+] 
+
+* Council proceeding with management strategy evaluation (MSE) using the information from conceptual modeling as a basis. Topic: addressing recreational fishery discards with EAFM
+
+
+---
+```{r sfconceptmod, echo = F, fig.align = "center"}
+# setup for conceptual model
+PKG <- c(#"foreign","foodweb","sna", "DiagrammeR","circlize", "kableExtra", "googledrive", "readxl"
+         "RColorBrewer","QPress",
+         "chorddiag",
+         "widgetframe")
+
+for (p in PKG) {
+  if(!require(p,character.only = TRUE)) {
+    install.packages(p)
+    require(p,character.only = TRUE)}
+}
+
+data.dir <- here::here("data")
+
+#assumes this is a project and .dia file is in data directory
+edges <- model.dia(file.path(data.dir, "Summer_Flounder_July22_2019.dia"))
+
+source("R/interactive_chord_sfconsmod.R")
+
+conmod <- interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
+
+frameWidget(conmod)
+
+```
+???
+In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
+
+---
+## Current and Future: East Coast Climate Scenario Planning, CFI
+
+.pull-left-40[
+![](EDAB_images/ScenPlanningOptions.png)
+
+]
+.pull-right-60[
+![](EDAB_images/ScenPlanningOrgs.png)
+![](EDAB_images/ScenPlanningWho.png)
+![](EDAB_images/CFI-Graphic-web-02_0.jpg)
+]
+
+.footnote[
+https://www.mafmc.org/climate-change-scenario-planning
+]
+
+???
+A Climate Fisheries Initiative within NOAA aims to improve regional ocean modeling capabilities and develop interdisciplinary communities of practice--including managers--that will be essential to operational ecological forecasts. Finally, the iterative, collaborative IEA process itself provides opportunities to prioritize which ecological forecasts to develop.
+
+---
+# Collaboration is key!
+
+
+---
 background-image: url("EDAB_images/noaa-iea.png")
 background-size: 350px
 background-position: right bottom
@@ -698,178 +763,4 @@ PrintBibliography(myBib)
 ]
 ]
 
----
-## Document Orientation
-
-.pull-left[
-Spatial scale
-![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 80%](EDAB_images/EPU_Designations_Map.jpg)
-
-A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html) (Memo 5), detailed [technical methods documentation](https://NOAA-EDAB.github.io/tech-doc) and [indicator data](https://github.com/NOAA-EDAB/ecodata) are available online.  
-]
-
-.pull-right[
-Key to figures
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.width=5.5, fig.asp=.9}
-#species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
-```  
-
-.contrib[
-Trends assessed only for 30+ years: [more information](https://noaa-edab.github.io/tech-doc/trend-analysis.html)
-
-<p style="color:#FF8C00;">Orange line = significant increase</p>
-<p style="color:#9932CC;">Purple line = significant decrease</p>
-No color line = not significant or < 30 years
-<p style="background-color:#D3D3D3;">Grey background = last 10 years</p>
-]
-]
-
-
-
----
-## Revised structure to address Council requests and improve synthesis 
-
-.pull-left[
-* Performance relative to management objectives
-    - *What* does the indicator say--up, down, stable?
-    - *Why* do we think it is changing: integrates synthesis themes
-        - Multiple drivers
-        - Regime shifts
-        - Ecosystem reorganization
-* Objectives
-    - Seafood production
-    - Profits
-    - Recreational opportunities
-    - Stability
-    - Social and cultural
-    - Protected species
-]
-
-.pull-right[
-* Risks to meeting fishery management objectives
-    - *What* does the indicator say--up, down, stable?
-    - *Why* this is important to managers: integrates synthesis themes
-        - Multiple drivers
-        - Regime shifts
-        - Ecosystem reorganization
-* Risk categories
-    - Climate: warming, ocean currents, acidification
-        - Habitat changes (incl. vulnerability analysis)
-        - Productivity changes (system and fish)
-        - Species interaction changes
-        - Community structure changes
-    - Other ocean uses
-        - Offshore wind development
-]
-
----
-## Risks: Habitat climate vulnerability &emsp; New, opportunity to refine habitat risks
-
-Indicators: climate sensitive species life stages mapped to climate vulnerable habitats  
-
-*See EAFM risk assessment for example species narratives*  
-```{r midHabTable, message=FALSE}
-#Read in Mid-Atlantic table
-
-src <- "https://github.com/NOAA-EDAB/ecodata/raw/master/data-raw/habitat_vulnerability.xlsx"
-lcl <- basename(src)
-download.file(url = src, destfile = lcl, quiet=TRUE)
-
-mid <- as.data.table(readxl::read_xlsx(here('habitat_vulnerability.xlsx'),
-                         sheet = 'Mid-Atlantic', skip = 1))
-
-if (file.exists(lcl)) {
-  #Delete file if it exists
-  invisible(file.remove(lcl))
-}
-
-#Identify individual species climate vulnerability
-vhigh.vul <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Very high', Species])
-high.vul  <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'High', Species])
-mod.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Moderate', Species])
-low.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Low', Species])
-
-#Grab habitat vulnerability 
-hab.vul <- unique(mid[, c('Habitat Name', 'Habitat Vulnerability Rank (HVCA)')])
-habitats <- hab.vul[, 'Habitat Name']
-hab.vul <- data.table('Habitat Vulnerability' = c(NA, NA, t(hab.vul[, 'Habitat Vulnerability Rank (HVCA)'])))
-
-#Rearrange table
-mid <- data.table::melt.data.table(mid, id.vars = c('Habitat Name', 'Species'),
-                                   measure.vars = c('Eggs/Larva', 'Juvenile/YOY',
-                                                    'Adult', 'Spawning Adult'),
-                                   variable.name = 'Stage', value.name = 'Dependence')
-mid[, Habitat := as.factor(mid$'Habitat Name')]
-mid <- data.table::dcast.data.table(mid, Species + Stage ~ Habitat,
-                                    value.var = 'Dependence')
-setcolorder(mid, c('Species', 'Stage', habitats$'Habitat Name'))
-
-#Add Habitat Vulnerability
-#hab.table <- rbindlist(list(as.data.table(t(hab.vul)), mid), use.names = F)
-hab.table <- mid
-#Add names back in
-names(hab.table) <- names(mid)
-hab.table <- hab.table %>% mutate_if(is.character, str_trim)
-
-#from examples here https://rstudio.github.io/DT/010-style.html
-
-#color coding cells works
-#need to add column with species vulnerability and color code species by it but not show it, like #hideV6 example at link
-#if we show it we can sort by species vulnerability though... alphabetical doesnt work so use numbers to go lowest-highest
-#still need to color code headers
-hab.table <- hab.table %>%
-  mutate(spVul = #Color code species based on climate vul
-    # case_when(Species %in% low.vul ~ "low.vul",
-    #           Species %in% mod.vul ~ "mod.vul",
-    #           Species %in% high.vul ~ "high.vul",
-    #           Species %in% vhigh.vul ~ "vhigh.vul")
-    # )
-    case_when(Species %in% low.vul ~ 1,
-              Species %in% mod.vul ~ 2,
-              Species %in% high.vul ~ 3,
-              Species %in% vhigh.vul ~ 4)
-    )
-
-colnames(hab.table)[c(3:4)] <- paste0('<span style="box-shadow: -10px 0 0 red, 10px 0 0 red; background-color:red; color:white">',colnames(hab.table)[c(3:4)],'</span>')
-colnames(hab.table)[c(5:10)] <- paste0('<span style="box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:',c("orange"),'">',colnames(hab.table)[c(5:10)],'</span>')
-colnames(hab.table)[c(11:15)] <- paste0('<span style="box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:',c("yellow"),'">',colnames(hab.table)[c(11:15)],'</span>')
-
-dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
-          extensions = c('Scroller', 'FixedColumns'), #add scrolling and fixed column
-          options = list(deferRender = TRUE,
-          scrollY = 300, scroller = TRUE,
-          dom = 't',scrollX = TRUE,fixedColumns = TRUE)
-          #, options = list(columnDefs = list(list(targets = 16, visible = FALSE)))
-  ) %>% 
-  formatStyle(
-    names(hab.table)[3:4],
-    backgroundColor = '#FF000080'
-  ) %>%
-  formatStyle(
-    names(hab.table)[5:10],
-    backgroundColor = '#FFA50080'
-  ) %>%
-  formatStyle(
-    names(hab.table)[11:15],
-    backgroundColor = '#FFFF0080'
-  ) %>%
-
-  formatStyle(#Color code base on dependence
-    'Species', "spVul",
-    backgroundColor = styleEqual(#c("low.vul", "mod.vul", "high.vul", "vhigh.vul"),
-                                 c(1,2,3,4),
-                                 c('lightgreen', 'yellow', 'orange', 'red')), #Color code base on dependence)
-    color = styleEqual(c(1,2,3,4),
-                                 c('black', 'black', 'black', 'white'))
-    ) %>%
-    formatStyle(
-    names(hab.table),
-    backgroundColor = styleEqual(c("Low", "Moderate", "High", "Very high"), 
-                                 c('lightgreen', 'yellow', 'orange', 'red')), 
-    color = styleEqual(c("Low", "Moderate", "High", "Very high"), 
-                                 c('black', 'black', 'black', 'white'))
-  )
-
-frameWidget(dt)
-```
 
