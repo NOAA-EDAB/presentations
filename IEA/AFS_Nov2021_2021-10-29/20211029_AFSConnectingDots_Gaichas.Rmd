@@ -87,6 +87,10 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 * Current/future: [East coast climate scenario planning](https://www.mafmc.org/climate-change-scenario-planning), [NOAA Climate Fisheries Initiative](https://www.fisheries.noaa.gov/topic/climate-change#noaa-climate-and-fisheries-initiative) for forecasts
 * Success hinges on collaboration, stakeholder engagement throughout, learning by doing
 
+.center[
+![:img , 15%](EDAB_images/SOE-MAFMC-2021-plusgraphicsummary_Page_01.png)![:img , 25%](EDAB_images/mgttable2019.png)![:img , 25%](EDAB_images/consmod-discards.png)![:img , 25%](EDAB_images/flukeMSEprocess.png)
+]
+
 ???
 EAFM approach
    * Climate in risk assessment--uses NCVA, distribution shifts separate element
@@ -197,9 +201,8 @@ The Council’s EAFM framework has similarities to the IEA loop. It uses risk as
 
 This element is applied at the ecosystem level. Revenue serves as a proxy for commercial profits.
 
-.table[
 .pull-left[
-
+.table[
 ```{r riskcomval, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
 # tabl <- "
 # | Risk Level         | Definition                                                          |  
@@ -225,24 +228,21 @@ knitr::kable(tabl, format="html",
   row_spec(3, bold = T, background = "orange")
 ```
 
-  
-Ranked moderate-high risk due to the significant long term revenue decrease for Mid-Atlantic managed species (red points in top plot)
-
-]
-]
+Ranked moderate-high risk due to the significant long term revenue decrease for Mid-Atlantic managed species (red points)
+]]  
 .pull-right[
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"),fig.asp = 0.5}
 #comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
 ```
-
+.table[
 Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of MAFMC managed species</p>
-]
-
+]]  
+  
 --
 
 ## Risk element: <span style="background-color:orange;">CommRev</span>, unchanged  
 
-SOE Implications: Recent change driven by benthos. Monitor changes in climate and landings drivers:  
+**SOE Implications:** Recent change driven by benthos. Monitor changes in climate and landings drivers:  
 -  Climate risk element: <span style="background-color:orange;">Surfclams</span> and <span style="background-color:red;">ocean quahogs</span> are sensitive to ocean warming and acidification.   
 -  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth
 
@@ -633,20 +633,22 @@ frameWidget(conmod)
 In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
 
 ---
-## Current and Future: East Coast Climate Scenario Planning, CFI
+## Current and Future: East Coast Climate Scenario Planning, NOAA Climate and Fisheries Initiative
 
 .pull-left-40[
 ![](EDAB_images/ScenPlanningOptions.png)
-
+.footnote[
+https://www.mafmc.org/climate-change-scenario-planning
+]
 ]
 .pull-right-60[
 ![](EDAB_images/ScenPlanningOrgs.png)
 ![](EDAB_images/ScenPlanningWho.png)
 ![](EDAB_images/CFI-Graphic-web-02_0.jpg)
-]
 
 .footnote[
-https://www.mafmc.org/climate-change-scenario-planning
+https://www.fisheries.noaa.gov/topic/climate-change#noaa-climate-and-fisheries-initiative
+]
 ]
 
 ???
@@ -655,6 +657,12 @@ A Climate Fisheries Initiative within NOAA aims to improve regional ocean modeli
 ---
 # Collaboration is key!
 
+* Within the science community – diverse expertise is needed  
+* Between science and management – understanding what information is needed and important to management, providing tools to management to understand ecosystem linkages and implications  
+* Between science and stakeholders – need to build trust, open dialogue (everyone is heard), and sharing data and observations (on water and with information)  
+* Between management and stakeholders – listening to/acting on stakeholder priorities and feedback, process not out to add more uncertainty but provide for more informed decisions 
+
+![:img , 50%](EDAB_images/MuffleyNoIinEAFM2021.png)![:img , 40%](EDAB_images/DePiperLearningByDoing2021.png)
 
 ---
 background-image: url("EDAB_images/noaa-iea.png")
