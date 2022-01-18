@@ -682,16 +682,14 @@ A marine heatwave is a warming event that lasts for five or more days with sea s
 
 Indicators: Estuarine conditions, Chesapeake Bay
 .pull-left[
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-sst.R")}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-sst.R"), fig.width=5}
 ```
 ]
 
 .pull-right[
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-sal.R"), fig.asp=.9 }
-#ches-temp, fig.show='hold', out.width='49%', fig.align = "default", fig.cap="Left panel: Chesapeake Bay sea surface temperature (SST) seasonal spatial anomalies for 2020, from NOAA multisatellite SST composite. Positive values (red) above 2008-2019 average; negative values (blue) below 2008-2019 average. A) Jan, Feb, Mar; B) Apr, May, Jun; C) Jul, Aug, Sep; D) Oct, Nov, Dec. Right panel: NOAA Chesapeake Bay Interpretive Buoy System Gooses Reef bouy sea water temperature; Blue = 2020, red = Long term average 2010-2019."
-```
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-wq.R")}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-temp.R"), fig.asp=.9 }
+
 ```
 ]
 
@@ -699,9 +697,15 @@ Indicators: Estuarine conditions, Chesapeake Bay
 ## Risks: Climate change and estuarine habitat
 
 Indicator: SAV trends in Chesapeake Bay
+.pull-left[
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sav.R")}
 ```
-
+]
+.pull-right[
+indicatotr: Water quality attainment
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-wq.R")}
+```
+]
 ---
 ## Risks: Climate change and offshore habitat
 <!-- &emsp; Risk element: offshore habitat put aside, new indices -->
@@ -830,7 +834,9 @@ Indicators: distribution shifts continue (slide 7), diversity mixed (slide 16), 
 
 
 *Gray seals increasing (details in NE report)*
-<!--* Breeding season ~ 27,000 US gray seals, Canada's population ~ 425,000 (2016) 
+
+<!--
+* Breeding season ~ 27,000 US gray seals, Canada's population ~ 425,000 (2016) 
 * Canada's population increasing at ~ 4% per year
 * U.S. pupping sites increased from 1 (1988) to 9 (2019)
 * Harbor and gray seals are generalist predators that consume more than 30 different prey species: red, white and silver hake, sand lance, yellowtail flounder, four-spotted flounder, Gulf-stream flounder, haddock, herring, redfish, and squids.-->
