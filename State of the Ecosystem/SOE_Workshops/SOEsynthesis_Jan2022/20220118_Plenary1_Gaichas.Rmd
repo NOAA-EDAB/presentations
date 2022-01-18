@@ -682,15 +682,17 @@ A marine heatwave is a warming event that lasts for five or more days with sea s
 
 Indicators: Estuarine conditions, Chesapeake Bay
 .pull-left[
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-sst.R"), fig.width=5}
-```
+![:img 150%](EDAB_images/ches-bay-sst-1.png)
 ]
 
 .pull-right[
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-temp.R"), fig.asp=.9 }
-
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-temp.R"), fig.asp=.5 }
 ```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-sal.R"), fig.asp=.5 }
+```
+
 ]
 
 ---
@@ -702,10 +704,13 @@ Indicator: SAV trends in Chesapeake Bay
 ```
 ]
 .pull-right[
-indicatotr: Water quality attainment
+Indicator: Water quality attainment
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-wq.R")}
 ```
 ]
+
+Implications: *(synthesize with Chesapeake Bay summary a few slides from now)*
+
 ---
 ## Risks: Climate change and offshore habitat
 <!-- &emsp; Risk element: offshore habitat put aside, new indices -->
@@ -788,28 +793,25 @@ Implications: fluctuating environmental conditions and prey for forage species a
 Indicators: fish condition (2021 Memo 18)
 .pull-left[
 ![:img Fish condition figure](EDAB_images/MAB_Condition_allsex_2022_viridis.jpg)
-Preliminary results:  
+Preliminary results (2021):  
 * Multiple, different condition drivers by species  
 * Acadian redfish, butterfish and winter flounder more affected by fishing pressure and stock size  
 * Weakfish, windowpane flounder, and American plaice more affected by local bottom temperatures and zooplankton   
 ]
 .pull-right[
-![:img Fish condition links conceptual model](EDAB_images/SOEconditionfactorlinks_keycolor_price.png)
-]
+Indicator: fish productivity anomaly
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.asp=1}
 
+```
+
+<!--![:img Fish condition links conceptual model](EDAB_images/SOEconditionfactorlinks_keycolor_price.png)-->
+]
+Implications: 
 
 ???
 See memo for preliminary results
 These relationships can potentially provide insights on which species may be more vulnerable to environmental changes such as climate change, as well as what biomass changes may be expected from certain species given current environmental conditions
----
-## Risks: Ecosystem productivity 
 
-Indicator: fish productivity anamaly
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R")}
-
-```
-
-Implications: 
 ---
 ## Risks: Ecosystem structure 
 <!--&emsp; Risk element: DistShift, unchanged, add elements?-->
@@ -969,17 +971,18 @@ frameWidget(dt)
 <!--Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk-->
 
 *Multiple drivers with different impacts by species*    
-* Chesapeake Bay warm winter, low freshwater flow  
-    - Striped bass poor recruitment observed  
-        - plankton prey too early?  
-        - poor plankton transport?  
-    - Blue crab better survival over winter  
+* Chesapeake Bay   
+.contrib[
+    - Warm winter water temperatures may have lowered striped bass recruitment; recruitments have trended down over the last 20 years.
+    - High summer salinities may have benefited oyster recruitment, growth, and survival.
+    - Average water temperatures and low hypoxic volume in summer are better for striped bass.
+    - Hurricane Ida reduced hypoxia in the short term, but warm fall temperatures and high-precipitation events resulted in above-average hypoxia overall.
+] 
     
 * Ocean acidification impact on shellfish growth  
     - Surfclams vulnerable to increased temperature and acidification  
     - Areas of low pH identified in surfclam and scallop habitat  
     - Lab work in progress identified pH thresholds for surfclam growth: *approaching threshold*   
-
 
 ]
 
@@ -994,20 +997,21 @@ Shifting species distributions alter both species interactions, fishery interact
 
 
 ---
-background-image: url("EDAB_images/SurveyMap202133.png")
-background-size: 700px
-background-position: right
+## Risks: Offshore Wind Development 
+<!--&emsp; Element: OceanUse -->
 
-## Risks: Offshore Wind Development &emsp; Element: OceanUse
 .pull-left[
-Indicators: development timeline, revenue in lease areas, survey overlap ([full map](https://noaa-edab.github.io/ecodata/human_dimensions_MAB#Shelfwide_Indicators))
-![:img Rate and extend of offshore wind devevelopment by project end year, 90%](EDAB_images/wind-figure-1yaxis.png)
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-revenue.R"), fig.height=3}
+Indicators: development timeline, community specific revenue in lease areas
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R"), fig.height=3}
 ```
 
 ]
 
 .pull-right[
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-port.R"), fig.asp=1.5}
+```
+
 ]
 
 ---
@@ -1015,9 +1019,11 @@ background-image: url("EDAB_images/MidAtlantic_2021128-01.jpg")
 background-size: 500px
 background-position: right
 
-## Risks: Offshore Wind Development &emsp; Element: OceanUse
+## Risks: Offshore Wind Development 
+<!--&emsp; Element: OceanUse-->
+
 .pull-left[
-Implications: 
+Implications (2021--uupdate): 
 * Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region  
 
 * 2-24% of total average revenue for major Mid-Atlantic commercial species in lease areas could be displaced if all sites are developed. Displaced fishing effort can alter fishing methods, which can in turn change habitat, species (managed and protected), and fleet interactions. 
@@ -1027,8 +1033,6 @@ Implications:
 * Scientific data collection surveys for ocean and ecosystem conditions, fish, and protected species will be altered, potentially increasing uncertainty for management decision making. 
 ]
 .pull-right[]
-
----
 
 ---
 background-image: url("EDAB_images/noaa-iea.png")
@@ -1144,13 +1148,14 @@ background-position: bottom right
 
 # Discussion
 .pull-left[
-1. Feedback on structure?
-1. Feedback on synthesis themes? multiple drivers, regime shifts, system reorganization
-1. Feedback on Memo points?
-    - 1 to 18 included in SOE
-    - 19 to 25 in progress
-    - 26 to 33 less progress
-1. Prorities for 2022, risk assessment updates?
+1. This draft based on last year, not complete
+1. Maintain structure, update based on requests
+1. Further develop synthesis themes: multiple drivers, regime shifts, system reorganization
+1. Note updates to be included as Request Memo points
+    - What has been included this year
+    - What is in progress
+    - What has less progress
+    - What feedback/clarification would help contributors
 
 # Thank you!
 ]
