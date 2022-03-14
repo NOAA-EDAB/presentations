@@ -774,38 +774,77 @@ Indicators: ocean currents, bottom and surface temperature, marine heatwaves
 ???
 A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
 ---
-## Risks: Climate change and estuarine habitat &emsp; Risk element: EstHabitat 10 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk species, unchanged, new indices
+## Risks: Climate change and estuarine habitat &emsp; Risk element: EstHabitat 11 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk species
 
-Indicators: Estuarine conditions, Chesapeake Bay
 .pull-left[
-![:img 150%](EDAB_images/ches-bay-sst-1.png)
+Indicators: Chesapeake Bay temperature and salinity
+```{r, fig.asp=1}
+sst<- ecodata::ches_bay_sst
+
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -77.5
+xmax = -74.5
+ymin = 36.5
+ymax = 40
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+#sst <- ecodata::seasonal_sst_anomaly_gridded
+crs<- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+sst$Season <- factor(sst$Season, levels = c("Winter",
+                                            "Spring",
+                                            "Summer",
+                                            "Fall"))
+
+sst<- sst %>% dplyr::mutate(Value = replace(Value, Value > 5, 5))
+#sst_map <-
+  ggplot2::ggplot() +
+  ggplot2::geom_sf(data = ecodata::coast, size = map.lwd) +
+  ggplot2::scale_fill_gradient2(name = "Temp.\nAnomaly (C)",
+                                low = scales::muted("blue"),
+                                mid = "white",
+                                high = scales::muted("red"),
+                                limits = c(-4,4),
+                                labels = c("<-5", "-2.5", "0", "2.5", ">5")) +
+  ggplot2::coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+
+  ggplot2::geom_tile(data = sst, aes(x = Latitude, y = Longitude,fill = Value)) +
+  ggplot2::facet_wrap(Season~.) +
+  ecodata::theme_map() +
+  ggplot2::ggtitle("Chesapeake Bay SST anomaly (2021)") +
+  ggplot2::xlab(element_blank()) +
+  ggplot2::ylab(element_blank()) +
+  scale_y_continuous(breaks = seq(37, 40, by = 1))+
+  scale_x_continuous(breaks = seq(-77, -75, by = 1))+
+  ggplot2::theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
+                 legend.key = element_blank(),
+                 axis.title = element_text(size = 6),
+                 strip.background = element_blank(),
+                 strip.text=element_text(hjust=0),
+                 axis.text = element_text(size = 6),
+                 axis.title.y = element_text(angle = 90) )+
+  ecodata::theme_title()
+```
+
+<!--
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-temp.R"), fig.width = 5, fig.asp=.5 }
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-sal.R"), fig.width = 5, fig.asp=.5 }
+```
+![:img 150%](EDAB_images/ches-bay-sst-1.png)-->
 ]
 
 .pull-right[
-
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-temp.R"), fig.asp=.5 }
-```
-
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-sal.R"), fig.asp=.5 }
-```
-
-]
-
----
-## Risks: Climate change and estuarine habitat
-
 Indicator: SAV trends in Chesapeake Bay
-.pull-left[
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sav.R")}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sav.R"), fig.width = 6}
 ```
-]
-.pull-right[
-Indicator: Water quality attainment
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-wq.R")}
-```
-]
 
-Implications: *(synthesize with Chesapeake Bay summary a few slides from now)*
+Indicator: Water quality attainment
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-wq.R"), fig.width = 6}
+```
+]
 
 ---
 ## Risks: Climate change and offshore habitat &emsp; Risk element: offshore habitat put aside, new indices 
@@ -814,125 +853,116 @@ Indicator: cold pool indices
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")}
 ```
 
+Indicator: Ocean acidification
+![:img Seasonal pH](EDAB_images/Saba_Fig_SOE_MAFMC - Grace Saba.png)
+
+]
+
+.pull-right[
+
 Indicator: warm core rings
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
 ```
 
+.center[
+![:img Warm core rings June 2021, 90%](EDAB_images/D_20210608-MUR-SST-WCR.PNG) 
 ]
-.pull-right[
-Indicator: acidification
-![:img Seasonal pH](EDAB_images/Saba_Fig_SOE_MAFMC - Grace Saba.png)
 ]
 
 ---
 ## Risks: Ecosystem productivity  &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>, unchanged, new indices
 
-Indicators: primary production, zooplankton
+Indicators: chlorophyll, primary production, zooplankton
 
 .pull-left[
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-pp-monthly.R"), fig.width=8}
-#pp-monthly,  fig.cap="Monthly primary production trends show the annual cycle (i.e. the peak during the summer months) and the changes over time for each month."
-```
-
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.55}
-#weekly-phyto-size, fig.cap="The annual climatology (1998-2019) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations."
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.asp = 0.9}
+#chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a near real-time satellite source). The long-term mean is shown in black and shading indicates +/- 1 standard deviation.", fig.width = 5
 ```
 
 ]
 
 .pull-right[
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.55}
+#weekly-phyto-size, fig.cap="The annual climatology (1998-2019) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations."
+```
+
 .reduced_opacity[
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-strat-abun.R"), fig.width=8, fig.asp=.25}
 #zoo-strat-abun, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."
 ```
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-abund.R")}
-#zoo-abund,  fig.cap= "Large (red) and small-bodied (blue) copepod abundance in the Mid-Atlantic Bight."
-```
-]
-Implications: increased production by smaller phytoplankton implies less efficient transfer of primary production to higher trophic levels. Monitor implications of increasing gelatinous zooplankton and krill.
 ]
 
+]
+
+Implications: increased production by smaller phytoplankton implies less efficient transfer of primary production to higher trophic levels. Monitor implications of increasing gelatinous zooplankton and krill.
   
 ???
-Increased temperatures, as reported above, can increase the rate of photosynthesis by phytoplankton (i.e. primary productivity). Annual primary production has increased over time, primarily driven by increased productivity in the summer months. 
-
-Larger zooplankton (i.e. *Calanus finmarchicus*) had above average abundance in 2018-2019, while smaller-bodied copepods were near or below average.
+Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average to below average throughout 2021
 
 ---
 ## Risks: Ecosystem productivity &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>, unchanged, new indices
 
-Indicators: plankton-based forage anomaly and forage fish energy content (2021 Memo 17)
-
-.pull-left-30[
-.reduced_opacity[
-```{r  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-anomaly.R")}
-#forage-anomaly, fig.cap="Changes from 2000-2019 average abundance for an aggregate of 13 zooplankton and 16 ichthyoplankton groups sampled on NEFSC ECOMON surveys.",
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), out.width = "90%", fig.asp = 0.5}
+#energy-density, fig.cap="Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values.", 
 ```
-]
-]
-.pull-right-70[
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 8, fig.asp = 0.5}
-#energy-density, fig.cap="Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values."
-```
-]
 
 Implications: fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring
 
 ---
 ## Risks: Ecosystem productivity  &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>, unchanged, new analyses
 
-Indicators: fish condition (2021 Memo 18)
 .pull-left[
-![:img Fish condition figure](EDAB_images/MAB_Condition_allsex_2022_viridis.jpg)
-Preliminary results (2021):  
-* Multiple, different condition drivers by species  
-* Acadian redfish, butterfish and winter flounder more affected by fishing pressure and stock size  
-* Weakfish, windowpane flounder, and American plaice more affected by local bottom temperatures and zooplankton   
+Indicator: fish condition 
+```{r, out.width="120%"}
+#knitr::include_graphics("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg")
+fishcond <- magick::image_read("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg") 
+magick::image_trim(fishcond)
+```
+<!--![:img Fish condition figure, 120%](EDAB_images/MAB_Condition_allsex_2022_viridis.jpg)-->
+
 ]
+
 .pull-right[
 Indicator: fish productivity anomaly
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.asp=.9}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.asp=.85}
 
 ```
 
-<!--![:img Fish condition links conceptual model](EDAB_images/SOEconditionfactorlinks_keycolor_price.png)-->
 ]
+
 Implications: 
+Most species in the MAB had below average or poor condition again in 2021. Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species. 
+
 
 ???
-See memo for preliminary results
-These relationships can potentially provide insights on which species may be more vulnerable to environmental changes such as climate change, as well as what biomass changes may be expected from certain species given current environmental conditions
+
 
 ---
-## Risks: Ecosystem structure &emsp; Risk element: DistShift, unchanged, add elements?
+## Risks: Ecosystem structure &emsp; add new elements?
 
-Indicators: distribution shifts continue (slide 7), diversity mixed (slide 16), here summarize predator status and trends (2021 Memo 12, 15, 25)
+Indicators: distribution shifts, diversity, predator status and trends
 .pull-left[
 *No trend in aggregate sharks*
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-observed-sharks.R")}
-#observed-sharks, fig.cap="Estimated number of sharks per unit effort from Northeast Fisheries Observer Program data."
-```
-
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-hms-cpue-sharks.R")}
 #hms-cpue-sharks, fig.cap="Estimated number of sharks per unit effort from Highly Migratory Species Pelagic Observer Program data."
 ```
 
-
-]
-.pull-right[
-*Shark populations mainly at or above target*
+*HMS populations mainly at or above target*
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R")}
 ```
 
 
+]
+.pull-right[
+
 *Gray seals increasing (details in NE report)*
 
-<!--
 * Breeding season ~ 27,000 US gray seals, Canada's population ~ 425,000 (2016) 
 * Canada's population increasing at ~ 4% per year
 * U.S. pupping sites increased from 1 (1988) to 9 (2019)
-* Harbor and gray seals are generalist predators that consume more than 30 different prey species: red, white and silver hake, sand lance, yellowtail flounder, four-spotted flounder, Gulf-stream flounder, haddock, herring, redfish, and squids.-->
+* Harbor and gray seals are generalist predators that consume more than 30 different prey species: red, white and silver hake, sand lance, yellowtail flounder, four-spotted flounder, Gulf-stream flounder, haddock, herring, redfish, and squids.
 
 Implications: stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
 ]  
@@ -946,7 +976,7 @@ A survey conducted in 2021 in both countries will provide updated estimates of a
 
 Indicators: climate sensitive species life stages mapped to climate vulnerable habitats  
 
-*See MAFMC 2021 EAFM risk assessment for example species narratives*  
+*See MAFMC 2022 EAFM risk assessment for example species narratives*  
 ```{r midHabTable, message=FALSE}
 #Read in Mid-Atlantic table
 
@@ -1010,8 +1040,8 @@ hab.table <- hab.table %>%
     )
 
 colnames(hab.table)[c(3:4)] <- paste0('<span style="box-shadow: -10px 0 0 red, 10px 0 0 red; background-color:red; color:white">',colnames(hab.table)[c(3:4)],'</span>')
-colnames(hab.table)[c(5:10)] <- paste0('<span style="box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:',c("orange"),'">',colnames(hab.table)[c(5:10)],'</span>')
-colnames(hab.table)[c(11:15)] <- paste0('<span style="box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:',c("yellow"),'">',colnames(hab.table)[c(11:15)],'</span>')
+colnames(hab.table)[c(5:11)] <- paste0('<span style="box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:',c("orange"),'">',colnames(hab.table)[c(5:11)],'</span>')
+colnames(hab.table)[c(12:16)] <- paste0('<span style="box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:',c("yellow"),'">',colnames(hab.table)[c(12:16)],'</span>')
 
 dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
           extensions = c('Scroller', 'FixedColumns'), #add scrolling and fixed column
@@ -1025,11 +1055,11 @@ dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
     backgroundColor = '#FF000080'
   ) %>%
   formatStyle(
-    names(hab.table)[5:10],
+    names(hab.table)[5:11],
     backgroundColor = '#FFA50080'
   ) %>%
   formatStyle(
-    names(hab.table)[11:15],
+    names(hab.table)[12:16],
     backgroundColor = '#FFFF0080'
   ) %>%
 
@@ -1060,20 +1090,19 @@ frameWidget(dt)
 Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk
 
 *Multiple drivers with different impacts by species*    
-* Chesapeake Bay   
+* Seasonal estuarine conditions affect life stages of striped bass, blue crabs, summer flounder, black sea bass differently
 .contrib[
 
-    - Warm winter water temperatures may have lowered striped bass recruitment; recruitments have trended down over the last 20 years.
-    - High summer salinities may have benefited oyster recruitment, growth, and survival.
-    - Average water temperatures and low hypoxic volume in summer are better for striped bass.
-    - Hurricane Ida reduced hypoxia in the short term, but warm fall temperatures and high-precipitation events resulted in above-average hypoxia overall.
-    
++ Chesapeake summer hypoxia, temperature better than in past years, but worse in fall
++ Habitat improving in some areas (tidal fresh SAV, oyster reefs), but eelgrass declining 
 ] 
-    
-* Ocean acidification impact on shellfish growth  
-    - Surfclams vulnerable to increased temperature and acidification  
-    - Areas of low pH identified in surfclam and scallop habitat  
-    - Lab work in progress identified pH thresholds for surfclam growth: *approaching threshold*   
+* Ocean acidification impact on vulnerable surfclams  
+.contrib[
+
++ Areas of low pH identified in surfclam and scallop habitat  
++ Lab work identified pH thresholds for surfclam growth
+] 
+* Warm core rings important to *Illex* availability. Fishing effort concentrates on the eastern edge of warm core rings, where upwelling and enhanced productivity ocurr
 
 ]
 
@@ -1096,7 +1125,8 @@ Indicators: development timeline, fishery and community specific revenue in leas
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R"), fig.height=3}
 ```
 
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R"), fig.width=5, fig.asp=.4}
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R")}
+#, fig.width=5, fig.asp=.4
 #wea-spp-rev, fig.cap="Wind energy revenue in the Mid-Atlantic."
 ```
 
@@ -1117,16 +1147,16 @@ background-position: right
 
 .pull-left[
 Implications: 
-*  1-31% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some of these port communities score medium-high to high in environmental justice concerns and gentrification vulnerability.
-*  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas and may shift to other areas.
+*  1-31% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
+*  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
 *  Development will affect species differently, negatively affecting species that prefer soft bottom habitat while potentially benefiting species that prefer hard structured habitat.
-*  Planned wind areas overlap with one of the only  known right whale foraging habitats, and altered local oceanography could affect right whale prey availability. Development also brings increased vessel strike risk and the potential impacts of pile driving noise.
-*  Current plans for rapid buildout in a patchwork of areas would spread the impacts differentially throughout the region.
-*  Evaluating the impacts to scientific surveys has begun.
+*  Planned wind areas overlap with one of the only known right whale foraging habitats, and altered local oceanography could affect right whale prey availability. Development also brings increased vessel strike risk and the potential impacts of pile driving noise.
 ]
 .pull-right[]
 
-
+???
+Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region 
+Evaluating the impacts to scientific surveys has begun.
 ---
 ## EAFM Risk Assessment: 2022 Update
 
@@ -1248,9 +1278,9 @@ risk.sppsector %>%
 
 ```
 .contrib[
-* Allocation risk decreased for 4 fisheries from high to low (intermediate rankings not applied) 
-* Regulatory complexity risk decreased for 4 fisheries and increased for 2 fisheries
-* Management control risk incresed for both blueline tilefish fisheries to low-moderate  
+* 4 Allocation risks decreased from high to low
+* 4 Regulatory complexity risks decreased, 2 increased
+* Management control risk increased for blueline tilefish fisheries to low-moderate  
 ]
 ]
 
@@ -1384,10 +1414,10 @@ background-position: bottom right
 1. Feedback on State of the Ecosystem report
 1. Feedback on EAFM risk assessment update
 1. Feedback on Request memo points
-    +  1 to 18 included in SOE
-    +  19 to 25 in progress
-    +  26 to 33 less progress
-1. Prorities for 2023 and future reports
+    +  1 to 7 included in SOE
+    +  7 to 27 in progress
+    +  28 to 45 less progress
+1. Priorities for 2023 and future reports
 
 # Thank you!
 ]
