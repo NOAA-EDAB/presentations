@@ -122,7 +122,7 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 .pull-left[
 
 
-## 2021 Report
+## 2022 Report
 1. Graphical summary
     + Page 1 report card re: objectives &rarr;
     + Page 2 risk summary bullets
@@ -176,13 +176,13 @@ knitr::kable(mng_obj, linesep = "",
 ## State of the Ecosystem summary 2022
 .pull-left[
 .center[
-![:img State of the Ecosystem page 1 summary table, 90%](EDAB_images/SOE-MA-final-02.11.22-KH 2.png)
+![:img State of the Ecosystem page 1 summary table, 95%](EDAB_images/SOE-MA-final-02.11.22-KH 2.png)
 ]
 ]
 
 .pull-right[
 .center[
-![:img State of the Ecosystem page 2 risk bullets, 90%](EDAB_images/SOE-MA-final-02.11.22-KH 3.png)
+![:img State of the Ecosystem page 2 risk bullets, 95%](EDAB_images/SOE-MA-final-02.11.22-KH 3.png)
 ]
 ]
 
@@ -261,11 +261,11 @@ knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
   kable_styling(font_size=12#, latex_options = c("hold_position", "striped", "repeat_header")
                 ) %>%
   row_spec(0,bold=TRUE) %>%
-  column_spec(1, width="4.5cm") %>%
+  column_spec(1, width="10.5cm") %>%
   column_spec(2, width="1cm") %>%
   column_spec(3, width="2cm") %>%
-  column_spec(4, width="1.5cm") %>%
-  column_spec(5, width="4.5cm") %>%
+  column_spec(4, width="4.5cm") %>%
+  column_spec(5, width="13.5cm") %>%
   column_spec(6, width="1.5cm")
   #column_spec(1, width="9.5cm") %>%
   #column_spec(1, width="13.5cm") %>%
@@ -280,7 +280,7 @@ knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
 
 
 ---
-## 2021: Revised structure to address Council requests and improve synthesis 
+## Revised structure in 2021 to address Council requests and improve synthesis 
 
 .pull-left[
 * Performance relative to management objectives
@@ -379,7 +379,7 @@ Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Re
 ## Objective: Seafood production ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png) &emsp; Risk elements: <span style="background-color:red;">ComFood</span> and <span style="background-color:orange;">RecFood</span>, unchanged
 
 .pull-left[
-Indicators: Commercial and recreational landings 
+Indicator: Commercial landings 
 
 .reduced_opacity[
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.4}
@@ -390,18 +390,73 @@ Key: Black = Landings of all species combined; <p style="color:#FF6A6A;">Red = L
 ]
 ]
 
+Coastwide landings at the Federal fishery management plan (FMP) level were mixed in 2020 when compared to recent years. Landings of monkfish and of combined surfclam and ocean quahog declined in 2020, while landings of combined summer flounder, scup, and black sea bass increased, and landings of combined squid species increased in 2020.* 
+
+]
+
+.pull-right[
+Indicators: Recreational harvest
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"), fig.asp=.4}
 #, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
 
 ```
 
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R")}
+#, fig.width=5
+#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
+
+```
+
+*[US Seafood Industry and For-Hire
+Sector Impacts from COVID-19: 2020 in Perspective](https://spo.nmfs.noaa.gov/sites/default/files/TM221.pdf) 
+
 ]
 
-.pull-right[
-Multiple drivers: ecosystem and stock production, management, market conditions, and environment
+Multiple potential drivers of landings changes: ecosystem and stock production, management actions, market conditions (including COVID-19 disruptions), and environmental change.
 
-Is biomass driving?
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.75}
+???
+However, we do not anticipate the long-term declining trend in landings to change.
+---
+## Landings drivers: Stock status? TAC? &emsp; Risk elements: Fstatus, Bstatus  unchanged
+
+.pull-left[
+Indicator: Stock status
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.asp=0.9}
+#, fig.width = 7.5, fig.asp = 0.5
+#stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing).")
+```
+
+]
+
+
+.pull-right[
+
+New Indicators: Total ABC or ACL, and Realized catch relative to management target
+
+```{r , code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R")}
+#, fig.width = 5, fig.asp = 0.5
+#abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries."
+```
+
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abc-acl.R")}
+#comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
+```
+
+]
+???
+Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2020 (top). With the addition of blueline tilefish management in 2017, an additional ABC and ACL contribute to the total 2017-2020. Discounting blueline tilefish, the recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. 
+
+Nevertheless, the percentage caught for each stock’s ABC/ACL suggests that these catch limits are not generally constraining as most species are well below the 1/1 ratio (bottom). Therefore, stock status and associated management constraints are unlikely to be driving decreased landings for the majority of species.
+
+---
+## Implications: Seafood Production
+.pull-left[
+
+Biomass does not appear to drive landings trends
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.85}
 
 #nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean."
 ```
@@ -409,63 +464,18 @@ Is biomass driving?
 .contrib[
 Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
 ]
-]
 
----
-## Landings drivers: Ecosystem or stock production? TAC? &emsp; Risk elements: Fstatus, Bstatus  unchanged
-
-.pull-left[
-New Indicator: Realized catch relative to management target (ABC or ACL)
-
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abc-acl.R")}
-#comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
-```
-]
-
-
-.pull-right[
-
-
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"), fig.width = 7.5, fig.asp = 0.5}
-
-#stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing).")
-```
-
-]
-
----
-## Implications: Seafood Production
-.pull-left[
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
-```
-
-.reduced_opacity[
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.width=5, fig.asp=1.35}
-# comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."),
-```
-
-.contrib[
-Key: Black = Landings of all species combined; <p style="color:#FF6A6A;">Red = Landings of MAFMC managed species</p>
-]
-]
 ]
 
 .pull-right[
 Drivers:
-.reduced_opacity[
-* market dynamics affecting commercial landings of surfclams and ocean quahogs  
-] 
-* other drivers affecting recreational landings: shark fishery management, possibly survey methodology  
+* Recreational landings differ: shark fishery management, possibly survey methodology
 
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R"), fig.width=5}
-#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
-
-```
 Monitor: 
 * climate risks including warming, ocean acidification, and shifting distributions  
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.width=3.5, fig.asp=.9}
+#species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
+```  
 * ecosystem composition and production changes  
 * fishing engagement  
 
@@ -473,7 +483,7 @@ Monitor:
 
 
 ???
-Because ecosystem overfishing seems unlikely, stock status is mostly acceptable, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species.
+Because stock status is mostly acceptable, ABCs don't appear to be constraining for many stocks, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species.
 
 Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
 
@@ -484,7 +494,8 @@ Climate change also seems to be shifting the distribution of surfclams and ocean
 .pull-left[
 Indicator: Commercial Revenue 
 .reduced_opacity[
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"), fig.width = 5, fig.asp = 0.45}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")}
+#, fig.width = 5, fig.asp = 0.45
 #comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
 ```
 .contrib[
@@ -492,44 +503,21 @@ Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Re
 ]
 Recent change driven by benthos  
 ]
-Monitor changes in climate and landings drivers:  
-<!-- -  Climate risk element: <span style="background-color:orange;">Surfclams</span> and <span style="background-color:red;">ocean quahogs</span> are sensitive to ocean warming and acidification. -->
--  Surfclams and ocean quahogs are sensitive to ocean warming and acidification. 
--  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth
+
 ]
 .pull-right[
-Indicator: Bennet--price and volume indices
-.reduced_opacity[
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"),  fig.asp=.35}
-#bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), fig.width=6,
-```
+Monitor changes in climate and landings drivers:   
 
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.45}
-#bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight."
-```
-]
+-  Climate risk element: <span style="background-color:orange;">Surfclams</span> and <span style="background-color:red;">ocean quahogs</span> are sensitive to ocean warming and acidification. 
+ 
+-  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth
 ]
 
 ???
 Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
 
 ---
-## Multiple drivers of landings, revenue, recreation: new indicator
-
-Indicator: Realized catch relative to management target (ABC or ACL)
-.pull-left[
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abc-acl.R")}
-#comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
-```
-]
-
-.pull-right[
-Implications
-
-]
-
----
-## Objective: Recreational opportunities ![:img no trend icon, 2%](EDAB_images/no trend.png) ![:img near average icon icon, 1%](EDAB_images/near long term average.png);  ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png) &emsp; Risk element: <span style="background-color:red;">RecValue</span>,  unchanged; add diversity?
+## Objective: Recreational opportunities ![:img increasing arrow icon, 2%](EDAB_images/increase.png) ![:img above average icon icon, 2%](EDAB_images/above long term ave.png);  ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)  Risk element: <span style="background-color:yellow;">RecValue</span>, decreased risk; add diversity?
 
 .pull-left[
 Indicators: Recreational effort and fleet diversity   
@@ -545,15 +533,14 @@ Indicators: Recreational effort and fleet diversity
 .pull-right[
 Implications
 
-* Recreational effort ...
+* Increased angler trips in 2020 relative to previous years strongly influence the long term increase in recreational effort. Recreational effort (angler trips) has increased over the long term, with 2020 effort above the long-term average.
+
+* The increasing long term trend changes the risk categories for the RecValue element to low-moderate (previously ranked high risk).
 
 * Decline in recreational fleet diversity suggests a potentially reduced range of opportunities. 
 
 * Driven by party/charter contraction (from a high of 24% of angler trips to 7% currently), and a shift toward shore based angling.
 
-* Absence of a long-term trend in recreational effort suggests relative stability in the overall number of recreational opportunities in the MAB.
-
-* 2021 Memo 22-23, Cumulative weather index and management complexity drivers under construction
 ]
 
 ???
@@ -584,13 +571,11 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 ## Objective: Stability ![:img mixed trend icon, 2%](EDAB_images/Mixed trends.png) ![:img near average icon icon, 1%](EDAB_images/near long term average.png) &emsp; Risk element: ecological diversity put aside, new indices
 
 .pull-left[
-*Ecological* Indicators: zooplankton and larval fish diversity
+*Ecological* Indicators: zooplankton diversity
 .reduced_opacity[
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-ichthyo-diversity.R")}
-```
 ]
 ]
 
@@ -610,8 +595,8 @@ Implications:
 While larval and adult fish diversity indices are stable, a few warm-southern larval species are becoming more dominant. Increasing zooplankton diversity is driven by declining dominance of an important species, which warrants continued monitoring.
 
 ---
-## Objective: Commercial fishing community status, environmental justice &emsp; Risk element: <span style="background-color:yellow;">Social</span>, unchanged; new community level info 
-Indicators: Social vulnerability, fishery engagement and reliance  
+## Objective: Environmental Justice and Social Vulnerability &emsp; Risk element: <span style="background-color:yellow;">Social</span>, unchanged
+Indicators: Environmental justice vulnerability, fishery engagement and reliance  
 .pull-left[
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
 #commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in the Mid-Atlantic."
@@ -623,11 +608,13 @@ Mid-Atlantic commercial fishing communities
 ![Commercial fishing communities environmental justice spider plot](EDAB_images/EJ_Commercial_MAB.png)
 ]
 
-Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability, they may have lower ability to successfully respond to change. These indicators may also point to communities that are vulnerable to environmental justice issues.
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 
+???
+These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
 ---
-## Objective: Recreational fishing community status, environmental justice  &emsp; Risk element: <span style="background-color:yellow;">Social</span>, unchanged; new community level info 
-Indicators: Social vulnerability, fishery engagement and reliance  
+## Objective: Environmental Justice and Social Vulnerability  &emsp; Risk element: <span style="background-color:yellow;">Social</span>, unchanged 
+Indicators: Environmental justice vulnerability, fishery engagement and reliance  
 .pull-left[
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
 #recreational-engagement, fig.cap= "Recreational engagement, reliance, and social vulnerability for the top recreational fishing communities in the Mid-Atlantic."
@@ -639,7 +626,8 @@ Mid-Atlantic recreational fishing communities
 ![Recreational fishing communities environmental justice spider plot](EDAB_images/EJ_Recreational_MAB.png)
 ]
 
-Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability, they may have lower ability to successfully respond to change. These indicators may also point to communities that are vulnerable to environmental justice issues.
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+
 ---
 ## Objectives: Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](EDAB_images/Mixed trends.png) ![:img meeting objectives icon, 2%](EDAB_images/checked.png)
 
@@ -681,9 +669,11 @@ Indicators: North Atlantic right whale population, calf counts
 .pull-right[
 Implications:  
 
-* Population drivers for North Atlantic Right Whales (NARW) include combined fishery interactions/ship strikes, distribution shifts, and copepod availability.
+* Population drivers for North Atlantic Right Whales (NARW) include combined fishery interactions/ship strikes, distribution shifts, and copepod availability. 
 
-* Unusual mortality events continue for 3 large whale species, harbor and gray seals.
+* Additional potential stressors include offshore wind development, which overlaps with important habitat areas used year-round by right whales, including mother and calf migration corridors and foraging habitat.
+
+* Unusual mortality events continue for 3 large whale species.
 
 <!--* Risk elements: 
     - FW2Prey evaluated by species: 13 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span> risk, unchanged 
