@@ -29,7 +29,6 @@ class: monkfish
   position: relative;
   z-index: 1;
 }
-
 .monkfish::before {    
       content: "";
       background-image: url("EDAB_images/monkfish.png");
@@ -47,7 +46,6 @@ class: monkfish
   position: relative;
   z-index: 1;
 }
-
 .cod::before {    
       content: "";
       background-image: url("EDAB_images/cod.png");
@@ -65,7 +63,6 @@ class: monkfish
   position: relative;
   z-index: 1;
 }
-
 .sh::before {    
       content: "";
       background-image: url("EDAB_images/silverhake.png");
@@ -78,11 +75,11 @@ class: monkfish
       opacity: 0.3;
       z-index: -1;
 }
+
 .sd {
   position: relative;
   z-index: 1;
 }
-
 .sd::before {    
       content: "";
       background-image: url("EDAB_images/spinydogfish.png");
@@ -92,7 +89,7 @@ class: monkfish
       right: 0px;
       bottom: 0px;
       left: 0px;
-      opacity: 0.5;
+      opacity: 0.3;
       z-index: -1;
 }
 
@@ -100,7 +97,6 @@ class: monkfish
   position: relative;
   z-index: 1;
 }
-
 .haddock::before {    
       content: "";
       background-image: url("EDAB_images/haddock.png");
@@ -110,7 +106,7 @@ class: monkfish
       right: 0px;
       bottom: 0px;
       left: 0px;
-      opacity: 0.5;
+      opacity: 0.3;
       z-index: -1;
 }
 
@@ -118,7 +114,6 @@ class: monkfish
   position: relative;
   z-index: 1;
 }
-
 .herring::before {    
       content: "";
       background-image: url("EDAB_images/herring.png");
@@ -132,12 +127,10 @@ class: monkfish
       z-index: -1;
 }
 
-
 .wf {
   position: relative;
   z-index: 1;
 }
-
 .wf::before {    
       content: "";
       background-image: url("EDAB_images/winterflounder.png");
@@ -155,7 +148,6 @@ class: monkfish
   position: relative;
   z-index: 1;
 }
-
 .yf::before {    
       content: "";
       background-image: url("EDAB_images/yellowtailflounder.png");
@@ -169,12 +161,10 @@ class: monkfish
       z-index: -1;
 }
 
-
 .ws {
   position: relative;
   z-index: 1;
 }
-
 .ws::before {    
       content: "";
       background-image: url("EDAB_images/winterskate.png");
@@ -192,7 +182,6 @@ class: monkfish
   position: relative;
   z-index: 1;
 }
-
 .mackerel::before {    
       content: "";
       background-image: url("EDAB_images/mackerel.png");
@@ -210,7 +199,6 @@ class: monkfish
   position: relative;
   z-index: 1;
 }
-
 .stockeff::before {    
       content: "";
       background-image: url("EDAB_images/stockEff.png");
@@ -521,59 +509,74 @@ class: haddock
 
 * Landings:
 
-* Gears:
+* Gears: combine all gears: otter (050,010,057)
 
-* Temporal aggregation: 
+* Temporal aggregation: semester
 
 * Market codes: 
-
+  * LG, XG combined to LG?
+  * SR (snapper)
+  * SK (scrod)
+  
 * Missing samples:
 
-* Length-weight relationships: 
+* Length-weight relationships: 2 (spring and fall) 
+  * survey (2005 data)
 
 * Age-length data:
 
 * Age-length key: 
 
-* Start date: 
+* Start date: 1964
 
 ---
 
 class: cod
 
-## A case study: Cod
+## A case study: Cod (GB)
 
-* Landings:
+* Landings: East 561-562, West 521-522,525,526,537-539
 
-* Gears:
+* Gears: 050, 010 (longline bottom), 100 (Gill net)
 
-* Temporal aggregation: 
+* Temporal aggregation: quartely
 
 * Market codes: 
 
-* Missing samples:
+* Missing samples: 
+  * pool semester
+  * pool annual
+  * borrow from adjacent area
 
-* Length-weight relationships: 
+* Length-weight relationships: 4 (by semester and region) 
+  * survey data (1992-2007)
+  * Canadian lw based on Canadian observer (by semester)
 
 * Age-length data:
 
 * Age-length key: 
 
-* Start date: 
+* minimum number of samples: 2
+
+* Start date: 1981
 
 ---
 
 class: wf
 
-## A case study: Winter Flounder
+## A case study: Winter Flounder (GB)
 
-* Landings:
+* Landings: 
+  *   522-525, 542,551-552,561-562 
 
-* Gears:
+* Gears: 050 (otter)
 
-* Temporal aggregation: 
+* Temporal aggregation: quarterly
 
 * Market codes: 
+  * LS, XG combined to LS (Lemon sole)
+  * LG, LM combined to LG
+  * SQ,  MD, PW combinbed SMALL
 
 * Missing samples:
 
@@ -583,7 +586,33 @@ class: wf
 
 * Age-length key: 
 
-* Start date: 
+* Start date: 1964
+
+---
+
+class: wf
+
+## A case study: Winter Flounder (SNEMA)
+
+* Landings: 
+  * 521,526,537,539,611-613 
+
+* Gears: 050 (otter)
+
+* Temporal aggregation: semester
+
+* Market codes: same as GB?
+
+
+* Missing samples:
+
+* Length-weight relationships: 
+
+* Age-length data:
+
+* Age-length key: from survey
+
+* Start date: 1981
 
 ---
 
@@ -593,19 +622,19 @@ class: sd
 
 * Landings:
 
-* Gears:
+* Gears: 050 (otter), fixed (010,020,100,101)?
 
-* Temporal aggregation: 
+* Temporal aggregation: Annual
 
-* Market codes: 
+* Market codes: All unclassified
 
-* Missing samples:
+* Missing samples: 
 
-* Length-weight relationships: 
+* Length-weight relationships: 2 (males and females)
 
-* Age-length data:
+* Age-length data: None
 
-* Age-length key: 
+* Age-length key: None
 
 * Start date: 
 
@@ -615,7 +644,7 @@ class: ws
 
 ## A case study: Winter Skate
 
-* Landings:
+* Landings: survey proportions applied to skate population
 
 * Gears:
 
@@ -627,9 +656,9 @@ class: ws
 
 * Length-weight relationships: 
 
-* Age-length data:
+* Age-length data: None
 
-* Age-length key: 
+* Age-length key: None
 
 * Start date: 
 
@@ -642,23 +671,25 @@ class: sh
 
 ## A case study: Silver hake
 
-* Landings:
+* Landings: 
 
-* Gears:
+* Gears: 050, + ?
 
-* Temporal aggregation: 
+* Temporal aggregation: semester
 
 * Market codes: 
+  *   SQ
 
 * Missing samples:
+  * combine to year(s)
 
 * Length-weight relationships: 
 
-* Age-length data:
+* Age-length data: survey (1973-2009)
 
-* Age-length key: 
+* Age-length key: Borrow ages from adjacent years
 
-* Start date: 
+* Start date: 1955 
 
 ---
 
@@ -666,21 +697,21 @@ class: monkfish
 
 ## A case study: Monkfish
 
-* Landings:
+* Landings: No age structured assessment
 
-* Gears:
+* Gears: 050, 100, 132 
 
 * Temporal aggregation: 
 
-* Market codes: 
+* Market codes: SQ, LG
 
 * Missing samples:
 
 * Length-weight relationships: 
 
-* Age-length data:
+* Age-length data: None
 
-* Age-length key: 
+* Age-length key: None 
 
 * Start date: 
 
