@@ -1,5 +1,5 @@
 ---
-title: "mscatch: <br /> An R package for <br /> calculating landings-at-length and age <br/> for multispecies models"
+title: "mscatch: <br /> An R package for <br /> calculating landings-at-length and age"
 subtitle: "24 March 2022"
 author: "Andy Beet <br /> Northeast Fisheries Science Center<br /> <br /> Contributors:<br /> Sarah Gaichas, Sean Lucey, Kiersten Curti <br /> EDAB, numerous Population Dynamics Scientists"
 output:
@@ -42,6 +42,77 @@ knitr::opts_chunk$set(echo = F,
 .monkfish::before {    
       content: "";
       background-image: url("EDAB_images/monkfish.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.5;
+      z-index: -1;
+}
+
+cod {
+  position: relative;
+  z-index: 1;
+}
+
+.cod::before {    
+      content: "";
+      background-image: url("EDAB_images/cod.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.5;
+      z-index: -1;
+}
+
+.sh {
+  position: relative;
+  z-index: 1;
+}
+
+.sh::before {    
+      content: "";
+      background-image: url("EDAB_images/silverhake.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.5;
+      z-index: -1;
+}
+.sd {
+  position: relative;
+  z-index: 1;
+}
+
+.sd::before {    
+      content: "";
+      background-image: url("EDAB_images/spinydogfish.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.5;
+      z-index: -1;
+}
+
+.haddock {
+  position: relative;
+  z-index: 1;
+}
+
+.haddock::before {    
+      content: "";
+      background-image: url("EDAB_images/haddock.png");
       background-size: cover;
       position: absolute;
       top: 0px;
@@ -166,13 +237,13 @@ knitr::opts_chunk$set(echo = F,
 
 
 
-## Background: catch at length
+## Background: catch at length/age
 
 .pull-left[
 
 * Determine how landings data are aggregated based on available length samples
 
-* How is missing length samples are handled
+* How are missing length samples handled
 
 * Need to recognize species specific rules for calculating catch at length & age
   * life history traits
@@ -228,17 +299,16 @@ Template found on [StockEff Confluence](https://www.st.nmfs.noaa.gov/confluence/
 
 * Define species specific rules.
 
-* Reproduce results and fully documented process (Transparent)
+* Reproducible with documentation of decisions (Transparency)
 
-* Length and age based multispecies models.
-
-* Evaluate the performance of multispecies assessment models
-
-* Multispecies models require data on a different spatial footprint from assessments
+* Multispecies length and age based models require data on a different spatial footprint from assessments
   *   Many challenges
   *   Alternate spatial footprints could result in the absence of species data (eg. Mackerel, herring on Georges Bank) 
   *   Encompass multiple species stocks (eg. Winter flounder on Georges Bank)
+
+* Evaluate the performance of multispecies assessment models
 ]
+
 
 .pull-right[
 ```{r, out.width = "300px"}
@@ -249,11 +319,98 @@ knitr::include_graphics("EDAB_images/logo.png")
 
 ]
 
+---
+
+## Sample output: 
+
+.pull-left[
+```{r, out.width = "500px"}
+knitr::include_graphics("EDAB_images/1_landings_by_gear.png")
+```
+]
+.pull-right[
+```{r, out.width = "500px"}
+knitr::include_graphics("EDAB_images/5a_lengths_by_gear.png")
+```
+
+]
 
 ---
+## Sample output: 
+
+.pull-left[
+```{r, out.width = "500px"}
+knitr::include_graphics("EDAB_images/2_landings_by_market_cat.png")
+```
+]
+.pull-right[
+```{r, out.width = "500px"}
+knitr::include_graphics("EDAB_images/6_market_category_lengths.png")
+```
+
+]
+
+---
+
+## Sample output: 
+
+.pull-left[
+```{r, out.width = "500px"}
+knitr::include_graphics("EDAB_images/3_length_samples.png")
+
+```
+]
+.pull-right[
+```{r, out.width = "500px"}
+knitr::include_graphics("EDAB_images/10_market_category_SEMESTER_length_distribution_050.png")
+```
+
+]
+---
+
+## Sample output: 
+
+.pull-left[
+```{r, out.width = "500px"}
+knitr::include_graphics("EDAB_images/9_market_category_SEMESTER_landings_050.png")
+
+```
+]
+.pull-right[
+```{r, out.width = "500px"}
+knitr::include_graphics("EDAB_images/length_weight_relationship_ATLANTIC MACKEREL.png")
+```
+
+]
+
+
+---
+## Walkthrough
+
+.pull-left[
+
+* Currently borrows length samples: 
+      * from previous QTR/SEMESTER
+      * use nearest neighbor in time
+      * use nearest neighbor from another gear type
+* uses survey length-weight data to fit relationship
+  
+* Process for handling missing length samples will be expanded to incorporate today's discussion.
+    
+
+]
+
+.pull-right[
+```{r, out.width = "620px"}
+knitr::include_graphics("EDAB_images/AutomatedWorkflow.png")
+```
+]
+
+---
+
 class: ws
 
-## Species specific condsiderations: Rules
+## Species specific considerations: Rules
 
 * How are gear types aggregated?
 
@@ -262,8 +419,9 @@ class: ws
 * How are landing aggregated temporally? QTR, SEMESTER, ANNUAL?
 
 * What are the rules implemented when length samples are missing?
-  * What is the minumum number of samples required?
-  * borrow samples from nearest neighbor? (previous year? within last 5 years?)
+  * What are the minimum number of samples required?
+  * 200 mt landings for every 100 fish lengths measured?
+  * borrow samples from nearest neighbor? previous year? within last 5 years?
   * combine temporally?
   * combine gears?
   
@@ -271,24 +429,26 @@ class: ws
 ---
 class: ws
 
-## Species specific condsiderations: Data
+## Species specific considerations: Data
 
-* Sources of length-weight data/parameters?
+* Sources for length-weight data/parameters?
   * From survey and/or commercial?
   * Fit own relationship or use parameters pulled from svdbs database (Wigley et al)
-  * How many length-weight relationships are used? QTR, SEMESTER, sex, geartype?
+  * How many length-weight relationships are used? QTR, SEMESTER, sex, gear type?
 
-* Sources of discard data?
+* Sources for discard data?
   * Are length samples available?
-  * Add to totals prior to lengh expansion?
+  * Add to totals prior to length expansion?
 
-* Sources of age data?
+* Sources for age data?
   * From survey and/or commercial?
   * Age-length same level of aggregation or futher aggregate?
+  
+* Sources for foreign data? 
 
 * What is the first year of data used in assessment?
 
-* Stock area definition: Stat areas used to pull data
+* Stock area definition? Statistical areas?
 
 
 ---
@@ -299,20 +459,21 @@ class: mackerel
 
 * All gears combined into a single gear type
 
-* Aggregate to semesters (Jan-Jun, Jul-Dec)
+* Temporal aggregation: semesters (Jan-Jun, Jul-Dec)
 
-* Market codes: SQ, ES, SV combined to SMALL
+* Market codes: 
+  * SQ, ES, SV combined to SMALL
+  * MD 
+  * XG, JB, LG combined into LARGE
 
-* Market codes: XG, JB, LG combined into LARGE
-
-* Borrow sample from previous semester within the same market category
+* Missing samples: Borrow sample from previous semester within the same market category
   * 5 year average over both semesters
   * market category time series average
 
-* 6 Length-weight relationships (3 time intervals per semester)
+* 6 Length-weight relationships: (3 time intervals per semester)
   *   Fitted to bottom trawl data (after QA/QC for anomalous values)
 
-* Age-length data from Bottom trawl survey and Commercial data. Combine
+* Age-length data: from Bottom trawl survey and Commercial data. Combine
 
 * Age-length key: By Year
   
@@ -326,18 +487,18 @@ class: yf
 
 * All gears combined into a single gear type
 
-* Aggregate to semesters (Jan-Jun, Jul-Dec)
+* Temporal aggregation: semesters (Jan-Jun, Jul-Dec)
 
 * Market codes: SQ, MD, PW combined to SMALL, LG
 
-* No Borrowing of samples.
+* Missing samples: No Borrowing of samples.
   * Combine Semesters
   * Bump catch at age totals
   
-* Length-weight relationships (Half year)
+* Length-weight relationships: (Half year)
   * Fitted to bottom trawl data 
 
-* Age-length data (pooled sexes)
+* Age-length data: (pooled sexes)
   * US landings from Commercial data.
   * Canadian landings from survey and commercial
 
@@ -351,22 +512,22 @@ class: herring
 
 ## A case study: Herring
 
-* Landings from state of Maine
+* Landings: from state of Maine
 
 * Gears: Mobile (Trawl, Seines: 170,120,121,122,124,370 + ?), Fixed (all other gear types)
 
-* Aggregate to quarter year
+* Temporal aggregation: quarter year
 
 * Market codes: All unclassified
 
-* No Borrowing of samples.
+* Missing samples: No Borrowing of samples.
   * Combine quarters to semesters for gear type
   * Combine quarters to Year for gear type
 
-* Length-weight relationships (same as aggregation)
+* Length-weight relationships: (same as aggregation)
   * Fitted to commercial length samples 
 
-* Age-length data
+* Age-length data:
   * Separate database.
   
 * Age-length key: Year, Semester, gear type
@@ -374,28 +535,7 @@ class: herring
 * Start date: 1965
 
 ---
-## Walkthrough
 
-.pull-left[
-  * Process for filling in holes needs expanding to incorporate today's discussion.
-  * Currently only borrows length samples: 
-    * from previous QTR/SEMESTER
-    * use nearest neighbor in time
-    * use nearest neighbor from another gear type
-    
-  * uses survey length-weight data to fit relationship
-  
-  
-
-]
-
-.pull-right[
-```{r, out.width = "620px"}
-knitr::include_graphics("EDAB_images/AutomatedWorkflow.png")
-```
-]
-
----
 class: wf
 
 ## Questions
@@ -405,6 +545,180 @@ class: wf
 * What diagnostics are useful?
 
 * Helpful to post species specific diagnostics and length and age compositions for feedback
+
+
+
+---
+
+class: haddock
+
+## A case study: Haddock
+
+* Landings:
+
+* Gears:
+
+* Temporal aggregation: 
+
+* Market codes: 
+
+* Missing samples:
+
+* Length-weight relationships: 
+
+* Age-length data:
+
+* Age-length key: 
+
+* Start date: 
+
+---
+
+class: cod
+
+## A case study: Cod
+
+* Landings:
+
+* Gears:
+
+* Temporal aggregation: 
+
+* Market codes: 
+
+* Missing samples:
+
+* Length-weight relationships: 
+
+* Age-length data:
+
+* Age-length key: 
+
+* Start date: 
+
+---
+
+class: wf
+
+## A case study: Winter Flounder
+
+* Landings:
+
+* Gears:
+
+* Temporal aggregation: 
+
+* Market codes: 
+
+* Missing samples:
+
+* Length-weight relationships: 
+
+* Age-length data:
+
+* Age-length key: 
+
+* Start date: 
+
+---
+
+class: sd
+
+## A case study: Spiny dogfish
+
+* Landings:
+
+* Gears:
+
+* Temporal aggregation: 
+
+* Market codes: 
+
+* Missing samples:
+
+* Length-weight relationships: 
+
+* Age-length data:
+
+* Age-length key: 
+
+* Start date: 
+
+---
+
+class: ws
+
+## A case study: Winter Skate
+
+* Landings:
+
+* Gears:
+
+* Temporal aggregation: 
+
+* Market codes: 
+
+* Missing samples:
+
+* Length-weight relationships: 
+
+* Age-length data:
+
+* Age-length key: 
+
+* Start date: 
+
+
+
+
+---
+
+class: sh
+
+## A case study: Silver hake
+
+* Landings:
+
+* Gears:
+
+* Temporal aggregation: 
+
+* Market codes: 
+
+* Missing samples:
+
+* Length-weight relationships: 
+
+* Age-length data:
+
+* Age-length key: 
+
+* Start date: 
+
+---
+
+class: monkfish
+
+## A case study: Monkfish
+
+* Landings:
+
+* Gears:
+
+* Temporal aggregation: 
+
+* Market codes: 
+
+* Missing samples:
+
+* Length-weight relationships: 
+
+* Age-length data:
+
+* Age-length key: 
+
+* Start date: 
+
 
 
 
