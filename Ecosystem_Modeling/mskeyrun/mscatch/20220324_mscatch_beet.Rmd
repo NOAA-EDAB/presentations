@@ -457,7 +457,7 @@ class: mackerel
   * 5 year average over both semesters
   * market category time series average
 
-* 6 Length-weight relationships: (3 time intervals per semester)
+* Length-weight relationships: 6 (3 time intervals per semester)
   *   Fitted to bottom trawl data (after QA/QC for anomalous values)
 
 * Age-length data: from Bottom trawl survey and Commercial data. Combine
@@ -501,7 +501,7 @@ class: herring
 
 * Landings: from state of Maine
 
-* Gears: Mobile (Trawl, Seines: 170,120,121,122,124,370 + ?), Fixed (all other gear types)
+* Gears: Mobile (Trawl, purse Seines: 050,170,120,121,122,124,370), Fixed (all other gear types)
 
 * Temporal aggregation: quarter year
 
@@ -532,6 +532,15 @@ class: wf
 * What diagnostics are useful?
 
 * Helpful to post species specific diagnostics and length and age compositions for feedback
+
+* Can you help supply information for other species?
+
+  * Cod
+  * Haddock
+  * Spiny Dog
+  * Winter skate
+  * silver hake
+  
 
 
 
@@ -608,9 +617,9 @@ class: wf
 * Temporal aggregation: quarterly
 
 * Market codes: 
-  * LS, XG combined to LS (Lemon sole)
-  * LG, LM combined to LG
-  * SQ,  MD, PW combinbed SMALL
+  * LS (1201), XG (1204) combined to LS (Lemon sole)
+  * LG (1205), LM (1202) combined to LG
+  * SQ (1203),  MD (1206), PW (1207) combined SMALL
 
 * Missing samples:
 
@@ -629,24 +638,30 @@ class: wf
 ## A case study: Winter Flounder (SNEMA)
 
 * Landings: 
-  * 521,526,537,539,611-613 
+  * 521,526,533-539,611-613 
 
 * Gears: 050 (otter)
 
 * Temporal aggregation: semester
 
-* Market codes: same as GB?
+* Market codes: 
+  * LS (1201), XG (1204), LG (1205), LM (1202) combined to LG
+  * SQ (1203), PW (1207) combined SMALL
+  * MD (1206), UN (1200) combined MEDIUM
 
+* Missing samples: No borrowing
+  * combine quarter to semester
+  * combine to year
 
-* Missing samples:
+* Length-weight relationships: single relationship
+  * from survey through 2010
 
-* Length-weight relationships: 
+* Age-length data: 
+  * commercial data. for discards survey data
 
-* Age-length data:
+* Age-length key: year, semester
 
-* Age-length key: from survey
-
-* Start date: 1981
+* Start date: 1982
 
 ---
 
