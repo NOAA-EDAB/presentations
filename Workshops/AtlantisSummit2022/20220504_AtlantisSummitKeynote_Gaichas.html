@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Challenging assessment models  with realistic complexity</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas  Northeast Fisheries Science Center" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+# Challenging assessment models<br /> with realistic complexity
+## Atlantis Summit 2022 Day 3 Keynote
+### Sarah Gaichas<br /> Northeast Fisheries Science Center
+
+---
+
+class: top, left
+
+
+
+
+.pull-left[
+# Outline
+
+* Atlantis and assessment
+
+* Assessment model testing  
+
+    * What do models need to do?
+    * Challenges with what models need to do  
+    * Addressing challenges  
+
+* Examples
+
+1. Single species assessment
+1. Multispecies assessment
+1. Other models?
+
+* Future needs
+
+    * Atlantis output verification
+    * New outputs?
+
+]
+
+.pull-right[
+.center[
+![:img xkcd comic, 65%](EDAB_images/the_difference.png)
+https://xkcd.com/242/
+]
+]
+
+---
+background-image: url("EDAB_images/noaafisheries.png")
+background-size: 900px
+background-position: bottom center
+
+# We do a lot of assessments
+
+.center[
+![:img NOAAlogo, 20%](EDAB_images/noaa-logo.PNG)  
+&lt;!--![:img noaafisheries, 85%](EDAB_images/noaafisheries.png)--&gt;
+]
+
+---
+background-image: url("EDAB_images/ecomods.png")
+background-size: 900px
+background-position: bottom center
+
+# With a wide range of models
+
+.center[
+&lt;!--![:img ecomods, 85%](EDAB_images/ecomods.png)--&gt;
+]
+
+---
+# How do we know they are right?
+
+ * Fits to historical data (hindcast)
+ 
+ * Influence of data over time (retrospective diagnostics)
+ 
+ * Keep as simple and focused as possible
+ 
+ * Simulation testing
+
+# But, what if 
+
+##   data are noisy? 
+
+##   we need to model complex interactions?
+
+##   conditions change over time?
+
+---
+## Fisheries: what do we need to know?
+
+**How many fish can be caught sustainably?**
+
+.pull-left[
+* How many are caught right now?
+* How many were caught historically?
+* How many are there right now?
+* How many were there historically?
+* How productive are they (growth, reproduction)? 
+]
+
+.pull-right[
+![:img school of forage fish](EDAB_images/forageschool.png)
+]
+
+
+
+.bluetext[
+* &lt;span style="color:blue"&gt;What supports their productivity?&lt;/span&gt;  
+* &lt;span style="color:blue"&gt;What does their productivity support, besides fishing?&lt;/span&gt;  
+* &lt;span style="color:blue"&gt;How do they interact with other fish, fisheries, marine animals?&lt;/span&gt; 
+* &lt;span style="color:blue"&gt;How do environmental changes affect them?&lt;/span&gt;  
+* &lt;span style="color:blue"&gt;What is their ecological, economic, and social value to people?&lt;/span&gt;  
+]
+
+---
+## Challenges, how we address them
+.pull-left[
+* We don’t live in the ocean; can’t see or directly count what we manage 
+
+
+* We know only basic biological properties of species; data are expensive
+
+
+* Catch coming to land is not the only fishing effect
+
+
+.bluetext[
+* &lt;span style="color:blue"&gt;We manage species separately but they interact&lt;/span&gt;
+]
+
+
+.bluetext[
+* &lt;span style="color:blue"&gt;Different laws govern different species, activities&lt;/span&gt;
+]
+
+
+.bluetext[
+* &lt;span style="color:blue"&gt;People depend on these estimates for livelihoods&lt;/span&gt;
+]
+]
+
+--
+
+.pull-right[
+.greentext[
+* &lt;span style="color:green"&gt;Statistical design of surveys, sampling and estimation&lt;/span&gt;
+* &lt;span style="color:green"&gt;Observation models for data&lt;/span&gt;
+
+
+* &lt;span style="color:green"&gt;Sampling and estimation&lt;/span&gt;
+* &lt;span style="color:green"&gt;Model structure and parameterization&lt;/span&gt;
+
+
+* &lt;span style="color:green"&gt;Discarded catch estimation, habitat and other alterations&lt;/span&gt;
+
+
+* &lt;span style="color:green"&gt;Multispecies and integrated assessment&lt;/span&gt;
+
+
+* &lt;span style="color:green"&gt;Integrated assessment, management strategy evaluation&lt;/span&gt;
+
+
+* &lt;span style="color:green"&gt;Validation, quality control, transparency&lt;/span&gt;
+]
+]
+
+
+
+---
+# Risks to meeting fishery management objectives
+
+.center[
+![:img Climate icon made by EDAB, 25%](EDAB_images/3_CLIMATE.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Wind icon made by EDAB, 25%](EDAB_images/24.WIND.png)
+] 
+
+.center[
+![:img Hydrography icon made by EDAB, 15%](EDAB_images/1_HYDROGRAPHY.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Phytoplankon icon made by EDAB, 15%](EDAB_images/9_PHYTOPLANKTON.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Forage fish icon made by EDAB, 15%](EDAB_images/13_FORAGEFISH.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Apex predators icon made by EDAB, 15%](EDAB_images/17.APEXPREDATORS.png)  &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Other human uses icon made by EDAB, 15%](EDAB_images/8_OTHERHUMANUSES.png) 
+]
+
+
+---
+background-image: url("EDAB_images/seasonal-sst-anom-gridded-2021.png")
+background-size: 700px
+background-position: right top
+
+
+
+## Risks: Climate change 
+
+.pull-left[
+Indicators: ocean currents, bottom and surface temperature, marine heatwaves
+&lt;img src="docs/images/unnamed-chunk-2-1.png" width="288" style="display: block; margin: auto;" /&gt;
+
+
+&lt;img src="docs/images/unnamed-chunk-3-1.png" width="288" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="docs/images/unnamed-chunk-4-1.png" width="504" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+&amp;nbsp;  
+&amp;nbsp;  
+&amp;nbsp; 
+&amp;nbsp; 
+&amp;nbsp;  
+&amp;nbsp;  
+&amp;nbsp;  
+&amp;nbsp; 
+&amp;nbsp;  
+&amp;nbsp;  
+&amp;nbsp; 
+&amp;nbsp;  
+&amp;nbsp; 
+&amp;nbsp;  
+&amp;nbsp;  
+&amp;nbsp; 
+&amp;nbsp;  
+&amp;nbsp;  
+
+&lt;img src="docs/images/unnamed-chunk-5-1.png" width="360" style="display: block; margin: auto;" /&gt;
+
+]
+???
+A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
+
+
+---
+## Modeling management strategies
+
+.pull-left[
+
+- Changing climate and ocean conditions &amp;rarr; Shifting species distributions, changing productivity
+
+- Needs:
+  - Improve our ability to project global change impacts in the California Current and Nordic/Barents Seas (and elsewhere)
+  - Test the performance of stock assessments to these impacts
+]
+
+.pull-right[
+*Climate-Ready Management&lt;sup&gt;1&lt;/sup&gt;*
+![:img Climateready, 90%](EDAB_images/KarpetalFig1.png)
+
+
+]
+
+.footnote[
+[1] Karp, Melissa A. et al. 2019. Accounting for shifting distributions and changing productivity in the development of scientific advice for fishery management. – ICES Journal of Marine Science, doi:10.1093/icesjms/fsz048.
+]
+
+???
+---
+## Virtual worlds: end-to-end ecosystem models
+
+Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-2979.2011.00412.x), [Fulton and Smith 2004](https://www.ajol.info/index.php/ajms/article/view/33182)
+
+.pull-left[
+**Norwegian-Barents Sea**
+
+[Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
+[2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
+
+![NOBA scale 70%](EDAB_images/journal.pone.0210419.g001.png)
+]
+.pull-right[
+**California Current**
+
+[Marshall et al. 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/gcb.13594), 
+[Kaplan et al. 2017](https://www.sciencedirect.com/science/article/pii/S0304380016308262?via%3Dihub)
+
+![CCAspatial scale 80%](EDAB_images/CCAspatial.png)
+]
+
+
+
+Building on global change projections:  [Hodgson et al. 2018](https://www.sciencedirect.com/science/article/pii/S0304380018301856?via%3Dihub), 
+[Olsen et al. 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00064/full)
+
+
+???
+---
+## Design: Ecosystem model scenario (climate and fishing)
+
+&lt;img src="EDAB_images/projectionOMsetup.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+???
+
+.pull-left[
+* Recruitment variability in the operating model
+
+* Specify uncertainty in assessment inputs using `atlantisom`
+]
+.pull-right[
+![sardinerec scale 100%](EDAB_images/CCAsardineRecVar.png)
+]
+
+
+
+---
+## Testing a simple "sardine" assessment (in progress)
+.pull-left[
+Biomass
+![:img true biomass compared with assessment biomass, 70%](EDAB_images/trueBss3B.png) 
+
+Fishing mortality
+![:img true fishing mortality compared with assessment fishing mortality, 70%](EDAB_images/trueFss3F.png) 
+
+]
+
+.pull-right[
+Recruitment
+![:img true recruitement compared with assessment recruitment, 70%](EDAB_images/trueRss3R.png) 
+
+Key: &lt;span style="color:teal"&gt;True&lt;/span&gt; &lt;span style="color:red"&gt;SS3 estimate&lt;/span&gt;
+
+![:img workinprogress, 30%](EDAB_images/work-in-progress.png)
+]
+
+---
+## P.S. What else could we test?
+
+![xkcd_ensemble_model_2x.png](EDAB_images/xkcd_ensemble_model_2x.png)
+
+---
+# Multiple objectives, multiple challenges
+
+.pull-left[
+Fisheries stock assessment and ecosystem modeling continue to develop  
+.bluetext[Can we keep pace with climate?]
+
+Existing management systems are at least as complex as the ecosystems, with diverse interests and emerging industries
+
+Integrated ecosystem assessment and management strategy evaluation
+* Include key interactions
+    + Species
+    + Fisheries
+* Environment
+* Make tradeoffs explicit
+* Account for uncertainty
+
+.bluetext[Mathematical innovation needed!]
+]
+
+.pull-right[
+![:img Three dimensional map of the Northeast US shelf showing major bottom, current, and other oceanographic features: Mid-Atlantic bight with the cold pool, circulation on Georges Bank and in the Gulf of Maine, the Scotian Shelf off Canada, the Labrador Current coming from the North and the Gulf Stream offshore with associated warm core and cold core rings spinning off. Precipitation over land affects water quality in the Chesapeake Bay., 100%](EDAB_images/MAFMC_NE_SHELF_MAP.png)
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
