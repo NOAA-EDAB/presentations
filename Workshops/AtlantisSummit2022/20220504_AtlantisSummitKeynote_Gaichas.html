@@ -22,36 +22,38 @@ class: top, left
 
 
 
+## Outline
 
 .pull-left[
-# Outline
-
-* Atlantis and assessment
+* Management decisions and models
 
 * Assessment model testing  
 
     * What do models need to do?
     * Challenges with what models need to do  
-    * Addressing challenges  
+    * Addressing challenges with Atlantis  
 
-* Examples
+* Skill assessment with Atlantis "data"
 
-1. Single species assessment
-1. Multispecies assessment
-1. Other models?
-
-* Future needs
-
-    * Atlantis output verification
-    * New outputs?
+    1. R package `atlantisom`
+    1. Single species assessment
+    1. Multispecies assessment
+    1. Other models? Ensembles?
 
 ]
 
 .pull-right[
-.center[
-![:img xkcd comic, 65%](EDAB_images/the_difference.png)
-https://xkcd.com/242/
-]
+* Future needs
+ 
+    + Automation of other model inputs!
+    * Atlantis output verification
+    * New outputs?
+    + Best practices for 
+        + dataset creation
+        + parameter estimation
+
+
+![:img poseidon](EDAB_images/poseidon-1024x6391.jpg)
 ]
 
 ---
@@ -97,23 +99,36 @@ background-position: bottom center
 ##   conditions change over time?
 
 ---
-## Fisheries: what do we need to know?
+background-image: url("EDAB_images/forageschool.png")
+background-size: 450px
+background-position: right bottom
+
+
+## Fisheries: what do we need to know? &amp;nbsp; &amp;nbsp; &amp;nbsp; What do models need to estimate?
 
 **How many fish can be caught sustainably?**
 
 .pull-left[
+* How many are there right now? 
+* How many were there historically?
+* How productive are they (growth, reproduction)?
 * How many are caught right now?
 * How many were caught historically?
-* How many are there right now?
-* How many were there historically?
-* How productive are they (growth, reproduction)? 
 ]
 
 .pull-right[
-![:img school of forage fish](EDAB_images/forageschool.png)
+* Current biomass overall and at age/size
+* Reconstruct past population dynamics 
+* Individual and population growth  
+* How many should be caught next year?
+* How certain are we?
 ]
 
+--
 
+
+
+** "New" questions and challenges **
 
 .bluetext[
 * &lt;span style="color:blue"&gt;What supports their productivity?&lt;/span&gt;  
@@ -122,60 +137,6 @@ background-position: bottom center
 * &lt;span style="color:blue"&gt;How do environmental changes affect them?&lt;/span&gt;  
 * &lt;span style="color:blue"&gt;What is their ecological, economic, and social value to people?&lt;/span&gt;  
 ]
-
----
-## Challenges, how we address them
-.pull-left[
-* We don’t live in the ocean; can’t see or directly count what we manage 
-
-
-* We know only basic biological properties of species; data are expensive
-
-
-* Catch coming to land is not the only fishing effect
-
-
-.bluetext[
-* &lt;span style="color:blue"&gt;We manage species separately but they interact&lt;/span&gt;
-]
-
-
-.bluetext[
-* &lt;span style="color:blue"&gt;Different laws govern different species, activities&lt;/span&gt;
-]
-
-
-.bluetext[
-* &lt;span style="color:blue"&gt;People depend on these estimates for livelihoods&lt;/span&gt;
-]
-]
-
---
-
-.pull-right[
-.greentext[
-* &lt;span style="color:green"&gt;Statistical design of surveys, sampling and estimation&lt;/span&gt;
-* &lt;span style="color:green"&gt;Observation models for data&lt;/span&gt;
-
-
-* &lt;span style="color:green"&gt;Sampling and estimation&lt;/span&gt;
-* &lt;span style="color:green"&gt;Model structure and parameterization&lt;/span&gt;
-
-
-* &lt;span style="color:green"&gt;Discarded catch estimation, habitat and other alterations&lt;/span&gt;
-
-
-* &lt;span style="color:green"&gt;Multispecies and integrated assessment&lt;/span&gt;
-
-
-* &lt;span style="color:green"&gt;Integrated assessment, management strategy evaluation&lt;/span&gt;
-
-
-* &lt;span style="color:green"&gt;Validation, quality control, transparency&lt;/span&gt;
-]
-]
-
-
 
 ---
 # Risks to meeting fishery management objectives
@@ -191,12 +152,12 @@ background-position: bottom center
 
 ---
 background-image: url("EDAB_images/seasonal-sst-anom-gridded-2021.png")
-background-size: 700px
+background-size: 600px
 background-position: right top
 
 
 
-## Risks: Climate change 
+## Risks: Climate change indicators in US Mid-Atlantic
 
 .pull-left[
 Indicators: ocean currents, bottom and surface temperature, marine heatwaves
@@ -237,31 +198,70 @@ A marine heatwave is a warming event that lasts for five or more days with sea s
 
 
 ---
-## Modeling management strategies
+## The stock assessment community is well aware of this
 
 .pull-left[
 
 - Changing climate and ocean conditions &amp;rarr; Shifting species distributions, changing productivity
 
 - Needs:
-  - Improve our ability to project global change impacts in the California Current and Nordic/Barents Seas (and elsewhere)
+  - Improve our ability to project global change impacts in the ecosystems around the world
   - Test the performance of stock assessments to these impacts
+  - *Design assessment methods that perform well despite these impacts*
 ]
 
 .pull-right[
-*Climate-Ready Management&lt;sup&gt;1&lt;/sup&gt;*
+*Climate-Ready Management, [Karp et al 2019]()*
 ![:img Climateready, 90%](EDAB_images/KarpetalFig1.png)
 
 
 ]
 
-.footnote[
-[1] Karp, Melissa A. et al. 2019. Accounting for shifting distributions and changing productivity in the development of scientific advice for fishery management. – ICES Journal of Marine Science, doi:10.1093/icesjms/fsz048.
+???
+---
+## Skill assessment background (see [Journal of Marine Systems Special Issue](https://www.sciencedirect.com/journal/journal-of-marine-systems/vol/76/issue/1))
+
+.pull-left-40[
+[Stow et al. 2009](https://www.sciencedirect.com/science/article/abs/pii/S0924796308001103?via%3Dihub)
+![:img Stow et al 2009 Fig 1](https://ars.els-cdn.com/content/image/1-s2.0-S0924796308001103-gr1.jpg)
+]
+.pull-right-60[
+[Olsen et al. 2016](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146467)
+![:img Olsen et al Fig 1](EDAB_images/pone.0146467.g001.png) 
+]
+???
+"Both our model predictions and the observations reside in a halo of uncertainty and the true state of the system is assumed to be unknown, but lie within the observational uncertainty (Fig. 1a). A model starts to have skill when the observational and predictive uncertainty halos overlap, in the ideal case the halos overlap completely (Fig. 1b). Thus, skill assessment requires a set of quantitative metrics and procedures for comparing model output with observational data in a manner appropriate to the particular application."
+
+---
+## Skill assessment with ecological interactions... fit criteria alone are not sufficient
+*Ignore predation at your peril: results from multispecies state-space modeling  *  [Trijoulet et al. 2020](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2664.13515)
+&gt;Ignoring trophic interactions that occur in marine ecosystems induces bias in stock assessment outputs and results in low model predictive ability with subsequently biased reference points.  
+
+.pull-left-40[
+![VanessaPaper](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/VanessaPaper.png)
+
+EM1: multispecies state space 
+
+EM2: multispecies, no process error 
+
+EM3: single sp. state space, constant M 
+
+EM4: single sp. state space, age-varying M 
+
+*note difference in scale of bias for single species!*
+
+]
+.pull-right-60[
+![modcomp](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/jpe13515-fig-0004-m.jpg)
 ]
 
 ???
+This is an important paper both because it demonstrates the importance of addressing strong species interactions, and it shows that measures of fit do not indicate good model predictive performance. Ignoring process error caused bias, but much smaller than ignoring species interactions.
+See also Vanessa's earlier paper evaluating diet data interactions with multispecies models  
+
+
 ---
-## Virtual worlds: end-to-end ecosystem models
+## Virtual worlds with adequate complexity: end-to-end ecosystem models
 
 Atlantis modeling framework: [Fulton et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-2979.2011.00412.x), [Fulton and Smith 2004](https://www.ajol.info/index.php/ajms/article/view/33182)
 
@@ -305,56 +305,187 @@ Building on global change projections:  [Hodgson et al. 2018](https://www.scienc
 ![sardinerec scale 100%](EDAB_images/CCAsardineRecVar.png)
 ]
 
+---
+## Designing skill assessment
 
+.pull-left[
+![](EDAB_images/PoseidonDesign.png)
+]
+.pull-right[
+![](EDAB_images/expdesignfig.png)
+]
+---
+## Overview of `atlantisom` R package: [link](https://sgaichas.github.io/poseidon-dev/atlantisom_landingpage.html)
+
+.pull-left[
+Started at the 2015 Atlantis Summit
+![](EDAB_images/atlantisomlanding-top.png)
+]
+.pull-right[
+![](EDAB_images/atlantisomlanding-getstarted.png)
+]
 
 ---
-## Testing a simple "sardine" assessment (in progress)
+## `atlantisom` workflow
+
 .pull-left[
-Biomass
-![:img true biomass compared with assessment biomass, 70%](EDAB_images/trueBss3B.png) 
-
-Fishing mortality
-![:img true fishing mortality compared with assessment fishing mortality, 70%](EDAB_images/trueFss3F.png) 
-
+![:img get truth](https://github.com/sgaichas/poseidon-dev/raw/master/docs/images/atlantisomDataFlow_truth-link.png)
 ]
 
 .pull-right[
-Recruitment
-![:img true recruitement compared with assessment recruitment, 70%](EDAB_images/trueRss3R.png) 
+![:img create data](https://github.com/sgaichas/poseidon-dev/raw/master/docs/images/atlantisomDataFlow_data.png)
+]
+---
+## `atlantisom` outputs, survey biomass index, [link](https://sgaichas.github.io/poseidon-dev/msSurveysTest.html)
 
-Key: &lt;span style="color:teal"&gt;True&lt;/span&gt; &lt;span style="color:red"&gt;SS3 estimate&lt;/span&gt;
+.pull-left[
+Perfect information (one Season)
+![](EDAB_images/NOBAsurvey-perfect.png)
+]
+.pull-right[
+Survey with catchability and selectivity
+![](EDAB_images/atlantisomNOBAsurvey-qsel.png)
+]
+
+---
+## `atlantisom` outputs, age and length compositions, [link](https://sgaichas.github.io/poseidon-dev/msSurveysTest.html)
+
+.pull-left[
+![](EDAB_images/NOBAcapelinlengths.png)
+![](EDAB_images/NOBAhalibutlengths.png)
+]
+.pull-right[
+![](EDAB_images/NOBAcapelinage.png)
+![](EDAB_images/NOBAhalibutage.png)
+]
+---
+## `atlantisom` outputs, diet compositions, [link](https://sgaichas.github.io/poseidon-dev/SurveyDietCompTest.html)
+
+.pull-left[
+![](EDAB_images/NOBAcoddiettrue.png)
+]
+.pull-right[
+![](EDAB_images/NOBAcodspringfallsurvdiet.png)
+]
+
+---
+## Testing a simple "sardine" assessment, CC Atlantis [Kaplan et al. 2021](https://www.frontiersin.org/articles/10.3389/fmars.2021.624355/full)
+.pull-left[
+![:img Kaplan et al Fig 2](https://www.frontiersin.org/files/Articles/624355/fmars-08-624355-HTML/image_m/fmars-08-624355-g002.jpg) 
+
+
+
+]
+.pull-right[
+
+Will revisit with newer CC model; issues with different growth than assumed in SS setup?
 
 ![:img workinprogress, 30%](EDAB_images/work-in-progress.png)
 ]
 
 ---
-## P.S. What else could we test?
+## Cod assessment based on NOBA Atlantis (Li, WIP)
 
-![xkcd_ensemble_model_2x.png](EDAB_images/xkcd_ensemble_model_2x.png)
-
----
-# Multiple objectives, multiple challenges
+https://github.com/Bai-Li-NOAA/poseidon-dev/blob/nobacod/NOBA_cod_files/README.MD
 
 .pull-left[
-Fisheries stock assessment and ecosystem modeling continue to develop  
-.bluetext[Can we keep pace with climate?]
+Conversion from SAM to SS successful as starting point
+![](https://github.com/Bai-Li-NOAA/poseidon-dev/raw/nobacod/NOBA_cod_files/README_files/figure-gfm/sam_ss_comparison-1.png)
+]
+.pull-right[
+Fitting to NOBA data more problematic, still working on it
+![](https://github.com/Bai-Li-NOAA/poseidon-dev/raw/nobacod/NOBA_cod_files/README_files/figure-gfm/unnamed-chunk-1-1.png)
 
-Existing management systems are at least as complex as the ecosystems, with diverse interests and emerging industries
+]
+---
+## Multispecies assessment based on NOBA Atlantis (Townsend et al, WIP)
 
-Integrated ecosystem assessment and management strategy evaluation
-* Include key interactions
-    + Species
-    + Fisheries
-* Environment
-* Make tradeoffs explicit
-* Account for uncertainty
+.pull-left[
+Stepwise development process of self fitting, fitting to atlantis output, then skill assessment using atlantis output
+![](EDAB_images/MSSPMfittoNOBA.png)
 
-.bluetext[Mathematical innovation needed!]
+![](EDAB_images/MSSPMfittoNOBAdiagK.png)
 ]
 
 .pull-right[
-![:img Three dimensional map of the Northeast US shelf showing major bottom, current, and other oceanographic features: Mid-Atlantic bight with the cold pool, circulation on Georges Bank and in the Gulf of Maine, the Scotian Shelf off Canada, the Labrador Current coming from the North and the Gulf Stream offshore with associated warm core and cold core rings spinning off. Precipitation over land affects water quality in the Chesapeake Bay., 100%](EDAB_images/MAFMC_NE_SHELF_MAP.png)
+Can test model diagnostic tools as well
+![](EDAB_images/MSSPMfittoNOBAretro.png)
 ]
+---
+## P.S. What else could we test?
+.center[
+![:img xkcd_ensemble_model_2x, 75%](EDAB_images/xkcd_ensemble_model_2x.png)
+]
+---
+## Multispecies production model ensemble assessment--use Atlantis instead?
+
+.pull-left[
+![:img Hydra OM setup](EDAB_images/HydraOM3msprods.png)
+]
+.pull-right[
+![:img ensemble results](EDAB_images/ensembleMSprodskill.png)
+]
+---
+## Difficulties so far
+
+Atlantis related
+
+*  Understanding Atlantis outputs (much improved with documentation since 2015)
+*  Reconciling different Atlantis outputs, which to use?
+*  Calculations correct? attempted M, per capita consumption
+    
+Skill assessment related
+
+*  Running stock assessment models is difficult to automate. A lot of decisions are made by iterative running and diagnostic checks.
+*  Generating input parameters for models that are consistent with Atlantis can be time consuming (Atlantis is a little too realistic...)
+    + Fit vonB length at age models to atlantisom output for input to length based model, not all converge (!)
+    + What is M (see above)
+    
+???
+    + `atlantisom` is using outputs not often used in other applications
+    + I don't run Atlantis so putting print statements in code not an option
+    + could be more efficient with targeted group work
+
+    + should we expect numbers in one output to match those in others?
+    + diet comp from detailed file matches diet comp in simpler output
+    + catch in numbers not always matching between standard and annual age outputs
+    + YOY output
+    + ... others that have been encountered
+
+    + estimating per capita consumption from detaileddiet.txt results in lower numbers than expected
+    + still can't get reasonable mortality estimates from outputs--understand this is an issue
+
+---
+background-image: url("EDAB_images/modeling_study.png")
+background-size: 450px
+background-position: right bottom
+
+## Atlantis and assessment model skill assessment: Thank you and Discussion
+
+Fisheries stock assessment and ecosystem modeling continue to develop. .bluetext[Can we build assessments to keep pace with climate?]
+
+Interested in your thoughts:
+
+*  Is this a good use of Atlantis model outputs?
+*  Any obvious errors in `atlantisom` setup?
+*  How to improve `atlantisom`?
+    + Functions to write specific model inputs in progress (SS included, more complex models in own packages/repositories)
+    + New package with skill assessment functions?
+    + Update documentation and vingnettes
+    + Integrate/update with other R Atlantis tools
+    + Other?
+*  What are best practices to use Atlantis model outputs in skill assessment?
+    + Spatial and temporal scale that is most appropriate
+    + Calculating assessment model input parameters from Atlantis outputs
+    + Storing Atlantis outputs for others to use (large file size)
+    + Other?
+
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations
+
+Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
+]
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
