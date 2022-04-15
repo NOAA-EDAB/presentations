@@ -1,7 +1,7 @@
 ---
 title: "Challenging assessment models<br /> with realistic complexity" 
 subtitle: "Atlantis Summit 2022 Day 3 Keynote"
-author: "Sarah Gaichas<br /> Northeast Fisheries Science Center"
+author: "Sarah Gaichas<br /> Northeast Fisheries Science Center<br /> <br /> Many thanks to:<br /> (atlantisom development): Christine Stawitz, Kelli Johnson, Alexander Keth, Allan Hicks, Sean Lucey, Emma Hodgson, Gavin Fay <br /> (Atlantis): Isaac Kaplan, Cecilie Hanson, Beth Fulton <br /> (atlantisom use): Bai Li, Alphonso Perez Rodriguez, Howard Townsend <br /> (skill assessment design): Patrick Lynch"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -65,7 +65,7 @@ library(readr)
 ]
 
 .pull-right[
-* Future needs
+* Discussion: what's next
  
     + Automation of other model inputs!
     * Atlantis output verification
@@ -102,6 +102,10 @@ background-position: bottom center
 ]
 
 ---
+background-image: url("EDAB_images/modeling_study.png")
+background-size: 500px
+background-position: right bottom
+
 # How do we know they are right?
 
  * Fits to historical data (hindcast)
@@ -120,13 +124,17 @@ background-position: bottom center
 
 ##   conditions change over time?
 
+.footnote[
+https://xkcd.com/2323/
+]
+
 ---
 background-image: url("EDAB_images/forageschool.png")
 background-size: 450px
 background-position: right bottom
 
 
-## Fisheries: what do we need to know? &nbsp; &nbsp; &nbsp; What do models need to estimate?
+## Fisheries: what do we need to know? &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; What do models need to estimate?
 
 **How many fish can be caught sustainably?**
 
@@ -150,7 +158,7 @@ background-position: right bottom
 
 
 
-** "New" questions and challenges **
+** "New" questions and challenges, broader management objectives**
 
 .bluetext[
 * <span style="color:blue">What supports their productivity?</span>  
@@ -337,66 +345,105 @@ knitr::include_graphics("EDAB_images/projectionOMsetup.png")
 ]
 
 ---
-## Designing skill assessment
+## Designing skill assessment with Atlantis
 
 .pull-left[
-![](EDAB_images/PoseidonDesign.png)
+![poseidon](EDAB_images/PoseidonDesign.png)
 ]
 .pull-right[
-![](EDAB_images/expdesignfig.png)
+![fragile ecosystems robust assessments](EDAB_images/expdesignfig.png)
 ]
 ---
 ## Overview of `atlantisom` R package: [link](https://sgaichas.github.io/poseidon-dev/atlantisom_landingpage.html)
 
 .pull-left[
 Started at the 2015 Atlantis Summit
-![](EDAB_images/atlantisomlanding-top.png)
+![atlantisom intro](EDAB_images/atlantisomlanding-top.png)
 ]
 .pull-right[
-![](EDAB_images/atlantisomlanding-getstarted.png)
+![atlantisom get started](EDAB_images/atlantisomlanding-getstarted.png)
 ]
 
 ---
-## `atlantisom` workflow
+background-image: url("https://github.com/sgaichas/poseidon-dev/raw/master/docs/images/atlantisomDataFlow_truth-link.png")
+background-size: 850px
+background-position: right bottom
 
-.pull-left[
-![:img get truth](https://github.com/sgaichas/poseidon-dev/raw/master/docs/images/atlantisomDataFlow_truth-link.png)
-]
+## `atlantisom` workflow: get "truth"
 
-.pull-right[
-![:img create data](https://github.com/sgaichas/poseidon-dev/raw/master/docs/images/atlantisomDataFlow_data.png)
-]
+<!--![:img get truth](https://github.com/sgaichas/poseidon-dev/raw/master/docs/images/atlantisomDataFlow_truth-link.png)-->
+
+* locate files
+* run `om_init`
+* select species
+* run `om_species`
+
+---
+background-image: url("https://github.com/sgaichas/poseidon-dev/raw/master/docs/images/atlantisomDataFlow_data.png")
+background-size: 625px
+background-position: right top
+
+## `atlantisom` workflow: get "data"
+
+<!--![:img create data](https://github.com/sgaichas/poseidon-dev/raw/master/docs/images/atlantisomDataFlow_data.png)-->
+
+*  specify surveys 
+    + (can now have many, file for each)
+    + area/time subsetting
+    + efficiency (q) by species
+    + selectivity by species
+    + biological sample size
+    + index cv
+    + length at age cv
+    + max size bin
+*  specify survey diet sampling (new)
+    + requires detaileddietcheck.txt
+    + diet sampling parameters
+*  specify fishery
+    + area/time subsetting
+    + biological sample size
+    + catch cv
+*  run `om_index`
+*  run `om_comps`
+*  run `om_diet`
+*  environmental data functions too
+
+
 ---
 ## `atlantisom` outputs, survey biomass index, [link](https://sgaichas.github.io/poseidon-dev/msSurveysTest.html)
 
 .pull-left[
 Perfect information (one Season)
-![](EDAB_images/NOBAsurvey-perfect.png)
+![NOBA fall survey 1](EDAB_images/NOBAsurvey-perfect.png)
 ]
 .pull-right[
 Survey with catchability and selectivity
-![](EDAB_images/atlantisomNOBAsurvey-qsel.png)
+![NOBA fall survey 2](EDAB_images/atlantisomNOBAsurvey-qsel.png)
 ]
 
 ---
 ## `atlantisom` outputs, age and length compositions, [link](https://sgaichas.github.io/poseidon-dev/msSurveysTest.html)
 
 .pull-left[
-![](EDAB_images/NOBAcapelinlengths.png)
-![](EDAB_images/NOBAhalibutlengths.png)
+.center[
+![:img capelin lengths, 75%](EDAB_images/NOBAcapelinlengths.png)
+![:img halibut lengths, 75%](EDAB_images/NOBAhalibutlengths.png)
+]
 ]
 .pull-right[
-![](EDAB_images/NOBAcapelinage.png)
-![](EDAB_images/NOBAhalibutage.png)
+.center[
+![:img capelin ages, 75%](EDAB_images/NOBAcapelinage.png)
+![:img halibut ages, 75%](EDAB_images/NOBAhalibutage.png)
+]
 ]
 ---
 ## `atlantisom` outputs, diet compositions, [link](https://sgaichas.github.io/poseidon-dev/SurveyDietCompTest.html)
 
 .pull-left[
-![](EDAB_images/NOBAcoddiettrue.png)
+![true diets](EDAB_images/NOBAcoddiettrue.png)
 ]
 .pull-right[
-![](EDAB_images/NOBAcodspringfallsurvdiet.png)
+![seasonal survey diets](EDAB_images/NOBAcodspringfallsurvdiet.png)
 ]
 
 ---
@@ -420,11 +467,11 @@ Will revisit with newer CC model; issues with different growth than assumed in S
 https://github.com/Bai-Li-NOAA/poseidon-dev/blob/nobacod/NOBA_cod_files/README.MD
 
 .pull-left[
-Conversion from SAM to SS successful as starting point
+Conversion from SAM to SS successful
 ![](https://github.com/Bai-Li-NOAA/poseidon-dev/raw/nobacod/NOBA_cod_files/README_files/figure-gfm/sam_ss_comparison-1.png)
 ]
 .pull-right[
-Fitting to NOBA data more problematic, still working on it
+Fitting to NOBA data more problematic
 ![](https://github.com/Bai-Li-NOAA/poseidon-dev/raw/nobacod/NOBA_cod_files/README_files/figure-gfm/unnamed-chunk-1-1.png)
 
 ]
@@ -433,7 +480,11 @@ Fitting to NOBA data more problematic, still working on it
 
 .pull-left[
 Stepwise development process of self fitting, fitting to atlantis output, then skill assessment using atlantis output
+
 ![](EDAB_images/MSSPMfittoNOBA.png)
+
+Profiles for estimated parameters; but 
+*what to compare K values to?*
 
 ![](EDAB_images/MSSPMfittoNOBAdiagK.png)
 ]
@@ -441,14 +492,21 @@ Stepwise development process of self fitting, fitting to atlantis output, then s
 .pull-right[
 Can test model diagnostic tools as well
 ![](EDAB_images/MSSPMfittoNOBAretro.png)
+Using simulated data in [`mskeyrun` package](https://noaa-edab.github.io/ms-keyrun/), available to all
 ]
+
+
+
 ---
 ## P.S. What else could we test?
 .center[
-![:img xkcd_ensemble_model_2x, 75%](EDAB_images/xkcd_ensemble_model_2x.png)
+![:img xkcd_ensemble_model_2x, 70%](EDAB_images/xkcd_ensemble_model_2x.png)
+]
+.footnote[
+https://xkcd.com/1885/
 ]
 ---
-## Multispecies production model ensemble assessment--use Atlantis instead?
+## Multispecies production model ensemble assessment--use Atlantis instead
 
 .pull-left[
 ![:img Hydra OM setup](EDAB_images/HydraOM3msprods.png)
@@ -457,8 +515,11 @@ Can test model diagnostic tools as well
 ![:img ensemble results](EDAB_images/ensembleMSprodskill.png)
 ]
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/scenario_4.png")
+background-size: 500px
+background-position: right
 ## Difficulties so far
-
+.pull-left-60[
 Atlantis related
 
 *  Understanding Atlantis outputs (much improved with documentation since 2015)
@@ -471,7 +532,15 @@ Skill assessment related
 *  Generating input parameters for models that are consistent with Atlantis can be time consuming (Atlantis is a little too realistic...)
     + Fit vonB length at age models to atlantisom output for input to length based model, not all converge (!)
     + What is M (see above)
-    
+]
+.pull-right-40[
+.cemter[
+.footnote[
+https://xkcd.com/2289/
+]
+]
+]
+
 ???
     + `atlantisom` is using outputs not often used in other applications
     + I don't run Atlantis so putting print statements in code not an option
@@ -487,10 +556,6 @@ Skill assessment related
     + still can't get reasonable mortality estimates from outputs--understand this is an issue
 
 ---
-background-image: url("EDAB_images/modeling_study.png")
-background-size: 450px
-background-position: right bottom
-
 ## Atlantis and assessment model skill assessment: Thank you and Discussion
 
 Fisheries stock assessment and ecosystem modeling continue to develop. .bluetext[Can we build assessments to keep pace with climate?]
