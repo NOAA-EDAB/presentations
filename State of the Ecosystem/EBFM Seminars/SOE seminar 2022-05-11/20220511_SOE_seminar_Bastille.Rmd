@@ -1,7 +1,7 @@
 ---
 title: "State of the Ecosystem: 2022 Overview"
-subtitle: "Seminar  11 May 2022"
-author: "Kimberly Bastille<sup>1,2</sup> <br /> <br />  Sarah Gaichas<sup>1</sup>, Sean Lucey<sup>1</sup>, <br /> Geret DePiper<sup>1</sup>, Kimberly Hyde<sup>1</sup>, and Scott Large<sup>1</sup> <br /> <br /> <br /> Northeast Fisheries Science Center<sup>1</sup> <br /> Ocean Associates Inc.<sup>2</sup>"
+subtitle: "11 May 2022"
+author: "Kimberly Bastille<sup>1,2</sup> <br /> <br />  Sarah Gaichas<sup>1</sup>, Sean Lucey<sup>1</sup>, <br /> Geret DePiper<sup>1</sup>, Kimberly Hyde<sup>1</sup>, Laurel Smith<sup>1</sup>, and Scott Large<sup>1</sup> <br /> <br /> <br /> Northeast Fisheries Science Center<sup>1</sup> <br /> Ocean Associates Inc.<sup>2</sup>"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -107,9 +107,13 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
     + Page 1 report card re: objectives &rarr;
     + Page 2 risk summary bullets
     + Page 3 synthesis themes
-1. Body of the Report 
-    + Performance relative to management objectives
-    + Risks to meeting management objectives
+1. Performance relative to management objectives
+    - **What** does the indicator say--up, down, stable?
+    - **Why** do we think it is changing: integrates synthesis themes
+        - Multiple drivers
+        - Regime shifts
+        - Ecosystem reorganization
+1. Risks to meeting management objectives
 
 ]
 
@@ -156,14 +160,14 @@ knitr::kable(mng_obj, linesep = "",
 
 .pull-left[
 .center[
-![:img State of the Ecosystem page 1 summary table, 85%](EDAB_images/NEFMC-2021table_1.png)
+![:img State of the Ecosystem page 1 summary table, 85%](EDAB_images/SOE-MA-final-03.23.22-no marks_Page_2.png)
 
 ]
 ]
 
 .pull-right[
 .center[
-![:img State of the Ecosystem page 2 summary table, 85%](EDAB_images/NEFMC-2021table_2.png)
+![:img State of the Ecosystem page 2 summary table, 85%](EDAB_images/SOE-MA-final-03.23.22-no marks_Page_3.png)
 
 ]
 ]
@@ -228,7 +232,7 @@ No color line = not significant or < 30 years
 ]
 
 ---
-## Objective: Seafood production ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
+## Objective: New England Seafood production ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
 
 .pull-left[
 Indicators: Commercial landings 
@@ -247,7 +251,7 @@ Coastwide landings at the Federal fishery management plan (FMP) level were mixed
 
 ---
 
-## Objective: Commercial Profits ![:img mixed trends arrow icon, 2%](EDAB_images/Mixed trends.png) *New England*
+## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](EDAB_images/Mixed trends.png) *New England*
 ### Indicators: Revenue and Bennet Index of Price and Volume
 
 .pull-left[
@@ -270,6 +274,297 @@ Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Re
 ```
 
 * GOM: Total regional revenue high due to high lobster prices, despite lower volume.
+]
+
+---
+## Objective: Mid-Atlantic Recreational opportunities ![:img increasing arrow icon, 2%](EDAB_images/increase.png) ![:img above average icon icon, 2%](EDAB_images/above long term ave.png);  ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
+
+.pull-left[
+Indicators: Recreational effort and fleet diversity   
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")}
+#rec-op, fig.cap = paste0("Recreational effort in the ",region,".")
+```
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")}
+#rec-div, fig.cap = paste0("Recreational fleet effort diversity in the ",region,".")
+```
+]
+
+.pull-right[
+Implications
+
+* Increased angler trips in 2020 relative to previous years strongly influence the long term increase in recreational effort. Recreational effort (angler trips) has increased over the long term, with 2020 effort above the long-term average.
+
+* The increasing long term trend changes the risk categories for the RecValue element to low-moderate (previously ranked high risk).
+
+* Decline in recreational fleet diversity suggests a potentially reduced range of opportunities. 
+
+* Driven by party/charter contraction (from a high of 24% of angler trips to 7% currently), and a shift toward shore based angling.
+
+]
+
+???
+Changes in recreational fleet diversity can be considered when managers seek options to maintain recreational opportunities. Shore anglers will have access to different species than vessel-based anglers, and when the same species, typically smaller fish. Many states have developed shore-based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector. 
+
+---
+## Objective: New England Stability ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) Com ![:img below average icon icon, 2%](EDAB_images/below long term ave.png); Rec ![:img near average icon icon, 2%](EDAB_images/near long term average.png)
+
+.pull-left[
+*Fishery*  Indicators: commerical species revenue diversity, recreational species catch diversity
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div-species-div.R")}
+```
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-div-catch.R")}
+#recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
+```
+
+] 
+
+.pull-right[
+*Ecological* Indicator: expected number of species, NEFSC bottom trawl survey
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-exp-n.R")}
+#exp-n, fig.cap = "Adult fish diversity the Mid-Atlantic Bight, based on expected number of species."
+```
+
+Implications:  
+* Commercial fishery diversity driven by small number of species
+* Diminished capacity to respond to future fishing opportunities
+* Recreational diversity due to species distributions and regulations
+* Adult diversity in GOM suggests increase in warm-water species
+]
+
+???
+* Overall stability in the fisheries and ecosystem components
+* Increasing diversity in several indicators warrants continued monitoring
+
+---
+## Objective: Mid-Atlantic Environmental Justice and Social Vulnerability &emsp; 
+Indicators: Environmental justice vulnerability, commercial fishery engagement and reliance  
+.pull-left[
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
+#commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in the Mid-Atlantic."
+```
+Mid-Atlantic commercial fishing communities
+]
+
+.pull-right[
+
+```{r, out.width="100%"}
+#get rid of the gray excel outline using R package magick
+ComEJ <- magick::image_read("EDAB_images/EJ_Commercial_MAB.png") 
+
+# from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
+# get height, width and crop longer side to match shorter side
+ii <- magick::image_info(ComEJ)
+
+cropComEJ <- ComEJ %>%
+  #magick::image_crop(cropComEJ, "820x580+5+5")
+  magick::image_crop(paste0(ii$width-10,"x",ii$height-10, "+5+5"))
+
+cropComEJ
+```
+
+<!--![Commercial fishing communities environmental justice spider plot](EDAB_images/EJ_Commercial_MAB.png)-->
+]
+
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+
+???
+These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
+---
+## Objectives: Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](EDAB_images/Mixed trends.png) ![:img meeting objectives icon, 2%](EDAB_images/checked.png)
+
+.pull-left[
+Indicators: Harbor porpoise and gray seal bycatch
+.reduced_opacity[
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.height=3}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.height=3}
+```
+]
+]
+
+.pull-right[
+Implications: 
+
+* Currently meeting objectives
+
+* The downward trend in harbor porpoise bycatch can also be due to a decrease in harbor porpoise abundance in US waters, reducing their overlap with fisheries, and a decrease in gillnet effort. 
+
+* The increasing trend in gray seal bycatch may be related to an increase in the gray seal population (U.S. pup counts).
+]
+
+---
+## Objectives: Protected species *Recover endangered populations* ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
+
+.pull-left[
+Indicators: North Atlantic right whale population, calf counts
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R"), fig.height=3}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R"), fig.height=3}
+```
+]
+
+.pull-right[
+Implications:  
+
+* Population drivers for North Atlantic Right Whales (NARW) include combined fishery interactions/ship strikes, distribution shifts, and copepod availability.
+
+* Additional potential stressors include offshore wind development, which overlaps with important habitat areas used year-round by right whales, including mother and calf migration corridors and foraging habitat.
+
+* Unusual mortality events continue for 3 large whale species.
+]
+
+
+---
+# Risks to meeting fishery management objectives
+
+.center[
+![:img Climate icon made by EDAB, 25%](EDAB_images/3_CLIMATE.png) &nbsp; &nbsp; &nbsp; ![:img Wind icon made by EDAB, 25%](EDAB_images/24.WIND.png)
+] 
+
+.center[
+![:img Hydrography icon made by EDAB, 15%](EDAB_images/1_HYDROGRAPHY.png) &nbsp; &nbsp; &nbsp; ![:img Phytoplankon icon made by EDAB, 15%](EDAB_images/9_PHYTOPLANKTON.png) &nbsp; &nbsp; &nbsp; ![:img Forage fish icon made by EDAB, 15%](EDAB_images/13_FORAGEFISH.png) &nbsp; &nbsp; &nbsp; ![:img Apex predators icon made by EDAB, 15%](EDAB_images/17.APEXPREDATORS.png)  &nbsp; &nbsp; &nbsp; ![:img Other human uses icon made by EDAB, 15%](EDAB_images/8_OTHERHUMANUSES.png) 
+]
+
+---
+background-image: url("EDAB_images/seasonal-sst-anom-gridded-2021.png")
+background-size: 700px
+background-position: right top
+
+## Risks: Climate change
+.pull-left[
+Indicators: ocean currents, bottom and surface temperature, marine heatwaves
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.width=4}
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.width=4}
+```
+
+```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.width=4}
+
+```
+
+
+]
+---
+## Risks: Climate change
+.pull-left[
+Indicators: marine heatwaves
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
+
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R")}
+```
+]
+
+.pull-right[
+<br />
+Indicator: warm core rings
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
+```
+
+.center[
+![:img Warm core rings June 2021, 90%](EDAB_images/D_20210608-MUR-SST-WCR.PNG) 
+]
+]
+ 
+---
+## Risks: Climate change and estuarine habitat &emsp; Risk element: EstHabitat 11 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk species
+
+.pull-left[
+Indicators: Chesapeake Bay temperature and salinity
+```{r, fig.asp=1}
+sst<- ecodata::ches_bay_sst
+
+map.lwd <- 0.4
+
+# Set lat/lon window for maps
+xmin = -77.5
+xmax = -74.5
+ymin = 36.5
+ymax = 40
+xlims <- c(xmin, xmax)
+ylims <- c(ymin, ymax)
+#sst <- ecodata::seasonal_sst_anomaly_gridded
+crs<- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
+sst$Season <- factor(sst$Season, levels = c("Winter",
+                                            "Spring",
+                                            "Summer",
+                                            "Fall"))
+
+sst<- sst %>% dplyr::mutate(Value = replace(Value, Value > 5, 5))
+#sst_map <-
+  ggplot2::ggplot() +
+  ggplot2::geom_sf(data = ecodata::coast, size = map.lwd) +
+  ggplot2::scale_fill_gradient2(name = "Temp.\nAnomaly (C)",
+                                low = scales::muted("blue"),
+                                mid = "white",
+                                high = scales::muted("red"),
+                                limits = c(-4,4),
+                                labels = c("<-5", "-2.5", "0", "2.5", ">5")) +
+  ggplot2::coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
+
+  ggplot2::geom_tile(data = sst, aes(x = Latitude, y = Longitude,fill = Value)) +
+  ggplot2::facet_wrap(Season~.) +
+  ecodata::theme_map() +
+  ggplot2::ggtitle("Chesapeake Bay SST anomaly (2021)") +
+  ggplot2::xlab(element_blank()) +
+  ggplot2::ylab(element_blank()) +
+  scale_y_continuous(breaks = seq(37, 40, by = 1))+
+  scale_x_continuous(breaks = seq(-77, -75, by = 1))+
+  ggplot2::theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
+                 legend.key = element_blank(),
+                 axis.title = element_text(size = 6),
+                 strip.background = element_blank(),
+                 strip.text=element_text(hjust=0),
+                 axis.text = element_text(size = 6),
+                 axis.title.y = element_text(angle = 90) )+
+  ecodata::theme_title()
+```
+
+<!--
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-temp.R"), fig.width = 5, fig.asp=.5 }
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-sal.R"), fig.width = 5, fig.asp=.5 }
+```
+![:img 150%](EDAB_images/ches-bay-sst-1.png)-->
+]
+
+.pull-right[
+Indicator: SAV trends in Chesapeake Bay
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sav.R"), fig.width = 6}
+```
+
+Indicator: Water quality attainment
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-wq.R"), fig.width = 6}
+```
+]
+
+---
+## Risks: Climate change and offshore habitat &emsp; Risk element: offshore habitat put aside, new indices 
+.pull-left[
+Indicator: cold pool indices
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")}
+```
+
+Indicator: Ocean acidification
+![:img Seasonal pH](EDAB_images/Saba_Fig_SOE_MAFMC - Grace Saba.png)
+]
+
+.pull-right[
+
+Indicator: warm core rings
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
+```
+
+.center[
+![:img Warm core rings June 2021, 90%](EDAB_images/D_20210608-MUR-SST-WCR.PNG) 
+]
 ]
 
 ---
