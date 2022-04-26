@@ -97,14 +97,20 @@ myBib <- ReadBib("./operationalSOE.bib", check = FALSE)
 
 Background:
 
-Previous presentation of SOE ecosystem overfishing indicators (2021)
-Technical documentation of SOE ecosystem overfishing indicators
+*  Previous [presentation](https://noaa-edab.github.io/presentations/20210407_MAFMC_Gaichas.html#13) of SOE ecosystem overfishing indicators (2021)  
+    +  [Link and Watson 2019](https://www.science.org/doi/10.1126/sciadv.aav0474)  
+    +  [Pauly and Christensen 1995](https://www.nature.com/articles/374255a0)  
+*  [Technical documentation](https://noaa-edab.github.io/tech-doc/ecosystem-overfishing.html) of SOE ecosystem overfishing indicators  
+*  Previous [SOE request memo (p. 2-3)](https://www.mafmc.org/s/b_2021-State-of-the-Ecosystem-Request-Tracking-Memo.pdf) with ecosystem overfishing indicator discussion (2021)  
+*  Previous [SOE request memo (p. 9-10)](https://www.mafmc.org/s/2_State-of-the-Ecosystem-response-memo.pdf) with primary production required discussion (2020) 
 
-Link and Watson 2019
-Pauly and Christensen 1995
+.contrib[
+Figure key: 
 
-Previous SOE request memo (p. 2-3) with ecosystem overfishing indicator discussion (2021)
-Previous SOE request memo (p. 9-10) with primary production required discussion (2020)  
+<span style="background-color:#f4a460;">Orange background = Tipping point overfishing threshold, Link and Watson 2019</span> 
+
+<span style="background-color:#a2cd5a;">Green background = Optimal range, Link and Watson 2019</span>
+]
 ]
 
 .pull-right[
@@ -122,10 +128,51 @@ Previous SOE request memo (p. 9-10) with primary production required discussion 
 
 ]
 ???
+Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
 
 ---
+## Ecosystem overfishing indices support the Seafood Production objective in the SOE (2021)
 
-![:img Link and Watson 2019 Fig 1](https://www.science.org/cms/10.1126/sciadv.aav0474/asset/6b94e27e-71ae-431f-9e8b-7b6378122215/assets/graphic/aav0474-f1.jpeg)
+Thresholds for ecosystem-level overfishing based on system production characteristics have been proposed `r Cite(myBib, "link_global_2019")`, and are applied here for the MAB. The proposed ecosystem overfishing thresholds are calculated based on *total catch* while our preliminary indicators are based on *commercial landings*. Therefore, our current indicators are underestimated compared with the proposed thresholds. In future reports we may be able to include commercial discards and recreational removals to evaluate total catch. 
+
+Based on either the ratio of total landings to total primary production (Fogarty Index), or total landings per unit area (Ryther Index), MAB landings are at or below the proposed thresholds, so ecosystem overfishing is unlikely to be a major factor driving decreased landings.
+
+
+.pull-left[
+```{r fogarty, fig.cap="Fogarty Index; the ratio of total landings to total primary production in the MAB. Link and Watson (2019) give an optimal range (green shading) of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that index values exceeding 1 to 2 PPT (orange shading) led to ecosystem tipping points.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
+
+```
+]
+.pull-right[
+```{r ryther, fig.cap="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green shading) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange shading). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded).", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
+```
+]
+???
+Are changes in landings driven by changes in ecosystem productivity or ecosystem overfishing?
+
+---
+## Primary production required index supports the Seafood Production objective in the SOE (2021)
+
+.pull-left[
+The amount of potential yield we can expect from a marine ecosystem depends on the amount of production entering at the base of the food web, primarily in the form of phytoplankton; the pathways this energy follows to reach harvested species; the efficiency of transfer of energy at each step in the food web; and the fraction of this production that is removed by the fisheries. The fraction of production removed by fisheries has declined since the late 1990s (Fig. \ref{fig:ppr-mab}). The overall trend is largely driven by the decrease in landings with an increase in primary production over the same period. 
+
+Current fisheries remove a lower proportion of the ecosystem's primary production now than in the 1970s, when the Fogarty and Ryther indices suggest that ecosystem overfishing may have occurred.
+]
+
+.pull-right[
+```{r ppr-mab, fig.cap="Primary production required to support MAB commercial landings. Included are the top species accounting for 80\\% of the landings in each year, with 15\\% transfer efficiency assumed between trophic levels. PPD is total primary production. The solid line is based on satellite-derived PPD and the dashed line is based on primary production reconstructed using the mean of satellite-derived PPD from 1998-2010.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ppr.R")}
+```
+]
+
+
+---
+background-image: url("https://www.science.org/cms/10.1126/sciadv.aav0474/asset/6b94e27e-71ae-431f-9e8b-7b6378122215/assets/graphic/aav0474-f1.jpeg")
+background-size: 1000px
+background-position: center
+
+## Link and Watson 2019 overview
+<!--
+![:img Link and Watson 2019 Fig 1](https://www.science.org/cms/10.1126/sciadv.aav0474/asset/6b94e27e-71ae-431f-9e8b-7b6378122215/assets/graphic/aav0474-f1.jpeg) -->
 .footnote[Link and Watson 2019, Fig 1. https://www.science.org/doi/10.1126/sciadv.aav0474]
 
 ???
@@ -133,7 +180,44 @@ FIG. 1 Schematic of stock and EOF.
 (A) Schematic of population overfishing. While a population is experiencing overfishing, the abundance and biomass (here as the number of fish icons) and fish size declines over time, along with many other facets related to population and fleet dynamics. (B) Schematic of EOF. Analogous to population overfishing, EOF is the result of continued fishing pressure on multiple populations, leading to sequential depletion across populations in an ecosystem over time.
 
 ---
-# Stuff
+## Link and Watson 2019 overview
+
+*  Global analysis   
+*  Catch and primary production (PP) based  
+*  Three indices developed  
+    + Ryther: total catch per unit area (global average PP assumed)  
+    + Fogarty: ratio of total catch to total PP within an ecosystem   
+    + Friedland: ratio of total catch to chlorophyll within an ecosystem 
+*  Overfishing thresholds for each index proposed  
+
+*  Ecosystem overfishing (EOF) defined as:  
+
+> an instance where the sum of all catches is flat or declining, total catch per unit effort (CPUE) is declining, and total landings relative to ecosystem production exceeds suitable limits.
+
+
+
+---
+## Pauly and Christensen 1995 overview
+
+
+
+---
+## How we implemented [(tech-doc)](https://noaa-edab.github.io/tech-doc/ecosystem-overfishing.html)
+
+
+---
+## Known issues and questions
+
+(2021 SOE Request Memo)
+
+1. The proposed ecosystem overfishing thresholds are calculated based on *total catch* while our preliminary indicators are based on *commercial landings*. Therefore, our current indicators are underestimated compared with the proposed thresholds. It is possible to add commercial discards and recreational landings and dead discards in the future, or to calculate how much additional catch is required to exceed a threshold.
+
+2. The proposed ecosystem overfishing thresholds are based on a global analysis. The indices define ecosystem productivity in different ways. The Ryther Index is effectively based on fishery removals relative to global primary productivity per unit area, while the Fogarty Index is based on fishery removals relative to regional primary productivity [@link_global_2019]. The study authors "recommend that the indices proposed here be used cognizant of other potential sources of productivity and that are relevant to the scale at which fisheries management mostly occurs."
+
+A full set of plots to help interpret the primary production required and ecosystem overfishing indices (including mean trophic level, which species are included in the landings, and the primary production time series) are available [online](https://noaa-edab.github.io/eofindices/articles/currentIndices.html). We welcome suggestions to include additional plots or conduct analyses to improve interpretation of these indices for the Councils. 
+
+---
+# Discussion
 
 Using Link and Watson 2019 as a starting point, not an end point
 
