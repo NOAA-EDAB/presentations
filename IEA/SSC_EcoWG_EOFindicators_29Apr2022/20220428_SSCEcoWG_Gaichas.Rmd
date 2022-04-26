@@ -91,36 +91,46 @@ myBib <- ReadBib("./operationalSOE.bib", check = FALSE)
 
 
 # Ecosystem Overfishing Indicators
-## Operational thresholds for management?
 
 .pull-left[
+## Operational thresholds for management?
 
 Background:
 
 Previous presentation of SOE ecosystem overfishing indicators (2021)
-
 Technical documentation of SOE ecosystem overfishing indicators
 
 Link and Watson 2019
-
 Pauly and Christensen 1995
 
 Previous SOE request memo (p. 2-3) with ecosystem overfishing indicator discussion (2021)
-
-Previous SOE request memo (p. 9-10) with primary production required discussion (2020)
- 
+Previous SOE request memo (p. 9-10) with primary production required discussion (2020)  
 ]
 
 .pull-right[
 
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
 
+#fogarty, fig.cap="Fogarty Index; the ratio of total landings to total primary production in the MAB. Link and Watson (2019) give an optimal range (green shading) of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that index values exceeding 1 to 2 PPT (orange shading) led to ecosystem tipping points."
 
-.footnote[
+```
 
-]
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
+
+#ryther, fig.cap="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green shading) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange shading). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded)."
+```
+
 ]
 ???
+
 ---
 
-![](https://www.science.org/cms/10.1126/sciadv.aav0474/asset/6b94e27e-71ae-431f-9e8b-7b6378122215/assets/graphic/aav0474-f1.jpeg)
+![:img Link and Watson 2019 Fig 1](https://www.science.org/cms/10.1126/sciadv.aav0474/asset/6b94e27e-71ae-431f-9e8b-7b6378122215/assets/graphic/aav0474-f1.jpeg)
 .footnote[Link and Watson 2019, Fig 1. https://www.science.org/doi/10.1126/sciadv.aav0474]
+
+???
+FIG. 1 Schematic of stock and EOF.
+(A) Schematic of population overfishing. While a population is experiencing overfishing, the abundance and biomass (here as the number of fish icons) and fish size declines over time, along with many other facets related to population and fleet dynamics. (B) Schematic of EOF. Analogous to population overfishing, EOF is the result of continued fishing pressure on multiple populations, leading to sequential depletion across populations in an ecosystem over time.
+
+---
+# Stuff
