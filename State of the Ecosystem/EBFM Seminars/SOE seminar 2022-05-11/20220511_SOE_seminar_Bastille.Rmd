@@ -25,6 +25,12 @@ p.caption {
 }
 </style>
 
+<style>
+.reduced_opacity {
+  opacity: 0.5;
+}
+</style>
+
 ```{r setup, include=FALSE}
 
 options(htmltools.dir.version = FALSE)
@@ -114,7 +120,8 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
         - Regime shifts
         - Ecosystem reorganization
 1. Risks to meeting management objectives
-
+    - Climate Change/Ecosystem Productivity
+    - Other ocean uses: Offshore Wind Development
 ]
 
 .pull-right[
@@ -230,9 +237,8 @@ No color line = not significant or < 30 years
 .center[
 ![:img Fishing icon made by EDAB, 15%](EDAB_images/5_FISHING.png) &nbsp; &nbsp; &nbsp; ![:img Fishing industry icon made by EDAB, 15%](EDAB_images/6_INDUSTRY.png) &nbsp; &nbsp; &nbsp; ![:img Multiple drivers icon made by EDAB, 25%](EDAB_images/18.MULTIPLE_SYSTEM_DRIVERS.png) &nbsp; &nbsp; &nbsp; ![:img Spiritual cultural icon made by EDAB, 15%](EDAB_images/22.SPIRITUAL_CULTURAL.png) &nbsp; &nbsp; &nbsp; ![:img Protected species icon made by EDAB, 15%](EDAB_images/16.PROTECTEDSPECIES.png)
 ]
-
 ---
-## Objective: New England Seafood production ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
+## Objective: New England Seafood Production ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
 
 .pull-left[
 Indicators: Commercial landings 
@@ -249,17 +255,45 @@ Key: Black = Landings of all species combined; <p style="color:#FF6A6A;">Red = L
 Coastwide landings at the Federal fishery management plan (FMP) level were mixed in 2020 when compared to recent years. Landings of groundfish were up, while monkfish and scallop were down.  Lobster landings also decreased in 2020.*
 ]
 
+.pull-right[
+Indicators: Recreational harvest
+<br />
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-landings.R"), fig.asp=.4}
+#, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
+
+```
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-rec_hms.R")}
+#, fig.width=5
+#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
+
+```
+
+*[US Seafood Industry and For-Hire
+Sector Impacts from COVID-19: 2020 in Perspective](https://spo.nmfs.noaa.gov/sites/default/files/TM221.pdf) 
+
+]
+
+Multiple drivers: ecosystem and stock production, management, market conditions (including COVID-19 disruptions), and environmental change
+
+???
+Although scallop decreases are partially explained by a decreased TAC, analyses suggest that the drop in landings is at least partially due to market disruptions due to the COVID-19 pandemic.
+However, we do not anticipate the long-term declining trend in landings to change.
+
 ---
 
 ## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](EDAB_images/Mixed trends.png) *New England*
 ### Indicators: Revenue and Bennet Index of Price and Volume
 
 .pull-left[
+.reduced_opacity[
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-setup.R")}
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-comm-revenue.R"), fig.width=8, fig.height=0.25}
 ```
+]
 .contrib[
 Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of NEFMC managed species</p>
 ]
@@ -269,15 +303,18 @@ Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Re
 ]
 
 .pull-right[
-
+.reduced_opacity[
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet-all.R"), fig.asp=0.65, fig.width=8 }
 ```
-
+]
 * GOM: Total regional revenue high due to high lobster prices, despite lower volume.
 ]
 
 ---
-## Objective: Mid-Atlantic Recreational opportunities ![:img increasing arrow icon, 2%](EDAB_images/increase.png) ![:img above average icon icon, 2%](EDAB_images/above long term ave.png);  ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
+## Objective: Mid-Atlantic Recreational Opportunities ![:img increasing arrow icon, 2%](EDAB_images/increase.png) ![:img above average icon icon, 2%](EDAB_images/above long term ave.png);  ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) ![:img below average icon icon, 2%](EDAB_images/below long term ave.png)
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
+```
 
 .pull-left[
 Indicators: Recreational effort and fleet diversity   
@@ -310,7 +347,7 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 ## Objective: New England Stability ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) Com ![:img below average icon icon, 2%](EDAB_images/below long term ave.png); Rec ![:img near average icon icon, 2%](EDAB_images/near long term average.png)
 
 .pull-left[
-*Fishery*  Indicators: commerical species revenue diversity, recreational species catch diversity
+**Fishery**  Indicators: commercial species revenue diversity, recreational species catch diversity
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div-species-div.R")}
 ```
 
@@ -321,7 +358,7 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 ] 
 
 .pull-right[
-*Ecological* Indicator: expected number of species, NEFSC bottom trawl survey
+**Ecological** Indicator: expected number of species, NEFSC bottom trawl survey
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-exp-n.R")}
 #exp-n, fig.cap = "Adult fish diversity the Mid-Atlantic Bight, based on expected number of species."
 ```
@@ -428,31 +465,25 @@ Implications:
 .center[
 ![:img Hydrography icon made by EDAB, 15%](EDAB_images/1_HYDROGRAPHY.png) &nbsp; &nbsp; &nbsp; ![:img Phytoplankon icon made by EDAB, 15%](EDAB_images/9_PHYTOPLANKTON.png) &nbsp; &nbsp; &nbsp; ![:img Forage fish icon made by EDAB, 15%](EDAB_images/13_FORAGEFISH.png) &nbsp; &nbsp; &nbsp; ![:img Apex predators icon made by EDAB, 15%](EDAB_images/17.APEXPREDATORS.png)  &nbsp; &nbsp; &nbsp; ![:img Other human uses icon made by EDAB, 15%](EDAB_images/8_OTHERHUMANUSES.png) 
 ]
-
 ---
-background-image: url("EDAB_images/seasonal-sst-anom-gridded-2021.png")
-background-size: 700px
-background-position: right top
-
-## Risks: Climate change
-.pull-left[
-Indicators: ocean currents, bottom and surface temperature, marine heatwaves
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.width=4}
+## Risks: Climate Change
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
 ```
+.pull-left[
+Indicators: MAB Surface and Bottom Temperature
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.width=4}
+```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width=8}
+
 ```
 
 ```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.width=4}
 
 ```
-
-
 ]
----
-## Risks: Climate change
-.pull-left[
-Indicators: marine heatwaves
+
+.pull-right[
+Indicators: MAB Marine Heatwaves
+
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
 
 ```
@@ -460,9 +491,22 @@ Indicators: marine heatwaves
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R")}
 ```
 ]
+---
+## Risks: Climate change
 
+Indicators: ocean currents
+.pull-left[
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
+```
+
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R")}
+```
+
+]
 .pull-right[
-<br />
+
 Indicator: warm core rings
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
 ```
@@ -471,9 +515,29 @@ Indicator: warm core rings
 ![:img Warm core rings June 2021, 90%](EDAB_images/D_20210608-MUR-SST-WCR.PNG) 
 ]
 ]
+Implications: Less stable Gulf Stream and reduced cold labrador current water in the Gulf of Maine. 
+
+---
+## Risks: Climate change and offshore habitat
+
+.pull-left[
+Indicator: cold pool indices
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")}
+```
+]
+
+.pull-right[
+Indicator: Ocean acidification
+![:img Seasonal pH](EDAB_images/Saba_Fig_SOE_MAFMC - Grace Saba.png)
+]
+
+
+
+
+
  
 ---
-## Risks: Climate change and estuarine habitat &emsp; Risk element: EstHabitat 11 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk species
+## Risks: Climate change and estuarine habitat &emsp; 
 
 .pull-left[
 Indicators: Chesapeake Bay temperature and salinity
@@ -546,25 +610,386 @@ Indicator: Water quality attainment
 ]
 
 ---
-## Risks: Climate change and offshore habitat &emsp; Risk element: offshore habitat put aside, new indices 
+## Risks: Ecosystem productivity  
+
+Indicators: chlorophyll, primary production, zooplankton
+
 .pull-left[
-Indicator: cold pool indices
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.asp = 0.9}
+#chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a near real-time satellite source). The long-term mean is shown in black and shading indicates +/- 1 standard deviation.", fig.width = 5
 ```
 
-Indicator: Ocean acidification
-![:img Seasonal pH](EDAB_images/Saba_Fig_SOE_MAFMC - Grace Saba.png)
 ]
 
 .pull-right[
 
-Indicator: warm core rings
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.55}
+#weekly-phyto-size, fig.cap="The annual climatology (1998-2019) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations."
 ```
 
-.center[
-![:img Warm core rings June 2021, 90%](EDAB_images/D_20210608-MUR-SST-WCR.PNG) 
+Implications: increased production by smaller phytoplankton implies less efficient transfer of primary production to higher trophic levels. 
+
+]
+
+
+  
+???
+Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average to below average throughout 2021
+---
+
+## Risks: Ecosystem productivity
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), out.width = "90%", fig.asp = 0.5}
+#energy-density, fig.cap="Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values.", 
+```
+
+Implications: fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring
+
+---
+## Risks: Ecosystem productivity 
+
+.pull-left[
+Indicator: fish condition 
+
+```{r, out.width="120%"}
+knitr::include_graphics("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg")
+#fishcond <- magick::image_read("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg") 
+#magick::image_trim(fishcond)
+```
+<!--![:img Fish condition figure, 120%](EDAB_images/MAB_Condition_allsex_2022_viridis.jpg)-->
+
+]
+
+.pull-right[
+Indicator: fish productivity anomaly
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.asp=.75}
+
+```
+
+]
+
+Implications: 
+Most species in the MAB had below average or poor condition again in 2021. Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species. 
+
+
+???
+--- 
+## Risks: Ecosystem Structure
+
+Indicators: Species Distribution 
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R")}
+#species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
+``` 
+
+Implications: Species as a whole moving could mean new species interactions and potential for fishers.
+
+
+---
+## Risks: Ecosystem structure
+
+Indicators: distribution shifts, diversity, predator status and trends
+.pull-left[
+*No trend in aggregate sharks*
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-hms-cpue-sharks.R")}
+#hms-cpue-sharks, fig.cap="Estimated number of sharks per unit effort from Highly Migratory Species Pelagic Observer Program data."
+```
+
+*HMS populations mainly at or above target*
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R")}
+```
+
+
+]
+.pull-right[
+
+* Gray seals increasing 
+* Harbor and gray seals are generalist predators that consume more than 30 different prey species
+
+Implications: stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
+
+]  
+
+---
+
+## Risks: Habitat climate vulnerability
+
+Indicators: climate sensitive species life stages mapped to climate vulnerable habitats  
+
+```{r , message=FALSE}
+#Read in habitat table
+
+ne <- as.data.table(readxl::read_xlsx('habitat_vulnerability.xlsx',
+                         sheet = 'New England', skip = 1))
+
+#Identify individual species climate vulnerability
+vhigh.vul <- unique(ne[`Species Vulnerability Rank (FCVA)` == 'Very high', Species])
+high.vul  <- unique(ne[`Species Vulnerability Rank (FCVA)` == 'High', Species])
+mod.vul   <- unique(ne[`Species Vulnerability Rank (FCVA)` == 'Moderate', Species])
+low.vul   <- unique(ne[`Species Vulnerability Rank (FCVA)` == 'Low', Species])
+
+#Grab habitat vulnerability 
+hab.vul <- unique(ne[, c('Habitat Name', 'Habitat Vulnerability Rank (HVCA)')])
+habitats <- hab.vul[, 'Habitat Name']
+hab.vul <- data.table('Habitat Vulnerability' = c(NA, NA, t(hab.vul[, 'Habitat Vulnerability Rank (HVCA)'])))
+
+#Rearrange table
+ne <- data.table::melt.data.table(ne, id.vars = c('Habitat Name', 'Species'),
+                                   measure.vars = c('Eggs/Larva', 'Juvenile/YOY',
+                                                    'Adult', 'Spawning Adult'),
+                                   variable.name = 'Stage', value.name = 'Dependence')
+ne[, Habitat := as.factor(ne$'Habitat Name')]
+ne <- data.table::dcast.data.table(ne, Species + Stage ~ Habitat,
+                                    value.var = 'Dependence')
+setcolorder(ne, c('Species', 'Stage', habitats$'Habitat Name'))
+
+#Add Habitat Vulnerbaility
+#hab.table <- rbindlist(list(as.data.table(t(hab.vul)), ne), use.names = F)
+hab.table <- ne
+#Add names back in
+names(hab.table) <- names(ne)
+hab.table <- hab.table %>% mutate_if(is.character, str_trim)
+
+#from examples here https://rstudio.github.io/DT/010-style.html
+
+#color coding cells works
+#need to add column with species vulnerability and color code species by it but not show it, like #hideV6 example at link
+#if we show it we can sort by species vulnerability though... alphabetical doesnt work so use numbers to go lowest-highest
+#still need to color code headers
+hab.table <- hab.table %>%
+  mutate(spVul = #Color code species based on climate vul
+    # case_when(Species %in% low.vul ~ "low.vul",
+    #           Species %in% mod.vul ~ "mod.vul",
+    #           Species %in% high.vul ~ "high.vul",
+    #           Species %in% vhigh.vul ~ "vhigh.vul")
+    # )
+    case_when(Species %in% low.vul ~ 1,
+              Species %in% mod.vul ~ 2,
+              Species %in% high.vul ~ 3,
+              Species %in% vhigh.vul ~ 4)
+    )
+
+colnames(hab.table)[c(3:4)] <- paste0('<span style="box-shadow: -10px 0 0 red, 10px 0 0 red; background-color:red; color:white">',colnames(hab.table)[c(3:4)],'</span>')
+colnames(hab.table)[c(5:9)] <- paste0('<span style="box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:',c("orange"),'">',colnames(hab.table)[c(5:10)],'</span>')
+colnames(hab.table)[c(10:14)] <- paste0('<span style="box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:',c("yellow"),'">',colnames(hab.table)[c(11:15)],'</span>')
+
+dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
+          extensions = c('Scroller', 'FixedColumns'), #add scrolling and fixed column
+          options = list(deferRender = TRUE,
+          scrollY = 300, scroller = TRUE,
+          dom = 't',scrollX = TRUE,fixedColumns = TRUE)
+          #, options = list(columnDefs = list(list(targets = 16, visible = FALSE)))
+  ) %>% 
+  formatStyle(
+    names(hab.table)[3:4],
+    backgroundColor = '#FF000080'
+  ) %>%
+  formatStyle(
+    names(hab.table)[5:9],
+    backgroundColor = '#FFA50080'
+  ) %>%
+  formatStyle(
+    names(hab.table)[10:14],
+    backgroundColor = '#FFFF0080'
+  ) %>%
+
+  formatStyle(#Color code base on dependence
+    'Species', "spVul",
+    backgroundColor = styleEqual(#c("low.vul", "mod.vul", "high.vul", "vhigh.vul"),
+                                 c(1,2,3,4),
+                                 c('lightgreen', 'yellow', 'orange', 'red')), #Color code base on dependence)
+    color = styleEqual(c(1,2,3,4),
+                                 c('black', 'black', 'black', 'white'))
+    ) %>%
+    formatStyle(
+    names(hab.table),
+    backgroundColor = styleEqual(c("Low", "Moderate", "High", "Very high"), 
+                                 c('lightgreen', 'yellow', 'orange', 'red')), 
+    color = styleEqual(c("Low", "Moderate", "High", "Very high"), 
+                                 c('black', 'black', 'black', 'white'))
+  )
+
+widgetframe::frameWidget(dt)
+```
+
+---
+## Risks: Offshore Wind Development 
+
+.pull-left[
+Indicators: development timeline, fishery and community specific revenue in lease areas
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R"), fig.height=3}
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R")}
+#, fig.width=5, fig.asp=.4
+#wea-spp-rev, fig.cap="Wind energy revenue in the Mid-Atlantic."
+```
+
+]
+
+.pull-right[
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-port.R"), fig.asp=1.1}
+```
+
+]
+
+---
+
+## Risks: Offshore Wind Development 
+
+.pull-left[
+Implications: 
+
+*  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
+*  Development will affect species differently, negatively affecting species that prefer soft bottom habitat while potentially benefiting species that prefer hard structured habitat.
+*  Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region.
+]
+.pull-right[
+```{r, out.width="120%"}
+knitr::include_graphics("EDAB_images/offshore_wind_timeline.png")
+#fishcond <- magick::image_read("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg") 
+#magick::image_trim(fishcond)
+```
+]
+
+
+
+---
+background-image: url("EDAB_images/noaa-iea.png")
+background-size: 350px
+background-position: right bottom
+
+## Contributors - THANK YOU!
+
+The New England and Mid-Atlantic SOEs made possible by (at least) 61 contributors from 14 institutions 
+
+.pull-left[
+.contrib[
+Kimberly Bastille<br>
+Aaron Beaver (Anchor QEA)<br>
+Andy Beet<br>
+Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
+Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
+Zhuomin Chen (Woods Hole Oceanographic Institute)<br>
+Joseph Caracappa<br>
+Doug Christel (GARFO)<br>
+Patricia Clay<br>
+Lisa Colburn<br>
+Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
+Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
+Geret DePiper<br>
+Dan Dorfman (NOAA-NOS-NCCOS)<br>
+Emily Farr (NMFS Office of Habitat Conservation)<br>
+Michael Fogarty<br>
+Paula Fratantoni<br>
+Kevin Friedland<br>
+Marjy Friedrichs (VIMS)<br>
+Sarah Gaichas<br>
+Ben Galuardi (GARFO)<br>
+Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
+James Gartland (Virginia Institute of Marine Science)<br>
+Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
+Sean Hardison<br>
+Kimberly Hyde<br>
+John Kosik<br>
+Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
+Young-Oh Kwon (Woods Hole Oceanographic Institute)<br>
+
+]
+]
+
+.pull-right[
+.contrib[
+Scott Large<br>
+Andrew Lipsky<br>
+Sean Lucey<br>
+Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
+Chris Melrose<br>
+Shannon Meseck<br>
+Ryan Morse<br>
+Brandon Muffley (MAFMC)<br>
+Kimberly Murray<br>
+Chris Orphanides<br>
+Richard Pace<br>
+Tom Parham (Maryland DNR)
+Charles Perretti<br>
+CJ Pellerin (NOAA Chesapeake Bay Office)<br>
+Grace Roskar (NMFS Office of Habitat Conservation)<br>
+Grace Saba (Rutgers)<br>
+Vincent Saba<br>
+Chris Schillaci (GARFO)<br>
+Dave Secor (CBL)<br>
+Angela Silva<br>
+Adrienne Silver (UMass/SMAST)<br>
+Emily Slesinger (Rutgers University)<br>
+Laurel Smith<br>
+Talya tenBrink (GARFO)<br>
+Bruce Vogt (NOAA Chesapeake Bay Office)<br>
+Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
+John Walden<br>
+Harvey Walsh<br>
+Changhua Weng<br>
+Mark Wuenschel  
+
+]
+]
+
+
+---
+## References
+
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]
+
+## Additional resources
+.pull-left[
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+* Visualizations:
+  * [New England Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_NE)
+  * [New England Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_NE)
+  * [New England Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_NE)
+  * [Mid-Atlantic Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_MAB)
+  * [Mid-Atlantic Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_MAB)
+  * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
+]
+.pull-right[
+* [SOE MAFMC 2021](https://apps-nefsc.fisheries.noaa.gov/rcb/publications/SOE-MAFMC-2021-508-Final.pdf)
+
+* [SOE NEFMC 2021](https://apps-nefsc.fisheries.noaa.gov/rcb/publications/SOE-NEFMC-2021-508-Final.pdf)
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [Draft indicator catalog](https://noaa-edab.github.io/catalog/)
+
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: <kimberly.bastille@noaa.gov>
 ]
 ]
 
 ---
+background-image: url("EDAB_images/SOE_feature_image.png")
+background-size: 1200px
+background-position: center
+
+.right[
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+# Thank you!
+
+# Questions?
+]
