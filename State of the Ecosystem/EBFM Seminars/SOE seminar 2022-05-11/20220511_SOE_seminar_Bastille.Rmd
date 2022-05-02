@@ -80,6 +80,7 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-setup.R")}
+x.shade.max <- 2021
 ```
 
 # State of the Ecosystem (SOE) reporting
@@ -437,6 +438,10 @@ Implications:
 
 .pull-left[
 Indicators: North Atlantic right whale population, calf counts
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-setup.R")}
+```
+
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R"), fig.height=3}
 ```
 
@@ -472,11 +477,11 @@ Implications:
 .pull-left[
 Indicators: MAB Surface and Bottom Temperature
 
-```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width=8}
+```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 10, fig.asp="200%"}
 
 ```
 
-```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.width=4}
+```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp.R"), fig.height=2, fig.asp="70%"}
 
 ```
 ]
@@ -494,45 +499,52 @@ Indicators: MAB Marine Heatwaves
 ---
 ## Risks: Climate change
 
-Indicators: ocean currents
 .pull-left[
+Indicators: ocean currents
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")}
 ```
 
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R")}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.height=2}
+```
+
+]
+
+.pull-right[
+
+Indicator: warm core rings
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
+```
+
+.center[
+![:img Warm core rings June 2021, 60%](EDAB_images/D_20210608-MUR-SST-WCR.PNG) 
+]
+]
+
+
+---
+## Risks: Climate change and offshore habitat
+
+Indicator: cold pool indices, Ocean acidification
+
+.pull-left[
+
+Indicator: warm core rings
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")}
 ```
 
 ]
 .pull-right[
 
 Indicator: warm core rings
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
-```
 
-.center[
-![:img Warm core rings June 2021, 90%](EDAB_images/D_20210608-MUR-SST-WCR.PNG) 
-]
-]
-Implications: Less stable Gulf Stream and reduced cold labrador current water in the Gulf of Maine. 
-
----
-## Risks: Climate change and offshore habitat
-
-.pull-left[
-Indicator: cold pool indices
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")}
-```
+![:img Seasonal pH, 100%](EDAB_images/Saba_Fig_SOE_MAFMC - Grace Saba.png)
 ]
 
-.pull-right[
-Indicator: Ocean acidification
-![:img Seasonal pH](EDAB_images/Saba_Fig_SOE_MAFMC - Grace Saba.png)
-]
-
-
-
+Implications: Changes in cold pool could have impacts on multiple managed species. Areas of lower OA are in known surfclam habitat. 
 
 
  
@@ -612,7 +624,7 @@ Indicator: Water quality attainment
 ---
 ## Risks: Ecosystem productivity  
 
-Indicators: chlorophyll, primary production, zooplankton
+Indicators: chlorophyll, primary production, phytoplankton size class
 
 .pull-left[
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.asp = 0.9}
@@ -635,6 +647,7 @@ Implications: increased production by smaller phytoplankton implies less efficie
   
 ???
 Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average to below average throughout 2021
+
 ---
 
 ## Risks: Ecosystem productivity
@@ -651,12 +664,10 @@ Implications: fluctuating environmental conditions and prey for forage species a
 .pull-left[
 Indicator: fish condition 
 
-```{r, out.width="120%"}
+```{r}
 knitr::include_graphics("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg")
-#fishcond <- magick::image_read("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg") 
-#magick::image_trim(fishcond)
+
 ```
-<!--![:img Fish condition figure, 120%](EDAB_images/MAB_Condition_allsex_2022_viridis.jpg)-->
 
 ]
 
@@ -672,13 +683,12 @@ Implications:
 Most species in the MAB had below average or poor condition again in 2021. Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species. 
 
 
-???
---- 
+---
 ## Risks: Ecosystem Structure
 
-Indicators: Species Distribution 
+Indicator: Species Distribution 
 
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R")}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.height=10, fig.asp=.9}
 #species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
 ``` 
 
@@ -688,26 +698,31 @@ Implications: Species as a whole moving could mean new species interactions and 
 ---
 ## Risks: Ecosystem structure
 
-Indicators: distribution shifts, diversity, predator status and trends
+Indicators: predator status and trends
 .pull-left[
-*No trend in aggregate sharks*
+
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-hms-cpue-sharks.R")}
 #hms-cpue-sharks, fig.cap="Estimated number of sharks per unit effort from Highly Migratory Species Pelagic Observer Program data."
 ```
 
+* Gray seals increasing 
+
+* Harbor and gray seals are generalist predators that consume more than 30 different prey species
 *HMS populations mainly at or above target*
+
+]
+
+.pull-right[
+
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R")}
 ```
 
+Implications: No trend in aggregate sharks and HMS populations mainly at or above taget. Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
 
+
+.contrib[
+[HMS stock codes](https://noaa-edab.github.io/tech-doc/atlantic-highly-migratory-species-stock-status.html)
 ]
-.pull-right[
-
-* Gray seals increasing 
-* Harbor and gray seals are generalist predators that consume more than 30 different prey species
-
-Implications: stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
-
 ]  
 
 ---
@@ -842,11 +857,14 @@ Indicators: development timeline, fishery and community specific revenue in leas
 Implications: 
 
 *  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
+</br>
 *  Development will affect species differently, negatively affecting species that prefer soft bottom habitat while potentially benefiting species that prefer hard structured habitat.
+</br>
 *  Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region.
 ]
+
 .pull-right[
-```{r, out.width="120%"}
+```{r, out.width="80%"}
 knitr::include_graphics("EDAB_images/offshore_wind_timeline.png")
 #fishcond <- magick::image_read("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg") 
 #magick::image_trim(fishcond)
@@ -946,6 +964,7 @@ PrintBibliography(myBib)
 ]
 
 ## Additional resources
+
 .pull-left[
 * [ecodata R package](https://github.com/noaa-edab/ecodata)
 
