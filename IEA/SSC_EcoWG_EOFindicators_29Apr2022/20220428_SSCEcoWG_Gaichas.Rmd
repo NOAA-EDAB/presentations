@@ -317,6 +317,10 @@ This indicator is included in both SOEs (p. 3-4 MAFMC and NEFMC). It is defined 
 $$PPR_t = \sum_{i=1}^{n_t}  \left(\frac{landings_{t,i}}{9}\right) \left(\frac{1}{TE}\right)^{TL_i-1}$$
 where $n_t$ = number of species in time $t$, $landings_{t,i}$ = landings of species $i$ in time $t$, $TL_i$ is the trophic level of species $i$, $TE$ = Trophic efficiency. The PPR estimate assumes a 9:1 ratio for the conversion of wet weight to carbon and a constant transfer efficiency per trophic level.
 
+## Reference
+
+Pauly, D, and V Christensen. 1995. “Primary production required to sustain global fisheries.” Nature 374: 255–57. https://doi.org/https://doi.org/10.1038/374255a0.
+
 ---
 ## Issues/questions for PPR (2020 SOE Response memo)
 
@@ -349,7 +353,7 @@ We have explored the index in the following ways. Using:
 
 * Some classifications in the commercial fisheries database are not at the species level. Some are Genus, Family or even higher orders, some are just general unclassified. eg. (DOGFISH, UNC, FLATFISH, Argentinidae). Most of these cases are associated with lower landings. However if we increase the threshold and/or split landings into vertebrates and invertebrates we will encounter more of these classifications. They will need to be assigned a trophic level which may cause complications and/ or subjective decision making.
 
-* It is possible for species to drop out of the top x% of the landings and be replaced by other species with a similar trophic level and the index will be somewhat insensitive to this (Fig. \ref{fig:ppr-species}). The mean trophic level would also be insensitive to such changes. This may or may not be of concern, but it may be worth looking into how often this occurs. 
+* It is possible for species to drop out of the top x% of the landings and be replaced by other species with a similar trophic level and the index will be somewhat insensitive to this. The mean trophic level would also be insensitive to such changes. This may or may not be of concern, but it may be worth looking into how often this occurs. 
 
 ---
 ## Issues/questions for PPR (2020 SOE Response memo)
