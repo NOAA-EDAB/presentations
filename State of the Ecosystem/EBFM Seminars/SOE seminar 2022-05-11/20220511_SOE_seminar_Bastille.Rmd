@@ -285,7 +285,8 @@ However, we do not anticipate the long-term declining trend in landings to chang
 ---
 
 ## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](EDAB_images/Mixed trends.png) *New England*
-### Indicators: Revenue and Bennet Index of Price and Volume
+
+Indicators: Revenue and Bennet Index of Price and Volume
 
 .pull-left[
 .reduced_opacity[
@@ -294,9 +295,10 @@ However, we do not anticipate the long-term declining trend in landings to chang
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-comm-revenue.R"), fig.width=8, fig.height=0.25}
 ```
-]
+
 .contrib[
 Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of NEFMC managed species</p>
+]
 ]
 * Driven by single species.
 * GB: Fluctuations associated with rotational management areas.
@@ -475,7 +477,7 @@ Implications:
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
 ```
 .pull-left[
-Indicators: MAB Surface and Bottom Temperature
+Indicators: MAB surface and bottom temperature
 
 ```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 10, fig.asp="200%"}
 
@@ -487,7 +489,7 @@ Indicators: MAB Surface and Bottom Temperature
 ]
 
 .pull-right[
-Indicators: MAB Marine Heatwaves
+Indicators: MAB marine heatwaves
 
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
 
@@ -527,11 +529,11 @@ Indicator: warm core rings
 ---
 ## Risks: Climate change and offshore habitat
 
-Indicator: cold pool indices, Ocean acidification
+
 
 .pull-left[
 
-Indicator: warm core rings
+Indicator: cold pool indices
 
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")}
 ```
@@ -539,7 +541,7 @@ Indicator: warm core rings
 ]
 .pull-right[
 
-Indicator: warm core rings
+Indicator: ocean acidifictaion 
 
 ![:img Seasonal pH, 100%](EDAB_images/Saba_Fig_SOE_MAFMC - Grace Saba.png)
 ]
@@ -552,7 +554,7 @@ Implications: Changes in cold pool could have impacts on multiple managed specie
 ## Risks: Climate change and estuarine habitat &emsp; 
 
 .pull-left[
-Indicators: Chesapeake Bay temperature and salinity
+Indicators: Chesapeake Bay temperature
 ```{r, fig.asp=1}
 sst<- ecodata::ches_bay_sst
 
@@ -616,7 +618,7 @@ Indicator: SAV trends in Chesapeake Bay
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sav.R"), fig.width = 6}
 ```
 
-Indicator: Water quality attainment
+Indicator: water quality attainment
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-wq.R"), fig.width = 6}
 ```
 ]
@@ -664,7 +666,7 @@ Implications: fluctuating environmental conditions and prey for forage species a
 .pull-left[
 Indicator: fish condition 
 
-```{r}
+```{r, fig.dim=c(10,10)}
 knitr::include_graphics("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg")
 
 ```
@@ -686,7 +688,7 @@ Most species in the MAB had below average or poor condition again in 2021. Preli
 ---
 ## Risks: Ecosystem Structure
 
-Indicator: Species Distribution 
+Indicator: species distribution 
 
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.height=10, fig.asp=.9}
 #species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
@@ -719,12 +721,11 @@ Indicators: predator status and trends
 
 Implications: No trend in aggregate sharks and HMS populations mainly at or above taget. Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
 
+]  
 
 .contrib[
 [HMS stock codes](https://noaa-edab.github.io/tech-doc/atlantic-highly-migratory-species-stock-status.html)
 ]
-]  
-
 ---
 
 ## Risks: Habitat climate vulnerability
@@ -977,9 +978,9 @@ PrintBibliography(myBib)
   * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
 ]
 .pull-right[
-* [SOE MAFMC 2021](https://apps-nefsc.fisheries.noaa.gov/rcb/publications/SOE-MAFMC-2021-508-Final.pdf)
+* [SOE MAFMC 2022](https://doi.org/10.25923/5s5y-0h81)
 
-* [SOE NEFMC 2021](https://apps-nefsc.fisheries.noaa.gov/rcb/publications/SOE-NEFMC-2021-508-Final.pdf)
+* [SOE NEFMC 2022](https://doi.org/10.25923/ypv2-mw79)
 
 * [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
 
