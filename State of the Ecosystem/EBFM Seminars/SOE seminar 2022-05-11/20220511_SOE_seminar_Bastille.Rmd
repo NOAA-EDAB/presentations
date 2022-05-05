@@ -51,7 +51,7 @@ library(readxl); library(data.table)
 library(DT)
 #library(widgetframe)
 
-
+x.shade.max<-2021
 ```
 
 ```{r, load_refs, include=FALSE, cache=FALSE}
@@ -180,12 +180,6 @@ knitr::kable(mng_obj, linesep = "",
 ]
 ]
 
----
-## Risk summary bullets page 3
-
-.center[
-![:img State of the Ecosystem page 1 summary table, 40%](EDAB_images/NEFMC-2021riskbullets.png)
-]
 
 ---
 ## Graphical summary of ecosystem synthesis themes, page 4
@@ -278,10 +272,6 @@ Sector Impacts from COVID-19: 2020 in Perspective](https://spo.nmfs.noaa.gov/sit
 
 Multiple drivers: ecosystem and stock production, management, market conditions (including COVID-19 disruptions), and environmental change
 
-???
-Although scallop decreases are partially explained by a decreased TAC, analyses suggest that the drop in landings is at least partially due to market disruptions due to the COVID-19 pandemic.
-However, we do not anticipate the long-term declining trend in landings to change.
-
 ---
 
 ## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](EDAB_images/Mixed trends.png) *New England*
@@ -335,7 +325,6 @@ Implications
 
 * Increased angler trips in 2020 relative to previous years strongly influence the long term increase in recreational effort. Recreational effort (angler trips) has increased over the long term, with 2020 effort above the long-term average.
 
-* The increasing long term trend changes the risk categories for the RecValue element to low-moderate (previously ranked high risk).
 
 * Decline in recreational fleet diversity suggests a potentially reduced range of opportunities. 
 
@@ -343,19 +332,23 @@ Implications
 
 ]
 
-???
-Changes in recreational fleet diversity can be considered when managers seek options to maintain recreational opportunities. Shore anglers will have access to different species than vessel-based anglers, and when the same species, typically smaller fish. Many states have developed shore-based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector. 
 
 ---
 ## Objective: New England Stability ![:img decreasing arrow icon, 2%](EDAB_images/decrease.png) Com ![:img below average icon icon, 2%](EDAB_images/below long term ave.png); Rec ![:img near average icon icon, 2%](EDAB_images/near long term average.png)
 
 .pull-left[
 **Fishery**  Indicators: commercial species revenue diversity, recreational species catch diversity
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-GIS-setup.R")}
+```
+
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div-species-div.R")}
 ```
 
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-div-catch.R")}
-#recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
+
 ```
 
 ] 
@@ -384,7 +377,6 @@ Indicators: Environmental justice vulnerability, commercial fishery engagement a
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
 #commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in the Mid-Atlantic."
 ```
-Mid-Atlantic commercial fishing communities
 ]
 
 .pull-right[
@@ -409,8 +401,6 @@ cropComEJ
 
 Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 
-???
-These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
 ---
 ## Objectives: Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](EDAB_images/Mixed trends.png) ![:img meeting objectives icon, 2%](EDAB_images/checked.png)
 
@@ -432,7 +422,7 @@ Implications:
 
 * The downward trend in harbor porpoise bycatch can also be due to a decrease in harbor porpoise abundance in US waters, reducing their overlap with fisheries, and a decrease in gillnet effort. 
 
-* The increasing trend in gray seal bycatch may be related to an increase in the gray seal population (U.S. pup counts).
+* The increasing trend in gray seal bycatch may be related to an increase in the gray seal population.
 ]
 
 ---
@@ -441,7 +431,7 @@ Implications:
 .pull-left[
 Indicators: North Atlantic right whale population, calf counts
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-setup.R")}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-GIS-setup.R")}
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R"), fig.height=3}
@@ -527,7 +517,7 @@ Indicator: warm core rings
 
 
 ---
-## Risks: Climate change and offshore habitat
+## Risks: Climate change
 
 
 
@@ -546,7 +536,7 @@ Indicator: ocean acidifictaion
 ![:img Seasonal pH, 100%](EDAB_images/Saba_Fig_SOE_MAFMC - Grace Saba.png)
 ]
 
-Implications: Changes in cold pool could have impacts on multiple managed species. Areas of lower OA are in known surfclam habitat. 
+Implications: Changes in cold pool could have impacts on multiple managed species. Areas of lower pH are in known surfclam habitat. 
 
 
  
@@ -647,8 +637,7 @@ Implications: increased production by smaller phytoplankton implies less efficie
 
 
   
-???
-Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average to below average throughout 2021
+
 
 ---
 
@@ -707,10 +696,7 @@ Indicators: predator status and trends
 #hms-cpue-sharks, fig.cap="Estimated number of sharks per unit effort from Highly Migratory Species Pelagic Observer Program data."
 ```
 
-* Gray seals increasing 
 
-* Harbor and gray seals are generalist predators that consume more than 30 different prey species
-*HMS populations mainly at or above target*
 
 ]
 
@@ -718,14 +704,16 @@ Indicators: predator status and trends
 
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R")}
 ```
-
-Implications: No trend in aggregate sharks and HMS populations mainly at or above taget. Stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
-
-]  
-
 .contrib[
 [HMS stock codes](https://noaa-edab.github.io/tech-doc/atlantic-highly-migratory-species-stock-status.html)
 ]
+]
+
+Implications: No trend in aggregate sharks and HMS populations mainly at or above taget. Stable predator populations suggest stable predation pressure on managed species, but increasing seal populations may reflect increasing predation pressure.
+
+ 
+
+
 ---
 
 ## Risks: Habitat climate vulnerability
