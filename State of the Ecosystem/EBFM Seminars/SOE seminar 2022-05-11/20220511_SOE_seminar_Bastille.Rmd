@@ -247,7 +247,7 @@ Key: Black = Landings of all species combined; <p style="color:#FF6A6A;">Red = L
 ]
 ]
 
-Coastwide landings at the Federal fishery management plan (FMP) level were mixed in 2020 when compared to recent years. Landings of groundfish were up, while monkfish and scallop were down.  Lobster landings also decreased in 2020.*
+Multiple drivers: ecosystem and stock production, management, market conditions (including COVID-19 disruptions), and environmental change
 ]
 
 .pull-right[
@@ -270,11 +270,11 @@ Sector Impacts from COVID-19: 2020 in Perspective](https://spo.nmfs.noaa.gov/sit
 
 ]
 
-Multiple drivers: ecosystem and stock production, management, market conditions (including COVID-19 disruptions), and environmental change
+
 
 ---
 
-## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](EDAB_images/Mixed trends.png) *New England*
+## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](EDAB_images/Mixed trends.png) 
 
 Indicators: Revenue and Bennet Index of Price and Volume
 
@@ -321,7 +321,7 @@ Indicators: Recreational effort and fleet diversity
 ]
 
 .pull-right[
-Implications
+Implications:
 
 * Increased angler trips in 2020 relative to previous years strongly influence the long term increase in recreational effort. Recreational effort (angler trips) has increased over the long term, with 2020 effort above the long-term average.
 
@@ -344,7 +344,42 @@ Implications
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-GIS-setup.R")}
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div-species-div.R")}
+<!-- ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div-species-div.R")} -->
+<!-- ``` -->
+
+```{r}
+comm_div <- ecodata::commercial_div %>% 
+  dplyr::filter(EPU == region_abbr) %>% 
+  dplyr::group_by(Var) %>% 
+  dplyr::mutate(hline = mean(Value))
+
+ylim_fc <- c(min(comm_div[comm_div$Var == "Fleet count",]$Value) - 10, max(comm_div[comm_div$Var == "Fleet count",]$Value) + 10 )
+ylim_fd <- c(3, max(comm_div[comm_div$Var == "Fleet diversity in revenue",]$Value) + 3 )
+
+comm_div %>% 
+  dplyr::filter(Var == "Fleet diversity in revenue") %>% 
+  ggplot2::ggplot() + 
+ #Highlight last ten years
+  ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max,
+      ymin = -Inf, ymax = Inf) +
+  ggplot2::geom_line(aes(x = Time, y = Value), size = lwd) +
+  ggplot2::geom_point(aes(x = Time, y = Value), size = pcex) +
+  ggplot2::ylim(ylim_fd)+
+  ggplot2::scale_x_continuous(expand = c(0.01, 0.01)) +
+  ggplot2::scale_color_manual(values = "black", aesthetics = "color")+
+  ggplot2::guides(color = FALSE) +
+  ggplot2::ggtitle("Fleet diversity in revenue") +
+  ggplot2::ylab(expression("Effective Shannon")) +
+  ggplot2::xlab(element_blank())+
+  ggplot2::geom_hline(aes(yintercept = hline,
+               color = Var),
+           size = hline.size,
+           alpha = hline.alpha,
+           linetype = hline.lty) +
+  ecodata::theme_ts()+
+  ecodata::theme_title()
+
 ```
 
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-div-catch.R")}
@@ -845,11 +880,14 @@ Indicators: development timeline, fishery and community specific revenue in leas
 .pull-left[
 Implications: 
 
-*  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
-</br>
-*  Development will affect species differently, negatively affecting species that prefer soft bottom habitat while potentially benefiting species that prefer hard structured habitat.
-</br>
 *  Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region.
+
+*  Development will affect species differently, negatively affecting species that prefer soft bottom habitat while potentially benefiting species that prefer hard structured habitat.
+
+*  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
+
+
+
 ]
 
 .pull-right[
