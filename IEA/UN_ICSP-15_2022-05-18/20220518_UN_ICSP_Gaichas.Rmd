@@ -103,9 +103,10 @@ https://www.st.nmfs.noaa.gov/Assets/ecosystems/ebfm/EBFM%20Myths%20v7.pdf
 
 ---
 ## An ecosystem approach implementation success story (in progress)
-.pull-left[
+
 Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing an ecosystem approach to fishery management was done in collaboration between managers, stakeholders, and scientists. 
 
+.pull-left[
 *Outline*
 - Background: Fishery management in the United States
 
@@ -116,37 +117,8 @@ Diverse stakeholders agreed that an ecosystem approach was necessary. Developing
 - Ongoing implementation and lessons learned
 ]
 .pull-right[
-```{r sfconceptmod, echo = F, fig.align = "center"}
-# setup for conceptual model
-PKG <- c(#"foreign","foodweb","sna", "DiagrammeR","circlize", "kableExtra", "googledrive", "readxl"
-         "RColorBrewer","QPress",
-         "chorddiag",
-         "widgetframe")
-
-for (p in PKG) {
-  if(!require(p,character.only = TRUE)) {
-    install.packages(p)
-    require(p,character.only = TRUE)}
-}
-
-data.dir <- here::here("data")
-
-#assumes this is a project and .dia file is in data directory
-edges <- model.dia(file.path(data.dir, "Summer_Flounder_July22_2019.dia"))
-
-source("R/interactive_chord_sfconsmod.R")
-
-conmod <- interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
-
-frameWidget(conmod)
-
-```
 
 ]
-???
-??
-In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
-
 ---
 ## Fishery management in the US
 
@@ -509,85 +481,56 @@ Potential new indicators from new SOE sections on climate risk, habitat vulnerab
 Habitat vulnerability analysis writeups--comments?
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/noaa-iea.png")
-background-size: 300px
-background-position: right bottom
-
-## THANK YOU! SOEs made possible by (at least) 61 contributors from 14 institutions 
-
 .pull-left[
-.contrib[
-Kimberly Bastille<br>
-Aaron Beaver (Anchor QEA)<br>
-Andy Beet<br>
-Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
-Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
-Zhuomin Chen (Woods Hole Oceanographic Institution)<br>
-Joseph Caracappa<br>
-Doug Christel (GARFO)<br>
-Patricia Clay<br>
-Lisa Colburn<br>
-Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
-Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
-Geret DePiper<br>
-Dan Dorfman (NOAA-NOS-NCCOS)<br> 
-Hubert du Pontavice<br>
-Emily Farr (NMFS Office of Habitat Conservation)<br>
-Michael Fogarty<br>
-Paula Fratantoni<br>
-Kevin Friedland<br>
-Marjy Friedrichs (VIMS)<br>
-Sarah Gaichas<br>
-Ben Galuardi (GARFO)<br>
-Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
-James Gartland (Virginia Institute of Marine Science)<br>
-Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
-Sean Hardison<br>
-Kimberly Hyde<br>
-John Kosik<br>
-Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
-Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
+## How is MAFMC using the risk assessment?
 
-]
-]
+* Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
 
+![:img Mid-Atlantic EAFM framework, 95%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+]
 .pull-right[
-.contrib[
-Scott Large<br>
-Andrew Lipsky<br>
-Sean Lucey<br>
-Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
-Chris Melrose<br>
-Shannon Meseck<br>
-Ryan Morse<br>
-Brandon Muffley (MAFMC)<br>
-Kimberly Murray<br>
-Chris Orphanides<br>
-Richard Pace<br>
-Tom Parham (Maryland DNR)<br>
-Charles Perretti<br>
-CJ Pellerin (NOAA Chesapeake Bay Office)<br>
-Grace Roskar (NMFS Office of Habitat Conservation)<br>
-Grace Saba (Rutgers)<br>
-Vincent Saba<br>
-Sarah Salois<br>
-Chris Schillaci (GARFO)<br>
-Dave Secor (CBL)<br>
-Angela Silva<br>
-Adrienne Silver (UMass/SMAST)<br>
-Emily Slesinger (Rutgers University)<br>
-Laurel Smith<br>
-Talya tenBrink (GARFO)<br>
-Bruce Vogt (NOAA Chesapeake Bay Office)<br>
-Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
-John Walden<br>
-Harvey Walsh<br>
-Changhua Weng<br>
-Mark Wuenschel  
+
+```{r sfconceptmod, echo = F, fig.align = "center"}
+# setup for conceptual model
+PKG <- c(#"foreign","foodweb","sna", "DiagrammeR","circlize", "kableExtra", "googledrive", "readxl"
+         "RColorBrewer","QPress",
+         "chorddiag",
+         "widgetframe")
+
+for (p in PKG) {
+  if(!require(p,character.only = TRUE)) {
+    install.packages(p)
+    require(p,character.only = TRUE)}
+}
+
+data.dir <- here::here("data")
+
+#assumes this is a project and .dia file is in data directory
+edges <- model.dia(file.path(data.dir, "Summer_Flounder_July22_2019.dia"))
+
+source("R/interactive_chord_sfconsmod.R")
+
+conmod <- interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
+
+frameWidget(conmod)
+
+```
 
 ]
-]
 
+Council proceeding with management strategy evaluation (MSE) addressing recreational fishery discards using information from conceptual modeling.
+
+???
+In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
+
+
+* Working group of habitat, biology, stock assessment, management, economic and social scientists developed:
+
+  * draft conceptual models of high risk elements, linkages
+  * dataset identification and gap analysis for each element and link
+  * draft questions that the Council could persue with additional work
+ 
+* Final conceptual model and supporting information at December 2019 Council meeting
 
 ---
 ## References
@@ -1162,4 +1105,85 @@ Implications: stable predator populations suggest stable predation pressure on m
 
 ???
 A survey conducted in 2021 in both countries will provide updated estimates of abundance. 
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/noaa-iea.png")
+background-size: 300px
+background-position: right bottom
+
+## THANK YOU! SOEs made possible by (at least) 61 contributors from 14 institutions 
+
+.pull-left[
+.contrib[
+Kimberly Bastille<br>
+Aaron Beaver (Anchor QEA)<br>
+Andy Beet<br>
+Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
+Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
+Zhuomin Chen (Woods Hole Oceanographic Institution)<br>
+Joseph Caracappa<br>
+Doug Christel (GARFO)<br>
+Patricia Clay<br>
+Lisa Colburn<br>
+Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
+Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
+Geret DePiper<br>
+Dan Dorfman (NOAA-NOS-NCCOS)<br> 
+Hubert du Pontavice<br>
+Emily Farr (NMFS Office of Habitat Conservation)<br>
+Michael Fogarty<br>
+Paula Fratantoni<br>
+Kevin Friedland<br>
+Marjy Friedrichs (VIMS)<br>
+Sarah Gaichas<br>
+Ben Galuardi (GARFO)<br>
+Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
+James Gartland (Virginia Institute of Marine Science)<br>
+Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
+Sean Hardison<br>
+Kimberly Hyde<br>
+John Kosik<br>
+Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
+Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
+
+]
+]
+
+.pull-right[
+.contrib[
+Scott Large<br>
+Andrew Lipsky<br>
+Sean Lucey<br>
+Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
+Chris Melrose<br>
+Shannon Meseck<br>
+Ryan Morse<br>
+Brandon Muffley (MAFMC)<br>
+Kimberly Murray<br>
+Chris Orphanides<br>
+Richard Pace<br>
+Tom Parham (Maryland DNR)<br>
+Charles Perretti<br>
+CJ Pellerin (NOAA Chesapeake Bay Office)<br>
+Grace Roskar (NMFS Office of Habitat Conservation)<br>
+Grace Saba (Rutgers)<br>
+Vincent Saba<br>
+Sarah Salois<br>
+Chris Schillaci (GARFO)<br>
+Dave Secor (CBL)<br>
+Angela Silva<br>
+Adrienne Silver (UMass/SMAST)<br>
+Emily Slesinger (Rutgers University)<br>
+Laurel Smith<br>
+Talya tenBrink (GARFO)<br>
+Bruce Vogt (NOAA Chesapeake Bay Office)<br>
+Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
+John Walden<br>
+Harvey Walsh<br>
+Changhua Weng<br>
+Mark Wuenschel  
+
+]
+]
+
 
