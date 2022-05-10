@@ -6,11 +6,11 @@
     <meta name="author" content="Sarah Gaichas  Northeast Fisheries Science Center    Many thanks to:  Jason Link, NMFS Senior Scientist for Ecosystems" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <script src="libs/htmlwidgets/htmlwidgets.js"></script>
     <script src="libs/pymjs/pym.v1.js"></script>
     <script src="libs/widgetframe-binding/widgetframe.js"></script>
-    <script src="libs/kePrint/kePrint.js"></script>
-    <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
   </head>
   <body>
@@ -67,9 +67,10 @@ https://www.st.nmfs.noaa.gov/Assets/ecosystems/ebfm/EBFM%20Myths%20v7.pdf
 
 ---
 ## An ecosystem approach implementation success story (in progress)
-.pull-left[
+
 Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing an ecosystem approach to fishery management was done in collaboration between managers, stakeholders, and scientists. 
 
+.pull-left[
 *Outline*
 - Background: Fishery management in the United States
 
@@ -78,16 +79,14 @@ Diverse stakeholders agreed that an ecosystem approach was necessary. Developing
 - Key tools: ecosystem reporting, risk assessment, MSE
 
 - Ongoing implementation and lessons learned
+
+.footnote[
+Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Document](https://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08-palr.pdf)
+]
 ]
 .pull-right[
-<div id="htmlwidget-ccaa85ac180b1f8a1102" style="width:100%;height:710px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ccaa85ac180b1f8a1102">{"x":{"url":"20220518_UN_ICSP_Gaichas_files/figure-html//widgets/widget_sfconceptmod.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
-
+![:img EAFM Policy Guidance Doc Word Cloud](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_EAFMwordcloud.png)
 ]
-???
-??
-In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
-
 ---
 ## Fishery management in the US
 
@@ -121,8 +120,8 @@ https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
 .pull-right[
 ![:img Mid-Atlantic EAFM framework with full details in speaker notes, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
    * Direct link between ecosystem reporting and risk assessment
-   * Climate in risk assessment from species and habitat perspective
-   * Climate in conceptual model linking across risk elements for individual species
+   * Conceptual model links across risk elements for fisheries, species
+   * Management strategy evaluation includes key risks
 .footnote[
 https://www.mafmc.org/eafm
 ]
@@ -823,16 +822,27 @@ Black sea bass regulatory complexity risk decreased from highest to moderate-hig
 
 Potential new indicators from new SOE sections on climate risk, habitat vulnerability, offshore wind
 
-Habitat vulnerability analysis writeups--comments?
-
 ---
-## How is MAFMC using the risk assessment? What's next?
 .pull-left[
+## How is MAFMC using the risk assessment?
+
 * Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
 
 ![:img Mid-Atlantic EAFM framework, 95%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+* Council proceeding with management strategy evaluation (MSE) addressing recreational fishery discards using information from conceptual modeling.
 ]
 .pull-right[
+
+<div id="htmlwidget-8aafa22d3933771994fa" style="width:100%;height:710px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8aafa22d3933771994fa">{"x":{"url":"20220518_UN_ICSP_Gaichas_files/figure-html//widgets/widget_sfconceptmod.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
+]
+
+
+???
+In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
+
+aa with management  with management strategy evaluation (MSE)strategy evaluation (MSE)
 * Working group of habitat, biology, stock assessment, management, economic and social scientists developed:
 
   * draft conceptual models of high risk elements, linkages
@@ -840,13 +850,54 @@ Habitat vulnerability analysis writeups--comments?
   * draft questions that the Council could persue with additional work
  
 * Final conceptual model and supporting information at December 2019 Council meeting
-] 
-
-* Council proceeding with management strategy evaluation (MSE) using the information from conceptual modeling as a basis. Topic: addressing recreational fishery discards with EAFM
-
-
 
 ---
+## Implementing the Ecosystem Approach: lessons learned
+.pull-left[
+* Ecosystem reporting to managers
+* Risk and vulnerablity assessment for scoping and prioritization
+* Collaborative, iterative process between scientists, managers, stakeholders
+ ]
+    
+.pull-right[
+* Establish national policy based in current legal mandates
+* Support integrative, strategic planning to deliver ecosystem advice
+]
+![:img NOAA Next Generation Advice process](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOAANextGenEcoAdvice.png)
+.footnote[
+https://spo.nmfs.noaa.gov/sites/default/files/TMSPO184.pdf
+]
+
+???
+    +  Within the science community – diverse expertise is needed  
+    +  Between science and management – understanding what information is needed and important to management, providing tools to management to understand ecosystem linkages and implications  
+    +  Between science and stakeholders – need to build trust, open dialogue (everyone is heard), and sharing data and observations (on water and with information)  
+    +  Between management and stakeholders – listening to/acting on stakeholder priorities and feedback, process not out to add more uncertainty but provide for more informed decisions
+
+---
+## Additional resources
+.pull-left[
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+* Visualizations:
+  * [Mid-Atlantic Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_MAB)
+  * [Mid-Atlantic Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_MAB)
+  * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
+]
+.pull-right[
+* [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [Draft indicator catalog](https://noaa-edab.github.io/catalog/)
+
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
+]
+]
+
 ## References
 
 .contrib[
@@ -902,570 +953,6 @@ URL:
 [https://doi.org/10.1080/08920753.2021.1846156](https://doi.org/10.1080/08920753.2021.1846156)
 (visited on Apr. 16, 2021).
 ]
-
-
-## Additional resources
-.pull-left[
-* [ecodata R package](https://github.com/noaa-edab/ecodata)
-
-* Visualizations:
-  * [Mid-Atlantic Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_MAB)
-  * [Mid-Atlantic Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_MAB)
-  * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
-]
-.pull-right[
-* [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
-
-* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
-
-* [Draft indicator catalog](https://noaa-edab.github.io/catalog/)
-
-.contrib[
-
-* Slides available at https://noaa-edab.github.io/presentations
-* Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
-]
-]
-
----
-.center[
-# Extra slides
-]
-
----
-## Why an ecosystem approach?
-
-*"We rebuilt all the stocks, so why is everyone still pissed off?" --Rich Seagraves*
-
-in 2011, the Council asked:
-
-.pull-left[
-![visioning project goals and objectives](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MA_Visioning1.png)
-]
-.pull-right[
-![visioning project responses and port meetings](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MA_Visioning2.png)
-]
-
-And many people answered, from commercial fishery, recreational fishery, environmental organization, and interested public perspectives.
-
-Visioning report: 
-
-http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
-
----
-## Common themes among all stakeholder groups:
-
-&gt;• There is a lack of confidence in the data that drive fishery management decisions.
-&gt;
-&gt;• Stakeholders are not as involved in the Council process as they can and should be.
-&gt;
-&gt;• Different jurisdictions and regulations among the many fishery management organizations result in complexity and inconsistency.
-&gt;
-&gt;• There is a need for increased transparency and communications in fisheries management.
-&gt;
-&gt;• The dynamics of the ecosystem and food web should be considered to a greater extent in fisheries management decisions.
-&gt;
-&gt;• Stakeholders are not adequately represented on the Council.
-&gt;
-&gt;• Pollution is negatively affecting the health of fish stocks.
-
-Visioning report, p. 3:
-
-http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
-
----
-## How did MAFMC develop their ecosystem approach?
-
-Visioning Project &amp;rarr; Strategic Plan with one objective to develop 
-&gt;"A non-regulatory umbrella document intended to guide Council policy with respect to ecosystem considerations across existing Fishery Management Plans"
-
-.center[
-![:img Mid-Atlantic EAFM development with full details in speaker notes, 60%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAapproach.png)
-]
-
-Details, including workshop presentations and white papers:
-http://www.mafmc.org/eafm
-
-???
-The Mid-Atlantic Council identified several theme areas from the visioning project as noted in the left panel of the workflow graphic: forage fish, species interactions, social and economic issues, climate and habitat. The Council held full day workshops during Council meetings where experts on the topics provided overviews and Council members asked questions and discussed the issues. Workships on Forage fish, Climate, Climate and Governance, Interactions (species and fleet), and Habitat were held between 2013 and 2015, resulting in white papers on Forage fish, Climate (and habitat), Interactions (species, fleet, climate, and habitat). Social and economic considerations were integrated in each workshop rather than looked at separately.
-
----
-## State of the Ecosystem Report Outline
-.pull-left[
-
-
-## 2022 Report Structure
-1. Graphical summary
-    + Page 1 report card re: objectives &amp;rarr;
-    + Page 2 risk summary bullets
-    + Page 3 synthesis themes
-1. Performance relative to management objectives
-1. Risks to meeting management objectives
-
-
-Objectives derived from ([DePiper, et al., 2017](https://academic.oup.com/icesjms/article/74/8/2076/3094701))
-]
-
-.pull-right[
-
-&lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
-&lt;caption style="font-size: initial !important;"&gt;Ecosystem-scale fishery management objectives&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;font-weight: bold;"&gt; Objective Categories &lt;/th&gt;
-   &lt;th style="text-align:left;font-weight: bold;"&gt; Indicators reported &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr grouplength="6"&gt;&lt;td colspan="2" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;Provisioning and Cultural Services&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;
-   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Seafood Production &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Landings; commercial total and by feeding guild; recreational harvest &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Profits &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Revenue decomposed to price and volume &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Recreation &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Angler trips; recreational fleet diversity &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Stability &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Diversity indices (fishery and ecosystem) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Social &amp;amp; Cultural &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Community engagement/reliance and environmental justice status &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Protected Species &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Bycatch; population (adult and juvenile) numbers, mortalities &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr grouplength="4"&gt;&lt;td colspan="2" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;Supporting and Regulating Services&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;
-   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Biomass &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Biomass or abundance by feeding guild from surveys &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Productivity &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Condition and recruitment of managed species, primary productivity &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Trophic structure &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Relative biomass of feeding guilds, zooplankton &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Habitat &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Estuarine and offshore habitat conditions &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-
----
-## Ecosystem synthesis themes
-
-Characterizing ecosystem change for fishery management
-
-* Societal, biological, physical and chemical factors comprise the **multiple system drivers** that influence marine ecosystems through a variety of different pathways. 
-* Changes in the multiple drivers can lead to **regime shifts** — large, abrupt and persistent changes in the structure and function of an ecosystem.  
-* Regime shifts and changes in how the multiple system drivers interact can result in **ecosystem reorganization** as species and humans respond and adapt to the new environment.
-
-.pull-left[
-
-![:img](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SystemDrivers_v5.jpg)
-]
-
-.pull-right[
-![:img](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/RegimeShift_V5.jpg)
-]
-
----
-## State of the Ecosystem report scale and figures
-
-.pull-left[
-Spatial scale
-![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/EPU_Designations_Map.jpg)
-
-A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html) (2021 Memo 5), detailed [technical methods documentation](https://NOAA-EDAB.github.io/tech-doc) and [indicator data](https://github.com/NOAA-EDAB/ecodata) are available online.  
-]
-
-.pull-right[
-Key to figures
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-6-1.png" width="396" style="display: block; margin: auto;" /&gt;
-
-.contrib[
-Trends assessed only for 30+ years: [more information](https://noaa-edab.github.io/tech-doc/trend-analysis.html)
-
-&lt;p style="color:#FF8C00;"&gt;Orange line = significant increase&lt;/p&gt;
-&lt;p style="color:#9932CC;"&gt;Purple line = significant decrease&lt;/p&gt;
-No color line = not significant or &lt; 30 years
-&lt;p style="background-color:#D3D3D3;"&gt;Grey background = last 10 years&lt;/p&gt;
-]
-]
-
----
-# Performance relative to management objectives
-
-.center[
-![:img Fishing icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/5_FISHING.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Fishing industry icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/6_INDUSTRY.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Multiple drivers icon made by EDAB, 25%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/18.MULTIPLE_SYSTEM_DRIVERS.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Spiritual cultural icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/22.SPIRITUAL_CULTURAL.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Protected species icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/16.PROTECTEDSPECIES.png)
-]
-
----
-## Objective: Seafood production ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png)  &amp;emsp; Risk elements: &lt;span style="background-color:red;"&gt;ComFood&lt;/span&gt; and &lt;span style="background-color:orange;"&gt;RecFood&lt;/span&gt;, unchanged
-
-.pull-left[
-Indicator: Commercial landings 
-
-.reduced_opacity[
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-7-1.png" width="504" style="display: block; margin: auto;" /&gt;
-.contrib[
-Key: Black = Landings of all species combined; &lt;p style="color:#FF6A6A;"&gt;Red = Landings of MAFMC managed species&lt;/p&gt;
-]
-]
-
-Coastwide landings at the Federal fishery management plan (FMP) level were mixed in 2020 when compared to recent years. Landings of monkfish and of combined surfclam and ocean quahog declined in 2020, while landings of combined summer flounder, scup, and black sea bass increased, and landings of combined squid species increased in 2020.* 
-
-]
-
-.pull-right[
-Indicators: Recreational harvest
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-8-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-9-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-*[US Seafood Industry and For-Hire
-Sector Impacts from COVID-19: 2020 in Perspective](https://spo.nmfs.noaa.gov/sites/default/files/TM221.pdf) 
-
-]
-
-Multiple potential drivers of landings changes: ecosystem and stock production, management actions, market conditions (including COVID-19 disruptions), and environmental change.
-
-???
-However, we do not anticipate the long-term declining trend in landings to change.
----
-## Landings drivers: Stock status? TAC? &amp;emsp; Risk elements: Fstatus, Bstatus  unchanged
-
-.pull-left[
-Indicator: Stock status
-
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-10-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-]
-
-
-.pull-right[
-
-New Indicators: Total ABC or ACL, and Realized catch relative to management target
-
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-11-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-12-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-]
-???
-Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2020 (top). With the addition of blueline tilefish management in 2017, an additional ABC and ACL contribute to the total 2017-2020. Discounting blueline tilefish, the recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. 
-
-Nevertheless, the percentage caught for each stock’s ABC/ACL suggests that these catch limits are not generally constraining as most species are well below the 1/1 ratio (bottom). Therefore, stock status and associated management constraints are unlikely to be driving decreased landings for the majority of species.
-
----
-## Implications: Seafood Production
-.pull-left[
-
-Biomass does not appear to drive landings trends
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;" /&gt;
-
-.contrib[
-Key: Black = NEFSC survey; &lt;p style="color:#FF6A6A;"&gt;Red = NEAMAP survey&lt;/p&gt;
-]
-
-]
-
-.pull-right[
-Drivers: likely market-driven, but update next year
-* Recreational landings differ: shark fishery management, possibly survey methodology
-
-Monitor: 
-* climate risks including warming, ocean acidification, and shifting distributions  
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-14-1.png" width="252" style="display: block; margin: auto;" /&gt;
-* ecosystem composition and production changes  
-* fishing engagement  
-
-]
-
-
-???
-Because stock status is mostly acceptable, ABCs don't appear to be constraining for many stocks, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species.
-
-Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
-
-
-
----
-# Risks to meeting fishery management objectives
-
-.center[
-![:img Climate icon made by EDAB, 25%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/3_CLIMATE.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Wind icon made by EDAB, 25%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/24.WIND.png)
-] 
-
-.center[
-![:img Hydrography icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/1_HYDROGRAPHY.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Phytoplankon icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/9_PHYTOPLANKTON.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Forage fish icon made by EDAB, 15%](EDAB_images/13_FORAGEFISH.png) &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Apex predators icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/17.APEXPREDATORS.png)  &amp;nbsp; &amp;nbsp; &amp;nbsp; ![:img Other human uses icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/8_OTHERHUMANUSES.png) 
-]
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/seasonal-sst-anom-gridded-2021.png")
-background-size: 600px
-background-position: right top
-
-## Risks: Climate change
-.pull-left[
-Indicators: ocean currents, bottom and surface temperature, marine heatwaves
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-15-1.png" width="288" style="display: block; margin: auto;" /&gt;
-
-
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-16-1.png" width="288" style="display: block; margin: auto;" /&gt;
-
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-17-1.png" width="504" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-
-&amp;nbsp;  
-&amp;nbsp;  
-&amp;nbsp; 
-&amp;nbsp; 
-&amp;nbsp;  
-&amp;nbsp;  
-&amp;nbsp;  
-&amp;nbsp; 
-&amp;nbsp;  
-&amp;nbsp;  
-&amp;nbsp; 
-&amp;nbsp;  
-&amp;nbsp; 
-&amp;nbsp;  
-&amp;nbsp;  
-&amp;nbsp; 
-&amp;nbsp;  
-&amp;nbsp;  
-
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-18-1.png" width="360" style="display: block; margin: auto;" /&gt;
-
-]
-???
-A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
----
-## Risks: Climate change and estuarine habitat &amp;emsp; Risk element: EstHabitat 11 &lt;span style="background-color:lightgreen;"&gt;low&lt;/span&gt;, 4 &lt;span style="background-color:red;"&gt;high&lt;/span&gt; risk species
-
-.pull-left[
-Indicators: Chesapeake Bay temperature and salinity
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-19-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-&lt;!--
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-20-1.png" width="360" style="display: block; margin: auto;" /&gt;
-
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-21-1.png" width="360" style="display: block; margin: auto;" /&gt;
-![:img 150%](EDAB_images/ches-bay-sst-1.png)--&gt;
-]
-
-.pull-right[
-Indicator: SAV trends in Chesapeake Bay
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-22-1.png" width="432" style="display: block; margin: auto;" /&gt;
-
-Indicator: Water quality attainment
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-23-1.png" width="432" style="display: block; margin: auto;" /&gt;
-]
-
----
-## Risks: Climate change and offshore habitat &amp;emsp; Risk element: offshore habitat put aside, new indices 
-.pull-left[
-Indicator: cold pool indices
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-24-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-Indicator: Ocean acidification
-![:img Seasonal pH](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Saba_Fig_SOE_MAFMC - Grace Saba.png)
-
-]
-
-.pull-right[
-
-Indicator: warm core rings
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-25-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-.center[
-![:img Warm core rings June 2021, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/D_20210608-MUR-SST-WCR.PNG) 
-]
-]
-
----
-## Risks: Ecosystem productivity  &amp;emsp; Risk element: &lt;span style="background-color:yellow;"&gt;EcoProd&lt;/span&gt;, unchanged, new indices
-
-Indicators: chlorophyll, primary production, zooplankton
-
-.pull-left[
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-26-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-]
-
-.pull-right[
-
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-27-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-.reduced_opacity[
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-28-1.png" width="576" style="display: block; margin: auto;" /&gt;
-
-]
-
-]
-
-Implications: increased production by smaller phytoplankton implies less efficient transfer of primary production to higher trophic levels. Monitor implications of increasing gelatinous zooplankton and krill.
-  
-???
-Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average to below average throughout 2021
-
----
-## Risks: Ecosystem productivity &amp;emsp; Risk element: &lt;span style="background-color:yellow;"&gt;EcoProd&lt;/span&gt;, unchanged, new indices
-
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-29-1.png" width="90%" style="display: block; margin: auto;" /&gt;
-
-Implications: fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring
-
----
-## Risks: Ecosystem productivity  &amp;emsp; Risk element: &lt;span style="background-color:yellow;"&gt;EcoProd&lt;/span&gt;, unchanged, new analyses
-
-.pull-left[
-Indicator: fish condition 
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-30-1.png" width="120%" style="display: block; margin: auto;" /&gt;
-&lt;!--![:img Fish condition figure, 120%](EDAB_images/MAB_Condition_allsex_2022_viridis.jpg)--&gt;
-
-]
-
-.pull-right[
-Indicator: fish productivity anomaly
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-31-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-]
-
-Implications: 
-Most species in the MAB had below average or poor condition again in 2021. Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species. 
-
-
-???
-
-
----
-## Risks: Ecosystem structure &amp;emsp; add new risk assessment elements?
-
-Indicators: distribution shifts, diversity, predator status and trends
-.pull-left[
-*No trend in aggregate sharks*
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-32-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-*HMS populations mainly at or above target*
-&lt;img src="20220518_UN_ICSP_Gaichas_files/figure-html/unnamed-chunk-33-1.png" width="504" style="display: block; margin: auto;" /&gt;
-
-
-]
-.pull-right[
-
-*Gray seals increasing (details in NE report)*
-
-* Breeding season ~ 27,000 US gray seals, Canada's population ~ 425,000 (2016) 
-* Canada's population increasing at ~ 4% per year
-* U.S. pupping sites increased from 1 (1988) to 9 (2019)
-* Harbor and gray seals are generalist predators that consume more than 30 different prey species: red, white and silver hake, sand lance, yellowtail flounder, four-spotted flounder, Gulf-stream flounder, haddock, herring, redfish, and squids.
-
-Implications: stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
-]  
-
-
-???
-A survey conducted in 2021 in both countries will provide updated estimates of abundance. 
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/noaa-iea.png")
-background-size: 300px
-background-position: right bottom
-
-## THANK YOU! SOEs made possible by (at least) 61 contributors from 14 institutions 
-
-.pull-left[
-.contrib[
-Kimberly Bastille&lt;br&gt;
-Aaron Beaver (Anchor QEA)&lt;br&gt;
-Andy Beet&lt;br&gt;
-Ruth Boettcher (Virginia Department of Game and Inland Fisheries)&lt;br&gt;
-Mandy Bromilow (NOAA Chesapeake Bay Office)&lt;br&gt;
-Zhuomin Chen (Woods Hole Oceanographic Institution)&lt;br&gt;
-Joseph Caracappa&lt;br&gt;
-Doug Christel (GARFO)&lt;br&gt;
-Patricia Clay&lt;br&gt;
-Lisa Colburn&lt;br&gt;
-Jennifer Cudney (NMFS Atlantic HMS Management Division)&lt;br&gt;
-Tobey Curtis (NMFS Atlantic HMS Management Division)&lt;br&gt;
-Geret DePiper&lt;br&gt;
-Dan Dorfman (NOAA-NOS-NCCOS)&lt;br&gt; 
-Hubert du Pontavice&lt;br&gt;
-Emily Farr (NMFS Office of Habitat Conservation)&lt;br&gt;
-Michael Fogarty&lt;br&gt;
-Paula Fratantoni&lt;br&gt;
-Kevin Friedland&lt;br&gt;
-Marjy Friedrichs (VIMS)&lt;br&gt;
-Sarah Gaichas&lt;br&gt;
-Ben Galuardi (GARFO)&lt;br&gt;
-Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)&lt;br&gt;
-James Gartland (Virginia Institute of Marine Science)&lt;br&gt;
-Glen Gawarkiewicz (Woods Hole Oceanographic Institution)&lt;br&gt;
-Sean Hardison&lt;br&gt;
-Kimberly Hyde&lt;br&gt;
-John Kosik&lt;br&gt;
-Steve Kress (National Audubon Society’s Seabird Restoration Program)&lt;br&gt;
-Young-Oh Kwon (Woods Hole Oceanographic Institution)&lt;br&gt;
-
-]
-]
-
-.pull-right[
-.contrib[
-Scott Large&lt;br&gt;
-Andrew Lipsky&lt;br&gt;
-Sean Lucey&lt;br&gt;
-Don Lyons (National Audubon Society’s Seabird Restoration Program)&lt;br&gt;
-Chris Melrose&lt;br&gt;
-Shannon Meseck&lt;br&gt;
-Ryan Morse&lt;br&gt;
-Brandon Muffley (MAFMC)&lt;br&gt;
-Kimberly Murray&lt;br&gt;
-Chris Orphanides&lt;br&gt;
-Richard Pace&lt;br&gt;
-Tom Parham (Maryland DNR)&lt;br&gt;
-Charles Perretti&lt;br&gt;
-CJ Pellerin (NOAA Chesapeake Bay Office)&lt;br&gt;
-Grace Roskar (NMFS Office of Habitat Conservation)&lt;br&gt;
-Grace Saba (Rutgers)&lt;br&gt;
-Vincent Saba&lt;br&gt;
-Sarah Salois&lt;br&gt;
-Chris Schillaci (GARFO)&lt;br&gt;
-Dave Secor (CBL)&lt;br&gt;
-Angela Silva&lt;br&gt;
-Adrienne Silver (UMass/SMAST)&lt;br&gt;
-Emily Slesinger (Rutgers University)&lt;br&gt;
-Laurel Smith&lt;br&gt;
-Talya tenBrink (GARFO)&lt;br&gt;
-Bruce Vogt (NOAA Chesapeake Bay Office)&lt;br&gt;
-Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)&lt;br&gt;
-John Walden&lt;br&gt;
-Harvey Walsh&lt;br&gt;
-Changhua Weng&lt;br&gt;
-Mark Wuenschel  
-
-]
-]
-
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
