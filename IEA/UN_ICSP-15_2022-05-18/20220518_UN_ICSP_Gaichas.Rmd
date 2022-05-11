@@ -1,7 +1,7 @@
 ---
 title: "Implementing an Ecosystems Approach to <br />Fishery Management"
 subtitle: "The experience of the United States of America <br /> 18 May 2022"
-author: "Sarah Gaichas<br /> Northeast Fisheries Science Center<br /> <br /> Many thanks to:<br /> Jason Link, NMFS Senior Scientist for Ecosystems"
+author: "Sarah Gaichas<br /> Northeast Fisheries Science Center"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -130,8 +130,10 @@ Eight regional Fishery Management Councils establish plans for sustainable manag
 .center[
 ![:img US map highlighting regions for each fishery management council, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/USCouncils.png)
 ] 
-More information: http://www.fisherycouncils.org/
+.footnote[
+More information: http://www.fisherycouncils.org/  
 https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
+]
 
 ---
 ## The Mid-Atlantic Fishery Management Council (MAFMC)
@@ -182,7 +184,7 @@ The Council’s EAFM framework has similarities to the IEA loop. It uses risk as
 - Used within Mid-Atlantic Fishery Management Council's Ecosystem Process `r Cite(myBib, "muffley_there_2021")`
     + Risk assessment `r Cite(myBib,"gaichas_implementing_2018")`
     + Conceptual modeling `r Cite(myBib,"depiper_learning_2021")`
-    + Management strategy evaluation (MSE)
+    + Management strategy evaluation ([MSE](https://www.mafmc.org/actions/summer-flounder-mse))
 
  
 ]
@@ -194,128 +196,22 @@ The Council’s EAFM framework has similarities to the IEA loop. It uses risk as
 
 ]
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
-```
-
-
-
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-final-03.23.22-no marks_Page_2.png")
-background-size: 500px
-background-position: right
-
-## State of the Ecosystem Summary 2022: 
-**Performance relative to management objectives** 
-
-.pull-left-60[
-Seafood production ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png), status not evaluated  
-
-Profits ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png), status not evaluated 
-
-Recreational opportunities:  Effort ![:img increasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/increase.png) ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/above long term ave.png); Effort diversity ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png)  
-
-Stability: Fishery ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/no trend.png) ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/near long term average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png) ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/near long term average.png)  
-
-Social and cultural, trend not evaluated, status of:  
-*  Fishing engagement and reliance by community  
-*  Environmental Justice (EJ) Vulnerability by community  
-
-Protected species: 
-*  Maintain bycatch below thresholds ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/checked.png)  
-*  Recover endangered populations (NARW) ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png)  
-]
-.pull-right-40[]
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-final-03.23.22-no marks_Page_3.png")
-background-size: 500px
-background-position: right
-
-## State of the Ecosystem Summary 2022: 
-**Risks to meeting fishery management objectives**  
-
-.pull-left-60[
-Climate: warming and changing oceanography continue
-*  Heat waves and Gulf Stream instability
-*  Estuarine, coastal, and offshore habitats affected, with range of species responses
-*  Below average summer 2021 phytoplankton
-*  Multiple fish with poor condition, declining productivity 
-
-Other ocean uses: offshore wind development
-*  Current revenue in proposed areas
-    - 1-31% by port (some with EJ concerns)
-    - 0-20% by managed species
-*  Different development impacts for species preferring soft bottom vs. hard bottom 
-*  Overlap with one of the only known right whale foraging habitats, increased vessel strike and noise risks 
-*  Rapid buildout in patchwork of areas 
-*  Scientific survey mitigation required
-]
-.pull-right-40[]
-
----
-## State of the Ecosystem &rarr; MAFMC Risk assessent example: Commercial revenue
-
-This element is applied at the ecosystem level. Revenue serves as a proxy for commercial profits.
-
-.table[
+## State of the Ecosystem summary 2022: Performance and Risks
 .pull-left[
-
-```{r riskcomval, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-# tabl <- "
-# | Risk Level         | Definition                                                          |  
-# |:-------------------|:--------------------------------------------------------------------|
-# | Low  | No trend and low variability in revenue |
-# | Low-Moderate | Increasing or high variability in revenue |
-# | Moderate-High | Significant long term revenue decrease |
-# | High | Significant recent decrease in revenue |
-# "
-# cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-
-tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
-                   "Definition" = c("No trend and low variability in revenue",
-                                    "Increasing or high variability in revenue",
-                                    "Significant long term revenue decrease",
-                                    "Significant recent decrease in revenue"))
-
-knitr::kable(tabl, format="html",
-             col.names = c("Risk Level", "Definition"),
-                           booktabs = T) %>%
-  #kable_styling(full_width = TRUE) %>%
-  column_spec(1:2, width = "20em")%>%
-  row_spec(3, bold = T, background = "orange")
-```
-
-Ranked moderate-high risk due to the significant long term revenue decrease for Mid-Atlantic managed species (red points in top plot)
+.center[
+![:img State of the Ecosystem page 1 summary table, 95%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-final-03.23.22-no%20marks_Page_2.png)
 ]
 ]
+
 .pull-right[
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"),fig.asp = 0.5}
-#comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
-```
-
-Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of MAFMC managed species</p>
+.center[
+![:img State of the Ecosystem page 2 risk bullets, 95%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-final-03.23.22-no%20marks_Page_3.png)
 ]
-
---
-
-## Risk element: <span style="background-color:orange;">CommRev</span>, unchanged
-
-**SOE Implications:** Recent change driven by benthos. Monitor changes in climate and landings drivers:  
--  Climate risk element: <span style="background-color:orange;">Surfclams</span> and <span style="background-color:red;">ocean quahogs</span> are sensitive to ocean warming and acidification.   
--  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth
-
+]
 
 ---
-## Implications: Climate change and managed species &emsp; Risk elements unchanged, new info:
+## Implications: Climate change and managed species 
 
 .pull-left[
 Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk
@@ -489,7 +385,7 @@ Potential new indicators from new SOE sections on climate risk, habitat vulnerab
 * Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
 
 ![:img Mid-Atlantic EAFM framework, 95%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
-* Council proceeding with management strategy evaluation (MSE) addressing recreational fishery discards using information from conceptual modeling.
+* Council proceeding with management strategy evaluation (MSE) addressing [recreational fishery discards](https://www.mafmc.org/actions/summer-flounder-mse) using information from conceptual modeling.
 ]
 .pull-right[
 
@@ -547,15 +443,17 @@ background-position: bottom
 .pull-right[
 * Establish national policy based in current legal mandates
 * Integrated strategic planning for advice
+
+.footnote[
+https://spo.nmfs.noaa.gov/sites/default/files/TMSPO184.pdf
+]
+
 ]
 
 <!--
 ![:img NOAA Next Generation Advice process](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOAANextGenEcoAdvice.png)
 -->
 
-.footnote[
-https://spo.nmfs.noaa.gov/sites/default/files/TMSPO184.pdf
-]
 
 ???
     +  Within the science community – diverse expertise is needed  
