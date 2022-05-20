@@ -77,6 +77,18 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 
 ```
 
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
+```
+
 
 ## Fishery management in the US
 
@@ -381,20 +393,6 @@ Black sea bass regulatory complexity risk decreased from highest to moderate-hig
 Potential new indicators from new SOE sections on climate risk, habitat vulnerability, offshore wind
 
 ---
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
-```
-
-
 # Ecosystem Overfishing Indicators
 
 .pull-left[
@@ -582,13 +580,7 @@ What analyses can we do to tailor to our regional ecosystem and managers?
     + Process: define unacceptable ecosystem state, dont go there
     + Easier than defining optimal state, too many
 
-## References
 
-.contrib[
-```{r refs, echo=FALSE, results="asis"}
-PrintBibliography(myBib)
-```
-]
 ---
 
 .center[
