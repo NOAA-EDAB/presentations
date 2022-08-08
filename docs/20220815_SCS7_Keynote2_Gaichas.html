@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Using Ecosystem Information in the   Stock Assessment and Advice Process</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas  Northeast Fisheries Science Center     With thanks to Brandon Muffley (MAFMC)" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/pymjs/pym.v1.js"></script>
+    <script src="libs/widgetframe-binding/widgetframe.js"></script>
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+.title[
+# Using Ecosystem Information in the <br /> Stock Assessment and Advice Process
+]
+.subtitle[
+## SCS7 Keynote 2 <br /> 15 August 2022
+]
+.author[
+### Sarah Gaichas<br /> Northeast Fisheries Science Center <br /> <br /> With thanks to Brandon Muffley (MAFMC)
+]
+
+---
+
+class: top, left
+
+&lt;style&gt;
+p.caption {
+  font-size: 0.6em;
+}
+&lt;/style&gt;
+
+&lt;style&gt;
+.reduced_opacity {
+  opacity: 0.5;
+}
+&lt;/style&gt;
+
+
+
+
+
+# US Policy defines EBFM as:
+
+## A systematic approach to fisheries management in a geographically specified area that contributes to the resilience and sustainability of the ecosystem; recognizes the physical, biological, economic, and social interactions among the affected fishery-related components of the ecosystem, including humans; and seeks to optimize benefits among a diverse set of societal goals. 
+
+.center[
+![:img relating environment marine habitat and the marine community to human activities social systems and objectives, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/nes-components-abstracted.png)
+]
+
+.footnote[
+https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-policy
+]
+---
+.center[
+![:img Levels of ecosystem-based management in relation to marine fisheries management, 70%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/acronymdecoder.png)
+]
+.footnote[
+https://www.st.nmfs.noaa.gov/Assets/ecosystems/ebfm/EBFM%20Myths%20v7.pdf
+]
+---
+## EBFM Guiding Principles
+.center[
+![:img Five supporting EBFM steps to maintain resilient ecosystems, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/EBFMprinciples.png)
+]
+
+---
+## An ecosystem approach implementation success story (in progress)
+
+Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing an ecosystem approach to fishery management was done in collaboration between managers, stakeholders, and scientists. 
+
+.pull-left[
+*Outline*
+- Background: Fishery management in the United States
+
+- Mid-Atlantic Fishery Management Council Ecosystem Approach (EAFM)
+
+- Key tools: ecosystem reporting, risk assessment, MSE
+
+- Food web modeling introduction
+
+- Food web modeling exercise
+
+.footnote[
+Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Document](https://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08-palr.pdf)
+]
+]
+.pull-right[
+![:img EAFM Policy Guidance Doc Word Cloud](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_EAFMwordcloud.png)
+]
+---
+## Fishery management in the US
+
+Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
+.center[
+![:img US map highlighting regions for each fishery management council, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/USCouncils.png)
+] 
+.footnote[
+More information: http://www.fisherycouncils.org/  
+https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
+]
+
+---
+## The Mid-Atlantic Fishery Management Council (MAFMC)
+
+.pull-left-30[
+![:img US East Coast map highlighting Mid-Atlantic council jurisdiction, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MACouncil.png)
+]
+.pull-right-70[
+![:img MAFMC fishery management plans and species, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMPs3.png)
+]
+.footnote[Source: http://www.mafmc.org/fishery-management-plans] 
+
+---
+## Integrated Ecosystem Assessment and the MAFMC Ecosystem Approach
+
+.pull-left[
+![:img IEA process from goal setting to assessment to strategy evaluation with feedbacks, 110%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/iea-loop.png)
+.footnote[
+https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+]
+.pull-right[
+![:img Mid-Atlantic EAFM framework with full details in speaker notes, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+   * Direct link between ecosystem reporting and risk assessment
+   * Conceptual model links across risk elements for fisheries, species
+   * Management strategy evaluation includes key risks
+.footnote[
+https://www.mafmc.org/eafm
+]
+]
+???
+The Council’s EAFM framework has similarities to the IEA loop. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
+
+---
+
+# State of the Ecosystem (SOE) reporting
+## Improving ecosystem information and synthesis for fishery managers
+
+.pull-left-70[
+
+- Ecosystem indicators linked to management objectives &lt;a name=cite-depiper_operationalizing_2017&gt;&lt;/a&gt;([DePiper, et al., 2017](https://academic.oup.com/icesjms/article/74/8/2076/3094701))
+    + Contextual information
+    + Report evolving since 2016
+    + Fishery-relevant subset of full Ecosystem Status Reports
+
+- Open science emphasis &lt;a name=cite-bastille_improving_2021&gt;&lt;/a&gt;([Bastille, et al., 2021](https://doi.org/10.1080/08920753.2021.1846155))
+
+- Used within Mid-Atlantic Fishery Management Council's Ecosystem Process &lt;a name=cite-muffley_there_2021&gt;&lt;/a&gt;([Muffley, et al., 2021](https://doi.org/10.1080/08920753.2021.1846156))
+    + Risk assessment &lt;a name=cite-gaichas_implementing_2018&gt;&lt;/a&gt;([Gaichas, et al., 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00442/abstract))
+    + Conceptual modeling &lt;a name=cite-depiper_learning_2021&gt;&lt;/a&gt;([DePiper, et al., 2021](https://doi.org/10.1093/icesjms/fsab054))
+    + Management strategy evaluation ([MSE](https://www.mafmc.org/actions/summer-flounder-mse))
+
+ 
+]
+
+.pull-right-30[
+![:img 2022 SOE Mid Atlantic Cover Page, 100%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-final-03.23.22-no%20marks_Page_1.png)
+
+
+
+]
+
+---
+## State of the Ecosystem summary 2022: Performance and Risks
+.pull-left[
+.center[
+![:img State of the Ecosystem page 1 summary table, 95%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-final-03.23.22-no%20marks_Page_2.png)
+]
+]
+
+.pull-right[
+.center[
+![:img State of the Ecosystem page 2 risk bullets, 95%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-final-03.23.22-no%20marks_Page_3.png)
+]
+]
+
+---
+## Implications: Climate change and managed species 
+
+.pull-left[
+Climate: 6 &lt;span style="background-color:lightgreen;"&gt;low&lt;/span&gt;, 3 &lt;span style="background-color:yellow;"&gt;low-mod&lt;/span&gt;, 4 &lt;span style="background-color:orange;"&gt;mod-high&lt;/span&gt;, 1 &lt;span style="background-color:red;"&gt;high&lt;/span&gt; risk
+
+*Multiple drivers with different impacts by species*    
+* Seasonal estuarine conditions affect life stages of striped bass, blue crabs, summer flounder, black sea bass differently
+.contrib[
+
++ Chesapeake summer hypoxia, temperature better than in past years, but worse in fall
++ Habitat improving in some areas (tidal fresh SAV, oyster reefs), but eelgrass declining 
+] 
+* Ocean acidification impact on vulnerable surfclams  
+.contrib[
+
++ Areas of low pH identified in surfclam and scallop habitat  
++ Lab work identified pH thresholds for surfclam growth
+] 
+* Warm core rings important to *Illex* availability. Fishing effort concentrates on the eastern edge of warm core rings, where upwelling and enhanced productivity ocurr
+
+]
+
+.pull-right[
+DistShift: 2 &lt;span style="background-color:lightgreen;"&gt;low&lt;/span&gt;, 9 &lt;span style="background-color:orange;"&gt;mod-high&lt;/span&gt;, 3 &lt;span style="background-color:red;"&gt;high&lt;/span&gt; risk species 
+
+Shifting species distributions alter both species interactions, fishery interactions, and expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
+.center[
+![:img black sea bass survey distribution change over time from 2018 SOE, 65%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/black_sea_bass_kde.png)
+]
+]
+
+---
+## EAFM Risk Assessment: 2022 Update
+
+.pull-left[
+*Species level risk elements*
+&lt;table class="risktable table" style="font-size: 9px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Assess &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Fstatus &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Bstatus &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; FW1Pred &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; FW1Prey &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; FW2Prey &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Climate &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; DistShift &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; EstHabitat &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ocean Quahog &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Surfclam &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Summer flounder &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Scup &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Black sea bass &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Atl. mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Chub mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Butterfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Longfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Shortfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Golden tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Blueline tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bluefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spiny dogfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Monkfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Unmanaged forage &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Deepsea corals &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+.contrib[
+* Chub mackerel were added to the table
+]  
+
+*Ecosystem level risk elements*
+&lt;table class="risktable table" style="font-size: 9px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; System &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; EcoProd &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; CommRev &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; RecVal &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; FishRes1 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; FishRes4 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; FleetDiv &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Social &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; ComFood &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; RecFood &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mid-Atlantic &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+.contrib[
+* Recreational value risk decreased from high to low-moderate
+]  
+]  
+
+.pull-right[ 
+*Species and Sector level risk elements*
+&lt;table class="risktable table" style="font-size: 11px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; MgtControl &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; TecInteract &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; OceanUse &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; RegComplex &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Discards &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Allocation &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ocean Quahog-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Surfclam-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Summer flounder-R &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Summer flounder-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Scup-R &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Scup-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Black sea bass-R &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Black sea bass-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Atl. mackerel-R &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Atl. mackerel-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Butterfish-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Longfin squid-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Shortfin squid-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Golden tilefish-R &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Golden tilefish-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Blueline tilefish-R &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Blueline tilefish-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bluefish-R &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bluefish-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spiny dogfish-R &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spiny dogfish-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Chub mackerel-C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Unmanaged forage &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Deepsea corals &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+.contrib[
+* 4 Allocation risks decreased from high to low
+* 4 Regulatory complexity risks decreased, 2 increased
+* Management control risk increased for blueline tilefish fisheries to low-moderate  
+]
+]
+
+
+???
+Changes:
+Recreational value decreased from high to low-mod
+Allocation risk decreased for 4 fisheries from high to low (intermediate rankings not applied)
+Black sea bass regulatory complexity risk decreased from highest to moderate-high
+
+Potential new indicators from new SOE sections on climate risk, habitat vulnerability, offshore wind
+
+---
+.pull-left[
+## How is MAFMC using the risk assessment?
+
+* Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
+
+![:img Mid-Atlantic EAFM framework, 95%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+* Council proceeding with management strategy evaluation (MSE) addressing [recreational fishery discards](https://www.mafmc.org/actions/summer-flounder-mse) using information from conceptual modeling.
+]
+.pull-right[
+
+<div id="htmlwidget-72930c0a2da4ba1153d2" style="width:100%;height:710px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-72930c0a2da4ba1153d2">{"x":{"url":"20220815_SCS7_Keynote2_Gaichas_files/figure-html//widgets/widget_sfconceptmod.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
+]
+
+
+???
+In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
+
+aa with management  with management strategy evaluation (MSE)strategy evaluation (MSE)
+* Working group of habitat, biology, stock assessment, management, economic and social scientists developed:
+
+  * draft conceptual models of high risk elements, linkages
+  * dataset identification and gap analysis for each element and link
+  * draft questions that the Council could persue with additional work
+ 
+* Final conceptual model and supporting information at December 2019 Council meeting
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOAANextGenEcoAdvice.png")
+background-size: 1000px
+background-position: bottom
+## Implementing the Ecosystem Approach: lessons learned
+.pull-left[
+* Collaborative, iterative process between scientists, managers, stakeholders
+* Ecosystem reporting, risk and vulnerablity assessment
+ ]
+    
+.pull-right[
+* Establish national policy based in current legal mandates
+* Integrated strategic planning for advice
+
+.footnote[
+https://spo.nmfs.noaa.gov/sites/default/files/TMSPO184.pdf
+]
+
+]
+
+&lt;!--
+![:img NOAA Next Generation Advice process](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOAANextGenEcoAdvice.png)
+--&gt;
+
+
+???
+    +  Within the science community – diverse expertise is needed  
+    +  Between science and management – understanding what information is needed and important to management, providing tools to management to understand ecosystem linkages and implications  
+    +  Between science and stakeholders – need to build trust, open dialogue (everyone is heard), and sharing data and observations (on water and with information)  
+    +  Between management and stakeholders – listening to/acting on stakeholder priorities and feedback, process not out to add more uncertainty but provide for more informed decisions
+
+---
+## What is an ecosystem model?
+.center[
+![:img ecosystem model spectrum, 85%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ecomods.png)
+]
+
+???
+# Ecosystem modelling approaches: What questions can we address?
+
+---
+# Why build a model? Identify the problem
+
+.pull-left-60[
+![:img whybuild, 85%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/piggiehippowhy.png)
+]
+
+--
+
+.pull-right-40[
+&lt;!--![whyindeed](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/whyindeed.png)--&gt;
+
+1. Develop clearly specified questions and objectives 
+  - What does the model have to output/predict?
+  - What does the user need to be able to change?
+  
+1. Evaluate data availability (appropriate temporal/spatial scales) 
+  
+1. THEN build a model, or better, model(s)  
+]
+
+---
+# Today's objective
+
+Primary: Think about *your* research question  
+  - What data do you have to address it?  
+  - Would a model be useful to address your research question?  
+  - If so, what would you want it to do?   
+  - Advanced: How might you build it?  
+
+Secondary: Understand what a food web model is  
+  - Know what questions to ask about how it was built  
+  - Know what it can and cannot do 
+  - Experiment: perturb the model in different ways  
+    - What do you observe?  
+    - Why might this be? (including model limitations)  
+    
+---
+## What is a food web model?
+
+.pull-left-60[
+A system of linear equations
+
+For each group, `\(i\)`, specify: 
+
+   Biomass `\(B\)` [or Ecotrophic Efficiency `\(EE\)` ]  
+   Population growth rate `\(\frac{P}{B}\)`  
+   Consumption rate `\(\frac{Q}{B}\)`  
+   Diet composition `\(DC\)`  
+   Fishery catch `\(C\)`  
+   Biomass accumulation `\(BA\)`  
+   Im/emigration `\(IM\)` and `\(EM\)`  
+   
+Solving for `\(EE\)` [or `\(B\)` ] for each group:
+]
+
+.pull-right-40[
+![:img toyfoodweb, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/toyfw.png)
+]
+
+`$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$`
+???
+Mathematically identical to an "input-output" model in economics
+
+---
+## How do you build one?
+
+Specify most parameters for each species; can solve for one
+
+.pull-left[
+How? Observations from:
+
+1. Fishery independent surveys
+  - Biomass estimates
+  - Diet compositions
+  - Growth and reproduction information
+  
+1. Catch/landings/discard data from fishery managers
+
+1. Literature, historical information, general life history theory
+
+1. Other transparent, reproducible processes/sources
+]
+
+.pull-right[
+![:img workinprogress, 70%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/work-in-progress.png)
+]
+
+
+
+---
+
+## What can you do with one? Lab overview
+.pull-left[
+Anchovy Bay food web model
+
+1. Orientation using simple food web invented for illustration
+
+1. Tradeoffs between fishing fleets targeting different species
+
+
+]
+
+.pull-right[
+Gulf of Maine food web model
+
+1. More complex food web model based on a real system
+
+1. System reaction to different scenarios
+    1. Changing fishing effort (combined fleet)
+    1. Changing mortality for individual species
+    1. Changing predator-prey dynamics
+
+]
+???
+---
+## The Northeast US shelf food web
+.center[
+![:img GOM food web 2002,  75%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/LinkNEUSfoodweb.png)
+]
+.footnote[Link, J. 2002. Does food web theory work for marine ecosystems? Marine ecology progress series, 230: 1–9.]
+
+---
+## The Gulf of Maine food web model
+.center[
+![:img GOM food web, 70%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/GOMfw.png)
+]
+
+.footnote[Link, J., Overholtz, W., O’Reilly, J., Green, J., Dow, D., Palka, D., Legault, C., et al. 2008. The Northeast U.S. continental shelf Energy Modeling and Analysis exercise (EMAX): Ecological network model development and basic ecosystem metrics. Journal of Marine Systems, 74: 453–474.  
+
+Link, J., Col, L., Guida, V., Dow, D., O’Reilly, J., Green, J., Overholtz, W., et al. 2009. Response of balanced network models to large-scale perturbation: Implications for evaluating the role of small pelagics in the Gulf of Maine. Ecological Modelling, 220: 351–369.
+]
+
+---
+## Possible exercises: work in teams
+
+.pull-left[
+[Anchovy Bay](https://gavinfay.shinyapps.io/rpath_anchovybay/):
+
+1. Describe impacts of different fishing scenarios
+
+1. Describe potential catch and biomass objectives
+
+1. Can you engineer any scenarios to achieve them?
+
+]
+
+.pull-right[
+[Gulf of Maine](https://sgaichas.shinyapps.io/rpath_GOMview/):
+
+1. Describe impacts of different fishing scenarios
+
+1. Describe impacts of individual species mortality scenarios
+
+1. Describe the impacts of "as prey" scenario
+
+1. Can you suggest mechanisms for any observed differences?
+
+]
+
+## Both models 
+
+1. Describe your Ecosystem Based management objective
+
+    + Can you achieve it by changing sliders?
+    + Are there any side effects (tradeoffs) of achieving your objective?
+
+
+
+---
+## The next level: uncertainty
+
+How would you address this?
+.pull-left[
+Biological parameters:
+
+1. Biomass
+
+1. Production rate
+    
+1. Consumption rate
+
+1. Diet composition
+
+1. Predator-prey interactions
+
+] 
+.pull-right[
+Management needs:
+
+1. Species/group resolution
+    
+1. Fishing fleet resolution
+    
+1. Spatial resolution
+    
+1. Changing stakeholder questions
+    
+1. Limited time
+]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/herrup10pann.png")
+background-size: 830px
+background-position: right bottom
+
+## Herring MSE food web model results: ecosystem tradeoffs
+
+Tradeoffs between forage groups and mixed impacts to predators apparent when multiple species and full predator prey interaction feedbacks can be included
+
+.pull-left-30[
+* Rpath &lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Lucey, et al., 2020](https://www.sciencedirect.com/science/article/pii/S0304380020301290)) Ecosense functions evaluate parameter uncertainty within a scenario
+
+* Now we have MSE closed loop possibilities in Rpath &lt;a name=cite-lucey_evaluating_2021&gt;&lt;/a&gt;([Lucey, et al., 2021](http://www.sciencedirect.com/science/article/pii/S0165783620302976))
+
+* Can implement HCRs with predator prey interactions 
+
+]
+.pull-right-70[
+
+]
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/fwcompresults.png")
+background-size: 780px
+background-position: right bottom
+
+## Herring MSE food web model results: ecosystem uncertainty?
+
+.pull-left-30[
+Compare 10% change (green, same as previous slide gray boxes) with more extreme "herring" biomass:  
+* 50% increase from base herring biomass (red)
+* 50% decrease from base herring biomass (blue)
+
+More system uncertainty with increased herring biomass?
+]
+
+.pull-right-70[
+
+]
+---
+## Additional resources
+.pull-left[
+* [US EBFM Policy](https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-policy), [US EBFM Roadmap](https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-road-map)  
+* [US Integrated Ecosystem Assessments](https://www.integratedecosystemassessment.noaa.gov/)
+* [Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)  
+* [Ecosystem Report Technical Documentation](https://noaa-edab.github.io/tech-doc)  
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+]
+.pull-right[
+* [Wikipedia: Ecosystem models](https://en.wikipedia.org/wiki/Ecosystem_model)
+* [Wikipedia: Ecopath](https://en.wikipedia.org/wiki/Ecopath)
+* [Rpath codebase](https://github.com/NOAA-EDAB/Rpath)
+
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
+]
+]
+
+## References
+
+.contrib[
+&lt;a name=bib-bastille_improving_2021&gt;&lt;/a&gt;[Bastille, K. et
+al.](#cite-bastille_improving_2021) (2021). "Improving the IEA Approach
+Using Principles of Open Data Science". In: _Coastal Management_ 49.1.
+Publisher: Taylor &amp; Francis \_ eprint:
+https://doi.org/10.1080/08920753.2021.1846155, pp. 72-89. ISSN:
+0892-0753. DOI:
+[10.1080/08920753.2021.1846155](https://doi.org/10.1080%2F08920753.2021.1846155).
+URL:
+[https://doi.org/10.1080/08920753.2021.1846155](https://doi.org/10.1080/08920753.2021.1846155)
+(visited on Apr. 16, 2021).
+
+&lt;a name=bib-depiper_operationalizing_2017&gt;&lt;/a&gt;[DePiper, G. S. et
+al.](#cite-depiper_operationalizing_2017) (2017). "Operationalizing
+integrated ecosystem assessments within a multidisciplinary team:
+lessons learned from a worked example". En. In: _ICES Journal of Marine
+Science_ 74.8, pp. 2076-2086. ISSN: 1054-3139. DOI:
+[10.1093/icesjms/fsx038](https://doi.org/10.1093%2Ficesjms%2Ffsx038).
+URL:
+[https://academic.oup.com/icesjms/article/74/8/2076/3094701](https://academic.oup.com/icesjms/article/74/8/2076/3094701)
+(visited on Mar. 09, 2018).
+
+&lt;a name=bib-depiper_learning_2021&gt;&lt;/a&gt;[DePiper, G. et
+al.](#cite-depiper_learning_2021) (2021). "Learning by doing:
+collaborative conceptual modelling as a path forward in ecosystem-based
+management". In: _ICES Journal of Marine Science_. ISSN: 1054-3139.
+DOI:
+[10.1093/icesjms/fsab054](https://doi.org/10.1093%2Ficesjms%2Ffsab054).
+URL:
+[https://doi.org/10.1093/icesjms/fsab054](https://doi.org/10.1093/icesjms/fsab054)
+(visited on Apr. 15, 2021).
+
+&lt;a name=bib-gaichas_implementing_2018&gt;&lt;/a&gt;[Gaichas, S. K. et
+al.](#cite-gaichas_implementing_2018) (2018). "Implementing Ecosystem
+Approaches to Fishery Management: Risk Assessment in the US
+Mid-Atlantic". In: _Frontiers in Marine Science_ 5. ISSN: 2296-7745.
+DOI:
+[10.3389/fmars.2018.00442](https://doi.org/10.3389%2Ffmars.2018.00442).
+URL:
+[https://www.frontiersin.org/articles/10.3389/fmars.2018.00442/abstract](https://www.frontiersin.org/articles/10.3389/fmars.2018.00442/abstract)
+(visited on Nov. 20, 2018).
+
+&lt;a name=bib-lucey_evaluating_2021&gt;&lt;/a&gt;[Lucey, S. M. et
+al.](#cite-lucey_evaluating_2021) (2021). "Evaluating fishery
+management strategies using an ecosystem model as an operating model".
+En. In: _Fisheries Research_ 234, p. 105780. ISSN: 0165-7836. DOI:
+[10.1016/j.fishres.2020.105780](https://doi.org/10.1016%2Fj.fishres.2020.105780).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0165783620302976](http://www.sciencedirect.com/science/article/pii/S0165783620302976)
+(visited on Dec. 09, 2020).
+
+&lt;a name=bib-lucey_conducting_2020&gt;&lt;/a&gt;[Lucey, S. M. et
+al.](#cite-lucey_conducting_2020) (2020). "Conducting reproducible
+ecosystem modeling using the open source mass balance model Rpath". En.
+In: _Ecological Modelling_ 427, p. 109057. ISSN: 0304-3800. DOI:
+[10.1016/j.ecolmodel.2020.109057](https://doi.org/10.1016%2Fj.ecolmodel.2020.109057).
+URL:
+[https://www.sciencedirect.com/science/article/pii/S0304380020301290](https://www.sciencedirect.com/science/article/pii/S0304380020301290)
+(visited on Apr. 16, 2021).
+
+&lt;a name=bib-muffley_there_2021&gt;&lt;/a&gt;[Muffley, B. et
+al.](#cite-muffley_there_2021) (2021). "There Is no I in EAFM Adapting
+Integrated Ecosystem Assessment for Mid-Atlantic Fisheries Management".
+In: _Coastal Management_ 49.1. Publisher: Taylor &amp; Francis \_ eprint:
+https://doi.org/10.1080/08920753.2021.1846156, pp. 90-106. ISSN:
+0892-0753. DOI:
+[10.1080/08920753.2021.1846156](https://doi.org/10.1080%2F08920753.2021.1846156).
+URL:
+[https://doi.org/10.1080/08920753.2021.1846156](https://doi.org/10.1080/08920753.2021.1846156)
+(visited on Apr. 16, 2021).
+]
+
+---
+
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/IMG_2733.jpg")
+background-size: cover
+
+## Questions?
+
+
+# Thank you
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
