@@ -35,7 +35,6 @@ p.caption {
 ```{r setup, include=FALSE}
 
 options(htmltools.dir.version = FALSE)
-#knitr::opts_knit$set(unnamed.chunk.label = "20220316-MAFMCSSC")
 knitr::opts_chunk$set(echo = F,
                       fig.retina = 3,
                       #fig.width = 4,
@@ -43,7 +42,7 @@ knitr::opts_chunk$set(echo = F,
                       fig.asp = 0.45,
                       warning = F,
                       message = F)
-                      #fig.path = "20220316-MAFMCSSC/")
+
 #Plotting and data libraries
 library(tidyverse)
 library(tidyr)
@@ -53,11 +52,6 @@ library(ecodata)
 library(readxl); library(data.table)
 library(DT)
 library(widgetframe)
-
-# if figure output defaults to docs/imaages/ replace with this before moving to 
-# presentations/docs in both the html output (search and replace)
-# and folder name
-# 20220316_MAFMCSSC_Gaichas_files/figure-html/
 
 ```
 
@@ -95,11 +89,6 @@ https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-manag
 .footnote[
 https://www.st.nmfs.noaa.gov/Assets/ecosystems/ebfm/EBFM%20Myths%20v7.pdf
 ]
----
-## EBFM Guiding Principles
-.center[
-![:img Five supporting EBFM steps to maintain resilient ecosystems, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/EBFMprinciples.png)
-]
 
 ---
 ## An ecosystem approach implementation success story (in progress)
@@ -108,15 +97,17 @@ Diverse stakeholders agreed that an ecosystem approach was necessary. Developing
 
 .pull-left[
 *Outline*
-- Background: Fishery management in the United States
+- What types of decisions do we need to make?
 
-- Mid-Atlantic Fishery Management Council Ecosystem Approach (EAFM)
+    * Acceptable Biological Catch determination
+    * Mid-Atlantic Fishery Management Council Ecosystem Approach (EAFM)
 
-- Key tools: ecosystem reporting, risk assessment, MSE
+- How can ecosystem information support these decisions? 
 
-- Food web modeling introduction
+    * Key tools: ecosystem reporting, risk assessment, managment strategy evaluation
+    * Developing decision processes along with products
 
-- Food web modeling exercise
+- Goal: increased range of opportunities for relevant ecosystem information to be considered in management decision processes
 
 .footnote[
 Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Document](https://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08-palr.pdf)
@@ -124,17 +115,6 @@ Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Docum
 ]
 .pull-right[
 ![:img EAFM Policy Guidance Doc Word Cloud](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_EAFMwordcloud.png)
-]
----
-## Fishery management in the US
-
-Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
-.center[
-![:img US map highlighting regions for each fishery management council, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/USCouncils.png)
-] 
-.footnote[
-More information: http://www.fisherycouncils.org/  
-https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 ]
 
 ---
@@ -147,6 +127,67 @@ https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 ![:img MAFMC fishery management plans and species, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMPs3.png)
 ]
 .footnote[Source: http://www.mafmc.org/fishery-management-plans] 
+
+---
+## Acceptable Biological Catch (ABC) determination: MAFMC approach
+
+.pull-left[
+### Council Risk Policy
+
+```{r MAFMCriskpolicy, fig.height=4}
+
+riskpol <- data.frame(Bfrac = c(0, 0.1, 1.0, 1.5, 2.5),
+                      Current = c(0, 0, 0.45, 0.49, 0.49),
+                      Pre2020 = c(0, 0, 0.4, 0.4, 0.4)
+)
+
+riskpol <- riskpol %>%
+  pivot_longer(-Bfrac, names_to = "pstar")
+
+ggplot2::ggplot(riskpol, aes(x=Bfrac, y=value, linetype = pstar)) +
+  geom_path(show.legend = TRUE) +
+  theme_minimal() +
+  xlab("B/Bmsy") +
+  ylab("p*") +
+  labs(linetype = "Policy")
+
+  
+```
+
+]
+
+.pull-right[
+### ABC proportion of OFL given OFL CV
+
+```{r OFLCVtoABC, fig.height=4}
+
+ABCprop <- data.frame(Bfrac = seq(0, 2.5, 0.01)) %>%
+  dplyr::mutate(pstar = case_when(Bfrac <= 0.1 ~ 0,
+                                  Bfrac > 0.1 & Bfrac <= 1.0 ~ (Bfrac-0.1)*((0.45-0)/(1-0.1)) ,
+                                  Bfrac > 1.0 & Bfrac <= 1.5 ~ (Bfrac-1.0)*((0.49-0.45)/(1.5-1))+0.45,
+                                  Bfrac > 1.5 ~ 0.49)) %>%
+  dplyr::mutate(CV60 = qlnorm(pstar, log(1), log(0.60 + 1)),
+                CV100 = qlnorm(pstar, log(1), log(1.00 + 1)),
+                CV150 = qlnorm(pstar, log(1), log(1.50 + 1))) %>%
+  pivot_longer(-c(Bfrac, pstar), names_to = "ABCprop")
+                       
+
+ggplot2::ggplot(ABCprop, aes(x=Bfrac, value, colour=ABCprop)) +
+  geom_line()+  
+  theme_minimal() +
+  xlab("B/Bmsy") +
+  ylab("ABC/OFL proportion") +
+  labs(colour = "OFL Uncertainty")
+  
+```
+
+]
+
+.footnote[
+See [MAFMC ABC control rule](http://www.mafmc.org/s/MAFMC-ABC-Control-Rule-White-Paper.pdf) and [update for 2020 MAFMC risk policy](https://www.mafmc.org/s/b_Implications-of-MAFMC-Risk-Policy-for-Multi.pdf)
+]
+---
+## How to get the OFL CV? Characterizing Scientific Uncertainty
 
 ---
 ## Integrated Ecosystem Assessment and the MAFMC Ecosystem Approach
