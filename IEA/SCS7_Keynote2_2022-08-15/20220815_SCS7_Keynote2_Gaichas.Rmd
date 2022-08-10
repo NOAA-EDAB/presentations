@@ -694,6 +694,29 @@ In this interactive circular graph visualization, model elements identified as i
 .footnote[
 [August MAFMC briefing materials](https://www.mafmc.org/s/Tab02_Summer-Flounder-MSE_2022-08.pdf) and [full results on the web](https://gavinfay.github.io/fluke-mafmc-recdisc/summary-metrics.html)
 ]
+
+---
+## System level decisions: Are we observing multispecies shifts?
+
+.pull-left[
+Indicator: fish condition 
+```{r, out.width="120%"}
+#knitr::include_graphics("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg")
+fishcond <- magick::image_read("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAB_Condition_allsex_2022_viridis.jpg") 
+magick::image_trim(fishcond)
+```
+<!--![:img Fish condition figure, 120%](EDAB_images/MAB_Condition_allsex_2022_viridis.jpg)-->
+
+]
+
+.pull-right[
+Indicator: fish productivity anomaly
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.asp=.75}
+
+```
+
+]
+
 ---
 ## System level decisions: Are we observing multispecies shifts?
 
