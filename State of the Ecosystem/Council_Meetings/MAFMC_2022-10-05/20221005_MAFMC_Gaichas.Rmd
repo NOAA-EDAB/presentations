@@ -1,0 +1,84 @@
+---
+title: "SSC Ecosystem Working Group Report"
+subtitle: "MAFMC-SSC Joint Meeting<br /> 5 October 2022"
+author: "Sarah Gaichas<br /> Northeast Fisheries Science Center<br /> <br /> SSC subroup<br /> "
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+
+
+```
+
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-final-03.23.22-no%20marks_Page_1.png")
+background-size: 500px
+background-position: right
+
+## SSC State of the Ecosystem Working Group
+.pull-left-60[
+Objective: assist the Council in developing short term and long term objectives to advance the operational use of ecosystem information in management decisions
+
+1.  Expanding and clarifying the ecosystem portion of the SSC OFL CV determination process (short term objective)
+1.  Developing prototype processes to provide multispecies and system level scientific advice appropriate for Council decision making, in particular where there are multispecies and multifleet tradeoffs linking directly to economic and social outcomes (long term objective)
+1.  Collaborating with SSC species leads, stock assessment leads, and relevant working groups in developing the stock-specific Ecosystem and Socio-economic Profiles (ESP) process to specify stock-specific Ecosystem ToRs that are impactful and can be integrated into assessments (moderate-term objective)
+
+Outcomes for the Council:
+
+-   An OFL CV process that makes better use of ecosystem information in determining the ABC
+-   Evaluation of multiple ecosystem indicators and potential development of thresholds for use in a revised EAFM risk assessment and/or other Council processes
+-   Increased range of opportunities for relevant ecosystem information to be considered in management decision processes
+
+
+]
+
+---
+## Progress
+
+---
+BELOW HERE OLD
+## Seeking Council Feedback 
+
+What types of ecosystem data/information, tools, or approaches may be missing or would be informative to help support Council decision making, strategic planning, and priority setting (management and research)?
+
+## Examples
+
+1. The North Pacific Fishery Management Council has used Ecosystem Status Reports to inform OFL and ABC setting for coming years (Bering Sea pollock 2006, Gulf of Alaska cod 2018-2019)
+1. California Department of Fish and Wildlife utilizes habitat compression and forage indices to inform their [Risk Assessment and Mitigation Program](https://wildlife.ca.gov/Conservation/Marine/Whale-Safe-Fisheries#559972749-2020-21-season) for humpback whales, blue whales, and Pacific leatherback turtles
+
+
+.pull-left[
+![:img Gulf of Alaska Cod temperature impacts, 80%](EDAB_images/fmars-07-00703-g009.jpg)
+]
+.pull-right[
+![:img Gulf of Alaska Cod condition impacts, 115%](EDAB_images/fmars-07-00703-g005.jpg)
+]
+
