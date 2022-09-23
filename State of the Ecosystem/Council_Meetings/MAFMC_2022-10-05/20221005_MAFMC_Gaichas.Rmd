@@ -30,7 +30,8 @@ knitr::opts_chunk$set(echo = F,
                       #fig.height = 2,
                       fig.asp = 0.45,
                       warning = F,
-                      message = F)
+                      message = F,
+                      results = F)
 #Plotting and data libraries
 library(tidyverse)
 library(tidyr)
@@ -39,17 +40,25 @@ library(here)
 
 ```
 
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
+```
+
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-final-03.23.22-no%20marks_Page_1.png")
-background-size: 500px
+background-size: 400px
 background-position: right
 
 ## SSC State of the Ecosystem Working Group
-.pull-left-60[
+.pull-left-70[
 Objective: assist the Council in developing short term and long term objectives to advance the operational use of ecosystem information in management decisions
-
-1.  Expanding and clarifying the ecosystem portion of the SSC OFL CV determination process (short term objective)
-1.  Developing prototype processes to provide multispecies and system level scientific advice appropriate for Council decision making, in particular where there are multispecies and multifleet tradeoffs linking directly to economic and social outcomes (long term objective)
-1.  Collaborating with SSC species leads, stock assessment leads, and relevant working groups in developing the stock-specific Ecosystem and Socio-economic Profiles (ESP) process to specify stock-specific Ecosystem ToRs that are impactful and can be integrated into assessments (moderate-term objective)
 
 Outcomes for the Council:
 
@@ -63,22 +72,79 @@ Outcomes for the Council:
 ---
 ## Progress
 
+### Objective 1: Expanding and clarifying the ecosystem portion of the SSC OFL CV determination process (short term objective)
+
+Simulation analyses evaluating impact of ecosystem indicators on stock productivity and assessment uncertainty (OFL CV) in progress
+
+### Objective 2: Developing prototype processes to provide multispecies and system level scientific advice appropriate for Council decision making, highlighting tradeoffs linking directly to economic and social outcomes (long term objective)
+
+Initial indicators and analyses presented evaluating ecosystem overfishing and ecosystem performance given environmental conditions
+
+### Objective 3: Collaborating with relevant working groups in developing the stock-specific Ecosystem and Socio-economic Profiles (ESP) process to specify stock-specific Ecosystem ToRs (moderate-term objective)
+
+Ecosystem socioeconomic profiles in progress for several MAFMC stocks, and multiple SSC members involved in Research Track working groups
+
 ---
-BELOW HERE OLD
-## Seeking Council Feedback 
-
-What types of ecosystem data/information, tools, or approaches may be missing or would be informative to help support Council decision making, strategic planning, and priority setting (management and research)?
-
-## Examples
-
-1. The North Pacific Fishery Management Council has used Ecosystem Status Reports to inform OFL and ABC setting for coming years (Bering Sea pollock 2006, Gulf of Alaska cod 2018-2019)
-1. California Department of Fish and Wildlife utilizes habitat compression and forage indices to inform their [Risk Assessment and Mitigation Program](https://wildlife.ca.gov/Conservation/Marine/Whale-Safe-Fisheries#559972749-2020-21-season) for humpback whales, blue whales, and Pacific leatherback turtles
-
+## Feedback: Ecosystem overfishing
 
 .pull-left[
-![:img Gulf of Alaska Cod temperature impacts, 80%](EDAB_images/fmars-07-00703-g009.jpg)
+How might the Council use indicators of Ecosystem ovefishing?
+
+What information would be most useful in decision making?
+
+SSC examples:
+
+*  
+*   
+*    
+*  
+
+.contrib[
+Figure key: 
+
+<span style="background-color:#f4a460;">Orange background = Tipping point overfishing threshold, Link and Watson 2019</span> 
+
+<span style="background-color:#a2cd5a;">Green background = Optimal range, Link and Watson 2019</span>
 ]
-.pull-right[
-![:img Gulf of Alaska Cod condition impacts, 115%](EDAB_images/fmars-07-00703-g005.jpg)
 ]
 
+.pull-right[
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
+
+#fogarty, fig.cap="Fogarty Index; the ratio of total landings to total primary production in the MAB. Link and Watson (2019) give an optimal range (green shading) of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that index values exceeding 1 to 2 PPT (orange shading) led to ecosystem tipping points."
+
+```
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
+
+#ryther, fig.cap="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green shading) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange shading). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded)."
+```
+
+]
+???
+Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
+
+---
+## Feedback: Index numbers
+
+.pull-left[
+How might the Council use indicators of Ecosystem ovefishing?
+
+What information would be most useful in decision making?
+
+SSC examples:
+
+*  
+*   
+*    
+*  
+]
+
+.pull-right[
+![:img Example Index numbers analysis, 110%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/IndexNumbersExample.png)
+]
+---
+## Other topics
+
+EAFM risk assessment update
