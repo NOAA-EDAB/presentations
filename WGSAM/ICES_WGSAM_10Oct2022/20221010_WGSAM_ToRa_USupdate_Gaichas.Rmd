@@ -1,0 +1,116 @@
+---
+title: "Multispecies models: US update"
+subtitle: "WGSAM, 10 October 2022"
+author: "Sarah Gaichas, Sean Lucey, Andy Beet"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           style = "markdown")
+myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+## Gulf of Alaska predation mortality--ensemble approach `r Cite(myBib, "adams_ensemble_2022")`
+
+.center[
+![:img ](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AdamsetalEnsembleCons2022.png)
+]
+
+???
+
+---
+## [Rceattle](https://github.com/grantdadams/Rceattle): multispecies model in TMB
+
+K Holsman: Hoping to deploy that model for the Bering operationally now that its published (and phase out ADMB version we've used operationally since 2016 as the an appendix to the pollock assessment).
+
+---
+## MSCAA for lake ontario Kimberly Fitzpatrick
+
+that (to my knowledge) is the first to link prey abundance to growth of predators in one of these models since Gislason 1999
+
+
+---
+## Bering Sea ms ref pts, HCRs, tradeoffs
+
+Andy's paper of Bering ACLIM climate simulations, that includes multispecies reference points, harvest control rules, and tradeoffs against the global OY cap:  https://www.frontiersin.org/articles/10.3389/fmars.2021.624301/full.  Maybe just a bullet to say that we're using models with those features works?  Stops short of a full MSE (according to Andre) because we didn't include adaptive assessment/observation error.
+
+Jon Reum has been developing a protocol for multimodal ensemble projections that include Ceattle, Rpath, and Mizer (recent workshop work, no figures/results yet).
+
+---
+## Ongoing EBFM modeling for New England
+
+.pull-left[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/foodweb.png)
+
+]
+.pull-right[
+## Georges Bank multispecies modelling
+
+ToR b keyrun/constructed model review for 3 models (afternoons, Monday-Thursday)
+ToR c skill assessment in progress for 2 models (Tuesday morning, afternoons M-W)
+ToR d set up for multimodel advice from the above (Friday)
+
+
+]
+???
+
+---
+## References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+
+
+## Additional resources
+.pull-left[
+[Alaska multispecies and ecosystem models](https://www.integratedecosystemassessment.noaa.gov/regions/alaska/ebs-integrated-modeling)
+
+[California Current Future Seas MSEs](https://www.integratedecosystemassessment.noaa.gov/regions/california-current/cc-projects-future-seas)
+]
+.pull-right[
+[Mid-Atlantic ecosystem approach](https://www.mafmc.org/eafm)
+
+[New England example fishery ecosystem plan](https://s3.amazonaws.com/nefmc.org/3_Draft-example-Fishery-Ecosystem-Plan-eFEP_190830_113712.pdf)
+]
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: <Sarah.Gaichas@noaa.gov>
+]
