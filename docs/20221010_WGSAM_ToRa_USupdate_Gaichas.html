@@ -3,7 +3,7 @@
   <head>
     <title>Multispecies models: US update</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Sarah Gaichas, Sean Lucey, Andy Beet" />
+    <meta name="author" content="Sarah Gaichas, Grant Adams, Kerim Aydin, Brandon Beltz, Kirstin Holsman,  Isaac Kaplan, Sean Lucey, Janet Nye, Jameal Samhouri, Andy Whitehouse, Sarah Weisberg" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
@@ -16,10 +16,10 @@ class: right, middle, my-title, title-slide
 # Multispecies models: US update
 ]
 .subtitle[
-## WGSAM, 10 October 2022
+## WGSAM ToR a, 10 October 2022
 ]
 .author[
-### Sarah Gaichas, Sean Lucey, Andy Beet
+### Sarah Gaichas, Grant Adams, Kerim Aydin, Brandon Beltz, Kirstin Holsman, <br />Isaac Kaplan, Sean Lucey, Janet Nye, Jameal Samhouri, Andy Whitehouse, Sarah Weisberg
 ]
 
 ---
@@ -30,31 +30,58 @@ class: top, left
 
 
 
-## Gulf of Alaska predation mortality--ensemble approach &lt;a name=cite-adams_ensemble_2022&gt;&lt;/a&gt;([Adams, et al., 2022](https://www.sciencedirect.com/science/article/pii/S0165783622000807))
+## Gulf of Alaska predation mortality--ensemble approach &lt;a name=cite-adams_ensemble_2022&gt;&lt;/a&gt;([Adams, et al., 2022](https://www.sciencedirect.com/science/article/pii/S0165783622000807)) in [Rceattle](https://github.com/grantdadams/Rceattle)
 
 .center[
-![:img GOA consumption estimates, 85%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AdamsetalEnsembleCons2022.png)
+![:img GOA consumption estimates, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AdamsetalEnsembleCons2022.png)
 ]
 
 ???
-
----
-## [Rceattle](https://github.com/grantdadams/Rceattle): multispecies model in TMB
-
 K Holsman: Hoping to deploy that model for the Bering operationally now that its published (and phase out ADMB version we've used operationally since 2016 as the an appendix to the pollock assessment).
 
----
-## MSCAA for lake ontario Kimberly Fitzpatrick
-
-that (to my knowledge) is the first to link prey abundance to growth of predators in one of these models since Gislason 1999
-
 
 ---
-## Bering Sea ms ref pts, HCRs, tradeoffs
+## Climate projected Bering Sea food web impacts &lt;a name=cite-whitehouse_bottomup_2021&gt;&lt;/a&gt;([Whitehouse, et al., 2021](https://www.frontiersin.org/articles/10.3389/fmars.2021.624301)) in [Rpath](https://github.com/NOAA-EDAB/Rpath)
 
+.pull-left[
+![:img](https://www.frontiersin.org/files/Articles/624301/fmars-08-624301-HTML/image_m/fmars-08-624301-g001.jpg)
+]
+.pull-right[
+![:img](https://www.frontiersin.org/files/Articles/624301/fmars-08-624301-HTML/image_m/fmars-08-624301-g010.jpg)
+]
+
+Bering Sea ACLIM climate simulations, including multispecies reference points, harvest control rules, and tradeoffs against the global OY cap
+???
 Andy's paper of Bering ACLIM climate simulations, that includes multispecies reference points, harvest control rules, and tradeoffs against the global OY cap:  https://www.frontiersin.org/articles/10.3389/fmars.2021.624301/full.  Maybe just a bullet to say that we're using models with those features works?  Stops short of a full MSE (according to Andre) because we didn't include adaptive assessment/observation error.
 
 Jon Reum has been developing a protocol for multimodal ensemble projections that include Ceattle, Rpath, and Mizer (recent workshop work, no figures/results yet).
+
+---
+## Lake Ontario MSCAA linking prey biomass to predator growth &lt;a name=cite-fitzpatrick_balancing_2022&gt;&lt;/a&gt;([Fitzpatrick, et al., 2022](https://cdnsciencepub.com/doi/10.1139/cjfas-2021-0126))
+.pull-left[
+.center[
+![:img Fitzpatrick et al 2022 Fig 1, 73%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Fitzpatricketal2022Fig1.png)
+]
+]
+.pull-right[
+.center[
+![:img Fitzpatrick et al 2022 Fig 4, 73%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Fitzpatricketal2022Fig4.png)
+]
+]
+???
+ (to my knowledge) is the first to link prey abundance to growth of predators in one of these models since Gislason 1999
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/KaplanFutureSeas1.png")
+background-size: contain 
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/KaplanFutureSeas2.png")
+background-size: contain 
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/WGSAM_CoolStuffFromUSWest.png")
+background-size: contain 
 
 ---
 ## Ongoing EBFM modeling for New England
@@ -66,16 +93,58 @@ Jon Reum has been developing a protocol for multimodal ensemble projections that
 .pull-right[
 ## Georges Bank multispecies modelling
 
-ToR b keyrun/constructed model review for 3 models (afternoons, Monday-Thursday)
-ToR c skill assessment in progress for 2 models (Tuesday morning, afternoons M-W)
-ToR d set up for multimodel advice from the above (Friday)
+ToR b keyrun/constructed model review for 3 models (afternoons, Monday-Thursday)  
+
+ToR c skill assessment in progress for 2 models (Tuesday morning, afternoons M-W)  
+
+ToR d set up for multimodel advice from the above (Friday)  
 
 
 ]
 ???
 
 ---
+## [Rpath](https://github.com/NOAA-EDAB/Rpath) for the Mid-Atlantic: Climate driven predator migration shifts
+
+.pull-left[
+**Brandon Beltz MS thesis** 
+
+*  Built Mid Atlantic Rpath
+*  Forced migration of spiny dogfish and other sharks
+*  Changed amount leaving the system (Range shift)
+*  Changed timing of migration (Phenological shift)
+*  Simulated individually, and combined Range and Phenological shift
+*  Evaluated food web impacts
+]
+.pull-right[
+![:img spiny dogfish scenarios, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BeltzMidRpathFig3.png)
+]
+
+---
+## [Rpath](https://github.com/NOAA-EDAB/Rpath) for the Gulf of Maine: Resilience in trophic networks
+
+.pull-left[
+**Sarah Weisberg PhD thesis** (presented at ICES WGCOMEDA last week)
+
+*  Built Gulf of Maine Rpath
+*  Evaluating network indices related to resilience
+    +  System Omnivory
+    +  Finn's Cycling
+    +  Relative Efficiency and Redundancy
+*  Using Ecosense to generate distributions of systems
+    +  Classify systems into low and high efficiency
+    +  Evaluate biomass distributions in each
+    +  Evaluate states over time
+]
+
+.pull-right[
+![:img Relative efficiency, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/WeisbergGOMefficiencyFig1.png)
+![:img Biomass by rel efficiency, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/WeisbergGOMefficiencyFig2.png)
+]
+
+---
 ## References
+
 
 &lt;a name=bib-adams_ensemble_2022&gt;&lt;/a&gt;[Adams, G. D. et
 al.](#cite-adams_ensemble_2022) (2022). "An ensemble approach to
@@ -86,18 +155,31 @@ URL:
 [https://www.sciencedirect.com/science/article/pii/S0165783622000807](https://www.sciencedirect.com/science/article/pii/S0165783622000807)
 (visited on Oct. 07, 2022).
 
+&lt;a name=bib-fitzpatrick_balancing_2022&gt;&lt;/a&gt;[Fitzpatrick, K. B. et
+al.](#cite-fitzpatrick_balancing_2022) (2022). "Balancing prey
+availability and predator consumption: a multispecies stock assessment
+for Lake Ontario". In: _Canadian Journal of Fisheries and Aquatic
+Sciences_ 79.9. Publisher: NRC Research Press, pp. 1529-1545. ISSN:
+0706-652X. DOI:
+[10.1139/cjfas-2021-0126](https://doi.org/10.1139%2Fcjfas-2021-0126).
+URL:
+[https://cdnsciencepub.com/doi/10.1139/cjfas-2021-0126](https://cdnsciencepub.com/doi/10.1139/cjfas-2021-0126)
+(visited on Oct. 07, 2022).
+
+&lt;a name=bib-whitehouse_bottomup_2021&gt;&lt;/a&gt;[Whitehouse, G. A. et
+al.](#cite-whitehouse_bottomup_2021) (2021). "Bottom–Up Impacts of
+Forecasted Climate Change on the Eastern Bering Sea Food Web". In:
+_Frontiers in Marine Science_ 8. ISSN: 2296-7745. URL:
+[https://www.frontiersin.org/articles/10.3389/fmars.2021.624301](https://www.frontiersin.org/articles/10.3389/fmars.2021.624301)
+(visited on Oct. 07, 2022).
+
 
 ## Additional resources
-.pull-left[
+
 [Alaska multispecies and ecosystem models](https://www.integratedecosystemassessment.noaa.gov/regions/alaska/ebs-integrated-modeling)
 
 [California Current Future Seas MSEs](https://www.integratedecosystemassessment.noaa.gov/regions/california-current/cc-projects-future-seas)
-]
-.pull-right[
-[Mid-Atlantic ecosystem approach](https://www.mafmc.org/eafm)
 
-[New England example fishery ecosystem plan](https://s3.amazonaws.com/nefmc.org/3_Draft-example-Fishery-Ecosystem-Plan-eFEP_190830_113712.pdf)
-]
 .footnote[
 Slides available at https://noaa-edab.github.io/presentations  
 Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
