@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>mscatch:   An R package for   calculating catch-at-length and age</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andy Beet   Northeast Fisheries Science Center    Contributors:  Sarah Gaichas, Sean Lucey, Kiersten Curti   EDAB, numerous Population Dynamics Scientists" />
+    <script src="libs/header-attrs-2.16/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/20220324_mscatch_beet.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+.title[
+# mscatch: <br /> An R package for <br /> calculating catch-at-length and age
+]
+.subtitle[
+## 10 October 2022
+]
+.author[
+### Andy Beet <br /> Northeast Fisheries Science Center<br /> <br /> Contributors:<br /> Sarah Gaichas, Sean Lucey, Kiersten Curti <br /> EDAB, numerous Population Dynamics Scientists
+]
+
+---
+
+
+
+class: monkfish
+
+
+
+&lt;style type="text/css"&gt;
+.monkfish {
+  position: relative;
+  z-index: 1;
+}
+.monkfish::before {    
+      content: "";
+      background-image: url("EDAB_images/monkfish.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.5;
+      z-index: -1;
+}
+
+
+
+.herring {
+  position: relative;
+  z-index: 1;
+}
+.herring::before {    
+      content: "";
+      background-image: url("EDAB_images/herring.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.3;
+      z-index: -1;
+}
+
+.wf {
+  position: relative;
+  z-index: 1;
+}
+.wf::before {    
+      content: "";
+      background-image: url("EDAB_images/winterflounder.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.5;
+      z-index: -1;
+}
+
+.yf {
+  position: relative;
+  z-index: 1;
+}
+.yf::before {    
+      content: "";
+      background-image: url("EDAB_images/yellowtailflounder.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.5;
+      z-index: -1;
+}
+
+.ws {
+  position: relative;
+  z-index: 1;
+}
+.ws::before {    
+      content: "";
+      background-image: url("EDAB_images/winterskate.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.3;
+      z-index: -1;
+}
+
+.mackerel {
+  position: relative;
+  z-index: 1;
+}
+.mackerel::before {    
+      content: "";
+      background-image: url("EDAB_images/mackerel.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.3;
+      z-index: -1;
+}
+
+
+&lt;/style&gt;
+
+## Background: Data
+
+* Single species catch at age models require a lot of data. In the Northeast region the assessment scientist is responsible for obtaining and wrangling the data for use in their model. 
+
+  *   This is time consuming 
+  *   Many decisions made in the data wrangling process are not uniform across species (data availability, life history)
+
+* Multispecies models (age and length based models) require a similar effort but for many more species.
+
+* Interest centers on the decision making process for wrangling catch data
+
+Goal: Facilitate a reproducible and transparent approach for wrangling multiple species catch data while incorporating many species specific decisions
+
+---
+
+## Background: Data wrangling process
+
+.pull-left[
+
+* Pull landings data and sampled fish length data
+
+* Aggregate landings, by time, gear type, market code (based on availability of sampled fish)
+
+* Fit length-weight relationships
+
+* Expand the catch to length compositions 
+
+* Create age length key 
+
+* Calculate numbers at age and length
+]
+
+.pull-right[
+&lt;img src="EDAB_images/catchExpansion.png" width="450px" /&gt;
+]
+
+---
+
+class: ws
+
+## Species specific considerations: Rules
+
+Need to recognize differences among species.
+
+* How are market codes aggregated?
+
+* How are landing aggregated temporally? QTR, SEMESTER, ANNUAL?
+
+* What are the rules implemented when length samples are missing?
+  * Are there a minimum number of samples required?
+  * 200 mt landings for every 100 fish lengths measured?
+  * Borrow length sample from which time period? 
+  * Nearest neighbor? previous year? previous year same semester? within last 5 years? (based on life history?)
+
+* Is species transient, resident, or resident in portion of the area of interest?
+
+* Time scales for length-weight relationships and age-length keys
+
+
+  
+---
+class: ws
+
+## Species specific considerations: Data
+
+* Sources for length-weight data/parameters?
+  * From survey and/or commercial?
+  * Fit own relationship or use parameters pulled from internal database.
+  * How many length-weight relationships are used? QTR, SEMESTER, sex, gear type?
+
+* Sources for discard data?
+  * Are length samples available?
+  * Add to totals prior to length expansion?
+
+* Sources for age data?
+  * From survey and/or commercial?
+
+* Sources of landings and length data?
+  * From internal NMFS commercial fisheries database, state data, survey data
+
+* Sources for foreign data? 
+
+* Stock area definition? Statistical areas?
+
+---
+
+## mscatch as an R package
+
+.pull-left[
+* Address the decision making process
+
+* Define species specific [rules](https://noaa-edab.github.io/ms-keyrun/articles/GBLandingsByLength.html#rules)
+  * How to aggregate catch based on availability of length samples by time
+  (Quarterly, Semi annually, Yearly)
+  * Associated gear types with fleets
+  * Market code relabeling
+  * Data sources
+  * Define length-weight relationship
+  * Define age-length key
+
+* Reproducible method
+
+]
+
+
+.pull-right[
+&lt;img src="EDAB_images/logo.png" width="280px" /&gt;
+
+[https://noaa-edab.github.io/mscatch/index.html](https://noaa-edab.github.io/mscatch/index.html)
+
+]
+
+---
+
+
+class: mackerel
+
+## A case study: Mackerel
+
+* All gears combined into a single gear type
+
+* Temporal aggregation: semesters (Jan-Jun, Jul-Dec)
+
+* Market codes: 
+  * SQ, ES, SV combined to SMALL
+  * MD 
+  * XG, JB, LG combined into LARGE
+
+* Missing samples: Borrow sample from previous semester within the same market category
+  * 5 year average over both semesters
+  * market category time series average
+
+* Length-weight relationships: 6 (3 time intervals per semester)
+  *   Fitted to bottom trawl data (after QA/QC for anomalous values)
+
+* Age-length data: from Bottom trawl survey and Commercial data. Combine
+
+* Age-length key: By Year
+  
+* Start date: 1992 
+
+---
+
+## Species Rules
+
+&lt;img src="EDAB_images/speciesTable.png" width="1000px" /&gt;
+
+[https://noaa-edab.github.io/ms-keyrun/articles/GBLandingsByLength.html](https://noaa-edab.github.io/ms-keyrun/articles/GBLandingsByLength.html)
+
+---
+
+## Sample output: Gear
+
+
+
+&lt;img src="EDAB_images/mackerel1.png" width="250px" /&gt;
+
+
+--
+
+.pull-left[
+&lt;img src="EDAB_images/1a_landings_by_gear.png" width="450px" /&gt;
+]
+
+--
+
+.pull-right[
+&lt;img src="EDAB_images/5ab_lengths_by_gear.png" width="450px" /&gt;
+
+]
+
+---
+## Sample output: Market codes
+
+
+&lt;img src="EDAB_images/mackerel2.png" width="230px" /&gt;
+
+
+--
+
+.pull-left[
+&lt;img src="EDAB_images/2a_landings_by_market_cat.png" width="450px" /&gt;
+]
+
+--
+.pull-right[
+&lt;img src="EDAB_images/6a_market_category_lengths.png" width="450px" /&gt;
+
+]
+
+---
+## Sample output: Temporal
+
+&lt;img src="EDAB_images/mackerel3.png" width="230px" /&gt;
+
+--
+
+.pull-left[
+&lt;img src="EDAB_images/3bb_landings_by_SEMESTER.png" width="450px" /&gt;
+]
+
+--
+
+.pull-right[
+&lt;img src="EDAB_images/9_market_category_SEMESTER_lengths_pelagic.png" width="450px" /&gt;
+]
+
+---
+
+## Sample output: Length-Weight relationships
+
+.pull-left[
+&lt;img src="EDAB_images/length_weight_relationship_ATLANTIC MACKEREL-SEMESTER.png" width="500px" /&gt;
+]
+.pull-right[
+&lt;img src="EDAB_images/length_weight_relationship_ATLANTIC MACKEREL-YEAR.png" width="500px" /&gt;
+
+]
+
+---
+class: yf
+
+## To Do
+
+* Data pull from [`comlandr`](https://noaa-edab.github.io/comlandr/) for both landings (domestic + foreign), discards, lengths
+
+* QA/QC code to detect and remove anomalous values
+
+* More flexibility in species options
+
+* Additional diagnostics and figures
+
+---
+
+---
+
+## Walkthrough: Aggregating data
+
+
+&lt;img src="EDAB_images/AutomatedWorkflow.png" width="640px" style="display: block; margin: auto;" /&gt;
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
