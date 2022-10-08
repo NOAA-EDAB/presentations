@@ -145,13 +145,14 @@ knitr::opts_chunk$set(echo = F,
 
 * Single species catch at age models require a lot of data. In the Northeast region the assessment scientist is responsible for obtaining and wrangling the data for use in their model. 
 
-  *   This is time consuming. 
+  *   This is time consuming 
   *   Many decisions made in the data wrangling process are not uniform across species (data availability, life history)
 
 * Multispecies models (age and length based models) require a similar effort but for many more species.
 
-* Interest centers on the decision making process. 
-  *   Incorporating as many species specific decisions while still enabling an automated, reproducible and transparent process for wrangling catch data
+* Interest centers on the decision making process for wrangling catch data
+
+Goal: Facilitate a reproducible and transparent approach for wrangling multiple species catch data while incorporating many species specific decisions
 
 ---
 
@@ -198,7 +199,7 @@ Need to recognize differences among species.
 
 * Is species transient, resident, or resident in portion of the area of interest?
 
-* Time scales for length-weight relationships
+* Time scales for length-weight relationships and age-length keys
 
 
   
@@ -395,11 +396,16 @@ class: yf
 ## To Do
 
 * Data pull from [`comlandr`](https://noaa-edab.github.io/comlandr/) for both landings (domestic + foreign), discards, lengths
-* QA/QC code to remove anomalous values
 
+* QA/QC code to detect and remove anomalous values
+
+* More flexibility in species options
+
+* Additional diagnostics and figures
 
 ---
 
+---
 
 ## Walkthrough: Aggregating data
 
