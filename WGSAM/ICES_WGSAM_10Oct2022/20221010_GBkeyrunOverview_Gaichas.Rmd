@@ -1,6 +1,6 @@
 ---
 title: "Georges Bank multispecies model <br />keyrun project"
-subtitle: "Overview <br />ICES WGSAM review, 10 October 2022"
+subtitle: "Overview <br />ICES WGSAM review, 10 and 14 October 2022"
 author: "Sarah Gaichas, Andy Beet, Kiersten Curti, Gavin Fay, Robert Gamble, <br />Ron Klasky, Sean Lucey, Maria Cristina Perez, and Howard Townsend"
 output:
   xaringan::moon_reader:
@@ -333,9 +333,48 @@ Yellowtail flounder (*Limanda ferruginea*)
 ]
 
 ---
-# Datasets: simulated and real
+# Datasets: real and simulated
 
-Next presentations!
+.pull-left[
+Real data from NEFSC databases via R packages [`survdat`](https://noaa-edab.github.io/survdat/), [`comlandr`](https://noaa-edab.github.io/comlandr/), [`mscatch`](https://noaa-edab.github.io/mscatch/)
+
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/survdat.png)![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/comlandr.png)![:img mscatchlogo, 48%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/logo.png)
+
+]
+
+
+.pull-right[
+Simulated data from Norwegian Barents Sea Atlantis model via R package [`atlantisom`](https://sgaichas.github.io/poseidon-dev/atlantisom_landingpage.html)
+
+**Norwegian-Barents Sea**
+
+[Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
+[2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
+
+.center[
+![:img NOBA, 70%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/journal.pone.0210419.g001.png)
+]
+]
+
+---
+## [ms-keyrun real biomass and catch data](https://noaa-edab.github.io/ms-keyrun/articles/GBsurveycatchviz.html)
+
+<iframe width="1212" height="682" src="https://noaa-edab.github.io/ms-keyrun/articles/GBsurveycatchviz.html" title="MS-keyrun real biomass and catch data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>
+
+---
+## [ms-keyrun real diet data](https://noaa-edab.github.io/ms-keyrun/articles/GBdietcomp.html)
+
+<iframe width="1212" height="682" src="https://noaa-edab.github.io/ms-keyrun/articles/GBdietcomp.html" title="MS-keyrun real diet data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>
+
+---
+## [ms-keyrun simulated data](https://noaa-edab.github.io/ms-keyrun/articles/SimData.html) 
+
+<iframe width="1212" height="682" src="https://noaa-edab.github.io/ms-keyrun/articles/SimData.html" title="MS-keyrun simulated data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>
+
+---
+.center[
+# Modelers discuss overview of results
+]
 
 ---
 ## References
@@ -366,7 +405,7 @@ Contact: <Sarah.Gaichas@noaa.gov>
 ]
 
 ---
-## Hydra: details and current uses
+## Hydra: past use as simulation model
 .pull-left[
 *2018 CIE for Ecosystem Based Fishery Management Strategy* 
 * [EBFM strategy review](https://www.nefsc.noaa.gov/program_review/)
@@ -381,7 +420,7 @@ knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/d
 ]
 
 ---
-## Multispecies catch at age estimation model: *seeking catchy name* [FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
+## Next: Multispecies catch at age estimation model: *seeking catchy name* [FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
 
 Species interactions: 
 - Predation: Top down only (predators increase M of prey, predators grow regardless of prey)
