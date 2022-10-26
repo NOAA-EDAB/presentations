@@ -1,0 +1,116 @@
+---
+title: "Assessing small pelagic fish trends in space<br /> and time using piscivore diet data"
+subtitle: "Small Pelagic Fish Symposium Session 5,<br /> 10 November 2022"
+author: "Sarah Gaichas, James Gartland, Brian Smith, Elizabeth Ng, Michael Celestino, <br /> Anthony Wood, Katie Drew, Abigail Tyrell, and James Thorson"
+institute:
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+#trick to downlaod bib file from other repo to keep just 1 up to date
+
+url <- "https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/FishDiet_EcoIndicators.bib"
+  download.file(url, destfile = "./FishDiet_Ecoindicators.bib")
+
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./FishDiet_Ecoindicators.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+# Does prey drive availability of bluefish?
+
+## Bluefish, *Pomatomus saltatrix*
+
+.pull-left[
+![Bluefish illustration, credit NOAA Fisheries](https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png)
+]
+
+.pull-right[
+"... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." `r Cite(myBib, "collette_bigelow_2002")`
+
+
+
+]
+
+???
+1 NOAA NMFS Northeast Fisheries Science Center, Woods Hole, MA, USA. 
+2 Virginia Institute of Marine Science, Gloucester Point, VA, USA
+3 University of Washington, Seattle, WA, USA
+4 New Jersey Department of Environmental Protection, Port Republic, NJ, USA
+5 Atlantic States Marine Fisheries Commission, Arlington, VA, USA
+6 Ocean Associates Inc, Arlington, VA, USA
+Changing distribution and abundance of small pelagics may drive changes in predator distributions, affecting predator availability to fisheries and surveys. However, small pelagic fish are difficult to survey directly, so we developed a novel method of assessing small pelagic fish aggregate abundance via predator diet data. We used piscivore diet data collected from multiple bottom trawl surveys within a Vector Autoregressive Spatio-Temporal (VAST) model to assess trends of small pelagics on the Northeast US shelf. The goal was to develop a spatial “forage index” to inform survey and/or fishery availability in the bluefish (Pomatomus saltatrix) stock assessment. Using spring and fall surveys from 1973-2020, 20 small pelagic groups were identified as major bluefish prey using the diet data. Then, predators were grouped by diet similarity to identify 19 piscivore species with the most similar diet to bluefish in the region. Diets from all 20 piscivores were combined for the 20 prey groups at each surveyed location, and the total weight of small pelagic prey per predator stomach at each location was input into a Poisson-link delta model to estimate expected prey mass per predator stomach. Best fit models included spatial and spatio-temporal random effects, with predator mean length, number of predator species, and sea surface temperature as catchability covariates. Spring and fall prey indices were split into inshore and offshore areas to reflect changing prey availability over time in areas available to the recreational fishery and the bottom trawl survey, and also to contribute to regional ecosystem reporting
+
+---
+Old stuff to keep format for including figs on github, will be replaced
+
+## Gulf of Alaska predation mortality--ensemble approach `r Cite(myBib, "adams_ensemble_2022")` in [Rceattle](https://github.com/grantdadams/Rceattle)
+
+.center[
+![:img GOA consumption estimates, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AdamsetalEnsembleCons2022.png)
+]
+
+???
+K Holsman: Hoping to deploy that model for the Bering operationally now that its published (and phase out ADMB version we've used operationally since 2016 as the an appendix to the pollock assessment).
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/GrantCeattleMSE.png")
+background-size: contain 
+
+
+---
+## References
+
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+
+
+## Additional resources
+
+[Alaska multispecies and ecosystem models](https://www.integratedecosystemassessment.noaa.gov/regions/alaska/ebs-integrated-modeling)
+
+[California Current Future Seas MSEs](https://www.integratedecosystemassessment.noaa.gov/regions/california-current/cc-projects-future-seas)
+
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: <Sarah.Gaichas@noaa.gov>
+]
