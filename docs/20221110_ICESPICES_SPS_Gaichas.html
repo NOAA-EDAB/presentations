@@ -39,8 +39,13 @@ class: top, left
 ]
 
 .pull-right[
+.large[
+
 "... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." &lt;a name=cite-collette_bigelow_2002&gt;&lt;/a&gt;([Collette et al., 2002](#bib-collette_bigelow_2002))
 
+"From Raritan Bay to Rockaway Inlet, we have had a phenomenal bluefish year with lots of bunker and other bait, ultimately leading to an abundance of bluefish." [Mid-Atlantic Bluefish Fishery Performance Report, 2021](https://www.mafmc.org/s/8_BF-FPR-2021.pdf)
+
+]
 ]
 
 ???
@@ -50,40 +55,124 @@ class: top, left
 4 New Jersey Department of Environmental Protection, Port Republic, NJ, USA
 5 Atlantic States Marine Fisheries Commission, Arlington, VA, USA
 6 Ocean Associates Inc, Arlington, VA, USA
+
 Changing distribution and abundance of small pelagics may drive changes in predator distributions, affecting predator availability to fisheries and surveys. However, small pelagic fish are difficult to survey directly, so we developed a novel method of assessing small pelagic fish aggregate abundance via predator diet data. We used piscivore diet data collected from multiple bottom trawl surveys within a Vector Autoregressive Spatio-Temporal (VAST) model to assess trends of small pelagics on the Northeast US shelf. The goal was to develop a spatial “forage index” to inform survey and/or fishery availability in the bluefish (Pomatomus saltatrix) stock assessment. Using spring and fall surveys from 1973-2020, 20 small pelagic groups were identified as major bluefish prey using the diet data. Then, predators were grouped by diet similarity to identify 19 piscivore species with the most similar diet to bluefish in the region. Diets from all 20 piscivores were combined for the 20 prey groups at each surveyed location, and the total weight of small pelagic prey per predator stomach at each location was input into a Poisson-link delta model to estimate expected prey mass per predator stomach. Best fit models included spatial and spatio-temporal random effects, with predator mean length, number of predator species, and sea surface temperature as catchability covariates. Spring and fall prey indices were split into inshore and offshore areas to reflect changing prey availability over time in areas available to the recreational fishery and the bottom trawl survey, and also to contribute to regional ecosystem reporting
 
 ---
-Old stuff to keep format for including figs on github, will be replaced
+## Bluefish diet in the Northeast US: a mix of managed and unmanaged small pelagics 
 
-## Gulf of Alaska predation mortality--ensemble approach  in [Rceattle](https://github.com/grantdadams/Rceattle)
+.pull-left[
+&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png" width="50%" /&gt;&lt;img src="https://objects.liquidweb.services/images/201909/robert_aguilar,_serc_48650727166_3ce8edc47d_b.jpg" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Butterfish-NOAAFisheries.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Scup-NOAAFisheries_0.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Mackerel-Atlantic-NOAAFisheries.png" width="50%" /&gt;
 
-.center[
-![:img GOA consumption estimates, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AdamsetalEnsembleCons2022.png)
 ]
 
+.pull-right[
+
+&lt;img src="https://diveary.com/img/species/cache/323__jpg.jpeg" width="50%" /&gt;&lt;img src="https://www.vims.edu/research/departments/fisheries/programs/juvenile_surveys/netnotes_listing/_photosets/0910_dec_jan/_northernsandlance.jpg" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-01/640x427-Atlantic_Menhaden_NB_W.jpg" width="50%" /&gt;
+
+[Northeast Fisheries Science Center Diet Data Online](https://fwdp.shinyapps.io/tm2020/)
+] 
+
 ???
-K Holsman: Hoping to deploy that model for the Bering operationally now that its published (and phase out ADMB version we've used operationally since 2016 as the an appendix to the pollock assessment).
+squid, anchovies, butterfish, herrings, sand lances, scup, silver hake, atlantic mackerel, atlantic menhaden. and bluefish. and flounders. 
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/GrantCeattleMSE.png")
-background-size: contain 
+## Bottom trawl survey small pelagics abundance estimates ([Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf))
+
+&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="95%" /&gt;
+
+???
+
+Bottom trawls are not designed for efficient sampling of small pelagics. While we can estimate aggregate planktivore biomass for different ecoregions on the Northeast US shelf, estimates have high observation error. Black lines = NEFSC bottom trawl, Red lines = NEAMAP inshore bottom trawl
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Ng2022dietvsassess.png"), url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png")
+background-size: 800px, 400px
+background-position: right, left
+
+## Fish stomach contents &amp;rarr; Atlantic herring biomass estimates &lt;a name=cite-ng_predator_2021&gt;&lt;/a&gt;([Ng et al., 2021](https://doi.org/10.1093/icesjms/fsab026))
+
+&lt;!--.pull-left-40[
+![:img Ng paper title](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png)
+]
+
+.pull-right-60[]--&gt;
+???
+
+---
+## Aggregating predators: diet similarity to bluefish
+
+
+
+---
+## VAST modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
+
+
+---
+## "Catchability" covariates for aggregate predator samplers at a location
+
+Number of predator species &amp;rarr; likely to affect *encounter rate*
+
+Mean size of predators &amp;rarr; likely to affect *amount of prey* 
+
+Sea surface temperature &amp;rarr; likely to affect predator feeding rate *encounter rate and amount of prey*
+
+(SST is also likely to affect prey distribution, but differently for each prey species. Therefore, SST not modeled as a density covariate for aggregate small pelagics.)
+
+Model selection consistently included number of predator species, mean predator size, and SST as covariates using fall, spring, and annual datasets
+
+---
+## Spatial partitioning: examining small pelagics at multiple scales
+
+---
+## Results
+
+
+---
+## P.S., Did it help the assessment?
 
 
 ---
 ## References
 
-
 &lt;a name=bib-collette_bigelow_2002&gt;&lt;/a&gt;[Collette, B. B. et
 al.](#cite-collette_bigelow_2002) (2002). _Bigelow and Schroeder's
-Fishes of the Gulf of Maine, Third Edition_. En. Google-Books-ID:
-nAVPEAAAQBAJ. Smithsonian. ISBN: 978-1-56098-951-6.
+Fishes of the Gulf of Maine, Third Edition_. 3rd ed. edition.
+Washington, DC: Smithsonian Books. ISBN: 978-1-56098-951-6.
 
+&lt;a name=bib-ng_predator_2021&gt;&lt;/a&gt;[Ng, E. L. et
+al.](#cite-ng_predator_2021) (2021). "Predator stomach contents can
+provide accurate indices of prey biomass". In: _ICES Journal of Marine
+Science_ 78.3, pp. 1146-1159. ISSN: 1054-3139. DOI:
+[10.1093/icesjms/fsab026](https://doi.org/10.1093%2Ficesjms%2Ffsab026).
+URL:
+[https://doi.org/10.1093/icesjms/fsab026](https://doi.org/10.1093/icesjms/fsab026)
+(visited on Sep. 01, 2021).
+
+&lt;a name=bib-thorson_guidance_2019&gt;&lt;/a&gt;[Thorson, J.
+T.](#cite-thorson_guidance_2019) (2019). "Guidance for decisions using
+the Vector Autoregressive Spatio-Temporal (VAST) package in stock,
+ecosystem, habitat and climate assessments". En. In: _Fisheries
+Research_ 210, pp. 143-161. ISSN: 0165-7836. DOI:
+[10.1016/j.fishres.2018.10.013](https://doi.org/10.1016%2Fj.fishres.2018.10.013).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0165783618302820](http://www.sciencedirect.com/science/article/pii/S0165783618302820)
+(visited on Feb. 24, 2020).
+
+&lt;a name=bib-thorson_comparing_2017&gt;&lt;/a&gt;[Thorson, J. T. et
+al.](#cite-thorson_comparing_2017) (2017). "Comparing estimates of
+abundance trends and distribution shifts using single- and multispecies
+models of fishes and biogenic habitat". In: _ICES Journal of Marine
+Science_ 74.5, pp. 1311-1321. ISSN: 1054-3139. DOI:
+[10.1093/icesjms/fsw193](https://doi.org/10.1093%2Ficesjms%2Ffsw193).
+URL:
+[https://doi.org/10.1093/icesjms/fsw193](https://doi.org/10.1093/icesjms/fsw193)
+(visited on Nov. 04, 2021).
 
 ## Additional resources
 
-[Alaska multispecies and ecosystem models](https://www.integratedecosystemassessment.noaa.gov/regions/alaska/ebs-integrated-modeling)
+[Northeast US State of the Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
 
-[California Current Future Seas MSEs](https://www.integratedecosystemassessment.noaa.gov/regions/california-current/cc-projects-future-seas)
 
 .footnote[
 Slides available at https://noaa-edab.github.io/presentations  
