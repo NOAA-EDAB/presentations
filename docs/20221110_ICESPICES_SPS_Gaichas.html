@@ -41,7 +41,7 @@ class: top, left
 .pull-right[
 .large[
 
-"... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." &lt;a name=cite-collette_bigelow_2002&gt;&lt;/a&gt;([Collette et al., 2002](#bib-collette_bigelow_2002))
+"... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." &lt;a name=cite-collette_bigelow_2002&gt;&lt;/a&gt;([Collette, et al., 2002](#bib-collette_bigelow_2002))
 
 "From Raritan Bay to Rockaway Inlet, we have had a phenomenal bluefish year with lots of bunker and other bait, ultimately leading to an abundance of bluefish." [Mid-Atlantic Bluefish Fishery Performance Report, 2021](https://www.mafmc.org/s/8_BF-FPR-2021.pdf)
 
@@ -78,7 +78,9 @@ Changing distribution and abundance of small pelagics may drive changes in preda
 ] 
 
 ???
-squid, anchovies, butterfish, herrings, sand lances, scup, silver hake, atlantic mackerel, atlantic menhaden. and bluefish. and flounders. 
+Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic groups were identified as major bluefish prey with 10 or more observations (in descending order of observations): Longfin squids (*Doryteuthis* formerly *Loligo* sp.), Anchovy family (Engraulidae), bay anchovy (*Anchoa mitchilli*), Atlantic butterfish, (*Peprilus triachanthus*), Cephalopoda, (*Anchoa hepsetus*), red eye round herring (*Etrumeus teres*), Sandlance (*Ammodytes* sp.), scup (*Stenotomus chrysops*), silver hake (*Merluccius bilinearis*), shortfin squids (*Illex* sp.), Atlantic herring (*Clupea harengus*), Herring family (Clupeidae), Bluefish (*Pomatomus saltatrix*), silver anchovy (*Engraulis eurystole*), longfin inshore squid (*Doryteuthis pealeii*), Atlantic mackerel (*Scomber scombrus*), flatfish (Pleuronectiformes), weakfish (*Cynoscion regalis*), and Atlantic menhaden (*Brevoortia tyrannus*). 
+
+Prey categories such as fish unidentified, Osteichthyes, and unidentified animal remains were not included in the prey list. Although unidentified fish and Osteichthyes can comprise a significant portion of bluefish stomach contents, we cannot assume that unidentified fish in other predator stomachs represent unidentified fish in bluefish stomachs.  
 
 ---
 ## Bottom trawl survey small pelagics abundance estimates ([Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf))
@@ -87,14 +89,14 @@ squid, anchovies, butterfish, herrings, sand lances, scup, silver hake, atlantic
 
 ???
 
-Bottom trawls are not designed for efficient sampling of small pelagics. While we can estimate aggregate planktivore biomass for different ecoregions on the Northeast US shelf, estimates have high observation error. Black lines = NEFSC bottom trawl, Red lines = NEAMAP inshore bottom trawl
+Bottom trawls are not designed for efficient sampling of small pelagics. While we can estimate aggregate planktivore biomass for different ecoregions on the Northeast US shelf, estimates have high observation error. Black lines = NEFSC bottom trawl, Red lines = NEAMAP inshore bottom trawl. Orange line on GB Fall indicates significant increasing long term trend.
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Ng2022dietvsassess.png"), url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png")
 background-size: 800px, 400px
 background-position: right, left
 
-## Fish stomach contents &amp;rarr; Atlantic herring biomass estimates &lt;a name=cite-ng_predator_2021&gt;&lt;/a&gt;([Ng et al., 2021](https://doi.org/10.1093/icesjms/fsab026))
+## Fish stomach contents &amp;rarr; Atlantic herring biomass estimates &lt;a name=cite-ng_predator_2021&gt;&lt;/a&gt;([Ng, et al., 2021](https://doi.org/10.1093/icesjms/fsab026))
 
 &lt;!--.pull-left-40[
 ![:img Ng paper title](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png)
@@ -104,14 +106,48 @@ background-position: right, left
 ???
 
 ---
-## VAST modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
+## VAST modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson, et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
 
 
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishOnlyFallData_by_year.png")
+background-size: 650px
+background-position: right top
+
 ## Bluefish stomachs only?
 
-![Fall bluefish NEFSC](pyindextests/nefsc_data/allagg_fallbluefish/Data_by_year.png)
+.pull-left[
+Due to uneven "sampling" of Atlantic herring by predators, ([Ng, et al., 2021](https://doi.org/10.1093/icesjms/fsab026)) recommended aggregating across predators to improve the diet-based Atlantic herring biomass index. 
 
+Between 1985-2021 there were: 
+.contrib[
+
+*  25634 survey stations with diet collections. 
+*  22751 survey stations with piscivore diets. 
+    +  9027 piscivore stations with bluefish prey; 
+    +  40% of piscivore stations have bluefish prey. 
+*  1814 survey stations with bluefish diets. 
+    +  905 bluefish stations with bluefish prey;
+    +  50% of bluefish stations have bluefish prey.
+    
+]
+For this index combining multiple small pelagic prey, aggregating across predators most similar to bluefish both increases sample size and reduces sampling variability due to different predator availability to surveys.
+]
+
+.pull-right[
+
+&lt;!--![Fall bluefish NEFSC](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishOnlyFallData_by_year.png) --&gt;
+.center[
+.footnote[
+Bluefish diet collection stations, fall Northeast Fisheries Science Center surveys
+]
+]
+
+]
+???
+The figure shows bluefish diet collection stations for fall surveys, 1985-2019. The full NEFSC diet database 1985-2021 contains 25634 survey stations with diet collections. When including only piscivores feeding similarly to bluefish, the survey stations with diet collections in this time period is 22751. Of these piscivore diet stations, 9027 included our defined bluefish prey, or 39.6773768%. For comparison, 1814 stations have diet samples for bluefish alone, with 905 or 49.8897464% including our defined bluefish prey. 
+
+NEAMAP survey stations with diet collections for piscivores (n = 3838) had a higher proportion with our defined bluefish prey (n = 2418, 63.0015633%).
 ---
 ## Aggregating predators: diet similarity to bluefish
 
@@ -120,13 +156,16 @@ background-position: right, left
 ]
 
 .pull-right[
-&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-07/640x427-Cod-Atlantic-NOAAFisheries.png?itok=kNKcZ7iV" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Shark-SpinyDogfish-NOAAFisheries.png?itok=cdjTG3Hz" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Monkfish-NOAAFisheries.png?itok=7JAgAz-u" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Flounder-Summer-NOAAFisheries.png?itok=II2ii-Qw" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Pollock-Atlantic-NOAAFisheries.png?itok=ZFoDB-Qr" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Red-NOAAFisheries.png?itok=SyCYEmmm" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Halibut-Atlantic-right-NOAAFisheries.png?itok=uPvRdIBx" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-StripedBass-NOAAFisheries.png?itok=4ZQoQM0S" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2020-12/640x427-Hake_White_NB_W.jpg?itok=yHy_AuTT" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/dam-migration/640x427-cusk.jpg?itok=u0fw0hiv" width="25%" /&gt;
+&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-07/640x427-Cod-Atlantic-NOAAFisheries.png?itok=kNKcZ7iV" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Shark-SpinyDogfish-NOAAFisheries.png?itok=cdjTG3Hz" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Monkfish-NOAAFisheries.png?itok=7JAgAz-u" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Flounder-Summer-NOAAFisheries.png?itok=II2ii-Qw" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Pollock-Atlantic-NOAAFisheries.png?itok=ZFoDB-Qr" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Red-NOAAFisheries.png?itok=SyCYEmmm" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Halibut-Atlantic-right-NOAAFisheries.png?itok=uPvRdIBx" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-StripedBass-NOAAFisheries.png?itok=4ZQoQM0S" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2020-12/640x427-Hake_White_NB_W.jpg?itok=yHy_AuTT" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/dam-migration/640x427-cusk.jpg?itok=u0fw0hiv" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png" width="25%" /&gt;&lt;img src="https://marinefishesofgeorgia.org/wp-content/themes/yootheme/cache/Weakfish-00ce3893.png" width="25%" /&gt;&lt;img src="https://photolib.noaa.gov/Portals/0//GravityImages/36881/ProportionalFixedWidth/sanc100698384x800x800.jpg" width="25%" /&gt;
 
-
+&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/unnamed-chunk-6-1.png" width="25%" /&gt;&lt;img src="https://apps-nefsc.fisheries.noaa.gov/rcb/photogallery/large/dory_fullsize.jpg" width="25%" /&gt;&lt;img src="https://marinefishesofgeorgia.org/wp-content/themes/yootheme/cache/Spanish-Mackerel-7c44a9e9.png" width="25%" /&gt;&lt;img src="https://fishinginmiami.com/wp-content/uploads/2018/07/Miami-sea-trout-fishing.png" width="25%" /&gt;
 
 ]
 
+???
+All size classes of 50 fish predators captured in the NEFSC bottom trawl survey were grouped by diet similarity to identify the size classes of piscivore species with the most similar diet to bluefish in the region.  Diet similarity analysis was completed using the Schoener similarity index (@schoener_nonsynchronous_1970; B. Smith, pers. comm.), and is available available via [this link on the NEFSC food habits shiny app](https://fwdp.shinyapps.io/tm2020/#4_DIET_OVERLAP_AND_TROPHIC_GUILDS). The working group evaluated several clustering methods to develop the predator list (see [this link with detailed cluster results](https://sgaichas.github.io/bluefishdiet/PreySimilarityUpdate.html)). 
 
+Predators with highest diet similarity to Bluefish from the NEFSC diet database (1973-2020) include Atlantic cod, Atlantic halibut, buckler dory, cusk, fourspot flounder, goosefish, longfin squid, shortfin squid, pollock, red hake, sea raven, silver hake, spiny dogfish, spotted hake, striped bass, summer flounder, thorny skate, weakfish, and white hake. The NEAMAP survey operates closer to shore than the current NEFSC survey. The NEAMAP dataset includes predators sampled by the NEFSC survey and adds two species, Spanish mackerel and spotted sea trout, not captured by the NEFSC survey offshore but included based on working group expert judgement of prey similarity to bluefish. Predator size classes included are listed in Table 2 of the forage fish index working paper at [this link](https://sgaichas.github.io/bluefishdiet/VASTcovariates_forageindex_WP.html). 
 
 ---
 ## "Catchability" covariates for aggregate predator samplers at a location
