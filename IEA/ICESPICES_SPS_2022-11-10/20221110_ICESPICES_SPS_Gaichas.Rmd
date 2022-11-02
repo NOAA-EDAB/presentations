@@ -141,6 +141,8 @@ Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic group
 
 Prey categories such as fish unidentified, Osteichthyes, and unidentified animal remains were not included in the prey list. Although unidentified fish and Osteichthyes can comprise a significant portion of bluefish stomach contents, we cannot assume that unidentified fish in other predator stomachs represent unidentified fish in bluefish stomachs.  
 
+Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Environmental Research Center; redeye round herring photo--https://diveary.com ; sandlance photo--Virginia Institute of Marine Science; all others NOAA Fisheries.
+
 ---
 ## Bottom trawl survey small pelagics abundance estimates ([Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf))
 
@@ -293,7 +295,9 @@ background-position: right, left
 ???
 
 ---
-## VAST modeling `r Cite(myBib, c("thorson_comparing_2017", "thorson_guidance_2019"))`
+## Vector Autoregressive Spatio-Temporal (VAST) modeling `r Cite(myBib, c("thorson_comparing_2017", "thorson_guidance_2019"))`
+
+Two linear predictors for an index: 1. encounter rate,  and 2. amount 
 
 
 ---
@@ -304,7 +308,7 @@ background-position: right top
 ## Bluefish stomachs only?
 
 .pull-left[
-Due to uneven "sampling" of Atlantic herring by predators, `r Cite(myBib, "ng_predator_2021")` recommended aggregating across predators to improve the diet-based Atlantic herring biomass index. 
+Due to uneven "sampling" of Atlantic herring by predators, `r Citep(myBib, "ng_predator_2021")` recommended aggregating across predators to improve the diet-based Atlantic herring biomass index. 
 
 Between 1985-2021 there were: 
 .contrib[
@@ -447,18 +451,41 @@ All size classes of 50 fish predators captured in the NEFSC bottom trawl survey 
 
 Predators with highest diet similarity to Bluefish from the NEFSC diet database (1973-2020) include Atlantic cod, Atlantic halibut, buckler dory, cusk, fourspot flounder, goosefish, longfin squid, shortfin squid, pollock, red hake, sea raven, silver hake, spiny dogfish, spotted hake, striped bass, summer flounder, thorny skate, weakfish, and white hake. The NEAMAP survey operates closer to shore than the current NEFSC survey. The NEAMAP dataset includes predators sampled by the NEFSC survey and adds two species, Spanish mackerel and spotted sea trout, not captured by the NEFSC survey offshore but included based on working group expert judgement of prey similarity to bluefish. Predator size classes included are listed in Table 2 of the forage fish index working paper at [this link](https://sgaichas.github.io/bluefishdiet/VASTcovariates_forageindex_WP.html). 
 
+Image credits: Weakfish and Spanish mackerel-- https://marinefishesofgeorgia.org ; spotted seatrout-- https://fishinginmiami.com ; Sea Raven photo 2/11/2019 11:07:56 AM, Photographer: Andrew J. Martinez, Location: Massachusetts, Stellwagen Bank NMS; all others NOAA Fisheries.
+
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AllPiscivoresFallData_by_year.png")
+background-size: 600px
+background-position: right top
+
+.pull-left[
 ## "Catchability" covariates for aggregate predator samplers at a location
 
 Number of predator species &rarr; likely to affect *encounter rate*
 
-Mean size of predators &rarr; likely to affect *amount of prey* 
+Mean size of predators &rarr; likely to affect *amount of prey* `r Cite(myBib, "ng_predator_2021")`
 
-Sea surface temperature &rarr; likely to affect predator feeding rate *encounter rate and amount of prey*
+Sea surface temperature (SST) &rarr; likely to affect predator activity and feeding rate *encounter rate and amount of prey*
 
-(SST is also likely to affect prey distribution, but differently for each prey species. Therefore, SST not modeled as a density covariate for aggregate small pelagics.)
+*  Many missing SST measurements for surveys before 1991
+*  NOAA OI SST V2 High Resolution Dataset `r Cite(myBib, "reynolds_daily_2007")` filled gaps
 
 Model selection consistently included number of predator species, mean predator size, and SST as covariates using fall, spring, and annual datasets
+]
+
+.pull-right[
+]
+.footnote[
+All piscivore diet collection stations, fall Northeast Fisheries Science Center surveys &rarr;
+]
+
+
+???
+Diets from all 22 piscivores (including bluefish) were combined for the 20 forage fish (bluefish prey) groups at each surveyed location, and the mean weight of forage fish per predator stomach at each location was calculated. Data for each station included station ID, year, season, date, latitude, longitude, vessel, mean bluefish prey weight (g), mean piscivore length (cm), number of piscivore species, and sea surface temperature (degrees C). Because approximately 10% of survey stations were missing in-situ sea water temperature measurements, National Oceanic and Atmospheric Administration Optimum Interpolation Sea Surface Temperature (NOAA OI SST) V2 High Resolution Dataset [@reynolds_daily_2007] data provided by the NOAA PSL, Boulder, Colorado, USA, from their website at https://psl.noaa.gov were used to fill gaps. For survey stations with in-situ temperature measurements, the in-situ measurement was retained. For survey stations with missing temperature data, OI SST was substituted for input into VAST models.
+
+Models were developed combining all data for the year ("Annual") and with separate data for "Spring" (collection months January - June) and "Fall" (collection months July-December) to align with assumptions used in the bluefish stock assessment. Modeled years included 1985-2021 to align with other data inputs in the bluefish stock assessment. 
+
+SST is also likely to affect prey distribution, but differently for each prey species. Therefore, SST not modeled as a density covariate for aggregate small pelagics.
 
 ---
 ## Spatial partitioning: examining small pelagics at multiple scales
@@ -474,9 +501,11 @@ Model selection consistently included number of predator species, mean predator 
 ---
 ## References
 
+.contrib[
 ```{r refs, echo=FALSE, results="asis"}
 PrintBibliography(myBib)
 ```
+]
 
 ## Additional resources
 

@@ -80,6 +80,8 @@ Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic group
 
 Prey categories such as fish unidentified, Osteichthyes, and unidentified animal remains were not included in the prey list. Although unidentified fish and Osteichthyes can comprise a significant portion of bluefish stomach contents, we cannot assume that unidentified fish in other predator stomachs represent unidentified fish in bluefish stomachs.  
 
+Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Environmental Research Center; redeye round herring photo--https://diveary.com ; sandlance photo--Virginia Institute of Marine Science; all others NOAA Fisheries.
+
 ---
 ## Bottom trawl survey small pelagics abundance estimates ([Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf))
 
@@ -104,7 +106,9 @@ background-position: right, left
 ???
 
 ---
-## VAST modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
+## Vector Autoregressive Spatio-Temporal (VAST) modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
+
+Two linear predictors for an index: 1. encounter rate,  and 2. amount 
 
 
 ---
@@ -165,18 +169,41 @@ All size classes of 50 fish predators captured in the NEFSC bottom trawl survey 
 
 Predators with highest diet similarity to Bluefish from the NEFSC diet database (1973-2020) include Atlantic cod, Atlantic halibut, buckler dory, cusk, fourspot flounder, goosefish, longfin squid, shortfin squid, pollock, red hake, sea raven, silver hake, spiny dogfish, spotted hake, striped bass, summer flounder, thorny skate, weakfish, and white hake. The NEAMAP survey operates closer to shore than the current NEFSC survey. The NEAMAP dataset includes predators sampled by the NEFSC survey and adds two species, Spanish mackerel and spotted sea trout, not captured by the NEFSC survey offshore but included based on working group expert judgement of prey similarity to bluefish. Predator size classes included are listed in Table 2 of the forage fish index working paper at [this link](https://sgaichas.github.io/bluefishdiet/VASTcovariates_forageindex_WP.html). 
 
+Image credits: Weakfish and Spanish mackerel-- https://marinefishesofgeorgia.org ; spotted seatrout-- https://fishinginmiami.com ; Sea Raven photo 2/11/2019 11:07:56 AM, Photographer: Andrew J. Martinez, Location: Massachusetts, Stellwagen Bank NMS; all others NOAA Fisheries.
+
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AllPiscivoresFallData_by_year.png")
+background-size: 600px
+background-position: right top
+
+.pull-left[
 ## "Catchability" covariates for aggregate predator samplers at a location
 
 Number of predator species &amp;rarr; likely to affect *encounter rate*
 
-Mean size of predators &amp;rarr; likely to affect *amount of prey* 
+Mean size of predators &amp;rarr; likely to affect *amount of prey* ([Ng et al., 2021](https://doi.org/10.1093/icesjms/fsab026))
 
-Sea surface temperature &amp;rarr; likely to affect predator feeding rate *encounter rate and amount of prey*
+Sea surface temperature (SST) &amp;rarr; likely to affect predator activity and feeding rate *encounter rate and amount of prey*
 
-(SST is also likely to affect prey distribution, but differently for each prey species. Therefore, SST not modeled as a density covariate for aggregate small pelagics.)
+*  Many missing SST measurements for surveys before 1991
+*  NOAA OI SST V2 High Resolution Dataset &lt;a name=cite-reynolds_daily_2007&gt;&lt;/a&gt;([Reynolds et al., 2007](https://journals.ametsoc.org/view/journals/clim/20/22/2007jcli1824.1.xml)) filled gaps
 
 Model selection consistently included number of predator species, mean predator size, and SST as covariates using fall, spring, and annual datasets
+]
+
+.pull-right[
+]
+.footnote[
+All piscivore diet collection stations, fall Northeast Fisheries Science Center surveys &amp;rarr;
+]
+
+
+???
+Diets from all 22 piscivores (including bluefish) were combined for the 20 forage fish (bluefish prey) groups at each surveyed location, and the mean weight of forage fish per predator stomach at each location was calculated. Data for each station included station ID, year, season, date, latitude, longitude, vessel, mean bluefish prey weight (g), mean piscivore length (cm), number of piscivore species, and sea surface temperature (degrees C). Because approximately 10% of survey stations were missing in-situ sea water temperature measurements, National Oceanic and Atmospheric Administration Optimum Interpolation Sea Surface Temperature (NOAA OI SST) V2 High Resolution Dataset [@reynolds_daily_2007] data provided by the NOAA PSL, Boulder, Colorado, USA, from their website at https://psl.noaa.gov were used to fill gaps. For survey stations with in-situ temperature measurements, the in-situ measurement was retained. For survey stations with missing temperature data, OI SST was substituted for input into VAST models.
+
+Models were developed combining all data for the year ("Annual") and with separate data for "Spring" (collection months January - June) and "Fall" (collection months July-December) to align with assumptions used in the bluefish stock assessment. Modeled years included 1985-2021 to align with other data inputs in the bluefish stock assessment. 
+
+SST is also likely to affect prey distribution, but differently for each prey species. Therefore, SST not modeled as a density covariate for aggregate small pelagics.
 
 ---
 ## Spatial partitioning: examining small pelagics at multiple scales
@@ -192,6 +219,7 @@ Model selection consistently included number of predator species, mean predator 
 ---
 ## References
 
+.contrib[
 &lt;a name=bib-collette_bigelow_2002&gt;&lt;/a&gt;[Collette, B. B. et
 al.](#cite-collette_bigelow_2002) (2002). _Bigelow and Schroeder's
 Fishes of the Gulf of Maine, Third Edition_. 3rd ed. edition.
@@ -205,6 +233,16 @@ Science_ 78.3, pp. 1146-1159. ISSN: 1054-3139. DOI:
 URL:
 [https://doi.org/10.1093/icesjms/fsab026](https://doi.org/10.1093/icesjms/fsab026)
 (visited on Sep. 01, 2021).
+
+&lt;a name=bib-reynolds_daily_2007&gt;&lt;/a&gt;[Reynolds, R. W. et
+al.](#cite-reynolds_daily_2007) (2007). "Daily High-Resolution-Blended
+Analyses for Sea Surface Temperature". EN. In: _Journal of Climate_
+20.22. Publisher: American Meteorological Society Section: Journal of
+Climate, pp. 5473-5496. ISSN: 0894-8755, 1520-0442. DOI:
+[10.1175/2007JCLI1824.1](https://doi.org/10.1175%2F2007JCLI1824.1).
+URL:
+[https://journals.ametsoc.org/view/journals/clim/20/22/2007jcli1824.1.xml](https://journals.ametsoc.org/view/journals/clim/20/22/2007jcli1824.1.xml)
+(visited on Aug. 01, 2022).
 
 &lt;a name=bib-thorson_guidance_2019&gt;&lt;/a&gt;[Thorson, J.
 T.](#cite-thorson_guidance_2019) (2019). "Guidance for decisions using
@@ -225,6 +263,7 @@ Science_ 74.5, pp. 1311-1321. ISSN: 1054-3139. DOI:
 URL:
 [https://doi.org/10.1093/icesjms/fsw193](https://doi.org/10.1093/icesjms/fsw193)
 (visited on Nov. 04, 2021).
+]
 
 ## Additional resources
 
