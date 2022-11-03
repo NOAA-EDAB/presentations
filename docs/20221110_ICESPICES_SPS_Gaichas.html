@@ -206,13 +206,13 @@ Models were developed combining all data for the year ("Annual") and with separa
 SST is also likely to affect prey distribution, but differently for each prey species. Therefore, SST is not modeled as a density covariate for aggregate small pelagics.
 
 ---
-## Spatial partitioning: examining small pelagics at multiple scales
+## Spatial partitioning: examining small pelagics trends at multiple scales
 
 
 
 &lt;div class="figure"&gt;
-&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/maps-1.png" alt="Maps of key areas for Bluefish assessment indices. Th full VAST model grid is shown in brown." width="33%" /&gt;&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/maps-2.png" alt="Maps of key areas for Bluefish assessment indices. Th full VAST model grid is shown in brown." width="33%" /&gt;&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/maps-3.png" alt="Maps of key areas for Bluefish assessment indices. Th full VAST model grid is shown in brown." width="33%" /&gt;
-&lt;p class="caption"&gt;Maps of key areas for Bluefish assessment indices. Th full VAST model grid is shown in brown.&lt;/p&gt;
+&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/maps-1.png" alt="Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/maps-2.png" alt="Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/maps-3.png" alt="Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;
+&lt;p class="caption"&gt;Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown.&lt;/p&gt;
 &lt;/div&gt;
 
 Indices for aggregate small pelagics from piscivore stomachs can be calculated for any subset of the full model domain. Bias correction of the resulting indices is then applied &lt;a name=cite-thorson_implementing_2016&gt;&lt;/a&gt;([Thorson, et al., 2016](https://www.sciencedirect.com/science/article/pii/S0165783615301399)). 
@@ -221,11 +221,49 @@ Indices for aggregate small pelagics from piscivore stomachs can be calculated f
 NEFSC survey strata definitions are built into the VAST `northwest-atlantic` extrapolation grid already. We defined additional new strata to address the recreational inshore-offshore 3 mile boundary. The area within and outside 3 miles of shore was defined using the `sf` R package as a 3 nautical mile (approximated as 5.556 km) buffer from a high resolution coastline from the`rnaturalearth` R package. This buffer was then intersected with the current `FishStatsUtils::northwest_atlantic_grid` built into VAST and saved using code [here](https://github.com/sgaichas/bluefishdiet/blob/main/VASTcovariates_updatedPreds_sst_3mi.Rmd#L49-L94). Then, the new State and Federal waters strata were used to split NEFSC survey strata where applicable, and the new full set of strata were used along with a modified function from `FishStatsUtils::Prepare_NWA_Extrapolation_Data_Fn` to build a custom extrapolation grid for VAST as described in detail [here](https://sgaichas.github.io/bluefishdiet/VASTcovariates_finalmodbiascorrect_3misurvstrat.html). 
 
 ---
-## Results
+## Results: Fall, Spring, Annual
 
+density and trend plots, link to diagnostics
 
 ---
-## P.S., Did it help the assessment?
+## Ecosystem reporting
+
+.pull-left[
+aggregate forage important in this system with many forage species: Jason Link horrendogram
+
+
+]
+
+.pull-right[
+potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
+
+]
+
+---
+## P.S., Did it help the assessment? Preliminary results... assessment review in December 2022
+
+.pull-left[
+A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) &lt;a name=cite-stock_woods_2021&gt;&lt;/a&gt;([Stock, et al., 2021](https://www.sciencedirect.com/science/article/pii/S0165783621000953)).
+
+Forage fish indices were explored as covariates on catchability for the NEFSC fishery independent bottom trawl surveys, but either did not improve the assessment, or the exploratory models did not converge.
+
+However, the application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error.  **The inclusion of the forage fish index improved the fit of all models.**
+]
+
+.pull-right[
+![:img preliminary results of including the forage fish index within the bluefish assessment comparing fishing mortality, recruitment, and spawning stock biomass time series between models with (purple, blue) and without (green, yellow) the index](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishWHAMecovPRELIM.png)
+]
+
+The use of the forage fish index as a covariate on catchability led to an overall decreasing trend in catchability over time.  The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to higher biomass estimates from the assessment including forage fish.  
+
+
+
+???
+WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
+
+The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
+The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
+The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
 
 
 ---
@@ -255,6 +293,17 @@ Climate, pp. 5473-5496. ISSN: 0894-8755, 1520-0442. DOI:
 URL:
 [https://journals.ametsoc.org/view/journals/clim/20/22/2007jcli1824.1.xml](https://journals.ametsoc.org/view/journals/clim/20/22/2007jcli1824.1.xml)
 (visited on Aug. 01, 2022).
+
+&lt;a name=bib-stock_woods_2021&gt;&lt;/a&gt;[Stock, B. C. et
+al.](#cite-stock_woods_2021) (2021). "The Woods Hole Assessment Model
+(WHAM): A general state-space assessment framework that incorporates
+time- and age-varying processes via random effects and links to
+environmental covariates". En. In: _Fisheries Research_ 240, p. 105967.
+ISSN: 0165-7836. DOI:
+[10.1016/j.fishres.2021.105967](https://doi.org/10.1016%2Fj.fishres.2021.105967).
+URL:
+[https://www.sciencedirect.com/science/article/pii/S0165783621000953](https://www.sciencedirect.com/science/article/pii/S0165783621000953)
+(visited on May. 26, 2021).
 
 &lt;a name=bib-thorson_guidance_2019&gt;&lt;/a&gt;[Thorson, J.
 T.](#cite-thorson_guidance_2019) (2019). "Guidance for decisions using
