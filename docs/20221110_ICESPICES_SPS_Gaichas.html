@@ -44,7 +44,7 @@ class: top, left
 .pull-right[
 .large[
 
-"... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." &lt;a name=cite-collette_bigelow_2002&gt;&lt;/a&gt;([Collette, et al., 2002](#bib-collette_bigelow_2002))
+"... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." &lt;a name=cite-collette_bigelow_2002&gt;&lt;/a&gt;([Collette et al., 2002](#bib-collette_bigelow_2002))
 
 "From Raritan Bay to Rockaway Inlet, we have had a phenomenal bluefish year with lots of bunker and other bait, ultimately leading to an abundance of bluefish." [Mid-Atlantic Bluefish Fishery Performance Report, 2021](https://www.mafmc.org/s/8_BF-FPR-2021.pdf)
 
@@ -96,7 +96,7 @@ background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/doc
 background-size: 800px, 400px
 background-position: right, left
 
-## Fish stomach contents &amp;rarr; Atlantic herring biomass estimates &lt;a name=cite-ng_predator_2021&gt;&lt;/a&gt;([Ng, et al., 2021](https://doi.org/10.1093/icesjms/fsab026))
+## Fish stomach contents &amp;rarr; Atlantic herring biomass estimates &lt;a name=cite-ng_predator_2021&gt;&lt;/a&gt;([Ng et al., 2021](https://doi.org/10.1093/icesjms/fsab026))
 
 &lt;!--.pull-left-40[
 ![:img Ng paper title](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png)
@@ -106,7 +106,7 @@ background-position: right, left
 ???
 
 ---
-## Vector Autoregressive Spatio-Temporal (VAST) modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson, et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
+## Vector Autoregressive Spatio-Temporal (VAST) modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
 
 Two linear predictors for an index: 1. encounter rate,  and 2. amount 
 
@@ -119,7 +119,7 @@ background-position: right top
 ## Bluefish stomachs only?
 
 .pull-left[
-Due to uneven "sampling" of Atlantic herring by predators, ([Ng, et al., 2021](https://doi.org/10.1093/icesjms/fsab026)) recommended aggregating across predators to improve the diet-based Atlantic herring biomass index. 
+Due to uneven "sampling" of Atlantic herring by predators, ([Ng et al., 2021](https://doi.org/10.1093/icesjms/fsab026)) recommended aggregating across predators to improve the diet-based Atlantic herring biomass index. 
 
 Between 1985-2021 there were: 
 .contrib[
@@ -181,12 +181,12 @@ background-position: right top
 
 Number of predator species &amp;rarr; likely to affect *encounter rate*
 
-Mean size of predators &amp;rarr; likely to affect *amount of prey* ([Ng, et al., 2021](https://doi.org/10.1093/icesjms/fsab026))
+Mean size of predators &amp;rarr; likely to affect *amount of prey* ([Ng et al., 2021](https://doi.org/10.1093/icesjms/fsab026))
 
 Sea surface temperature (SST) &amp;rarr; likely to affect predator activity and feeding rate *encounter rate and amount of prey*
 
 *  Many missing SST measurements for surveys before 1991
-*  NOAA OI SST V2 High Resolution Dataset &lt;a name=cite-reynolds_daily_2007&gt;&lt;/a&gt;([Reynolds, et al., 2007](https://journals.ametsoc.org/view/journals/clim/20/22/2007jcli1824.1.xml)) filled gaps
+*  NOAA OI SST V2 High Resolution Dataset &lt;a name=cite-reynolds_daily_2007&gt;&lt;/a&gt;([Reynolds et al., 2007](https://journals.ametsoc.org/view/journals/clim/20/22/2007jcli1824.1.xml)) filled gaps
 
 Model selection consistently included number of predator species, mean predator size, and SST as covariates using fall, spring, and annual datasets
 ]
@@ -215,7 +215,7 @@ SST is also likely to affect prey distribution, but differently for each prey sp
 &lt;p class="caption"&gt;Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown.&lt;/p&gt;
 &lt;/div&gt;
 
-Indices for aggregate small pelagics from piscivore stomachs can be calculated for any subset of the full model domain. Bias correction of the resulting indices is then applied &lt;a name=cite-thorson_implementing_2016&gt;&lt;/a&gt;([Thorson, et al., 2016](https://www.sciencedirect.com/science/article/pii/S0165783615301399)). 
+Indices for aggregate small pelagics from piscivore stomachs can be calculated for any subset of the full model domain. Bias correction of the resulting indices is then applied &lt;a name=cite-thorson_implementing_2016&gt;&lt;/a&gt;([Thorson et al., 2016](https://www.sciencedirect.com/science/article/pii/S0165783615301399)). 
 
 ???
 NEFSC survey strata definitions are built into the VAST `northwest-atlantic` extrapolation grid already. We defined additional new strata to address the recreational inshore-offshore 3 mile boundary. The area within and outside 3 miles of shore was defined using the `sf` R package as a 3 nautical mile (approximated as 5.556 km) buffer from a high resolution coastline from the`rnaturalearth` R package. This buffer was then intersected with the current `FishStatsUtils::northwest_atlantic_grid` built into VAST and saved using code [here](https://github.com/sgaichas/bluefishdiet/blob/main/VASTcovariates_updatedPreds_sst_3mi.Rmd#L49-L94). Then, the new State and Federal waters strata were used to split NEFSC survey strata where applicable, and the new full set of strata were used along with a modified function from `FishStatsUtils::Prepare_NWA_Extrapolation_Data_Fn` to build a custom extrapolation grid for VAST as described in detail [here](https://sgaichas.github.io/bluefishdiet/VASTcovariates_finalmodbiascorrect_3misurvstrat.html). 
@@ -231,8 +231,8 @@ background-position: right top
 
 .pull-left[
 &lt;div class="figure"&gt;
-&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/WHAMfall-1.png" alt="Time series of VAST estimated fall forage indices for input into WHAM, 1985-2021" width="504" /&gt;
-&lt;p class="caption"&gt;Time series of VAST estimated fall forage indices for input into WHAM, 1985-2021&lt;/p&gt;
+&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/WHAMfall-1.png" alt="Time series of VAST estimated fall forage indices for input into the bluefish assessment, 1985-2021" width="504" /&gt;
+&lt;p class="caption"&gt;Time series of VAST estimated fall forage indices for input into the bluefish assessment, 1985-2021&lt;/p&gt;
 &lt;/div&gt;
 
 VAST estimated Fall forage biomass density &amp;rarr;
@@ -246,13 +246,11 @@ VAST estimated Fall forage biomass density &amp;rarr;
 ## Ecosystem reporting
 
 .pull-left[
-aggregate forage important in this system with many forage species: Jason Link horrendogram
-
 
 ]
 
 .pull-right[
-potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
+
 &lt;div class="figure"&gt;
 &lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/SOEforage-1.png" alt="Time series of VAST estimated fall forage indices for the 2023 State of the Ecosystem report" width="504" /&gt;
 &lt;p class="caption"&gt;Time series of VAST estimated fall forage indices for the 2023 State of the Ecosystem report&lt;/p&gt;
@@ -260,13 +258,17 @@ potential trends in aggregate forage to be compared with trends in zooplankton a
 
 ]
 
+???
+aggregate forage important in this system with many forage species: Jason Link horrendogram
+
+potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
 ---
-## P.S., Did it help the assessment? Preliminary results... assessment review in December 2022
+## Do prey affect bluefish availability? Depends on the index. *Preliminary results...Review in December*
 
 .pull-left[
-A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) &lt;a name=cite-stock_woods_2021&gt;&lt;/a&gt;([Stock, et al., 2021](https://www.sciencedirect.com/science/article/pii/S0165783621000953)).
+A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) &lt;a name=cite-stock_woods_2021&gt;&lt;/a&gt;([Stock et al., 2021](https://www.sciencedirect.com/science/article/pii/S0165783621000953)).
 
-Forage fish indices were explored as covariates on catchability for the NEFSC fishery independent bottom trawl surveys, but either did not improve the assessment, or the exploratory models did not converge.
+Forage fish indices were explored as covariates on catchability for the fishery independent bottom trawl surveys, but either did not improve the assessment, or the exploratory models did not converge.
 
 However, the application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error.  **The inclusion of the forage fish index improved the fit of all models.**
 ]
@@ -275,7 +277,7 @@ However, the application of the forage fish index to the recreational catch per 
 ![:img preliminary results of including the forage fish index within the bluefish assessment comparing fishing mortality, recruitment, and spawning stock biomass time series between models with (purple, blue) and without (green, yellow) the index](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishWHAMecovPRELIM.png)
 ]
 
-The use of the forage fish index as a covariate on catchability led to an overall decreasing trend in catchability over time.  The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to higher biomass estimates from the assessment including forage fish.  
+The use of the forage fish index as a covariate on catchability led to an overall decreasing trend in catchability over time.  The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to &lt;span style="color:#5D3FD3;"&gt;higher biomass estimates from the assessment including forage fish.&lt;/span&gt;  
 
 
 

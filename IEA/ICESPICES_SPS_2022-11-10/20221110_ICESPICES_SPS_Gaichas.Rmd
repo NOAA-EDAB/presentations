@@ -624,32 +624,37 @@ WHAMinputsviz <- function(infile) {
                                       "albbfall",
                                       "allother"))
   
+    # The palette with grey:
+cbPalette <- c("#999999",  "#56B4E9", "#E69F00", "#CC79A7", "#009E73", "#F0E442", "#0072B2", "#D55E00")
+
+  
   forageindex <- splitoutput %>%
     left_join(stratlook) %>%
     dplyr::select(Time, Region, Estimate, SE=Std..Error.for.Estimate) %>%
     tidyr::pivot_longer(c(Estimate, SE), names_to = "Var") %>%
     dplyr::group_by(Var) %>%
     tidyr::pivot_wider(names_from = Region, values_from = value) %>%
-    dplyr::mutate(BigOld = bfin,
-                  BigNew = bfall,
-                  AlbOld = albbfin, 
-                  AlbNew = albbfall, 
+    dplyr::mutate(SurvIn2 = bfin,
+                  SurvIn2Off = bfall,
+                  SurvIn1 = albbfin, 
+                  SurvIn1Off = albbfall, 
                   StateWaters = MABGBstate,
                   FedWaters =   MABGBfed) %>%
-    dplyr::select(Time, BigOld, BigNew, AlbOld, AlbNew, StateWaters) %>%
+    dplyr::select(Time, SurvIn2, SurvIn2Off, SurvIn1, SurvIn1Off, StateWaters) %>%
     tidyr::pivot_longer(!c(Time, Var), names_to = "Region", values_to = "value") %>%
     tidyr::pivot_wider(names_from = "Var", values_from = "value")
  
   ggplot(forageindex, aes(x=Time, y=Estimate, colour = Region)) +
     geom_errorbar(aes(ymin=Estimate+SE, ymax=Estimate-SE))+
     geom_point()+
-    geom_line()
+    geom_line() +
+    scale_colour_manual(values=cbPalette)
   
 } 
 ```
 
 .pull-left[
-```{r WHAMfall, fig.cap="Time series of VAST estimated fall forage indices for input into WHAM, 1985-2021", fig.asp=0.8}
+```{r WHAMfall, fig.cap="Time series of VAST estimated fall forage indices for input into the bluefish assessment, 1985-2021", fig.asp=0.8}
 WHAMinputsviz(infile = url("https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv"))
 ```
 
@@ -664,13 +669,11 @@ VAST estimated Fall forage biomass density &rarr;
 ## Ecosystem reporting
 
 .pull-left[
-aggregate forage important in this system with many forage species: Jason Link horrendogram
-
 
 ]
 
 .pull-right[
-potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
+
 ```{r SOEforage, fig.cap="Time series of VAST estimated fall forage indices for the 2023 State of the Ecosystem report", fig.asp=0.8}
 
 splitoutput <- read.csv(url("https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv"))
@@ -715,24 +718,30 @@ forageindexSOE <- splitoutput %>%
     tidyr::pivot_wider(names_from = Region, values_from = value) %>%
     dplyr::select(Time, MAB, GB, GOM) %>%
     tidyr::pivot_longer(!c(Time, Var), names_to = "Region", values_to = "value") %>%
+    dplyr::mutate(Region = factor(Region, levels = c("GOM", "GB", "MAB"))) %>%
     tidyr::pivot_wider(names_from = "Var", values_from = "value")
  
   ggplot(forageindexSOE, aes(x=Time, y=Estimate, colour = Region)) +
     geom_errorbar(aes(ymin=Estimate+SE, ymax=Estimate-SE))+
     geom_point()+
     geom_line() + 
-    facet_wrap(~Region, scales = "free_y", nrow = 3)
+    scale_y_continuous(limits = c(0,NA)) #+
+    #facet_wrap(~Region, scales = "free_y", nrow = 3)
 ```
 
 ]
 
+???
+aggregate forage important in this system with many forage species: Jason Link horrendogram
+
+potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
 ---
-## P.S., Did it help the assessment? Preliminary results... assessment review in December 2022
+## Do prey affect bluefish availability? Depends on the index. *Preliminary results...Review in December*
 
 .pull-left[
 A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")`.
 
-Forage fish indices were explored as covariates on catchability for the NEFSC fishery independent bottom trawl surveys, but either did not improve the assessment, or the exploratory models did not converge.
+Forage fish indices were explored as covariates on catchability for the fishery independent bottom trawl surveys, but either did not improve the assessment, or the exploratory models did not converge.
 
 However, the application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error.  **The inclusion of the forage fish index improved the fit of all models.**
 ]
@@ -741,7 +750,7 @@ However, the application of the forage fish index to the recreational catch per 
 ![:img preliminary results of including the forage fish index within the bluefish assessment comparing fishing mortality, recruitment, and spawning stock biomass time series between models with (purple, blue) and without (green, yellow) the index](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishWHAMecovPRELIM.png)
 ]
 
-The use of the forage fish index as a covariate on catchability led to an overall decreasing trend in catchability over time.  The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to higher biomass estimates from the assessment including forage fish.  
+The use of the forage fish index as a covariate on catchability led to an overall decreasing trend in catchability over time.  The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to <span style="color:#5D3FD3;">higher biomass estimates from the assessment including forage fish.</span>  
 
 
 
