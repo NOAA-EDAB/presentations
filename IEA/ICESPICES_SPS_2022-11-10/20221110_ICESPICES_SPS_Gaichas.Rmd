@@ -581,9 +581,84 @@ Indices for aggregate small pelagics from piscivore stomachs can be calculated f
 NEFSC survey strata definitions are built into the VAST `northwest-atlantic` extrapolation grid already. We defined additional new strata to address the recreational inshore-offshore 3 mile boundary. The area within and outside 3 miles of shore was defined using the `sf` R package as a 3 nautical mile (approximated as 5.556 km) buffer from a high resolution coastline from the`rnaturalearth` R package. This buffer was then intersected with the current `FishStatsUtils::northwest_atlantic_grid` built into VAST and saved using code [here](https://github.com/sgaichas/bluefishdiet/blob/main/VASTcovariates_updatedPreds_sst_3mi.Rmd#L49-L94). Then, the new State and Federal waters strata were used to split NEFSC survey strata where applicable, and the new full set of strata were used along with a modified function from `FishStatsUtils::Prepare_NWA_Extrapolation_Data_Fn` to build a custom extrapolation grid for VAST as described in detail [here](https://sgaichas.github.io/bluefishdiet/VASTcovariates_finalmodbiascorrect_3misurvstrat.html). 
 
 ---
-## Results: Fall, Spring, Annual
+background-image: url("https://github.com/sgaichas/bluefishdiet/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
+background-size: 560px
+background-position: right top
 
-density and trend plots, link to diagnostics
+## Results: Fall Forage Index
+
+```{r}
+WHAMinputsviz <- function(infile) {
+  
+  splitoutput <- read.csv(infile)
+  
+  # warning, hardcoded. obviously
+  stratlook <- data.frame(Stratum = c("Stratum_1",
+                                      "Stratum_2",
+                                      "Stratum_3",
+                                      "Stratum_4",
+                                      "Stratum_5",
+                                      "Stratum_6",
+                                      "Stratum_7",
+                                      "Stratum_8",
+                                      "Stratum_9",
+                                      "Stratum_10",
+                                      "Stratum_11",
+                                      "Stratum_12",
+                                      "Stratum_13",
+                                      "Stratum_14",
+                                      "Stratum_15"),
+                          Region  = c("AllEPU", 
+                                      "MABGB", 
+                                      "MABGBstate", 
+                                      "MABGBfed", 
+                                      "MAB",
+                                      "GB",
+                                      "GOM",
+                                      "bfall",
+                                      "bfin",
+                                      "bfoff",
+                                      "MABGBalbinshore",
+                                      "MABGBothoffshore",
+                                      "albbfin",
+                                      "albbfall",
+                                      "allother"))
+  
+  forageindex <- splitoutput %>%
+    left_join(stratlook) %>%
+    dplyr::select(Time, Region, Estimate, SE=Std..Error.for.Estimate) %>%
+    tidyr::pivot_longer(c(Estimate, SE), names_to = "Var") %>%
+    dplyr::group_by(Var) %>%
+    tidyr::pivot_wider(names_from = Region, values_from = value) %>%
+    dplyr::mutate(BigOld = bfin,
+                  BigNew = bfall,
+                  AlbOld = albbfin, 
+                  AlbNew = albbfall, 
+                  StateWaters = MABGBstate,
+                  FedWaters =   MABGBfed) %>%
+    dplyr::select(Time, BigOld, BigNew, AlbOld, AlbNew, StateWaters) %>%
+    tidyr::pivot_longer(!c(Time, Var), names_to = "Region", values_to = "value") %>%
+    tidyr::pivot_wider(names_from = "Var", values_from = "value")
+ 
+  ggplot(forageindex, aes(x=Time, y=Estimate, colour = Region)) +
+    geom_errorbar(aes(ymin=Estimate+SE, ymax=Estimate-SE))+
+    geom_point()+
+    geom_line()
+  
+} 
+```
+
+.pull-left[
+```{r WHAMfall, fig.cap="Time series of VAST estimated fall forage indices for input into WHAM, 1985-2021", fig.asp=0.8}
+WHAMinputsviz(infile = url("https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv"))
+```
+
+VAST estimated Fall forage biomass density &rarr;
+]
+
+.pull-right[
+]
+???
 
 ---
 ## Ecosystem reporting
@@ -596,6 +671,58 @@ aggregate forage important in this system with many forage species: Jason Link h
 
 .pull-right[
 potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
+```{r SOEforage, fig.cap="Time series of VAST estimated fall forage indices for the 2023 State of the Ecosystem report", fig.asp=0.8}
+
+splitoutput <- read.csv(url("https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv"))
+
+# warning, hardcoded. obviously
+  stratlook <- data.frame(Stratum = c("Stratum_1",
+                                      "Stratum_2",
+                                      "Stratum_3",
+                                      "Stratum_4",
+                                      "Stratum_5",
+                                      "Stratum_6",
+                                      "Stratum_7",
+                                      "Stratum_8",
+                                      "Stratum_9",
+                                      "Stratum_10",
+                                      "Stratum_11",
+                                      "Stratum_12",
+                                      "Stratum_13",
+                                      "Stratum_14",
+                                      "Stratum_15"),
+                          Region  = c("AllEPU", 
+                                      "MABGB", 
+                                      "MABGBstate", 
+                                      "MABGBfed", 
+                                      "MAB",
+                                      "GB",
+                                      "GOM",
+                                      "bfall",
+                                      "bfin",
+                                      "bfoff",
+                                      "MABGBalbinshore",
+                                      "MABGBothoffshore",
+                                      "albbfin",
+                                      "albbfall",
+                                      "allother"))
+
+forageindexSOE <- splitoutput %>%
+    left_join(stratlook) %>%
+    dplyr::select(Time, Region, Estimate, SE=Std..Error.for.Estimate) %>%
+    tidyr::pivot_longer(c(Estimate, SE), names_to = "Var") %>%
+    dplyr::group_by(Var) %>%
+    tidyr::pivot_wider(names_from = Region, values_from = value) %>%
+    dplyr::select(Time, MAB, GB, GOM) %>%
+    tidyr::pivot_longer(!c(Time, Var), names_to = "Region", values_to = "value") %>%
+    tidyr::pivot_wider(names_from = "Var", values_from = "value")
+ 
+  ggplot(forageindexSOE, aes(x=Time, y=Estimate, colour = Region)) +
+    geom_errorbar(aes(ymin=Estimate+SE, ymax=Estimate-SE))+
+    geom_point()+
+    geom_line() + 
+    facet_wrap(~Region, scales = "free_y", nrow = 3)
+```
 
 ]
 

@@ -221,9 +221,26 @@ Indices for aggregate small pelagics from piscivore stomachs can be calculated f
 NEFSC survey strata definitions are built into the VAST `northwest-atlantic` extrapolation grid already. We defined additional new strata to address the recreational inshore-offshore 3 mile boundary. The area within and outside 3 miles of shore was defined using the `sf` R package as a 3 nautical mile (approximated as 5.556 km) buffer from a high resolution coastline from the`rnaturalearth` R package. This buffer was then intersected with the current `FishStatsUtils::northwest_atlantic_grid` built into VAST and saved using code [here](https://github.com/sgaichas/bluefishdiet/blob/main/VASTcovariates_updatedPreds_sst_3mi.Rmd#L49-L94). Then, the new State and Federal waters strata were used to split NEFSC survey strata where applicable, and the new full set of strata were used along with a modified function from `FishStatsUtils::Prepare_NWA_Extrapolation_Data_Fn` to build a custom extrapolation grid for VAST as described in detail [here](https://sgaichas.github.io/bluefishdiet/VASTcovariates_finalmodbiascorrect_3misurvstrat.html). 
 
 ---
-## Results: Fall, Spring, Annual
+background-image: url("https://github.com/sgaichas/bluefishdiet/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
+background-size: 560px
+background-position: right top
 
-density and trend plots, link to diagnostics
+## Results: Fall Forage Index
+
+
+
+.pull-left[
+&lt;div class="figure"&gt;
+&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/WHAMfall-1.png" alt="Time series of VAST estimated fall forage indices for input into WHAM, 1985-2021" width="504" /&gt;
+&lt;p class="caption"&gt;Time series of VAST estimated fall forage indices for input into WHAM, 1985-2021&lt;/p&gt;
+&lt;/div&gt;
+
+VAST estimated Fall forage biomass density &amp;rarr;
+]
+
+.pull-right[
+]
+???
 
 ---
 ## Ecosystem reporting
@@ -236,6 +253,10 @@ aggregate forage important in this system with many forage species: Jason Link h
 
 .pull-right[
 potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
+&lt;div class="figure"&gt;
+&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/SOEforage-1.png" alt="Time series of VAST estimated fall forage indices for the 2023 State of the Ecosystem report" width="504" /&gt;
+&lt;p class="caption"&gt;Time series of VAST estimated fall forage indices for the 2023 State of the Ecosystem report&lt;/p&gt;
+&lt;/div&gt;
 
 ]
 
