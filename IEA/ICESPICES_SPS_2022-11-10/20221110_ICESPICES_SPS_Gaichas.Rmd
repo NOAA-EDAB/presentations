@@ -76,7 +76,7 @@ myBib <- ReadBib("./FishDiet_Ecoindicators.bib", check = FALSE)
 ]
 
 .center[
-Can localized predator prey observations scale to coastwide assessment and management? 
+Can localized predator-prey observations scale to coastwide assessment and management? 
 ]
 
 ???
@@ -305,7 +305,7 @@ VAST models two linear predictors for an index: 1. encounter rate,  and 2. posit
 
 A full model for the first linear predictor $\rho_1$ for each observation $i$ can include:
 *  fixed intercepts $\beta_1$ for each category $c$ and time $t$, 
-*  spatial random effects $\omega_1$ for each location $s$ and time, 
+*  spatial random effects $\omega_1$ for each location $s$ and category, 
 *  spatio-temporal random effects $\varepsilon_1$ for each location, category, and time, 
 *  fixed vessel effects $\eta_1$ by vessel $v$ and category, and 
 *  fixed catchability impacts $\lambda_1$ of covariates $Q$ for each observation and variable $k$: 
