@@ -39,8 +39,8 @@ library(sf)
 ```{r, load_refs, include=FALSE, cache=FALSE}
 #trick to downlaod bib file from other repo to keep just 1 up to date
 
-url <- "https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/FishDiet_EcoIndicators.bib"
-  download.file(url, destfile = "./FishDiet_Ecoindicators.bib")
+# url <- "https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/FishDiet_EcoIndicators.bib"
+#   download.file(url, destfile = "./FishDiet_Ecoindicators.bib")
 
 library(RefManageR)
 BibOptions(check.entries = FALSE,
@@ -134,8 +134,11 @@ knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/202
 
 ```
 
-[Northeast Fisheries Science Center Diet Data Online](https://fwdp.shinyapps.io/tm2020/)
 ] 
+
+.right[
+Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/tm2020/
+]
 
 ???
 Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic groups were identified as major bluefish prey with 10 or more observations (in descending order of observations): Longfin squids (*Doryteuthis* formerly *Loligo* sp.), Anchovy family (Engraulidae), bay anchovy (*Anchoa mitchilli*), Atlantic butterfish, (*Peprilus triachanthus*), Cephalopoda, (*Anchoa hepsetus*), red eye round herring (*Etrumeus teres*), Sandlance (*Ammodytes* sp.), scup (*Stenotomus chrysops*), silver hake (*Merluccius bilinearis*), shortfin squids (*Illex* sp.), Atlantic herring (*Clupea harengus*), Herring family (Clupeidae), Bluefish (*Pomatomus saltatrix*), silver anchovy (*Engraulis eurystole*), longfin inshore squid (*Doryteuthis pealeii*), Atlantic mackerel (*Scomber scombrus*), flatfish (Pleuronectiformes), weakfish (*Cynoscion regalis*), and Atlantic menhaden (*Brevoortia tyrannus*). 
@@ -298,8 +301,28 @@ background-position: right, left
 ---
 ## Vector Autoregressive Spatio-Temporal (VAST) modeling `r Cite(myBib, c("thorson_comparing_2017", "thorson_guidance_2019"))`
 
-Two linear predictors for an index: 1. encounter rate,  and 2. amount 
+VAST models two linear predictors for an index: 1. encounter rate,  and 2. positive catch (amount in stomach)
 
+A full model for the first linear predictor $\rho_1$ for each observation $i$ can include:
+*  fixed intercepts $\beta_1$ for each category $c$ and time $t$, 
+*  spatial random effects $\omega_1$ for each location $s$ and time, 
+*  spatio-temporal random effects $\varepsilon_1$ for each location, category, and time, 
+*  fixed vessel effects $\eta_1$ by vessel $v$ and category, and 
+*  fixed catchability impacts $\lambda_1$ of covariates $Q$ for each observation and variable $k$: 
+
+$$\rho_1(i) = \beta_1(c_i, t_i) + \omega_1^*(s_i, c_i) + \varepsilon_1^*(s_i, c_i, t_i) + \eta_1(v_i, c_i) + \sum_{k=1}^{n_k} \lambda_1(k) Q(i,k)$$ 
+
+The full model for the second linear predictor $\rho_2$ has the same structure, estimating $\beta_2$, $\omega_2$, $\varepsilon_2$, $\eta_2$, and $\lambda_2$ using the observations, categories, locations, times, and covariates. 
+
+We modeled aggregate small pelagic prey as a single category, and apply a Poisson-link delta model to estimate expected prey mass per predator stomach as in `r Cite(myBib, "ng_predator_2021")`.
+
+VAST model code and documentation: https://github.com/James-Thorson-NOAA/VAST
+
+
+???
+Spatial and spatio-temporal correlation decay with increasing distance estimated as $\kappa$ in a Matern function with fixed smoothness and geometric anisotropy (directional correlation, optionally estimated by the model). 
+
+Initial model selection consistently supported the inclusion of spatial and spatio-temporal random effects and anisotropy across all datasets: fall, spring, and annual. 
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishOnlyFallData_by_year.png")
@@ -337,7 +360,7 @@ Bluefish diet collection stations, fall Northeast Fisheries Science Center surve
 
 ]
 ???
-The figure shows bluefish diet collection stations for fall surveys, 1985-2019. The full NEFSC diet database 1985-2021 contains 25634 survey stations with diet collections. When including only piscivores feeding similarly to bluefish, the survey stations with diet collections in this time period is 22751. Of these piscivore diet stations, 9027 included our defined bluefish prey, or 39.6773768%. For comparison, 1814 stations have diet samples for bluefish alone, with 905 or 49.8897464% including our defined bluefish prey. 
+The figure shows bluefish diet collection stations for fall surveys, 1985-2019. 
 
 NEAMAP survey stations with diet collections for piscivores (n = 3838) had a higher proportion with our defined bluefish prey (n = 2418, 63.0015633%).
 ---
@@ -666,15 +689,32 @@ VAST estimated Fall forage biomass density &rarr;
 ???
 
 ---
-## Ecosystem reporting
+## Ecosystem reporting: Can forage indices link zooplankton and fish productivity?
 
 .pull-left[
 
+```{r ecodata}
+#fishcond <- magick::image_read("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAB_Condition_allsex_2022_viridis.jpg") 
+#magick::image_trim(fishcond)
+
+epu_abbr = "MAB"
+
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.asp=.6}
+
+```
+
+.left[
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-abund.R"), out.width = "90%", fig.asp=.5}
+
+```
+]
 ]
 
 .pull-right[
 
-```{r SOEforage, fig.cap="Time series of VAST estimated fall forage indices for the 2023 State of the Ecosystem report", fig.asp=0.8}
+```{r SOEforage, fig.cap="Time series of VAST estimated fall forage indices for the 2023 State of the Ecosystem report", fig.asp=1}
 
 splitoutput <- read.csv(url("https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv"))
 
@@ -725,8 +765,8 @@ forageindexSOE <- splitoutput %>%
     geom_errorbar(aes(ymin=Estimate+SE, ymax=Estimate-SE))+
     geom_point()+
     geom_line() + 
-    scale_y_continuous(limits = c(0,NA)) #+
-    #facet_wrap(~Region, scales = "free_y", nrow = 3)
+    scale_y_continuous(limits = c(0,NA)) +
+    facet_wrap(~Region, scales = "free_y", nrow = 3)
 ```
 
 ]
@@ -735,6 +775,20 @@ forageindexSOE <- splitoutput %>%
 aggregate forage important in this system with many forage species: Jason Link horrendogram
 
 potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
+---
+## What have we learned? New England Atlantic Herring as forage `r Cite(myBib,"deroba_dream_2018")`.
+.pull-left-30[
+Complex food web, generalist predators
+- Weak individual predator response to many herring harvest control rules
+- (Stronger predator response to changing herring growth)
+- Herring is one of several important prey (36-40 in plot)
+- Assessing multiple prey together will likely show stronger effects on predators
+]
+.pull-right-70[
+![NEUSfw](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/LinkNEUSfoodweb.png)
+.contrib[The original "horrendogram" `r Cite(myBib,"link_does_2002")`]
+]
+
 ---
 ## Do prey affect bluefish availability? Depends on the index. *Preliminary results...Review in December*
 
@@ -763,7 +817,7 @@ The MRIP index fit with the annual forage fish index did not converge or hessian
 
 
 ---
-## References
+## Thank you!  References
 
 .contrib[
 ```{r refs, echo=FALSE, results="asis"}
@@ -773,8 +827,9 @@ PrintBibliography(myBib)
 
 ## Additional resources
 
+.contrib[
 [Northeast US State of the Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
-
+]
 
 .footnote[
 Slides available at https://noaa-edab.github.io/presentations  

@@ -72,8 +72,11 @@ Changing distribution and abundance of small pelagics may drive changes in preda
 
 &lt;img src="https://diveary.com/img/species/cache/323__jpg.jpeg" width="50%" /&gt;&lt;img src="https://www.vims.edu/research/departments/fisheries/programs/juvenile_surveys/netnotes_listing/_photosets/0910_dec_jan/_northernsandlance.jpg" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-01/640x427-Atlantic_Menhaden_NB_W.jpg" width="50%" /&gt;
 
-[Northeast Fisheries Science Center Diet Data Online](https://fwdp.shinyapps.io/tm2020/)
 ] 
+
+.right[
+Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/tm2020/
+]
 
 ???
 Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic groups were identified as major bluefish prey with 10 or more observations (in descending order of observations): Longfin squids (*Doryteuthis* formerly *Loligo* sp.), Anchovy family (Engraulidae), bay anchovy (*Anchoa mitchilli*), Atlantic butterfish, (*Peprilus triachanthus*), Cephalopoda, (*Anchoa hepsetus*), red eye round herring (*Etrumeus teres*), Sandlance (*Ammodytes* sp.), scup (*Stenotomus chrysops*), silver hake (*Merluccius bilinearis*), shortfin squids (*Illex* sp.), Atlantic herring (*Clupea harengus*), Herring family (Clupeidae), Bluefish (*Pomatomus saltatrix*), silver anchovy (*Engraulis eurystole*), longfin inshore squid (*Doryteuthis pealeii*), Atlantic mackerel (*Scomber scombrus*), flatfish (Pleuronectiformes), weakfish (*Cynoscion regalis*), and Atlantic menhaden (*Brevoortia tyrannus*). 
@@ -108,8 +111,28 @@ background-position: right, left
 ---
 ## Vector Autoregressive Spatio-Temporal (VAST) modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
 
-Two linear predictors for an index: 1. encounter rate,  and 2. amount 
+VAST models two linear predictors for an index: 1. encounter rate,  and 2. positive catch (amount in stomach)
 
+A full model for the first linear predictor `\(\rho_1\)` for each observation `\(i\)` can include:
+*  fixed intercepts `\(\beta_1\)` for each category `\(c\)` and time `\(t\)`, 
+*  spatial random effects `\(\omega_1\)` for each location `\(s\)` and time, 
+*  spatio-temporal random effects `\(\varepsilon_1\)` for each location, category, and time, 
+*  fixed vessel effects `\(\eta_1\)` by vessel `\(v\)` and category, and 
+*  fixed catchability impacts `\(\lambda_1\)` of covariates `\(Q\)` for each observation and variable `\(k\)`: 
+
+`$$\rho_1(i) = \beta_1(c_i, t_i) + \omega_1^*(s_i, c_i) + \varepsilon_1^*(s_i, c_i, t_i) + \eta_1(v_i, c_i) + \sum_{k=1}^{n_k} \lambda_1(k) Q(i,k)$$` 
+
+The full model for the second linear predictor `\(\rho_2\)` has the same structure, estimating `\(\beta_2\)`, `\(\omega_2\)`, `\(\varepsilon_2\)`, `\(\eta_2\)`, and `\(\lambda_2\)` using the observations, categories, locations, times, and covariates. 
+
+We modeled aggregate small pelagic prey as a single category, and apply a Poisson-link delta model to estimate expected prey mass per predator stomach as in ([Ng et al., 2021](https://doi.org/10.1093/icesjms/fsab026)).
+
+VAST model code and documentation: https://github.com/James-Thorson-NOAA/VAST
+
+
+???
+Spatial and spatio-temporal correlation decay with increasing distance estimated as `\(\kappa\)` in a Matern function with fixed smoothness and geometric anisotropy (directional correlation, optionally estimated by the model). 
+
+Initial model selection consistently supported the inclusion of spatial and spatio-temporal random effects and anisotropy across all datasets: fall, spring, and annual. 
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishOnlyFallData_by_year.png")
@@ -147,7 +170,7 @@ Bluefish diet collection stations, fall Northeast Fisheries Science Center surve
 
 ]
 ???
-The figure shows bluefish diet collection stations for fall surveys, 1985-2019. The full NEFSC diet database 1985-2021 contains 25634 survey stations with diet collections. When including only piscivores feeding similarly to bluefish, the survey stations with diet collections in this time period is 22751. Of these piscivore diet stations, 9027 included our defined bluefish prey, or 39.6773768%. For comparison, 1814 stations have diet samples for bluefish alone, with 905 or 49.8897464% including our defined bluefish prey. 
+The figure shows bluefish diet collection stations for fall surveys, 1985-2019. 
 
 NEAMAP survey stations with diet collections for piscivores (n = 3838) had a higher proportion with our defined bluefish prey (n = 2418, 63.0015633%).
 ---
@@ -243,10 +266,17 @@ VAST estimated Fall forage biomass density &amp;rarr;
 ???
 
 ---
-## Ecosystem reporting
+## Ecosystem reporting: Can forage indices link zooplankton and fish productivity?
 
 .pull-left[
 
+
+
+&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/unnamed-chunk-9-1.png" width="504" /&gt;
+
+.left[
+&lt;img src="20221110_ICESPICES_SPS_Gaichas_files/figure-html/unnamed-chunk-10-1.png" width="90%" /&gt;
+]
 ]
 
 .pull-right[
@@ -262,6 +292,20 @@ VAST estimated Fall forage biomass density &amp;rarr;
 aggregate forage important in this system with many forage species: Jason Link horrendogram
 
 potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
+---
+## What have we learned? New England Atlantic Herring as forage &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128)).
+.pull-left-30[
+Complex food web, generalist predators
+- Weak individual predator response to many herring harvest control rules
+- (Stronger predator response to changing herring growth)
+- Herring is one of several important prey (36-40 in plot)
+- Assessing multiple prey together will likely show stronger effects on predators
+]
+.pull-right-70[
+![NEUSfw](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/LinkNEUSfoodweb.png)
+.contrib[The original "horrendogram" &lt;a name=cite-link_does_2002&gt;&lt;/a&gt;([Link, 2002](https://www.int-res.com/abstracts/meps/v230/p1-9/))]
+]
+
 ---
 ## Do prey affect bluefish availability? Depends on the index. *Preliminary results...Review in December*
 
@@ -290,13 +334,30 @@ The MRIP index fit with the annual forage fish index did not converge or hessian
 
 
 ---
-## References
+## Thank you!  References
 
 .contrib[
 &lt;a name=bib-collette_bigelow_2002&gt;&lt;/a&gt;[Collette, B. B. et
 al.](#cite-collette_bigelow_2002) (2002). _Bigelow and Schroeder's
 Fishes of the Gulf of Maine, Third Edition_. 3rd ed. edition.
 Washington, DC: Smithsonian Books. ISBN: 978-1-56098-951-6.
+
+&lt;a name=bib-deroba_dream_2018&gt;&lt;/a&gt;[Deroba, J. J. et
+al.](#cite-deroba_dream_2018) (2018). "The dream and the reality:
+meeting decision-making time frames while incorporating ecosystem and
+economic models into management strategy evaluation". In: _Canadian
+Journal of Fisheries and Aquatic Sciences_. ISSN: 0706-652X. DOI:
+[10.1139/cjfas-2018-0128](https://doi.org/10.1139%2Fcjfas-2018-0128).
+URL:
+[http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128)
+(visited on Jul. 20, 2018).
+
+&lt;a name=bib-link_does_2002&gt;&lt;/a&gt;[Link, J.](#cite-link_does_2002) (2002).
+"Does food web theory work for marine ecosystems?" En. In: _Marine
+Ecology Progress Series_ 230, pp. 1-9. ISSN: 0171-8630, 1616-1599. DOI:
+[10.3354/meps230001](https://doi.org/10.3354%2Fmeps230001). URL:
+[https://www.int-res.com/abstracts/meps/v230/p1-9/](https://www.int-res.com/abstracts/meps/v230/p1-9/)
+(visited on Nov. 04, 2022).
 
 &lt;a name=bib-ng_predator_2021&gt;&lt;/a&gt;[Ng, E. L. et
 al.](#cite-ng_predator_2021) (2021). "Predator stomach contents can
@@ -361,8 +422,9 @@ URL:
 
 ## Additional resources
 
+.contrib[
 [Northeast US State of the Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
-
+]
 
 .footnote[
 Slides available at https://noaa-edab.github.io/presentations  
