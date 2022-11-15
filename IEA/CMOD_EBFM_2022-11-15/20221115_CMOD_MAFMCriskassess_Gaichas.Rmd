@@ -98,7 +98,7 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 ---
 ## Integrated Ecosystem Assessment and the MAFMC Ecosystem Approach
 
-Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing EAFM is done in collaboration between managers, stakeholders, and scientists. 
+Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing EAFM is done in collaboration between managers, stakeholders, and scientists. https://www.mafmc.org/eafm
 
 .pull-left[
 ![:img IEA process from goal setting to assessment to strategy evaluation with feedbacks, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/iea-loop.png)
@@ -111,11 +111,7 @@ https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
    * Direct link between ecosystem reporting and risk assessment
    * Conceptual model links across risk elements for fisheries, species
    * Management strategy evaluation includes key risks
-.footnote[
-.center[
-https://www.mafmc.org/eafm
-]
-]
+
 ]
 ???
 The Council’s EAFM framework has similarities to the IEA loop. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
@@ -272,11 +268,11 @@ Ranked moderate-high risk due to the significant long term revenue decrease for 
 ]
 ]
 .pull-right[
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"),fig.asp = 0.5}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"),fig.asp = 0.5, results='hide'}
 #comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
 ```
 
-Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of MAFMC managed species</p>
+Key: Black = Revenue of all species combined; <span style="color:#FF6A6A;">Red = Revenue of MAFMC managed species</span>
 ]
 
 --
