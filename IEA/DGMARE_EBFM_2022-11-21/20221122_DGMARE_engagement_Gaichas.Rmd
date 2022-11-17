@@ -1,5 +1,5 @@
 ---
-title: Ecosystem Based Management <br /> engagement and governance
+title: Ecosystem Based Management <br /> engagement and governance, US perspective
 subtitle: DGMARE <br /> 22 November 2022
 author: Sarah Gaichas
 institute: NOAA NMFS Northeast Fisheries Science Center
@@ -84,4 +84,487 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
 ```
 
+## Scientific concepts to Mmnagement and stakeholder engagement
+
+.pull-left-60[
+- ICES WGNARS international science `r Cite(myBib, "depiper_operationalizing_2017")`
+    + Indicator development
+    + Worked examples of IEA components
+
+- Ecosystem reporting linked to management objectives 
+    + Open science emphasis `r Cite(myBib, "bastille_improving_2020")`
+    + Report evolving since 2016
+    + Fishery-relevant subset of full Ecosystem Status Reports
+
+- Used within Mid-Atlantic Fishery Management Council's Ecosystem Process `r Cite(myBib, "muffley_there_2020")`
+    + Risk assessment `r Cite(myBib,"gaichas_implementing_2018")`
+    + Conceptual modeling (DePiper et al., in review)
+    + Management strategy evaluation (MSE)
+ 
+]
+
+.pull-right-40[
+*The IEA Loop<sup>1</sup>*
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/iea-loop.png)
+
+
+.footnote[
+[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+]
+???
+an iterative, collaborative process has evolved to formulate ecosystem advice and to apply it in decision making
+---
+## International scientific collaboration: [ICES WGNARS](https://www.ices.dk/community/groups/Pages/WGNARS.aspx)
+
+.pull-left[
+.center[
+![:img ICES WGNARS webpage, 75%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ICESWGNARS.png)
+]
+  
+Deep dive into components of the IEA process from a scientific perspective
+*  Outlining potential management objectives to start conversations with managers
+*  Example ecosystem indicators, conceptual models, and risk assessments
+*  Productive exchange between different national frameworks for EBFM/Ocean management and scientific databases
+
+]
+.pull-right[
+![:img WGNARS paper title and authors](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/DePiperetalICES.png)
+]
+---
+## Collaborative process and worked examples `r Cite(myBib, "depiper_operationalizing_2017")`
+
+.pull-left[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/DePiperetalProcess.png)
+]
+.pull-right[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/DePiperetalConsMod.png)
+]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/nes-components-abstracted.png")
+background-size: 700px
+background-position: right bottom
+
+## State of the Ecosystem (SOE) Reporting: Context for busy people
+
+*"So what?" --John Boreman, September 2016*
+
+1. Clear linkage of ecosystem indicators with management objectives
+
+1. Synthesis across indicators for big picture
+
+1. Objectives related to management objectives being placed first in report
+
+1. Short (< 40 pages), non-technical (but rigorous) text
+
+1. Emphasis on reproducibility 
+
+
+???
+In 2016, we began taking steps to address these common critiques of the ESR model
+Many indicators presented at WGNARS, used in larger Ecosystem Status reports
+Shorter, fishery specific State of the Ecosystem (SOE) report with conceptual models prototyped based on California Current reporting
+Feedback from fishery managers redesigned reporting to align with objectives outlined by WGNARS
+
+---
+## Continuing dialogue with managers shapes report and indicators presented each year: 2022 State of the Ecosystem Request tracking memo
+
+```{r, results='hide'}
+
+requests <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/State%20of%20the%20Ecosystem/Council_Meetings/MAFMC_2022-04-05/SOE%202021%20Response%20Checklist.csv")
+```
+
+.scroll-output[
+
+```{r memo}
+
+# requests <- googledrive::drive_download(resultfile, type = "csv", overwrite = TRUE) %>%
+#   {read.csv(.$local_path)} 
+
+requeststab <- requests %>%
+  dplyr::select(Request, Year, Source, Status, Progress) %>%
+  dplyr::mutate(Source = str_trim(str_extract(Source, "[^-]+"))) %>%
+  dplyr::arrange(match(Status, c("In SOE", 
+                          "In SOE-MAFMC",
+                          "In SOE-MAFMC, In progress-NEFMC",
+                          "In progress", 
+                          "Not started")), desc(Year)) %>%
+  dplyr::mutate("Memo Section" = rownames(.))
+
+knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
+  kable_styling(font_size=12#, latex_options = c("hold_position", "striped", "repeat_header")
+                ) %>%
+  row_spec(0,bold=TRUE) %>%
+  column_spec(1, width="10.5cm") %>%
+  column_spec(2, width="1cm") %>%
+  column_spec(3, width="2cm") %>%
+  column_spec(4, width="4.5cm") %>%
+  column_spec(5, width="13.5cm") %>%
+  column_spec(6, width="1.5cm")
+  #column_spec(1, width="9.5cm") %>%
+  #column_spec(1, width="13.5cm") %>%
+  #column_spec(2, width="1cm") %>%
+  #column_spec(3, width="13.5cm")
+  #column_spec(3, width="2.5cm") %>%
+  #column_spec(4, width="13.5cm") %>%
+  #column_spec(5, width="1.5cm")
+
+```
+
+]
+---
+## Report structure revised in 2021 to address Council requests and improve synthesis 
+
+.pull-left[
+* Performance relative to management objectives
+    - *What* does the indicator say--up, down, stable?
+    - *Why* do we think it is changing: integrates synthesis themes
+        - Multiple drivers
+        - Regime shifts
+        - Ecosystem reorganization
+* Objectives
+    - Seafood production
+    - Profits
+    - Recreational opportunities
+    - Stability
+    - Social and cultural
+    - Protected species
+]
+
+.pull-right[
+* Risks to meeting fishery management objectives
+    - *What* does the indicator say--up, down, stable?
+    - *Why* this is important to managers: integrates synthesis themes
+        - Multiple drivers
+        - Regime shifts
+        - Ecosystem reorganization
+* Risk categories
+    - Climate: warming, ocean currents, acidification
+        - Habitat changes (incl. vulnerability analysis)
+        - Productivity changes (system and fish)
+        - Species interaction changes
+        - Community structure changes
+    - Other ocean uses
+        - Offshore wind development
+]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-final-03.23.22-no marks_Page_2.png")
+background-size: 500px
+background-position: right
+
+## State of the Ecosystem Summary 2022: 
+**Performance relative to management objectives** 
+
+.pull-left-60[
+Seafood production ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png), status not evaluated  
+
+Profits ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png), status not evaluated 
+
+Recreational opportunities:  Effort ![:img increasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/increase.png) ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/above long term ave.png); Effort diversity ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png)  
+
+Stability: Fishery ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/no trend.png) ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/near long term average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png) ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/near long term average.png)  
+
+Social and cultural, trend not evaluated, status of:  
+*  Fishing engagement and reliance by community  
+*  Environmental Justice (EJ) Vulnerability by community  
+
+Protected species: 
+*  Maintain bycatch below thresholds ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/checked.png)  
+*  Recover endangered populations (NARW) ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png)  
+]
+.pull-right-40[]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-final-03.23.22-no marks_Page_3.png")
+background-size: 500px
+background-position: right
+
+## State of the Ecosystem Summary 2022: 
+**Risks to meeting fishery management objectives**  
+
+.pull-left-60[
+Climate: warming and changing oceanography continue
+*  Heat waves and Gulf Stream instability
+*  Estuarine, coastal, and offshore habitats affected, with range of species responses
+*  Below average summer 2021 phytoplankton
+*  Multiple fish with poor condition, declining productivity 
+
+Other ocean uses: offshore wind development
+*  Current revenue in proposed areas
+    - 1-31% by port (some with EJ concerns)
+    - 0-20% by managed species
+*  Different development impacts for species preferring soft bottom vs. hard bottom 
+*  Overlap with one of the only known right whale foraging habitats, increased vessel strike and noise risks 
+*  Rapid buildout in patchwork of areas 
+*  Scientific survey mitigation required
+]
+.pull-right-40[]
+
+
+---
+## Why an ecosystem approach?
+
+*"We rebuilt all the stocks, so why is everyone still pissed off?" --Rich Seagraves*
+
+in 2011, the Council asked:
+
+.pull-left[
+![visioning project goals and objectives](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MA_Visioning1.png)
+]
+.pull-right[
+![visioning project responses and port meetings](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MA_Visioning2.png)
+]
+
+And many people answered, from commercial fishery, recreational fishery, environmental organization, and interested public perspectives.
+
+Visioning report: 
+
+http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
+
+---
+## Common themes among all stakeholder groups:
+
+>• There is a lack of confidence in the data that drive fishery management decisions.
+>
+>• Stakeholders are not as involved in the Council process as they can and should be.
+>
+>• Different jurisdictions and regulations among the many fishery management organizations result in complexity and inconsistency.
+>
+>• There is a need for increased transparency and communications in fisheries management.
+>
+>• The dynamics of the ecosystem and food web should be considered to a greater extent in fisheries management decisions.
+>
+>• Stakeholders are not adequately represented on the Council.
+>
+>• Pollution is negatively affecting the health of fish stocks.
+
+Visioning report, p. 3:
+
+http://www.mafmc.org/s/MAFMC-stakeholder-input-report-p7b9.pdf
+
+---
+## How did MAFMC develop their ecosystem approach?
+
+Visioning Project &rarr; Strategic Plan with one objective to develop 
+>"A non-regulatory umbrella document intended to guide Council policy with respect to ecosystem considerations across existing Fishery Management Plans"
+
+.center[
+![:img Mid-Atlantic EAFM development with full details in speaker notes, 60%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAapproach.png)
+]
+
+Details, including workshop presentations and white papers: http://www.mafmc.org/eafm
+
+???
+The Mid-Atlantic Council identified several theme areas from the visioning project as noted in the left panel of the workflow graphic: forage fish, species interactions, social and economic issues, climate and habitat. The Council held full day workshops during Council meetings where experts on the topics provided overviews and Council members asked questions and discussed the issues. Workships on Forage fish, Climate, Climate and Governance, Interactions (species and fleet), and Habitat were held between 2013 and 2015, resulting in white papers on Forage fish, Climate (and habitat), Interactions (species, fleet, climate, and habitat). Social and economic considerations were integrated in each workshop rather than looked at separately.
+
+---
+## Mid-Atlantic Council Ecosystem Approach
+
+* 2016 Ecosystem Approach to Fishery Management (EAFM) Policy Guidance document:
+http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf
+
+* Mid-Atlantic EAFM framework `r Cite(myBib,"gaichas_framework_2016")`:
+.center[
+![:img Mid-Atlantic EAFM framework with full details in speaker notes, 60%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+]
+
+
+???
+The Council’s EAFM framework has similarities to the IEA loop on slide 2. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/fmars-03-00105-g011.jpg")
+background-size: 700px
+background-position: right bottom
+
+## Examples illustrating the use of the framework
+.pull-left-40[
+![Example risk assessment table with species in rows and risk elements in columns with green cells indicating low risks, yellow and orange cells indicating moderate risks, and red cells indicatig high risk](EDAB_images/fmars-03-00105-g010.jpg)
+
+]
+
+.pull-right-60[
+
+Risk assessment highlights prority species/issues for more detailed evaluation
+
+A conceptual model maps out key interactions for high risk fisheries, specifies quantitative management strategy evaluation
+
+]
+
+
+???
+Quoted from [Gaichas et al 2016](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)
+For this example, the [existing Mid Atlantic food web model](https://noaa-edab.github.io/tech-doc/conceptual-models.html) is used to define key species interactions for each managed species, habitat expertise is needed to link habitats to species, physical oceanographic and climate expertise is needed to link key climate drivers to habitats, and the expertise of fishermen, economists and other social scientists, and fishery managers is needed to link fish with fisheries and objectives for human well-being. The key link between fisheries and human well being objectives is identified as the system of regulatory allocations of total allowable catch between states along the Mid Atlantic coast. The interaction between this allocation system (based on historical catch) and climate-driven distribution shifts of the managed species has created considerable difficulty in this region. This conceptual model clearly connects climate considerations to management, as well as habitat considerations of concern to the Council but outside Council jurisdiction (water quality in coastal estuaries). 
+
+---
+
+## Iterative development of the risk assessment
+
+.pull-left-40[
+![Example risk assessment table with species in rows and risk elements in columns with green cells indicating low risks, yellow and orange cells indicating moderate risks, and red cells indicatig high risk](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/fmars-03-00105-g010.jpg)
+
+  * Council staff and scientists create examples based on Council input
+  
+  &uarr; &darr; &uarr; &darr; &uarr; &darr; &uarr; &darr; &uarr; &darr; &uarr; &darr; ...
+                                                      
+  * Council discusses, clarifies, revises with public input
+
+
+]
+
+.pull-right-60[
+```{r riskel2}
+
+elements<-data.frame(
+  Category = c("Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Economic","Economic","Economic","Economic","Social","Social","Food Production","Food Production","Management","Management","Management","Management","Management","Management","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside"),
+#  Category = c("Ecological","","","","","","","","","","","Economic","","","","Social","","Food Production","","Management","","","","","","Put Aside","","","","","","",""),
+  Element = c("Assessment performance","F status","B status","Food web (MAFMC Predator)","Food web  (MAFMC Prey)","Food web  (Protected Species Prey)","Ecosystem productivity", "Climate","Distribution shifts", "Estuarine habitat","Offshore habitat", "Commercial Revenue", "Recreational Angler Days/Trips", "Commercial Fishery Resilience (Revenue Diversity)", "Commercial Fishery Resilience (Shoreside Support)", "Fleet Resilience", "Social-Cultural","Commercial","Recreational", "Control", "Interactions", "Other ocean uses", "Regulatory complexity", "Discards", "Allocation", "Population diversity", "Ecological diveristy", "Fishery Resilience (2)", "Fishery Resilience (3)", "Fishery Resilience (5)", "Commercial Employment", "Recreational Employment", "Seafood safety"), 
+  Definition = c("Risk of not achieving OY due to analytical limitations", "Risk of not achieving OY due to overfishing", "Risk of not achieving OY due to depleted stock", "Risk of not achieving OY due to MAFMC managed species interactions", "Risk of not achieving OY due to MAFMC managed species interactions", "Risk of not achieving protected species objectives due to species interactions", "Risk of not achieving OY due to changing system productivity", "Risk of not achieving OY due to climate vulnerability", "Risk of not achieving OY due to climate-driven distribution shifts", "Risk of not achieving OY due to threats to estuarine/nursery habitat", "Risk of not achieving OY due to changing offshore habitat", "Risk of not maximizing fishery value", "Risk of not maximizing fishery value" , "Risk of reduced fishery business resilience", "Risk of reduced fishery business resilience due to shoreside support infrastructure", "Risk of reduced fishery resilience", "Risk of reduced community resilience ", "Risk of not optimizing seafood production" , "Risk of not maintaining personal food production" , "Risk of not achieving OY due to inadequate control", "Risk of not achieving OY due to interactions with species managed by other entities", "Risk of not achieving OY due to other human uses", "Risk of not achieving compliance due to complexity", "Risk of not minimizing bycatch to extent practicable", "Risk of not achieving OY due to spatial mismatch of stocks and management", "Risk of not achieving OY due to reduced diversity", "Risk of not achieving OY due to reduced diversity", "Risk of reduced fishery business resilience due to access to capital", "Risk of reduced fishery business resilience due to insurance availabilty", "Risk of reduced fishery business resilience due to access to emerging markets/opportunities", "Risk of not optimizing employment opportunities", "Risk of not optimizing employment opportunities","Risk of not maintaining market access, human health"),
+  Indicators = c("Current assessment method/data quality", "Current F relative to reference F from assessment", "Current B relative to reference B from assessment","Diet composition, management measures","Diet composition, management measures","Diet composition, management measures","Four indicators, see text", "Northeast Climate Vulnerability Assessment", "Northeast Climate Vulnerability Assessment + 2 indicators", "Enumerated threats + estuarine dependence", "Integrated habitat model index", "Revenue in aggregate", "Numbers of anglers and trips in aggregate", "Species diversity of revenue", "Number of shoreside support businesses","Number of fleets, fleet diversity","Community vulnerability, fishery engagement and reliance", "Seafood landings in aggregate", "Recreational landings in aggregate", "Catch compared to allocation","Number and type of interactions with protected or non-MAFMC managed species, co-management", "Fishery overlap with energy/mining areas", "Number of regulations by species", "Standardized Bycatch Reporting", "Distribution shifts + number of interests","Size composition, sex ratio, genetic diversity", "Fishery independent species diversity",  "No current indicator available", "No current indicator available", "Needs clarification","EOP Committee unconfident in Fisheries of US employment inicator","EOP Committee unconfident in Fisheries of US employment indicator", "Number of public advisories by species") 
+)
+
+# elements1<-elements %>%
+#   filter(Category == "Ecological") %>%
+#   select(Element, Definition, Indicators)
+# 
+# kable(elements1, "html") %>%
+#   kable_styling(bootstrap_options = c("striped", "condensed"), font_size = 12) %>%
+#   group_rows("Ecological", 1,11) 
+
+```
+
+```{r elements2}
+
+elements2<-elements %>%
+  dplyr::filter(Category %in% c("Economic", "Social", "Food Production")) %>%
+  dplyr::select(Element, Definition, Indicators)
+
+kable(elements2, "html") %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"), font_size = 11) %>%
+  group_rows("Economic", 1,4) %>%
+  group_rows("Social", 5,6) %>%
+  group_rows("Food Production", 7,8)
+
+```
+]
+---
+## Risk elements: Management
+```{r elements3}
+
+elements3<-elements %>%
+  dplyr::filter(Category == "Management") %>%
+  dplyr::select(Element, Definition, Indicators)
+
+kable(elements3, "html") %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"), font_size = 14) %>%
+  group_rows("Management", 1,6) #%>%
+  #group_rows("Put Aside", 26,33) 
+
+```
+
+
+---
+## Stakeholder engagement for Management Strategy Evaluation
+
+add stakeholder process examples
+
+*  Atlantic herring as forage (New England)
+
+*  Summer flounder recreational discards within EAFM framework
+
+---
+## Council has completed a cycle; Risk assessment undergoing review and update now
+
+continued engagement
+
+
+
+---
+## EBM issues in the region: Climate Change and Wind Energy Development
+
+---
+## Current governance complexity range
+
+Alaska: 1 Council, 1 State
+
+Pacific coast: 1 Council, 3 States
+
+Atlantic coast: 3 Councils, 1 Interstate Commission, 15 States
+
+*   Difficult to deal with climate issues affecting whole coast
+
+*   Stocks moving beyond boundaries
+
+*   User conflicts
+
+*   Wind development conflicts
+
+---
+## Initial coordination steps
+
+2014 US East Coast Climate and Governance conference
+
+Climate scenario planning, Pacific Coast, Atlantic Coast
+
+---
+## East coast scenario planning process
+
+
+---
+## Other US examples
+
+Caribbean EBFM conceptual model development
+
+South Atlantic pelagic species workshops
+
+Gulf of Mexico red tides
+
+---
+# Conclusions
+
+* The process takes time – need to recognize that early and be willing to invest the resources to see it through  
+    + Need the science to develop and support efforts  
+    + Need management (and stakeholders) to understand process and concepts and support process  
+    
+* Collaboration is key  
+    + Within the science community – diverse expertise is needed  
+    + Between science and management – understanding what information is needed and important to management, providing tools to management to understand ecosystem linkages and implications  
+    + Between science and stakeholders – need to build trust, open dialogue (everyone is heard), and sharing data and observations (on water and with information)  
+    + Between management and stakeholders – listening to/acting on stakeholder priorities and feedback, process not out to add more uncertainty but provide for more informed decisions 
+    
+* Timely and understandable scientific information
+    + Developing a process to create science products at timescales necessary for management
+    + Information needs to be relevant and clearly presented
+    + Flexibility to use different/alternative data sources when specific data in not available (proxies)
+    
+---
+## Additional resources
+.pull-left[
+* [US EBFM Policy](https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-policy)  
+* [US EBFM Roadmap](https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-road-map)  
+* [US Integrated Ecosystem Assessments](https://www.integratedecosystemassessment.noaa.gov/)
+
+]
+.pull-right[
+* [Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)  
+* [Ecosystem Report Technical Documentation](https://noaa-edab.github.io/tech-doc)  
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: <Sarah.Gaichas@noaa.gov>
+]
+]
+
+## References
+
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]
 
