@@ -170,52 +170,6 @@ Shorter, fishery specific State of the Ecosystem (SOE) report with conceptual mo
 Feedback from fishery managers redesigned reporting to align with objectives outlined by WGNARS
 
 ---
-## Continuing dialogue with managers shapes report and indicators presented each year: 2022 State of the Ecosystem Request tracking memo
-
-```{r, results='hide'}
-
-requests <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/State%20of%20the%20Ecosystem/Council_Meetings/MAFMC_2022-04-05/SOE%202021%20Response%20Checklist.csv")
-```
-
-.scroll-output[
-
-```{r memo}
-
-# requests <- googledrive::drive_download(resultfile, type = "csv", overwrite = TRUE) %>%
-#   {read.csv(.$local_path)} 
-
-requeststab <- requests %>%
-  dplyr::select(Request, Year, Source, Status, Progress) %>%
-  dplyr::mutate(Source = str_trim(str_extract(Source, "[^-]+"))) %>%
-  dplyr::arrange(match(Status, c("In SOE", 
-                          "In SOE-MAFMC",
-                          "In SOE-MAFMC, In progress-NEFMC",
-                          "In progress", 
-                          "Not started")), desc(Year)) %>%
-  dplyr::mutate("Memo Section" = rownames(.))
-
-knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
-  kable_styling(font_size=12#, latex_options = c("hold_position", "striped", "repeat_header")
-                ) %>%
-  row_spec(0,bold=TRUE) %>%
-  column_spec(1, width="10.5cm") %>%
-  column_spec(2, width="1cm") %>%
-  column_spec(3, width="2cm") %>%
-  column_spec(4, width="4.5cm") %>%
-  column_spec(5, width="13.5cm") %>%
-  column_spec(6, width="1.5cm")
-  #column_spec(1, width="9.5cm") %>%
-  #column_spec(1, width="13.5cm") %>%
-  #column_spec(2, width="1cm") %>%
-  #column_spec(3, width="13.5cm")
-  #column_spec(3, width="2.5cm") %>%
-  #column_spec(4, width="13.5cm") %>%
-  #column_spec(5, width="1.5cm")
-
-```
-
-]
----
 ## Report structure revised in 2021 to address Council requests and improve synthesis 
 
 .pull-left[
@@ -304,13 +258,59 @@ Other ocean uses: offshore wind development
 ]
 .pull-right-40[]
 
+---
+## Continuing dialogue with managers shapes report and indicators presented each year: 2022 State of the Ecosystem Request tracking memo
+
+```{r, results='hide'}
+
+requests <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/State%20of%20the%20Ecosystem/Council_Meetings/MAFMC_2022-04-05/SOE%202021%20Response%20Checklist.csv")
+```
+
+.scroll-output[
+
+```{r memo}
+
+# requests <- googledrive::drive_download(resultfile, type = "csv", overwrite = TRUE) %>%
+#   {read.csv(.$local_path)} 
+
+requeststab <- requests %>%
+  dplyr::select(Request, Year, Source, Status, Progress) %>%
+  dplyr::mutate(Source = str_trim(str_extract(Source, "[^-]+"))) %>%
+  dplyr::arrange(match(Status, c("In SOE", 
+                          "In SOE-MAFMC",
+                          "In SOE-MAFMC, In progress-NEFMC",
+                          "In progress", 
+                          "Not started")), desc(Year)) %>%
+  dplyr::mutate("Memo Section" = rownames(.))
+
+knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
+  kable_styling(font_size=12#, latex_options = c("hold_position", "striped", "repeat_header")
+                ) %>%
+  row_spec(0,bold=TRUE) %>%
+  column_spec(1, width="10.5cm") %>%
+  column_spec(2, width="1cm") %>%
+  column_spec(3, width="2cm") %>%
+  column_spec(4, width="4.5cm") %>%
+  column_spec(5, width="13.5cm") %>%
+  column_spec(6, width="1.5cm")
+  #column_spec(1, width="9.5cm") %>%
+  #column_spec(1, width="13.5cm") %>%
+  #column_spec(2, width="1cm") %>%
+  #column_spec(3, width="13.5cm")
+  #column_spec(3, width="2.5cm") %>%
+  #column_spec(4, width="13.5cm") %>%
+  #column_spec(5, width="1.5cm")
+
+```
+
+]
 
 ---
 ## Engagement: Why develop an ecosystem approach?
 
 *"We rebuilt all the stocks, so why is everyone still pissed off?" --Rich Seagraves*
 
-in 2011, the Council asked:
+in 2011, the Mid-Atlantic Council asked:
 
 .pull-left[
 ![visioning project goals and objectives](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MA_Visioning1.png)
@@ -381,7 +381,7 @@ background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/doc
 background-size: 700px
 background-position: right bottom
 
-## Examples illustrating the use of the framework
+## Engagement 1: Illustrating the use of the framework
 .pull-left-40[
 ![Example risk assessment table with species in rows and risk elements in columns with green cells indicating low risks, yellow and orange cells indicating moderate risks, and red cells indicatig high risk](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/fmars-03-00105-g010.jpg)
 
@@ -402,7 +402,7 @@ For this example, the [existing Mid Atlantic food web model](https://noaa-edab.g
 
 ---
 
-## Iterative development of the risk assessment
+## Engagement 2: Iterative development of the risk assessment
 
 .pull-left-40[
 ![Example risk assessment table with species in rows and risk elements in columns with green cells indicating low risks, yellow and orange cells indicating moderate risks, and red cells indicatig high risk](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/fmars-03-00105-g010.jpg)
@@ -452,7 +452,7 @@ kable(elements2, "html") %>%
 ```
 ]
 ---
-## Risk elements: Management
+## Council-evaluated risk elements: Management
 ```{r elements3}
 
 elements3<-elements %>%
@@ -466,29 +466,147 @@ kable(elements3, "html") %>%
 
 ```
 
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Rosellon-Druker2021Fig2.png")
+background-size: 300px
+background-position: right
+
+## Engagement 3: Conceptual modeling, from science- to stakeholder-driven
+
+.pull-left-70[
+
+Mid-Atlantic conceptual model developed by a technical team and Council representatives `r Cite(myBib, "depiper_learning_2021")`
+
+Collaborative conceptual modeling with stakeholders: 
+
+*  Alaska sablefish `r Cite(myBib, "rosellon-druker_participatory_2021")`
+
+*  Pacific herring `r Cite(myBib, "levin_thirty-two_2016")`
+
+*  Gulf of Mexico red tides `r Cite(myBib, "spooner_using_2021")`
+
+*  South Atlantic pelagic species management
+
+*  Caribbean EBFM development
+]
+
+.pull-right-30[]
 
 ---
-## Stakeholder engagement for Management Strategy Evaluation
+## South Atlantic example: citizen science for data-poor migratory species
 
-add stakeholder process examples
+.pull-left[
+![South Atlantic physical system](https://media.fisheries.noaa.gov/2021-12/1687x1451-SEFSC-US-South-Atlantic-Marine-Ecosystem.jpg)
+https://safmc.net/citizen-science/dolphin-wahoo-participatory-workshops/
+]
 
-*  Atlantic herring as forage (New England)
-
-*  Summer flounder recreational discards within EAFM framework
+.pull-right[
+.center[
+![:img South Atlantic dolfin wahoo NC-VA conceptual model, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NCVAdolfinwahooCM.png)
+![:img South Atlantic dolfin wahoo S Fl conceptual model, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SFldolfinwahooCM.png) 
+]
+.footnote[
+https://safmc-shinyapps.shinyapps.io/NCVA_DolphinWorkshops2020/  
+https://safmc-shinyapps.shinyapps.io/S_FL_DolphinWorkshops2021/  
+]
+]
 
 ---
-## Council has completed a cycle; Risk assessment undergoing review and update now
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/JuanJCruz-MottaSCS7slide10.png")
+background-size: cover
 
-continued engagement
+## Caribbean example: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; stakeholder-led EBFM
 
-
+.footnote[
+slide courtesy Juan J. Cruz-Motta
+]
 
 ---
-## EBM issues in the region: Climate Change and Wind Energy Development
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/allcomponents.png")
+background-size: 800px
+background-position: right bottom
 
+## Engagement 4: Stakeholder engagement for Management Strategy Evaluation
+
+*1: Are any Atlantic herring harvest control rules good for both fisheries and predators?* 
+
+.pull-left-30[
+**Harvest control rules** are:
+- plans for changing fishing based on stock status
+- pre-determined
+    
+*"Which harvest control rules best consider herring's role as forage?"*
+- DESIGN a harvest control rule (HCR):
+    - balancing fishing benefits and ecological services
+    - addressing diverse stakeholder interests
+- TRANSPARENTLY within management time frame!
+]
 
 ---
-## Fishery management in the US
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MgtProcess.png")
+background-size: 800px
+background-position: right
+
+## The Herring MSE process
+.pull-left-30[
+*First MSE within US Council*  
+`r Cite(myBib, "feeney_integrating_2018")`
+Scope: annual stockwide HCR
+Open stakeholder meetings (2)
+- ID objectives, uncertainties
+- ID acceptable performance
+- more diverse, interactive than "normal" process 
+
+Uncertainties identified
+- herring mortality (M)
+- environmental effects on herring 
+- predator response to herring abundance
+- assessment uncertainty
+
+]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/OMdesign.png")
+background-size: 750px
+background-position: right
+
+## Linked models matching stakeholder-identified objectives
+.pull-left-30[
+The Dream:<sup>1</sup>
+Convert the effects of control rules on 4 user groups to dollars:
+.contrib[
+1. Users of landed herring (Demand)
+    - Lobster industry, aquariums
+1. Herring harvesters (Supply)
+1. Direct users of herring in the ocean (not people)
+    - Terns and Whales
+    -  Striped Bass, Dogfish
+1. Indirect users of herring in the ocean (people, Derived Demand)
+    - Bird- and whale-watchers
+    - Recreational and Commercial Fishing
+]
+The Reality
+.contrib[
+- 8 herring operating models linked to simple predator and economic models, developed in parallel
+- limited range of predator response
+- limited economic effects, directed fishery only
+]
+`r Cite(myBib, "deroba_dream_2018")`
+]
+.footnote[
+<sup>1</sup> Credit: [Min-Yang Lee](https://s3.amazonaws.com/nefmc.org/13.Economic-Models_Lee.pdf)
+]
+
+---
+## Stakeholder process for Summer flounder recreational discards within EAFM framework
+
+[Broad online scoping results](https://www.mafmc.org/s/Background_c_Scoping-Feedback_Regional-Summary.pdf) helped develop [Core stakeholder group](https://www.mafmc.org/s/Summer-Flounder-MSE-Core-Stakeholder-Group-Selection_Final.pdf)
+
+![:img MAFMC webcall, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMCflukestakeholdersurvey.png)![:img MAFMC stakeholder comp, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/stakeholdertypeMAFMCfluke.png)
+.center[![:img MAFMC concerns, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/stakeholderconcernsMAFMCfluke.png)]
+
+---
+## Governance: Fishery management in the US
 
 Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
 .center[
@@ -503,6 +621,8 @@ https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 ---
 ## Current governance complexity range
 
+.pull-left-40[
+
 Alaska: 1 Council, 1 State
 
 Pacific coast: 1 Council, 3 States
@@ -516,27 +636,63 @@ Atlantic coast: 3 Councils, 1 Interstate Commission, 15 States
 *   User conflicts
 
 *   Wind development conflicts
+]
+.pull-right-60[
+![:img NEUS map, 50%](https://www.integratedecosystemassessment.noaa.gov/sites/default/files/inline-images/Northeast%20continent.png)![:img SEUS map, 50%](https://media.fisheries.noaa.gov/2021-12/1687x1451-SEFSC-US-South-Atlantic-Marine-Ecosystem.jpg)
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ScenPlanningOrgs.png)
+]
+
 
 ---
+## EBM issues in the region: Climate Change and Wind Energy Development
+
 ## Initial coordination steps
 
 2014 US East Coast Climate and Governance conference
 
+
+
 Climate scenario planning, Pacific Coast, Atlantic Coast
 
----
-## East coast scenario planning process
+https://www.pcouncil.org/actions/climate-and-communities-initiative/
+
+https://www.mafmc.org/climate-change-scenario-planning
 
 
 ---
-## Other US examples
+## East coast scenario planning process: https://www.mafmc.org/climate-change-scenario-planning
 
-Caribbean EBFM conceptual model development
+.pull-left[
+*Engagement*
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ScenPlanningWho.png)
 
-South Atlantic pelagic species workshops
+*Steps*
+![](https://images.squarespace-cdn.com/content/v1/511cdc7fe4b00307a2628ac6/55a0812c-aae9-43c9-ad45-fa8a41704d39/Scenario+Planning+Process+Graphics+.jpg)
+]
+.pull-right[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ScenPlanningOptions.png)
+]
+ 
+---
+.pull-left[
+# How to use the scenarios?
 
-Gulf of Mexico red tides
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/EastCoastClimateScenarios.png)
+]
+.pull-right[
+Cross-Jurisdictional Management & Governance
 
+*    What major stresses would be placed on existing cross-jurisdictional (Council/Commission/State) governance arrangements in this scenario?  
+*    Would current approaches for updating management authority over a fishery work well? Here, management authority refers to the entity (Council(s), Commission, or NOAA) responsible for developing the management plan.  
+*    What mechanisms for changing management authority need to be considered? For example, automatic triggers based on changes in stock distribution?  
+*    What management challenges are present for species that move across jurisdictional boundaries?  
+*    What actions/changes are needed to better manage species that move across jurisdictional boundaries?  
+
+]
+
+.footnote[
+https://www.mafmc.org/s/ECSP-Scenario-Narratives_Nov-2022.pdf
+]
 ---
 # Conclusions
 
@@ -558,15 +714,13 @@ Gulf of Mexico red tides
 ---
 ## Additional resources
 .pull-left[
-* [US EBFM Policy](https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-policy)  
-* [US EBFM Roadmap](https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-road-map)  
 * [US Integrated Ecosystem Assessments](https://www.integratedecosystemassessment.noaa.gov/)
 
 ]
 .pull-right[
-* [Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)  
-* [Ecosystem Report Technical Documentation](https://noaa-edab.github.io/tech-doc)  
-* [ecodata R package](https://github.com/noaa-edab/ecodata)
+* [New England herring MSE debrief](https://s3.amazonaws.com/nefmc.org/3_Herring-MSE-debrief-final-report.pdf)
+* [Mid Atlantic summer flounder MSE](https://www.mafmc.org/actions/summer-flounder-mse)
+
 
 
 .contrib[
