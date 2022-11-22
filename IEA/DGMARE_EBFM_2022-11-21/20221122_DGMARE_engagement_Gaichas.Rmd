@@ -63,7 +63,7 @@ BibOptions(check.entries = FALSE,
            longnamesfirst = FALSE,
            max.names = 1,
            style = "markdown")
-myBib <- ReadBib("./MidSOE.bib", check = FALSE)
+myBib <- ReadBib("./min.bib", check = FALSE)
 
 #,
 #           hyperlink = FALSE,
@@ -549,7 +549,7 @@ background-position: right
 ## The Herring MSE process
 .pull-left-30[
 *First MSE within US Council*  
-`r Cite(myBib, "feeney_integrating_2019")`  
+`r Cite(myBib, "feeney_integrating_2018")`  
 Scope: annual stockwide HCR
 Open stakeholder meetings (2)
 - ID objectives, uncertainties
@@ -727,25 +727,27 @@ https://www.mafmc.org/s/ECSP-Scenario-Narratives_Nov-2022.pdf
     
 ???
 
+
 ---
-## References 
-
+## References
 .contrib[
-.pull-left[
-* [New England herring MSE debrief](https://s3.amazonaws.com/nefmc.org/3_Herring-MSE-debrief-final-report.pdf)
-]
-.pull-right[
-* [Mid Atlantic summer flounder MSE](https://www.mafmc.org/actions/summer-flounder-mse)
-]
-
 ```{r refs1, echo=FALSE, results="asis"}
 PrintBibliography(myBib)
 ```
 ]
 
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE_feature_image.png")
+background-size:700px
+background-position: center
+
+.center[
+# Thank you!
 
 
+<!--![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE_feature_image.png)-->
 
 .footnote[ 
 Contact: <Sarah.Gaichas@noaa.gov>   Slides available at https://noaa-edab.github.io/presentations 
+]
 ]
