@@ -1,6 +1,6 @@
 ---
 title: "Assessing small pelagic fish trends in space<br /> and time using piscivore diet data"
-subtitle: "Bluefish Research Track Assessment Review <br /> 7 December 2022"
+subtitle: "Bluefish Research Track Assessment Review <br /> Term of Reference 1 <br /> 7 December 2022"
 author: Sarah Gaichas$^1$, James Gartland$^2$, Brian Smith$^1$, Elizabeth Ng$^3$, Michael Celestino$^4$, <br /> Anthony Wood$^1$, Katie Drew$^5$, Abigail Tyrell$^{1,6}$, and James Thorson$^7$ 
 institute: <span style="font-weight:normal;"><font size="-0.5">$^1$NOAA NMFS Northeast Fisheries Science Center, Woods Hole, MA, USA; $^2$Virginia Institute of Marine Science, Gloucester Point, VA, USA; $^3$University of Washington, Seattle, WA, USA; $^4$New Jersey Department of Environmental Protection, Port Republic, NJ, USA; $^5$Atlantic States Marine Fisheries Commission, Arlington, VA, USA; $^6$Ocean Associates Inc, Arlington, VA, USA; $^7$NOAA NMFS Alaska Fisheries Science Center, Seattle, WA, USA</font></span>
 output:
@@ -555,35 +555,11 @@ VAST estimated Fall forage biomass density &rarr;
 ]
 ???
 
----
-## Does prey affect bluefish availability? Depends on the index.
-
-.pull-left[
-A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")`.
-
-Forage fish indices were explored as covariates on catchability for the fishery independent bottom trawl surveys, but either did not improve the assessment, or the exploratory models did not converge.
-
-However, the application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error.  **The inclusion of the forage fish index improved the fit of all models.**
-]
-
-.pull-right[
-![:img preliminary results of including the forage fish index within the bluefish assessment comparing fishing mortality, recruitment, and spawning stock biomass time series between models with (purple, blue) and without (green, yellow) the index](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishWHAMecovPRELIM.png)
-]
-
-The use of the forage fish index as a covariate on catchability led to an overall decreasing trend in catchability over time.  The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to <span style="color:#5D3FD3;">higher biomass estimates from the assessment including forage fish.</span>  
-
-
-
-???
-WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
-
-The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
-The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
-The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
-
 
 ---
-## Thank you!  References
+## Thank you!  
+
+## References
 
 .contrib[
 ```{r refs, echo=FALSE, results="asis"}
