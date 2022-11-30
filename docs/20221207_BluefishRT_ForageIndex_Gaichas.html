@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Assessing small pelagic fish trends in space  and time using piscivore diet data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas^1, James Gartland^2, Brian Smith^1, Elizabeth Ng^3, Michael Celestino^4,   Anthony Wood^1, Katie Drew^5, Abigail Tyrell^{1,6}, and James Thorson^7" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, bottom, my-title, title-slide
+
+.title[
+# Assessing small pelagic fish trends in space<br /> and time using piscivore diet data
+]
+.subtitle[
+## Bluefish Research Track Assessment Review <br /> 7 December 2022
+]
+.author[
+### Sarah Gaichas<span class="math inline"><sup>1</sup></span>, James Gartland<span class="math inline"><sup>2</sup></span>, Brian Smith<span class="math inline"><sup>1</sup></span>, Elizabeth Ng<span class="math inline"><sup>3</sup></span>, Michael Celestino<span class="math inline"><sup>4</sup></span>, <br /> Anthony Wood<span class="math inline"><sup>1</sup></span>, Katie Drew<span class="math inline"><sup>5</sup></span>, Abigail Tyrell<span class="math inline"><sup>1, 6</sup></span>, and James Thorson<span class="math inline"><sup>7</sup></span>
+]
+.institute[
+### <span style="font-weight:normal;"><font size="-0.5"><span class="math inline"><sup>1</sup></span>NOAA NMFS Northeast Fisheries Science Center, Woods Hole, MA, USA; <span class="math inline"><sup>2</sup></span>Virginia Institute of Marine Science, Gloucester Point, VA, USA; <span class="math inline"><sup>3</sup></span>University of Washington, Seattle, WA, USA; <span class="math inline"><sup>4</sup></span>New Jersey Department of Environmental Protection, Port Republic, NJ, USA; <span class="math inline"><sup>5</sup></span>Atlantic States Marine Fisheries Commission, Arlington, VA, USA; <span class="math inline"><sup>6</sup></span>Ocean Associates Inc, Arlington, VA, USA; <span class="math inline"><sup>7</sup></span>NOAA NMFS Alaska Fisheries Science Center, Seattle, WA, USA</font></span>
+]
+
+---
+
+class: top, left
+
+
+
+
+
+# Does prey drive availability of bluefish?
+
+## Bluefish, *Pomatomus saltatrix*
+
+.pull-left[
+![Bluefish illustration, credit NOAA Fisheries](https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png)
+]
+
+.pull-right[
+.large[
+
+"... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." &lt;a name=cite-collette_bigelow_2002&gt;&lt;/a&gt;([Collette et al., 2002](#bib-collette_bigelow_2002))
+
+"From Raritan Bay to Rockaway Inlet, we have had a phenomenal bluefish year with lots of bunker and other bait, ultimately leading to an abundance of bluefish." [Mid-Atlantic Bluefish Fishery Performance Report, 2021](https://www.mafmc.org/s/8_BF-FPR-2021.pdf)
+
+]
+]
+
+.center[
+Can localized predator-prey observations scale to coastwide assessment and management? 
+]
+
+???
+&lt;font size="-1"&gt;&lt;/font&gt;
+
+Changing distribution and abundance of small pelagics may drive changes in predator distributions, affecting predator availability to fisheries and surveys. However, small pelagic fish are difficult to survey directly, so we developed a novel method of assessing small pelagic fish aggregate abundance via predator diet data. We used piscivore diet data collected from multiple bottom trawl surveys within a Vector Autoregressive Spatio-Temporal (VAST) model to assess trends of small pelagics on the Northeast US shelf. The goal was to develop a spatial “forage index” to inform survey and/or fishery availability in the bluefish (Pomatomus saltatrix) stock assessment. Using spring and fall surveys from 1973-2020, 20 small pelagic groups were identified as major bluefish prey using the diet data. Then, predators were grouped by diet similarity to identify 19 piscivore species with the most similar diet to bluefish in the region. Diets from all 20 piscivores were combined for the 20 prey groups at each surveyed location, and the total weight of small pelagic prey per predator stomach at each location was input into a Poisson-link delta model to estimate expected prey mass per predator stomach. Best fit models included spatial and spatio-temporal random effects, with predator mean length, number of predator species, and sea surface temperature as catchability covariates. Spring and fall prey indices were split into inshore and offshore areas to reflect changing prey availability over time in areas available to the recreational fishery and the bottom trawl survey, and also to contribute to regional ecosystem reporting
+
+---
+## Bluefish diet in the Northeast US: a mix of managed and unmanaged small pelagics 
+
+.pull-left[
+&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png" width="50%" /&gt;&lt;img src="https://objects.liquidweb.services/images/201909/robert_aguilar,_serc_48650727166_3ce8edc47d_b.jpg" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Butterfish-NOAAFisheries.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Scup-NOAAFisheries_0.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Mackerel-Atlantic-NOAAFisheries.png" width="50%" /&gt;
+
+]
+
+.pull-right[
+
+&lt;img src="https://diveary.com/img/species/cache/323__jpg.jpeg" width="50%" /&gt;&lt;img src="https://www.vims.edu/research/departments/fisheries/programs/juvenile_surveys/netnotes_listing/_photosets/0910_dec_jan/_northernsandlance.jpg" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png" width="50%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-01/640x427-Atlantic_Menhaden_NB_W.jpg" width="50%" /&gt;
+
+] 
+
+.right[
+Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/tm2020/
+]
+
+???
+Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic groups were identified as major bluefish prey with 10 or more observations (in descending order of observations): Longfin squids (*Doryteuthis* formerly *Loligo* sp.), Anchovy family (Engraulidae), bay anchovy (*Anchoa mitchilli*), Atlantic butterfish, (*Peprilus triachanthus*), Cephalopoda, (*Anchoa hepsetus*), red eye round herring (*Etrumeus teres*), Sandlance (*Ammodytes* sp.), scup (*Stenotomus chrysops*), silver hake (*Merluccius bilinearis*), shortfin squids (*Illex* sp.), Atlantic herring (*Clupea harengus*), Herring family (Clupeidae), Bluefish (*Pomatomus saltatrix*), silver anchovy (*Engraulis eurystole*), longfin inshore squid (*Doryteuthis pealeii*), Atlantic mackerel (*Scomber scombrus*), flatfish (Pleuronectiformes), weakfish (*Cynoscion regalis*), and Atlantic menhaden (*Brevoortia tyrannus*). 
+
+Prey categories such as fish unidentified, Osteichthyes, and unidentified animal remains were not included in the prey list. Although unidentified fish and Osteichthyes can comprise a significant portion of bluefish stomach contents, we cannot assume that unidentified fish in other predator stomachs represent unidentified fish in bluefish stomachs.  
+
+Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Environmental Research Center; redeye round herring photo--https://diveary.com ; sandlance photo--Virginia Institute of Marine Science; all others NOAA Fisheries.
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Ng2022dietvsassess.png"), url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png")
+background-size: 800px, 400px
+background-position: right, left
+
+## Fish stomach contents &amp;rarr; Atlantic herring biomass estimates &lt;a name=cite-ng_predator_2021&gt;&lt;/a&gt;([Ng et al., 2021](https://doi.org/10.1093/icesjms/fsab026))
+
+&lt;!--.pull-left-40[
+![:img Ng paper title](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png)
+]
+
+.pull-right-60[]--&gt;
+???
+
+---
+## Vector Autoregressive Spatio-Temporal (VAST) modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
+
+VAST models two linear predictors for an index: 1. encounter rate,  and 2. positive catch (amount in stomach)
+
+A full model for the first linear predictor `\(\rho_1\)` for each observation `\(i\)` can include:
+*  fixed intercepts `\(\beta_1\)` for each category `\(c\)` and time `\(t\)`, 
+*  spatial random effects `\(\omega_1\)` for each location `\(s\)` and category, 
+*  spatio-temporal random effects `\(\varepsilon_1\)` for each location, category, and time, 
+*  fixed vessel effects `\(\eta_1\)` by vessel `\(v\)` and category, and 
+*  fixed catchability impacts `\(\lambda_1\)` of covariates `\(Q\)` for each observation and variable `\(k\)`: 
+
+`$$\rho_1(i) = \beta_1(c_i, t_i) + \omega_1^*(s_i, c_i) + \varepsilon_1^*(s_i, c_i, t_i) + \eta_1(v_i, c_i) + \sum_{k=1}^{n_k} \lambda_1(k) Q(i,k)$$` 
+
+The full model for the second linear predictor `\(\rho_2\)` has the same structure, estimating `\(\beta_2\)`, `\(\omega_2\)`, `\(\varepsilon_2\)`, `\(\eta_2\)`, and `\(\lambda_2\)` using the observations, categories, locations, times, and covariates. 
+
+We modeled aggregate small pelagic prey as a single category, and apply a Poisson-link delta model to estimate expected prey mass per predator stomach as in ([Ng et al., 2021](https://doi.org/10.1093/icesjms/fsab026)).
+
+VAST model code and documentation: https://github.com/James-Thorson-NOAA/VAST
+
+
+???
+Spatial and spatio-temporal correlation decay with increasing distance estimated as `\(\kappa\)` in a Matern function with fixed smoothness and geometric anisotropy (directional correlation, optionally estimated by the model). 
+
+Initial model selection consistently supported the inclusion of spatial and spatio-temporal random effects and anisotropy across all datasets: fall, spring, and annual. 
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishOnlyFallData_by_year.png")
+background-size: 650px
+background-position: right top
+
+## Bluefish stomachs only?
+
+.pull-left[
+Due to uneven "sampling" of Atlantic herring by predators, ([Ng et al., 2021](https://doi.org/10.1093/icesjms/fsab026)) recommended aggregating across predators to improve the diet-based Atlantic herring biomass index. 
+
+Between 1985-2021 there were: 
+.contrib[
+
+*  25634 survey stations with diet collections. 
+*  22751 survey stations with piscivore diets. 
+    +  9027 piscivore stations with bluefish prey; 
+    +  40% of piscivore stations have bluefish prey. 
+*  1814 survey stations with bluefish diets. 
+    +  905 bluefish stations with bluefish prey;
+    +  50% of bluefish stations have bluefish prey.
+    
+]
+For this index combining multiple small pelagic prey, aggregating across predators most similar to bluefish both increases sample size and reduces sampling variability due to different predator availability to surveys.
+]
+
+.pull-right[
+
+&lt;!--![Fall bluefish NEFSC](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishOnlyFallData_by_year.png) --&gt;
+.center[
+.footnote[
+Bluefish diet collection stations, fall Northeast Fisheries Science Center surveys
+]
+]
+
+]
+???
+The figure shows bluefish diet collection stations for fall surveys, 1985-2019. 
+
+NEAMAP survey stations with diet collections for piscivores (n = 3838) had a higher proportion with our defined bluefish prey (n = 2418, 63.0015633%).
+---
+## Aggregating predators: diet similarity to bluefish
+
+.pull-left[
+&lt;img src="20221207_BluefishRT_ForageIndex_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="504" /&gt;
+]
+
+.pull-right[
+&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-07/640x427-Cod-Atlantic-NOAAFisheries.png?itok=kNKcZ7iV" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Shark-SpinyDogfish-NOAAFisheries.png?itok=cdjTG3Hz" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Monkfish-NOAAFisheries.png?itok=7JAgAz-u" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Flounder-Summer-NOAAFisheries.png?itok=II2ii-Qw" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Pollock-Atlantic-NOAAFisheries.png?itok=ZFoDB-Qr" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Red-NOAAFisheries.png?itok=SyCYEmmm" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Halibut-Atlantic-right-NOAAFisheries.png?itok=uPvRdIBx" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-StripedBass-NOAAFisheries.png?itok=4ZQoQM0S" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2020-12/640x427-Hake_White_NB_W.jpg?itok=yHy_AuTT" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/dam-migration/640x427-cusk.jpg?itok=u0fw0hiv" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png" width="25%" /&gt;&lt;img src="https://marinefishesofgeorgia.org/wp-content/themes/yootheme/cache/Weakfish-00ce3893.png" width="25%" /&gt;&lt;img src="https://photolib.noaa.gov/Portals/0//GravityImages/36881/ProportionalFixedWidth/sanc100698384x800x800.jpg" width="25%" /&gt;
+
+&lt;img src="20221207_BluefishRT_ForageIndex_Gaichas_files/figure-html/unnamed-chunk-5-1.png" width="25%" /&gt;&lt;img src="https://apps-nefsc.fisheries.noaa.gov/rcb/photogallery/large/dory_fullsize.jpg" width="25%" /&gt;&lt;img src="https://marinefishesofgeorgia.org/wp-content/themes/yootheme/cache/Spanish-Mackerel-7c44a9e9.png" width="25%" /&gt;&lt;img src="https://files.nc.gov/deq/styles/site_page_main_image/public/images/2021-10/Cynoscion-nebulosus-white.jpg" width="25%" /&gt;
+
+]
+
+???
+All size classes of 50 fish predators captured in the NEFSC bottom trawl survey were grouped by diet similarity to identify the size classes of piscivore species with the most similar diet to bluefish in the region.  Diet similarity analysis was completed using the Schoener similarity index (@schoener_nonsynchronous_1970; B. Smith, pers. comm.), and is available available via [this link on the NEFSC food habits shiny app](https://fwdp.shinyapps.io/tm2020/#4_DIET_OVERLAP_AND_TROPHIC_GUILDS). The working group evaluated several clustering methods to develop the predator list (see [this link with detailed cluster results](https://sgaichas.github.io/bluefishdiet/PreySimilarityUpdate.html)). 
+
+Predators with highest diet similarity to Bluefish from the NEFSC diet database (1973-2020) include Atlantic cod, Atlantic halibut, buckler dory, cusk, fourspot flounder, goosefish, longfin squid, shortfin squid, pollock, red hake, sea raven, silver hake, spiny dogfish, spotted hake, striped bass, summer flounder, thorny skate, weakfish, and white hake. The NEAMAP survey operates closer to shore than the current NEFSC survey. The NEAMAP dataset includes predators sampled by the NEFSC survey and adds two species, Spanish mackerel and spotted sea trout, not captured by the NEFSC survey offshore but included based on working group expert judgement of prey similarity to bluefish. Predator size classes included are listed in Table 2 of the forage fish index working paper at [this link](https://sgaichas.github.io/bluefishdiet/VASTcovariates_forageindex_WP.html). 
+
+Image credits: Weakfish and Spanish mackerel-- https://marinefishesofgeorgia.org ; spotted seatrout-- https://fishinginmiami.com ; Sea Raven photo 2/11/2019 11:07:56 AM, Photographer: Andrew J. Martinez, Location: Massachusetts, Stellwagen Bank NMS; all others NOAA Fisheries.
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AllPiscivoresFallData_by_year.png")
+background-size: 600px
+background-position: right top
+
+.pull-left[
+## "Catchability" covariates for aggregate predator samplers at a location
+
+Number of predator species &amp;rarr; likely to affect *encounter rate*
+
+Mean size of predators &amp;rarr; likely to affect *amount of prey* ([Ng et al., 2021](https://doi.org/10.1093/icesjms/fsab026))
+
+Sea surface temperature (SST) &amp;rarr; likely to affect predator activity and feeding rate *encounter rate and amount of prey*
+
+*  Many missing SST measurements for surveys before 1991
+*  NOAA OI SST V2 High Resolution Dataset &lt;a name=cite-reynolds_daily_2007&gt;&lt;/a&gt;([Reynolds et al., 2007](https://journals.ametsoc.org/view/journals/clim/20/22/2007jcli1824.1.xml)) filled gaps
+
+Model selection consistently included number of predator species, mean predator size, and SST as covariates using fall, spring, and annual datasets
+]
+
+.pull-right[
+]
+.footnote[
+All piscivore diet collection stations, fall Northeast Fisheries Science Center surveys &amp;rarr;
+]
+
+
+???
+Diets from all 22 piscivores (including bluefish) were combined for the 20 forage fish (bluefish prey) groups at each surveyed location, and the mean weight of forage fish per predator stomach at each location was calculated. Data for each station included station ID, year, season, date, latitude, longitude, vessel, mean bluefish prey weight (g), mean piscivore length (cm), number of piscivore species, and sea surface temperature (degrees C). Because approximately 10% of survey stations were missing in-situ sea water temperature measurements, National Oceanic and Atmospheric Administration Optimum Interpolation Sea Surface Temperature (NOAA OI SST) V2 High Resolution Dataset [@reynolds_daily_2007] data provided by the NOAA PSL, Boulder, Colorado, USA, from their website at https://psl.noaa.gov were used to fill gaps. For survey stations with in-situ temperature measurements, the in-situ measurement was retained. For survey stations with missing temperature data, OI SST was substituted for input into VAST models.
+
+Models were developed combining all data for the year ("Annual") and with separate data for "Spring" (collection months January - June) and "Fall" (collection months July-December) to align with assumptions used in the bluefish stock assessment. Modeled years included 1985-2021 to align with other data inputs in the bluefish stock assessment. 
+
+SST is also likely to affect prey distribution, but differently for each prey species. Therefore, SST is not modeled as a density covariate for aggregate small pelagics.
+
+---
+## Spatial partitioning: examining small pelagics trends at multiple scales
+
+
+
+&lt;div class="figure"&gt;
+&lt;img src="20221207_BluefishRT_ForageIndex_Gaichas_files/figure-html/maps-1.png" alt="Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;&lt;img src="20221207_BluefishRT_ForageIndex_Gaichas_files/figure-html/maps-2.png" alt="Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;&lt;img src="20221207_BluefishRT_ForageIndex_Gaichas_files/figure-html/maps-3.png" alt="Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;
+&lt;p class="caption"&gt;Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown.&lt;/p&gt;
+&lt;/div&gt;
+
+Indices for aggregate small pelagics from piscivore stomachs can be calculated for any subset of the full model domain. Bias correction of the resulting indices is then applied &lt;a name=cite-thorson_implementing_2016&gt;&lt;/a&gt;([Thorson et al., 2016](https://www.sciencedirect.com/science/article/pii/S0165783615301399)). 
+
+???
+NEFSC survey strata definitions are built into the VAST `northwest-atlantic` extrapolation grid already. We defined additional new strata to address the recreational inshore-offshore 3 mile boundary. The area within and outside 3 miles of shore was defined using the `sf` R package as a 3 nautical mile (approximated as 5.556 km) buffer from a high resolution coastline from the`rnaturalearth` R package. This buffer was then intersected with the current `FishStatsUtils::northwest_atlantic_grid` built into VAST and saved using code [here](https://github.com/sgaichas/bluefishdiet/blob/main/VASTcovariates_updatedPreds_sst_3mi.Rmd#L49-L94). Then, the new State and Federal waters strata were used to split NEFSC survey strata where applicable, and the new full set of strata were used along with a modified function from `FishStatsUtils::Prepare_NWA_Extrapolation_Data_Fn` to build a custom extrapolation grid for VAST as described in detail [here](https://sgaichas.github.io/bluefishdiet/VASTcovariates_finalmodbiascorrect_3misurvstrat.html). 
+
+---
+background-image: url("https://github.com/sgaichas/bluefishdiet/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
+background-size: 560px
+background-position: right top
+
+## Results: Fall Forage Index
+
+
+
+.pull-left[
+&lt;div class="figure"&gt;
+&lt;img src="20221207_BluefishRT_ForageIndex_Gaichas_files/figure-html/WHAMfall-1.png" alt="Time series of VAST estimated fall forage indices for input into the bluefish assessment, 1985-2021" width="504" /&gt;
+&lt;p class="caption"&gt;Time series of VAST estimated fall forage indices for input into the bluefish assessment, 1985-2021&lt;/p&gt;
+&lt;/div&gt;
+
+VAST estimated Fall forage biomass density &amp;rarr;
+]
+
+.pull-right[
+]
+???
+
+---
+## Does prey affect bluefish availability? Depends on the index.
+
+.pull-left[
+A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) &lt;a name=cite-stock_woods_2021&gt;&lt;/a&gt;([Stock et al., 2021](https://www.sciencedirect.com/science/article/pii/S0165783621000953)).
+
+Forage fish indices were explored as covariates on catchability for the fishery independent bottom trawl surveys, but either did not improve the assessment, or the exploratory models did not converge.
+
+However, the application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error.  **The inclusion of the forage fish index improved the fit of all models.**
+]
+
+.pull-right[
+![:img preliminary results of including the forage fish index within the bluefish assessment comparing fishing mortality, recruitment, and spawning stock biomass time series between models with (purple, blue) and without (green, yellow) the index](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishWHAMecovPRELIM.png)
+]
+
+The use of the forage fish index as a covariate on catchability led to an overall decreasing trend in catchability over time.  The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to &lt;span style="color:#5D3FD3;"&gt;higher biomass estimates from the assessment including forage fish.&lt;/span&gt;  
+
+
+
+???
+WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
+
+The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
+The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
+The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
+
+
+---
+## Thank you!  References
+
+.contrib[
+&lt;a name=bib-collette_bigelow_2002&gt;&lt;/a&gt;[Collette, B. B. et
+al.](#cite-collette_bigelow_2002) (2002). _Bigelow and Schroeder's
+Fishes of the Gulf of Maine, Third Edition_. 3rd ed. edition.
+Washington, DC: Smithsonian Books. ISBN: 978-1-56098-951-6.
+
+&lt;a name=bib-ng_predator_2021&gt;&lt;/a&gt;[Ng, E. L. et
+al.](#cite-ng_predator_2021) (2021). "Predator stomach contents can
+provide accurate indices of prey biomass". In: _ICES Journal of Marine
+Science_ 78.3, pp. 1146-1159. ISSN: 1054-3139. DOI:
+[10.1093/icesjms/fsab026](https://doi.org/10.1093%2Ficesjms%2Ffsab026).
+URL:
+[https://doi.org/10.1093/icesjms/fsab026](https://doi.org/10.1093/icesjms/fsab026)
+(visited on Sep. 01, 2021).
+
+&lt;a name=bib-reynolds_daily_2007&gt;&lt;/a&gt;[Reynolds, R. W. et
+al.](#cite-reynolds_daily_2007) (2007). "Daily High-Resolution-Blended
+Analyses for Sea Surface Temperature". EN. In: _Journal of Climate_
+20.22. Publisher: American Meteorological Society Section: Journal of
+Climate, pp. 5473-5496. ISSN: 0894-8755, 1520-0442. DOI:
+[10.1175/2007JCLI1824.1](https://doi.org/10.1175%2F2007JCLI1824.1).
+URL:
+[https://journals.ametsoc.org/view/journals/clim/20/22/2007jcli1824.1.xml](https://journals.ametsoc.org/view/journals/clim/20/22/2007jcli1824.1.xml)
+(visited on Aug. 01, 2022).
+
+&lt;a name=bib-stock_woods_2021&gt;&lt;/a&gt;[Stock, B. C. et
+al.](#cite-stock_woods_2021) (2021). "The Woods Hole Assessment Model
+(WHAM): A general state-space assessment framework that incorporates
+time- and age-varying processes via random effects and links to
+environmental covariates". En. In: _Fisheries Research_ 240, p. 105967.
+ISSN: 0165-7836. DOI:
+[10.1016/j.fishres.2021.105967](https://doi.org/10.1016%2Fj.fishres.2021.105967).
+URL:
+[https://www.sciencedirect.com/science/article/pii/S0165783621000953](https://www.sciencedirect.com/science/article/pii/S0165783621000953)
+(visited on May. 26, 2021).
+
+&lt;a name=bib-thorson_guidance_2019&gt;&lt;/a&gt;[Thorson, J.
+T.](#cite-thorson_guidance_2019) (2019). "Guidance for decisions using
+the Vector Autoregressive Spatio-Temporal (VAST) package in stock,
+ecosystem, habitat and climate assessments". En. In: _Fisheries
+Research_ 210, pp. 143-161. ISSN: 0165-7836. DOI:
+[10.1016/j.fishres.2018.10.013](https://doi.org/10.1016%2Fj.fishres.2018.10.013).
+URL:
+[http://www.sciencedirect.com/science/article/pii/S0165783618302820](http://www.sciencedirect.com/science/article/pii/S0165783618302820)
+(visited on Feb. 24, 2020).
+
+&lt;a name=bib-thorson_comparing_2017&gt;&lt;/a&gt;[Thorson, J. T. et
+al.](#cite-thorson_comparing_2017) (2017). "Comparing estimates of
+abundance trends and distribution shifts using single- and multispecies
+models of fishes and biogenic habitat". In: _ICES Journal of Marine
+Science_ 74.5, pp. 1311-1321. ISSN: 1054-3139. DOI:
+[10.1093/icesjms/fsw193](https://doi.org/10.1093%2Ficesjms%2Ffsw193).
+URL:
+[https://doi.org/10.1093/icesjms/fsw193](https://doi.org/10.1093/icesjms/fsw193)
+(visited on Nov. 04, 2021).
+
+&lt;a name=bib-thorson_implementing_2016&gt;&lt;/a&gt;[Thorson, J. T. et
+al.](#cite-thorson_implementing_2016) (2016). "Implementing a generic
+method for bias correction in statistical models using random effects,
+with spatial and population dynamics examples". En. In: _Fisheries
+Research_ 175, pp. 66-74. ISSN: 0165-7836. DOI:
+[10.1016/j.fishres.2015.11.016](https://doi.org/10.1016%2Fj.fishres.2015.11.016).
+URL:
+[https://www.sciencedirect.com/science/article/pii/S0165783615301399](https://www.sciencedirect.com/science/article/pii/S0165783615301399)
+(visited on Jul. 29, 2022).
+]
+
+## Additional resources
+
+.contrib[
+[Northeast US State of the Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+]
+
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
