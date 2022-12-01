@@ -520,13 +520,20 @@ cbPalette <- c("#999999",  "#56B4E9", "#E69F00", "#CC79A7", "#009E73", "#F0E442"
     tidyr::pivot_longer(c(Estimate, SE), names_to = "Var") %>%
     dplyr::group_by(Var) %>%
     tidyr::pivot_wider(names_from = Region, values_from = value) %>%
-    dplyr::mutate(SurvIn2 = bfin,
-                  SurvIn2Off = bfall,
-                  SurvIn1 = albbfin, 
-                  SurvIn1Off = albbfall, 
+    # dplyr::mutate(SurvIn2 = bfin,
+    #               SurvIn2Off = bfall,
+    #               SurvIn1 = albbfin, 
+    #               SurvIn1Off = albbfall, 
+    #               StateWaters = MABGBstate,
+    #               FedWaters =   MABGBfed) %>%
+    # dplyr::select(Time, SurvIn2, SurvIn2Off, SurvIn1, SurvIn1Off, StateWaters) %>%
+    dplyr::mutate(BigOld = bfin,
+                  BigNew = bfall,
+                  AlbOld = albbfin, 
+                  AlbNew = albbfall, 
                   StateWaters = MABGBstate,
                   FedWaters =   MABGBfed) %>%
-    dplyr::select(Time, SurvIn2, SurvIn2Off, SurvIn1, SurvIn1Off, StateWaters) %>%
+    dplyr::select(Time, BigOld, BigNew, AlbOld, AlbNew, StateWaters) %>%
     tidyr::pivot_longer(!c(Time, Var), names_to = "Region", values_to = "value") %>%
     tidyr::pivot_wider(names_from = "Var", values_from = "value")
   
