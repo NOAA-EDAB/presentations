@@ -416,6 +416,31 @@ Shifting species distributions alter both species interactions, fishery interact
 Pacific cod example from ASFC: https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheries-science-center-year-review and https://apps-afsc.fisheries.noaa.gov/refm/docs/2021/GOApcod.pdf
 ]
 
+---
+## Looking across stocks for ecosystem signals
+
+.pull-left[
+Indicator: fish condition 
+```{r, out.width="120%"}
+#knitr::include_graphics("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg")
+fishcond <- magick::image_read("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAB_Condition_allsex_2022_viridis.jpg") 
+magick::image_trim(fishcond)
+```
+<!--![:img Fish condition figure, 120%](EDAB_images/MAB_Condition_allsex_2022_viridis.jpg)-->
+
+*  Work in progress relating to multiple drivers and markets
+*  Stock level [condition drivers](https://www.mafmc.org/s/c_Butterfish_Condition_Additional-TOR-1_2021.pdf) --> decision on butterfish recruitment stanza for projections
+]
+
+.pull-right[
+Indicator: fish productivity anomaly
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.asp=.75}
+
+```
+
+*  Related to multiple drivers `r Cite(myBib, 'perretti_regime_2017')`
+*  Multispecies projection and reference point implications
+]
 
 ---
 ## State of the Ecosystem &rarr; MAFMC Risk assessent example: Commercial revenue
