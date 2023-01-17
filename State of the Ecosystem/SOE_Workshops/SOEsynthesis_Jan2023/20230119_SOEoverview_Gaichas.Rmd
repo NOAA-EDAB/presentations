@@ -405,7 +405,7 @@ Multiple potential drivers of landings changes: ecosystem and stock production, 
 ???
 The long-term declining trend in landings didn't change.
 ---
-## Mid Atlantic Landings drivers: Stock status? TAC? &emsp; Risk elements: Fstatus, Bstatus 
+## Mid Atlantic Landings drivers: Stock status? TAC? &emsp; Risk elements: Fstatus, Bstatus, MgtControl 
 
 .pull-left[
 Indicator: Stock status
@@ -416,7 +416,7 @@ Indicator: Stock status
 ```
 
 .contrib[
-Most stocks have good status. Results from Dec 2022 Research Track assessments shown for Spiny dogfish (F above threshold) and bluefish (B above limit) do not represent official management advice.  
+Most stocks have good status. Butterfish B status has improved. Results from Dec 2022 Research Track assessments shown for Spiny dogfish (F above threshold) and bluefish (B above limit) do not represent official management advice.  
 ]
 ]
 
@@ -430,8 +430,7 @@ Indicators: Total ABC or ACL, and Realized catch relative to management target
 #abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries."
 ```
 
-
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R")}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R"), fig.width=5, fig.asp=0.4}
 #abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. Chub mackerel removed due extremely low catch. Outliers = Recreational Black Sea Bass.  Possible management success story? - See comment in google doc."
 ```
 
@@ -567,26 +566,26 @@ Biomass availability still seems unlikely driver
 ---
 ## New indicators for 2023: New England Realized catch compared to specified catch
 
-.pull-right[
+.pull-left[
 ```{r, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-abcacl-stacked.R")}
-
 ```
 ]
 
-.pull-left[
+.pull-right[
 ```{r, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-abcacl-catch.R")}
-
 ```
 ]
 
 Implications: Discuss
 
+*  Limited data for 2021
+*  Most species with catch > management target from Multispecies FMP
+
 ---
 ## Implications: New England Seafood Production
 .pull-left[
 Drivers:
-* decline in commercial landings is most likely driven by the requirement
-to rebuild individual stocks as well as market dynamics
+* decline in commercial landings is most likely driven by the requirement to rebuild individual stocks as well as market dynamics
 * other drivers affecting recreational landings: shark fishery management, possibly survey methodology  
 
 Monitor: 
@@ -655,9 +654,8 @@ Recent declines in prices contributed to falling revenue as quantities landed di
 
 ## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png)
 
-
+.pull-left[
 Indicator: Commercial Revenue
-
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-comm-revenue.R"), fig.width = 7.5, fig.asp = 0.35}
 
 ```
@@ -665,7 +663,7 @@ Indicator: Commercial Revenue
 .contrib[
 Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of NEFMC managed species</p>
 ]
-.pull-left[
+
 Both regions driven by single species
 * GOM high revenue despite low volume
 * Fluctuations in GB due to rotational management
@@ -689,7 +687,7 @@ Indicator: Bennet--price and volume indices
 ---
 ```{r, child='MidSOEsetup.Rmd'}
 ```
-## Objective: Mid Atlantic Recreational opportunities ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:yellow;">RecValue</span>, decreased risk; add diversity?
+## Objective: Mid Atlantic Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:yellow;">RecValue</span>, decreased risk; add diversity?
 
 .pull-left[
 Indicators: Recreational effort and fleet diversity   
@@ -705,13 +703,10 @@ Indicators: Recreational effort and fleet diversity
 .pull-right[
 Implications
 
-* Increased angler trips in 2020 relative to previous years strongly influenced the previously reported long term increase in recreational effort. Adding 2021 data, recreational effort (angler trips) has no long term trend.
-
-* The increasing long term trend from 2021 changed the risk categories for the RecValue element to low-moderate (previously ranked high risk). Now there is no significant trend, which implies low risk under the current criteria.
-
-* Decline in recreational fleet diversity suggests a potentially reduced range of opportunities. 
-
-* Driven by party/charter contraction (from a high of 24% of angler trips to 7% currently), and a shift toward shore based angling.
+* Increased angler trips in 2020 relative to previous years strongly influenced the previously reported long term increase in recreational effort. Adding 2021 data, recreational effort (angler trips) has no long term trend.  
+* The increasing long term trend from 2021 changed the risk categories for the RecValue element to low-moderate (previously ranked high risk). No trend indicates low risk.  
+* Decline in recreational fleet diversity suggests a potentially reduced range of opportunities.  
+* Driven by party/charter contraction and a shift toward shore based angling.
 
 ]
 
@@ -746,22 +741,26 @@ Implications
 ```{r, child='MidSOEsetup.Rmd'}
 ```
 
-## Objective: Mid Atlantic Fishery Stability ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk elements: <span style="background-color:lightgreen;">FishRes1</span> and <span style="background-color:lightgreen;">FleetDiv</span>, unchanged, add recreational elements?
+## Objective: Mid Atlantic Fishery Stability ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk elements: <span style="background-color:lightgreen;">FishRes1</span> and <span style="background-color:lightgreen;">FleetDiv</span>, unchanged
 
 .pull-left[
 *Fishery*  Indicators: Commercial fleet count, fleet diversity   
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=.9}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=.85}
 ```
-
+.contrib[
+Most recent fleet counts at low range of series
+]
 ]
 
 .pull-right[
 *Fishery*  Indicators: commercial species revenue diversity, recreational species catch diversity
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R"), fig.asp=.4}
 ```
-
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")}
+.contrib[
+Most recent near series low value. Covid role?
+]
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R"), fig.asp=.4}
 #recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
 ```
 
@@ -770,12 +769,13 @@ Implications
 ## Objective: Mid Atlantic Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk element: ecological diversity put aside, new indices
 
 .pull-left[
-*Ecological* Indicators: zooplankton diversity
-.reduced_opacity[
+*Ecological* Indicators: zooplankton and larval fish diversity
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
 ```
 
-]
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-ichthyo-diversity.R")}
+```
+
 ]
 
 .pull-right[
@@ -802,17 +802,22 @@ While larval and adult fish diversity indices are stable, a few warm-southern la
 .pull-left[
 *Fishery*  Indicators: Commercial fleet count, fleet diversity   
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div.R"), fig.asp=.9}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div.R"), fig.asp=.85}
 ```
-
+.contrib[
+Most recent around lowest points in series
+]
 ]
 
 .pull-right[
 *Fishery*  Indicators: commerical species revenue diversity, recreational species catch diversity
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div-species-div.R")}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div-species-div.R"), fig.asp=.4}
 ```
+.contrib[
+Most recent lowest point in series. Covid role?
+]
 
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-div-catch.R")}
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-div-catch.R"), fig.asp=.4}
 #recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
 ```
 
@@ -823,13 +828,13 @@ While larval and adult fish diversity indices are stable, a few warm-southern la
 
 .pull-left[
 *Ecological* Indicators: zooplankton and larval fish diversity
-.reduced_opacity[
+
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-zoo-diversity-gb.R")}
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-ichthyo-diversity.R")}
 ```
-]
+
 ]
 
 .pull-right[
@@ -1022,11 +1027,13 @@ Implications:
 
 .pull-left[
 Indicators: North Atlantic right whale population, calf counts
+.reduced_opacity[
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R"), fig.height=3}
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R"), fig.height=3}
 ```
+]
 ]
 
 .pull-right[
