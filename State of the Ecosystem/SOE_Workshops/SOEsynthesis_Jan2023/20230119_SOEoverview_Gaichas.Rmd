@@ -1141,6 +1141,30 @@ Heatwaves in bottom temperature last longer and happen later in the season than 
 ]
 
 ---
+## Risks: Climate change Mid Atlantic, new seasonal transition indicators
+
+.pull-left[ 
+Mid Atlantic
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-transdates.R")}
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")}
+```
+
+]
+
+.pull-right[
+Coastwide
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-trans-dates.R")}
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-transbox.R")}
+```
+
+
+]
+
+---
 ```{r, child='NESOEsetup.Rmd'}
 ```
 
@@ -1199,6 +1223,13 @@ Indicators: *detrended* marine heatwaves
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-bottom-heatwave-gb.R")}
 ```
 
+
+]
+
+---
+## Risks: Climate change New England, bottom heatwaves cont'd + new seasonal transition indicators
+
+.pull-left[
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-bottom-heatwave-year-detrended-gom.R")}
 ```
 
@@ -1206,6 +1237,14 @@ Indicators: *detrended* marine heatwaves
 ```
 ]
 
+.pull-right[
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-transdates.R")}
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-sumlength.R")}
+```
+
+]
 ---
 ```{r, child='MidSOEsetup.Rmd'}
 ```
