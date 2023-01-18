@@ -1,7 +1,7 @@
 ---
 title: "State of the Ecosystem Structure <br /> Proposed 2023"
 subtitle: "SOE January Synthesis Meeting<br /> 18-19 January 2023"
-author: "Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey<br /> Northeast Fisheries Science Center<br /> and all SOE contributors"
+author: "Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith<br /> Northeast Fisheries Science Center<br /> and all SOE contributors"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -1251,7 +1251,7 @@ Indicators: *detrended* marine heatwaves
 ```{r, child='MidSOEsetup.Rmd'}
 ```
 
-## Risks: Climate change and Mid Atlantic estuarine habitat &emsp; Risk element: EstHabitat 11 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk species
+## Risks: Climate change and estuarine habitat &emsp; Risk element: EstHabitat 11 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk species
 
 .pull-left[
 Indicators: Chesapeake Bay temperature and salinity
@@ -1289,7 +1289,7 @@ sst<- sst %>% dplyr::mutate(Value = replace(Value, Value > 5, 5))
   ggplot2::geom_tile(data = sst, aes(x = Latitude, y = Longitude,fill = Value)) +
   ggplot2::facet_wrap(Season~.) +
   ecodata::theme_map() +
-  ggplot2::ggtitle("Chesapeake Bay SST anomaly (2021)") +
+  ggplot2::ggtitle("Chesapeake Bay SST anomaly (2022)") +
   ggplot2::xlab(element_blank()) +
   ggplot2::ylab(element_blank()) +
   scale_y_continuous(breaks = seq(37, 40, by = 1))+
@@ -1319,22 +1319,21 @@ Indicator: SAV trends in Chesapeake Bay
 ```
 
 Indicator: Water quality attainment
+.reduced_opacity[
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-wq.R"), fig.width = 6}
 ```
 ]
+]
 
 ---
-```{r, child='MidSOEsetup.Rmd'}
-```
-
-## Risks: Climate change and offshore habitat &emsp; Risk element: offshore habitat put aside, new indices 
+## Risks: Climate change and offshore habitat 
 .pull-left[
 Indicator: cold pool indices
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")}
 ```
 
-Indicator: Ocean acidification
-![:img Seasonal pH](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Saba_Fig_SOE_MAFMC - Grace Saba.png)
+Indicator: Mid Atlantic Ocean acidification
+![:img Mid Seasonal pH](https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC%20-%20Grace%20Saba.jpg)
 
 ]
 
@@ -1344,16 +1343,12 @@ Indicator: warm core rings
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
 ```
 
-.center[
-![:img Warm core rings June 2021, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//D_20210608-MUR-SST-WCR.PNG) 
-]
+Indicator: New England Ocean acidification
+![:img NE Seasonal pH](https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_NEFMC%20-%20Grace%20Saba.jpg)
 ]
 
 ---
-```{r, child='MidSOEsetup.Rmd'}
-```
-
-## Risks: Ecosystem productivity  &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>, unchanged, new indices
+## Risks: Ecosystem productivity Mid Atlantic  &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>
 
 Indicators: chlorophyll, primary production, zooplankton
 
@@ -1370,12 +1365,9 @@ Indicators: chlorophyll, primary production, zooplankton
 #weekly-phyto-size, fig.cap="The annual climatology (1998-2019) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations."
 ```
 
-.reduced_opacity[
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-euph-cnid.R"), fig.width=8, fig.asp=.25}
 #zoo-strat-abun, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."
 ```
-
-]
 
 ]
 
@@ -1385,22 +1377,13 @@ Implications: increased production by smaller phytoplankton implies less efficie
 Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average to below average throughout 2021
 
 ---
-## Risks: Ecosystem productivity &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>, unchanged, new indices
-
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), out.width = "90%", fig.asp = 0.5}
-#energy-density, fig.cap="Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values.", 
-```
-
-Implications: fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring
-
----
-## Risks: Ecosystem productivity  &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>, unchanged, new analyses
+## Risks: Ecosystem productivity Mid Atlantic &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>
 
 .pull-left[
 Indicator: fish condition 
 ```{r, out.width="120%"}
 #knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg")
-fishcond <- magick::image_read("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg") 
+fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/MAB_Condition_allsex_2023_viridis.jpg") 
 magick::image_trim(fishcond)
 ```
 <!--![:img Fish condition figure, 120%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg)-->
@@ -1420,233 +1403,182 @@ Most species in the MAB had below average or poor condition again in 2021. Preli
 
 
 ???
-
-
 ---
-```{r, child='MidSOEsetup.Rmd'}
+```{r, child='NESOEsetup.Rmd'}
 ```
 
-## Risks: Ecosystem structure &emsp; add new risk assessment elements?
+## Risks: Ecosystem productivity New England
 
-Indicators: distribution shifts, diversity, predator status and trends
+Indicators: chlorophyll, primary production
+
+.pull-left[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-chl-weekly.R"), fig.asp = 0.5}
+#chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in New England are shown by the colored line for 2021 (dashed portion indicates preliminary data from a near real-time satellite source). The long-term mean is shown in black and shading indicates +/- 1 standard deviation.", fig.width = 5
+```
+
+]
+
+.pull-right[
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-weekly-phyto-size.R"), fig.asp=.55}
+#weekly-phyto-size, fig.cap="The annual climatology (1998-2019) percent composition of the phytoplankton size classes in New England bight based on satellite observations."
+```
+
+]
+
+Implications: increased production by smaller phytoplankton implies less efficient transfer of primary production to higher trophic levels. Monitor implications of increasing gelatinous zooplankton and krill.
+  
+???
+Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average to below average throughout 2021
+
+---
+## Risks: Ecosystem productivity New England
+
+Indicator: fish condition
+
+.pull-left[
+Georges Bank
+```{r, out.width="120%"}
+#knitr::include_graphics("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg")
+fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/GB_Condition_allsex_2023_viridis.jpg") 
+magick::image_trim(fishcond)
+```
+]
+
+.pull-right[
+Gulf of Maine
+```{r, out.width="120%"}
+#knitr::include_graphics("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg")
+fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/GOM_Condition_allsex_2023_viridis.jpg") 
+magick::image_trim(fishcond)
+```
+
+]
+
+Implications: Many species in New England showed improved condition in 2021. Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
+
+---
+## Risks: Ecosystem productivity New England
+
+Indicator: fish productivity anomaly
+
+.pull-left[
+```{r productivity-anomaly-gb, fig.cap = "Small fish per large fish biomass anomaly on Georges Bank. The summed anomaly across species is shown by the black line.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-productivity-anomaly-gb.R"), fig.width=7, fig.asp=.6}
+```
+]
+
+.pull-right[
+```{r productivity-anomaly-gom, fig.cap = "Small fish per large fish biomass anomaly in the Gulf of Maine. The summed anomaly across species is shown by the black line.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-productivity-anomaly-gom.R"), fig.width=7, fig.asp=.6}
+```
+]
+
+---
+## Risks: Ecosystem productivity, new fish productivity anomaly based on stock assessments
+.pull-left[
+Mid Atlantic region stocks
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-assessment.R"), fig.asp=.75}
+
+```
+]
+
+.pull-right[
+New England region stocks
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-productivity-assessment.R"), fig.asp=.75}
+
+```
+]
+
+Black line indicates sum where there are the same number of assessments across years.  
+
+---
+## Risks: Ecosystem productivity All regions
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), out.width = "90%", fig.asp = 0.5}
+#energy-density, fig.cap="Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values.", 
+```
+
+Implications: fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring
+
+---
+## Risks: Ecosystem structure All regions
+
+Indicators: distribution shifts, diversity (previous sections) predator status and trends here
 .pull-left[
 *No trend in aggregate sharks*
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-hms-cpue-sharks.R")}
 #hms-cpue-sharks, fig.cap="Estimated number of sharks per unit effort from Highly Migratory Species Pelagic Observer Program data."
 ```
 
-*HMS populations mainly at or above target*
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R")}
-```
-
-
+*  No obvious increase in shark populations
+*  Most highly migratory fish predators are not depleted: 
+    - 10 above B target
+    - 7 above B limit but below B target
+    - 2 below B limit
 ]
+
 .pull-right[
+*HMS populations mainly at or above target*
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-hms-stock-status.R"), fig.asp=0.9}
+```
+]
 
-*Gray seals increasing (details in NE report)*
+---
+## Risks: Ecosystem structure New England
 
+Indicators: predators
+
+.pull-left[
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seal-pups.R"), fig.width=7, fig.asp = .7}
+```
+]
+
+.pull-right[
+*Gray seals increasing*
 * Breeding season ~ 27,000 US gray seals, Canada's population ~ 425,000 (2016) 
 * Canada's population increasing at ~ 4% per year
 * U.S. pupping sites increased from 1 (1988) to 9 (2019)
 * Harbor and gray seals are generalist predators that consume more than 30 different prey species: red, white and silver hake, sand lance, yellowtail flounder, four-spotted flounder, Gulf-stream flounder, haddock, herring, redfish, and squids.
 
 Implications: stable predator populations suggest stable predation pressure on managed species, but increasing predator populations may reflect increasing predation pressure.
-]  
-
-
-???
-A survey conducted in 2021 in both countries will provide updated estimates of abundance. 
+]
 
 ---
-## Implications: Climate change and managed species &emsp; Risk elements unchanged, new info:
+## Risks: Ecosystem structure New England
 
-.pull-left[
-Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk
+.pull-left-30[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seabird-ne-map.R")}
+```
 
-*Multiple drivers with different impacts by species*    
-* Seasonal estuarine conditions affect life stages of striped bass, blue crabs, summer flounder, black sea bass differently
-.contrib[
-
-+ Chesapeake summer hypoxia, temperature better than in past years, but worse in fall
-+ Habitat improving in some areas (tidal fresh SAV, oyster reefs), but eelgrass declining 
-] 
-* Ocean acidification impact on vulnerable surfclams  
-.contrib[
-
-+ Areas of low pH identified in surfclam and scallop habitat  
-+ Lab work identified pH thresholds for surfclam growth
-] 
-* Warm core rings important to *Illex* availability. Fishing effort concentrates on the eastern edge of warm core rings, where upwelling and enhanced productivity ocurr
-
+Common tern productivity decline reflecting prey, other drivers?
 ]
 
-.pull-right[
-DistShift: 2 <span style="background-color:lightgreen;">low</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species 
+.pull-right-70[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seabird-ne-prey-freq.R")}
+```
 
-Shifting species distributions alter both species interactions, fishery interactions, and expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
-.center[
-![:img black sea bass survey distribution change over time from 2018 SOE, 65%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//black_sea_bass_kde.png)
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seabird-ne-productivity.R")}
+```
 ]
-]
-
 
 ---
 ```{r, child='MidSOEsetup.Rmd'}
 ```
 
-## Risks: Offshore Wind Development &emsp; Element: OceanUse
+## Risks: Ecosystem structure: new diet based forage fish index 
 
-.pull-left[
-Indicators: development timeline, fishery and community specific revenue in lease areas
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R"), fig.height=3}
-```
-
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R")}
-#, fig.width=5, fig.asp=.4
-#wea-spp-rev, fig.cap="Wind energy revenue in the Mid-Atlantic."
-```
-
-]
-
-.pull-right[
-```{r, eval=FALSE}
-#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.asp=1.1
+.pull-left-30[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R")}
 ```
 ]
 
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//offshore_wind_timeline.png")
-background-size: 500px
-background-position: right
-
-## Risks: Offshore Wind Development &emsp; Element: OceanUse
-
-.pull-left[
-Implications: 
-*  1-31% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
-*  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
-*  Development will affect species differently, negatively affecting species that prefer soft bottom habitat while potentially benefiting species that prefer hard structured habitat.
-*  Planned wind areas overlap with one of the only known right whale foraging habitats, and altered local oceanography could affect right whale prey availability. Development also brings increased vessel strike risk and the potential impacts of pile driving noise.
-]
-.pull-right[]
-
-???
-Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region 
-Evaluating the impacts to scientific surveys has begun.
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
-background-size: 350px
-background-position: right bottom
-
-## THANK YOU! SOEs made possible by (at least) 61 contributors from 14 institutions 
-
-.pull-left[
-.contrib[
-Kimberly Bastille<br>
-Aaron Beaver (Anchor QEA)<br>
-Andy Beet<br>
-Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
-Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
-Zhuomin Chen (Woods Hole Oceanographic Institution)<br>
-Joseph Caracappa<br>
-Doug Christel (GARFO)<br>
-Patricia Clay<br>
-Lisa Colburn<br>
-Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
-Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
-Geret DePiper<br>
-Dan Dorfman (NOAA-NOS-NCCOS)<br> 
-Hubert du Pontavice<br>
-Emily Farr (NMFS Office of Habitat Conservation)<br>
-Michael Fogarty<br>
-Paula Fratantoni<br>
-Kevin Friedland<br>
-Marjy Friedrichs (VIMS)<br>
-Sarah Gaichas<br>
-Ben Galuardi (GARFO)<br>
-Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
-James Gartland (Virginia Institute of Marine Science)<br>
-Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
-Sean Hardison<br>
-Kimberly Hyde<br>
-John Kosik<br>
-Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
-Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
-
-]
-]
-
-.pull-right[
-.contrib[
-Scott Large<br>
-Andrew Lipsky<br>
-Sean Lucey<br>
-Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
-Chris Melrose<br>
-Shannon Meseck<br>
-Ryan Morse<br>
-Brandon Muffley (MAFMC)<br>
-Kimberly Murray<br>
-Chris Orphanides<br>
-Richard Pace<br>
-Tom Parham (Maryland DNR)<br>
-Charles Perretti<br>
-CJ Pellerin (NOAA Chesapeake Bay Office)<br>
-Grace Roskar (NMFS Office of Habitat Conservation)<br>
-Grace Saba (Rutgers)<br>
-Vincent Saba<br>
-Sarah Salois<br>
-Chris Schillaci (GARFO)<br>
-Dave Secor (CBL)<br>
-Angela Silva<br>
-Adrienne Silver (UMass/SMAST)<br>
-Emily Slesinger (Rutgers University)<br>
-Laurel Smith<br>
-Talya tenBrink (GARFO)<br>
-Bruce Vogt (NOAA Chesapeake Bay Office)<br>
-Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
-John Walden<br>
-Harvey Walsh<br>
-Changhua Weng<br>
-Mark Wuenschel  
-
-]
-]
-
-
----
-## References
-
-.contrib[
-```{r refs, echo=FALSE, results="asis"}
-PrintBibliography(myBib)
+.pull-right-70[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-forage-index.R")}
 ```
 ]
 
+Is the forage base changing over time?
 
-## Additional resources
-.pull-left[
-* [ecodata R package](https://github.com/noaa-edab/ecodata)
-
-* Visualizations:
-  * [Mid-Atlantic Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_MAB)
-  * [Mid-Atlantic Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_MAB)
-  * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
-]
-.pull-right[
-* [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
-
-* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
-
-* [Draft indicator catalog](https://noaa-edab.github.io/catalog/)
-
-.contrib[
-
-* Slides available at https://noaa-edab.github.io/presentations
-* Contact: <Sarah.Gaichas@noaa.gov>
-]
-]
+VAST model using 22 predators to sample 20 forage fish groups, includes more unmanaged forage (anchovies, sandlance) than direct trawl data. 
 
 ---
 ## Risks: Habitat climate vulnerability &emsp; New, opportunity to refine habitat risks
@@ -1759,7 +1691,228 @@ dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
 frameWidget(dt)
 ```
 
+---
+## Risks: Habitat: new habitat diversity trend indicators
+
+.pull-left[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-habitat-richness.R"), fig.asp=0.8}
+```
+]
+
+.pull-right[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-habitat-shannon.R"), fig.asp=0.8}
+```
+]
+
+Implications: discuss
+
+---
+## Implications: Climate change and managed species &emsp; Risk elements unchanged, new info:
+
+.pull-left[
+Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk
+
+*Multiple drivers with different impacts by species*    
+* Seasonal estuarine conditions affect life stages of striped bass, blue crabs, summer flounder, black sea bass differently
+.contrib[
+
++ Chesapeake summer hypoxia, temperature better than in past years, but worse in fall
++ Habitat improving in some areas (tidal fresh SAV, oyster reefs), but eelgrass declining 
+] 
+* Ocean acidification impact on vulnerable surfclams  
+.contrib[
+
++ Areas of low pH identified in surfclam and scallop habitat  
++ Lab work identified pH thresholds for surfclam growth
+] 
+* Warm core rings important to *Illex* availability. Fishing effort concentrates on the eastern edge of warm core rings, where upwelling and enhanced productivity ocurr
+
+]
+
+.pull-right[
+DistShift: 2 <span style="background-color:lightgreen;">low</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species 
+
+Shifting species distributions alter both species interactions, fishery interactions, and expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
+
+*New Indicator: protected species shifts*
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R"), fig.width=5, fig.asp=0.8}
+```
+]
+]
 
 
+---
+## Risks: Offshore Wind Development Mid Atlantic &emsp; Element: OceanUse
 
+.pull-left[
+Indicators: development timeline, fishery and community specific revenue in lease areas
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R"), fig.height=3}
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R")}
+#, fig.width=5, fig.asp=.4
+#wea-spp-rev, fig.cap="Wind energy revenue in the Mid-Atlantic."
+```
+
+]
+
+.pull-right[
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R"), fig.asp=1.1}
+```
+]
+
+---
+```{r, child='NESOEsetup.Rmd'}
+```
+
+## Risks: Offshore Wind Development New Englad
+
+Indicators: fishery and community specific revenue in lease areas
+
+.pull-left[
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-wea-spp-rev.R")}
+#, fig.width=5, fig.asp=.4
+#wea-spp-rev, fig.cap="Wind energy revenue in New England."
+```
+]
+
+.pull-right[
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-wea-port-rev.R"), fig.asp=1.1}
+```
+]
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/right_whales.jpg")
+background-size: 500px
+background-position: right
+
+## Risks: Offshore Wind Development Mid Atlantic &emsp; Element: OceanUse
+
+.pull-left[
+Implications: *revise*
+*  X% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
+*  Up to Y% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
+*  Development will affect species differently, negatively affecting species that prefer soft bottom habitat while potentially benefiting species that prefer hard structured habitat.
+*  Planned wind areas overlap with one of the only known right whale foraging habitats, and altered local oceanography could affect right whale prey availability. Development also brings increased vessel strike risk and the potential impacts of pile driving noise.
+]
+.pull-right[]
+
+???
+Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region 
+Evaluating the impacts to scientific surveys has begun.
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
+background-size: 350px
+background-position: right bottom
+
+## THANK YOU! SOEs made possible by (at least) 61 contributors from 14 institutions  UPDATE THIS!
+
+.pull-left[
+.contrib[
+Kimberly Bastille<br>
+Aaron Beaver (Anchor QEA)<br>
+Andy Beet<br>
+Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
+Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
+Zhuomin Chen (Woods Hole Oceanographic Institution)<br>
+Joseph Caracappa<br>
+Doug Christel (GARFO)<br>
+Patricia Clay<br>
+Lisa Colburn<br>
+Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
+Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
+Geret DePiper<br>
+Dan Dorfman (NOAA-NOS-NCCOS)<br> 
+Hubert du Pontavice<br>
+Emily Farr (NMFS Office of Habitat Conservation)<br>
+Michael Fogarty<br>
+Paula Fratantoni<br>
+Kevin Friedland<br>
+Marjy Friedrichs (VIMS)<br>
+Sarah Gaichas<br>
+Ben Galuardi (GARFO)<br>
+Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
+James Gartland (Virginia Institute of Marine Science)<br>
+Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
+Sean Hardison<br>
+Kimberly Hyde<br>
+John Kosik<br>
+Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
+Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
+
+]
+]
+
+.pull-right[
+.contrib[
+Scott Large<br>
+Andrew Lipsky<br>
+Sean Lucey<br>
+Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
+Chris Melrose<br>
+Shannon Meseck<br>
+Ryan Morse<br>
+Brandon Muffley (MAFMC)<br>
+Kimberly Murray<br>
+Chris Orphanides<br>
+Richard Pace<br>
+Tom Parham (Maryland DNR)<br>
+Charles Perretti<br>
+CJ Pellerin (NOAA Chesapeake Bay Office)<br>
+Grace Roskar (NMFS Office of Habitat Conservation)<br>
+Grace Saba (Rutgers)<br>
+Vincent Saba<br>
+Sarah Salois<br>
+Chris Schillaci (GARFO)<br>
+Dave Secor (CBL)<br>
+Angela Silva<br>
+Adrienne Silver (UMass/SMAST)<br>
+Emily Slesinger (Rutgers University)<br>
+Laurel Smith<br>
+Talya tenBrink (GARFO)<br>
+Bruce Vogt (NOAA Chesapeake Bay Office)<br>
+Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
+John Walden<br>
+Harvey Walsh<br>
+Changhua Weng<br>
+Mark Wuenschel  
+
+]
+]
+
+
+---
+## References
+
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]
+
+
+## Additional resources
+.pull-left[
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+* Visualizations:
+  * [Mid-Atlantic Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_MAB)
+  * [Mid-Atlantic Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_MAB)
+  * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
+]
+.pull-right[
+* [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [Draft indicator catalog](https://noaa-edab.github.io/catalog/)
+
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: <Sarah.Gaichas@noaa.gov>
+]
+]
 
