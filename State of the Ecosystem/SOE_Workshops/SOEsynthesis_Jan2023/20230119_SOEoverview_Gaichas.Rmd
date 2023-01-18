@@ -1,7 +1,7 @@
 ---
 title: "State of the Ecosystem Structure <br /> Proposed 2023"
-subtitle: "SOE January Synthesis Meeting<br /> 19 January 2023"
-author: "Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey<br /> Northeast Fisheries Science Center<br /> and all SOE contributors; <br /> Brandon Muffley and all MAFMC Staff <br /> for Risk Assessment updates"
+subtitle: "SOE January Synthesis Meeting<br /> 18-19 January 2023"
+author: "Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey<br /> Northeast Fisheries Science Center<br /> and all SOE contributors"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -1068,13 +1068,13 @@ Implications:
 ```{r, child='MidSOEsetup.Rmd'}
 ```
 
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//seasonal-sst-anom-gridded-2021.png")
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//seasonal-sst-anom-gridded-2022.png")
 background-size: 700px
 background-position: right top
 
-## Risks: Climate change
+## Risks: Climate change Mid Atlantic
 .pull-left[
-Indicators: ocean currents, bottom and surface temperature, marine heatwaves
+Indicators: ocean currents, bottom and surface temperature, *detrended* marine heatwaves
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.width=4}
 ```
 
@@ -1108,15 +1108,109 @@ Indicators: ocean currents, bottom and surface temperature, marine heatwaves
 &nbsp;  
 &nbsp;  
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year.R"), fig.width=5, fig.asp=.6}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year-detrended.R"), fig.width=5, fig.asp=.6}
 #heatwave-year, fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2020."
 ```
 
 ]
 ???
 A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
+
 ---
-## Risks: Climate change and estuarine habitat &emsp; Risk element: EstHabitat 11 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk species
+## Risks: Climate change Mid Atlantic, new bottom temperature indicators
+
+.pull-left[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-bt-anom-gridded.R"), fig.width=8, fig.asp=1}
+```
+
+.contrib[
+In contrast to SST, long term BT is increasing in winter as well as other seasons
+]
+]
+
+.pull-right[
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-heatwave-year-detrended.R")}
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-heatwave.R")}
+```
+
+.contrib[
+Heatwaves in bottom temperature last longer and happen later in the season than surface heatwaves. No consistent long term annual trend in bottom or surface heatwaves.
+]
+]
+
+---
+```{r, child='NESOEsetup.Rmd'}
+```
+
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/seasonal-sst-anomaly-gridded-NE2022.png")
+background-size: 600px
+background-position: right
+
+## Risks: Climate change New England
+.pull-left[
+Indicators: ocean currents, bottom and surface temperature
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.width=4}
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.width=4}
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-bottom-temp-insituglorys.R"), fig.width=6}
+```
+]
+
+
+---
+## Risks: Climate change New England
+.pull-left[
+Indicators: *detrended* marine heatwaves
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-heatwave-year-detrended_gb.R"), fig.width=5, fig.asp=.6}
+
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-heatwave-year-detrended_gom.R"), fig.width=5, fig.asp=.6}
+
+```
+]
+
+.pull-right[
+<br />
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-heatwave-gb.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-heatwave-gom.R")}
+```
+
+]
+---
+## Risks: Climate change New England, new bottom temperature indicators
+
+.pull-left[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-seasonal-bt-anomaly-gridded.R"), fig.width=8, fig.asp=1}
+```
+
+]
+
+.pull-right[
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-bottom-heatwave-year-detrended-gb.R")}
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-bottom-heatwave-year-detrended-gom.R")}
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-bottom-heatwave-gb.R")}
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-bottom-heatwave-gom.R")}
+```
+
+---
+```{r, child='MidSOEsetup.Rmd'}
+```
+
+## Risks: Climate change and Mid Atlantic estuarine habitat &emsp; Risk element: EstHabitat 11 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk species
 
 .pull-left[
 Indicators: Chesapeake Bay temperature and salinity
