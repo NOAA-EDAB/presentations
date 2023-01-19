@@ -1255,7 +1255,7 @@ Indicators: *detrended* marine heatwaves
 
 .pull-left[
 Indicators: Chesapeake Bay temperature and salinity
-```{r, fig.asp=1}
+```{r, fig.asp=1, eval=FALSE}
 sst<- ecodata::ches_bay_sst
 
 map.lwd <- 0.4
@@ -1304,13 +1304,13 @@ sst<- sst %>% dplyr::mutate(Value = replace(Value, Value > 5, 5))
   ecodata::theme_title()
 ```
 
-<!--
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-temp.R"), fig.width = 5, fig.asp=.5 }
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-temp.R"), fig.width = 6, fig.asp=.62 }
 ```
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-sal.R"), fig.width = 5, fig.asp=.5 }
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-sal.R"), fig.width = 6, fig.asp=.62 }
 ```
-![:img 150%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//ches-bay-sst-1.png)-->
+
 ]
 
 .pull-right[
@@ -1399,7 +1399,8 @@ Indicator: fish productivity anomaly
 ]
 
 Implications: 
-Most species in the MAB had below average or poor condition again in 2021. Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species. 
+Species in the MAB had mixed condition in 2022. Survey-based fish productivity continues a general decline. 
+Update? *Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.* 
 
 
 ???
@@ -1455,7 +1456,7 @@ magick::image_trim(fishcond)
 
 ]
 
-Implications: Many species in New England showed improved condition in 2021. Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
+Implications: Many species in New England showed improved condition in 2021-2022. Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.
 
 ---
 ## Risks: Ecosystem productivity New England
@@ -1471,6 +1472,8 @@ Indicator: fish productivity anomaly
 ```{r productivity-anomaly-gom, fig.cap = "Small fish per large fish biomass anomaly in the Gulf of Maine. The summed anomaly across species is shown by the black line.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-productivity-anomaly-gom.R"), fig.width=7, fig.asp=.6}
 ```
 ]
+
+Survey based fish productivity shows no clear trend in New England.
 
 ---
 ## Risks: Ecosystem productivity, new fish productivity anomaly based on stock assessments
@@ -1488,7 +1491,7 @@ New England region stocks
 ```
 ]
 
-Black line indicates sum where there are the same number of assessments across years.  
+Methods from `r Cite(myBib, "perretti_regime_2017")`.  Black line indicates sum where there are the same number of assessments across years.  
 
 ---
 ## Risks: Ecosystem productivity All regions
@@ -1545,14 +1548,14 @@ Implications: stable predator populations suggest stable predation pressure on m
 ---
 ## Risks: Ecosystem structure New England
 
-.pull-left-30[
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seabird-ne-map.R")}
+.pull-left-40[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seabird-ne-map.R"), fig.width=5, fig.asp=1}
 ```
 
-Common tern productivity decline reflecting prey, other drivers?
+Common tern productivity decline reflecting prey, other drivers? Discuss
 ]
 
-.pull-right-70[
+.pull-right-60[
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seabird-ne-prey-freq.R")}
 ```
 
@@ -1566,20 +1569,23 @@ Common tern productivity decline reflecting prey, other drivers?
 
 ## Risks: Ecosystem structure: new diet based forage fish index 
 
-.pull-left-30[
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R")}
+.pull-left[
+Mid Atlantic
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R"), fig.asp=.6}
 ```
 ]
 
-.pull-right-70[
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-forage-index.R")}
+.pull-right[
+New England
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-forage-index.R"), fig.asp=.6}
 ```
 ]
 
 Is the forage base changing over time?
 
-VAST model using 22 predators to sample 20 forage fish groups, includes more unmanaged forage (anchovies, sandlance) than direct trawl data. 
-
+.contrib[
+VAST model using 22 predators to sample 20 forage fish groups, includes more unmanaged forage (anchovies, sandlance) than direct survey trawl data. 
+]
 ---
 ## Risks: Habitat climate vulnerability &emsp; New, opportunity to refine habitat risks
 
@@ -1732,10 +1738,12 @@ Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style=
 .pull-right[
 DistShift: 2 <span style="background-color:lightgreen;">low</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species 
 
+.contrib[
 Shifting species distributions alter both species interactions, fishery interactions, and expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
+]
 
 *New Indicator: protected species shifts*
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R"), fig.width=5, fig.asp=0.8}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R"), fig.width=7, fig.asp=0.8}
 ```
 ]
 ]
@@ -1766,11 +1774,13 @@ Indicators: development timeline, fishery and community specific revenue in leas
 ```{r, child='NESOEsetup.Rmd'}
 ```
 
-## Risks: Offshore Wind Development New Englad
+## Risks: Offshore Wind Development New England
 
-Indicators: fishery and community specific revenue in lease areas
 
 .pull-left[
+Indicators: fishery and community specific revenue in lease areas
+
+
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-wea-spp-rev.R")}
 #, fig.width=5, fig.asp=.4
 #wea-spp-rev, fig.cap="Wind energy revenue in New England."
@@ -1788,7 +1798,7 @@ background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/imag
 background-size: 500px
 background-position: right
 
-## Risks: Offshore Wind Development Mid Atlantic &emsp; Element: OceanUse
+## Risks: Offshore Wind Development Summary
 
 .pull-left[
 Implications: *revise*
@@ -1901,6 +1911,10 @@ PrintBibliography(myBib)
   * [Mid-Atlantic Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_MAB)
   * [Mid-Atlantic Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_MAB)
   * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
+  * [New England Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_NE)
+  * [New England Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_NE)
+  * [New England Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_NE)
+
 ]
 .pull-right[
 * [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
