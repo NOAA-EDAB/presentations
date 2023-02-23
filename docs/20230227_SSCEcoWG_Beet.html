@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Ecosystem Overfishing Indicators</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andy Beet and Sarah Gaichas  Northeast Fisheries Science Center" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+.title[
+# Ecosystem Overfishing Indicators
+]
+.subtitle[
+## MAFMC SSC Ecosystem working group<br /> 27 February 2023
+]
+.author[
+### Andy Beet and Sarah Gaichas<br /> Northeast Fisheries Science Center
+]
+
+---
+
+class: top, left
+
+&lt;style&gt;
+p.caption {
+  font-size: 0.6em;
+}
+&lt;/style&gt;
+
+&lt;style&gt;
+.reduced_opacity {
+  opacity: 0.5;
+}
+&lt;/style&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Ecosystem Overfishing Indicators
+
+.pull-left[
+
+Background:
+
+*  Previous presentation
+  * [Ecosystem overfishing indicators (2022)](https://noaa-edab.github.io/presentations/20220428_SSCEcoWG_Gaichas.html#1)
+  *  [SOE ecosystem overfishing indicators (2021)](https://noaa-edab.github.io/presentations/20210407_MAFMC_Gaichas.html#13)
+* Additional Resources
+    +  EOF Indices - [Link and Watson 2019](https://www.science.org/doi/10.1126/sciadv.aav0474)  
+    +  Application - [Link, 2021](https://academic.oup.com/icesjms/article/78/9/3176/6381244)
+*  [Technical documentation](https://noaa-edab.github.io/tech-doc/ecosystem-overfishing.html) of SOE ecosystem overfishing indicators  
+*  Previous [SOE request memo (p. 2-3)](https://www.mafmc.org/s/b_2021-State-of-the-Ecosystem-Request-Tracking-Memo.pdf) with ecosystem overfishing indicator discussion (2021)  
+*  Previous [SOE request memo (p. 9-10)](https://www.mafmc.org/s/2_State-of-the-Ecosystem-response-memo.pdf) with primary production required discussion (2020) 
+
+
+]
+
+.pull-right[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="EDAB_images/ryther-index-MAB.png" alt="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green area) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange area). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded)." width="400px" /&gt;
+&lt;p class="caption"&gt;Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green area) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange area). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded).&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+---
+# Ecosystem Overfishing Indicators
+
+* Indices based on *total catch*. Our indicators are based on *commercial landings*, leading to an underestimate relative to proposed thresholds.
+* Commercial discard estimates currently being resolved
+* Recreational catch currently being compiled.
+* Previous calculations omitted Menhaden.
+
+
+.pull-left[
+
+
+&lt;img src="EDAB_images/fogarty-index-Constant-MAB.png" width="350px" style="display: block; margin: auto;" /&gt;
+
+]
+.pull-right[
+
+&lt;img src="EDAB_images/ryther-index-MAB.png" width="350px" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+
+
+
+
+---
+## Progress on estimating NEUS total catch for input into ecosystem overfishing indicators [(soenotes)](https://andybeet.github.io/soenotes/articles/landingsComparison.html)
+
+.pull-left[
+*Comparing all catch/landings data sources*
+
+Note: Link data, SAU data, and NAFO data are estimates of Catch whereas `comlandr` data is landings only (no discards). SAU, NAFO use live weight (shellfish)
+
+![All data sources from Andy's soenotes landingsComparison vignette](https://andybeet.github.io/soenotes/articles/landingsComparison_files/figure-html/combine-1.png)
+]
+
+.pull-right[
+*Resulting ecosystem overfishing indices*
+
+The estimated percentage of unreported catch from the SAU dataset is applied to comland data estimate to represent total comland catch.
+
+
+![Ecosystem overfishing indices from Andy's soenotes landingsComparison vignette](https://andybeet.github.io/soenotes/articles/landingsComparison_files/figure-html/ryther-1.png)
+
+
+]
+
+???
+
+Ultimately, for the NEFSC State of the Ecosystem report these ecosystem overfishing indices will be calculated for multiple sub areas within the NEUS, namely Georges Bank, Gulf of Maine and the Mid Atlantic Bight. Knowing that the estimates of total NEUS catches are in line with other data sources is paramount to the acceptance of the report.
+
+
+
+
+
+---
+## Progress on estimating NEUS total catch for input into ecosystem overfishing indicators
+
+.pull-left[
+*Comparing landings SAU/comlandr*
+
+SAU Reported data (No IUU) uses livewt (shellfish). `comlandr` uses meat wt 
+
+&lt;img src="EDAB_images/EPU_landings_meatwt.png" width="450px" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+*Compare landings: live wt*
+
+Use live wt in `comlandr` data.
+
+&lt;img src="EDAB_images/EPU_landings_livewt.png" width="450px" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+???
+
+Ultimately, for the NEFSC State of the Ecosystem report these ecosystem overfishing indices will be calculated for multiple sub areas within the NEUS, namely Georges Bank, Gulf of Maine and the Mid Atlantic Bight. Knowing that the estimates of total NEUS catches are in line with other data sources is paramount to the acceptance of the report.
+
+
+
+---
+# Ecosystem Overfishing Indicators
+
+The amount of potential yield we can expect from a marine ecosystem depends on 
+* The amount of production entering at the base of the food web, primarily in the form of phytoplankton
+* The pathways this energy follows to reach harvested species
+* The efficiency of transfer of energy at each step in the food web
+* The fraction of this production that is removed by the fisheries
+
+## Ryther, Fogarty, Friedland Indices
+
+The *Ryther index* consists of total catch presented on a per unit-area basis for an ecosystem. 
+
+The *Fogarty index* is the ratio of total catches to total primary productivity in an ecosystem.
+
+The *Friedland index* is the ratio of total catches to mean annual chlorophyll in an ecosystem.
+
+From &lt;a name=cite-link_evidence_2021&gt;&lt;/a&gt;([Link, 2021](https://doi.org/10.1093/icesjms/fsab185)) "One can develop and estimate thresholds for them based on first principles, trophic transfer theory, and empirical evidence." Thresholds were proposed &lt;a name=cite-link_global_2019&gt;&lt;/a&gt;([Link et al., 2019](https://advances.sciencemag.org/content/5/6/eaav0474))
+
+
+---
+
+## Link and Watson 2019 overview
+&lt;!--
+![:img Link and Watson 2019 Fig 1](https://www.science.org/cms/10.1126/sciadv.aav0474/asset/6b94e27e-71ae-431f-9e8b-7b6378122215/assets/graphic/aav0474-f1.jpeg) --&gt;
+.footnote[Link and Watson 2019, Fig 1. https://www.science.org/doi/10.1126/sciadv.aav0474]
+
+All three indices are based on the principle of energy transfer up the foodweb from primary producers. There are limits to how much an ecosystem can produce and potentially be caught, C
+
+`$$C = \alpha \sum_i^n PP.TE_i^{TL_i-1}$$`
+where
+
+
+
+`\(PP\)` = primary production ( `\(tons C year^{-1}\)` )
+
+`\(TE_i\)` = Transfer efficiency of species `\(i ,i = 1, ..., n\)` 
+
+`\(TL_i\)` = Trophic level of species `\(i\)`
+
+
+`\(\alpha\)` is "a scalar for local conditions (set to 15% -20% for average availability of the TL in estimating total catch, a value that emerges when estimated from maintaining a global average catch that has been stable for the past 30 yrs)"
+
+---
+
+## Link and Watson 2019 overview
+.footnote[Link and Watson 2019, Fig 1. https://www.science.org/doi/10.1126/sciadv.aav0474]
+.pull-left[
+Simplified to :
+
+
+`$$C = \alpha PP.TE^{TL}$$`
+
+
+* Range of values for `\(\alpha\)`, TE, and TL selected to bound the problem. The bounds help define the thresholds.
+
+For example, a range of values are estimated for C,
+
+* C= 0.1 to 0.42 Gt C `\(year^{-1}\)` based on a global estimate of PP. 
+* These help define the "optimal range" (green area) for both indices
+]
+
+.pull-right[
+
+&lt;img src="EDAB_images/ryther-index-MAB.png" width="400px" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+???
+
+Ecosystem overfishing (EOF) defined as:  
+an instance where the sum of all catches is flat or declining, total catch per unit effort (CPUE) is declining, and total landings relative to ecosystem production exceeds suitable limits.
+
+---
+## Link and Watson 2019 overview:  Ryther Index
+.footnote[Link and Watson 2019, Fig 1. https://www.science.org/doi/10.1126/sciadv.aav0474]
+
+.pull-left[
+
+Defined as total catch per unit area in the ecosystem ([Link et al., 2019](https://advances.sciencemag.org/content/5/6/eaav0474)). The units are mt `\(km^{-2} year^{-1}\)`
+
+The upper bound of the optimal range, (using C = .42 `\(Gt C year^{-1}\)`) is calculated as:
+
+Ryther = `\(\frac{.42 Gt C year^{-1} 10^9}{361 km^{-2}10^6} = 1.14 t km^{-2}year^{-1}\)`
+
+where the worlds oceans are approximately 361 million `\(km^2\)` 
+
+  * Assumes each `\(km^2\)` of ocean is equally productive
+  
+  * We'd like to estimate thresholds in a similar fashion but at a smaller spatial scale using regional estimates of PP and using knowledge of the ecosystem.
+  
+
+]
+
+.pull-right[
+
+&lt;img src="EDAB_images/ryther-index-MAB.png" width="400px" style="display: block; margin: auto;" /&gt;
+  Link &amp; Watson "recommend that the indices proposed here be used cognizant of other potential sources of productivity and that are relevant to the scale at which fisheries management mostly occurs."
+]
+
+???
+
+Ecosystem overfishing (EOF) defined as:  
+an instance where the sum of all catches is flat or declining, total catch per unit effort (CPUE) is declining, and total landings relative to ecosystem production exceeds suitable limits.
+
+---
+# Proposed Ideas ...
+## Baseline
+
+* Calculate regional estimates of C using similar approach (average TL, TE)
+  * PP for MAB from satellite data ([data source](https://noaa-edab.github.io/tech-doc/chl-pp.html))
+
+## Use species trophic level information
+
+* Contrast with species specific trophic level information (from fishbase)
+* Calculate a system wide "average" trophic level
+
+---
+
+# Proposed Ideas ...
+## Simulation study (Atlantis ecosystem model)
+
+* Calculate thresholds using model input/outputs
+  * PP input data
+  * Trophic level estimated from realized diets
+  * Realized catch
+  
+* Create scenarios which include additional fishing pressure 
+    * increase all species equally
+    * target species with different pressures
+    * others ?
+* Compare realized catch under scenarios to the thresholds
+* Examine health of the system (extinct species?), changes in realized diets.
+* How reliable/robust are these threshold estimates? 
+* Can they be used to reliably indicate ecosystem overfishing?
+
+
+???
+      * Defined prey inputs (pprey parameter values)
+      * Realized diet output
+      * System wide average trophic level
+
+
+---
+# Discussion
+
+*   Using Link and Watson 2019 as a starting point, not an end point
+
+*   Data issues being worked through
+    *  Previous indicators based on landings, need total catch
+    *  Resolving estimates of discards
+    *  Compiling recreational catch estimates. 
+
+* General thoughts/comments on the approach?
+
+* How would we recommend the Council use ecosystem overfishing indicators?
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
