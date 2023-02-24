@@ -244,9 +244,9 @@ From `r Cite(myBib, "link_evidence_2021")` "One can develop and estimate thresho
 ## Link and Watson 2019 overview
 <!--
 ![:img Link and Watson 2019 Fig 1](https://www.science.org/cms/10.1126/sciadv.aav0474/asset/6b94e27e-71ae-431f-9e8b-7b6378122215/assets/graphic/aav0474-f1.jpeg) -->
-.footnote[Link and Watson 2019, Fig 1. https://www.science.org/doi/10.1126/sciadv.aav0474]
+.footnote[Link and Watson 2019, https://www.science.org/doi/10.1126/sciadv.aav0474]
 
-All three indices are based on the principle of energy transfer up the foodweb from primary producers. There are limits to how much an ecosystem can produce and potentially be caught, C
+All three indices are based on the principle of energy transfer up the foodweb from primary producers. There are limits to how much an ecosystem can produce and potentially be caught, C in tons $year^{-1}$
 
 <!-- $$C = \alpha \sum_{i=1}^{TL} PP.TE_i^{TL_i-i}$$ -->
 $$C = \alpha PP.TE^{TL-1}$$
@@ -254,7 +254,7 @@ where
 
 
 
-$PP$ = primary production ( $tons C year^{-1}$ )
+$PP$ = primary production ( tons C $year^{-1}$ )
 
 $TE$ = Transfer efficiency 
 
@@ -263,10 +263,12 @@ $TL$ = Trophic level
 
 $\alpha$ is "a scalar for local conditions (set to 15% -20% for average availability of the TL in estimating total catch, a value that emerges when estimated from maintaining a global average catch that has been stable for the past 30 yrs)"
 
+This equation is primary production required (PPR) rearranged to express Catch in terms of PP rather than PP in terms of Catch (at the system aggregate level)
+
 ---
 
 ## Link and Watson 2019 overview
-.footnote[Link and Watson 2019, Fig 1. https://www.science.org/doi/10.1126/sciadv.aav0474]
+.footnote[Link and Watson 2019, https://www.science.org/doi/10.1126/sciadv.aav0474]
 .pull-left[
 
 
@@ -300,7 +302,7 @@ an instance where the sum of all catches is flat or declining, total catch per u
 
 ---
 ## Link and Watson 2019 overview:  Ryther Index
-.footnote[Link and Watson 2019, Fig 1. https://www.science.org/doi/10.1126/sciadv.aav0474]
+.footnote[Link and Watson 2019, https://www.science.org/doi/10.1126/sciadv.aav0474]
 
 .pull-left[
 
@@ -340,10 +342,20 @@ an instance where the sum of all catches is flat or declining, total catch per u
 * Calculate regional estimates of C using similar approach (average TL, TE)
   * PP for MAB from satellite data ([data source](https://noaa-edab.github.io/tech-doc/chl-pp.html))
 
+
+---
+# Proposed Ideas ...
+## Baseline
+
+* Calculate regional estimates of C using similar approach (average TL, TE)
+  * PP for MAB from satellite data ([data source](https://noaa-edab.github.io/tech-doc/chl-pp.html))
+
 ## Use species trophic level information
 
 * Contrast with species specific trophic level information (from fishbase)
-* Calculate a system wide "average" trophic level
+* Calculate a system wide "average" trophic level, $TL_{a}$, using the idea that primary production required to support the total catch is equal to the sum of primary production required for each species catch
+
+  $$\sum_{i=1}^n C_i \left(\frac{1}{TE}\right)^{TL_i -1} = \left(\sum_{i=1}^n C_i \right)\frac{1}{TE}^{TL_{a}-1}$$  
 
 ---
 
