@@ -81,6 +81,22 @@ myBib <- ReadBib("./operationalSOE.bib", check = FALSE)
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
 ```
 
+# Ecosystem Overfishing Indicators
+
+*   Refresher: previous presentations
+
+*   Update on data related problems/solution
+
+*   Focus on specific EOF indicators and how thresholds are calculated
+
+*   Talk about how we can adapt these for our region
+
+*   Simulation study: Use ecosystem model to investigate robustness of thresholds and determine how informative they can be.
+
+
+
+
+---
 
 # Ecosystem Overfishing Indicators
 
@@ -254,15 +270,17 @@ $\alpha$ is "a scalar for local conditions (set to 15% -20% for average availabi
 Simplified to :
 
 
-$$C = \alpha PP.TE^{TL}$$
+$$C = \alpha PP.TE^{TL-1}$$
 
 
-* Range of values for $\alpha$, TE, and TL selected to bound the problem. The bounds help define the thresholds.
+* Range of values for $\alpha$ (10%-20%), TE (10%-14%), and TL(3.2-3.6), PP (40-50 Gt C $year^{-1}$) selected to bound the problem. The bounds help define the thresholds.
 
-For example, a range of values are estimated for C,
 
-* C= 0.1 to 0.42 Gt C $year^{-1}$ based on a global estimate of PP. 
-* These help define the "optimal range" (green area) for both indices
+* Range of estimated C = 0.1 to 1 Gt $year^{-1}$
+* Middle ground estimate of C = .42 Gt $year^{-1}$
+  *   using $\alpha$ = 0.15, TE = 12%, TL = 3.4, PP = 45Gt C $year^{-1}$
+  *   Carbon to wet weight conversion of 10
+* These help define the thresholds for both indices
 ]
 
 .pull-right[
@@ -288,11 +306,11 @@ an instance where the sum of all catches is flat or declining, total catch per u
 
 Defined as total catch per unit area in the ecosystem `r Cite(myBib, "link_global_2019")`. The units are mt $km^{-2} year^{-1}$
 
-The upper bound of the optimal range, (using C = .42 $Gt C year^{-1}$) is calculated as:
+The upper bound of the optimal range, (using C = .42 $Gt year^{-1}$) is calculated as:
 
-Ryther = $\frac{.42 Gt C year^{-1} 10^9}{361 km^{-2}10^6} = 1.14 t km^{-2}year^{-1}$
+Ryther = $\frac{.42 Gt year^{-1} 10^9}{363 km^{-2}10^6} ~= 1.16 t km^{-2}year^{-1}$
 
-where the worlds oceans are approximately 361 million $km^2$ 
+where the worlds oceans are approximately 363 million $km^2$ 
 
   * Assumes each $km^2$ of ocean is equally productive
   
