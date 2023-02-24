@@ -248,16 +248,17 @@ From `r Cite(myBib, "link_evidence_2021")` "One can develop and estimate thresho
 
 All three indices are based on the principle of energy transfer up the foodweb from primary producers. There are limits to how much an ecosystem can produce and potentially be caught, C
 
-$$C = \alpha \sum_i^n PP.TE_i^{TL_i-1}$$
+<!-- $$C = \alpha \sum_{i=1}^{TL} PP.TE_i^{TL_i-i}$$ -->
+$$C = \alpha PP.TE^{TL-1}$$
 where
 
 
 
 $PP$ = primary production ( $tons C year^{-1}$ )
 
-$TE_i$ = Transfer efficiency of species $i ,i = 1, ..., n$ 
+$TE$ = Transfer efficiency 
 
-$TL_i$ = Trophic level of species $i$
+$TL$ = Trophic level
 
 
 $\alpha$ is "a scalar for local conditions (set to 15% -20% for average availability of the TL in estimating total catch, a value that emerges when estimated from maintaining a global average catch that has been stable for the past 30 yrs)"
@@ -267,7 +268,6 @@ $\alpha$ is "a scalar for local conditions (set to 15% -20% for average availabi
 ## Link and Watson 2019 overview
 .footnote[Link and Watson 2019, Fig 1. https://www.science.org/doi/10.1126/sciadv.aav0474]
 .pull-left[
-Simplified to :
 
 
 $$C = \alpha PP.TE^{TL-1}$$
@@ -280,7 +280,7 @@ $$C = \alpha PP.TE^{TL-1}$$
 * Middle ground estimate of C = .42 Gt $year^{-1}$
   *   using $\alpha$ = 0.15, TE = 12%, TL = 3.4, PP = 45Gt C $year^{-1}$
   *   Carbon to wet weight conversion of 10
-* These help define the thresholds for both indices
+* These help define the thresholds for all indices
 ]
 
 .pull-right[
