@@ -294,7 +294,7 @@ flextable::as_grouped_data(requeststab, groups = "Aggregate") %>%
   flextable::theme_zebra() %>%
   flextable::bg(i = ~ !is.na(Aggregate), bg = "beige", part = "body") %>%
   flextable::hline(i = ~ !is.na(Aggregate)) %>%
-  flextable::set_caption("State of the Ecosystem requests by category and Council priority.") %>%
+  #flextable::set_caption("State of the Ecosystem requests by category and Council priority.") %>%
   flextable::autofit() 
   #flextable::width(width = c(2.5,0.5,0.7,0.7,0.7,1.5))
 
@@ -353,7 +353,7 @@ Profits ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentat
 
 Recreational opportunities:  Effort ![:img increasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//increase.png) ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png); Effort diversity ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
 
-Stability: Fishery ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png)  
+Stability: Fishery ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
 
 Social and cultural, trend not evaluated, status of:  
 *  Fishing engagement and reliance by community  
@@ -377,7 +377,7 @@ background-position: right
 Climate: warming and changing oceanography continue
 *  Heat waves and Gulf Stream instability
 *  Estuarine, coastal, and offshore habitats affected, with range of species responses
-*  Distribution shifts for fish and marine mammals complicate management
+*  Distribution shifts complicate management
 *  Multiple fish with poor condition, declining productivity 
 
 Other ocean uses: offshore wind development
@@ -560,7 +560,7 @@ Indicator: Bennet--price and volume indices
 Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
 
 ---
-## Objective: Mid Atlantic Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:yellow;">RecValue</span>, decreased risk; add diversity?
+## Objective: Mid Atlantic Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:green;">RecValue</span>, decreased risk
 
 .pull-left[
 Indicators: Recreational effort and fleet diversity   
@@ -578,13 +578,69 @@ Implications
 
 * Increased angler trips in 2020 relative to previous years strongly influenced the previously reported long term increase in recreational effort. Adding 2021 data, recreational effort (angler trips) has no long term trend.  
 * The increasing long term trend from 2021 changed the risk categories for the RecValue element to low-moderate (previously ranked high risk). No trend indicates low risk.  
-* Decline in recreational fleet diversity suggests a potentially reduced range of opportunities.  
+* Decline in recreational fleet diversity suggests a potentially reduced range of opportunities.  This metric could be added to the risk assessment.
 * Driven by party/charter contraction and a shift toward shore based angling.
 
 ]
 
 ???
 Changes in recreational fleet diversity can be considered when managers seek options to maintain recreational opportunities. Shore anglers will have access to different species than vessel-based anglers, and when the same species, typically smaller fish. Many states have developed shore-based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector. 
+
+---
+## Objective: Mid Atlantic Fishery Stability ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png) &emsp; Risk elements: <span style="background-color:lightgreen;">FishRes1</span> and <span style="background-color:lightgreen;">FleetDiv</span>, unchanged
+
+.pull-left[
+*Fishery*  Indicators: Commercial fleet count, fleet diversity   
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=.85}
+```
+.contrib[
+Most recent commercial fleet counts at low range of series
+]
+]
+
+.pull-right[
+*Fishery*  Indicators: commercial species revenue diversity, recreational species catch diversity
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R"), fig.asp=.4}
+```
+
+.contrib[
+Most recent commercial species revenue diversity near series low value
+]
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R"), fig.asp=.4}
+#recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
+```
+
+]
+---
+## Objective: Mid Atlantic Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png) &emsp; Risk element: ecological diversity put aside, new indices
+
+.pull-left[
+*Ecological* Indicators: zooplankton and larval fish diversity
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-ichthyo-diversity.R")}
+```
+
+]
+
+.pull-right[
+*Ecological* Indicator: expected number of species, NEFSC bottom trawl survey 
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-exp-n.R")}
+#exp-n, fig.cap = "Adult fish diversity the Mid-Atlantic Bight, based on expected number of species."
+```
+
+Implications:  
+* stable capacity to respond to the current range of commercial fishing opportunities  
+* recreational catch diversity maintained by a different set of species over time  
+* monitor zooplankton diversity driven by declining dominant species  
+
+]
+???
+While larval and adult fish diversity indices are stable, a few warm-southern larval species are becoming more dominant. Increasing zooplankton diversity is driven by declining dominance of an important species, which warrants continued monitoring.
+
 
 ---
 
@@ -650,73 +706,20 @@ cropRecEJ
 <!--![Recreational fishing communities environmental justice spider plot](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//EJ_Recreational_MAB.png)--> 
 ]
 
-Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
-
----
-## Objective: Mid Atlantic Fishery Stability ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk elements: <span style="background-color:lightgreen;">FishRes1</span> and <span style="background-color:lightgreen;">FleetDiv</span>, unchanged
-
-.pull-left[
-*Fishery*  Indicators: Commercial fleet count, fleet diversity   
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R"), fig.asp=.85}
-```
-.contrib[
-Most recent fleet counts at low range of series
-]
-]
-
-.pull-right[
-*Fishery*  Indicators: commercial species revenue diversity, recreational species catch diversity
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R"), fig.asp=.4}
-```
-.contrib[
-Most recent near series low value. Covid role?
-]
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R"), fig.asp=.4}
-#recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
-```
-
-]
----
-## Objective: Mid Atlantic Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk element: ecological diversity put aside, new indices
-
-.pull-left[
-*Ecological* Indicators: zooplankton and larval fish diversity
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-ichthyo-diversity.R")}
-```
-
-]
-
-.pull-right[
-*Ecological* Indicator: expected number of species, NEFSC bottom trawl survey 
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-exp-n.R")}
-#exp-n, fig.cap = "Adult fish diversity the Mid-Atlantic Bight, based on expected number of species."
-```
-
-Implications:  
-* stable capacity to respond to the current range of commercial fishing opportunities  
-* recreational catch diversity maintained by a different set of species over time  
-* monitor zooplankton diversity driven by declining dominant species  
-
-]
-???
-While larval and adult fish diversity indices are stable, a few warm-southern larval species are becoming more dominant. Increasing zooplankton diversity is driven by declining dominance of an important species, which warrants continued monitoring.
+Implications: There was an increase in recreational fishing activities in the many of the top recreational communities from 2019 to 2020. Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 
 ---
 ## Objectives: All Areas Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)
 
 .pull-left[
 Indicators: Harbor porpoise and gray seal bycatch
-.reduced_opacity[
+
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.height=3}
 ```
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.height=3}
 ```
-]
+
 ]
 
 .pull-right[
@@ -752,11 +755,11 @@ Implications:
 
 * Additional potential stressors include offshore wind development, which overlaps with important habitat areas used year-round by right whales, including mother and calf migration corridors and foraging habitat.
 
-* Unusual mortality events continue for 3 large whale species.
+* Unusual mortality events continue for 2 large whale species.
 
-<!--* Risk elements: 
+* Risk elements: 
     - FW2Prey evaluated by species: 13 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span> risk, unchanged 
-    - TechInteract, evaluated by species and sector, unchanged-->
+    - TechInteract, evaluated by species and sector, unchanged
 ]
 
 
