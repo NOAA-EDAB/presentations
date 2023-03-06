@@ -1,6 +1,6 @@
 ---
 title: "State of the Ecosystem<br />Mid-Atlantic 2023"
-subtitle: "MAFMC SSC<br /> 7 March 2023"
+subtitle: "Risk Assessment Update, Request Tracking, and Ecosystem Working Group Report<br />MAFMC SSC<br /> 7 March 2023"
 author: "Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith<br /> Northeast Fisheries Science Center<br /> Brandon Muffley, MAFMC<br />and all SOE contributors"
 output:
   xaringan::moon_reader:
@@ -92,6 +92,7 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 - Open science emphasis `r Cite(myBib, "bastille_improving_2020")`
 
 - Used within Mid-Atlantic Fishery Management Council's Ecosystem Process `r Cite(myBib, "muffley_there_2020")`
+    + Risk assessment methods update in 2023
  
 ]
 
@@ -403,16 +404,17 @@ Other ocean uses: offshore wind development
 ## Objective: Mid Atlantic Seafood production ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png) &emsp; Risk elements: <span style="background-color:red;">ComFood</span> and <span style="background-color:orange;">RecFood</span>, unchanged
 
 .pull-left[
-Indicator: Commercial landings, total and seafood 
+Indicators: Commercial landings, total and seafood 
 
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"), fig.asp=.5}
 #total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
 ```
+
 .contrib[
 Key: Black = Landings of all species; <p style="color:#36648b;">Blue = Seafood landings;</p> <p style="color:#FF6A6A;">Red = MAFMC managed seafood landings</p>
 ]
 
-
+*Total landings now include Atlantic menhaden*
 
 ]
 
@@ -497,7 +499,8 @@ Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
 
 .pull-right[
 .contrib[ 
-* Declining managed benthos, aggregate planktivores
+* Declining managed benthos: surfclam/ocean quahog markets 
+* Declining aggregate planktivores: menhaden fishery consolidation
 ```{r hack}
 #Define constants for figure plot
 #series.col <- c("indianred","black")
@@ -521,7 +524,7 @@ Monitor:
 
 
 ???
-Because stock status is mostly acceptable, ABCs don't appear to be constraining for many stocks, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species.
+Stock status is above the minimum threshold for all but one stock, and aggregate biomass trends appear stable, so the decline in commercial seafood landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. The long term decline in total planktivore landings is largely driven by Atlantic menhaden fishery dynamics, including a consolidation of processors leading to reduced fishing capacity between the 1990s and mid-2000s.
 
 Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
 
@@ -578,6 +581,7 @@ Implications
 
 * Increased angler trips in 2020 relative to previous years strongly influenced the previously reported long term increase in recreational effort. Adding 2021 data, recreational effort (angler trips) has no long term trend.  
 * The increasing long term trend from 2021 changed the risk categories for the RecValue element to low-moderate (previously ranked high risk). No trend indicates low risk.  
+
 * Decline in recreational fleet diversity suggests a potentially reduced range of opportunities.  This metric could be added to the risk assessment.
 * Driven by party/charter contraction and a shift toward shore based angling.
 
@@ -680,6 +684,7 @@ Implications: Highlighted communities may be vulnerable to changes in fishing pa
 
 ???
 These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
+
 ---
 ## Objective: Mid Atlantic Environmental Justice and Social Vulnerability  &emsp; Risk element: <span style="background-color:yellow;">Social</span> 
 Indicators: Environmental justice vulnerability, recreational fishery engagement and reliance  
@@ -835,10 +840,10 @@ Indicators: ocean currents, temperature, seasons
 
 ]
 
-.contrib[
-The Gulf Stream is further north. Ocean summer is lasting longer. In contrast to SST, long term bottom temperature is increasing in winter as well as other seasons. 
-]
-
+The Gulf Stream is further north. Ocean summer is lasting longer. In contrast to SST, long term bottom temperature is increasing in all seasons. 
+.contrib[]
+???
+Seasonal sea surface temperatures in 2022 were above average for most of the year,  however late spring storms caused deep mixing, which delayed stratification and surface warming in late spring and early summer.
 
 ---
 ## Risks: Climate change Mid Atlantic, changes to marine heatwave methods
@@ -849,7 +854,7 @@ The Gulf Stream is further north. Ocean summer is lasting longer. In contrast to
 ```
 
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R")}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R", out.width = '75%')}
 ```
 
 
@@ -859,12 +864,12 @@ The Gulf Stream is further north. Ocean summer is lasting longer. In contrast to
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-heatwave-year-detrended.R")}
 ```
 
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-heatwave.R")}
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-heatwave.R", out.width = '75%')}
 ```
 ] 
 .contrib[
-In addition to changes in long-term average conditions, short-term extreme temperature events can produce acute stress on marine organisms, especially when the baseline temperature is increasing. To identify these extreme events separately from the baseline warming, we have changed our methods describing marine heatwaves to remove the global warming signal. Therefore, these indicators look different than in previous reports, but now identify truly extreme departures from an already warming ecosystem.  A combination of long-term ocean warming and extreme events should be used to assess total heat stress on marine organisms.
-]
+To identify extreme events separately from the baseline warming, methods describing marine heatwaves have been changed to remove the global warming signal. These indicators look different than in previous reports, but now identify truly extreme departures from an already warming ecosystem.]
+A combination of long-term ocean warming and extreme events should be used to assess total heat stress on marine organisms.
 
 
 ???
@@ -914,10 +919,11 @@ Indicator: Mid Atlantic Ocean acidification
 Indicator: warm core rings
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
 ```
-
+.contrib[
 Summer aragonite saturation was at or below the sensitivity levels for both Atlantic sea scallop and longfin squid in Long Island Sound and the nearshore and mid-shelf regions of the New Jersey shelf several times over the past decade.
 
 There were fewer warm core rings near the continental shelf in 2022, which combined with economic fishery drivers may have contributed to total catch of *Illex* squid being 20% less than the total catch reported in 2021.
+]
 ]
 ???
 
@@ -952,9 +958,10 @@ Increased production by smaller phytoplankton implies less efficient transfer of
 
 
 ---
+.pull-left-60[
 ## Risks: Ecosystem productivity Mid Atlantic &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>
 
-.pull-left-60[
+
 Indicator: fish condition 
 ```{r, out.width="120%"}
 #knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg")
@@ -979,16 +986,17 @@ Species in the MAB had mixed condition in 2022. Fish productivity based on surve
 
 ```
 .contrib[
-Methods from `r Cite(myBib, "perretti_regime_2017")`.  Black line indicates sum where there are the same number of assessments across years.
+Black line indicates sum where there are the same number of assessments across years.
 ]
 ]
 
 
 ???
+Methods from `r Cite(myBib, "perretti_regime_2017")`.  
 ---
 ## Risks: Ecosystem productivity All regions
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), out.width='98%',  fig.asp = 0.5}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), out.width='95%',  fig.asp = 0.5}
 #energy-density, fig.cap="Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values.", 
 ```
 
@@ -1057,7 +1065,7 @@ Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style=
 * Warm core rings important to *Illex* availability. 
 .contrib[
 + Fishing effort concentrates on the eastern edge of warm core rings, where upwelling and enhanced productivity ocurr. 
-+ Fewer warm core rings near the shelf plus economic drivers led to lower *Illex* catch in 2022.
++ Fuel cost, plentiful longfin, and fewer warm core rings near the shelf led to lower *Illex* catch in 2022.
 ]
 ]
 
@@ -1316,7 +1324,7 @@ background-position: right
 .pull-left-60[
 Now organized by priority and category
 
-*  Priority from SSC and Council
+*  Priority from SSC eco WG and Council
 *  Categories from SOE team
 *  Highest priority requests in progress
     -  System level thresholds and reference points
@@ -1327,6 +1335,7 @@ Now organized by priority and category
     - Management complexity
     - Recreational bycatch
 *  Stock level indicators best addressed in research tracks?
+*  SOE use statistics and memo updates in progress
 *  Lowest priority requests likely to be dropped
 ]
 
@@ -1369,11 +1378,24 @@ Ecosystem socioeconomic profiles in progress for several MAFMC stocks, and multi
 ---
 ## Prioritized SOE requests and summarized approaches for using ecosystem information
 
-
 ## Reviewed progress on four projects, February 2023
 
+.pull-left[
+
+]
+
+.pull-right[
+
+]
+
 ---
-## Feedback: Ecosystem overfishing
+## Update: 
+
+---
+## New project:
+
+---
+## Update: Ecosystem overfishing
 
 .pull-left[
 How might the Council use indicators of Ecosystem overfishing?
@@ -1416,7 +1438,7 @@ Figure key:
 Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
 
 ---
-## Feedback: Index Numbers
+## Update: Index Numbers
 
 .pull-left[
 How might the Council use an Index Numbers approach?
