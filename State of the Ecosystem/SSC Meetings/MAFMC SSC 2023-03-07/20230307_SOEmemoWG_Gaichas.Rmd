@@ -862,11 +862,10 @@ The Gulf Stream is further north. Ocean summer is lasting longer. In contrast to
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-heatwave.R")}
 ```
 ] 
-
-In addition to changes in long-term average conditions, short-term extreme temperature events can produce acute stress on marine organisms, especially when the baseline temperature is increasing. To identify these extreme events separately from the baseline warming, we have changed our methods describing marine heatwaves to remove the global warming signal. Therefore, these indicators look different than in previous reports, but now identify truly extreme departures from an already warming ecosystem.  A combination of long-term ocean warming and extreme events should be used to assess total heat stress on marine organisms.
-
 .contrib[
+In addition to changes in long-term average conditions, short-term extreme temperature events can produce acute stress on marine organisms, especially when the baseline temperature is increasing. To identify these extreme events separately from the baseline warming, we have changed our methods describing marine heatwaves to remove the global warming signal. Therefore, these indicators look different than in previous reports, but now identify truly extreme departures from an already warming ecosystem.  A combination of long-term ocean warming and extreme events should be used to assess total heat stress on marine organisms.
 ]
+
 
 ???
 A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
@@ -877,55 +876,6 @@ A marine heatwave is a warming event that lasts for five or more days with sea s
 
 .pull-left[
 Indicators: Chesapeake Bay temperature and salinity
-```{r, fig.asp=1, eval=FALSE}
-sst<- ecodata::ches_bay_sst
-
-map.lwd <- 0.4
-
-# Set lat/lon window for maps
-xmin = -77.5
-xmax = -74.5
-ymin = 36.5
-ymax = 40
-xlims <- c(xmin, xmax)
-ylims <- c(ymin, ymax)
-#sst <- ecodata::seasonal_sst_anomaly_gridded
-crs<- "+proj=longlat +lat_1=35 +lat_2=45 +lat_0=40 +lon_0=-77 +x_0=0 +y_0=0 +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0"
-sst$Season <- factor(sst$Season, levels = c("Winter",
-                                            "Spring",
-                                            "Summer",
-                                            "Fall"))
-
-sst<- sst %>% dplyr::mutate(Value = replace(Value, Value > 5, 5))
-#sst_map <-
-  ggplot2::ggplot() +
-  ggplot2::geom_sf(data = ecodata::coast, size = map.lwd) +
-  ggplot2::scale_fill_gradient2(name = "Temp.\nAnomaly (C)",
-                                low = scales::muted("blue"),
-                                mid = "white",
-                                high = scales::muted("red"),
-                                limits = c(-4,4),
-                                labels = c("<-5", "-2.5", "0", "2.5", ">5")) +
-  ggplot2::coord_sf(crs = crs, xlim = xlims, ylim = ylims) +
-
-  ggplot2::geom_tile(data = sst, aes(x = Latitude, y = Longitude,fill = Value)) +
-  ggplot2::facet_wrap(Season~.) +
-  ecodata::theme_map() +
-  ggplot2::ggtitle("Chesapeake Bay SST anomaly (2022)") +
-  ggplot2::xlab(element_blank()) +
-  ggplot2::ylab(element_blank()) +
-  scale_y_continuous(breaks = seq(37, 40, by = 1))+
-  scale_x_continuous(breaks = seq(-77, -75, by = 1))+
-  ggplot2::theme(panel.border = element_rect(colour = "black", fill=NA, size=0.75),
-                 legend.key = element_blank(),
-                 axis.title = element_text(size = 6),
-                 strip.background = element_blank(),
-                 strip.text=element_text(hjust=0),
-                 axis.text = element_text(size = 6),
-                 axis.title.y = element_text(angle = 90) )+
-  ecodata::theme_title()
-```
-
 
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ch-bay-temp.R"), fig.width = 6, fig.asp=.62 }
 ```
@@ -965,8 +915,11 @@ Indicator: warm core rings
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
 ```
 
+Summer aragonite saturation was at or below the sensitivity levels for both Atlantic sea scallop and longfin squid in Long Island Sound and the nearshore and mid-shelf regions of the New Jersey shelf several times over the past decade.
 
+There were fewer warm core rings near the continental shelf in 2022, which combined with economic fishery drivers may have contributed to total catch of *Illex* squid being 20% less than the total catch reported in 2021.
 ]
+???
 
 ---
 ## Risks: Ecosystem productivity Mid Atlantic  &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>
@@ -1001,7 +954,7 @@ Increased production by smaller phytoplankton implies less efficient transfer of
 ---
 ## Risks: Ecosystem productivity Mid Atlantic &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>
 
-.pull-left[
+.pull-left-60[
 Indicator: fish condition 
 ```{r, out.width="120%"}
 #knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg")
@@ -1010,15 +963,18 @@ magick::image_trim(fishcond)
 ```
 <!--![:img Fish condition figure, 120%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg)-->
 
+Indicator: fish productivity anomaly &rarr;
+
+Implications: 
+Species in the MAB had mixed condition in 2022. Fish productivity based on surveys and assessments has been below average. 
+
 ]
 
-.pull-right[
-Indicator: survey fish productivity anomaly
+.pull-right-40[
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.asp=.75}
 
 ```
 
-Indicator: assessment fish productivity anomaly Mid Atlantic region stocks
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-assessment.R"), fig.asp=.75}
 
 ```
@@ -1027,19 +983,34 @@ Methods from `r Cite(myBib, "perretti_regime_2017")`.  Black line indicates sum 
 ]
 ]
 
-Implications: 
-Species in the MAB had mixed condition in 2022. Fish productivity based on surveys and assessments has been below average. 
-
 
 ???
 ---
 ## Risks: Ecosystem productivity All regions
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), out.width = "90%", fig.asp = 0.5}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), out.width='98%',  fig.asp = 0.5}
 #energy-density, fig.cap="Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values.", 
 ```
 
 Implications: fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring
+
+---
+## Risks: Ecosystem structure and habitat: new diet based forage fish index, new diversity trends  
+
+.pull-left[
+Mid Atlantic forage index
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R"), fig.asp=.6}
+```
+]
+
+
+.pull-left[
+Habitat model-based species richness by EPU
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-habitat-richness.R"), fig.asp=0.8}
+```
+]
+
+Implications: forage, including species not well sampled by bottom trawls, has been fluctuating over time. Richness calculated for the most common species suggests shifts away from the Mid Atlantic towards Georges Bank and Gulf of Maine.
 
 ---
 ## Risks: Ecosystem structure All regions
@@ -1065,150 +1036,6 @@ Indicators: distribution shifts, diversity (previous sections) predator status a
 ]
 
 ---
-## Risks: Ecosystem structure: new diet based forage fish index 
-
-.pull-left[
-Mid Atlantic
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R"), fig.asp=.6}
-```
-]
-
-.pull-right[
-New England
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-forage-index.R"), fig.asp=.6}
-```
-]
-
-Is the forage base changing over time?
-
-.contrib[
-VAST model using 22 predators to sample 20 forage fish groups, includes more unmanaged forage (anchovies, sandlance) than direct survey trawl data. 
-]
----
-## Risks: Habitat climate vulnerability &emsp; New, opportunity to refine habitat risks
-
-Indicators: climate sensitive species life stages mapped to climate vulnerable habitats  
-
-*See MAFMC 2022 EAFM risk assessment for example species narratives*  
-```{r midHabTable, message=FALSE}
-#Read in Mid-Atlantic table
-
-src <- "https://github.com/NOAA-EDAB/ecodata/raw/master/data-raw/habitat_vulnerability_2022.xlsx"
-lcl <- basename(src)
-download.file(url = src, destfile = lcl, quiet=TRUE)
-
-mid <- as.data.table(readxl::read_xlsx(here('habitat_vulnerability_2022.xlsx'),
-                         sheet = 'Mid-Atlantic', skip = 1))
-
-if (file.exists(lcl)) {
-  #Delete file if it exists
-  invisible(file.remove(lcl))
-}
-
-#Identify individual species climate vulnerability
-vhigh.vul <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Very high', Species])
-high.vul  <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'High', Species])
-mod.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Moderate', Species])
-low.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Low', Species])
-
-#Grab habitat vulnerability 
-hab.vul <- unique(mid[, c('Habitat Name', 'Habitat Vulnerability Rank (HVCA)')])
-habitats <- hab.vul[, 'Habitat Name']
-hab.vul <- data.table('Habitat Vulnerability' = c(NA, NA, t(hab.vul[, 'Habitat Vulnerability Rank (HVCA)'])))
-
-#Rearrange table
-mid <- data.table::melt.data.table(mid, id.vars = c('Habitat Name', 'Species'),
-                                   measure.vars = c('Eggs/Larva', 'Juvenile/YOY',
-                                                    'Adult', 'Spawning Adult'),
-                                   variable.name = 'Stage', value.name = 'Dependence')
-mid[, Habitat := as.factor(mid$'Habitat Name')]
-mid <- data.table::dcast.data.table(mid, Species + Stage ~ Habitat,
-                                    value.var = 'Dependence')
-setcolorder(mid, c('Species', 'Stage', habitats$'Habitat Name'))
-
-#Add Habitat Vulnerability
-#hab.table <- rbindlist(list(as.data.table(t(hab.vul)), mid), use.names = F)
-hab.table <- mid
-#Add names back in
-names(hab.table) <- names(mid)
-hab.table <- hab.table %>% mutate_if(is.character, str_trim)
-
-#from examples here https://rstudio.github.io/DT/010-style.html
-
-#color coding cells works
-#need to add column with species vulnerability and color code species by it but not show it, like #hideV6 example at link
-#if we show it we can sort by species vulnerability though... alphabetical doesnt work so use numbers to go lowest-highest
-#still need to color code headers
-hab.table <- hab.table %>%
-  mutate(spVul = #Color code species based on climate vul
-    # case_when(Species %in% low.vul ~ "low.vul",
-    #           Species %in% mod.vul ~ "mod.vul",
-    #           Species %in% high.vul ~ "high.vul",
-    #           Species %in% vhigh.vul ~ "vhigh.vul")
-    # )
-    case_when(Species %in% low.vul ~ 1,
-              Species %in% mod.vul ~ 2,
-              Species %in% high.vul ~ 3,
-              Species %in% vhigh.vul ~ 4)
-    )
-
-colnames(hab.table)[c(3:4)] <- paste0('<span style="box-shadow: -10px 0 0 red, 10px 0 0 red; background-color:red; color:white">',colnames(hab.table)[c(3:4)],'</span>')
-colnames(hab.table)[c(5:11)] <- paste0('<span style="box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:',c("orange"),'">',colnames(hab.table)[c(5:11)],'</span>')
-colnames(hab.table)[c(12:16)] <- paste0('<span style="box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:',c("yellow"),'">',colnames(hab.table)[c(12:16)],'</span>')
-
-dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
-          extensions = c('Scroller', 'FixedColumns'), #add scrolling and fixed column
-          options = list(deferRender = TRUE,
-          scrollY = 300, scroller = TRUE,
-          dom = 't',scrollX = TRUE,fixedColumns = TRUE)
-          #, options = list(columnDefs = list(list(targets = 16, visible = FALSE)))
-  ) %>% 
-  formatStyle(
-    names(hab.table)[3:4],
-    backgroundColor = '#FF000080'
-  ) %>%
-  formatStyle(
-    names(hab.table)[5:11],
-    backgroundColor = '#FFA50080'
-  ) %>%
-  formatStyle(
-    names(hab.table)[12:16],
-    backgroundColor = '#FFFF0080'
-  ) %>%
-
-  formatStyle(#Color code base on dependence
-    'Species', "spVul",
-    backgroundColor = styleEqual(#c("low.vul", "mod.vul", "high.vul", "vhigh.vul"),
-                                 c(1,2,3,4),
-                                 c('lightgreen', 'yellow', 'orange', 'red')), #Color code base on dependence)
-    color = styleEqual(c(1,2,3,4),
-                                 c('black', 'black', 'black', 'white'))
-    ) %>%
-    formatStyle(
-    names(hab.table),
-    backgroundColor = styleEqual(c("Low", "Moderate", "High", "Very high"), 
-                                 c('lightgreen', 'yellow', 'orange', 'red')), 
-    color = styleEqual(c("Low", "Moderate", "High", "Very high"), 
-                                 c('black', 'black', 'black', 'white'))
-  )
-
-frameWidget(dt)
-```
-
----
-## Risks: Habitat: new habitat diversity trend indicators
-
-.pull-left[
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-habitat-richness.R"), fig.asp=0.8}
-```
-]
-
-.pull-right[
-]
-
-Implications: discuss
-
----
 ## Implications: Climate change and managed species &emsp; Risk elements unchanged, new info:
 
 .pull-left[
@@ -1221,14 +1048,17 @@ Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style=
 + Chesapeake summer hypoxia, temperature better than in past years, but worse in fall
 + Habitat improving in some areas (tidal fresh SAV, oyster reefs), but eelgrass declining 
 ] 
-* Ocean acidification impact on vulnerable surfclams  
+* Ocean acidification impact on commercial species  
 .contrib[
-
++ Scallops and longfin squid in Long Island Sound and off New Jersey have experienced low aragonite
 + Areas of low pH identified in surfclam and scallop habitat  
 + Lab work identified pH thresholds for surfclam growth
 ] 
-* Warm core rings important to *Illex* availability. Fishing effort concentrates on the eastern edge of warm core rings, where upwelling and enhanced productivity ocurr
-
+* Warm core rings important to *Illex* availability. 
+.contrib[
++ Fishing effort concentrates on the eastern edge of warm core rings, where upwelling and enhanced productivity ocurr. 
++ Fewer warm core rings near the shelf plus economic drivers led to lower *Illex* catch in 2022.
+]
 ]
 
 .pull-right[
@@ -1242,7 +1072,7 @@ Shifting species distributions alter both species interactions, fishery interact
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R"), fig.width=7, fig.asp=0.8}
 ```
 ]
-]
+
 
 
 ---
@@ -1251,12 +1081,70 @@ Shifting species distributions alter both species interactions, fishery interact
 .pull-left[
 Indicators: development timeline, fishery and community specific revenue in lease areas
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R"), fig.height=3}
-```
-
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R")}
 #, fig.width=5, fig.asp=.4
 #wea-spp-rev, fig.cap="Wind energy revenue in the Mid-Atlantic."
+```
+
+Council request: which New England ports have significant reliance on Mid-Atlantic managed species?
+
+```{r wind-rev-NE-MAFMC,  fig.width=6.5, fig.asp=.36, fig.align='left'}
+#fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.",
+df.symbol <- ecodata::wind_port %>% filter(EPU == "NE", 
+                                           !Var %in% c("WEA_MAX", "TOT_MAX", 
+                                                     "perc_MIN", "perc_MAX")) %>% 
+   pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(City = paste0(City,State)) %>% 
+  dplyr::filter(City %in% c("POINT JUDITH RI",
+                            "NORTH KINGSTOWN RI",
+                            "BOSTON MA",
+                            "WOODS HOLE MA",
+                            "HYANNIS MA",
+                            "BARNSTABLE MA")) %>%
+  dplyr::select(City, EJ, Gent) %>% 
+  pivot_longer(cols = c(EJ, Gent), names_to = "Variable") %>% 
+  filter(!value == "NA") %>% 
+  dplyr::mutate(symbol = recode(Variable, EJ = -7, Gent = -3), 
+                Variable = recode(Variable,"EJ"= "Mid-High to High EJ Concerns" , 
+                                  "Gent" ="Mid-High to High Gentrificaiton Concerns"))
+
+# Percentage plot
+
+df.all.perc<- ecodata::wind_port %>% filter(EPU == "NE") %>%
+  pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(ordering = WEA_MAX,  
+                City = paste0(City, State), 
+                TOT_MAX = c(100 - perc_MIN - perc_MAX)) %>% 
+  pivot_longer(cols = c(perc_MIN,  perc_MAX, TOT_MAX), names_to="Var", values_to = "Value") %>% 
+  dplyr::arrange(desc(ordering)) %>%
+  dplyr::filter(City %in% c("POINT JUDITH RI",
+                            "NORTH KINGSTOWN RI",
+                            "BOSTON MA",
+                            "WOODS HOLE MA",
+                            "HYANNIS MA",
+                            "BARNSTABLE MA")) %>%
+  dplyr::mutate(City = factor(City, levels = unique(City))) %>% 
+  dplyr::filter(!Var %in% c("WEA_MAX", "EJ", "Gent")) %>% 
+  dplyr::mutate(Var = recode(Var,"perc_MIN"= "WEA Revenue" , 
+                             "perc_MAX" ="WEA Revenue Range", 
+                             "TOT_MAX" = "Non-WEA Revenue"), 
+                Var = factor(Var, levels = c("Non-WEA Revenue", 
+                                             "WEA Revenue Range", 
+                                             "WEA Revenue")))
+p2<-ggplot2::ggplot()+
+  ggplot2::geom_bar(data = df.all.perc, aes(fill = Var, y = reorder(City, ordering), x = Value), stat="identity" )+
+  scale_fill_brewer()+
+  ggplot2::theme(legend.position = "bottom", 
+                 legend.title = element_blank(), 
+                 legend.box="vertical", legend.margin=margin())+
+  ggplot2::geom_point(data = df.symbol, aes(x = symbol,y = City, shape = Variable)) +
+  scale_shape_manual(values = c(17, 16)) +
+  ggplot2::ggtitle("Port Revenue from WEA, majority MAFMC species")+
+  ggplot2::xlab(expression("Port Revenue (%)"))+
+  ggplot2::ylab(element_blank())+
+  ecodata::theme_ts()
+
+p2
 ```
 
 ]
@@ -1268,17 +1156,16 @@ Indicators: development timeline, fishery and community specific revenue in leas
 
 ---
 
----
-background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/NARW_hotspots_1_18_2023.jpg")
+background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/SOE_2023_right_whales_hatteras_frame_v3.jpg")
 background-size: 500px
 background-position: right
 
 ## Risks: Offshore Wind Development Summary
 
 .pull-left[
-Implications: *revise*
-*  X% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
-*  Up to Y% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
+Implications: 
+*  1-34% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
+*  Up to 17% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
 *  Development will affect species differently, negatively affecting species that prefer soft bottom habitat while potentially benefiting species that prefer hard structured habitat.
 *  Planned wind areas overlap with one of the only known right whale foraging habitats, and altered local oceanography could affect right whale prey availability. Development also brings increased vessel strike risk and the potential impacts of pile driving noise.
 ]
@@ -1287,12 +1174,312 @@ Implications: *revise*
 ???
 Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region 
 Evaluating the impacts to scientific surveys has begun.
+
+---
+## EAFM Risk Assessment: 2023 Update (but all methods to be reveiwed/revised this year)
+
+.pull-left[
+*Species level risk elements*
+```{r sptable}
+#tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+# spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
+risk.species<-data.frame(
+  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Chub mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
+  Assess  = c("l", "l", "l",  "l", "l", "l", "h", "l", "lm", "h", "l", "h", "l", "l", "h", "na", "na"),
+  Fstatus = c("l", "l", "l", "l", "l", "h", "lm", "l", "lm", "lm", "l", "h", "l", "h", "lm", "na", "na"),
+  Bstatus = c("l", "l", "lm", "l", "l", "h", "lm", "lm", "lm", "lm", "lm", "mh", "lm", "lm", "lm", "na", "na"),
+  FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
+  FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
+  FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
+  Climate = c("h", "mh", "lm", "lm", "mh", "lm", "na", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
+  DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "na", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
+  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na")#,
+#  OffHabitat = c("na", "na", "l", "l", "l", "l", "na", "l", "l", "h", "na", "na", "na", "l", "l", "na", "na")#,
+)
+
+
+# these elements were removed by the council
+#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
+#  FoodSafe = c(),
+
+# one column test
+# risk.species %>%
+#   mutate(Fstatus = 
+#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
+#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
+
+#convert to longer text for consistency and display in html table
+risk.species <- risk.species %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#generalize to all
+risk.species %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+```
+.contrib[
+* RT assessment decreased Spiny dogfish **Assess**, risk to low and increased **Fstatus** risk to high
+* RT assessment decreased bluefish **Bstatus** risk from high to low-moderate
+* RT assessment increased Illex **Assess** risk from low-moderate to high
+]  
+
+*Ecosystem level risk elements*
+```{r ecotable}
+#tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.eco<-data.frame(
+  System = c("Mid-Atlantic"),
+  EcoProd = c("lm"),
+  #EcoDiv = c("lm"),
+  CommRev = c("mh"),
+  RecVal = c("l"),
+  FishRes1 = c("l"),
+  FishRes4 = c("mh"),
+  #CommJobs = c("mh"),
+  #RecJobs = c("l"),
+  FleetDiv = c("l"),
+  Social = c("lm"),
+  ComFood = c("h"),
+  RecFood = c("mh")
+)
+
+#convert to longer text for consistency and display in html table
+risk.eco <- risk.eco %>%
+     mutate_at(vars(-System), function(x){
+       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#make table
+risk.eco %>%
+  mutate_at(vars(-System), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+
+```
+.contrib[
+* Recreational value risk decreased from low-moderate to low
+]  
+]  
+
+.pull-right[ 
+*Species and Sector level risk elements*
+```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
+#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.sppsector<-data.frame(
+  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
+  MgtControl =  c(1,1,3,2,2,1,4,4,2,1,1,1,2,9,1,2,2,2,1,1,1,1,1,9),
+  TecInteract = c(1,1,1,3,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
+  OceanUse =    c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
+  RegComplex =  c(1,1,3,3,3,3,3,3,2,4,3,3,3,1,1,2,2,2,2,1,3,2,1,9),
+  Discards =    c(3,3,4,3,3,3,4,4,1,2,3,4,1,1,1,1,1,3,2,1,2,1,1,9),
+  Allocation =  c(1,1,4,1,4,1,4,1,1,4,1,1,4,1,1,1,1,4,1,1,1,1,1,9) 
+)
+
+
+#convert to text for consistency
+risk.sppsector <- risk.sppsector %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na")}) %>%
+     as.data.frame()
+
+#make table
+risk.sppsector %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 11) 
+
+```
+.contrib[
+* Management section not updated--to be revised this year  
+]
+]
+
+
+???
+Comments on overall risk assessment for EOP to consider?
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/2023RespMemoBody_Page_1.png")
+background-size: 500px
+background-position: right
+
+## Updates to the SOE request tracking memo
+
+.pull-left-60[
+Now organized by priority and category
+
+*  Priority from SSC and Council
+*  Categories from SOE team
+*  Highest priority requests in progress
+    -  System level thresholds and reference points
+    -  Trend analysis, inflections and break points
+    -  Regime shifts
+*  Identified some gaps
+    - Short term forecasts
+    - Management complexity
+    - Recreational bycatch
+*  Stock level indicators best addressed in research tracks?
+*  Lowest priority requests likely to be dropped
+]
+
+.pull-right-40[
+]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-02.28.23_Page_1.png")
+background-size: 400px
+background-position: right
+
+## SSC Ecosystem Working Group Update
+.pull-left-70[
+Objective: assist the Council in developing short term and long term objectives to advance the operational use of ecosystem information in management decisions
+
+Outcomes for the Council:
+
+-   An OFL CV process that makes better use of ecosystem information in determining the ABC
+-   Evaluation of multiple ecosystem indicators and potential development of thresholds for use in a revised EAFM risk assessment and/or other Council processes
+-   Increased range of opportunities for relevant ecosystem information to be considered in management decision processes
+
+*The SSC Ecosystem WG looks forward to the feedback of the full SSC on any of these topics, and always welcomes new members.*
+]
+
+---
+## Reported progress to MAFMC, October 2022
+
+#### Objective 1: Expanding and clarifying the ecosystem portion of the SSC OFL CV determination process (short term objective)
+
+Simulation analyses evaluating impact of ecosystem indicators on stock productivity and assessment uncertainty (OFL CV) in progress
+
+#### Objective 2: Developing prototype processes to provide multispecies and system level scientific advice appropriate for Council decision making, highlighting tradeoffs linking directly to economic and social outcomes (long term objective)
+
+Initial indicators and analyses presented evaluating ecosystem overfishing and ecosystem performance given environmental conditions
+
+#### Objective 3: Collaborating with relevant working groups in developing the stock-specific Ecosystem and Socio-economic Profiles (ESP) process to specify stock-specific Ecosystem ToRs (moderate-term objective)
+
+Ecosystem socioeconomic profiles in progress for several MAFMC stocks, and multiple SSC members involved in Research Track working groups
+
+---
+## Prioritized SOE requests and summarized approaches for using ecosystem information
+
+
+## Reviewed progress on four projects, February 2023
+
+---
+## Feedback: Ecosystem overfishing
+
+.pull-left[
+How might the Council use indicators of Ecosystem overfishing?
+
+What information would be most useful in decision making?
+
+SSC discussion:
+
+*  Define based on regional ecosystem productivity  
+*  Thresholds define a "safe operating space"
+     + Define the bounds where fishing causes poor system performance
+     + Identify tradeoffs across species within the safe zone
+*  Provide advice on options to correct ecosystem overfishing
+*  Use social benefits to measure outcomes  
+
+.contrib[
+Figure key: 
+
+<span style="background-color:#f4a460;">Orange background = Tipping point overfishing threshold, Link and Watson 2019</span> 
+
+<span style="background-color:#a2cd5a;">Green background = Optimal range, Link and Watson 2019</span>
+]
+]
+
+.pull-right[
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
+
+#fogarty, fig.cap="Fogarty Index; the ratio of total landings to total primary production in the MAB. Link and Watson (2019) give an optimal range (green shading) of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that index values exceeding 1 to 2 PPT (orange shading) led to ecosystem tipping points."
+
+```
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
+
+#ryther, fig.cap="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green shading) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange shading). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded)."
+```
+
+]
+???
+Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
+
+---
+## Feedback: Index Numbers
+
+.pull-left[
+How might the Council use an Index Numbers approach?
+
+What information would be most useful in decision making?
+
+SSC discussion:
+
+*  Integrates separate indicators into overall performance indicator
+    +  Outputs linked to current management objectives
+    +  Identify outputs of interest with the Council
+    +  Identify linked environmental inputs 
+*  Could develop models for separate objectives
+    +  Seafood production
+    +  Recreational opportunities
+]
+
+.pull-right[
+![:img Example Index numbers analysis, 110%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/IndexNumbersExample.png)
+]
+
+---
+## More information at the species level: Ecosystem Socioeconomic Profiles (ESPs)
+
+.pull-left[
+
+![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)
+]
+
+.pull-right[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/GOApcodESPrisk.png)
+]
+
+.footnote[
+
+Pacific cod example from ASFC: https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheries-science-center-year-review and https://apps-afsc.fisheries.noaa.gov/refm/docs/2021/GOApcod.pdf
+]
+
+---
+## Bluefish ESP reviewed December 2022
+
+.pull-left[
+
+![GOA pcod ESP conceptual model](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
+]
+
+.pull-right[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/TOR1.svg)
+]
+
+???
+
+The Bluefish Research Track ESP was presented December 7 2022, and was well received by CIE reviewers. Reviewers commented that it was the most complete treatment of a stock assessment "ecosystem ToR" they had seen, and formed a good basis for integrating further ecosystem information into the stock assessment in the future. The full ESP document is available as a working paper from the [stock assessment data portal](https://apps-nefsc.fisheries.noaa.gov/saw/sasi_files.php?year=2022&species_id=32&stock_id=6&review_type_id=5&info_type_id=5&map_type_id=&filename=WP%2001%20Tyrell%20etAl%202022%20-%20ESP.pdf). 
+
+In addition to the conceptual model, a summary table was developed for bluefish ecosystem indicators. This type of summary could contribute to OFL CV decisions with further information on how these indicator levels affect uncertainty in assessment.
+
+
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
 background-size: 350px
 background-position: right bottom
 
-## THANK YOU! SOEs made possible by (at least) 61 contributors from 14 institutions  UPDATE THIS!
+## THANK YOU! SOEs made possible by (at least) 61 contributors from 14 institutions
 
 .pull-left[
 .contrib[
@@ -1405,28 +1592,3 @@ PrintBibliography(myBib)
 ]
 ]
 
----
-
-#Extra
-
----
-## Risks: Climate change Mid Atlantic, new seasonal transition indicators
-
-.pull-left[ 
-Mid Atlantic
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-transdates.R")}
-```
-
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")}
-```
-
-]
-
-.pull-right[
-Coastwide
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-trans-dates.R")}
-```
-
-Ocean summer conditions now last longer within each year. In the MAB, the transition date from warm stratified summer conditions to well mixed cool fall conditions is getting later. Coastwide, spring transition is also happening earlier. 
-
-]
