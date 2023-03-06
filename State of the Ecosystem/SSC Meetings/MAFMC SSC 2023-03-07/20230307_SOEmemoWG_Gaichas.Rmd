@@ -560,7 +560,7 @@ Indicator: Bennet--price and volume indices
 Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
 
 ---
-## Objective: Mid Atlantic Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:green;">RecValue</span>, decreased risk
+## Objective: Mid Atlantic Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:lightgreen;">RecValue</span>, decreased risk
 
 .pull-left[
 Indicators: Recreational effort and fleet diversity   
@@ -612,9 +612,12 @@ Most recent commercial species revenue diversity near series low value
 #recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
 ```
 
+.contrib[
+Recreational catch diversity maintained by a different set of species over time
+]
 ]
 ---
-## Objective: Mid Atlantic Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png) &emsp; Risk element: ecological diversity put aside, new indices
+## Objective: Mid Atlantic Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png) &emsp; Risk element: include ecological diversity?
 
 .pull-left[
 *Ecological* Indicators: zooplankton and larval fish diversity
@@ -635,7 +638,7 @@ Most recent commercial species revenue diversity near series low value
 Implications:  
 * stable capacity to respond to the current range of commercial fishing opportunities  
 * recreational catch diversity maintained by a different set of species over time  
-* monitor zooplankton diversity driven by declining dominant species  
+* monitor zooplankton diversity as community composition changes  
 
 ]
 ???
@@ -706,7 +709,7 @@ cropRecEJ
 <!--![Recreational fishing communities environmental justice spider plot](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//EJ_Recreational_MAB.png)--> 
 ]
 
-Implications: There was an increase in recreational fishing activities in the many of the top recreational communities from 2019 to 2020. Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+Implications: There was an increase in recreational fishing activities in the many of the top recreational communities from 2019 to 2020. Highlighted communities may be vulnerable to changes in fishing. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 
 ---
 ## Objectives: All Areas Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)
@@ -777,64 +780,79 @@ Implications:
 
 
 ---
+<!--
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//seasonal-sst-anom-gridded-2022.png")
 background-size: 700px
 background-position: right top
+-->
 
 ## Risks: Climate change Mid Atlantic
 .pull-left[
-Indicators: ocean currents, bottom and surface temperature, *detrended* marine heatwaves
+Indicators: ocean currents, temperature, seasons
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.width=4}
 ```
 
-
-```{r, code =readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp-insituglorys.R"), fig.width=4}
-
+```{r wsw-prop,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-slopewater.R"), fig.width=5, fig.asp=.35}
+#fig.cap = "Proportion of Warm Slope Water (WSW) and Labrador Slope Water (LSLW) entering the Gulf of Maine through the Northeast Channel.",
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R")}
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R"), fig.width=4}
 ```
+
+
 ]
 
 .pull-right[
 
-&nbsp;  
-&nbsp;  
-&nbsp; 
-&nbsp; 
-&nbsp;  
-&nbsp;  
-&nbsp;  
-&nbsp; 
-&nbsp;  
-&nbsp;  
-&nbsp; 
-&nbsp;  
-&nbsp; 
-&nbsp;  
-&nbsp;  
-&nbsp; 
-&nbsp;  
-&nbsp;  
-
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year-detrended.R"), fig.width=5, fig.asp=.6}
-#heatwave-year, fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2020."
+```{r seasonal-sst-anom-gridded,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"), fig.width = 8, fig.asp = .6}
+#fig.cap="MAB (grey outline) seasonal sea surface temperature (SST) time series overlaid onto 2021 seasonal spatial anomalies. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall.",
 ```
+
+```{r bottom-temp,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp-hi-res-ts.R"), fig.width = 6, fig.asp = .4}
+#fig.cap="MAB seasonal bottom temperature (BT) anomaly time series. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall. The final 2 years of each time series (open circles) are modeled estimates subject to change.",
+```
+
+<!--
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+-->
 
 ]
-???
-A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
-
----
-## Risks: Climate change Mid Atlantic, new bottom temperature indicators
-
-.pull-left[
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-bt-anom-gridded.R"), fig.width=8, fig.asp=1}
-```
 
 .contrib[
-In contrast to SST, long term BT is increasing in winter as well as other seasons
+The Gulf Stream is further north. Ocean summer is lasting longer. In contrast to SST, long term bottom temperature is increasing in winter as well as other seasons. 
 ]
+
+
+---
+## Risks: Climate change Mid Atlantic, changes to marine heatwave methods
+
+.pull-left[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave-year-detrended.R")}
+#heatwave-year, fig.cap="Marine heatwave events (red) in the Mid-Atlantic occuring in 2020." , fig.width=5, fig.asp=.6
+```
+
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R")}
+```
+
+
 ]
 
 .pull-right[
@@ -843,35 +861,16 @@ In contrast to SST, long term BT is increasing in winter as well as other season
 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-heatwave.R")}
 ```
+] 
+
+In addition to changes in long-term average conditions, short-term extreme temperature events can produce acute stress on marine organisms, especially when the baseline temperature is increasing. To identify these extreme events separately from the baseline warming, we have changed our methods describing marine heatwaves to remove the global warming signal. Therefore, these indicators look different than in previous reports, but now identify truly extreme departures from an already warming ecosystem.  A combination of long-term ocean warming and extreme events should be used to assess total heat stress on marine organisms.
 
 .contrib[
-Heatwaves in bottom temperature last longer and happen later in the season than surface heatwaves. No consistent long term annual trend in bottom or surface heatwaves.
-]
 ]
 
----
-## Risks: Climate change Mid Atlantic, new seasonal transition indicators
+???
+A marine heatwave is a warming event that lasts for five or more days with sea surface temperatures above the 90th percentile of the  historical daily climatology (1982-2011). 
 
-.pull-left[ 
-Mid Atlantic
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-transdates.R")}
-```
-
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")}
-```
-
-]
-
-.pull-right[
-Coastwide
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-trans-dates.R")}
-```
-
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-transbox.R")}
-```
-
-
-]
 
 ---
 ## Risks: Climate change and estuarine habitat &emsp; Risk element: EstHabitat 11 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk species
@@ -967,12 +966,13 @@ Indicator: warm core rings
 ```
 
 
+]
+
 ---
 ## Risks: Ecosystem productivity Mid Atlantic  &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>
 
-Indicators: chlorophyll, primary production, zooplankton
-
 .pull-left[
+Indicators: chlorophyll, primary production, zooplankton
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.asp = 0.9}
 #chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a near real-time satellite source). The long-term mean is shown in black and shading indicates +/- 1 standard deviation.", fig.width = 5
 ```
@@ -985,16 +985,18 @@ Indicators: chlorophyll, primary production, zooplankton
 #weekly-phyto-size, fig.cap="The annual climatology (1998-2019) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations."
 ```
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-euph-cnid.R"), fig.width=8, fig.asp=.25}
-#zoo-strat-abun, fig.cap="Stratified abundance of cnidarians and euphausiids in Mid-Atlantic Bight."
+```{r zoo-pseudo-thecos, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-pseudo_thecos.R")}
+# fig.cap="Abundance Annomalies of pseudocalanus and pteropods in Mid-Atlantic Bight.",
 ```
 
 ]
 
-Implications: increased production by smaller phytoplankton implies less efficient transfer of primary production to higher trophic levels. Monitor implications of increasing gelatinous zooplankton and krill.
+.contrib[
+Increased production by smaller phytoplankton implies less efficient transfer of primary production to higher trophic levels. Pteropods are important prey items for planktivores such as herring and mackerel, as well as some sea birds.  Pseudocalanus spp. are important prey for many larval fish species, and can influence phytoplankton standing stock through grazing.  
+]
   
 ???
-Below average phytoplankton biomass could be due to reduced nutrient flow to the surface and/or increased grazing pressure. A short fall bloom was detected in November. Primary productivity (the rate of photosynthesis) was average to below average throughout 2021
+
 
 ---
 ## Risks: Ecosystem productivity Mid Atlantic &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>
@@ -1011,37 +1013,25 @@ magick::image_trim(fishcond)
 ]
 
 .pull-right[
-Indicator: fish productivity anomaly
+Indicator: survey fish productivity anomaly
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.asp=.75}
 
 ```
 
-]
-
-Implications: 
-Species in the MAB had mixed condition in 2022. Survey-based fish productivity continues a general decline. 
-Update? *Preliminary results of synthetic analyses show that changes in temperature, zooplankton, fishing pressure, and population size influence the condition of different fish species.* 
-
-
-???
----
-## Risks: Ecosystem productivity, new fish productivity anomaly based on stock assessments
-.pull-left[
-Mid Atlantic region stocks
+Indicator: assessment fish productivity anomaly Mid Atlantic region stocks
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-assessment.R"), fig.asp=.75}
 
 ```
+.contrib[
+Methods from `r Cite(myBib, "perretti_regime_2017")`.  Black line indicates sum where there are the same number of assessments across years.
+]
 ]
 
-.pull-right[
-New England region stocks
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-productivity-assessment.R"), fig.asp=.75}
+Implications: 
+Species in the MAB had mixed condition in 2022. Fish productivity based on surveys and assessments has been below average. 
 
-```
-]
 
-Methods from `r Cite(myBib, "perretti_regime_2017")`.  Black line indicates sum where there are the same number of assessments across years.  
-
+???
 ---
 ## Risks: Ecosystem productivity All regions
 
@@ -1415,3 +1405,28 @@ PrintBibliography(myBib)
 ]
 ]
 
+---
+
+#Extra
+
+---
+## Risks: Climate change Mid Atlantic, new seasonal transition indicators
+
+.pull-left[ 
+Mid Atlantic
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-transdates.R")}
+```
+
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")}
+```
+
+]
+
+.pull-right[
+Coastwide
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-trans-dates.R")}
+```
+
+Ocean summer conditions now last longer within each year. In the MAB, the transition date from warm stratified summer conditions to well mixed cool fall conditions is getting later. Coastwide, spring transition is also happening earlier. 
+
+]
