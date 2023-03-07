@@ -1,6 +1,6 @@
 ---
 title: "State of the Ecosystem<br />Mid-Atlantic 2023"
-subtitle: "Risk Assessment Update, Request Tracking, and Ecosystem Working Group Report<br />MAFMC SSC<br /> 7 March 2023"
+subtitle: "Risk Assessment Update, Request Tracking,<br /> and Ecosystem Working Group Report<br />MAFMC SSC<br /> 7 March 2023"
 author: "Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith<br /> Northeast Fisheries Science Center<br /> Brandon Muffley, MAFMC<br />and all SOE contributors"
 output:
   xaringan::moon_reader:
@@ -352,7 +352,7 @@ Seafood production ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDA
 
 Profits ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png), ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) 
 
-Recreational opportunities:  Effort ![:img increasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//increase.png) ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png); Effort diversity ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
+Recreational opportunities:  Effort ![:img increasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Effort diversity ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
 
 Stability: Fishery ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
 
@@ -483,7 +483,6 @@ Nevertheless, the percentage caught for each stock’s ABC/ACL suggests that the
 ---
 ## Implications: Mid Atlantic Seafood Production Drivers
 .pull-left[
-
 Biomass does not appear to drive landings trends
 
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.85}
@@ -498,9 +497,7 @@ Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
 ]
 
 .pull-right[
-.contrib[ 
-* Declining managed benthos: surfclam/ocean quahog markets 
-* Declining aggregate planktivores: menhaden fishery consolidation
+Declining seafood mainly benthos: surfclam/ocean quahog market drivers 
 ```{r hack}
 #Define constants for figure plot
 #series.col <- c("indianred","black")
@@ -509,14 +506,12 @@ Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.width=4.5, fig.asp=1}
 # comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
 ```
-
+.contrib[
+* Declining total mainly planktivores: menhaden fishery consolidation
 * Recreational drivers differ: shark fishery management, possibly survey methodology
 
 Monitor: 
-* climate risks including warming, ocean acidification, and shifting distributions  
-```{r, eval=FALSE}
-#species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.width=3.5, fig.asp=.9
-```  
+* climate risks including warming, ocean acidification, and shifting distributions
 * ecosystem composition and production changes  
 * fishing engagement  
 ]
@@ -563,7 +558,7 @@ Indicator: Bennet--price and volume indices
 Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
 
 ---
-## Objective: Mid Atlantic Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:lightgreen;">RecValue</span>, decreased risk
+## Objective: Mid Atlantic Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:lightgreen;">RecValue</span>, decreased risk
 
 .pull-left[
 Indicators: Recreational effort and fleet diversity   
@@ -714,7 +709,10 @@ cropRecEJ
 <!--![Recreational fishing communities environmental justice spider plot](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//EJ_Recreational_MAB.png)--> 
 ]
 
-Implications: There was an increase in recreational fishing activities in the many of the top recreational communities from 2019 to 2020. Highlighted communities may be vulnerable to changes in fishing. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+Implications: There was an increase in recreational fishing activities in the many of the top recreational communities from 2019 to 2020. 
+.contrib[
+Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+]
 
 ---
 ## Objectives: All Areas Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)
@@ -767,7 +765,6 @@ Implications:
 
 * Risk elements: 
     - FW2Prey evaluated by species: 13 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span> risk, unchanged 
-    - TechInteract, evaluated by species and sector, unchanged
 ]
 
 
@@ -840,7 +837,7 @@ Indicators: ocean currents, temperature, seasons
 
 ]
 
-The Gulf Stream is further north. Ocean summer is lasting longer. In contrast to SST, long term bottom temperature is increasing in all seasons. 
+The Gulf Stream is trending north. Ocean summer is lasting longer. In contrast to SST, long term bottom temperature is increasing in all seasons. 
 .contrib[]
 ???
 Seasonal sea surface temperatures in 2022 were above average for most of the year,  however late spring storms caused deep mixing, which delayed stratification and surface warming in late spring and early summer.
@@ -854,7 +851,7 @@ Seasonal sea surface temperatures in 2022 were above average for most of the yea
 ```
 
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R", out.width = '75%')}
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-heatwave.R"), out.width = '75%'}
 ```
 
 
@@ -864,7 +861,7 @@ Seasonal sea surface temperatures in 2022 were above average for most of the yea
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-heatwave-year-detrended.R")}
 ```
 
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-heatwave.R", out.width = '75%')}
+```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-heatwave.R"), out.width = '75%'}
 ```
 ] 
 .contrib[
@@ -919,11 +916,11 @@ Indicator: Mid Atlantic Ocean acidification
 Indicator: warm core rings
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-wcr.R")}
 ```
-.contrib[
-Summer aragonite saturation was at or below the sensitivity levels for both Atlantic sea scallop and longfin squid in Long Island Sound and the nearshore and mid-shelf regions of the New Jersey shelf several times over the past decade.
+
+Summer aragonite saturation low for both Atlantic sea scallop and longfin squid in Long Island Sound and the nearshore and mid-shelf regions of the New Jersey shelf several times over the past decade.
 
 There were fewer warm core rings near the continental shelf in 2022, which combined with economic fishery drivers may have contributed to total catch of *Illex* squid being 20% less than the total catch reported in 2021.
-]
+.contrib[]
 ]
 ???
 
@@ -996,11 +993,11 @@ Methods from `r Cite(myBib, "perretti_regime_2017")`.
 ---
 ## Risks: Ecosystem productivity All regions
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), out.width='95%',  fig.asp = 0.5}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), out.width='90%',  fig.asp = 0.5}
 #energy-density, fig.cap="Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values.", 
 ```
 
-Implications: fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring
+Fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring
 
 ---
 ## Risks: Ecosystem structure and habitat: new diet based forage fish index, new diversity trends  
@@ -1052,8 +1049,8 @@ Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style=
 *Multiple drivers with different impacts by species*    
 * Seasonal estuarine conditions affect life stages of striped bass, blue crabs, summer flounder, black sea bass differently
 .contrib[
-
-+ Chesapeake summer hypoxia, temperature better than in past years, but worse in fall
++ Chesapeake suitable habitat for juvenile summer flounder growth has declined by 50% or more 
++ Climate change is expected to continue impacting habitat function and use for multiple species  
 + Habitat improving in some areas (tidal fresh SAV, oyster reefs), but eelgrass declining 
 ] 
 * Ocean acidification impact on commercial species  
@@ -1184,7 +1181,7 @@ Current plans for rapid buildout of offshore wind in a patchwork of areas spread
 Evaluating the impacts to scientific surveys has begun.
 
 ---
-## EAFM Risk Assessment: 2023 Update (but all methods to be reveiwed/revised this year)
+## EAFM Risk Assessment: 2023 Update (all methods to be reveiwed/revised this year)
 
 .pull-left[
 *Species level risk elements*
@@ -1316,7 +1313,7 @@ Comments on overall risk assessment for EOP to consider?
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/2023RespMemoBody_Page_1.png")
-background-size: 500px
+background-size: 520px
 background-position: right
 
 ## Updates to the SOE request tracking memo
@@ -1337,6 +1334,8 @@ Now organized by priority and category
 *  Stock level indicators best addressed in research tracks?
 *  SOE use statistics and memo updates in progress
 *  Lowest priority requests likely to be dropped
+
+Comments on priorities? Categories?
 ]
 
 .pull-right-40[
@@ -1376,88 +1375,129 @@ Initial indicators and analyses presented evaluating ecosystem overfishing and e
 Ecosystem socioeconomic profiles in progress for several MAFMC stocks, and multiple SSC members involved in Research Track working groups
 
 ---
-## Prioritized SOE requests and summarized approaches for using ecosystem information
+## Prioritized SOE requests (see Request Tracking Memo)
+
+## Summarized [approaches for using ecosystem information](https://noaa-edab.github.io/presentations/20220815_SCS7_Keynote2_Gaichas.html) for SCS7 (see addendum)
 
 ## Reviewed progress on four projects, February 2023
 
 .pull-left[
+### Objective 1: 
+
+*  ABC decisions with environmentally driven recruitment (Wilberg et al)
+
+*  Alternative stock performance metrics considering current conditions (Rago and Rothschild)
 
 ]
 
 .pull-right[
+### Objective 2: 
+
+*  Ecosystem overfishing indicators (Beet and Gaichas)
+
+*  Index Numbers for ecosystem performance (Walden and DePiper)
 
 ]
 
 ---
-## Update: 
-
----
-## New project:
-
----
-## Update: Ecosystem overfishing
+## Update: ABC decisions with environmentally driven recruitment 
 
 .pull-left[
-How might the Council use indicators of Ecosystem overfishing?
+Do historical summer flounder recruitment dynamics demonstrate patterns of environmental effects?
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/flukerecsummertemp.png)
+]
 
-What information would be most useful in decision making?
+.pull-right[
+How to develop alternative relationships between environmental drivers and recruitment for summer flounder and other species? Gaussian, sigmoidal, none
 
-SSC discussion:
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/flukeSpawnRecexample.png)
+]
 
-*  Define based on regional ecosystem productivity  
+Work to continue integrating theoretical responses with summer flounder operating model, and harvest control rules representing Councils across the US.
+
+???
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/flukerecresponse.png)
+
+---
+## New project: Alternative stock performance metrics considering current conditions
+
+.pull-left[
+How well do we play the hand we have been dealt?
+
+Basic idea: compare observed quantities to optimal values GIVEN the recent history of stock
++ Recasts stock assessment outputs into a simple time series of ratios
++ Reduces over confidence in management skill when realized recruitment is high
++ Reduces over reaction when realized recruitment is low
+
+Summer flounder example:
++ Major gains in rebuilding since 1990 but most of this was due to recruitments higher than most recent years.
++ Rel SSB near one since 2005.
++ Relative catch has oscillated since 1990 and only recently approached optimal 
+
+]
+
+.pull-right[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/flukerelativeyieldSSBetc.png)
+]
+
+---
+## Update: Ecosystem overfishing indicators
+
+.pull-left-60[
+Reviewed new information and agreed with proposals:
+*  Updated data inputs (menhaden)
+*  Discard estimation still in progress
+*  Comparisons of data sources
+*  Calculate new thresholds using regional ecosystem productivity
+*  Simulation test thresholds within ecosystem model Atlantis
+
+Previous SSC discussion:
 *  Thresholds define a "safe operating space"
      + Define the bounds where fishing causes poor system performance
      + Identify tradeoffs across species within the safe zone
 *  Provide advice on options to correct ecosystem overfishing
 *  Use social benefits to measure outcomes  
 
-.contrib[
-Figure key: 
+What information would be most useful in decision making?
 
-<span style="background-color:#f4a460;">Orange background = Tipping point overfishing threshold, Link and Watson 2019</span> 
-
-<span style="background-color:#a2cd5a;">Green background = Optimal range, Link and Watson 2019</span>
-]
 ]
 
-.pull-right[
+.pull-right-40[
 
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-fogarty.R")}
-
-#fogarty, fig.cap="Fogarty Index; the ratio of total landings to total primary production in the MAB. Link and Watson (2019) give an optimal range (green shading) of the Fogarty ratio of 0.22 to 0.92 parts per thousand (PPT). Previous work suggested that index values exceeding 1 to 2 PPT (orange shading) led to ecosystem tipping points."
-
-```
-
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-ryther.R")}
-
-#ryther, fig.cap="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green shading) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange shading). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded)."
-```
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ryther-index-MAB.png)
 
 ]
 ???
+
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/fogarty-index-Constant-MAB.png)
+
 Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
 
 ---
-## Update: Index Numbers
+.pull-left-60[
+## Update: Index Numbers for ecosystem performance
 
-.pull-left[
-How might the Council use an Index Numbers approach?
-
-What information would be most useful in decision making?
-
-SSC discussion:
-
+Useful way to synthesize information
 *  Integrates separate indicators into overall performance indicator
     +  Outputs linked to current management objectives
+    +  Internal weighting using Data Envelopment Analysis
+*  Can compare to any reference year
     +  Identify outputs of interest with the Council
     +  Identify linked environmental inputs 
-*  Could develop models for separate objectives
+
+Reviewed results from previous recommendation:
+*  Develop models for separate objectives
     +  Seafood production
     +  Recreational opportunities
+    +  Ecosystem conditions
+
+What information would be most useful in decision making?
 ]
 
-.pull-right[
-![:img Example Index numbers analysis, 110%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/IndexNumbersExample.png)
+.pull-right-40[
+![:img DEA, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/distancefunctionDEA.png)
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/landingsIndexMANE.png)
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/environmentIndexMANE.png)
 ]
 
 ---
@@ -1489,6 +1529,11 @@ Pacific cod example from ASFC: https://www.fisheries.noaa.gov/alaska/2021-alaska
 ![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/TOR1.svg)
 ]
 
+Reviewers commented that it was the most complete treatment of a stock assessment "ecosystem ToR" they had seen, and formed a good basis for integrating further ecosystem information into the stock assessment in the future.
+
+The full ESP document is available as a working paper from the [stock assessment data portal](https://apps-nefsc.fisheries.noaa.gov/saw/sasi_files.php?year=2022&species_id=32&stock_id=6&review_type_id=5&info_type_id=5&map_type_id=&filename=WP%2001%20Tyrell%20etAl%202022%20-%20ESP.pdf) 
+
+Discuss use of summary table in OFL CV or other decisions?
 ???
 
 The Bluefish Research Track ESP was presented December 7 2022, and was well received by CIE reviewers. Reviewers commented that it was the most complete treatment of a stock assessment "ecosystem ToR" they had seen, and formed a good basis for integrating further ecosystem information into the stock assessment in the future. The full ESP document is available as a working paper from the [stock assessment data portal](https://apps-nefsc.fisheries.noaa.gov/saw/sasi_files.php?year=2022&species_id=32&stock_id=6&review_type_id=5&info_type_id=5&map_type_id=&filename=WP%2001%20Tyrell%20etAl%202022%20-%20ESP.pdf). 
@@ -1498,10 +1543,10 @@ In addition to the conceptual model, a summary table was developed for bluefish 
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
-background-size: 350px
-background-position: right bottom
+background-size: 250px
+background-position: right top
 
-## THANK YOU! SOEs made possible by (at least) 61 contributors from 14 institutions
+## THANK YOU! SOEs made possible by (at least) 67 contributors from 18 institutions
 
 .pull-left[
 .contrib[
@@ -1524,34 +1569,37 @@ Emily Farr (NMFS Office of Habitat Conservation)<br>
 Michael Fogarty<br>
 Paula Fratantoni<br>
 Kevin Friedland<br>
-Marjy Friedrichs (VIMS)<br>
+Marjy Friedrichs (Virginia Institute of Marine Science)<br>
 Sarah Gaichas<br>
 Ben Galuardi (GARFO)<br>
 Avijit Gangopadhyay (School for Marine Science and Technology, University of Massachusetts Dartmouth)<br>
 James Gartland (Virginia Institute of Marine Science)<br>
+Lori Garzio (Rutgers University)<br>
 Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
 Sean Hardison<br>
 Kimberly Hyde<br>
 John Kosik<br>
 Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
 Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
-
+Scott Large<br>
+Andrew Lipsky<br>
+Sean Lucey<br>
 ]
 ]
 
 .pull-right[
 .contrib[
-Scott Large<br>
-Andrew Lipsky<br>
-Sean Lucey<br>
 Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
 Chris Melrose<br>
 Shannon Meseck<br>
 Ryan Morse<br>
+Ray Mroch (SEFSC)<br>
 Brandon Muffley (MAFMC)<br>
 Kimberly Murray<br>
+Janet Nye (University of North Carolina at Chapel Hill)<br>
 Chris Orphanides<br>
 Richard Pace<br>
+Debi Palka<br>
 Tom Parham (Maryland DNR)<br>
 Charles Perretti<br>
 CJ Pellerin (NOAA Chesapeake Bay Office)<br>
@@ -1560,6 +1608,8 @@ Grace Saba (Rutgers)<br>
 Vincent Saba<br>
 Sarah Salois<br>
 Chris Schillaci (GARFO)<br>
+Amy Schueller (SEFSC)<br>
+Teresa Schwemmer (Stony Brook University)<br>
 Dave Secor (CBL)<br>
 Angela Silva<br>
 Adrienne Silver (UMass/SMAST)<br>
@@ -1571,11 +1621,13 @@ Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA
 John Walden<br>
 Harvey Walsh<br>
 Changhua Weng<br>
+Timothy White (Environmental Studies Program, BOEM)<br>
 Mark Wuenschel  
 
 ]
 ]
 
+???
 
 ---
 ## References
