@@ -1,0 +1,216 @@
+/* Let's load some fonts */
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:200,200i,300,300i,400,400i,600,600i');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+/* Generic stuff */
+
+.remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+body { font-family: 'Open Sans' }
+
+.grViz {
+  margin-left:auto; margin-right:auto; display:block;
+}
+
+/* Pretty sure this is all me messing with the title slide */
+
+div.remark-slide-container h1 {
+	font-family: 'Titillium Web', sans-serif;
+	color: #522D80;
+	letter-spacing: -1px;
+  font-size: 45px;
+}
+
+.inverse h1 {
+    line-height: 0.5em;
+}
+.title-slide h1 {
+  line-height: 0.95em;
+	margin-top: -100px;
+}
+
+div.remark-slide-container h2 {
+	font-family: 'Open Sans', sans-serif;
+	color: #522D80;
+	letter-spacing: -1px;
+	font-size: 24px;
+}
+
+div.remark-slide-container h3 {
+	font-family: 'Open Sans', sans-serif;
+	color: #000;
+	letter-spacing: -1px;
+	font-size: 20px;
+	padding-top: 50px;
+}
+
+.title-slide {
+	background-color: #fff;
+  background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs//EDAB_images/SOEtitleslide.png);
+  background-size: 60%;
+  background-position: left top;
+	border-bottom: 0px solid  #522D80;
+	box-shadow:  0 55px 0 #fff;
+}
+
+
+
+
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+/* Hmm. How about the slide number. */
+
+
+.remark-slide-number {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	color: #522D80;
+}
+
+/* Okay, now let's add a simple bottom border */ 
+
+
+div.remark-slide {
+  border-bottom: 3px solid  #522D80;
+  box-shadow:  0 5px 0 #F66733;
+
+}
+
+/* Let's play with .inverse and a new class, .fullscale, a little more */
+
+.inverse {
+    color: #fafafa;
+    text-shadow: 0 0 0px #333;
+}
+
+.inverse a{
+      color: #FFFF99; 
+     }
+
+div.remark-slide-container .fullscale {
+    color: #d6d6d6;
+    text-shadow: 0 0 20px #333;
+}
+
+div.remark-slide-container .fullscale h1 {
+	color: #fff;
+
+}
+
+div.remark-slide-container .fullscale p {
+	color: #000;
+
+}
+.remark-slide-content {
+	font-size: 20px;
+	text-shadow: 0 0 0px #333;
+
+}
+
+/* column widths
+*/
+.left-column {
+  color: #000;
+  width: 30%;
+  float: left;
+}
+
+.right-column {
+  width: 47%;
+  float: right;
+  border: 0px ;
+  padding: 25px solid green;
+  margin: 25px;
+}
+
+.table {
+  font-size: 80%;
+}
+
+/* increase footnote text size for 508 compliance */
+
+.footnote {
+  position: absolute;
+  bottom: 1em;
+  padding-right: 4em;
+  font-size: 60%;
+}
+.pull-left {
+  float: left;
+  width: 47%;
+}
+.pull-right {
+  float: right;
+  width: 47%;
+}
+
+/* Various left and right split columns*/
+
+.pull-left-70 { float: left; width: 66.5%; }
+.pull-right-30 { float: right; width: 28.5%; }
+.pull-right-30 ~ * { clear: both; }
+
+.pull-left-60 { float: left; width: 57%; }
+.pull-right-40 { float: right; width: 38%; }
+.pull-right-40 ~ * { clear: both; }
+
+.pull-left-50 { float: left; width: 47.5%; }
+.pull-right-50 { float: right; width: 47.5%; }
+.pull-right-50 ~ * { clear: both; }
+
+.pull-left-40 { float: left; width: 38%; }
+.pull-right-60 { float: right; width: 57%; }
+.pull-right-60 ~ * { clear: both; }
+
+.pull-left-30 { float: left; width: 28.5%; }
+.pull-right-70 { float: right; width: 66.5%; }
+.pull-right-70 ~ * { clear: both; }
+
+.image-cap{
+  font-size: 60%;
+}
+
+.contrib{
+  font-size: 60%;
+}
+
+.remark-inline-code{
+  /* background: #F5F5F5; /* lighter */
+  background: #e7e8e2; /* darker */
+  border-radius: 3px;
+  padding: 0px;
+}
+
+.box-highlight{
+  border: thick double #32a1ce;
+  margin: 6rem;
+  padding: 1rem;
+}
+
+/*change link color for 508 compliance*/
+a, a > code {
+  color: #c20a0a; /*default: rgb(249, 38, 114); || sets color of links */
+  text-decoration: none; /* turns off background coloring of links */
+}
+
+/*alter risk assessment table formatting*/
+.risktable {
+    border-collapse: collapse;
+}
+.risktable th {
+    padding: 2px;
+}
+.risktable td {
+    padding: 1px;
+}
+.risktable tbody tr:nth-of-type(even) {
+  background-color:transparent;
+}
+
+/*text colors*/
+.bluetext { color: blue; }
+.greentext { color: green; }
