@@ -120,6 +120,10 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 1. Performance relative to management objectives
 1. Risks to meeting management objectives
 
+
+![:img State of the Ecosystem page 1 summary table, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png)![:img State of the Ecosystem page 2 risk bullets, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_3.png)
+
+
 ]
 
 .pull-right[
@@ -161,20 +165,6 @@ knitr::kable(mng_obj, linesep = "",
 ```
 ]
 
----
-## State of the Ecosystem report structure: graphical summary
-.pull-left[
-.center[
-![:img State of the Ecosystem page 1 summary table, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png)
-]
-]
-
-.pull-right[
-.center[
-![:img State of the Ecosystem page 2 risk bullets, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_3.png)
-]
-]
-
 
 ---
 ## Ecosystem synthesis themes
@@ -201,7 +191,7 @@ Characterizing ecosystem change for fishery management
 Spatial scale
 ![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//EPU_Designations_Map.jpg)
 
-A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html) (2021 Memo 5), detailed [technical methods documentation](https://NOAA-EDAB.github.io/tech-doc) and [indicator data](https://github.com/NOAA-EDAB/ecodata) are available online.  
+A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html), detailed [technical methods documentation](https://NOAA-EDAB.github.io/tech-doc) and [indicator data](https://github.com/NOAA-EDAB/ecodata) are available online.  
 ]
 
 .pull-right[
@@ -304,7 +294,7 @@ Other ocean uses: offshore wind development
     - 1-34% by port (some with EJ concerns)
     - up to 17% by managed species
 *  Different development impacts for species preferring soft bottom vs. hard bottom 
-*  Overlap with one of the only known right whale foraging habitats, increased vessel strike and noise risks 
+*  Overlap with important right whale foraging habitats, increased vessel strike and noise risks 
 *  Rapid buildout in patchwork of areas 
 *  Scientific survey mitigation required
 ]
@@ -399,9 +389,12 @@ Stock status affects catch limits established by the Council, which in turn may 
 Nevertheless, the percentage caught for each stock’s ABC/ACL suggests that these catch limits are not generally constraining as most species are well below the 1/1 ratio (bottom). Therefore, stock status and associated management constraints are unlikely to be driving decreased landings for the majority of species.
 
 ---
-## Implications: Mid Atlantic Seafood Production Drivers
 .pull-left[
+## Implications: Mid Atlantic Seafood Production
+
+.table[
 Biomass does not appear to drive landings trends
+]
 
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.85}
 
@@ -411,11 +404,12 @@ Biomass does not appear to drive landings trends
 .contrib[
 Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
 ]
-
 ]
 
 .pull-right[
-Declining seafood mainly benthos: surfclam/ocean quahog market drivers 
+.table[
+* Declining seafood mainly benthos: surfclam/ocean quahog market drivers
+]
 ```{r hack}
 #Define constants for figure plot
 #series.col <- c("indianred","black")
@@ -424,17 +418,13 @@ Declining seafood mainly benthos: surfclam/ocean quahog market drivers
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.width=4.5, fig.asp=1}
 # comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
 ```
-.contrib[
+.table[
 * Declining total mainly planktivores: menhaden fishery consolidation
 * Recreational drivers differ: shark fishery management, possibly survey methodology
 
-Monitor: 
-* climate risks including warming, ocean acidification, and shifting distributions
-* ecosystem composition and production changes  
-* fishing engagement  
+Monitor climate risks including warming, ocean acidification, and shifting distributions; ecosystem composition and production changes; fishing engagement
 ]
 ]
-
 
 ???
 Stock status is above the minimum threshold for all but one stock, and aggregate biomass trends appear stable, so the decline in commercial seafood landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. The long term decline in total planktivore landings is largely driven by Atlantic menhaden fishery dynamics, including a consolidation of processors leading to reduced fishing capacity between the 1990s and mid-2000s.
@@ -454,10 +444,12 @@ Indicator: Commercial Revenue (proxy)
 .contrib[
 Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of MAFMC managed species</p>
 ]
+.table[
 Implications: Recent change driven by benthos  
 Monitor changes in climate and landings drivers:  
 -  Climate risk element: <span style="background-color:orange;">Surfclams</span> and <span style="background-color:red;">ocean quahogs</span> are sensitive to ocean warming and acidification.   
 -  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth
+]
 ]
 
 .pull-right[
@@ -628,6 +620,8 @@ cropRecEJ
 ]
 
 Implications: There was an increase in recreational fishing activities in the many of the top recreational communities from 2019 to 2020. 
+
+???
 .contrib[
 Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 ]
@@ -705,9 +699,9 @@ background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/doc
 background-size: 700px
 background-position: right top
 -->
-
+.pull-left[ 
 ## Risks: Climate change Mid Atlantic
-.pull-left[
+
 Indicators: ocean currents, temperature, seasons
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.width=4}
 ```
@@ -718,8 +712,6 @@ Indicators: ocean currents, temperature, seasons
 
 ```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R"), fig.width=4}
 ```
-
-
 ]
 
 .pull-right[
@@ -755,14 +747,16 @@ Indicators: ocean currents, temperature, seasons
 
 ]
 
+.table[
 The Gulf Stream is trending north. Ocean summer is lasting longer. In contrast to SST, long term bottom temperature is increasing in all seasons. Few surface and no bottom extreme warming events in 2022.
+]
 .contrib[]
 ???
 Seasonal sea surface temperatures in 2022 were above average for most of the year,  however late spring storms caused deep mixing, which delayed stratification and surface warming in late spring and early summer. A combination of long-term ocean warming and extreme events should be used to assess total heat stress on marine organisms
 
 
 ---
-## Risks: Climate change and estuarine habitat &emsp; Risk element: EstHabitat 11 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk species
+## Risks: Climate change and estuarine habitat &emsp; Element: EstHabitat; 11 species <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:red;">high</span> risk 
 
 .pull-left[
 Indicators: Chesapeake Bay temperature and salinity
@@ -780,7 +774,7 @@ Indicator: SAV trends in Chesapeake Bay
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sav.R"), fig.width = 6}
 ```
 
-Indicator: Water quality attainment
+Indicator: Water quality attainment (not updated)
 .reduced_opacity[
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-ches-bay-wq.R"), fig.width = 6}
 ```
@@ -807,16 +801,18 @@ Indicator: warm core rings
 
 Summer aragonite saturation low for both Atlantic sea scallop and longfin squid in Long Island Sound and the nearshore and mid-shelf regions of the New Jersey shelf several times over the past decade.
 
-There were fewer warm core rings near the continental shelf in 2022, which combined with economic fishery drivers may have contributed to total catch of *Illex* squid being 20% less than the total catch reported in 2021.
+There were fewer warm core rings near the continental shelf in 2022, which combined with economic fishery drivers may have contributed to total catch of *Illex* squid being less than 20% of the total catch reported in 2021.
 .contrib[]
 ]
 ???
 
 ---
-## Risks: Ecosystem productivity Mid Atlantic  &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>
+## Risks: Ecosystem productivity Mid Atlantic  &emsp; Element: <span style="background-color:yellow;">EcoProd</span>
 
 .pull-left[
+.table[
 Indicators: chlorophyll, primary production, zooplankton
+]
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-chl-weekly.R"), fig.asp = 0.9}
 #chl-weekly, fig.cap = "Weekly chlorophyll concentrations and primary productivity in the Mid-Atlantic are shown by the colored line for 2021 (dashed portion indicates preliminary data from a near real-time satellite source). The long-term mean is shown in black and shading indicates +/- 1 standard deviation.", fig.width = 5
 ```
@@ -825,7 +821,7 @@ Indicators: chlorophyll, primary production, zooplankton
 
 .pull-right[
 
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.55}
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-weekly-phyto-size.R"), fig.asp=.50}
 #weekly-phyto-size, fig.cap="The annual climatology (1998-2019) percent composition of the phytoplankton size classes in the Mid-Atlantic bight based on satellite observations."
 ```
 
@@ -844,7 +840,7 @@ Increased production by smaller phytoplankton implies less efficient transfer of
 
 ---
 .pull-left-60[
-## Risks: Ecosystem productivity Mid Atlantic &emsp; Risk element: <span style="background-color:yellow;">EcoProd</span>
+## Risks: Ecosystem productivity Mid Atlantic; Element: <span style="background-color:yellow;">EcoProd</span>
 
 
 Indicator: fish condition 
@@ -885,7 +881,7 @@ Methods from `r Cite(myBib, "perretti_regime_2017")`.
 #energy-density, fig.cap="Forage fish mean energy density mean and standard deviation by season and year, compared with 1980s (Steimle and Terranove 1985) and 1990s (Lawson et al. 1998) values.", 
 ```
 
-Fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring
+Fluctuating environmental conditions and prey for forage species affect both abundance and energy content. Energy content varies by season, and has changed over time most dramatically for Atlantic herring.
 
 ---
 ## Risks: Ecosystem structure and habitat: new diet based forage fish index, new diversity trends  
@@ -1060,7 +1056,7 @@ Implications:
 *  1-34% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
 *  Up to 17% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
 *  Development will affect species differently, negatively affecting species that prefer soft bottom habitat while potentially benefiting species that prefer hard structured habitat.
-*  Planned wind areas overlap with one of the only known right whale foraging habitats, and altered local oceanography could affect right whale prey availability. Development also brings increased vessel strike risk and the potential impacts of pile driving noise.
+*  Planned wind areas overlap with important right whale foraging habitats, and altered local oceanography could affect right whale prey availability. Development also brings increased vessel strike risk and the potential impacts of pile driving noise.
 ]
 .pull-right[]
 
@@ -1244,7 +1240,6 @@ Outcomes for the Council:
 -   Evaluation of multiple ecosystem indicators and potential development of thresholds for use in a revised EAFM risk assessment and/or other Council processes
 -   Increased range of opportunities for relevant ecosystem information to be considered in management decision processes
 
-*The SSC Ecosystem WG looks forward to the feedback of the full SSC on any of these topics, and always welcomes new members.*
 ]
 
 ---

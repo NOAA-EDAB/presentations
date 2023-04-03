@@ -19,9 +19,78 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+library(kableExtra)
+library(ecodata)
+library(readxl); library(data.table)
+library(DT)
+library(widgetframe)
+
+# if figure output defaults to docs/imaages/ replace with this before moving to 
+# presentations/docs in both the html output (search and replace)
+# and folder name
+# 20220316_MAFMCSSC_Gaichas_files/figure-html/
+
 ```
 
+```{r, child='MidSOEsetup.Rmd'}
+```
+
+
+.pull-left[
+## Implications: Mid Atlantic Seafood Production
+
+.table[
+Biomass does not appear to drive landings trends
+]
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"), fig.width=8, fig.asp = 0.85}
+
+#nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean."
+```
+
+.contrib[
+Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
+]
+]
+
+.pull-right[
+.table[
+* Declining seafood mainly benthos: surfclam/ocean quahog market drivers
+]
+```{r hack}
+#Define constants for figure plot
+#series.col <- c("indianred","black")
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), fig.width=4.5, fig.asp=1}
+# comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
+```
+.table[
+* Declining total mainly planktivores: menhaden fishery consolidation
+* Recreational drivers differ: shark fishery management, possibly survey methodology
+
+Monitor climate risks including warming, ocean acidification, and shifting distributions; ecosystem composition and production changes; fishing engagement
+]
+]
+
+
+???
+Stock status is above the minimum threshold for all but one stock, and aggregate biomass trends appear stable, so the decline in commercial seafood landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. The long term decline in total planktivore landings is largely driven by Atlantic menhaden fishery dynamics, including a consolidation of processors leading to reduced fishing capacity between the 1990s and mid-2000s.
+
+Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
+---
 
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
 background-size: 350px
