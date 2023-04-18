@@ -1,7 +1,7 @@
 ---
-title: United States Northeast Region<br /> State of the Ecosystem reporting 
-subtitle: ICES WGEAWESS <br /> 28 March 2023
-author: "Sarah Gaichas, Kimberly Bastille, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith<br /> NOAA NMFS Northeast Fisheries Science Center<br /> Brandon Muffley, MAFMC<br />and all SOE contributors"
+title: "Delivering climate, ecosystem, and <br /> socioeconomic observations to fishery<br />  managers: integrated ecosystem reporting <br /> and risk assessment for the U.S. <br /> Mid-Atlantic Fishery Management Council"
+subtitle: "ECCWO5 <br /> 21 April 2023"
+author: "Sarah K. Gaichas; Brandon Muffley; Geret DePiper; Kimberly Bastille; Kimberly J. W. Hyde; Scott Large; Sean M. Lucey; Laurel Smith<br /> NOAA NMFS Northeast Fisheries Science Center and Mid-Atlantic Fishery Management Council"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -21,7 +21,6 @@ output:
     logo: images/quarto.png
     css: styles.css
     footer: <https://quarto.org>
-
 ---
 class: top, left
 
@@ -88,8 +87,42 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
 ```
 
+## Goal: increased range of opportunities for relevant climate and ecosystem information to be considered in management decision processes
 
-## Fishery management in the US: Audience for ecosystem reporting
+.pull-left[
+*Outline*
+- What types of decisions do we need to make?
+
+    * Single species catch limits
+    * Multispecies and system level tradeoffs
+
+- How can ecosystem information support these decisions? 
+
+    * Key tools: ecosystem reporting, risk assessment, managment strategy evaluation
+    * Developing decision processes along with products
+
+.footnote[
+Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Document](https://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08-palr.pdf)
+]
+]
+.pull-right[
+![:img EAFM Policy Guidance Doc Word Cloud](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_EAFMwordcloud.png)
+]
+
+---
+## Suggestions
+
+Show up. Regularly. 
+
+Center reporting on management objectives.
+
+Respond to requests.
+
+Iterate.
+
+
+---
+## Audience: Federal fishery managers in the US
 
 Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
 .center[
@@ -108,7 +141,7 @@ https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 
 - Ecosystem indicators linked to management objectives `r Cite(myBib, "depiper_operationalizing_2017")`
     + Contextual information
-    + Report evolving since 2016
+    + Annual reporting since 2016
     + Fishery-relevant subset of full Ecosystem Status Reports
 
 - Open science emphasis `r Cite(myBib, "bastille_improving_2021")`
@@ -147,48 +180,59 @@ Characterizing ecosystem change for fishery management
 ]
 
 ---
-## State of the Ecosystem report scale and figures
-
+## Ecosystem Report Structure
 .pull-left[
-Spatial scale
-![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//EPU_Designations_Map.jpg)
+1. Graphical summary
+    + Page 1 report card re: objectives &rarr;
+    + Page 2 risk summary bullets
+    + Page 3 synthesis themes
+1. Performance relative to management objectives
+1. Risks to meeting management objectives
 
-A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html), detailed [technical methods documentation](https://NOAA-EDAB.github.io/tech-doc) and [indicator data](https://github.com/NOAA-EDAB/ecodata) are available online.  
+
+![:img State of the Ecosystem page 1 summary table, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png)![:img State of the Ecosystem page 2 risk bullets, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_3.png)
+
+
 ]
 
 .pull-right[
-Key to figures
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.width=5.5, fig.asp=.9}
-#species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
-```  
 
-.contrib[
-Trends assessed only for 30+ years: [more information](https://noaa-edab.github.io/tech-doc/trend-analysis.html)
-
-<p style="color:#FF8C00;">Orange line = significant increase</p>
-<p style="color:#9932CC;">Purple line = significant decrease</p>
-No color line = not significant or < 30 years
-<p style="background-color:#D3D3D3;">Grey background = last 10 years</p>
-]
-]
-
----
-## State of the Ecosystem report structure: two sections
-.pull-left[
-*Performance relative to management objectives*
-.center[
-![:img State of the Ecosystem page 1 summary table, 75%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png)
-]
-]
-
-.pull-right[
-*Risks to meeting fishery management objectives*
-.center[
-![:img State of the Ecosystem page 2 risk bullets, 75%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_3.png)
-]
-]
+```{r management-objectives}
+mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
+                                                 "Profits","Recreation",
+                                                 "Stability","Social & Cultural",
+                                                 "Protected Species",
+                                                 "Biomass","Productivity",
+                                                 "Trophic structure","Habitat"),
+"Indicators reported" = c("Landings; commercial total and by feeding guild; recreational harvest",
+                               "Revenue decomposed to price and volume",
+                               "Angler trips; recreational fleet diversity",
+                               "Diversity indices (fishery and ecosystem)",
+                               "Community engagement/reliance and environmental justice status",
+                               "Bycatch; population (adult and juvenile) numbers, mortalities",
+                               "Biomass or abundance by feeding guild from surveys",
+                               "Condition and recruitment of managed species, primary productivity",
+                               "Relative biomass of feeding guilds, zooplankton",
+                               "Estuarine and offshore habitat conditions"))
 
 
+knitr::kable(mng_obj, linesep = "",
+      col.names = c("Objective Categories","Indicators reported"),
+      caption = "Ecosystem-scale fishery management objectives",
+      #align = 'c',
+      booktabs = T) %>%
+  kable_styling(font_size = 14) %>%
+ # kable_styling(latex_options = "hold_position", "scale_down") %>%
+ # column_spec(c(2), width = c("25em")) %>%
+  row_spec(0, bold = TRUE) %>%
+ # group_rows("Provisioning/Cultural", 1,4) %>%
+ # group_rows("Supporting/Regulating", 5,9)
+  pack_rows("Provisioning and Cultural Services", 1,6) %>%
+  pack_rows("Supporting and Regulating Services", 7,10)
+
+
+```
+]
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png")
@@ -237,12 +281,11 @@ Other ocean uses: offshore wind development
     - 1-34% by port (some with EJ concerns)
     - up to 17% by managed species
 *  Different development impacts for species preferring soft bottom vs. hard bottom 
-*  Overlap with one of the only known right whale foraging habitats, increased vessel strike and noise risks 
+*  Overlap with important right whale foraging habitats, increased vessel strike and noise risks 
 *  Rapid buildout in patchwork of areas 
 *  Scientific survey mitigation required
 ]
 .pull-right-40[]
-
 
 ---
 ## Implications: Climate change and managed species &emsp; Risk elements unchanged, new info:
@@ -542,36 +585,6 @@ frameWidget(conmod)
 ???
 In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
 
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSECSIRO.png")
-background-size: 800px
-background-position: right
-
-## Background: What is Management Strategy Evaluation?
-.pull-left-30[
-- Process to develop fishery management procedures  
-
-- First used in S. Africa, Australia, and at International Whaling Commission  late 1980s - early 1990s
-
-.contrib[
->Under this approach, management advice is based on a fully specified set of rules that have been tested in simulations of a wide variety of scenarios that specifically take uncertainty into account. The full procedure includes specifications for the data to be collected and how those data are to be used to provide management advice, in a manner that incorporates a feedback mechanism. `r Cite(myBib, "punt_developing_2007")`
-]
-]
-
----
-## MSE results: including the ecosystem
-.center[
-![:img Summer flounder MSE results by OM, 95%](https://github.com/gavinfay/fluke-mafmc-recdisc/raw/main/outputs/plots/median-metrics-alloms-slides.png)
-]
-
-.footnote[
-[August MAFMC briefing materials](https://www.mafmc.org/s/Tab02_Summer-Flounder-MSE_2022-08.pdf) and [full results on the web](https://gavinfay.github.io/fluke-mafmc-recdisc/summary-metrics.html)
-]
-???
-* Linked recreational demand and population dynamics model
-* Alternative operating model included northward distribution shift as change in availability by state
-* Rank order of management options maintained, but degraded performance when considering ecosystem change
-
 
 ---
 background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_EAFMwordcloud.png)
@@ -643,5 +656,41 @@ Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Docum
 PrintBibliography(myBib)
 ```
 ]
+
+---
+
+.center[
+# Extra
+]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSECSIRO.png")
+background-size: 800px
+background-position: right
+
+## Background: What is Management Strategy Evaluation?
+.pull-left-30[
+- Process to develop fishery management procedures  
+
+- First used in S. Africa, Australia, and at International Whaling Commission  late 1980s - early 1990s
+
+.contrib[
+>Under this approach, management advice is based on a fully specified set of rules that have been tested in simulations of a wide variety of scenarios that specifically take uncertainty into account. The full procedure includes specifications for the data to be collected and how those data are to be used to provide management advice, in a manner that incorporates a feedback mechanism. `r Cite(myBib, "punt_developing_2007")`
+]
+]
+
+---
+## MSE results: including the ecosystem
+.center[
+![:img Summer flounder MSE results by OM, 95%](https://github.com/gavinfay/fluke-mafmc-recdisc/raw/main/outputs/plots/median-metrics-alloms-slides.png)
+]
+
+.footnote[
+[August MAFMC briefing materials](https://www.mafmc.org/s/Tab02_Summer-Flounder-MSE_2022-08.pdf) and [full results on the web](https://gavinfay.github.io/fluke-mafmc-recdisc/summary-metrics.html)
+]
+???
+* Linked recreational demand and population dynamics model
+* Alternative operating model included northward distribution shift as change in availability by state
+* Rank order of management options maintained, but degraded performance when considering ecosystem change
 
 
