@@ -76,16 +76,7 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-setup.R")}
-```
-
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
+```{r, child='MidSOEsetup.Rmd'}
 ```
 
 ## Goal: include climate and ecosystem information in management decision processes
@@ -116,20 +107,18 @@ Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Docum
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/papers.jpg")
 background-size: 1200px
 background-position: bottom
-## Conclusions  
+## Recommendations  
 
 .pull-left[
 Overall:
 
-+  Show up. Regularly. 
++  Show up to management meetings. Regularly. 
 
 +  Center on management objectives.
 
 +  Focus on management implications.
 
-+  Listen.
-
-+  Respond to requests.
++  Listen, and respond to requests.
 
 +  Iterate.
 ]
@@ -139,15 +128,13 @@ Overall:
 .pull-right[
 "How can we use this?"
 
-+  Collaborate across disciplines with managers.
++  Collaborate across disciplines, with managers and stakeholders.
 
 +  Prepare some examples.
 
 +  Expect them to be changed!
 
-+  Listen.
-
-+  Respond to requests.
++  Listen, and respond to requests.
 
 +  Iterate.
  
@@ -329,8 +316,7 @@ Other ocean uses: offshore wind development
 
 ```{r, crop=TRUE, out.width='90%'}
 
-library(qrcode)
-plot(qr_code("https://www.mafmc.org/s/Tab11_2023-Mid-Atlantic-State-of-the-Ecosystem.pdf"))
+plot(qrcode::qr_code("https://www.mafmc.org/s/Tab11_2023-Mid-Atlantic-State-of-the-Ecosystem.pdf"))
 
 ```
 ]
