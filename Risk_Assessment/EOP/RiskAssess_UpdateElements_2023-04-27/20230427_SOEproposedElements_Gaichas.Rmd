@@ -83,7 +83,77 @@ myBib <- ReadBib("./min.bib", check = FALSE)
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
 ```
 
-## New information in support of current elements
+## State of the Ecosystem information in support of current or put aside elements
+
+*   Estuarine habitat indicators: link to climate risks for estuarine dependent species?
+*   Offshore habitat indicators: link to climate  or distribution shift risks for all species?
+*   ABC/ACL compared with catch: quantify 
 
 ---
-## New information in support of new elements
+## State of the Ecosystem information in support of new elements
+
+*   Recreational fleet diversity -- fishery resilience or recreational opportunity risk?
+*   Changes in fishing engagement -- fishery resilience risk?
+*   Commercial and recreational community vulnerability: social, gentrification, environmental justice
+
+*   Habitat climate vulnerability
+
+*   Offshore wind specific elements -- risks to revenue by species and port? 
+
+---
+# Potential Economic, Social, Food production elements
+
+## Recreational opportunity risk
+
+.pull-left[
+### Recreational Fleet Diversity (2019-2023)
+Recreational diversity indices could be considered as additional risk element(s) to complement the existing Commercial fishery resilience (revenue diversity) element. While recreational value measured as angler trips has gone from high risk to low-moderate risk based on updated data, recreational fleet diversity (i.e., effort by shoreside, private boat, and for-hire anglers) has declined over the long term. 
+]
+
+.pull-right[
+
+&nbsp; 
+&nbsp; 
+&nbsp; 
+
+```{r rec-div, fig.cap = paste0("Recreational fleet effort diversity in the ",region,"."), code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")}
+
+```
+]
+
+---
+## Social-Cultural Risk elements 
+
+.pull-left[
+
+### Commerical Fishery Engagement Trends (2020)
+Commercial fishery engagement measures the [number of permits, dealers, and landings in a community](https://www.fisheries.noaa.gov/national/socioeconomics/social-indicator-definitions#fishing-engagement-and-reliance-indices). The trend in the number of Mid-Atlantic fishing communities that were highly engaged in commercial fishing has shown a decrease since 2004. Significant changes in engagement scores have also been observed in medium-highly engaged communities. The average engagement score has decreased since 2004. These changes may be driven by the decline in value landed by primary species such as sea scallops in this group of communities. 
+
+] 
+
+.pull-right[
+### Social Vulnerability, Commercial and Recreational engagement and reliance by community (2021)
+Social vulnerability measures social factors that shape a community’s ability to adapt to change and does not consider gentrification pressure (see [detailed definitions](https://www.fisheries.noaa.gov/national/socioeconomics/social-indicator-definitions)). Communities that ranked medium-high or above for one or more of the following indicators: poverty, population composition, personal disruption, or labor force structure, were highlighted. 
+
+]
+
+---
+## Social-Cultural Risk elements: Environmental justice vulnerability (2022-2023)
+
+.pull-left[
+```{r commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in the Mid-Atlantic.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
+```
+
+]
+
+.pull-right[
+
+```{r recreational-engagement, fig.cap= "Recreational engagement, reliance, and social vulnerability for the top recreational fishing communities in the Mid-Atlantic.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
+```
+
+]
+
+These indicators highlighted in the 2022 Risk Assessment update showed signals of increased recreational fishing engagement and reliance in the Mid-Atlantic during 2020 (likely in response to COVID-19) as reported in the 2023 SOE. Combinations of these updated indicators can be used to update and expand on the **Social-Cultural** risk element. 
+
+---
+# Potential Management Risk Elements
