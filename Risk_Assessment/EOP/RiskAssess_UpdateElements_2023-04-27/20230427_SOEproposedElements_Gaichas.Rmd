@@ -83,22 +83,16 @@ myBib <- ReadBib("./min.bib", check = FALSE)
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
 ```
 
-## State of the Ecosystem information in support of current or put aside elements
-
-*   Estuarine habitat indicators: link to climate risks for estuarine dependent species?
-*   Offshore habitat indicators: link to climate  or distribution shift risks for all species?
-*   ABC/ACL compared with catch: quantify 
-
----
 ## State of the Ecosystem information in support of new elements
 
 *   Recreational fleet diversity -- fishery resilience or recreational opportunity risk?
 *   Changes in fishing engagement -- fishery resilience risk?
 *   Commercial and recreational community vulnerability: social, gentrification, environmental justice
 
-*   Habitat climate vulnerability
-
 *   Offshore wind specific elements -- risks to revenue by species and port? 
+
+*   Changes in forage base
+*   Habitat climate vulnerability
 
 ---
 # Potential Economic, Social, Food production elements
@@ -207,15 +201,17 @@ all<- a %>% cbind(b,c,d,e) %>%
   #        Species = Species.4, 
   #        Trend = trend.4 )
   
-kable(all, escape = FALSE,
+kable(all, "html", #escape = FALSE,
       col.names = c("Season", "Species", "Trend", "Species", "Trend", "Species","Trend", "Species","Trend", "Species", "Trend"),
       caption = "Species with highest probability of occupancy species each season and area, with observed trends",
       #align = 'c',
-      booktabs = T) %>%
+      booktabs = T,
+      table.attr = "style='width:40%;'") %>%
     add_header_above(c(" " = 1, "Existing - North" = 2, "Proposed - North" = 2, 
                      "Existing - Mid" = 2, "Proposed - Mid" = 2, 
                      "Existing - South" = 2)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) 
+  kable_styling(bootstrap_options = c("striped", "condensed"), font_size = 9) %>%
+  kable_classic(full_width = T, position = "center")
 
 ```
 ]
@@ -223,7 +219,7 @@ kable(all, escape = FALSE,
 ---
 .pull-left[
 ## Offshore wind energy development timeline (2021-2023)
-As of January 2023, 24 offshore wind development projects are proposed for construction over the next decade in the Northeast (timelines and project data are based on Tables E-2, E-4, and E-4-2 of South Fork Wind Farm Final Environmental Impact Statement). Offshore wind areas are anticipated to cover more than 2.3 million acres by 2030 in the Greater Atlantic region (Fig. \ref{fig:wind-proposed-dev}). Beyond 2030 values include acreage for future areas in the Central Atlantic  and Gulf of Maine Area planning area for floating research array. 
+As of January 2023, 24 offshore wind development projects are proposed for construction over the next decade in the Northeast (timelines and project data are based on Tables E-2, E-4, and E-4-2 of South Fork Wind Farm Final Environmental Impact Statement). Offshore wind areas are anticipated to cover more than 2.3 million acres by 2030 in the Greater Atlantic region. Beyond 2030 values include acreage for future areas in the Central Atlantic and Gulf of Maine Area planning area. 
 ```{r wind-proposed-dev, fig.cap='Proposed wind development on the northeast shelf.', code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R")}
 ```
 ]
@@ -242,7 +238,7 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/
 ## Offshore wind energy revenue by species in lease areas (2021-2023)
 .pull-left[
 
-Based on federal vessel logbook data, commercial fishery revenue from trips in the current offshore wind lease areas and the draft Central Atlantic Bight Primary and Secondary Call Areas have varied annually from 2008-2021, with less than \$1 million in revenue overlapping with these areas for most fisheries. However, some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including up to \$4.7 million affected in the surfclam fishery and nearly $4.3 million affected in the longfin squid fishery in 2008 and 2016, respectively.(Fig. \ref{fig:wea-spp-rev}). 
+Based on federal vessel logbook data, commercial fishery revenue from trips in the current offshore wind lease areas and the draft Central Atlantic Bight Primary and Secondary Call Areas have varied annually from 2008-2021, with less than $\$$1 million in revenue overlapping with these areas for most fisheries. However, some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including up to $\$$4.7 million affected in the surfclam fishery and nearly $\$$4.3 million affected in the longfin squid fishery in 2008 and 2016, respectively.
 ]
 
 .pull-right[
@@ -285,4 +281,184 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/
 ]
 
 ---
+.pull-left[
+## WEAs and scientific survey mitigation (2022-2023)
+Increased scientific and management uncertainty if information from inaccessible survey areas cannot be collected. The total survey area overlap ranges from 1-14$\%$ across ecosystem, shellfish, fish, shark, and protected species surveys. For example, the sea scallop survey will have significant overlap (up to 96$\%$ of individual strata) while the bottom trawl survey  will have  up to 60$\%$ overlap. Additionally, up to 50$\%$ of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. 
+]
+.pull-right[
+```{r wind-dev-survey, fig.cap = "Interaction of Greater Atlantic Fisheries Scientific Surveys and Offshore Wind Development"}
+#, out.width='80%'
+#knitr::include_url("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/docs/images/SurveyMap202128_withlines.png")
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SurveyMap202128_withlines.png")
+```
 
+]
+
+---
+# Potential ecosystem risk elements: forage and habitat vulnerability
+
+.pull-left[
+## Forage base trends (2023)
+```{r foragebio, fig.cap = "Forage fish index based on spring and fall survey predator diets.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R"), fig.asp=.6}
+```
+
+]
+
+pull-right[
+## Forage base energy content (2021-2023)
+```{r energy-density, fig.cap="Forage fish energy density mean and standard deviation by season and year, compared with 1980s (solid line; Steimle and Terranove 1985) and 1990s (dashed line; Lawson et al. 1998) values.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 7.5, fig.asp = 0.5}
+```
+
+]
+
+A forage fish index was introduced in the 2023 SOE to evaluate changes in the aggregate forage base available to predators. This index could be used in combination with new information on energy density of key forage species and current food web risk indicators to evaluate overall food web risks to MAFMC managed species and protected species (elements **FW1Pred**, **FW1Prey**, **FW2Prey**).
+
+---
+## Habitat vulnerability
+```{r midHabTable, message=FALSE}
+#Read in Mid-Atlantic table
+
+src <- "https://github.com/NOAA-EDAB/ecodata/raw/master/data-raw/habitat_vulnerability.xlsx"
+lcl <- basename(src)
+download.file(url = src, destfile = lcl, quiet=TRUE)
+
+mid <- as.data.table(readxl::read_xlsx(here('habitat_vulnerability.xlsx'),
+                         sheet = 'Mid-Atlantic', skip = 1))
+
+if (file.exists(lcl)) {
+  #Delete file if it exists
+  invisible(file.remove(lcl))
+}
+
+#Identify individual species climate vulnerability
+vhigh.vul <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Very high', Species])
+high.vul  <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'High', Species])
+mod.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Moderate', Species])
+low.vul   <- unique(mid[`Species Vulnerability Rank (FCVA)` == 'Low', Species])
+
+#Grab habitat vulnerability 
+hab.vul <- unique(mid[, c('Habitat Name', 'Habitat Vulnerability Rank (HVCA)')])
+habitats <- hab.vul[, 'Habitat Name']
+hab.vul <- data.table('Habitat Vulnerability' = c(NA, NA, t(hab.vul[, 'Habitat Vulnerability Rank (HVCA)'])))
+
+#Rearrange table
+mid <- data.table::melt.data.table(mid, id.vars = c('Habitat Name', 'Species'),
+                                   measure.vars = c('Eggs/Larva', 'Juvenile/YOY',
+                                                    'Adult', 'Spawning Adult'),
+                                   variable.name = 'Stage', value.name = 'Dependence')
+mid[, Habitat := as.factor(mid$'Habitat Name')]
+mid <- data.table::dcast.data.table(mid, Species + Stage ~ Habitat,
+                                    value.var = 'Dependence')
+setcolorder(mid, c('Species', 'Stage', habitats$'Habitat Name'))
+
+#Add Habitat Vulnerability
+#hab.table <- rbindlist(list(as.data.table(t(hab.vul)), mid), use.names = F)
+hab.table <- mid
+#Add names back in
+names(hab.table) <- names(mid)
+hab.table <- hab.table %>% mutate_if(is.character, str_trim)
+
+#from examples here https://rstudio.github.io/DT/010-style.html
+
+#color coding cells works
+#need to add column with species vulnerability and color code species by it but not show it, like #hideV6 example at link
+#if we show it we can sort by species vulnerability though... alphabetical doesnt work so use numbers to go lowest-highest
+#still need to color code headers
+hab.table <- hab.table %>%
+  mutate(spVul = #Color code species based on climate vul
+    # case_when(Species %in% low.vul ~ "low.vul",
+    #           Species %in% mod.vul ~ "mod.vul",
+    #           Species %in% high.vul ~ "high.vul",
+    #           Species %in% vhigh.vul ~ "vhigh.vul")
+    # )
+    case_when(Species %in% low.vul ~ 1,
+              Species %in% mod.vul ~ 2,
+              Species %in% high.vul ~ 3,
+              Species %in% vhigh.vul ~ 4)
+    )
+
+colnames(hab.table)[c(3:4)] <- paste0('<span style="box-shadow: -10px 0 0 red, 10px 0 0 red; background-color:red; color:white">',colnames(hab.table)[c(3:4)],'</span>')
+colnames(hab.table)[c(5:10)] <- paste0('<span style="box-shadow: -10px 0 0 orange, 10px 0 0 orange; background-color:',c("orange"),'">',colnames(hab.table)[c(5:10)],'</span>')
+colnames(hab.table)[c(11:15)] <- paste0('<span style="box-shadow: -10px 0 0 yellow, 10px 0 0 yellow; background-color:',c("yellow"),'">',colnames(hab.table)[c(11:15)],'</span>')
+
+dt <- datatable(hab.table, rownames = FALSE, escape = FALSE,
+          extensions = c('Scroller', 'FixedColumns'), #add scrolling and fixed column
+          options = list(deferRender = TRUE,
+          scrollY = 300, scroller = TRUE,
+          dom = 't',scrollX = TRUE,fixedColumns = TRUE)
+          #, options = list(columnDefs = list(list(targets = 16, visible = FALSE)))
+  ) %>% 
+  formatStyle(
+    names(hab.table)[3:4],
+    backgroundColor = '#FF000080'
+  ) %>%
+  formatStyle(
+    names(hab.table)[5:10],
+    backgroundColor = '#FFA50080'
+  ) %>%
+  formatStyle(
+    names(hab.table)[11:15],
+    backgroundColor = '#FFFF0080'
+  ) %>%
+
+  formatStyle(#Color code base on dependence
+    'Species', "spVul",
+    backgroundColor = styleEqual(#c("low.vul", "mod.vul", "high.vul", "vhigh.vul"),
+                                 c(1,2,3,4),
+                                 c('lightgreen', 'yellow', 'orange', 'red')), #Color code base on dependence)
+    color = styleEqual(c(1,2,3,4),
+                                 c('black', 'black', 'black', 'white'))
+    ) %>%
+    formatStyle(
+    names(hab.table),
+    backgroundColor = styleEqual(c("Low", "Moderate", "High", "Very high"), 
+                                 c('lightgreen', 'yellow', 'orange', 'red')), 
+    color = styleEqual(c("Low", "Moderate", "High", "Very high"), 
+                                 c('black', 'black', 'black', 'white'))
+  )
+
+frameWidget(dt)
+```
+
+---
+## Habitat vulnerability linked to species ([NRHA online tool](https://nrha.shinyapps.io/dataexplorer/#!/crosswalk))
+
+.pull-left[
+#### Black Sea Bass  
+*Summary:* Black sea bass were determined to have, overall, a high vulnerability to climate change, due to very high climate exposure related to high surface and air temperature in both inshore and offshore waters, and moderate climate sensitivity of early life history stage requirements. 
+### Mid-Atlantic  
+*Summary:* Shellfish reef habitats are highly important for both juveniles/young-of-the-year and adults. These life stages utilize both marine and estuarine shellfish reefs, in both intertidal and subtidal zones, which are very highly vulnerable and highly vulnerable, respectively.
+]
+
+.pull-right[
+![NRHA-BSB]()
+]
+---
+## State of the Ecosystem information in support of current or put aside elements
+
+.pull-left[
+
+*   Estuarine habitat indicators: quantify risks for estuarine dependent species?
+    +   Surface temperature
+    +   Salinity
+    +   Integrated water quality
+
+*   Offshore habitat indicators: link to climate  or distribution shift risks for all species?
+    +   Surface and bottom temperature
+    +   Extreme events
+    +   Cold pool temperature, duration, areal extent
+    +   Warm core rings
+    +   Ocean acidification
+    
+]
+.pull-right[
+
+*   ABC/ACL compared with catch: quantify management control?
+
+*   Maintain other ocean uses but quantify with WEA revenue or other information presented?
+
+.center[
+*Discuss additional indicators for current elements in upcoming meetings*
+]
+
+]
