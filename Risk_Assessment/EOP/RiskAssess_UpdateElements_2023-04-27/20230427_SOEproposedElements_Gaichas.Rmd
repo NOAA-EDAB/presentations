@@ -89,9 +89,11 @@ myBib <- ReadBib("./min.bib", check = FALSE)
 *   Changes in fishing engagement -- fishery resilience risk?
 *   Commercial and recreational community vulnerability: social, gentrification, environmental justice
 
+
 *   Offshore wind specific elements -- risks to revenue by species and port? 
 
-*   Changes in forage base
+
+*   Changes in the forage base
 *   Habitat climate vulnerability
 
 ---
@@ -295,7 +297,7 @@ knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/d
 ]
 
 ---
-# Potential ecosystem risk elements: forage and habitat vulnerability
+# Potential Ecosystem Risk Elements: forage, habitat
 
 .pull-left[
 ## Forage base trends (2023)
@@ -304,7 +306,7 @@ knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/d
 
 ]
 
-pull-right[
+.pull-right[
 ## Forage base energy content (2021-2023)
 ```{r energy-density, fig.cap="Forage fish energy density mean and standard deviation by season and year, compared with 1980s (solid line; Steimle and Terranove 1985) and 1990s (dashed line; Lawson et al. 1998) values.", code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-energy-density.R"), fig.width = 7.5, fig.asp = 0.5}
 ```
@@ -431,7 +433,7 @@ frameWidget(dt)
 ]
 
 .pull-right[
-![NRHA-BSB]()
+![NRHA-BSB](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NRHA-BSB.png)
 ]
 ---
 ## State of the Ecosystem information in support of current or put aside elements

@@ -8,6 +8,9 @@
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/pymjs/pym.v1.js"></script>
+    <script src="libs/widgetframe-binding/widgetframe.js"></script>
     <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
   </head>
   <body>
@@ -52,22 +55,18 @@ p.caption {
 
 
 
-## State of the Ecosystem information in support of current or put aside elements
-
-*   Estuarine habitat indicators: link to climate risks for estuarine dependent species?
-*   Offshore habitat indicators: link to climate  or distribution shift risks for all species?
-*   ABC/ACL compared with catch: quantify 
-
----
 ## State of the Ecosystem information in support of new elements
 
 *   Recreational fleet diversity -- fishery resilience or recreational opportunity risk?
 *   Changes in fishing engagement -- fishery resilience risk?
 *   Commercial and recreational community vulnerability: social, gentrification, environmental justice
 
-*   Habitat climate vulnerability
 
 *   Offshore wind specific elements -- risks to revenue by species and port? 
+
+
+*   Changes in the forage base
+*   Habitat climate vulnerability
 
 ---
 # Potential Economic, Social, Food production elements
@@ -142,8 +141,8 @@ Fish habitat modeling based on NEFSC bottom trawl surveys indicates that summer 
 
 .pull-right[
 
-&lt;table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;"&gt;
-&lt;caption&gt;Species with highest probability of occupancy species each season and area, with observed trends&lt;/caption&gt;
+&lt;table style='width:40%; font-size: 9px; margin-left: auto; margin-right: auto; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;' class="table table-striped table-condensed lightable-classic"&gt;
+&lt;caption style="font-size: initial !important;"&gt;Species with highest probability of occupancy species each season and area, with observed trends&lt;/caption&gt;
  &lt;thead&gt;
 &lt;tr&gt;
 &lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
@@ -305,7 +304,7 @@ Fish habitat modeling based on NEFSC bottom trawl surveys indicates that summer 
 ---
 .pull-left[
 ## Offshore wind energy development timeline (2021-2023)
-As of January 2023, 24 offshore wind development projects are proposed for construction over the next decade in the Northeast (timelines and project data are based on Tables E-2, E-4, and E-4-2 of South Fork Wind Farm Final Environmental Impact Statement). Offshore wind areas are anticipated to cover more than 2.3 million acres by 2030 in the Greater Atlantic region (Fig. \ref{fig:wind-proposed-dev}). Beyond 2030 values include acreage for future areas in the Central Atlantic  and Gulf of Maine Area planning area for floating research array. 
+As of January 2023, 24 offshore wind development projects are proposed for construction over the next decade in the Northeast (timelines and project data are based on Tables E-2, E-4, and E-4-2 of South Fork Wind Farm Final Environmental Impact Statement). Offshore wind areas are anticipated to cover more than 2.3 million acres by 2030 in the Greater Atlantic region. Beyond 2030 values include acreage for future areas in the Central Atlantic and Gulf of Maine Area planning area. 
 &lt;div class="figure" style="text-align: center"&gt;
 &lt;img src="20230427_SOEproposedElements_Gaichas_files/figure-html/wind-proposed-dev-1.png" alt="Proposed wind development on the northeast shelf." width="504" /&gt;
 &lt;p class="caption"&gt;Proposed wind development on the northeast shelf.&lt;/p&gt;
@@ -323,7 +322,7 @@ As of January 2023, 24 offshore wind development projects are proposed for const
 ## Offshore wind energy revenue by species in lease areas (2021-2023)
 .pull-left[
 
-Based on federal vessel logbook data, commercial fishery revenue from trips in the current offshore wind lease areas and the draft Central Atlantic Bight Primary and Secondary Call Areas have varied annually from 2008-2021, with less than \$1 million in revenue overlapping with these areas for most fisheries. However, some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including up to \$4.7 million affected in the surfclam fishery and nearly $4.3 million affected in the longfin squid fishery in 2008 and 2016, respectively.(Fig. \ref{fig:wea-spp-rev}). 
+Based on federal vessel logbook data, commercial fishery revenue from trips in the current offshore wind lease areas and the draft Central Atlantic Bight Primary and Secondary Call Areas have varied annually from 2008-2021, with less than $\$$1 million in revenue overlapping with these areas for most fisheries. However, some fisheries see periodic spikes in revenue overlap with wind energy lease areas, including up to $\$$4.7 million affected in the surfclam fishery and nearly $\$$4.3 million affected in the longfin squid fishery in 2008 and 2016, respectively.
 ]
 
 .pull-right[
@@ -361,7 +360,88 @@ Planned development overlaps right whale mother and calf migration corridors and
 ]
 
 ---
+.pull-left[
+## WEAs and scientific survey mitigation (2022-2023)
+Increased scientific and management uncertainty if information from inaccessible survey areas cannot be collected. The total survey area overlap ranges from 1-14$\%$ across ecosystem, shellfish, fish, shark, and protected species surveys. For example, the sea scallop survey will have significant overlap (up to 96$\%$ of individual strata) while the bottom trawl survey  will have  up to 60$\%$ overlap. Additionally, up to 50$\%$ of the southern New England North Atlantic right whale survey’s area overlaps with proposed project areas. 
+]
+.pull-right[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SurveyMap202128_withlines.png" alt="Interaction of Greater Atlantic Fisheries Scientific Surveys and Offshore Wind Development"  /&gt;
+&lt;p class="caption"&gt;Interaction of Greater Atlantic Fisheries Scientific Surveys and Offshore Wind Development&lt;/p&gt;
+&lt;/div&gt;
 
+]
+
+---
+# Potential Ecosystem Risk Elements: forage, habitat
+
+.pull-left[
+## Forage base trends (2023)
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="20230427_SOEproposedElements_Gaichas_files/figure-html/foragebio-1.png" alt="Forage fish index based on spring and fall survey predator diets." width="504" /&gt;
+&lt;p class="caption"&gt;Forage fish index based on spring and fall survey predator diets.&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+## Forage base energy content (2021-2023)
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="20230427_SOEproposedElements_Gaichas_files/figure-html/energy-density-1.png" alt="Forage fish energy density mean and standard deviation by season and year, compared with 1980s (solid line; Steimle and Terranove 1985) and 1990s (dashed line; Lawson et al. 1998) values." width="540" /&gt;
+&lt;p class="caption"&gt;Forage fish energy density mean and standard deviation by season and year, compared with 1980s (solid line; Steimle and Terranove 1985) and 1990s (dashed line; Lawson et al. 1998) values.&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+A forage fish index was introduced in the 2023 SOE to evaluate changes in the aggregate forage base available to predators. This index could be used in combination with new information on energy density of key forage species and current food web risk indicators to evaluate overall food web risks to MAFMC managed species and protected species (elements **FW1Pred**, **FW1Prey**, **FW2Prey**).
+
+---
+## Habitat vulnerability
+<div id="htmlwidget-493897c10fc43433539d" style="width:100%;height:226.8px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-493897c10fc43433539d">{"x":{"url":"20230427_SOEproposedElements_Gaichas_files/figure-html//widgets/widget_midHabTable.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
+---
+## Habitat vulnerability linked to species ([NRHA online tool](https://nrha.shinyapps.io/dataexplorer/#!/crosswalk))
+
+.pull-left[
+#### Black Sea Bass  
+*Summary:* Black sea bass were determined to have, overall, a high vulnerability to climate change, due to very high climate exposure related to high surface and air temperature in both inshore and offshore waters, and moderate climate sensitivity of early life history stage requirements. 
+### Mid-Atlantic  
+*Summary:* Shellfish reef habitats are highly important for both juveniles/young-of-the-year and adults. These life stages utilize both marine and estuarine shellfish reefs, in both intertidal and subtidal zones, which are very highly vulnerable and highly vulnerable, respectively.
+]
+
+.pull-right[
+![NRHA-BSB](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NRHA-BSB.png)
+]
+---
+## State of the Ecosystem information in support of current or put aside elements
+
+.pull-left[
+
+*   Estuarine habitat indicators: quantify risks for estuarine dependent species?
+    +   Surface temperature
+    +   Salinity
+    +   Integrated water quality
+
+*   Offshore habitat indicators: link to climate  or distribution shift risks for all species?
+    +   Surface and bottom temperature
+    +   Extreme events
+    +   Cold pool temperature, duration, areal extent
+    +   Warm core rings
+    +   Ocean acidification
+    
+]
+.pull-right[
+
+*   ABC/ACL compared with catch: quantify management control?
+
+*   Maintain other ocean uses but quantify with WEA revenue or other information presented?
+
+.center[
+*Discuss additional indicators for current elements in upcoming meetings*
+]
+
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
