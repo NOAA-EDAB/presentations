@@ -309,7 +309,7 @@ frameWidget(conmod)
 ```{r riskel2}
 
 elements<-data.frame(
-  Category = c("Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Economic","Economic","Economic","Economic","Social","Social","Food Production","Food Production","Management","Management","Management","Management","Management","Management","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside"),
+  Category = c("Ecological","Ecological","Ecological","Ecological","Ecological","Ecological","Ecosystem","Ecological","Ecological","Ecological","Put Aside","Economic","Economic","Economic","Economic","Social","Social","Food Production","Food Production","Management","Management","Management","Management","Management","Management","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside","Put Aside"),
 #  Category = c("Ecological","","","","","","","","","","","Economic","","","","Social","","Food Production","","Management","","","","","","Put Aside","","","","","","",""),
   Element = c("Assessment performance","F status","B status","Food web (MAFMC Predator)","Food web  (MAFMC Prey)","Food web  (Protected Species Prey)","Ecosystem productivity", "Climate","Distribution shifts", "Estuarine habitat","Offshore habitat", "Commercial Revenue", "Recreational Angler Days/Trips", "Commercial Fishery Resilience (Revenue Diversity)", "Commercial Fishery Resilience (Shoreside Support)", "Fleet Resilience", "Social-Cultural","Commercial","Recreational", "Control", "Interactions", "Other ocean uses", "Regulatory complexity", "Discards", "Allocation", "Population diversity", "Ecological diversity", "Fishery Resilience (2)", "Fishery Resilience (3)", "Fishery Resilience (5)", "Commercial Employment", "Recreational Employment", "Seafood safety"), 
   Definition = c("Risk of not achieving OY due to analytical limitations", "Risk of not achieving OY due to overfishing", "Risk of not achieving OY due to depleted stock", "Risk of not achieving OY due to MAFMC managed species interactions", "Risk of not achieving OY due to MAFMC managed species interactions", "Risk of not achieving protected species objectives due to species interactions", "Risk of not achieving OY due to changing system productivity", "Risk of not achieving OY due to climate vulnerability", "Risk of not achieving OY due to climate-driven distribution shifts", "Risk of not achieving OY due to threats to estuarine/nursery habitat", "Risk of not achieving OY due to changing offshore habitat", "Risk of not maximizing fishery value", "Risk of not maximizing fishery value" , "Risk of reduced fishery business resilience", "Risk of reduced fishery business resilience due to shoreside support infrastructure", "Risk of reduced fishery resilience", "Risk of reduced community resilience ", "Risk of not optimizing seafood production" , "Risk of not maintaining personal food production" , "Risk of not achieving OY due to inadequate control", "Risk of not achieving OY due to interactions with species managed by other entities", "Risk of not achieving OY due to other human uses", "Risk of not achieving compliance due to complexity", "Risk of not minimizing bycatch to extent practicable", "Risk of not achieving OY due to spatial mismatch of stocks and management", "Risk of not achieving OY due to reduced diversity", "Risk of not achieving OY due to reduced diversity", "Risk of reduced fishery business resilience due to access to capital", "Risk of reduced fishery business resilience due to insurance availabilty", "Risk of reduced fishery business resilience due to access to emerging markets/opportunities", "Risk of not optimizing employment opportunities", "Risk of not optimizing employment opportunities","Risk of not maintaining market access, human health"),
@@ -329,14 +329,16 @@ elements<-data.frame(
 ```{r elements2}
 
 elements2<-elements %>%
-  dplyr::filter(Category %in% c("Economic", "Social", "Food Production")) %>%
+  dplyr::filter(Category %in% c("Ecosystem","Economic", "Social", "Food Production")) %>%
   dplyr::select(Element, Definition, Indicators)
 
 kable(elements2, "html") %>%
   kable_styling(bootstrap_options = c("striped", "condensed"), font_size = 11) %>%
-  group_rows("Economic", 1,4) %>%
-  group_rows("Social", 5,6) %>%
-  group_rows("Food Production", 7,8)
+  group_rows("Ecosystem", 1,1) %>%
+  group_rows("Economic", 2,5) %>%
+  group_rows("Social", 6,7) %>%
+  group_rows("Food Production", 8,9)
+  
 
 ```
 ]
@@ -352,7 +354,7 @@ elements1<-elements %>%
 
 kable(elements1, "html") %>%
   kable_styling(bootstrap_options = c("striped", "condensed"), font_size = 14) %>%
-  group_rows("Ecological", 1,11) #%>%
+  group_rows("Ecological", 1,9) #%>%
   #group_rows("Put Aside", 26,33) 
 
 ```
@@ -375,7 +377,7 @@ kable(elements3, "html") %>%
 
 
 ---
-## Risk elements put aside in 2017
+## Reconsider risk elements put aside in 2017?
 
 ```{r elements4}
 
@@ -385,7 +387,7 @@ elements4<-elements %>%
 
 kable(elements4, "html") %>%
   kable_styling(bootstrap_options = c("striped", "condensed"), font_size = 14) %>%
-  group_rows("Put Aside", 1,8) #%>%
+  group_rows("Put Aside", 1,9) #%>%
   #group_rows("Put Aside", 26,33) 
 
 ```
@@ -393,6 +395,10 @@ kable(elements4, "html") %>%
 
 
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/conditional_risk.png")
+background-size: 580px
+background-position: bottom right
+
 .pull-left[
 
 ## Today
@@ -402,9 +408,12 @@ Update or add risk elements? (columns)
 Update or refine risk definitions? (columns)
 
 Update or add resources or fisheries? (rows)
+
+*Can we revise the risk assessment to work better within the Council's EAFM approach?*
+
+*Can we revise the risk assessment to work better for other Council decisions?*
 ]
 
---
 
 .pull-right[
 
@@ -418,5 +427,5 @@ Update or refine risk criteria?
 
 --
 
-*Can we revise the risk assessment to work better within the Council's EAFM approach?*
+
 
