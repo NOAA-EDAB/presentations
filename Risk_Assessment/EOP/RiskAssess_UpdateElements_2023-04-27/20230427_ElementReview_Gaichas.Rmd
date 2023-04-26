@@ -253,9 +253,8 @@ risk.sppsector %>%
 Comments on overall risk assessment for EOP to consider?
 
 ---
+## Risk assessment &rarr; conceptual model &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Conceptual model &rarr; MSE
 .pull-left[
-## Risk assessment &rarr; conceptual model 
-.reduced_margin_top[
 ```{r sfconceptmod, echo = F, fig.align = "center"}
 # setup for conceptual model
 PKG <- c(#"foreign","foodweb","sna", "DiagrammeR","circlize", "kableExtra", "googledrive", "readxl"
@@ -282,10 +281,8 @@ frameWidget(conmod)
 
 ```
 ]
-]
 
 .pull-right[
-## Conceptual model &rarr; MSE
 ![:img Summer flounder MSE results by OM, 95%](https://github.com/gavinfay/fluke-mafmc-recdisc/raw/main/outputs/plots/median-metrics-alloms-slides.png) 
 ![:img Summer flounder MSE results by OM, 95%](https://github.com/gavinfay/fluke-mafmc-recdisc/raw/main/outputs/plots/weights.png)
 ]
