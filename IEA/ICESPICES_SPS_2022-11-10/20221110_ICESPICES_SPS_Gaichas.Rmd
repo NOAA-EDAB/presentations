@@ -168,8 +168,8 @@ label.size <- 5
 hjust.label <- 1.5
 letter_size <- 4
 feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
-x.shade.min <- 2011
-x.shade.max <- 2021
+x.shade.min <- 2012
+x.shade.max <- 2022
 series.col <- c("indianred","black")
 #Function for custom ggplot facet labels
 label <- function(variable,value){
@@ -181,17 +181,20 @@ planktivores <- ecodata::aggregate_biomass %>%
                            "Planktivore Spring Biomass Index",
                            "Planktivore Fall Biomass Standard Error",
                            "Planktivore Spring Biomass Standard Error"))%>%
-  tidyr::separate(Var, c("feeding.guild", "season", "Biomass", "Var1", "Null", "Area"), sep = " ") %>%
+  tidyr::separate(Var, c("feeding.guild", "season", "Biomass", "Var1"), sep = " ") %>% #, "Null", "Area"
   tidyr::unite("Var", feeding.guild:season, sep = " ") %>%
   dplyr::mutate(stat = recode(Var1, Index = "Mean",
-                      Standard = "SD")) %>%
-  dplyr::select(-Biomass, -Var1, -Null, -Units) %>%
+                      Standard = "SD"),
+                Value = as.numeric(Value),
+                Time = as.integer(Time)) %>%
+  dplyr::select(-Biomass, -Var1,  -Units) %>% #-Null,
   # dplyr::filter(!Area == "-") %>%
-  dplyr::group_by(Var, Time, EPU, Area) %>%
-  tidyr::pivot_wider(id_cols = c(Var, Time, EPU, Area),names_from =  stat, values_from =  Value) %>%
-  dplyr::filter(!Mean == "NULL") %>%
-  dplyr::ungroup() %>%
-  dplyr::mutate(Mean = as.numeric(Mean))
+  dplyr::group_by(Var, Time, EPU) %>% #, Area
+  tidyr::pivot_wider(names_from =  stat, values_from =  Value) %>% #, Area id_cols = c(Var, Time, EPU)
+  tidyr::unnest(cols = c(Mean, SD))
+  #dplyr::filter(!Mean == "NULL") %>%
+  #dplyr::ungroup() #%>%
+  #dplyr::mutate(Mean = as.numeric(Mean))
 
 
 agg_bio<-planktivores %>% dplyr::filter(EPU %in% c("MAB", "GB"),
@@ -441,7 +444,8 @@ knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/202
 
 knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png")
 
-knitr::include_graphics("https://marinefishesofgeorgia.org/wp-content/themes/yootheme/cache/Weakfish-00ce3893.png")
+#knitr::include_graphics("https://marinefishesofgeorgia.org/wp-content/themes/yootheme/cache/Weakfish-00ce3893.png")
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/weakfishASMFC.png")
 # credit: https://marinefishesofgeorgia.org/weakfish/
 
 knitr::include_graphics("https://photolib.noaa.gov/Portals/0//GravityImages/36881/ProportionalFixedWidth/sanc100698384x800x800.jpg")
@@ -457,14 +461,20 @@ knitr::include_graphics("https://photolib.noaa.gov/Portals/0//GravityImages/3688
 thorny <- magick::image_read("https://media.fisheries.noaa.gov/dam-migration/thorny.jpg")
 magick::image_rotate(thorny, 90)
 
-knitr::include_graphics("https://apps-nefsc.fisheries.noaa.gov/rcb/photogallery/large/dory_fullsize.jpg")
+#knitr::include_graphics("https://apps-nefsc.fisheries.noaa.gov/rcb/photogallery/large/dory_fullsize.jpg")
 # credit: NOAA NEFSC https://apps-nefsc.fisheries.noaa.gov/rcb/photogallery/pelagic.html
 
-knitr::include_graphics("https://marinefishesofgeorgia.org/wp-content/themes/yootheme/cache/Spanish-Mackerel-7c44a9e9.png")
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/depositphotos_7476236-stock-photo-zeus-faber-fish.jpg")
+
+#knitr::include_graphics("https://marinefishesofgeorgia.org/wp-content/themes/yootheme/cache/Spanish-Mackerel-7c44a9e9.png")
 # credit: https://marinefishesofgeorgia.org/spanish-mackerel/
 
-knitr::include_graphics("https://files.nc.gov/deq/styles/site_page_main_image/public/images/2021-10/Cynoscion-nebulosus-white.jpg")
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/spanishmackerelASMFC.png")
+
+#knitr::include_graphics("https://files.nc.gov/deq/styles/site_page_main_image/public/images/2021-10/Cynoscion-nebulosus-white.jpg")
 # credit: https://deq.nc.gov/about/divisions/marine-fisheries/public-information-and-education/species-profiles/spotted-seatrout
+
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/spottedseatroutASMFC.png")
 
 ```
 
