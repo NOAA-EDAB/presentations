@@ -984,7 +984,7 @@ Seasonal sea surface temperatures in 2022 were above average for most of the yea
 
 
 ---
-## Implications: Climate change and managed species &emsp; Risk elements unchanged, new info:
+## Implications: Climate change and managed species &emsp; Risk based on climate vulnerability:
 
 .pull-left[
 Climate: 18 <span style="background-color:lightgreen;">low</span>, 10 <span style="background-color:yellow;">low-mod</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk
@@ -998,11 +998,8 @@ Climate: 18 <span style="background-color:lightgreen;">low</span>, 10 <span styl
 ]
 
 .pull-right[
-DistShift: 2 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:yellow;">low-mod</span>, 31 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species 
+DistShift: 2 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:yellow;">low-mod</span>, 31 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk 
 
-.contrib[
-Shifting species distributions alter both species interactions, fishery interactions, and expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
-]
 
 *New Indicator: protected species shifts*
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R"), fig.width=7, fig.asp=0.8}
@@ -1024,12 +1021,15 @@ Shifting species distributions alter both species interactions, fishery interact
 + Fishing effort concentrates on the eastern edge of warm core rings, where upwelling and enhanced productivity ocurr. 
 + Fuel cost, plentiful longfin, and fewer warm core rings near the shelf led to lower *Illex* catch in 2022.
 ]
+.contrib[
+Shifting species distributions alter both species interactions, fishery interactions, and expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
+]
 ---
 .pull-left-60[
 ## Risks: Ecosystem productivity Mid Atlantic; Element: <span style="background-color:yellow;">EcoProd</span>
 
 
-Indicator: fish condition 
+Indicator: Fish condition 
 ```{r, out.width="120%"}
 #knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg")
 fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/MAB_Condition_allsex_2023_viridis.jpg") 
@@ -1037,7 +1037,7 @@ magick::image_trim(fishcond)
 ```
 <!--![:img Fish condition figure, 120%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg)-->
 
-Indicator: fish productivity anomaly &rarr;
+Indicator: Fish productivity anomaly &rarr;
 
 Implications: 
 Species in the MAB had mixed condition in 2022. Fish productivity based on surveys and assessments has been below average. 
@@ -1076,7 +1076,7 @@ Indicator: Common tern productivity
 ```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seabird-ne-productivity.R")}
 ```
 
-Indicator: gray seal pup production
+Indicator: Gray seal pup production
 ```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seal-pups.R"), fig.width=7, fig.asp = .7}
 ```
 ]
@@ -1330,22 +1330,13 @@ background-position: right
     - Management complexity
     - Recreational bycatch
 *  Stock level indicators best addressed in assessment?
+
+![:img bluefish ESP conceptual model, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
 ]
 
 .pull-right-40[
 ]
 
----
-## More information at the species level: Ecosystem Socioeconomic Profiles:  Bluefish reviewed December 2022
-
-.pull-left[
-
-![GOA pcod ESP conceptual model](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
-]
-
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/TOR1.svg)
-]
 
 ???
 
@@ -1478,3 +1469,23 @@ PrintBibliography(myBib)
 ```
 ]
 
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE_feature_image.png")
+background-size: 1200px
+background-position: center
+
+.right[
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+# Thank you!
+
+# Questions?
+]
