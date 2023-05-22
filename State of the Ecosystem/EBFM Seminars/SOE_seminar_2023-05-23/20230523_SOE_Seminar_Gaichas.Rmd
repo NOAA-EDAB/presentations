@@ -386,7 +386,8 @@ Climate: warming and changing oceanography continue
 *  Estuarine, coastal, and offshore habitats affected, with range of species responses
 *  Distribution shifts complicate management
 *  Gulf of Maine fall bloom highest in time series
-*  Multiple fish with poor condition, declining productivity 
+*  Fish stocks with a mix of good and poor condition 
+*  Multiple Mid-Atlantic stocks with declining productivity 
 ]
 
 .pull-right-40[]
@@ -657,6 +658,84 @@ Monitor:
 ]
 ---
 
+## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png)
+## GB ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png) GOM Total ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png), NEFMC-managed ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png)
+
+Indicator: Commercial Revenue
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-comm-revenue.R"), fig.width = 11}
+
+```
+
+.contrib[
+Key: Black = Revenue of all species combined; <p style="color:#FF6A6A;">Red = Revenue of NEFMC managed species</p>
+]
+
+---
+
+## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png)
+## GB ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png) GOM Total ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png), NEFMC-managed ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png)
+
+.pull-left[
+Indicator: Bennet--price and volume indices
+
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet-all.R"), fig.width = 7.5, fig.asp = 0.6, results = 'hide'}
+
+```
+
+]
+
+.pull-right[
+Implications:
+
+Both regions driven by single species
+* GOM high revenue despite low volume
+* Fluctuations in GB due to rotational management
+
+Monitor changes in climate and landings drivers:
+* Sea scallops and lobsters are sensitive to ocean warming and acidification
+
+]
+
+---
+
+## Objective: New England Environmental Justice and Social Vulnerability
+
+Indicators: Environmental justice vulnerability, commercial fishery engagement and reliance  
+
+.pull-left[
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
+#commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in New England."
+```
+New England commercial fishing communities
+]
+
+.pull-right[
+
+```{r, out.width="100%"}
+#get rid of the gray excel outline using R package magick
+ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/EJ_Commercial_NE_2023.PNG") 
+
+# from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
+# get height, width and crop longer side to match shorter side
+ii <- magick::image_info(ComEJ)
+
+cropComEJ <- ComEJ %>%
+  #magick::image_crop(cropComEJ, "820x580+5+5")
+  magick::image_crop(paste0(ii$width-10,"x",ii$height-10, "+5+5"))
+
+cropComEJ
+```
+
+<!--![Commercial fishing communities environmental justice spider plot](EDAB_images/EJ_Commercial_NE.png)-->
+]
+
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+
+???
+These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
+
+---
+
 ## Objective: Mid Atlantic Environmental Justice and Social Vulnerability &emsp; Risk element: <span style="background-color:yellow;">Social</span>
 Indicators: Environmental justice vulnerability, commercial fishery engagement and reliance  
 .pull-left[
@@ -726,44 +805,6 @@ Implications: There was an increase in recreational fishing activities in the ma
 .contrib[
 Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 ]
-
----
-
-## Objective: New England Environmental Justice and Social Vulnerability
-
-Indicators: Environmental justice vulnerability, commercial fishery engagement and reliance  
-
-.pull-left[
-```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-engagement.R"), fig.width = 6.5, fig.asp = 0.75}
-#commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in New England."
-```
-New England commercial fishing communities
-]
-
-.pull-right[
-
-```{r, out.width="100%"}
-#get rid of the gray excel outline using R package magick
-ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/EJ_Commercial_NE_2023.PNG") 
-
-# from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
-# get height, width and crop longer side to match shorter side
-ii <- magick::image_info(ComEJ)
-
-cropComEJ <- ComEJ %>%
-  #magick::image_crop(cropComEJ, "820x580+5+5")
-  magick::image_crop(paste0(ii$width-10,"x",ii$height-10, "+5+5"))
-
-cropComEJ
-```
-
-<!--![Commercial fishing communities environmental justice spider plot](EDAB_images/EJ_Commercial_NE.png)-->
-]
-
-Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
-
-???
-These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
 
 
 ---
@@ -844,31 +885,145 @@ The Gulf Stream is trending north. Ocean summer is lasting longer. In contrast t
 Seasonal sea surface temperatures in 2022 were above average for most of the year,  however late spring storms caused deep mixing, which delayed stratification and surface warming in late spring and early summer. A combination of long-term ocean warming and extreme events should be used to assess total heat stress on marine organisms
 
 ---
-## Climate and Ecosystem risks
+## Climate risks: offshore habitat
 
-![:col_header Indicator, Long term trend, Current status, Future prospects]
+![:col_header Region, Indicator, Long term trend, Current status]
 ![:col_row 
+    Coastwide<br>
+    <br>
+    <br>
+    Mid-Atlantic<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    Georges Bank<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    Gulf of Maine<br>
+    <br>
+    <br>
+    <br>
+    <br>,
+    
+    Gulf stream index<br> 
+    Warm core rings<br>
+    <br>
     Sea surface temperature<br> 
     Sea bottom temperature<br> 
-    Gulf stream index<br> 
-    Summer length, 
+    Summer length<br>
+    Extreme temperature events<br> 
+    Cold pool temperature<br>
+    Cold pool duration<br>
+    Cold pool extent<br>
+    <br>
+    Sea surface temperature<br> 
+    Sea bottom temperature<br> 
+    Summer length<br>
+    Extreme temperature events<br> 
+    <br>
+    Sea surface temperature<br> 
+    Sea bottom temperature<br> 
+    Summer length<br>
+    Extreme temperature events<br>
+    Warm slope water NE channel<br>
+    <br>, 
     
-    &nearr;<br>
-    &nearr;<br>
-    &nearr;<br>
-    &nearr;,
+    Moving north<br>
+    More numerous<br>
+    <br>
+    Increasing<br>
+    Increasing<br>
+    Increasing<br>
+    No trend<br>
+    Increasing<br>
+    Decreasing<br>
+    Decreasing<br>
+    <br>
+    Increasing<br>
+    Increasing<br>
+    Increasing<br>
+    No trend<br>
+    <br>
+    Increasing<br>
+    Increasing<br>
+    Increasing<br>
+    No trend<br>
+    Increasing<br>
+    <br>,
     
+    &plus;<br>
+    high regime<br>
+    <br>
     &plus;<br>
     &plus;<br>
     &plus;<br>
-    &plus;,
+    2 of 9-11 days<br>
+    &plus;<br>
+    &minus;<br>
+    &minus;<br>
+    <br>
+    &plus;<br>
+    &plus;<br>
+    &plus;<br>
+    1 of 28 days<br>
+    <br>
+    &plus;<br>
+    &plus;<br>
+    &plus;<br>
+    4 of 5 to 8 days<br>
+    &plus;<br>
+    <br>
     
-    ???<br>
-    ???<br>
-    ???<br>
-    ???
 ]
 
+
+---
+## Implications: Climate change and managed species &emsp; Risk elements unchanged, new info:
+
+.pull-left[
+Climate: 18 <span style="background-color:lightgreen;">low</span>, 10 <span style="background-color:yellow;">low-mod</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk
+
+*Multiple drivers with different impacts by species*    
+* Seasonal estuarine conditions affect life stages of managed species differently
+* Ocean acidification impact on commercial species  
+![:img Mid Seasonal pH](https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC.jpg)
+
+* Warm core rings important to *Illex* availability. 
+]
+
+.pull-right[
+DistShift: 2 <span style="background-color:lightgreen;">low</span>, 4 <span style="background-color:yellow;">low-mod</span>, 31 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species 
+
+.contrib[
+Shifting species distributions alter both species interactions, fishery interactions, and expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
+]
+
+*New Indicator: protected species shifts*
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R"), fig.width=7, fig.asp=0.8}
+```
+]
+
+???
+.contrib[
++ Chesapeake suitable habitat for juvenile summer flounder growth has declined by 50% or more 
++ Climate change is expected to continue impacting habitat function and use for multiple species  
++ Habitat improving in some areas (tidal fresh SAV, oyster reefs), but eelgrass declining 
+] 
+.contrib[
++ Scallops and longfin squid in Long Island Sound and off New Jersey have experienced low aragonite
++ Areas of low pH identified in surfclam and scallop habitat  
++ Lab work identified pH thresholds for surfclam growth
+] 
+.contrib[
++ Fishing effort concentrates on the eastern edge of warm core rings, where upwelling and enhanced productivity ocurr. 
++ Fuel cost, plentiful longfin, and fewer warm core rings near the shelf led to lower *Illex* catch in 2022.
+]
 ---
 .pull-left-60[
 ## Risks: Ecosystem productivity Mid Atlantic; Element: <span style="background-color:yellow;">EcoProd</span>
@@ -904,47 +1059,27 @@ Black line indicates sum where there are the same number of assessments across y
 
 
 ???
-Methods from `r Cite(myBib, "perretti_regime_2017")`.  
+Methods from `r Cite(myBib, "perretti_regime_2017")`. 
 
 ---
-## Implications: Climate change and managed species &emsp; Risk elements unchanged, new info:
-
 .pull-left[
-Climate: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk
+## Risks: Ecosystem structure New England 
 
-*Multiple drivers with different impacts by species*    
-* Seasonal estuarine conditions affect life stages of striped bass, blue crabs, summer flounder, black sea bass differently
-.contrib[
-+ Chesapeake suitable habitat for juvenile summer flounder growth has declined by 50% or more 
-+ Climate change is expected to continue impacting habitat function and use for multiple species  
-+ Habitat improving in some areas (tidal fresh SAV, oyster reefs), but eelgrass declining 
-] 
-* Ocean acidification impact on commercial species  
-.contrib[
-+ Scallops and longfin squid in Long Island Sound and off New Jersey have experienced low aragonite
-+ Areas of low pH identified in surfclam and scallop habitat  
-+ Lab work identified pH thresholds for surfclam growth
-] 
-* Warm core rings important to *Illex* availability. 
-.contrib[
-+ Fishing effort concentrates on the eastern edge of warm core rings, where upwelling and enhanced productivity ocurr. 
-+ Fuel cost, plentiful longfin, and fewer warm core rings near the shelf led to lower *Illex* catch in 2022.
-]
+Indicator: Forage fish index
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-forage-index.R"), fig.asp=.6}
+```
+
 ]
 
 .pull-right[
-DistShift: 2 <span style="background-color:lightgreen;">low</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species 
+Indicator: Common tern productivity
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seabird-ne-productivity.R")}
+```
 
-.contrib[
-Shifting species distributions alter both species interactions, fishery interactions, and expected management outcomes from spatial allocations and bycatch measures based on historical fish and protected species distributions.  
-]
-
-*New Indicator: protected species shifts*
-```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R"), fig.width=7, fig.asp=0.8}
+Indicator: gray seal pup production
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seal-pups.R"), fig.width=7, fig.asp = .7}
 ```
 ]
-
-
 
 ---
 ## Risks: Offshore Wind Development Mid Atlantic &emsp; Element: OceanUse
@@ -1310,19 +1445,9 @@ background-position: right bottom
 ---
 ## Additional resources
 .pull-left[
-* [ecodata R package](https://github.com/noaa-edab/ecodata)
-
-* Visualizations:
-  * [Mid-Atlantic Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_MAB)
-  * [Mid-Atlantic Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_MAB)
-  * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
-  * [New England Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_NE)
-  * [New England Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_NE)
-  * [New England Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_NE)
-
-]
-.pull-right[
 * [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
 
 * [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
 
@@ -1333,6 +1458,16 @@ background-position: right bottom
 * Slides available at https://noaa-edab.github.io/presentations
 * Contact: <Sarah.Gaichas@noaa.gov>
 ]
+]
+
+.pull-right[
+* Visualizations:
+  * [Mid-Atlantic Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_MAB)
+  * [Mid-Atlantic Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_MAB)
+  * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
+  * [New England Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_NE)
+  * [New England Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_NE)
+  * [New England Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_NE)
 ]
 
 ## References
