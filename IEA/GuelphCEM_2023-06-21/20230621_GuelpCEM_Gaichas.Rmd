@@ -1,0 +1,1104 @@
+---
+title: "Using Ecosystem Information in the <br /> Assessment, Management, and Advice Process"
+subtitle: "Center for Ecosystem Management Symposium<br /> 21 June 2023"
+author: "Sarah Gaichas<br /> Northeast Fisheries Science Center <br /> <br /> With thanks to Brandon Muffley (US Mid Atlantic Fishery Management Council)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
+---
+class: top, left
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+
+<style>
+.reduced_opacity {
+  opacity: 0.5;
+}
+</style>
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      #fig.asp = 0.45,
+                      warning = F,
+                      message = F,
+                      error = F)
+
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+library(kableExtra)
+library(ecodata)
+library(readxl); library(data.table)
+library(DT)
+library(widgetframe)
+
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./MidSOE.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+# US Policy defines EBFM as:
+
+## A systematic approach to fisheries management in a geographically specified area that contributes to the resilience and sustainability of the ecosystem; recognizes the physical, biological, economic, and social interactions among the affected fishery-related components of the ecosystem, including humans; and seeks to optimize benefits among a diverse set of societal goals. 
+
+.center[
+![:img relating environment marine habitat and the marine community to human activities social systems and objectives, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/nes-components-abstracted.png)
+]
+
+.footnote[
+https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-policy
+]
+
+---
+##  Many options and entry points for a systematic ecosystem approach
+
+.center[
+![:img Fishing icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/5_FISHING.png) &nbsp; &nbsp; &nbsp; ![:img Fishing industry icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/6_INDUSTRY.png) &nbsp; &nbsp; &nbsp; ![:img Multiple drivers icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/18.MULTIPLE_SYSTEM_DRIVERS.png) &nbsp; &nbsp; &nbsp; ![:img Spiritual cultural icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/22.SPIRITUAL_CULTURAL.png) &nbsp; &nbsp; &nbsp; ![:img Protected species icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/16.PROTECTEDSPECIES.png)
+]
+
+.center[
+![:img Climate icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/3_CLIMATE.png) &nbsp; &nbsp; &nbsp; ![:img Stock assessment icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/7.STOCKASSESSMENT-2.png) &nbsp; &nbsp; &nbsp; ![:img Ecosystem reorganization icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/3.ECOSYSTEM_REORGANIZATION.png) &nbsp; &nbsp; &nbsp; ![:img Wind icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/24.WIND.png)
+] 
+
+.center[
+![:img Hydrography icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/1_HYDROGRAPHY.png) &nbsp; &nbsp; &nbsp; ![:img Phytoplankon icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/9_PHYTOPLANKTON.png) &nbsp; &nbsp; &nbsp; ![:img Forage fish icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/13_FORAGEFISH.png) &nbsp; &nbsp; &nbsp; ![:img Apex predators icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/17.APEXPREDATORS.png)  &nbsp; &nbsp; &nbsp; ![:img Other human uses icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/8_OTHERHUMANUSES.png) 
+]
+
+.center[
+Fish stock assessment, Fishery catch advice, Ecosystem approach, Multispecies and system advice
+]
+---
+## Background: Federal fishery management in the US
+
+Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
+.center[
+![:img US map highlighting regions for each fishery management council, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/USCouncils.png)
+] 
+.footnote[
+More information: http://www.fisherycouncils.org/  
+https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
+]
+
+---
+## Goal: more effective resource management making best use of available science
+
+.pull-left[
+*Outline*
+- Systematic approaches using ecosystem information
+
+    * Stock assessment
+    * Single species catch limits
+    * Ecosystem approach for interactions
+    * Multispecies and ecosystem level tradeoffs
+
+- How can ecosystem information support these decisions? 
+
+    * Key tools: ecosystem indicators, conceptual modeling, risk assessment, managment strategy evaluation
+    * Developing decision processes along with products
+
+.footnote[
+Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Document](https://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08-palr.pdf)
+]
+]
+.pull-right[
+![:img EAFM Policy Guidance Doc Word Cloud](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_EAFMwordcloud.png)
+]
+???
+    * Allocations to fleets or areas
+    * Coordination across boundaries and sectors 
+
+
+---
+## Including ecosystem information at the species level: Ecosystem Socioeconomic Profiles (ESPs)
+
+.pull-left[
+
+![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)
+]
+
+.pull-right[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/GOApcodESPrisk.png)
+]
+
+.footnote[
+
+Pacific cod example from ASFC: https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheries-science-center-year-review and https://apps-afsc.fisheries.noaa.gov/refm/docs/2021/GOApcod.pdf
+]
+
+---
+## ESP process is adaptable to many assessment situations
+.center[
+![:img schematic of northeast ESP process, 100%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NE_esp_process.png)
+]
+
+.footnote[
+slide courtesy Scott Large
+]
+???
+Our ESP process was developed from the AFSC process, but we adjusted things slightly because of how our benchmarks are scheduled and because we are providing scientific advice to multiple Councils. 
+
+The ESP framework is an iterative cycle that complements the stock assessment cycle. First I will give you an overview of the ESP cycle, and then I will explain each step in more detail. The ESP begins with the development of the problem statement by identifying the topics that the assessment working group and ESP team want to assess. This process includes a literature review or other method of gathering existing information on the stock, such as reviewing prior assessments and research recommendations. Next, a conceptual model is created that links important processes and pressures to stock performance. From these linkages, we develop indicators that can be used to monitor the system conditions. Next, the indicators are analyzed to determine their status and the likely impacts on the stock. Some indicators may be tested for inclusion in assessment models. Finally, all of these analyses are synthesized into a report card to provide general recommendations for fishery management.
+
+
+---
+## Bluefish ESP reviewed December 2022
+
+.pull-left[
+
+![Bluefish ESP conceptual model](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
+
+]
+
+.pull-right[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/TOR1.svg)
+]
+
+The full ESP document is available as a working paper from the [stock assessment data portal](https://apps-nefsc.fisheries.noaa.gov/saw/sasi_files.php?year=2022&species_id=32&stock_id=6&review_type_id=5&info_type_id=5&map_type_id=&filename=WP%2001%20Tyrell%20etAl%202022%20-%20ESP.pdf) 
+
+???
+
+The Bluefish Research Track ESP was presented December 7 2022, and was well received by CIE reviewers. Reviewers commented that it was the most complete treatment of a stock assessment "ecosystem ToR" they had seen, and formed a good basis for integrating further ecosystem information into the stock assessment in the future. The full ESP document is available as a working paper from the [stock assessment data portal](https://apps-nefsc.fisheries.noaa.gov/saw/sasi_files.php?year=2022&species_id=32&stock_id=6&review_type_id=5&info_type_id=5&map_type_id=&filename=WP%2001%20Tyrell%20etAl%202022%20-%20ESP.pdf). 
+
+In addition to the conceptual model, a summary table was developed for bluefish ecosystem indicators. This type of summary could contribute to OFL CV decisions with further information on how these indicator levels affect uncertainty in assessment.
+
+---
+## Does prey drive availability of bluefish, *Pomatomus saltatrix*?
+
+.pull-left[
+![Bluefish illustration, credit NOAA Fisheries](https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png)
+"... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." `r Cite(myBib, "collette_bigelow_2002")`  
+]
+
+.pull-right[
+
+*Bluefish diet in the Northeast US*  
+
+```{r, crop=TRUE, fig.show='hold', out.width="25%"}
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://objects.liquidweb.services/images/201909/robert_aguilar,_serc_48650727166_3ce8edc47d_b.jpg")
+#credit: Robert Aguilar, Smithsonian Environmental Research Center
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Butterfish-NOAAFisheries.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Scup-NOAAFisheries_0.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Mackerel-Atlantic-NOAAFisheries.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://diveary.com/img/species/cache/323__jpg.jpeg") 
+#credit:  https://diveary.com/species/show/id/323/name/red-eye+round+herring
+
+knitr::include_graphics("https://www.vims.edu/research/departments/fisheries/programs/juvenile_surveys/netnotes_listing/_photosets/0910_dec_jan/_northernsandlance.jpg")
+#credit: VIMS, https://www.vims.edu/research/departments/fisheries/programs/juvenile_surveys/netnotes_listing/0910_dec_jan.php
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2021-01/640x427-Atlantic_Menhaden_NB_W.jpg")
+#credit: NOAA fisheries
+
+```
+.contrib[
+Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/tm2020/
+]
+]
+
+.center[
+We built a spatial "forage index" based on 20 prey groups using stomach contents of 22 predators 
+]
+
+???
+<font size="-1"></font>
+
+Changing distribution and abundance of small pelagics may drive changes in predator distributions, affecting predator availability to fisheries and surveys. However, small pelagic fish are difficult to survey directly, so we developed a novel method of assessing small pelagic fish aggregate abundance via predator diet data. We used piscivore diet data collected from multiple bottom trawl surveys within a Vector Autoregressive Spatio-Temporal (VAST) model to assess trends of small pelagics on the Northeast US shelf. The goal was to develop a spatial “forage index” to inform survey and/or fishery availability in the bluefish (Pomatomus saltatrix) stock assessment. Using spring and fall surveys from 1973-2020, 20 small pelagic groups were identified as major bluefish prey using the diet data. Then, predators were grouped by diet similarity to identify 19 piscivore species with the most similar diet to bluefish in the region. Diets from all 20 piscivores were combined for the 20 prey groups at each surveyed location, and the total weight of small pelagic prey per predator stomach at each location was input into a Poisson-link delta model to estimate expected prey mass per predator stomach. Best fit models included spatial and spatio-temporal random effects, with predator mean length, number of predator species, and sea surface temperature as catchability covariates. Spring and fall prey indices were split into inshore and offshore areas to reflect changing prey availability over time in areas available to the recreational fishery and the bottom trawl survey, and also to contribute to regional ecosystem reporting
+
+Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic groups were identified as major bluefish prey with 10 or more observations (in descending order of observations): Longfin squids (*Doryteuthis* formerly *Loligo* sp.), Anchovy family (Engraulidae), bay anchovy (*Anchoa mitchilli*), Atlantic butterfish, (*Peprilus triachanthus*), Cephalopoda, (*Anchoa hepsetus*), red eye round herring (*Etrumeus teres*), Sandlance (*Ammodytes* sp.), scup (*Stenotomus chrysops*), silver hake (*Merluccius bilinearis*), shortfin squids (*Illex* sp.), Atlantic herring (*Clupea harengus*), Herring family (Clupeidae), Bluefish (*Pomatomus saltatrix*), silver anchovy (*Engraulis eurystole*), longfin inshore squid (*Doryteuthis pealeii*), Atlantic mackerel (*Scomber scombrus*), flatfish (Pleuronectiformes), weakfish (*Cynoscion regalis*), and Atlantic menhaden (*Brevoortia tyrannus*). 
+
+Prey categories such as fish unidentified, Osteichthyes, and unidentified animal remains were not included in the prey list. Although unidentified fish and Osteichthyes can comprise a significant portion of bluefish stomach contents, we cannot assume that unidentified fish in other predator stomachs represent unidentified fish in bluefish stomachs.  
+
+Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Environmental Research Center; redeye round herring photo--https://diveary.com ; sandlance photo--Virginia Institute of Marine Science; all others NOAA Fisheries.
+
+---
+.pull-left[  
+## Do prey affect bluefish availability? 
+
+A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")` with the forage index as a catchability covariate.
+
+```{r}
+# strata.limits <- as.list(c("AllEPU" = allEPU2, 
+#                            "MABGB" = MABGB2,
+#                            "MABGBstate" = MABGBstate,
+#                            "MABGBfed" = MABGBfed,
+#                            "MAB" = MAB2,
+#                            "GB" = GB2,
+#                            "GOM" = GOM2,
+#                            "bfall" = bfall2,
+#                            "bfin" = bfinshore2,
+#                            "bfoff" = bfoffshore2,
+#                            "MABGBalbinshore" = albinshore2,
+#                            "MABGBothoffshore" = MABGBothoffshore2,
+#                            "albbfin" = albbfinshore,
+#                            "albbfall" = albbfall,
+#                            "allother" = allother2))
+stratlook <- data.frame(Stratum = c("Stratum_1",
+                                    "Stratum_2",
+                                    "Stratum_3",
+                                    "Stratum_4",
+                                    "Stratum_5",
+                                    "Stratum_6",
+                                    "Stratum_7",
+                                    "Stratum_8",
+                                    "Stratum_9",
+                                    "Stratum_10",
+                                    "Stratum_11",
+                                    "Stratum_12",
+                                    "Stratum_13",
+                                    "Stratum_14",
+                                    "Stratum_15"),
+                        Region  = c("AllEPU", 
+                                    "MABGB", 
+                                    "MABGBstate", 
+                                    "MABGBfed", 
+                                    "MAB",
+                                    "GB",
+                                    "GOM",
+                                    "bfall",
+                                    "bfin",
+                                    "bfoff",
+                                    "MABGBalbinshore",
+                                    "MABGBothoffshore",
+                                    "albbfin",
+                                    "albbfall",
+                                    "allother"))
+```
+
+
+```{r fallall, fig.asp=.5}
+#, fig.cap="Fall forage indices scaled to the maximum value (Mid Atlantic 1985) for ecoregions Georges Bank (GB), Gulf of Maine (GOM), Mid Atlantic Bight (MAB), and bluefish assessment index areas in state waters within 3 miles of shore (StateWaters) and bottom trawl survey index strata (SurveyBluefish)."
+splitout <- read.csv("https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv")
+splitoutput <- splitout %>%
+  dplyr::left_join(stratlook) %>%
+  dplyr::filter(Region %in% c("GOM", "GB", "MAB","MABGBstate", "bfin")) %>%
+  dplyr::mutate(Type = ifelse(Region %in% c("GOM", "GB", "MAB"), "Ecoregion", "Bluefish"),
+                Region = case_when(Region == "MABGBstate" ~ "StateWaters",
+                                   Region == "bfin" ~ "SurveyBluefish",
+                                   TRUE ~ Region))
+foragemax <- max(splitoutput$Estimate)
+ggplot(splitoutput, aes(x=Time, y=Estimate, colour=Region)) +
+  geom_errorbar(aes(ymin=Estimate+Std..Error.for.Estimate, ymax=Estimate-Std..Error.for.Estimate))+
+  geom_point()+
+  geom_line()+
+  theme_bw()+
+  #facet_wrap(~fct_relevel(Type, "Ecoregion", "Bluefish"), scales = "free_y") +
+  scale_y_continuous(labels=function(x)round(x/foragemax, digits = 2))+
+  ylab("Relative forage biomass scaled to maximum")  
+  
+  #guides(colour = guide_legend(ncol=2)) +
+  #theme(legend.position = c(1, 0),
+  #      legend.justification = c(1, 0))
+  #theme(legend.position="none")
+```
+
+Application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error, and led to an overall decreasing trend in catchability over time. 
+]
+
+.pull-right[
+
+ **The inclusion of the forage fish index improved the fit of all models.** 
+ 
+![:img preliminary results of including the forage fish index within the bluefish assessment comparing fishing mortality, recruitment, and spawning stock biomass time series between models with (purple, blue) and without (green, yellow) the index](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishWHAMecovPRELIM.png)
+
+The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to <span style="color:#5D3FD3;">higher biomass estimates from the assessment including forage fish.</span>  
+
+]
+
+
+???
+WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
+
+The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
+The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
+The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
+
+
+
+---
+## Ecosystem information can be used in decisions even if not directly in the stock assessment
+.center[
+![:img Pathways for scientific advice from the northeast ESP process, 100%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NE_esp_advice_pathways.png)
+]
+.footnote[
+slide courtesy Scott Large
+]
+
+---
+## The Mid-Atlantic Fishery Management Council (MAFMC)
+
+.pull-left-30[
+![:img US East Coast map highlighting Mid-Atlantic council jurisdiction, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MACouncil.png)
+]
+.pull-right-70[
+![:img MAFMC fishery management plans and species, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMPs3.png)
+]
+.footnote[Source: http://www.mafmc.org/fishery-management-plans] 
+
+---
+## Advice for Acceptable Biological Catch (ABC): MAFMC approach
+
+.pull-left[
+### Council Risk Policy: Probability of overfishing < 0.5
+
+```{r MAFMCriskpolicy, fig.asp = 0.7}
+
+riskpol <- data.frame(Bfrac = c(0, 0.1, 1.0, 1.5, 2.5),
+                      Current = c(0, 0, 0.45, 0.49, 0.49),
+                      Pre2020 = c(0, 0, 0.4, 0.4, 0.4)
+)
+
+riskpol <- riskpol %>%
+  pivot_longer(-Bfrac, names_to = "pstar")
+
+p1 <- ggplot2::ggplot(riskpol, aes(x=Bfrac, y=value, linetype = pstar)) +
+  geom_path(show.legend = TRUE) +
+  theme_minimal() +
+  xlab("B/Bmsy") +
+  ylab("p*") +
+  labs(linetype = "Policy")#+
+  #theme(legend.position="bottom")
+
+
+print(p1, vp=grid::viewport(gp=grid::gpar(cex=1.5)))
+```
+
+]
+
+.pull-right[
+### ABC proportion of Overfishing Limit (OFL) given OFL Coefficient of Variation (CV)
+
+```{r OFLCVtoABC, fig.asp = 0.7}
+
+ABCprop <- data.frame(Bfrac = seq(0, 2.5, 0.01)) %>%
+  dplyr::mutate(pstar = case_when(Bfrac <= 0.1 ~ 0,
+                                  Bfrac > 0.1 & Bfrac <= 1.0 ~ (Bfrac-0.1)*((0.45-0)/(1-0.1)) ,
+                                  Bfrac > 1.0 & Bfrac <= 1.5 ~ (Bfrac-1.0)*((0.49-0.45)/(1.5-1))+0.45,
+                                  Bfrac > 1.5 ~ 0.49)) %>%
+  dplyr::mutate("CV=60%" = qlnorm(pstar, log(1), log(0.60 + 1)),
+                "CV=100%" = qlnorm(pstar, log(1), log(1.00 + 1)),
+                "CV=150%" = qlnorm(pstar, log(1), log(1.50 + 1))) %>%
+  pivot_longer(-c(Bfrac, pstar), names_to = "CVlevel")
+                       
+
+p2 <- ggplot2::ggplot(ABCprop, aes(x=Bfrac, y=value, colour=CVlevel)) +
+  geom_line()+  
+  theme_minimal() +
+  xlab("B/Bmsy") +
+  ylab("ABC/OFL proportion") +
+  labs(colour = "OFL CV") #+
+  #theme(legend.position="bottom")
+
+print(p2, vp=grid::viewport(gp=grid::gpar(cex=1.5)))
+  
+```
+
+]
+
+.footnote[
+See [MAFMC ABC control rule](http://www.mafmc.org/s/MAFMC-ABC-Control-Rule-White-Paper.pdf) and [update for 2020 MAFMC risk policy](https://www.mafmc.org/s/b_Implications-of-MAFMC-Risk-Policy-for-Multi.pdf)
+]
+---
+## How to get the OFL CV? Characterizing scientific uncertainty
+
+.pull-left-30[
+**SSC evaluates 9 criteria**
+
+1. Data quality
+1. Model appropriateness 
+1. Retrospective analysis
+1. Comparison with simpler analysis
+1. Ecosystem factors 
+1. Recruitment trends
+1. Prediction error
+1. Informative F
+1. Simulations/MSE
+]
+
+.pull-right-70[
+**5. Informed by ecosystem factors or comparisons with other species**  
+
+a. Stock-relevant ecosystem factors directly included in the assessment model, e.g.,:  
+  + Environmentally dependent growth or other population processes;
+  + Factors limiting/enhancing stock productivity (habitat quality, etc.);
+  + Predation, disease, or episodic environmental mortality (e.g., red tide);
+  
+b. Ecosystem factors outside the stock assessment affecting short term prediction  
+  + General measures of ecosystem productivity and habitat stability (e.g., primary production amount and timing, temperature trends, etc.);
+  + Comparisons among related species; e.g., recruitment, growth, condition patterns across Mid Atlantic fish species stable, varying synchronously, or varying unpredictably;
+  + Climate vulnerability or other risk assessment evaluation of potential for changing productivity under changing conditions.
+]
+
+.footnote[
+See [MAFMC SSC OFL CV Guidance Document](https://www.mafmc.org/s/Final_Revised-OFL-CV-guidance-document_06_19_20.pdf)
+]
+---
+##  Characterizing scientific uncertainty from ecosystem factors
+
+```{r OFLCVtable}
+
+criteria <- data.frame("Decsion Criteria" = c("Data quality", "...", "Ecosystem factors accounted"),
+                       "Default OFL CV = 60%" = c("One or more synoptic surveys over stock area for multiple years. High quality monitoring of landings size and age composition. Long term, precise monitoring of discards. Landings estimates highly accurate.", "...", "Assessment considered habitat and ecosystem effects on stock productivity, distribution, mortality and quantitatively included appropriate factors reducing uncertainty in short term predictions. Evidence outside the assessment suggests that ecosystem productivity and habitat quality are stable. Comparable species in the region have synchronous production characteristics and stable short-term predictions. Climate vulnerability analysis suggests low risk of change in productivity due to changing climate."),
+                       "Default OFL CV = 100%" = c("Low precision synoptic surveys or one or more regional surveys which lack coherency in trend. Age and/or length data available with uncertain quality. Lacking or imprecise discard estimates. Moderate accuracy of landings estimates", "...", "Assessment considered habitat/ecosystem factors but did not demonstrate either reduced or inflated short-term prediction uncertainty based on these factors. Evidence outside the assessment suggests that ecosystem productivity and habitat quality are variable, with mixed productivity and uncertainty signals among comparable species in the region. Climate vulnerability analysis suggests moderate risk of change in productivity from changing climate."),
+                       "Default OFL CV = 150%" = c("No reliable abundance indices. Catch estimates are unreliable. No age and/or length data available or highly uncertain. Natural mortality rates are unknown or suspected to be highly variable. Incomplete or highly uncertain landings estimates", "...", "Assessment either
+demonstrated that including appropriate ecosystem/habitat factors increases short-term prediction uncertainty, or did not consider habitat and ecosystem factors. Evidence outside the assessment suggests that ecosystem productivity and habitat quality are variable and degrading. Comparable species in the region have high uncertainty in short term predictions. Climate vulnerability analysis suggests high risk of changing productivity from changing climate."))
+
+kableExtra::kable(criteria, booktabs = TRUE,
+  col.names = c("Decsion Criteria", "Default OFL CV = 60%", "Default OFL CV = 100%", "Default OFL CV = 150%")) %>%
+  kable_styling(font_size = 16)
+  
+
+```
+
+---
+## Making improved use of ecosystem information in OFL CV decisions
+
+.center[
+![MAFMC SSC Eco WG decisions](https://github.com/NOAA-EDAB/memos/raw/master/MidSSC_EcoWG/images/OFLCVprocess.png)
+]
+.footnote[
+[MAFMC SSC Ecosystem WG update](https://www.mafmc.org/s/d_March2022_SSCEcoWG.pdf)
+]
+
+
+???
+
+## SSC Ecosystem working group analyses in progress
+
+.reduced_opacity[
+* Using explicit ecosystem drivers in OFL CV decision
+    - For selected stocks representing a range of life history types
+        - Which ecosystem factors affect uncertainty in current stock biomass and Fmsy?
+        - Conceptual model mapping ecosystem factors to stock processes
+        - Which current ecosystem indicators best match relevant ecosystem factors?
+        - Simulation analysis: do changes in those indicators predictably change uncertainty?
+* *Starting with existing summer flounder MSE framework, focusing on recruitment drivers*
+* *Evaluating both benefits of correct decision and costs of incorrect decision*
+]
+
+* Outlining multispecies and system level advice: identify initial priorities in collaboration with Council
+    - Where are there multispecies/multifleet tradeoffs linking to economic and social outcomes?
+    - Are there multi-indicator thresholds suggesting when FMP level management needs to change?
+    - Are there changes in ecosystem productivity that imply standardized approaches for
+        - Setting reference points? 
+        - Developing rebuilding plans?
+        - Other analyses requiring short-term projections?
+* *More direct SSC involvement in ecosystem reporting priorities MAFMC EAFM*
+* *Evaluate current multispecies indicators for common signals*
+* *Evaluate proposed ecosystem-level reference points and thresholds for regional ecosystems*
+
+
+---
+## Integrated Ecosystem Assessment and the MAFMC Ecosystem Approach
+
+Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing EAFM is done in collaboration between managers, stakeholders, and scientists. https://www.mafmc.org/eafm 
+
+.pull-left[
+![:img IEA process from goal setting to assessment to strategy evaluation with feedbacks, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/iea-loop.png)
+.footnote[
+https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+]
+.pull-right[
+![:img Mid-Atlantic EAFM framework with full details in speaker notes, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+   * Direct link between ecosystem reporting and risk assessment
+   * Conceptual model links across risk elements for fisheries, species
+   * Management strategy evaluation includes key risks
+
+]
+???
+`r Cite(myBib,"gaichas_framework_2016")` The Council’s EAFM framework has similarities to the IEA loop. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
+
+---
+# Northeast US State of the Ecosystem (SOE) reporting
+## Improving ecosystem information and synthesis for fishery managers
+
+.pull-left-70[
+
+- Ecosystem indicators linked to management objectives `r Cite(myBib, "depiper_operationalizing_2017")`
+    + Contextual information
+    + Annual reporting since 2016
+    + Fishery-relevant subset of full Ecosystem Status Reports
+
+- Open science emphasis `r Cite(myBib, "bastille_improving_2021")`
+
+- Used within Mid-Atlantic Fishery Management Council's Ecosystem Process `r Cite(myBib, "muffley_there_2021")`
+    + Risk assessment `r Cite(myBib,"gaichas_implementing_2018")`
+    + Conceptual modeling `r Cite(myBib,"depiper_learning_2021")`
+    + Management strategy evaluation ([MSE](https://www.mafmc.org/actions/summer-flounder-mse))
+
+ 
+]
+
+.pull-right-30[
+![:img 2023 SOE Mid Atlantic Cover Page, 100%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_1.png)
+
+
+
+]
+
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png")
+background-size: 500px
+background-position: right
+
+## State of the Ecosystem Summary 2023: 
+**Performance relative to management objectives** 
+
+.pull-left-60[
+Seafood production ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) 
+
+Profits ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) 
+
+Recreational opportunities:  Effort ![:img increasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Effort diversity ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
+
+Stability: Fishery ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
+
+Social and cultural, trend not evaluated, status of:  
+*  Fishing engagement and reliance by community  
+*  Environmental Justice (EJ) Vulnerability by community  
+
+Protected species: 
+*  Maintain bycatch below thresholds ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)  
+*  Recover endangered populations (NARW) ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
+]
+.pull-right-40[]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_3.png")
+background-size: 500px
+background-position: right
+
+## State of the Ecosystem Summary 2023: 
+**Risks to meeting fishery management objectives**  
+
+.pull-left-60[
+Climate: warming and changing oceanography continue
+*  Heat waves and Gulf Stream instability
+*  Estuarine, coastal, and offshore habitats affected, with range of species responses
+*  Distribution shifts complicate management
+*  Multiple fish with poor condition, declining productivity 
+
+Other ocean uses: offshore wind development
+*  Current revenue in proposed areas
+    - 1-34% by port (some with EJ concerns)
+    - up to 17% by managed species
+*  Different development impacts for species preferring soft bottom vs. hard bottom 
+*  Overlap with important right whale foraging habitats, increased vessel strike and noise risks 
+*  Rapid buildout in patchwork of areas 
+*  Scientific survey mitigation required
+]
+.pull-right-40[
+.center[
+
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp; 
+&nbsp;  
+&nbsp;  
+
+```{r, crop=TRUE, out.width='35%'}
+
+plot(qrcode::qr_code("https://www.mafmc.org/s/Tab11_2023-Mid-Atlantic-State-of-the-Ecosystem.pdf"))
+
+```
+]
+]
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
+```
+
+---
+## Implications: Climate change and Mid-Atlantic managed species
+
+.pull-left[
+Climate*: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk
+
+*Multiple drivers with different impacts by species*    
+* Seasonal estuarine conditions affect life stages of striped bass, blue crabs, summer flounder, black sea bass differently
+
+* Ocean acidification approaching sensitivity thresholds in commercial shellfish habitats  
+
+* Gulf stream warm core rings more abundant, important to shortfin squid availability 
+
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp; 
+&nbsp;  
+
+.contrib[
+*Climate vulnerability and Distribution Shift risk levels from climate vulnerability analysis `r Cite(myBib,"hare_vulnerability_2016")`
+]
+
+
+]
+
+.pull-right[
+DistShift*: 2 <span style="background-color:lightgreen;">low</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species 
+
+* Managed species shifts already impacting allocation discussions
+
+*New Indicator: protected species shifts*
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R"), fig.width=7, fig.asp=0.8}
+```
+]
+
+---
+## State of the Ecosystem &rarr; MAFMC Risk assessent example: Commercial revenue
+
+This element is applied at the ecosystem level. Revenue serves as a proxy for commercial profits.
+
+.table[
+.pull-left[
+
+```{r riskcomval, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+# tabl <- "
+# | Risk Level         | Definition                                                          |  
+# |:-------------------|:--------------------------------------------------------------------|
+# | Low  | No trend and low variability in revenue |
+# | Low-Moderate | Increasing or high variability in revenue |
+# | Moderate-High | Significant long term revenue decrease |
+# | High | Significant recent decrease in revenue |
+# "
+# cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+
+tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
+                   "Definition" = c("No trend and low variability in revenue",
+                                    "Increasing or high variability in revenue",
+                                    "Significant long term revenue decrease",
+                                    "Significant recent decrease in revenue"))
+
+knitr::kable(tabl, format="html",
+             col.names = c("Risk Level", "Definition"),
+                           booktabs = T) %>%
+  #kable_styling(full_width = TRUE) %>%
+  column_spec(1:2, width = "20em")%>%
+  row_spec(3, bold = T, background = "orange")
+```
+
+Ranked moderate-high risk due to the significant long term revenue decrease
+]
+]
+.pull-right[
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"),fig.asp = 0.5, results='hide'}
+#comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
+```
+
+Key: Black = Revenue of all species combined; <span style="color:#FF6A6A;">Red = Revenue of MAFMC managed species</span>
+]
+
+--
+
+## Risk element: <span style="background-color:orange;">CommRev</span>, unchanged
+
+**SOE Implications:** Recent change driven by benthos. Monitor changes in climate and landings drivers:  
+-  Climate risk element: <span style="background-color:orange;">Surfclams</span> and <span style="background-color:red;">ocean quahogs</span> are sensitive to ocean warming and acidification.   
+-  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth
+
+
+---
+## EAFM Risk Assessment: 2023 Update (all methods to be reviewed/revised this year)
+
+.pull-left[
+*Species level risk elements*
+```{r sptable}
+#tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+# spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
+risk.species<-data.frame(
+  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Chub mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
+  Assess  = c("l", "l", "l",  "l", "l", "l", "h", "l", "lm", "h", "l", "h", "l", "l", "h", "na", "na"),
+  Fstatus = c("l", "l", "l", "l", "l", "h", "lm", "l", "lm", "lm", "l", "h", "l", "h", "lm", "na", "na"),
+  Bstatus = c("l", "l", "lm", "l", "l", "h", "lm", "lm", "lm", "lm", "lm", "mh", "lm", "lm", "lm", "na", "na"),
+  FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
+  FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
+  FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
+  Climate = c("h", "mh", "lm", "lm", "mh", "lm", "na", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
+  DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "na", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
+  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na")#,
+#  OffHabitat = c("na", "na", "l", "l", "l", "l", "na", "l", "l", "h", "na", "na", "na", "l", "l", "na", "na")#,
+)
+
+
+# these elements were removed by the council
+#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
+#  FoodSafe = c(),
+
+# one column test
+# risk.species %>%
+#   mutate(Fstatus = 
+#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
+#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
+
+#convert to longer text for consistency and display in html table
+risk.species <- risk.species %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#generalize to all
+risk.species %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+```
+.contrib[
+* RT assessment decreased Spiny dogfish **Assess**, risk to low and increased **Fstatus** risk to high
+* RT assessment decreased bluefish **Bstatus** risk from high to low-moderate
+* RT assessment increased Illex **Assess** risk from low-moderate to high
+]  
+
+*Ecosystem level risk elements*
+```{r ecotable}
+#tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.eco<-data.frame(
+  System = c("Mid-Atlantic"),
+  EcoProd = c("lm"),
+  #EcoDiv = c("lm"),
+  CommRev = c("mh"),
+  RecVal = c("l"),
+  FishRes1 = c("l"),
+  FishRes4 = c("mh"),
+  #CommJobs = c("mh"),
+  #RecJobs = c("l"),
+  FleetDiv = c("l"),
+  Social = c("lm"),
+  ComFood = c("h"),
+  RecFood = c("mh")
+)
+
+#convert to longer text for consistency and display in html table
+risk.eco <- risk.eco %>%
+     mutate_at(vars(-System), function(x){
+       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#make table
+risk.eco %>%
+  mutate_at(vars(-System), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+
+```
+.contrib[
+* Recreational value risk decreased from low-moderate to low
+]  
+]  
+
+.pull-right[ 
+*Species and Sector level risk elements*
+```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
+#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.sppsector<-data.frame(
+  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
+  MgtControl =  c(1,1,3,2,2,1,4,4,2,1,1,1,2,9,1,2,2,2,1,1,1,1,1,9),
+  TecInteract = c(1,1,1,3,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
+  OceanUse =    c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
+  RegComplex =  c(1,1,3,3,3,3,3,3,2,4,3,3,3,1,1,2,2,2,2,1,3,2,1,9),
+  Discards =    c(3,3,4,3,3,3,4,4,1,2,3,4,1,1,1,1,1,3,2,1,2,1,1,9),
+  Allocation =  c(1,1,4,1,4,1,4,1,1,4,1,1,4,1,1,1,1,4,1,1,1,1,1,9) 
+)
+
+
+#convert to text for consistency
+risk.sppsector <- risk.sppsector %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na")}) %>%
+     as.data.frame()
+
+#make table
+risk.sppsector %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 11) 
+
+```
+.contrib[
+* Management section not updated--to be revised this year  
+]
+]
+
+
+???
+---
+.pull-left[
+## How is MAFMC using the risk assessment?
+
+* Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
+
+![:img Mid-Atlantic EAFM framework, 95%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+* Council proceeding with management strategy evaluation (MSE) addressing [recreational fishery discards](https://www.mafmc.org/actions/summer-flounder-mse) using information from conceptual modeling.
+]
+.pull-right[
+```{r sfconceptmod, echo = F, fig.align = "center"}
+# setup for conceptual model
+PKG <- c(#"foreign","foodweb","sna", "DiagrammeR","circlize", "kableExtra", "googledrive", "readxl"
+         "RColorBrewer","QPress",
+         "chorddiag",
+         "widgetframe")
+
+for (p in PKG) {
+  if(!require(p,character.only = TRUE)) {
+    install.packages(p)
+    require(p,character.only = TRUE)}
+}
+
+data.dir <- here::here("data")
+
+#assumes this is a project and .dia file is in data directory
+edges <- model.dia(file.path(data.dir, "Summer_Flounder_July22_2019.dia"))
+
+source("R/interactive_chord_sfconsmod.R")
+
+conmod <- interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
+
+frameWidget(conmod)
+
+```
+
+]
+
+
+???
+In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
+
+&nbsp;  
+&nbsp;  
+&nbsp; 
+
+![:img static conceptual model discards](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/consmod-discards2.png)
+
+---
+## MSE results: can improve on current management, but distribution shifts lower expectations
+.center[
+![:img Summer flounder MSE results by OM, 95%](https://github.com/gavinfay/fluke-mafmc-recdisc/raw/main/outputs/plots/median-metrics-alloms-slides.png)
+]
+
+.footnote[
+[August MAFMC briefing materials](https://www.mafmc.org/s/Tab02_Summer-Flounder-MSE_2022-08.pdf) and [full results on the web](https://gavinfay.github.io/fluke-mafmc-recdisc/summary-metrics.html)
+]
+???
+* Linked recreational demand and population dynamics model
+* Alternative operating model included northward distribution shift as change in availability by state
+* Rank order of management options maintained, but degraded performance when considering ecosystem change
+
+---
+.pull-left-60[
+## System level decisions: Are we observing multispecies shifts?
+
+Indicator: fish condition 
+```{r, out.width="120%"}
+#knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg")
+fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/MAB_Condition_allsex_2023_viridis.jpg") 
+magick::image_trim(fishcond)
+```
+<!--![:img Fish condition figure, 120%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg)-->
+
+Indicator: fish productivity anomaly &rarr;
+
+Implications: 
+Species in the MAB had mixed condition in 2022. Fish productivity based on surveys and assessments has been below average. 
+
+]
+
+.pull-right-40[
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.asp=.75}
+
+```
+
+```{r , code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-assessment.R"), fig.asp=.75}
+
+```
+.contrib[
+Black line indicates sum where there are the same number of assessments across years.
+]
+]
+
+
+---
+## System level decisions: Ecosystem Overfishing Indicators
+
+## Operational thresholds for management?
+.pull-left-60[
+Reviewed new information and agreed with proposals:
+*  Updated data inputs (menhaden)
+*  Discard estimation still in progress
+*  Comparisons of data sources
+*  Calculate new thresholds using regional ecosystem productivity
+*  Simulation test thresholds within ecosystem model Atlantis
+
+Previous SSC discussion:
+*  Thresholds define a "safe operating space"
+     + Define the bounds where fishing causes poor system performance
+     + Identify tradeoffs across species within the safe zone
+*  Provide advice on options to correct ecosystem overfishing
+*  Use social benefits to measure outcomes  
+
+What information would be most useful in decision making?
+
+]
+
+.pull-right-40[
+
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ryther-index-MAB.png)
+
+]
+???
+Declining commercial and recreational landings can be driven by many interacting factors, including combinations of ecosystem and stock production, management actions, market conditions, and environmental change. While we cannot evaluate all possible drivers at present, here we evaluate the extent to which ecosystem overfishing (total landings exceeding ecosystem productive capacity), stock status, and system biomass trends may play a role. 
+
+---
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ecodata.png)
+background-size: 330px
+background-position: bottom right
+
+## Entry points for ecosystem information in management decisions: where to start?
+
+.pull-left-40[
+*Management decisions*
+1.  What are our issues and goals?
+1.  Current decisions  
+    +  Stock assessments
+    +  Advice on catch levels
+    +  Harvest control rules
+1.  New (current) decisions  
+    +  Habitat change or restoration
+    +  Changing species distribution and interactions
+    +  Tradeoffs between fisheries
+    +  Tradeoffs between ocean use sectors
+
+]
+
+.pull-right-60[
+*Methods and tools*
+1.  Stakeholder engagement, surveys, strategic planning  
+1.  Add information to current process  
+    +  Ecosystem ToRs, overviews, ESP, SOE
+    +  Risk or uncertainty assessments
+    +  Management strategy evaluation
+1.  Integrate across current processes  
+    +  Risk assessment
+    +  Conceptual models
+    +  Scenario planning
+    +  MSE (again)
+]
+
+Focus on developing *decision processes* that are able to use ecosystem information
+
+*  Collaborative, iterative process between scientists, managers, stakeholders
+*  Multispecies and system level indicators of productivity change or overexploitation 
+
+.footnote[
+State of the Ecosystem data on github https://github.com/NOAA-EDAB/ecodata
+]
+
+
+---
+## Additional resources
+.pull-left[
+* [US EBFM Policy](https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-policy), [US EBFM Roadmap](https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-road-map)  
+* [US Integrated Ecosystem Assessments](https://www.integratedecosystemassessment.noaa.gov/)
+* [Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)  
+* [Ecosystem Report Technical Documentation](https://noaa-edab.github.io/tech-doc)  
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+]
+.pull-right[
+* [MAFMC SSC](https://www.mafmc.org/ssc)
+* [MAFMC EAFM](https://www.mafmc.org/eafm)
+* [MAFMC EAFM Summer Flounder MSE](https://www.mafmc.org/actions/summer-flounder-mse)
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: <Sarah.Gaichas@noaa.gov>
+]
+]
+
+## References
+
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]
+
+---
+
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/IMG_2733.jpg")
+background-size: cover
+
+## Questions?
+
+
+# Thank you
+
