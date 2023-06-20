@@ -64,6 +64,7 @@ BibOptions(check.entries = FALSE,
            cite.style = "authoryear",
            longnamesfirst = FALSE,
            max.names = 1,
+           no.print.fields = "url",
            style = "markdown")
 myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 
@@ -149,10 +150,10 @@ Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Docum
 
 .pull-left[
 
-![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)
+![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)  
+&nbsp; 
 
-
-.contrib[Ecosystem and Socioeconomic Profiles (ESPs) `r Cite(myBib, c("shotwell_synthesizing_2022", "haltuch_oceanographic_2020", "tolimieri_oceanographic_2018", "dorn_risk_2020"))`]
+Ecosystem and Socioeconomic Profiles (ESPs) `r Cite(myBib, c("shotwell_synthesizing_2022", "haltuch_oceanographic_2020", "tolimieri_oceanographic_2018", "dorn_risk_2020"))`
 ]
 
 .pull-right[
