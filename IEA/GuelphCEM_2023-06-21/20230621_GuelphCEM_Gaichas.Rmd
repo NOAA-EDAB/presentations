@@ -1,7 +1,7 @@
 ---
-title: "Using Ecosystem Information in the <br /> Assessment, Management, and Advice Process"
+title: "Using Ecosystem Information in <br /> Fishery Management <br /> Assessment and Advice Processes"
 subtitle: "Center for Ecosystem Management Symposium<br /> 21 June 2023"
-author: "Sarah Gaichas<br /> Northeast Fisheries Science Center <br /> <br /> With thanks to Brandon Muffley (US Mid Atlantic Fishery Management Council)"
+author: "Sarah Gaichas<br /> Northeast Fisheries Science Center <br /> <br /> With thanks to Brandon Muffley <br />US Mid Atlantic Fishery Management Council"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -124,7 +124,7 @@ https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 
     * Stock assessment
     * Single species catch limits
-    * Ecosystem approach for interactions
+    * Ecosystem approach (EAFM) for interactions
     * Multispecies and ecosystem level tradeoffs
 
 - How can ecosystem information support these decisions? 
@@ -145,11 +145,14 @@ Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Docum
 
 
 ---
-## Including ecosystem information at the species level: Ecosystem Socioeconomic Profiles (ESPs)
+## Including ecosystem information for fish stocks: Alaska Ecosystem and Socioeconomic Profiles
 
 .pull-left[
 
 ![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)
+
+
+.contrib[Ecosystem and Socioeconomic Profiles (ESPs) `r Cite(myBib, c("shotwell_synthesizing_2022", "haltuch_oceanographic_2020", "tolimieri_oceanographic_2018", "dorn_risk_2020"))`]
 ]
 
 .pull-right[
@@ -158,18 +161,10 @@ Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Docum
 
 .footnote[
 
-Pacific cod example from ASFC: https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheries-science-center-year-review and https://apps-afsc.fisheries.noaa.gov/refm/docs/2021/GOApcod.pdf
+Pacific cod example from Alaska: https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheries-science-center-year-review and https://apps-afsc.fisheries.noaa.gov/refm/docs/2021/GOApcod.pdf
 ]
 
----
-## ESP process is adaptable to many assessment situations
-.center[
-![:img schematic of northeast ESP process, 100%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NE_esp_process.png)
-]
 
-.footnote[
-slide courtesy Scott Large
-]
 ???
 Our ESP process was developed from the AFSC process, but we adjusted things slightly because of how our benchmarks are scheduled and because we are providing scientific advice to multiple Councils. 
 
@@ -177,12 +172,12 @@ The ESP framework is an iterative cycle that complements the stock assessment cy
 
 
 ---
-## Bluefish ESP reviewed December 2022
+## Northeast US Bluefish *Pomatomus saltatrix* ESP, reviewed December 2022
 
 .pull-left[
 
 ![Bluefish ESP conceptual model](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
-
+.contrib[Figure and table by Abigail Tyrell]
 ]
 
 .pull-right[
@@ -198,7 +193,7 @@ The Bluefish Research Track ESP was presented December 7 2022, and was well rece
 In addition to the conceptual model, a summary table was developed for bluefish ecosystem indicators. This type of summary could contribute to OFL CV decisions with further information on how these indicator levels affect uncertainty in assessment.
 
 ---
-## Does prey drive availability of bluefish, *Pomatomus saltatrix*?
+## Does prey drive availability of bluefish?
 
 .pull-left[
 ![Bluefish illustration, credit NOAA Fisheries](https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png)
@@ -267,7 +262,7 @@ Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Enviro
 
 ---
 .pull-left[  
-## Do prey affect bluefish availability? 
+## How to include in the bluefish assessment? 
 
 A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")` with the forage index as a catchability covariate.
 
@@ -456,7 +451,7 @@ See [MAFMC ABC control rule](http://www.mafmc.org/s/MAFMC-ABC-Control-Rule-White
 ## How to get the OFL CV? Characterizing scientific uncertainty
 
 .pull-left-30[
-**SSC evaluates 9 criteria**
+**Scientific and Statistical Committee (SSC) evaluates 9 criteria**
 
 1. Data quality
 1. Model appropriateness 
@@ -764,7 +759,7 @@ Key: Black = Revenue of all species combined; <span style="color:#FF6A6A;">Red =
 
 
 ---
-## EAFM Risk Assessment: 2023 Update (all methods to be reviewed/revised this year)
+## EAFM Risk Assessment: 2023 Update (all methods in review/revision this year)
 
 .pull-left[
 *Species level risk elements*
@@ -1063,6 +1058,14 @@ Focus on developing *decision processes* that are able to use ecosystem informat
 State of the Ecosystem data on github https://github.com/NOAA-EDAB/ecodata
 ]
 
+---
+## References
+
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]
 
 ---
 ## Additional resources
@@ -1084,14 +1087,6 @@ State of the Ecosystem data on github https://github.com/NOAA-EDAB/ecodata
 ]
 ]
 
-## References
-
-.contrib[
-```{r refs, echo=FALSE, results="asis"}
-PrintBibliography(myBib)
-```
-]
-
 ---
 
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/IMG_2733.jpg")
@@ -1102,3 +1097,18 @@ background-size: cover
 
 # Thank you
 
+---
+
+.center[
+#Extra slides
+]
+
+---
+## ESP process is adaptable to many assessment situations
+.center[
+![:img schematic of northeast ESP process, 100%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NE_esp_process.png)
+]
+
+.footnote[
+slide courtesy Scott Large
+]
