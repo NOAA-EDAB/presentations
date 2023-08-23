@@ -1,0 +1,447 @@
+---
+title: "Northeast Fisheries Science Center <br />Ecosystem Modeling Update"
+subtitle: "NEMoW 6, ToR 1<br />"
+author: "Sean Lucey, Presenter<br /><br /><br />Contributors: Brandon Beltz, Andy Beet, Joe Caracappa, Kiersten Curti, Gavin Fay (UMass Dartmouth),<br />Sarah Gaichas, Robert Gamble, Ron Klasky (S&T), Scott Large, Sean Lucey, Maria Cristina Perez (UMass Dartmouth),<br />Howard Townsend (S&T), Sarah Weisberg (Stony Brook U)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+
+# Updates
+
+.pull-left-40[  
+## Since NEMoW 5 in 2019
+
+*  Atlantis $^{*+}$
+*  Rpath $^{*+}$
+*  MS-Keyrun project, ICES WGSAM review $^+$
+*  Multspecies model skill assessment $^+$
+*  Multspecies MSE $^+$
+
+$^*$ climate-y  
+$^+$ management-y
+
+]
+
+.pull-right-60[
+![xkcd comic 1328 titled Update](https://imgs.xkcd.com/comics/update.png)
+
+.right[.contrib[https://xkcd.com/1328]]
+]
+
+???
+Everyone loves an update
+
+---
+# Atlantis NEUSv2: **major** update
+
+.pull-left[
+
+![:img NEUSmap, 90%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
+
+]
+
+.pull-right[
+![xkcd comic 1328 titled Software update](https://imgs.xkcd.com/comics/software_updates.png)
+
+.right[.contrib[https://xkcd.com/2224]]
+]
+
+???
+ATLANTIS MODELERS--WE SEE YOU
+
+---
+background-image: url("https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr3_lrg.jpg")
+background-size: 500px
+background-position: right
+
+# Atlantis NEUSv2: **major** update
+
+.pull-left[
+## From Joe on Wednesday
+*  Forcing with GLORYS12V1 and primary production in the new model `r Cite(myBib, "caracappa_northeast_2022")`
+ 
+## From Andy on Thursday              
+*  Running in the cloud for fuller sensitivity analysis
+
+## In progress
+*  Sensitivity to fishing scenarios in prep for strategic management applications
+*  Testing ecosystem overfishing indicators for the Northeast US
+*  Integrating spatial fleets and ports of origin
+
+]
+
+.pull-right[]
+
+---
+# Rpath: new regional models
+
+Brandon Beltz: MAB model
+
+Sarah Weisberg: GOM model
+
+
+---
+# MS-Keyrun project: EBFM Objectives in the Northeast US
+
+*  EBFM Objective 1: what happens with all the species in the region under a certain management regime?   
+      + Apply a full system model to assess "side effects" of target species management 
+      + Ability to implement fishing and biological scenarios 
+      + Hypothesis testing and MSE framework desirable 
+      
+*  EBFM Objective 2: how well do multispecies models perform for assessment? 
+      + Consider alternative model structures 
+          + Biomass dynamics 
+          + Size structured
+          + Age structured 
+      + Evaluate data availability for each structure
+      + Evaluate estimation performance of each structure
+      + Evaluate uncertainty and sensitivity
+      + Evaluate feasibility of developing and using multi-model inference
+      
+???
+MS-Keyrun model development and testing objectives are based on general ecosystem based management questions as well as specific discussions regarding EBFM development in New England. We will use this as an opportunity to address questions about the effects of management on the broader ecosystem, and about performance of assessment tools. 
+
+---
+background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/EPU_Designations_Map.jpg")
+background-size: 650px
+background-position: right
+
+## Place-based approach
+.pull-left-40[
+"Place-based" means a common spatial footprint based on ecological production, which contrasts with the current species-based management system of stock-defined spatial footprints that differ by stock and species.
+
+The medium blue area in the map is Georges Bank as defined by NEFSC trawl survey strata. SOE = State of the Ecosystem report
+
+*The input data for this project differs from the input data for most current stock assessments, and the results of these multispecies assessments are not directly comparable with current single species assessments.*
+]
+.pull-right-60[
+<!--![Georges Bank as defined by NEFSC trawl survey strata. SOE = State of the Ecosystem report](https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/EPU_Designations_Map.jpg)-->
+
+]
+???
+The project currently implements several place-based multispecies assessment models and one food web model. "Place-based" means a common spatial footprint based on ecological production, which contrasts with the current species-based management system of stock-defined spatial footprints that differ by stock and species. (See <a href="stockAreas.html"> stock area comparisons</a>.) Therefore, the input data for this project differs from the input data for most current stock assessments, and the results of these multispecies assessments are not directly comparable with current single species assessments. However, similar processes can be applied to evaluate these models. Georges Bank as defined for this project uses the NEFSC bottom trawl survey strata highlighted in medium blue below, which corresponds to the spatial unit for survey-derived ecosystem indicators in the Northeast Fisheries Science Center (NEFSC) New England State of the Ecosystem (SOE) report. Orange outlines indicate the ten minute square definitions for Ecological Production Units defined by a previous analysis. 
+
+---
+# Objective 1: evaluate system responses to management
+
+## [Rpath](https://github.com/NOAA-EDAB/Rpath) `r Cite(myBib, "lucey_conducting_2020")` with MSE capability `r Cite(myBib, "lucey_evaluating_2021")`
+
+.pull-left[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSE_Rpath_Page_05.png)
+]
+
+.pull-right[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSE_Rpath_Page_14.png)
+]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Balance_concept.png")
+background-size: 700px
+background-position: right
+
+## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
+.pull-left[ 
+Species interactions:
+- Full predator-prey: Consumption leads to prey mortality and predator growth
+- Static and dynamic model components
+
+Static model: 
+For each group, $i$, specify: 
+
+   Biomass $B$ (or Ecotrophic Efficiency $EE$)  
+   Population growth rate $\frac{P}{B}$  
+   Consumption rate $\frac{Q}{B}$  
+   Diet composition $DC$  
+   Fishery catch $C$  
+   Biomass accumulation $BA$  
+   Im/emigration $IM$ and $EM$  
+   
+Solving for $EE$ (or $B$) for each group:
+
+$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$  
+]
+
+.pull-right[
+
+]
+
+???
+Predation mortality $$M2_{ij} = \frac{DC_{ij}QB_jB_j}{B_i}$$
+
+Fishing mortality $$F_i = \frac{\sum_{g = 1}^n (C_{ig,land} + C_{ig,disc})}{B_i}$$
+
+Other mortality $$M0_i = PB_i \left( 1 - EE_i \right)$$
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ForagingArena.png")
+background-size: 380px
+background-position: right
+
+## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
+
+.pull-left-70[ 
+Dynamic model (with MSE capability):
+
+$$\frac{dB_i}{dt} = \left(1 - A_i - U_i \right) \sum_{j} Q \left(B_i, B_j \right) -  \sum_{j} Q \left( B_j, B_i \right) - M0_iB_i  - C_m B_i$$
+Consumption: 
+
+$$Q \left( B_i, B_j \right) = Q_{ij}^* \Bigg( \frac{V_{ij} Ypred_j}{V_{ij} - 1 + \left( 1 - S_{ij} \right) Ypred_j + S_{i} \sum_k \left( \alpha_{kj} Ypred_k \right)} \Bigg) \times \\\Bigg( \frac{D_{ij} Yprey_i^{\theta_{ij}}}{D_{ij} - 1 + \big( \left( 1 - H_{ij} \right) Yprey_i + H_{i} \sum_k \left( \beta_{ik} Yprey_k \right) \big)^{\theta_{ij}}} \Bigg)$$  
+Where $V_{ij}$ is vulnerability, $D_{ij}$ is “handling time” accounting for predator saturation, and $Y$ is relative biomass which may be modified by a foraging time multiplier $Ftime$,
+
+$$Y[pred|prey]_j =  Ftime_j \frac {B_j}{B_j^*}$$
+
+]
+
+.pull-right-30[
+
+]
+???
+The parameters $S_{ij}$ and $H_{ij}$ are flags that control whether the predator density dependence $S_{ij}$ or prey density dependence $H_{ij}$ are affected solely by the biomass levels of the particular predator and prey, or whether a suite of other species’ biomasses in similar roles impact the relationship. 
+
+For the default value for $S_{ij}$ of 0 (off), the predator density dependence is only a function of that predator biomass and likewise for prey with the default value of 0 for $H_{ij}$.  
+
+Values greater than 0 allow for a density-dependent effects to be affected by a weighted sum across all species for predators, and for prey.  The weights $\alpha_{kj}$ and $\beta_{kj}$ are normalized such that the sum for each functional response (i.e. $\sum_k\alpha_{kj}$ and $\sum_k\beta_{kj}$ for the functional response between predator *j* and prey *i*) sum to 1.  The weights are calculated from the density-independent search rates for each predator/prey pair, which is equal to $2Q_{ij}^*V_{ij} / (V_{ij} - 1)B_i^*B_j^*$.  
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/modeling_study.png")
+background-size: 380px
+background-position: right bottom
+
+# Objective 2: evaluate multispecies assessment tools
+
+## Multispecies production `r Cite(myBib, "gamble_analyzing_2009")`  
+
+## Multispecies catch at length `r Cite(myBib, "gaichas_combining_2017")` 
+
+(and eventually)
+## Multispecies catch at age `r Cite(myBib, "curti_evaluating_2013")`  
+
+---
+## Multispecies production simulation: [Kraken](https://github.com/NOAA-EDAB/Kraken) and estimation [FIT: MSSPM](https://nmfs-ecosystem-tools.github.io/MSSPM/)
+
+Species interactions: 
+- Predation: Top down (predation decreases population growth of prey, predator population growth independent of prey)
+- Competition: Within and between species groups
+
+*Based on Shaefer and Lotka-Volterra population dynamics and predation equations*
+- Species have intrinsic population growth rate $r_i$
+- Full model has 
+    - Carrying capacity $K$ at the species group level $K_G$ and at the full system level $K_\sigma$
+    - Within group competition $\beta_{ig}$ and between group competition $\beta_{iG}$ slow population growth near $K$
+    - Predation $\alpha_{ip}$ and harvest $H_i$ reduce population
+
+$$\frac{dN_i}{dt} = r_iN_i \bigg(1 - \frac{N_i}{K_G} - \frac{\sum_g \beta_{ig}N_g}{K_G} - \frac{\sum_G \beta_{iG}N_G}{K_\sigma - K_G} \bigg) - N_i\sum_p\alpha_{ip}N_p - H_iN_i$$
+
+- Simpler version used in most applications has interaction coefficient $\alpha$ that incorporates carrying capacity
+$$B_{i,t+1}=B_{i,t} + r_iB_{i,t} - B_{i,t}\sum_j\alpha_{i,j}B_{j,t} - C_{i,t}$$
+???
+Interaction coefficients $\alpha_{i,j}$ can be positive or negative
+
+$C$ can be a Catch time series, an exploitation rate time series $B_{i,t}*F_{i,t}$ or an $qE$ (catchability/Effort) time series.
+
+Environmental covariates can be included on growth or carrying capacity (in the model forms that have an explicit carrying capacity).
+
+
+---
+## Multispecies catch at length simulation model: [Hydra](https://github.com/NOAA-EDAB/hydra_sim)
+
+Species interactions: 
+- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)  
+
+*Based on standard structured stock assessment population dynamics equations, Same MSVPA predation equation as MSCAA (but length based), same dependencies and caveats*
+- First, split $M$ for species $i$ size $j$ into components: $$M_{i,j,t} = M1_i + M2_{i,j,t}$$  
+- Calculate $M2$ with MSVPA predation equation, which applies a predator consumption:biomass ratio to the suitable prey biomass for that predator. 
+- Suitability, $\rho$, of prey species $m$ size $n$ for a given predator species $i$ size $j$ a function of size preference and vulnerability  {0,1}. 
+- Food intake $I$ for each predator-at-size is temperature dependent consumption rate times mean stomach content weight. 
+- Also sensitive to "other food" $\Omega$.
+
+$$M2_{m,n,t} = \sum_i \sum_j I_{i,j,t} N_{i,j,t} \frac{\rho_{i,j,m,n}}{\sum_a \sum_b \rho_{i,j,a,b} W_{a,b} N_{a,b} + \Omega}$$
+
+???
+But:
+- Covariates on growth, maturity, recruitment possible; intended for environmental variables
+- So could hack in prey-dependent growth but making it dynamic is difficult
+
+We specify 'preferred' predator-prey weight ratio (log scale) $\Psi_j$ and variance in predator size preference $\sigma_j$ to compare with the actual predator-prey weight ratio $(w_n / w_j)$ to get the size preference $\vartheta$. 
+
+$$\vartheta_{n,j} = \frac{1}{(w_n / w_j)\sigma_j \sqrt{2\pi}} e^{-\frac{[log_e(w_n / w_j) - \Psi_j]}{2\sigma_j^2}}$$
+
+Food intake is $$I_{i,j,t} = 24 [\delta_j e^{\omega_i T}]\bar{C}_{i,j,k,t}$$
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NRCmodelLifeCycle.png")
+background-size: 650px
+background-position: right
+
+# Model life cycle 
+##`r Cite(myBib, "nrc_chapter_2007")`
+
+What makes a good model?
+
+* Differs by life stage 
+
+* Each builds on the next
+
+* Common themes
+
+---
+## This week: constructed model (framework) review
+
+For each model, reviews should evaluate:  
+
+1. Spatial and temporal resolution
+1. Algorithm choices
+1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
+1. Data availability/software tools
+1. Quality assurance/quality control (code testing)
+1. Test scenarios  
+1. Corroboration with observations
+1. Uncertainty/sensitivity analysis
+1. Peer review (previous)
+
+---
+## Common attributes across models
+
+A common dataset for 10 Georges Bank species has been developed, as well as a simulated dataset for model performance testing. The [`mskeyrun`]() data package holds both datasets. All modeling teams used these datasets. Group decisions on data are also documented [online]().
+
+.pull-left-40[
+
+**Years:** 1968-2019
+
+**Area:** Georges Bank (previous map)
+
+**Species:**  
+Atlantic cod (*Gadus morhua*),   
+Atlantic herring (*Clupea harengus*),   
+Atlantic mackerel (*Scomber scombrus*),   
+Goosefish (*Lophius americanus*),   
+Haddock (*Melanogrammus aeglefinus*),   
+Silver hake (*Merluccius bilinearis*),   
+Spiny dogfish (*Squalus acanthias*),   
+Winter flounder (*Pseudopleuronectes americanus*),   
+Winter skate (*Leucoraja ocellata*), and   
+Yellowtail flounder (*Limanda ferruginea*) 
+
+]
+
+.pull-right-60[
+![:img foodweb, 120%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/foodweb.png)
+]
+
+---
+# Datasets: real and simulated
+
+.pull-left[
+Real data from NEFSC databases via R packages [`survdat`](https://noaa-edab.github.io/survdat/), [`comlandr`](https://noaa-edab.github.io/comlandr/), [`mscatch`](https://noaa-edab.github.io/mscatch/)
+
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/survdat.png)![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/comlandr.png)![:img mscatchlogo, 48%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/logo.png)
+
+]
+
+
+.pull-right[
+Simulated data from Norwegian Barents Sea Atlantis model via R package [`atlantisom`](https://sgaichas.github.io/poseidon-dev/atlantisom_landingpage.html)
+
+**Norwegian-Barents Sea**
+
+[Hansen et al. 2016](https://www.imr.no/filarkiv/2016/04/fh-2-2016_noba_atlantis_model_til_web.pdf/nn-no), 
+[2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210419)
+
+.center[
+![:img NOBA, 70%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/journal.pone.0210419.g001.png)
+]
+]
+
+---
+## [ms-keyrun real biomass and catch data](https://noaa-edab.github.io/ms-keyrun/articles/GBsurveycatchviz.html)
+
+<iframe width="1212" height="682" src="https://noaa-edab.github.io/ms-keyrun/articles/GBsurveycatchviz.html" title="MS-keyrun real biomass and catch data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>
+
+---
+## [ms-keyrun real diet data](https://noaa-edab.github.io/ms-keyrun/articles/GBdietcomp.html)
+
+<iframe width="1212" height="682" src="https://noaa-edab.github.io/ms-keyrun/articles/GBdietcomp.html" title="MS-keyrun real diet data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>
+
+---
+## [ms-keyrun simulated data](https://noaa-edab.github.io/ms-keyrun/articles/SimData.html) 
+
+<iframe width="1212" height="682" src="https://noaa-edab.github.io/ms-keyrun/articles/SimData.html" title="MS-keyrun simulated data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>
+
+---
+.center[
+# Modelers discuss overview of results
+]
+
+---
+## References
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]  
+
+## Additional resources
+.pull-left[
+* [`mskeyrun` R data package](https://noaa-edab.github.io/ms-keyrun/index.html)
+* [Georges Bank keyrun project overview](https://noaa-edab.github.io/ms-keyrun/articles/mskeyrun.html)
+* [Rpath](https://github.com/NOAA-EDAB/Rpath)
+* [FIT: MSSPM](https://nmfs-ecosystem-tools.github.io/MSSPM/)
+]
+.pull-right[
+*Hydra-Associated GitHub repositories*
+* [hydra-sim (Simulation Model Wiki)](https://github.com/NOAA-EDAB/hydra_sim/wiki)
+* [hydra-sim (estimation fork)](https://github.com/thefaylab/hydra_sim)
+* [hydradata (estimation fork)](https://github.com/thefaylab/hydradata)
+* [hydra-diag (diagnostics)](https://github.com/thefaylab/hydra_diag)
+]
+
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: <Sarah.Gaichas@noaa.gov>
+]
+
