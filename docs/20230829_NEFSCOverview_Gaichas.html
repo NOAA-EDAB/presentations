@@ -89,21 +89,83 @@ background-position: right
 *  Running in the cloud
 
 ## In progress
-*  Sensitivity to fishing scenarios in prep for strategic management applications
+*  Sensitivity to fishing scenarios
 *  Testing ecosystem overfishing indicators for the Northeast US
 *  Integrating spatial fleets and ports of origin
 *  Climate projections using MOM-6 planned
+
+.footnote[https://github.com/NOAA-EDAB/neus-atlantis]  
+]
+
+
+
+.pull-right[]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Balance_concept.png")
+background-size: 700px
+background-position: right
+
+# Rpath: AFSC collaboration
+
+.pull-left[
+## From Sean and Kerim on Thursday
+*  How to Rpath &lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Lucey, et al., 2020a](http://www.sciencedirect.com/science/article/pii/S0304380020301290))
+
+## More than EwE in R
+*  MSE capability &lt;a name=cite-lucey_evaluating_2021&gt;&lt;/a&gt;([Lucey, et al., 2021](http://www.sciencedirect.com/science/article/pii/S0165783620302976))
+*  [Rpath MSE course code](https://github.com/thefaylab/cinar-mse-projects/blob/main/multispecies/RpathOM_HCR_PSPS.md)
+
+## In progress
+*  Documentation/vignettes
+*  (AFSC) Ecosense and fitting integration
+*  New northeast regional models (next slides)
+*  Georges Bank Rpath part of MS-Keyrun project (next next slides)
+*  Food web risk indicators planned
+
+.footnote[https://github.com/NOAA-EDAB/Rpath]
 
 ]
 
 .pull-right[]
 
 ---
-# Rpath: new regional models
+background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/BeltzMABrangeshiftdiet.png")
+background-size: 700px
+background-position: right
 
-Brandon Beltz: MAB model
+# Rpath: Mid Atlantic
 
-Sarah Weisberg: GOM model
+.pull-left-40[
+Brandon Beltz MS thesis *Food web impacts of warming-driven migration shifts of top predators in the Mid-Atlantic Bight (MAB)*
+
+*  Shifts in migration range had more impact than shifts in migration timing
+
+*  Non-prey species showed large changes in biomass in response to changes in predator migration. This suggests strong indirect effects are occurring and shows the more intricate ways that the food web can respond to change
+]
+
+.pull-right-60[]
+
+---
+background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/Weisberg_PopDy_Poster_2023.png")
+background-size: 700px
+background-position: right
+
+# Rpath: Gulf of Maine
+
+.pull-left-40[
+Sarah Weisberg PhD thesis/PopDy Fellowship *Advancing Climate-Informed, Ecosystem-Based Fisheries Management Through Food Web Modeling, Indicator Development And Risk Analysis In The Rapidly Warming Gulf Of Maine*
+
+*  Ecological network analysis shows regimes in Gulf of Maine food web efficiency/resilience. Highly efficient food webs have lower resilience due to fewer trophic pathways decreasing redundancy. 
+
+* The Gulf of Maine had low resilience in the 2000s, corresponding to poor fish condition 
+
+.footnote[p.s. [Shiny GOM used in IEA course](https://connect.fisheries.noaa.gov/content/6c128564-f8b2-49c4-8afc-614f9e2e7a5b/)]
+
+]
+
+
+.pull-right-60[]
 
 
 ---
@@ -150,7 +212,7 @@ The project currently implements several place-based multispecies assessment mod
 ---
 # Objective 1: evaluate system responses to management
 
-## [Rpath](https://github.com/NOAA-EDAB/Rpath) &lt;a name=cite-lucey_conducting_2020&gt;&lt;/a&gt;([Lucey, et al., 2020a](http://www.sciencedirect.com/science/article/pii/S0304380020301290)) with MSE capability &lt;a name=cite-lucey_evaluating_2021&gt;&lt;/a&gt;([Lucey, et al., 2021](http://www.sciencedirect.com/science/article/pii/S0165783620302976))
+## [Rpath](https://github.com/NOAA-EDAB/Rpath) ([Lucey, et al., 2020a](http://www.sciencedirect.com/science/article/pii/S0304380020301290)) with MSE capability ([Lucey, et al., 2021](http://www.sciencedirect.com/science/article/pii/S0165783620302976))
 
 .pull-left[
 ![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSE_Rpath_Page_05.png)
@@ -177,23 +239,7 @@ background-position: right bottom
 
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NRCmodelLifeCycle.png")
-background-size: 650px
-background-position: right
-
-# Model life cycle 
-##&lt;a name=cite-nrc_chapter_2007&gt;&lt;/a&gt;([NRC, 2007](https://www.nap.edu/read/11972/chapter/6))
-
-What makes a good model?
-
-* Differs by life stage 
-
-* Each builds on the next
-
-* Common themes
-
----
-## WGSAM 2022: constructed model (framework) review
+## WGSAM 2022: constructed model (framework) review &lt;a name=cite-nrc_chapter_2007&gt;&lt;/a&gt;([NRC, 2007](https://www.nap.edu/read/11972/chapter/6))
 
 For each model, reviews should evaluate:  
 
@@ -237,7 +283,7 @@ Yellowtail flounder (*Limanda ferruginea*)
 ]
 
 ---
-# Datasets: real and simulated
+# Common datasets to streamline model comparison
 
 .pull-left[
 Real data from NEFSC databases via R packages [`survdat`](https://noaa-edab.github.io/survdat/), [`comlandr`](https://noaa-edab.github.io/comlandr/), [`mscatch`](https://noaa-edab.github.io/mscatch/)
@@ -274,31 +320,19 @@ Simulated data from Norwegian Barents Sea Atlantis model via R package [`atlanti
 # Preliminary fits and review
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/modeling_study.png")
-background-size: 500px
-background-position: right bottom
+# Multispecies skill assessment
 
-# Multispecies models: how do we know they are right?
-
- * Fits to historical data (hindcast)
- 
- * Influence of data over time (retrospective diagnostics)
- 
- * Keep as simple and focused as possible
- 
- * Simulation testing
-
-# But, what if 
-
-##   data are noisy? 
-
-##   we need to model complex interactions?
-
-##   conditions change over time?
-
-.footnote[
-https://xkcd.com/2323/
+.pull-left-40[
+[Stow et al. 2009](https://www.sciencedirect.com/science/article/abs/pii/S0924796308001103?via%3Dihub)
+![:img Stow et al 2009 Fig 1](https://ars.els-cdn.com/content/image/1-s2.0-S0924796308001103-gr1.jpg)
 ]
+.pull-right-60[
+[Olsen et al. 2016](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146467)
+![:img Olsen et al Fig 1](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/pone.0146467.g001.png) 
+]
+???
+"Both our model predictions and the observations reside in a halo of uncertainty and the true state of the system is assumed to be unknown, but lie within the observational uncertainty (Fig. 1a). A model starts to have skill when the observational and predictive uncertainty halos overlap, in the ideal case the halos overlap completely (Fig. 1b). Thus, skill assessment requires a set of quantitative metrics and procedures for comparing model output with observational data in a manner appropriate to the particular application."
+
 ---
 ## [ms-keyrun simulated data](https://noaa-edab.github.io/ms-keyrun/articles/SimData.html) 
 
@@ -324,18 +358,6 @@ Can test model diagnostic tools as well
 Using simulated data in [`mskeyrun` package](https://noaa-edab.github.io/ms-keyrun/), available to all
 ]
 
----
-## Initial results for Hydra: Example fits to biomass (left) and catch (right)
-
-.pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5klogs1Bfit.png)
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5klogs2Bfit.png)
-]
-
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5kfleet1fit.png)
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5kfleet2fit.png)
-]
 
 ---
 ## Initial results for Hydra: Example fit to biomass vs biomass skill
@@ -364,19 +386,7 @@ Using simulated data in [`mskeyrun` package](https://noaa-edab.github.io/ms-keyr
 .center[
 *MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
 ]
----
-## Initial results for Hydra: Biomass Skill across models
 
-.pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/5binlogBskill.png)
-]
-
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/10binlogBskill.png)
-]
-.center[
-*MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
-]
 ---
 ## Initial results for Hydra: example skill summary statistics, 5 bin models
 
