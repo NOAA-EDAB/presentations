@@ -245,11 +245,9 @@ The project currently implements several place-based multispecies assessment mod
 
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/modeling_study.png")
-background-size: 380px
-background-position: right bottom
-
 # Objective 2: evaluate multispecies assessment tools
+
+.pull-left-60[
 
 ## Multispecies production MSSPM `r Cite(myBib, "gamble_analyzing_2009")`  
 
@@ -265,8 +263,16 @@ Fisheries Integrated Toolbox: MSSPM: https://nmfs-ecosystem-tools.github.io/MSSP
 * hydra-sim (estimation fork): https://github.com/thefaylab/hydra_sim
 * hydradata (estimation fork): https://github.com/thefaylab/hydradata
 * hydra-diag (diagnostics): https://github.com/thefaylab/hydra_diag
+]
 
 ]
+
+.pull-right-40[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/modeling_study.png)
+.footnote[https://xkcd.com/2323/]
+
+]
+
 
 ---
 ## Common attributes across models
@@ -354,14 +360,37 @@ For each model, reviews should evaluate:
 
 .pull-right-60[]
 ---
-# Work in progress
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/work-in-progress.png)
+background-size: 200px
+background-position: bottom right
+
+
+# [Full Review](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/) and Work in progress
 
 .pull-left[
-Dataset positively reviewed
+*  Challenge of place based approach for stocks with substantial dynamics outside Georges Bank: "In that case, expanding the models outside the boundaries of the EPU, and/or explicitly accounting for the input/output of fish and energy across the boundaries will likely be needed"
+
+*  Dedicated R packages for data positively reviewed
+
+*  Standardize diet interactions and better quantify other food in estimation models using Rpath
+
+*  Do model self-tests
+
+*  Model specific structural and sensitivity recommendations
 ]
 
 .pull-right[
+## In progress
 
+*  Self tests (4 species Hydra)
+
+*  Model specific recommendations in progress
+    +  Fleet changes
+    +  Feeding parameters
+
+*  Testing in progress (next slides)
+
+*  Work continues on input datasets
 ]
 ---
 # Multispecies model skill assessment
@@ -466,9 +495,21 @@ Do the same thing with Gadget, CEATTLE, Mizer, LeMans, Rpath... more participant
 
 
 ---
-# pMSE NEFMC EBFM 
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/pMSEhydra.png)
+background-size: 850px
+background-position: right
 
-All that work on Hydra paid off
+# [EBFM pMSE](https://d23h0vhsm26o6d.cloudfront.net/pMSE-Final-Report2.pdf) 
+
+.pull-left-30[
+Gavin Fay, Lisa Kerr, Madeleine Guyant, Jerelle Jesse, Emily Liljestrand
+
+Hydra: multispecies operating model within MSE framework as prototype test of EBFM strategies. 
+
+Results: additional flexibility and increased yield possible with EBFM "ceilings and floors" without increased risk to single stocks.
+]
+.pull-right-70[]
+
 
 ---
 ## References
@@ -477,6 +518,13 @@ All that work on Hydra paid off
 PrintBibliography(myBib)
 ```
 ]  
+
+## Additional Resources
+
+[EBFM pMSE June 2023 New England Council](https://www.nefmc.org/library/june-2023-ecosystem-based-fishery-management-ebfm-committee)
+*  [Presentation](https://d23h0vhsm26o6d.cloudfront.net/2_Draft-final-Prototype-Management-Evaluation-pMSE-simulation-results-and-output-2nd-mailing_2023-07-06-181333_tsor.pdf)
+*  [Report](https://d23h0vhsm26o6d.cloudfront.net/4a_Draft-final-simulation-results-report_2023-07-06-181455_iahe.pdf)
+*  [One Page Summaries](https://d23h0vhsm26o6d.cloudfront.net/4b_pMSE-one-page-sumamries_2023-07-06-181512_pgju.pdf)
 
 
 
@@ -490,7 +538,7 @@ Contact: <Sarah.Gaichas@noaa.gov>
 .center[
 # Extra slides: Model equations
 
-press "P" to see slide comments with even more equations
+press "p" to see slide comments with even more equations
 ]
 
 ---
