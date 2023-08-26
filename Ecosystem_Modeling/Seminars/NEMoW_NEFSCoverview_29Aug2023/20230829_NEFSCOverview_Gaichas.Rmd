@@ -1,6 +1,6 @@
 ---
 title: "Northeast Fisheries Science Center <br />Ecosystem Modeling Update"
-subtitle: "NEMoW 6, ToR 1<br />"
+subtitle: "NEMoW 6, ToR 1<br /> 29 August 2023"
 author: "Sean Lucey, Presenter<br /><br /><br />Contributors: Brandon Beltz, Andy Beet, Joe Caracappa, Kiersten Curti, Gavin Fay (UMass Dartmouth),<br />Sarah Gaichas, Robert Gamble, Ron Klasky (S&T), Scott Large, Sean Lucey, Maria Cristina Perez (UMass Dartmouth),<br />Howard Townsend (S&T), Sarah Weisberg (Stony Brook U)"
 output:
   xaringan::moon_reader:
@@ -127,7 +127,7 @@ background-position: right
 
 # Rpath: AFSC collaboration
 
-.pull-left[
+.pull-left-40[
 ## From Sean and Kerim on Thursday
 *  How to Rpath `r Cite(myBib, "lucey_conducting_2020")`
 
@@ -138,7 +138,7 @@ background-position: right
 ## In progress
 *  Documentation/vignettes
 *  (AFSC) Ecosense and fitting integration
-*  New northeast regional models (next slides)
+*  New regional models (next slides)
 *  Georges Bank Rpath part of MS-Keyrun project (next next slides)
 *  Food web risk indicators planned
 
@@ -146,7 +146,7 @@ background-position: right
 
 ]
 
-.pull-right[]
+.pull-right-60[]
 
 ---
 background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/BeltzMABrangeshiftdiet.png")
@@ -156,7 +156,8 @@ background-position: right
 # Rpath: Mid Atlantic
 
 .pull-left-40[
-Brandon Beltz MS thesis *Food web impacts of warming-driven migration shifts of top predators in the Mid-Atlantic Bight (MAB)*
+Brandon Beltz MS thesis 
+*Food web impacts of warming-driven migration shifts of top predators in the Mid-Atlantic Bight (MAB)*
 
 *  Shifts in migration range had more impact than shifts in migration timing
 
@@ -173,7 +174,8 @@ background-position: right
 # Rpath: Gulf of Maine
 
 .pull-left-40[
-Sarah Weisberg PhD thesis/PopDy Fellowship *Advancing Climate-Informed, Ecosystem-Based Fisheries Management Through Food Web Modeling, Indicator Development And Risk Analysis In The Rapidly Warming Gulf Of Maine*
+Sarah Weisberg PhD thesis section/PopDy Fellowship 
+*Advancing Climate-Informed, Ecosystem-Based Fisheries Management Through Food Web Modeling, Indicator Development And Risk Analysis In The Rapidly Warming Gulf Of Maine*
 
 *  Ecological network analysis shows regimes in Gulf of Maine food web efficiency/resilience. Highly efficient food webs have lower resilience due to fewer trophic pathways decreasing redundancy. 
 
@@ -249,33 +251,27 @@ background-position: right bottom
 
 # Objective 2: evaluate multispecies assessment tools
 
-## Multispecies production `r Cite(myBib, "gamble_analyzing_2009")`  
+## Multispecies production MSSPM `r Cite(myBib, "gamble_analyzing_2009")`  
 
-## Multispecies catch at length `r Cite(myBib, "gaichas_combining_2017")` 
+## Multispecies catch at length Hydra `r Cite(myBib, "gaichas_combining_2017")` 
 
 (and eventually)
 ## Multispecies catch at age `r Cite(myBib, "curti_evaluating_2013")`  
 
+.footnote[
+Fisheries Integrated Toolbox: MSSPM: https://nmfs-ecosystem-tools.github.io/MSSPM/  
+*Hydra-Associated GitHub repositories*
+* hydra-sim (Simulation Model Wiki): https://github.com/NOAA-EDAB/hydra_sim/wiki
+* hydra-sim (estimation fork): https://github.com/thefaylab/hydra_sim
+* hydradata (estimation fork): https://github.com/thefaylab/hydradata
+* hydra-diag (diagnostics): https://github.com/thefaylab/hydra_diag
 
----
-## WGSAM 2022: constructed model (framework) review `r Cite(myBib, "nrc_chapter_2007")`
-
-For each model, reviews should evaluate:  
-
-1. Spatial and temporal resolution
-1. Algorithm choices
-1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
-1. Data availability/software tools
-1. Quality assurance/quality control (code testing)
-1. Test scenarios  
-1. Corroboration with observations
-1. Uncertainty/sensitivity analysis
-1. Peer review (previous)
+]
 
 ---
 ## Common attributes across models
 
-A common dataset for 10 Georges Bank species has been developed, as well as a simulated dataset for model performance testing. The [`mskeyrun`]() data package holds both datasets. All modeling teams used these datasets. Group decisions on data are also documented [online]().
+A common dataset for 10 Georges Bank species has been developed, as well as a simulated dataset for model performance testing. The [`mskeyrun`](https://noaa-edab.github.io/ms-keyrun/) data package holds both datasets. All modeling teams used these datasets. Group decisions on data are also documented [online](https://noaa-edab.github.io/ms-keyrun/articles/mskeyrun.html#data-needs).
 
 .pull-left-40[
 
@@ -336,18 +332,47 @@ Simulated data from Norwegian Barents Sea Atlantis model via R package [`atlanti
 <iframe width="1212" height="682" src="https://noaa-edab.github.io/ms-keyrun/articles/GBdietcomp.html" title="MS-keyrun real diet data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>
 
 ---
-# Preliminary fits and review
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NRCmodelLifeCycle.png")
+background-size: 650px
+background-position: right
 
+## WGSAM 2022: constructed model (framework) review `r Cite(myBib, "nrc_chapter_2007")`
+
+.pull-left-40[
+For each model, reviews should evaluate:  
+
+1. Spatial and temporal resolution
+1. Algorithm choices
+1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
+1. Data availability/software tools
+1. Quality assurance/quality control (code testing)
+1. Test scenarios  
+1. Corroboration with observations
+1. Uncertainty/sensitivity analysis
+1. Peer review (previous)
+]
+
+.pull-right-60[]
 ---
-# Multispecies skill assessment
+# Work in progress
+
+.pull-left[
+Dataset positively reviewed
+]
+
+.pull-right[
+
+]
+---
+# Multispecies model skill assessment
 
 .pull-left-40[
 [Stow et al. 2009](https://www.sciencedirect.com/science/article/abs/pii/S0924796308001103?via%3Dihub)
-![:img Stow et al 2009 Fig 1](https://ars.els-cdn.com/content/image/1-s2.0-S0924796308001103-gr1.jpg)
+![:img Stow et al 2009 Fig 1, 90%](https://ars.els-cdn.com/content/image/1-s2.0-S0924796308001103-gr1.jpg)
 ]
 .pull-right-60[
 [Olsen et al. 2016](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146467)
-![:img Olsen et al Fig 1](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/pone.0146467.g001.png) 
+![:img Olsen et al Fig 1, 95%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/pone.0146467.g001.png) 
 ]
 ???
 "Both our model predictions and the observations reside in a halo of uncertainty and the true state of the system is assumed to be unknown, but lie within the observational uncertainty (Fig. 1a). A model starts to have skill when the observational and predictive uncertainty halos overlap, in the ideal case the halos overlap completely (Fig. 1b). Thus, skill assessment requires a set of quantitative metrics and procedures for comparing model output with observational data in a manner appropriate to the particular application."
@@ -379,7 +404,7 @@ Using simulated data in [`mskeyrun` package](https://noaa-edab.github.io/ms-keyr
 
 
 ---
-## Initial results for Hydra: Example fit to biomass vs biomass skill
+## Initial results for Hydra: Single model fit to biomass vs biomass skill
 
 .pull-left[
 ![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5klogs1Bfit.png)
@@ -393,21 +418,21 @@ Using simulated data in [`mskeyrun` package](https://noaa-edab.github.io/ms-keyr
 *MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
 ]
 ---
-## Initial results for Hydra: Biomass Skill across models
+## Initial results for Hydra: Biomass Skill across model structures
 
 .pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/5binBskill.png)
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/5binlogBskill.png)
 ]
 
 .pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/10binBskill.png)
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/10binlogBskill.png)
 ]
 .center[
 *MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
 ]
 
 ---
-## Initial results for Hydra: example skill summary statistics, 5 bin models
+## Initial results for Hydra: example skill summary statistics, 5 bin model structures
 
 .pull-left[
 ![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/skill5binlog.png)
@@ -419,6 +444,11 @@ Using simulated data in [`mskeyrun` package](https://noaa-edab.github.io/ms-keyr
 .center[
 *MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
 ]
+
+---
+# Multispecies model skill comparison, ICES WGSAM
+
+
 ---
 # pMSE NEFMC EBFM 
 
@@ -430,20 +460,7 @@ PrintBibliography(myBib)
 ```
 ]  
 
-## Additional resources
-.pull-left[
-* [`mskeyrun` R data package](https://noaa-edab.github.io/ms-keyrun/index.html)
-* [Georges Bank keyrun project overview](https://noaa-edab.github.io/ms-keyrun/articles/mskeyrun.html)
-* [Rpath](https://github.com/NOAA-EDAB/Rpath)
-* [FIT: MSSPM](https://nmfs-ecosystem-tools.github.io/MSSPM/)
-]
-.pull-right[
-*Hydra-Associated GitHub repositories*
-* [hydra-sim (Simulation Model Wiki)](https://github.com/NOAA-EDAB/hydra_sim/wiki)
-* [hydra-sim (estimation fork)](https://github.com/thefaylab/hydra_sim)
-* [hydradata (estimation fork)](https://github.com/thefaylab/hydradata)
-* [hydra-diag (diagnostics)](https://github.com/thefaylab/hydra_diag)
-]
+
 
 .footnote[
 Slides available at https://noaa-edab.github.io/presentations  
@@ -453,7 +470,9 @@ Contact: <Sarah.Gaichas@noaa.gov>
 ---
 
 .center[
-# Model equations and citations
+# Extra slides: Model equations
+
+press "P" to see slide comments with even more equations
 ]
 
 ---
@@ -576,3 +595,33 @@ $$\vartheta_{n,j} = \frac{1}{(w_n / w_j)\sigma_j \sqrt{2\pi}} e^{-\frac{[log_e(w
 
 Food intake is $$I_{i,j,t} = 24 [\delta_j e^{\omega_i T}]\bar{C}_{i,j,k,t}$$
 
+---
+## Next: Multispecies catch at age estimation model: *seeking catchy name* [FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
+
+Species interactions: 
+- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)
+
+*Based on standard age structured stock assessment population dynamics equations*
+- First, split $M$ for species $i$ age $a$ into components: $$M_{i,a,t} = M1_i + M2_{i,a,t}$$  
+- Calculate $M2$ with MSVPA predation equation, which applies a predator consumption:biomass ratio to the suitable prey biomass for that predator. 
+- Suitability is a function of predator size preference (based on an age-specific predator:prey weight ratio) and prey vulnerability (everything about the prey that isn't size related). 
+- Also sensitive to "other food"
+
+$$M2_{i,a,t} = \frac{1}{N_{i,a,t}W_{i,a,t}}\sum_j \sum_b CB_{j,b} B_{j,b,t} \frac{\phi_{i,a,j,b,t}}{\phi_{j,b,t}}$$
+???
+
+Size preference is $$g_{i,a,j,b,t}=\exp\bigg[\frac{-1}{2\sigma_{i,j}^2}\bigg(\ln\frac{W_{j,b,t}}{W_{i,a,t}}-\eta_{i,j}\bigg)^2\bigg]$$
+
+Suitability, $\nu$ of prey $i$ to predator $j$:
+$$\nu_{i,a,j,b,t}=\rho_{i,j}g_{i,a,j,b,t}$$
+
+Scaled suitability: 
+$$\tilde\nu_{i,a,j,b,t}=\frac{\nu_{i,a,j,b,t}}{\sum_i \sum_a \nu_{i,a,j,b,t} + \nu_{other}}$$
+
+Suitable biomass of prey $i$ to predator $j$:
+$$\phi_{i,a,j,b,t}=\tilde\nu_{i,a,j,b,t}B_{i,a,t}$$
+
+Available biomass of other food, where $B_other$ is system biomass minus modeled species biomass:
+$$\phi_{other}=\tilde\nu_{other}B_{other,t}$$
+Total available prey biomass:
+$$\phi_{j,b,t}=\phi_{other} + \sum_i \sum_a \phi_{i,a,j,b,t}$$
