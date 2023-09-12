@@ -1,0 +1,541 @@
+---
+title: "MAFMC SSC Ecosystem working group"
+subtitle: "Update <br /> 12 September 2023"
+author: "Sarah Gaichas, Geret DePiper, and Brandon Muffley"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
+---
+class: top, left
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+
+<style>
+.reduced_opacity {
+  opacity: 0.5;
+}
+</style>
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_knit$set(unnamed.chunk.label = "20220316-MAFMCSSC")
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
+                      warning = F,
+                      message = F,
+                      fig.path = "20220316-MAFMCSSC/")
+
+
+# if figure output defaults to docs/images/ replace with this before moving to 
+# presentations/docs in both the html output (search and replace)
+# and folder name
+# 20220428_SSCEcoWG_Gaichas_files/figure-html/
+
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./operationalSOE.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-GIS-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-setup.R")}
+```
+
+```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-setup.R")}
+```
+
+# Ecosystem work
+
+.pull-left[
+
+*  SSC subgroup update
+
+    +  Paul and Brian's work (presented separately)
+    +  Walden and DePiper Index numbers paper published
+    +  Ecosystem Overfishing Indicator analysis
+
+*  EAFM risk assessment update
+
+    +  EOP and AP meeting Sept 13-14
+    +  High level overview of new elements here
+    
+.footnote[
+Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Document](https://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08-palr.pdf)
+]
+]
+
+.pull-right[
+![:img EAFM Policy Guidance Doc Word Cloud](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_EAFMwordcloud.png)
+]
+
+---
+
+# Ecosystem Overfishing Indicators
+
+.pull-left[
+
+Background:
+
+*  Previous presentation
+  * [Ecosystem overfishing indicators (2022)](https://noaa-edab.github.io/presentations/20220428_SSCEcoWG_Gaichas.html#1)
+  *  [SOE ecosystem overfishing indicators (2021)](https://noaa-edab.github.io/presentations/20210407_MAFMC_Gaichas.html#13)
+* Additional Resources
+    +  EOF Indices - [Link and Watson 2019](https://www.science.org/doi/10.1126/sciadv.aav0474)  
+    +  Application - [Link, 2021](https://academic.oup.com/icesjms/article/78/9/3176/6381244)
+*  [Technical documentation](https://noaa-edab.github.io/tech-doc/ecosystem-overfishing.html) of SOE ecosystem overfishing indicators  
+*  Previous [SOE request memo (p. 2-3)](https://www.mafmc.org/s/b_2021-State-of-the-Ecosystem-Request-Tracking-Memo.pdf) with ecosystem overfishing indicator discussion (2021)  
+*  Previous [SOE request memo (p. 9-10)](https://www.mafmc.org/s/2_State-of-the-Ecosystem-response-memo.pdf) with primary production required discussion (2020) 
+
+
+]
+
+.pull-right[
+
+```{r ryther2,  out.width = "400px", fig.cap="Ryther index; total landings presented on a unit area basis for the MAB. Theoretical estimates (Link and Watson, 2019) imply the index should range from 0.3 - 1.1 mt per sq km annually (green area) with a limit of 3 mt per sq km annually, above which tipping points could occur in fished ecosystems (orange area). Expected system-wide MSYs can be in the range of 1 to 3 mt per sq km (unshaded)."}
+knitr::include_graphics("EDAB_images/ryther-index-MAB.png")
+
+```
+
+]
+
+---
+# Ongoing analysis
+
+## Baseline primary production
+
+* Calculated regional estimates of C using similar approach (average TL, TE)
+  * PP for MAB from satellite data ([data source](https://noaa-edab.github.io/tech-doc/chl-pp.html))
+
+## Use species trophic level information
+
+* Contrast with species specific trophic level information (from fishbase)
+* Calculate a system wide "average" trophic level, $TL_{a}$, using the idea that primary production required to support the total catch is equal to the sum of primary production required for each species catch
+
+  $$\sum_{i=1}^n C_i \left(\frac{1}{TE}\right)^{TL_i -1} = \left(\sum_{i=1}^n C_i \right)\frac{1}{TE}^{TL_{a}-1}$$  
+
+---
+
+# Proposed Analysis
+
+.pull-left[
+## Simulation study (Atlantis ecosystem model)
+*  Calculate thresholds using model input/outputs
+  *     PP input data
+  *     Trophic level estimated from realized diets
+  *     Realized catch
+*  Create scenarios which include additional fishing pressure 
+    * increase all species equally
+    * target species with different pressures
+* Compare realized catch to the thresholds
+* Examine health of the system (extinct species?), changes in realized diets.
+* How robust are these threshold estimates? 
+* Reliably indicate ecosystem overfishing?
+
+Atlantis model: [https://github.com/NOAA-EDAB/neus-atlantis/wiki](https://github.com/NOAA-EDAB/neus-atlantis/wiki)
+]
+
+.pull-right[
+![](https://raw.githubusercontent.com/NOAA-EDAB/neus-atlantis/master/Geometry/Neus_1_5_with_Coastline.png)
+
+]
+
+???
+      * Defined prey inputs (pprey parameter values)
+      * Realized diet output
+      * System wide average trophic level
+
+
+---
+# Ecosystem WG Discussion
+
+*   Metrics to evaluate simulated ecosystem overfishing
+    +  Single species overfishing and overfished  
+    +  Metrics applied in other studies (Fulton, ecosystem)  
+    +  Metrics used in NEFMC pMSE
+    +  Metrics of system variability, Nyquist stability criterion
+    +  Evaluate impacts to species, functinal groups, fisheries, markets  
+
+*   If possible, evaluate the status of the ecosystem that implements current SSC ABC recommendations across all species (and other management bodies)
+
+*   Tie in with EAFM Risk Assessment
+
+
+---
+## EAFM Risk Assessment Review
+.pull-left[
+*Species level risk elements*
+```{r sptable}
+#tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+# spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
+risk.species<-data.frame(
+  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Chub mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
+  Assess  = c("l", "l", "l",  "l", "l", "l", "h", "l", "lm", "h", "l", "h", "l", "l", "h", "na", "na"),
+  Fstatus = c("l", "l", "l", "l", "l", "h", "lm", "l", "lm", "lm", "l", "h", "l", "h", "lm", "na", "na"),
+  Bstatus = c("l", "l", "lm", "l", "l", "h", "lm", "lm", "lm", "lm", "lm", "mh", "lm", "lm", "lm", "na", "na"),
+  FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
+  FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
+  FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
+  Climate = c("h", "mh", "lm", "lm", "mh", "lm", "na", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
+  DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "na", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
+  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na")#,
+#  OffHabitat = c("na", "na", "l", "l", "l", "l", "na", "l", "l", "h", "na", "na", "na", "l", "l", "na", "na")#,
+)
+
+
+# these elements were removed by the council
+#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
+#  FoodSafe = c(),
+
+# one column test
+# risk.species %>%
+#   mutate(Fstatus = 
+#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
+#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
+
+#convert to longer text for consistency and display in html table
+risk.species <- risk.species %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#generalize to all
+risk.species %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+```
+.contrib[
+* RT assessment decreased Spiny dogfish **Assess**, risk to low and increased **Fstatus** risk to high
+* RT assessment decreased bluefish **Bstatus** risk from high to low-moderate
+* RT assessment increased Illex **Assess** risk from low-moderate to high
+]  
+
+*Ecosystem level risk elements*
+```{r ecotable}
+#tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.eco<-data.frame(
+  System = c("Mid-Atlantic"),
+  EcoProd = c("lm"),
+  #EcoDiv = c("lm"),
+  CommRev = c("mh"),
+  RecVal = c("l"),
+  FishRes1 = c("l"),
+  FishRes4 = c("mh"),
+  #CommJobs = c("mh"),
+  #RecJobs = c("l"),
+  FleetDiv = c("l"),
+  Social = c("lm"),
+  ComFood = c("h"),
+  RecFood = c("mh")
+)
+
+#convert to longer text for consistency and display in html table
+risk.eco <- risk.eco %>%
+     mutate_at(vars(-System), function(x){
+       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#make table
+risk.eco %>%
+  mutate_at(vars(-System), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+
+```
+.contrib[
+* Recreational value risk decreased from low-moderate to low
+]  
+]  
+
+.pull-right[ 
+*Species and Sector level risk elements*
+```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
+#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.sppsector<-data.frame(
+  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
+  MgtControl =  c(1,1,3,2,2,1,4,4,2,1,1,1,2,9,1,2,2,2,1,1,1,1,1,9),
+  TecInteract = c(1,1,1,3,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
+  OceanUse =    c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
+  RegComplex =  c(1,1,3,3,3,3,3,3,2,4,3,3,3,1,1,2,2,2,2,1,3,2,1,9),
+  Discards =    c(3,3,4,3,3,3,4,4,1,2,3,4,1,1,1,1,1,3,2,1,2,1,1,9),
+  Allocation =  c(1,1,4,1,4,1,4,1,1,4,1,1,4,1,1,1,1,4,1,1,1,1,1,9) 
+)
+
+
+#convert to text for consistency
+risk.sppsector <- risk.sppsector %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na")}) %>%
+     as.data.frame()
+
+#make table
+risk.sppsector %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 11) 
+
+```
+.contrib[
+* Management section not updated--to be revised this year  
+]
+]
+
+---
+## State of the Ecosystem &rarr; MAFMC Risk assessent example: Commercial revenue
+
+This element is applied at the ecosystem level. Revenue serves as a proxy for commercial profits.
+
+.table[
+.pull-left[
+
+```{r riskcomval, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+# tabl <- "
+# | Risk Level         | Definition                                                          |  
+# |:-------------------|:--------------------------------------------------------------------|
+# | Low  | No trend and low variability in revenue |
+# | Low-Moderate | Increasing or high variability in revenue |
+# | Moderate-High | Significant long term revenue decrease |
+# | High | Significant recent decrease in revenue |
+# "
+# cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+
+tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
+                   "Definition" = c("No trend and low variability in revenue",
+                                    "Increasing or high variability in revenue",
+                                    "Significant long term revenue decrease",
+                                    "Significant recent decrease in revenue"))
+
+knitr::kable(tabl, format="html",
+             col.names = c("Risk Level", "Definition"),
+                           booktabs = T) %>%
+  #kable_styling(full_width = TRUE) %>%
+  column_spec(1:2, width = "20em")%>%
+  row_spec(3, bold = T, background = "orange")
+```
+
+Ranked moderate-high risk due to the significant long term revenue decrease
+]
+]
+.pull-right[
+```{r , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R"),fig.asp = 0.5, results='hide'}
+#comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
+```
+
+Key: Black = Revenue of all species combined; <span style="color:#FF6A6A;">Red = Revenue of MAFMC managed species</span>
+]
+
+--
+
+## Risk element: <span style="background-color:orange;">CommRev</span>, unchanged
+
+**SOE Implications:** Recent change driven by benthos. Monitor changes in climate and landings drivers:  
+-  Climate risk element: <span style="background-color:orange;">Surfclams</span> and <span style="background-color:red;">ocean quahogs</span> are sensitive to ocean warming and acidification.   
+-  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth
+
+---
+# New elements under discussion
+
+.pull-left[
+
+## Ecological
+
+*   Food web: prey availability
+*   Food web: predation pressure
+*   Population and ecological diversity
+*   Offshore habitat
+*   Invasive species
+
+## Economic and Social
+
+*   Commercial fishery resilience (many)
+*   Recreational diversity
+*   Recreational resilience
+*   Rec and commercial employment
+
+]
+
+.pull-right[
+
+## Management
+
+*  Other ocean activities
+    +  Split out offshore wind
+        +  Biological/ecological risks 
+        +  Survey/fishery access risks
+    +  Add non-wind activities?
+    +  Add aquaculture?
+
+*  Essential fish habitat
+
+
+]
+
+---
+# Next SSC update in March 2024!
+
+
+
+---
+# Appendix: Ecosystem Overfishing Indicators
+
+The amount of potential yield we can expect from a marine ecosystem depends on 
+* The amount of production entering at the base of the food web, primarily in the form of phytoplankton
+* The pathways this energy follows to reach harvested species
+* The efficiency of transfer of energy at each step in the food web
+* The fraction of this production that is removed by the fisheries
+
+## Ryther, Fogarty, Friedland Indices
+
+The *Ryther index* consists of total catch presented on a per unit-area basis for an ecosystem. 
+
+The *Fogarty index* is the ratio of total catches to total primary productivity in an ecosystem.
+
+The *Friedland index* is the ratio of total catches to mean annual chlorophyll in an ecosystem.
+
+From `r Cite(myBib, "link_evidence_2021")` "One can develop and estimate thresholds for them based on first principles, trophic transfer theory, and empirical evidence." Thresholds were proposed `r Cite(myBib, "link_global_2019")`
+
+
+---
+
+## Link and Watson 2019 overview
+<!--
+![:img Link and Watson 2019 Fig 1](https://www.science.org/cms/10.1126/sciadv.aav0474/asset/6b94e27e-71ae-431f-9e8b-7b6378122215/assets/graphic/aav0474-f1.jpeg) -->
+.footnote[Link and Watson 2019, https://www.science.org/doi/10.1126/sciadv.aav0474]
+
+All three indices are based on the principle of energy transfer up the foodweb from primary producers. There are limits to how much an ecosystem can produce and potentially be caught, C in tons $year^{-1}$
+
+<!-- $$C = \alpha \sum_{i=1}^{TL} PP.TE_i^{TL_i-i}$$ -->
+$$C = \alpha PP.TE^{TL-1}$$
+where
+
+
+
+$PP$ = primary production ( tons C $year^{-1}$ )
+
+$TE$ = Transfer efficiency 
+
+$TL$ = Trophic level
+
+
+$\alpha$ is "a scalar for local conditions (set to 15% -20% for average availability of the TL in estimating total catch, a value that emerges when estimated from maintaining a global average catch that has been stable for the past 30 yrs)"
+
+This equation is primary production required (PPR) rearranged to express Catch in terms of PP rather than PP in terms of Catch (at the system aggregate level)
+
+---
+
+## Link and Watson 2019 overview
+.footnote[Link and Watson 2019, https://www.science.org/doi/10.1126/sciadv.aav0474]
+.pull-left[
+
+
+$$C = \alpha PP.TE^{TL-1}$$
+
+
+* Range of values for $\alpha$ (10%-20%), TE (10%-14%), and TL(3.2-3.6), PP (40-50 Gt C $year^{-1}$) selected to bound the problem. The bounds help define the thresholds.
+
+
+* Range of estimated C = 0.1 to 1 Gt $year^{-1}$
+* Middle ground estimate of C = .42 Gt $year^{-1}$
+  *   using $\alpha$ = 0.15, TE = 12%, TL = 3.4, PP = 45Gt C $year^{-1}$
+  *   Carbon to wet weight conversion of 10
+* These help define the thresholds for all indices
+]
+
+.pull-right[
+
+```{r ryther4,  out.width = "400px"}
+knitr::include_graphics("EDAB_images/ryther-index-MAB.png")
+
+```
+
+]
+
+
+???
+
+Ecosystem overfishing (EOF) defined as:  
+an instance where the sum of all catches is flat or declining, total catch per unit effort (CPUE) is declining, and total landings relative to ecosystem production exceeds suitable limits.
+
+---
+## Link and Watson 2019 overview:  Ryther Index
+.footnote[Link and Watson 2019, https://www.science.org/doi/10.1126/sciadv.aav0474]
+
+.pull-left[
+
+Defined as total catch per unit area in the ecosystem `r Cite(myBib, "link_global_2019")`. The units are mt $km^{-2} year^{-1}$
+
+The upper bound of the optimal range, (using C = .42 $Gt year^{-1}$) is calculated as:
+
+Ryther = $\frac{.42 Gt year^{-1} 10^9}{363 km^{-2}10^6} ~= 1.16 t km^{-2}year^{-1}$
+
+where the worlds oceans are approximately 363 million $km^2$ 
+
+  * Assumes each $km^2$ of ocean is equally productive
+  
+  * We'd like to estimate thresholds in a similar fashion but at a smaller spatial scale using regional estimates of PP and using knowledge of the ecosystem.
+  
+
+]
+
+.pull-right[
+
+```{r ryther3,  out.width = "400px"}
+knitr::include_graphics("EDAB_images/ryther-index-MAB.png")
+
+```
+  Link & Watson "recommend that the indices proposed here be used cognizant of other potential sources of productivity and that are relevant to the scale at which fisheries management mostly occurs."
+]
+
+???
+
+Ecosystem overfishing (EOF) defined as:  
+an instance where the sum of all catches is flat or declining, total catch per unit effort (CPUE) is declining, and total landings relative to ecosystem production exceeds suitable limits.
+
+
+
+
+
+
