@@ -35,15 +35,16 @@ p.caption {
 ```{r setup, include=FALSE}
 
 options(htmltools.dir.version = FALSE)
-knitr::opts_knit$set(unnamed.chunk.label = "20220316-MAFMCSSC")
+#knitr::opts_knit$set(unnamed.chunk.label = "20220316-MAFMCSSC")
 knitr::opts_chunk$set(echo = F,
                       fig.retina = 3,
                       #fig.width = 4,
                       #fig.height = 2,
                       fig.asp = 0.45,
                       warning = F,
-                      message = F,
-                      fig.path = "20220316-MAFMCSSC/")
+                      message = F
+                      #fig.path = "20220316-MAFMCSSC/"
+                      )
 
 
 # if figure output defaults to docs/images/ replace with this before moving to 
