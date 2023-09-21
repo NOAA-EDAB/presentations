@@ -1,0 +1,180 @@
+---
+title: "MSE Tools <br />US Overview"
+subtitle: "ICES WKMSEDEV<br /> 26 September 2023"
+author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Robert Ahrens, Jon Deroba, Katherine Doering, Sarah Gaichas,  Kristin Marshall, Cassidy Peterson, Desiree Tommasi, Ben Williams"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+
+# US MSE Tools
+
+.pull-left-40[  
+## NOAA MSE Working group
+
+*  Who
+*  What
+*  When
+*  How
+*  Why
+
+]
+
+.pull-right-60[
+![xkcd comic 1328 titled Update](https://imgs.xkcd.com/comics/update.png)
+
+.right[.contrib[https://xkcd.com/1328]]
+]
+
+???
+Everyone loves an update
+
+---
+# Questions
+
+1. Name of MSE/MSE topic
+
+2. Multiple choice: Is the software used
+
+        a. custom built for the project,
+
+        b. directly or modified from an existing toolbox, or
+
+        c. a combination?
+
+3. Coding environment (ADMB, TMB, R, FORTRAN, C++, other?)
+
+4. Link to code or toolbox, if possible, or provide a contact for the tool/code
+
+---
+# Alaska (Ben Williams)
+
+The AFSC is most involved using CEATTLE (ADMB) or RCEATTLE (R/TMB). There are a few structural differences between these models, but they are quite similar.
+The MSE uses of these models have been minimal as they have been focused on multi-species and climate-informed assessments.  
+Additionally, getting a model with the diet data etc. to converge is a challenge in and of itself, though both models can be used in a MSE framework.
+
+We also have a spatial framework that is centered around sablefish in Alaska (R/TMB) that is setup to be used in an MSE framework. 
+We are currently generalizing this model to explore the NPFMC Tier 3 HCR for sablefish and to explore other fisheries - and looking for a postdoc(s).
+
+
+
+---
+# Hawaii-Western Pacific (Rob Ahrens)
+
+1. MSE for priority species identified in the Jurisdictional Coral Reef Fishery Management Plan for Department of Aquatic and Wildlife Resources in Guam. These are MSEs for data limited species. 
+
+2. The process mainly uses the LBSPR  package Hordyk A (2021). LBSPR: Length-Based Spawning Potential Ratio. R package version 0.1.6,<https://CRAN.R-project.org/package=LBSPR>.
+
+3. Coding environment is R
+
+4. Not currently available 
+
+
+
+
+---
+# Northwest
+
+
+---
+# Southwest (Desiree Tommasi)
+
+1. North Pacific albacore tuna MSE (completed)
+
+2. The software used is custom built but relies on SS operating/estimating models
+
+3. R (with SS models and also a C++ projection code)
+
+4. Code is not in a public repository, but please reach out to desiree.tommasi@noaa.gov if interested. Also this report provides an overview of framework and output.
+
+1. North Pacific bluefin tuna MSE (in progress)
+
+2. The software used is custom built but relies on SS operating/estimating models (builds on albacore MSE code)
+
+3. R (with SS models)
+
+4. preliminary code is here
+
+1. Pacific sardine MSE (completed)
+
+2. SSMSE R package with custom HCRs and recruitment variability scenarios
+
+3. R (with SS models)
+
+4. Code is here and paper (Wildermuth et al.)  has been accepted in CJFAS
+
+1. Swordfish  MSE (completed - note this is a bit different than usual MSEs so not sure it's as relevant as mngmt action (different types of closures)  feedback was on fisher behaviour rather than the population as the US catch is a minor fraction of total catch for this species)
+
+2. custom
+
+3. R
+
+4. See Smith et al. 2023
+
+Let me know if you need anything else. In terms of discussions, I would be particularly interested in the "how to reduce run times" one (for the albacore MSE we only could run a few uncertainty scenarios for the full, i.e. with assessment, MSE). With PBF we had 100+ HCRs to test and so decided to run a quick "perfect info" MSE (i.e. no assessment) and managers were able to trim the HCRs down to 12 looking at those preliminary results. In November we are meeting to decide on the final uncertainty grid and so it would be great to hear what ICES has been up to on this topic. In terms of presentation of results, I would be interested in hearing if ICES MSEs present results across a reference set of scenarios plus the robustness ones separately, and for the former, if each of the potential OMs is given equal weight.
+
+
+
+---
+# Southeast
+
+
+---
+# Northeast
+
+
+.pull-left[
+
+![:img NEUSmap, 90%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
+
+]
+
+.pull-right[
+
+]
+
+???
+

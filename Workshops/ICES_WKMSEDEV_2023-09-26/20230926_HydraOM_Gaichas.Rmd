@@ -1,0 +1,389 @@
+---
+title: "Northeast Fisheries Science Center <br />Ecosystem Modeling Update"
+subtitle: "NEMoW 6, ToR 1<br /> 29 August 2023"
+author: "Sean Lucey, Presenter<br /><br /><br />Contributors: Brandon Beltz, Andy Beet, Joe Caracappa, Kiersten Curti, Gavin Fay (UMass Dartmouth),<br />Sarah Gaichas, Robert Gamble, Ron Klasky (S&T), Scott Large, Sean Lucey, Maria Cristina Perez (UMass Dartmouth),<br />Howard Townsend (S&T), Sarah Weisberg (Stony Brook U)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
+---
+class: top, left
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+# Multispecies and Ecosystem Operting Models
+
+---
+# MS-Keyrun project: EBFM Objectives in the Northeast US
+
+*  EBFM Objective 1: what happens with all the species in the region under a certain management regime?   
+      + Apply a full system model to assess "side effects" of target species management 
+      + Ability to implement fishing and biological scenarios 
+      + Hypothesis testing and MSE framework desirable 
+      
+*  EBFM Objective 2: how well do multispecies models perform for assessment? 
+      + Consider alternative model structures 
+          + Biomass dynamics 
+          + Size structured
+          + Age structured 
+      + Evaluate data availability for each structure
+      + Evaluate estimation performance of each structure
+      + Evaluate uncertainty and sensitivity
+      + Evaluate feasibility of developing and using multi-model inference
+      
+???
+MS-Keyrun model development and testing objectives are based on general ecosystem based management questions as well as specific discussions regarding EBFM development in New England. We will use this as an opportunity to address questions about the effects of management on the broader ecosystem, and about performance of assessment tools. 
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Balance_concept.png")
+background-size: 700px
+background-position: right
+
+# Rpath: Food web model with MSE capability
+
+.pull-left-40[
+## From Sean and Kerim on Thursday
+*  How to Rpath `r Cite(myBib, "lucey_conducting_2020")`
+
+## More than EwE in R
+*  MSE capability `r Cite(myBib, "lucey_evaluating_2021")`
+*  [Rpath MSE course code](https://github.com/thefaylab/cinar-mse-projects/blob/main/multispecies/RpathOM_HCR_PSPS.md)
+
+## In progress
+*  Georges Bank Rpath part of EBFM approach evaluation
+*  Food web risk indicators planned
+
+.footnote[https://github.com/NOAA-EDAB/Rpath]
+
+]
+
+.pull-right-60[]
+
+
+# Objective 1: evaluate system responses to management
+
+## [Rpath](https://github.com/NOAA-EDAB/Rpath) `r Cite(myBib, "lucey_conducting_2020")` with MSE capability `r Cite(myBib, "lucey_evaluating_2021")`
+
+.pull-left[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSE_Rpath_Page_05.png)
+]
+
+.pull-right[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSE_Rpath_Page_14.png)
+]
+
+
+---
+# Objective 2: evaluate multispecies assessment tools
+
+.pull-left-60[
+
+## Multispecies production MSSPM `r Cite(myBib, "gamble_analyzing_2009")`  
+
+## Multispecies catch at length Hydra `r Cite(myBib, "gaichas_combining_2017")` 
+
+(and eventually)
+## Multispecies catch at age `r Cite(myBib, "curti_evaluating_2013")`  
+
+.footnote[
+Fisheries Integrated Toolbox: MSSPM: https://nmfs-ecosystem-tools.github.io/MSSPM/  
+*Hydra-Associated GitHub repositories*
+* hydra-sim (Simulation Model Wiki): https://github.com/NOAA-EDAB/hydra_sim/wiki
+* hydra-sim (estimation fork): https://github.com/thefaylab/hydra_sim
+* hydradata (estimation fork): https://github.com/thefaylab/hydradata
+* hydra-diag (diagnostics): https://github.com/thefaylab/hydra_diag
+]
+
+]
+
+.pull-right-40[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/modeling_study.png)
+.footnote[https://xkcd.com/2323/]
+
+]
+
+---
+---
+# Atlantis NEUSv2: **major** update
+
+.pull-left[
+
+![:img NEUSmap, 90%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
+
+]
+
+.pull-right[
+![xkcd comic 1328 titled Software update](https://imgs.xkcd.com/comics/software_updates.png)
+
+.right[.contrib[https://xkcd.com/2224]]
+]
+
+???
+ATLANTIS MODELERS--WE SEE YOU
+
+---
+background-image: url("https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr3_lrg.jpg")
+background-size: 500px
+background-position: right
+
+# Atlantis NEUSv2: **major** update
+
+.pull-left[
+## From Joe on Wednesday x2
+*  Forcing with GLORYS12V1 and primary production in the newly calibrated model `r Cite(myBib, "caracappa_northeast_2022")`
+ 
+## From Andy on Thursday              
+*  Running in the cloud
+
+## In progress
+*  Sensitivity to fishing scenarios
+*  Testing ecosystem overfishing indicators for the Northeast US
+*  Integrating spatial fleets and ports of origin
+*  Climate projections using MOM-6 planned
+
+.footnote[https://github.com/NOAA-EDAB/neus-atlantis]  
+]
+
+
+
+.pull-right[]
+
+
+
+
+---
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/pMSEhydra.png)
+background-size: 830px
+background-position: right
+
+# [EBFM pMSE](https://d23h0vhsm26o6d.cloudfront.net/pMSE-Final-Report2.pdf) 
+
+.pull-left-30[
+Gavin Fay, Lisa Kerr, Madeleine Guyant, Jerelle Jesse, Emily Liljestrand
+
+Hydra: multispecies operating model conditioned on Georges Bank data within MSE framework as prototype test of EBFM strategies. 
+
+Results: additional flexibility and increased yield possible with EBFM "ceilings and floors" without increased risk to single stocks.
+]
+.pull-right-70[]
+
+
+---
+## References
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]  
+
+## Additional Resources
+
+[EBFM pMSE June 2023 New England Council](https://www.nefmc.org/library/june-2023-ecosystem-based-fishery-management-ebfm-committee)
+*  [Presentation](https://d23h0vhsm26o6d.cloudfront.net/2_Draft-final-Prototype-Management-Evaluation-pMSE-simulation-results-and-output-2nd-mailing_2023-07-06-181333_tsor.pdf)
+*  [Final Report](https://d23h0vhsm26o6d.cloudfront.net/pMSE-Final-Report2.pdf)
+*  [One Page Summaries](https://d23h0vhsm26o6d.cloudfront.net/4b_pMSE-one-page-sumamries_2023-07-06-181512_pgju.pdf)
+
+
+
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: <Sarah.Gaichas@noaa.gov>
+]
+
+---
+
+.center[
+# Extra slides: Model equations
+
+press "p" to see slide comments with even more equations
+]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Balance_concept.png")
+background-size: 700px
+background-position: right
+
+## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
+.pull-left[ 
+Species interactions:
+- Full predator-prey: Consumption leads to prey mortality and predator growth
+- Static and dynamic model components
+
+Static model: 
+For each group, $i$, specify: 
+
+   Biomass $B$ (or Ecotrophic Efficiency $EE$)  
+   Population growth rate $\frac{P}{B}$  
+   Consumption rate $\frac{Q}{B}$  
+   Diet composition $DC$  
+   Fishery catch $C$  
+   Biomass accumulation $BA$  
+   Im/emigration $IM$ and $EM$  
+   
+Solving for $EE$ (or $B$) for each group:
+
+$$B_i\Big(\frac{P}{B}\Big)_i*EE_i+IM_i+BA_i=\sum_{j}\Big[ B_j\Big (\frac{Q}{B}\Big)_j*DC_{ij}\Big ]+EM_i+C_i$$  
+]
+
+.pull-right[
+
+]
+
+???
+Predation mortality $$M2_{ij} = \frac{DC_{ij}QB_jB_j}{B_i}$$
+
+Fishing mortality $$F_i = \frac{\sum_{g = 1}^n (C_{ig,land} + C_{ig,disc})}{B_i}$$
+
+Other mortality $$M0_i = PB_i \left( 1 - EE_i \right)$$
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ForagingArena.png")
+background-size: 380px
+background-position: right
+
+## Food web: [Rpath](https://github.com/NOAA-EDAB/Rpath) in collaboration with AFSC
+
+.pull-left-70[ 
+Dynamic model (with MSE capability):
+
+$$\frac{dB_i}{dt} = \left(1 - A_i - U_i \right) \sum_{j} Q \left(B_i, B_j \right) -  \sum_{j} Q \left( B_j, B_i \right) - M0_iB_i  - C_m B_i$$
+Consumption: 
+
+$$Q \left( B_i, B_j \right) = Q_{ij}^* \Bigg( \frac{V_{ij} Ypred_j}{V_{ij} - 1 + \left( 1 - S_{ij} \right) Ypred_j + S_{i} \sum_k \left( \alpha_{kj} Ypred_k \right)} \Bigg) \times \\\Bigg( \frac{D_{ij} Yprey_i^{\theta_{ij}}}{D_{ij} - 1 + \big( \left( 1 - H_{ij} \right) Yprey_i + H_{i} \sum_k \left( \beta_{ik} Yprey_k \right) \big)^{\theta_{ij}}} \Bigg)$$  
+Where $V_{ij}$ is vulnerability, $D_{ij}$ is “handling time” accounting for predator saturation, and $Y$ is relative biomass which may be modified by a foraging time multiplier $Ftime$,
+
+$$Y[pred|prey]_j =  Ftime_j \frac {B_j}{B_j^*}$$
+
+]
+
+.pull-right-30[
+
+]
+???
+The parameters $S_{ij}$ and $H_{ij}$ are flags that control whether the predator density dependence $S_{ij}$ or prey density dependence $H_{ij}$ are affected solely by the biomass levels of the particular predator and prey, or whether a suite of other species’ biomasses in similar roles impact the relationship. 
+
+For the default value for $S_{ij}$ of 0 (off), the predator density dependence is only a function of that predator biomass and likewise for prey with the default value of 0 for $H_{ij}$.  
+
+Values greater than 0 allow for a density-dependent effects to be affected by a weighted sum across all species for predators, and for prey.  The weights $\alpha_{kj}$ and $\beta_{kj}$ are normalized such that the sum for each functional response (i.e. $\sum_k\alpha_{kj}$ and $\sum_k\beta_{kj}$ for the functional response between predator *j* and prey *i*) sum to 1.  The weights are calculated from the density-independent search rates for each predator/prey pair, which is equal to $2Q_{ij}^*V_{ij} / (V_{ij} - 1)B_i^*B_j^*$.  
+
+---
+## Multispecies production simulation: [Kraken](https://github.com/NOAA-EDAB/Kraken) and estimation [FIT: MSSPM](https://nmfs-ecosystem-tools.github.io/MSSPM/)
+
+Species interactions: 
+- Predation: Top down (predation decreases population growth of prey, predator population growth independent of prey)
+- Competition: Within and between species groups
+
+*Based on Shaefer and Lotka-Volterra population dynamics and predation equations*
+- Species have intrinsic population growth rate $r_i$
+- Full model has 
+    - Carrying capacity $K$ at the species group level $K_G$ and at the full system level $K_\sigma$
+    - Within group competition $\beta_{ig}$ and between group competition $\beta_{iG}$ slow population growth near $K$
+    - Predation $\alpha_{ip}$ and harvest $H_i$ reduce population
+
+$$\frac{dN_i}{dt} = r_iN_i \bigg(1 - \frac{N_i}{K_G} - \frac{\sum_g \beta_{ig}N_g}{K_G} - \frac{\sum_G \beta_{iG}N_G}{K_\sigma - K_G} \bigg) - N_i\sum_p\alpha_{ip}N_p - H_iN_i$$
+
+- Simpler version used in most applications has interaction coefficient $\alpha$ that incorporates carrying capacity
+$$B_{i,t+1}=B_{i,t} + r_iB_{i,t} - B_{i,t}\sum_j\alpha_{i,j}B_{j,t} - C_{i,t}$$
+???
+Interaction coefficients $\alpha_{i,j}$ can be positive or negative
+
+$C$ can be a Catch time series, an exploitation rate time series $B_{i,t}*F_{i,t}$ or an $qE$ (catchability/Effort) time series.
+
+Environmental covariates can be included on growth or carrying capacity (in the model forms that have an explicit carrying capacity).
+
+
+---
+## Multispecies catch at length simulation model: [Hydra](https://github.com/NOAA-EDAB/hydra_sim)
+
+Species interactions: 
+- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)  
+
+*Based on standard structured stock assessment population dynamics equations, Same MSVPA predation equation as MSCAA (but length based), same dependencies and caveats*
+- First, split $M$ for species $i$ size $j$ into components: $$M_{i,j,t} = M1_i + M2_{i,j,t}$$  
+- Calculate $M2$ with MSVPA predation equation, which applies a predator consumption:biomass ratio to the suitable prey biomass for that predator. 
+- Suitability, $\rho$, of prey species $m$ size $n$ for a given predator species $i$ size $j$ a function of size preference and vulnerability  {0,1}. 
+- Food intake $I$ for each predator-at-size is temperature dependent consumption rate times mean stomach content weight. 
+- Also sensitive to "other food" $\Omega$.
+
+$$M2_{m,n,t} = \sum_i \sum_j I_{i,j,t} N_{i,j,t} \frac{\rho_{i,j,m,n}}{\sum_a \sum_b \rho_{i,j,a,b} W_{a,b} N_{a,b} + \Omega}$$
+
+???
+But:
+- Covariates on growth, maturity, recruitment possible; intended for environmental variables
+- So could hack in prey-dependent growth but making it dynamic is difficult
+
+We specify 'preferred' predator-prey weight ratio (log scale) $\Psi_j$ and variance in predator size preference $\sigma_j$ to compare with the actual predator-prey weight ratio $(w_n / w_j)$ to get the size preference $\vartheta$. 
+
+$$\vartheta_{n,j} = \frac{1}{(w_n / w_j)\sigma_j \sqrt{2\pi}} e^{-\frac{[log_e(w_n / w_j) - \Psi_j]}{2\sigma_j^2}}$$
+
+Food intake is $$I_{i,j,t} = 24 [\delta_j e^{\omega_i T}]\bar{C}_{i,j,k,t}$$
+
+---
+## Next: Multispecies catch at age estimation model: *seeking catchy name* [FIT: MSCAA](https://nmfs-ecosystem-tools.github.io/MSCAA/)
+
+Species interactions: 
+- Predation: Top down only (predators increase M of prey, predators grow regardless of prey)
+
+*Based on standard age structured stock assessment population dynamics equations*
+- First, split $M$ for species $i$ age $a$ into components: $$M_{i,a,t} = M1_i + M2_{i,a,t}$$  
+- Calculate $M2$ with MSVPA predation equation, which applies a predator consumption:biomass ratio to the suitable prey biomass for that predator. 
+- Suitability is a function of predator size preference (based on an age-specific predator:prey weight ratio) and prey vulnerability (everything about the prey that isn't size related). 
+- Also sensitive to "other food"
+
+$$M2_{i,a,t} = \frac{1}{N_{i,a,t}W_{i,a,t}}\sum_j \sum_b CB_{j,b} B_{j,b,t} \frac{\phi_{i,a,j,b,t}}{\phi_{j,b,t}}$$
+???
+
+Size preference is $$g_{i,a,j,b,t}=\exp\bigg[\frac{-1}{2\sigma_{i,j}^2}\bigg(\ln\frac{W_{j,b,t}}{W_{i,a,t}}-\eta_{i,j}\bigg)^2\bigg]$$
+
+Suitability, $\nu$ of prey $i$ to predator $j$:
+$$\nu_{i,a,j,b,t}=\rho_{i,j}g_{i,a,j,b,t}$$
+
+Scaled suitability: 
+$$\tilde\nu_{i,a,j,b,t}=\frac{\nu_{i,a,j,b,t}}{\sum_i \sum_a \nu_{i,a,j,b,t} + \nu_{other}}$$
+
+Suitable biomass of prey $i$ to predator $j$:
+$$\phi_{i,a,j,b,t}=\tilde\nu_{i,a,j,b,t}B_{i,a,t}$$
+
+Available biomass of other food, where $B_other$ is system biomass minus modeled species biomass:
+$$\phi_{other}=\tilde\nu_{other}B_{other,t}$$
+Total available prey biomass:
+$$\phi_{j,b,t}=\phi_{other} + \sum_i \sum_a \phi_{i,a,j,b,t}$$
