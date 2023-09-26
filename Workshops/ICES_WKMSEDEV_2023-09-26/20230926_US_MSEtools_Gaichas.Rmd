@@ -1,7 +1,7 @@
 ---
 title: "MSE Tools <br />US Overview"
 subtitle: "ICES WKMSEDEV<br /> 26 September 2023"
-author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Robert Ahrens, Jon Deroba, Katherine Doering, Sarah Gaichas,  Kristin Marshall, Cassidy Peterson, Desiree Tommasi, Ben Williams"
+author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Robert Ahrens, Jon Deroba, Katherine Doering, Sarah Gaichas, <br />Kristin Marshall, Cassidy Peterson, Desiree Tommasi, Ben Williams"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -50,7 +50,7 @@ myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
 ```
 
 
-# US MSE Tools
+# US MSE Tools Overview
 
 .pull-left-40[  
 ## NOAA MSE Working group
@@ -73,41 +73,72 @@ myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
 Everyone loves an update
 
 ---
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOAAecowatchregionsmap.png)
+background-size: 700px
+background-position: right
+
 # Questions
+
+.pull-left-40[
 
 1. Name of MSE/MSE topic
 
 2. Multiple choice: Is the software used
 
-        a. custom built for the project,
+    + custom built for the project,
 
-        b. directly or modified from an existing toolbox, or
+    + directly or modified from an existing toolbox, or
 
-        c. a combination?
+    + a combination?
 
 3. Coding environment (ADMB, TMB, R, FORTRAN, C++, other?)
 
 4. Link to code or toolbox, if possible, or provide a contact for the tool/code
 
+]
+
+.pull-right-60[
+
+.footnote[
+Map from [NOAA Ecowatch website](https://ecowatch.noaa.gov/regions)
+]
+
+]
+
 ---
-# Alaska (Ben Williams)
+# Alaska: Ben Williams
 
-The AFSC is most involved using CEATTLE (ADMB) or RCEATTLE (R/TMB). There are a few structural differences between these models, but they are quite similar.
-The MSE uses of these models have been minimal as they have been focused on multi-species and climate-informed assessments.  
-Additionally, getting a model with the diet data etc. to converge is a challenge in and of itself, though both models can be used in a MSE framework.
+.pull-left[
 
-We also have a spatial framework that is centered around sablefish in Alaska (R/TMB) that is setup to be used in an MSE framework. 
-We are currently generalizing this model to explore the NPFMC Tier 3 HCR for sablefish and to explore other fisheries - and looking for a postdoc(s).
-
-CEATTLE (ADMB) 
+Most involved using CEATTLE (ADMB) or RCEATTLE (R/TMB). Minimal MSE uses of these models to date; they have been focused on multi-species and climate-informed assessments. 
 
 Rceattle https://github.com/grantdadams/Rceattle
 
+A spatial framework that is centered around sablefish in Alaska (R/TMB) is setup to be used in an MSE framework. We are currently generalizing this model to explore the HCR for sablefish and other fisheries - and looking for a postdoc(s).
+
 Spatial sablefish https://github.com/Craig44/SpatialSablefishAssessment 
+
+Contact: <ben.williams@noaa.gov>
+]
+
+.pull-right[
+![AK map NOAA Ecowatch](https://ecowatch.noaa.gov/sites/default/files/2022-10/alaska-blue-map.jpg)
+
+.contrib[
+Map from [NOAA Ecowatch](https://ecowatch.noaa.gov/regions/alaska)
+]
+
+]
+
+???
+There are a few structural differences between these models, but they are quite similar. 
+Additionally, getting a model with the diet data etc. to converge is a challenge in and of itself, though both models can be used in a MSE framework.
 
 
 ---
 # Hawaii-Western Pacific (Rob Ahrens)
+
+.pull-left[
 
 1. MSE for priority species identified in the Jurisdictional Coral Reef Fishery Management Plan for Department of Aquatic and Wildlife Resources in Guam. These are MSEs for data limited species. 
 
@@ -117,69 +148,140 @@ Spatial sablefish https://github.com/Craig44/SpatialSablefishAssessment
 
 4. Not currently available 
 
+Contact: <robert.ahrens@noaa.gov> 
 
+]
+
+.pull-right[
+![Hawaii map NOAA Ecowatch](https://ecowatch.noaa.gov/sites/default/files/2022-10/pacific-islands-blue-map.jpg)
+.contrib[
+Map from [NOAA Ecowatch](https://ecowatch.noaa.gov/regions/pacific-islands)
+]
+]
 
 
 ---
-# Northwest
+# Northwest (Kristin Marshall)
 
+.pull-left-60[
+
+Hake, Sablefish MSEs
+
+SS3MSE by Kathryn Doering et al: https://nmfs-fish-tools.github.io/SSMSE/
+
+Atlantis work by Kaplan et al
+
+Contact: <kristin.marshall@noaa.gov>
+
+]
+
+.pull-right-40[
+![Pac map NOAA Ecowatch](https://ecowatch.noaa.gov/sites/default/files/2022-10/california-current-blue-map-v2.jpg)
+.footnote[
+Map from [NOAA Ecowatch](https://ecowatch.noaa.gov/regions/california-current)
+]
+]
 
 ---
 # Southwest (Desiree Tommasi)
 
-1. North Pacific albacore tuna MSE (completed)
+.pull-left[
 
-2. The software used is custom built but relies on SS operating/estimating models
+*North Pacific albacore tuna MSE* (completed)
 
-3. R (with SS models and also a C++ projection code)
+The software used is custom built but relies on SS operating/estimating models executed in R (with SS models and also a C++ projection code)
 
-4. Code is not in a public repository, but please reach out to desiree.tommasi@noaa.gov if interested. Also this report provides an overview of framework and output.
+Code is not in a public repository, but please contact Desiree if interested. Report overview of framework and output.
 
-1. North Pacific bluefin tuna MSE (in progress)
+*North Pacific bluefin tuna MSE* (in progress)
 
-2. The software used is custom built but relies on SS operating/estimating models (builds on albacore MSE code)
+The software used is custom built but relies on SS operating/estimating models (builds on albacore MSE code) executed in R (with SS models)
 
-3. R (with SS models)
+Preliminary code: 
 
-4. preliminary code is here
+Contact: <desiree.tommasi@noaa.gov>
 
-1. Pacific sardine MSE (completed)
 
-2. SSMSE R package with custom HCRs and recruitment variability scenarios
+]
 
-3. R (with SS models)
+.pull-right[
 
-4. Code is here and paper (Wildermuth et al.)  has been accepted in CJFAS
+*Pacific sardine MSE* (completed)
 
-1. Swordfish  MSE (completed - note this is a bit different than usual MSEs so not sure it's as relevant as mngmt action (different types of closures)  feedback was on fisher behaviour rather than the population as the US catch is a minor fraction of total catch for this species)
+SSMSE R package with custom HCRs and recruitment variability scenarios executed in R (with SS models)
 
-2. custom
+Code:  and paper (Wildermuth et al.)  has been accepted in CJFAS
 
-3. R
+*Swordfish  MSE* (completed) MSE evaluated different types of closure;feedback was on fisher behaviour rather than the population as the US catch is a minor fraction of total catch for this species
 
-4. See Smith et al. 2023
+Custom built tools in R
+
+See Smith et al. 2023: 
+.contrib[
+https://www.frontiersin.org/articles/10.3389/fmars.2021.630607/full
+]
+
+]
+
+???
 
 Let me know if you need anything else. In terms of discussions, I would be particularly interested in the "how to reduce run times" one (for the albacore MSE we only could run a few uncertainty scenarios for the full, i.e. with assessment, MSE). With PBF we had 100+ HCRs to test and so decided to run a quick "perfect info" MSE (i.e. no assessment) and managers were able to trim the HCRs down to 12 looking at those preliminary results. In November we are meeting to decide on the final uncertainty grid and so it would be great to hear what ICES has been up to on this topic. In terms of presentation of results, I would be interested in hearing if ICES MSEs present results across a reference set of scenarios plus the robustness ones separately, and for the former, if each of the potential OMs is given equal weight.
 
 
 
 ---
-# Southeast
+# Southeast (Cassidy Peterson)
 
+.pull-left-60[
+(Gulf) Red snapper in GOMex (Yuying Zhang): http://gomredsnappermsetool.fiu.edu/
+
+(South Atlantic) in progress dolphin MSE; TMB & R; spatial and seasonal length-based model
+Adapted from custom-built MSE for black sea bass and cobia comparing MP performance wrt comm v. rec mgmt objectives (Matt Damiano & Jie Cao)
+
+SS3-based custom examples: https://github.com/CassidyPeterson-NOAA/SS_MSE; https://github.com/CassidyPeterson-NOAA/SS_MSE_AssessmentFrequency 
+
+Contact: <cassidy.peterson@noaa.gov>
+
+]
+
+.pull-right-40[
+![SE map NOAA Ecowatch](https://ecowatch.noaa.gov/sites/default/files/2022-10/southeast-us-blue-map.jpg)
+.contrib[
+Map from [NOAA Ecowatch](https://ecowatch.noaa.gov/regions/gulf-of-mexico)
+]
+]
+
+Oshima, Megumi C., "A Management Strategy Evaluation of the Impacts of Interspecific Competition and Recreational Fishery Dynamics on Vermilion Snapper (*Rhomboplites aurorubens*) in the Gulf of Mexico" (2020). Dissertations. 1833. https://aquila.usm.edu/dissertations/1833
 
 ---
-# Northeast
+# Northeast (Jon Deroba, Sarah Gaichas)
+
+.pull-left-60[
+
+Woods Hole Assessment Model (WHAM) state space R/TMB framework with single species, single area MSE capabilities: 
++  WHAM MSE https://timjmiller.github.io/wham/articles/ex10_simulation.html 
+
+Summer Flounder recreational discards MSE combined two custom built models: 
++  Sinatra (Fay), FORTRAN population dynamics and 
++  Recreational Demand angler welfare model (Carr-Harris), R
++  Framework in use for new management driven MSE
+
+WHAM simulations of "Plan B" assessment methods
 
 
-.pull-left[
-
-![:img NEUSmap, 90%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
-
+Contacts: <jonathan.deroba@noaa.gov>, <sarah.gaichas@noaa.gov>
 ]
 
-.pull-right[
-
+.pull-right-40[
+![NE map NOAA Ecowatch](https://ecowatch.noaa.gov/sites/default/files/2022-10/northeast-us-blue-map.jpg)
+.contrib[
+Map from [NOAA Ecowatch](https://ecowatch.noaa.gov/regions/northeast)
 ]
+]
+
+*Spatial MSE tool SPASAM*: presentation by Jon. 
+*EBFM MSE by Fay et al*: presentation under multispecies OMs
+
 
 ???
 
