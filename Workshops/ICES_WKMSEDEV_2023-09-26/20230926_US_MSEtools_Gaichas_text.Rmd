@@ -1,0 +1,206 @@
+---
+title: "MSE Tools <br />US Overview"
+subtitle: "ICES WKMSEDEV<br /> 26 September 2023"
+author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Robert Ahrens, Jon Deroba, Kathryn Doering, Sarah Gaichas, <br />Kristin Marshall, Cassidy Peterson, Desiree Tommasi, Ben Williams"
+output:
+  bookdown::word_document2: default 
+---
+
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+
+# US MSE Tools Overview
+
+  
+## NOAA MSE Working group
+
+THe working group was convened in 2016 as NOAA invested in MSE across the country. Each NOAA NMFS Science Center has an MSE specialist. Each specialist may both conduct MSEs in their region and/or coordinate MSEs, as well as assist with building MSE capacity. These specialists meet regularly to share MSE knowledge and resources across the US. The mission statement of the working group is:
+
+"We anticipate that MSEs will result in improved understanding of our ability to assess stocks, ecosystems, and fishing and coastal communities. This will lead to more efficient allocation of survey and assessment resources, greater potential for stakeholder ownership of the process and, ultimately, increased economic benefits and improved capacity for sustainable management for current and future generations"
+
+In addition to MSEs, the group works with other modeling and management tasks across NOAA, including the NOAA Fisheries Integrated Toolbox FIT https://noaa-fisheries-integrated-toolbox.github.io/ which was presentated at WKMSEDEV by Kathryn Doering: <kathryn.doering@noaa.gov>
+
+To gather information on US MSE tools, we asked MSE representatives from each region the following Questions: 
+
+1. Name of MSE/MSE topic
+
+2. Multiple choice: Is the software used
+
+    + custom built for the project,
+
+    + directly or modified from an existing toolbox, or
+
+    + a combination?
+
+3. Coding environment (ADMB, TMB, R, FORTRAN, C++, other?)
+
+4. Link to code or toolbox, if possible, or provide a contact for the tool/code
+
+In each section below, we identify the MSE specialists from each region and tools used in the region, with contact information.
+
+
+# Alaska: Ben Williams
+
+
+
+Most involved using CEATTLE (ADMB) or RCEATTLE (R/TMB). Minimal MSE uses of these models to date; they have been focused on multi-species and climate-informed assessments. 
+
+Rceattle https://github.com/grantdadams/Rceattle
+
+A spatial framework that is centered around sablefish in Alaska (R/TMB) is setup to be used in an MSE framework. We are currently generalizing this model to explore the HCR for sablefish and other fisheries - and looking for a postdoc(s).
+
+Spatial sablefish https://github.com/Craig44/SpatialSablefishAssessment 
+
+Contact: <ben.williams@noaa.gov>
+
+
+There are a few structural differences between these models, but they are quite similar. 
+Additionally, getting a model with the diet data etc. to converge is a challenge in and of itself, though both models can be used in a MSE framework.
+
+
+
+# Hawaii-Western Pacific: Rob Ahrens
+
+
+1. MSE for priority species identified in the Jurisdictional Coral Reef Fishery Management Plan for Department of Aquatic and Wildlife Resources in Guam. These are MSEs for data limited species. 
+
+2. The process mainly uses the LBSPR  package Hordyk A (2021). LBSPR: Length-Based Spawning Potential Ratio. R package version 0.1.6,<https://CRAN.R-project.org/package=LBSPR>.
+
+3. Coding environment is R
+
+4. Not currently available 
+
+
+
+Contact: <robert.ahrens@noaa.gov> 
+
+
+
+# Northwest: Kristin Marshall
+
+
+
+[*Hake MSE*](https://repository.library.noaa.gov/view/noaa/30919#:~:text=The%20Pacific%20hake%20(Merluccius%20productus,developed%20to%20explore%20key%20uncertainties.) climate-robustness testing of HCRs to changes and variability in recruitment, growth, and distribution. Developing and testing one year ahead recruitment forecasts using predictors from ROMS, and larval and juvenile survey data. Long-term projections developed from ROMS variables will inform future recruitment scenarios. 
+https://github.com/pacific-hake/pacifichakemse
+
+*Sablefish MSE* consequences of spatial vs non-spatial assessments for the performance of the fishery in all regions
+
+https://www.pacificsablefishscience.org/2021-mse-workshop 
+
+SS3MSE by Kathryn Doering et al: https://nmfs-fish-tools.github.io/SSMSE/
+
+Atlantis work by Kaplan et al https://www.frontiersin.org/articles/10.3389/fmars.2020.00652/full
+
+
+
+Contact: <kristin.marshall@noaa.gov>
+
+
+# Southwest: Desiree Tommasi
+
+
+
+*North Pacific albacore tuna MSE* (completed)
+
+The software used is custom built but relies on SS operating/estimating models executed in R (with SS models and also a C++ projection code)
+
+Code is not in a public repository, but please contact Desiree if interested. [Report overview of framework and output.](https://isc.fra.go.jp/pdf/ISC21/ISC21_ANNEX11_Report_of_the_North_Pacific_ALBACORE_MSE.pdf)
+
+*North Pacific bluefin tuna MSE* (in progress)
+
+The software used is custom built but relies on SS operating/estimating models (builds on albacore MSE code) executed in R (with SS models)
+
+Preliminary code: https://github.com/detommas/PBF_MSE
+
+
+
+*Pacific sardine MSE* (completed)
+
+SSMSE R package with custom HCRs and recruitment variability scenarios executed in R (with SS models)
+
+Code: https://github.com/detommas/PBF_MSE and paper (Wildermuth et al.) accepted in CJFAS
+
+*Swordfish  MSE* (completed) MSE evaluated different types of closure; feedback was on fisher behaviour rather than the population as the US catch is a minor fraction of total catch for this species
+
+Custom built tools in R
+
+See Smith et al. 2023:  
+https://www.frontiersin.org/articles/10.3389/fmars.2021.630607/full  
+
+Contact: <desiree.tommasi@noaa.gov>
+
+
+Let me know if you need anything else. In terms of discussions, I would be particularly interested in the "how to reduce run times" one (for the albacore MSE we only could run a few uncertainty scenarios for the full, i.e. with assessment, MSE). With PBF we had 100+ HCRs to test and so decided to run a quick "perfect info" MSE (i.e. no assessment) and managers were able to trim the HCRs down to 12 looking at those preliminary results. In November we are meeting to decide on the final uncertainty grid and so it would be great to hear what ICES has been up to on this topic. In terms of presentation of results, I would be interested in hearing if ICES MSEs present results across a reference set of scenarios plus the robustness ones separately, and for the former, if each of the potential OMs is given equal weight.
+
+
+
+# Southeast: Cassidy Peterson
+
+
+(Gulf) Red snapper in GOMex (Yuying Zhang): http://gomredsnappermsetool.fiu.edu/
+
+(South Atlantic) in progress dolphin MSE; TMB & R; spatial and seasonal length-based model
+Adapted from custom-built MSE for black sea bass and cobia comparing MP performance wrt comm v. rec mgmt objectives (Matt Damiano & Jie Cao)
+
+SS3-based custom examples: https://github.com/CassidyPeterson-NOAA/SS_MSE; https://github.com/CassidyPeterson-NOAA/SS_MSE_AssessmentFrequency 
+
+*Open MSE-BAM* presentation by Cassidy
+
+
+Contact: <cassidy.peterson@noaa.gov>
+
+
+Oshima, Megumi C., "A Management Strategy Evaluation of the Impacts of Interspecific Competition and Recreational Fishery Dynamics on Vermilion Snapper (*Rhomboplites aurorubens*) in the Gulf of Mexico" (2020). Dissertations. 1833. https://aquila.usm.edu/dissertations/1833
+
+
+# Northeast: Jon Deroba, Sarah Gaichas
+
+
+Woods Hole Assessment Model (WHAM) state space R/TMB framework with single species, single area MSE capabilities: 
++  WHAM MSE https://timjmiller.github.io/wham/articles/ex10_simulation.html 
+
+Summer Flounder recreational discards MSE combined two custom built models: 
++  Sinatra (Fay), FORTRAN population dynamics and 
++  Recreational Demand angler welfare model (Carr-Harris), R
++  Framework in use for new management driven MSE
+https://github.com/gavinfay/fluke-mafmc-recdisc  
+
+WHAM simulations of "Plan B" assessment methods: https://cdnsciencepub.com/doi/full/10.1139/cjfas-2022-0045
+
+
+Contacts: <jonathan.deroba@noaa.gov>, <sarah.gaichas@noaa.gov>
+
+
+*Spatial MSE tool SPASAM*: presentation by Jon. 
+*EBFM MSE by Fay et al*: presentation under multispecies OMs
+
+
+

@@ -1,0 +1,201 @@
+---
+title: "Multispecies Operating Models"
+subtitle: "ICES WKMSEDEV<br /> 28 September 2023"
+author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Andy Beet, Joe Caracappa,  Gavin Fay (UMass Dartmouth), Sarah Gaichas, Robert Gamble,<br />Madeleine Guyant (UMass Dartmouth), Jerelle Jesse (GMRI/UMaine), Lisa Kerr (GMRI/UMaine),<br />Emily Liljestrand (UMass/NEFSC), Sean Lucey, Maria Cristina Perez (UMass Dartmouth)"
+output:
+  bookdown::word_document2: default 
+---
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+# Multispecies and Ecosystem Operating Models
+
+## Overview
+
+Combining existing tools to evaluate EBFM procedures: Link multispecies model to MSE framework with built in single species assessment tools for New England prototype EBFM MSE (pMSE)
+
+Fundamental objectives:
+*  Maintain or increase inflation adjusted total value for the fishery
+*  Preserve ecosystem function and structure
+*  Maintain stock complex biomass around levels that optimize fishing opportunities 
+*  Prevent overfishing
+*  Response of regulations to stocks at low abundance, and recovery of depleted stocks
+*  Reduce regulatory complexity
+
+Example explanatory materials, including Rshiny for exploring results
+
+p.s. Food web model Rpath MSE capabilities
+
+p.p.s. Atlantis potential
+
+
+# [EBFM pMSE](https://d23h0vhsm26o6d.cloudfront.net/pMSE-Final-Report2.pdf) 
+
+  
+## Gavin Fay, Lisa Kerr, Madeleine Guyant, Jerelle Jesse, Emily Liljestrand
+
+Hydra: multispecies operating model conditioned on Georges Bank data within MSE framework as prototype test of EBFM strategies. 
+
+Results: additional flexibility and increased yield possible with EBFM "ceilings and floors" without increased risk to single stocks.
+
+ 
+# Operating model building blocks
+
+  
+
+## Multispecies catch at length Hydra `r Cite(myBib, "gaichas_combining_2017")`
+
+*Hydra-Associated GitHub repositories*
+* hydra-sim (Simulation Model Wiki): https://github.com/NOAA-EDAB/hydra_sim/wiki
+* hydra-sim (estimation fork): https://github.com/thefaylab/hydra_sim
+* hydradata (estimation fork): https://github.com/thefaylab/hydradata
+* hydra-diag (diagnostics): https://github.com/thefaylab/hydra_diag
+
+## Groundfish MSE framework `r Cite(myBib, "mazur_consequences_2023")`
+
+*Groundfish MSE repository, branches, and tools*
+
+* main branch (including wiki): https://github.com/lkerr/groundfish-MSE
+* pMSE branch: https://github.com/lkerr/groundfish-MSE/tree/JJ-EBFM
+* includes [ASAP model](https://noaa-fisheries-integrated-toolbox.github.io/ASAP) and Plan B smooth
+* uses SAMtool state space surplus production assessment
+ 
+# Setup 
+  
+
+## Management Alternatives
+
+*  Single-species management, with stock-specific assessments and catch advice.
+*  Single-species management, with stock-specific assessments and catch advice and
+dynamic reference points.
+*  Stock complex management, with stock-complex level assessments and abundance
+index thresholds.
+*  Stock complex management, with stock-complex level assessments and abundance
+index thresholds, with gear-based stock complexes.
+*  Stock complex management, with stock-complex level assessments and dynamic
+reference points.
+
+
+## Operating Model Scenarios
+
+*  Base
+*  Fleet dynamics (Adjust q for economic value)
+*  Initial biomass (Below base)
+*  Predator pressure (Increase M1 <30cm)
+*  Prey change (Increase other food)
+
+ 
+
+# Outreach materials
+
+  
+## Summary pages
+
+*  pMSE Overview  
+*  Management Objectives and Performance Metrics 
+*  Management Alternatives
+*  Results Engagement 
+*  Operating Models 
+*  Assessment Models
+
+
+## Rshiny
+
+https://gavinfay.shinyapps.io/results-viewer/
+
+ 
+
+# More Potential Ecosystem Operating Models
+
+## Atlantis  and Rpath 
+
+ Food web responses to management?
+
+[Rpath](https://github.com/NOAA-EDAB/Rpath) `r Cite(myBib, "lucey_conducting_2020")` with MSE capability `r Cite(myBib, "lucey_evaluating_2021")` 
+
+[Rpath MSE course code](https://github.com/thefaylab/cinar-mse-projects/blob/main/multispecies/RpathOM_HCR_PSPS.md)
+
+
+## Herring MSE food web model results: ecosystem tradeoffs
+
+Tradeoffs between forage groups and mixed impacts to predators apparent when multiple species and full predator prey interaction feedbacks can be included
+
+  
+* Rpath Ecosense functions evaluate parameter uncertainty within a scenario
+
+* Now we have MSE closed loop possibilities in Rpath `r Cite(myBib, "lucey_evaluating_2021")`
+
+* Can implement HCRs with predator prey interactions 
+
+## Herring MSE food web model results: ecosystem uncertainty?
+
+  
+Compare 10% change (green, same as previous slide gray boxes) with more extreme "herring" biomass:  
+* 50% increase from base herring biomass (red)
+* 50% decrease from base herring biomass (blue)
+
+More system uncertainty with increased herring biomass?
+
+# Atlantis NEUSv2: **major** update
+
+  
+## Joe Carracappa, Andy Beet, Robert Gamble
+*  Forcing with GLORYS12V1 and primary production in the newly calibrated model `r Cite(myBib, "caracappa_northeast_2022")`
+*  Running in the cloud via NOAA HPC
+
+## In progress
+*  Sensitivity to fishing scenarios
+*  Testing ecosystem overfishing indicators for the Northeast US
+*  Integrating spatial fleets and ports of origin
+*  Climate projections using MOM-6 planned
+
+.footnote[https://github.com/NOAA-EDAB/neus-atlantis]  
+
+ 
+## References
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]  
+
+## Additional Resources
+
+[EBFM pMSE June 2023 New England Council](https://www.nefmc.org/library/june-2023-ecosystem-based-fishery-management-ebfm-committee)
+*  [Presentation](https://d23h0vhsm26o6d.cloudfront.net/2_Draft-final-Prototype-Management-Evaluation-pMSE-simulation-results-and-output-2nd-mailing_2023-07-06-181333_tsor.pdf)
+*  [Final Report](https://d23h0vhsm26o6d.cloudfront.net/pMSE-Final-Report2.pdf)
+*  [One Page Summaries](https://d23h0vhsm26o6d.cloudfront.net/4b_pMSE-one-page-sumamries_2023-07-06-181512_pgju.pdf)
+*  ICES WKMSEDEV sharepoint: Background Documents
+
+
+
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: <Sarah.Gaichas@noaa.gov>
+
