@@ -1,7 +1,7 @@
 ---
 title: "Multispecies models: US update"
 subtitle: "WGSAM ToR a, 10 October 2023"
-author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Andy Beet, Joe Caracappa, Kiersten Curti, Gavin Fay (UMass Dartmouth),<br />Sarah Gaichas, Robert Gamble, Chris Harvey, Isaac Kaplan, Ron Klasky (S&T), Scott Large, Sean Lucey, Maria Cristina Perez (UMass Dartmouth),<br />Howard Townsend (S&T), Sarah Weisberg (Stony Brook U)"
+author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth),<br />Sarah Gaichas, Robert Gamble, Chris Harvey, Isaac Kaplan, Scott Large, Owen Liu, Sean Lucey, <br />Maria Cristina Perez (UMass Dartmouth), Desiree Tommassi, Sarah Weisberg (Stony Brook U), Robert Wildermuth"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -57,14 +57,12 @@ myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
 .pull-left-40[  
 ## Since WGSAM 2022
 
-*  Atlantis $^{*+}$
-*  Rpath $^{*+}$
-*  MS-Keyrun project, ICES WGSAM review $^+$
-*  Multspecies model skill assessment $^+$
-*  Multspecies MSE $^+$
-
-$^*$ climate-y  
-$^+$ management-y
+*  Atlantis climate and port integration
+    +  Northeast US (NEUS)
+    +  California Current
+*  Rpath 
+*  MS-Keyrun updates 
+*  Single species applications
 
 ]
 
@@ -87,7 +85,7 @@ background-position: right
 ## Atlantis &darr; and Rpath &rarr;
 
 .pull-left[
-![:img NEUSmap, 90%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
+![:img NEUSmap, 88%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
 ]
 
 .pull-right[]
@@ -115,6 +113,29 @@ background-position: right
 
 .pull-right[]
 
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Liu_etal_2023Wcoastsppdist.png")
+background-size: contain 
+
+???
+Owen Liu and colleagues projected future abundance and distribution of groundfish based on historic empirical data of fish densities, bottom temperature and dissolved oxygen
+Analysis focuses on a complex of 4 lower shelf/upper slope groundfish (sablefish, Dover sole, shortspine thornyhead, longspine thornyhead)
+Projections indicate species-specific changes in abundance and distributional responses; contrast shown here between sablefish (decrease and move into deeper water) and Dover sole (models disagree on abundance, relatively little change in depth)
+
+These trends are tending to push some stocks to the margins of present-day fishing footprints for West Coast ports, which could lead to changes catch composition
+
+Related work suggests that the effects of these types of changes will be felt most in groundfish fisheries in northern ports, and that distributional shifts will lead to future overlap between high densities of fish and areas slated for offshore wind energy development
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Kaplan_etal_CCAtlantis.png")
+background-size: contain 
+
+???
+
+Atlantis end to end model of the California Current, similar to models developed for most other regions of the US, and globally by Beth Fulton and team. Previous versions of this Atlantis model have been in use for over a decade. This newest version features several critical innovations that are now generating preliminary outputs. The key innovations (arrows) are: 1) forcing Atlantis with downscaled GLORYS + ESM ocean projections under climate change (thru a collaboration known as Future Seas, led by UCSC and SWFSC); 2) forcing groundfish distributions through climate-driven SDMs of groundfish + pelagics (e.g., from Liu et al in press, 1 slide ago); and 3) parameterizing fishing effort spatially to match empirical Fishing Footprints of key port groups
+
+Preliminary results here just illustrate that we are projecting changes in biomass and distribution, which leads to port-level changes in catch of target species. For instance, in this example, four of our major target groundfish species generally shift north, and some ports experience a slight increase in catch under climate change relative to a no-climate change base case. However, some stocks also move deeper and offshore, beyond the ‘footprints’ of certain ports, leading to decreases in catch, which is what we observe for the northernmost ports at the top of the plot.   
 ---
 background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/Weisberg_PopDy_Poster_2023.png")
 background-size: 700px
@@ -138,9 +159,64 @@ Sarah Weisberg PhD thesis section/PopDy Fellowship
 .pull-right-60[]
 
 ---
-# Forage fish index
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/work-in-progress.png)
+background-size: 200px
+background-position: bottom right
+
+# [Georges Bank Keyrun Review](https://ices-library.figshare.com/articles/report/Working_Group_on_Multispecies_Assessment_Methods_WGSAM_outputs_from_2022_meeting_/22087292) and Work in progress
 
 .pull-left[
+*  Challenge of place based approach for stocks with substantial dynamics outside Georges Bank: "In that case, expanding the models outside the boundaries of the EPU, and/or explicitly accounting for the input/output of fish and energy across the boundaries will likely be needed"
+
+*  Dedicated R packages for data positively reviewed
+
+*  Standardize diet interactions and better quantify other food in estimation models using Rpath
+
+*  Do model self-tests
+
+*  Model specific structural and sensitivity recommendations
+]
+
+.pull-right[
+## In progress
+
+*  Self tests (4 species Hydra, ToR c)
+
+*  Model specific recommendations in progress
+    +  Fleet changes
+    +  Feeding parameters
+
+*  Testing in progress (ToR c)
+
+*  Work continues on input datasets
+]
+
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Wassermann_etal_CEATTLEhake.png")
+background-size: contain 
+
+???
+CEATTLE, developed by Kirstin Holsman at the Alaska Center, is a multispecies statistical catch-at-age assessment model that includes ecosystem considerations like bioenergetics and multispecies interactions (Holsman et al. applications in AK) or, in this case, multiple life-stage interactions.
+
+Sophia Wassermann and colleagues have applied the model to study how temperature variability and cannibalism in Pacific hake interact to influence stock productivity. Adding cannibalism to the model leads to higher estimated recruitment and biomass, due to the inclusion of predation mortality, largely on age-1 hake. 
+
+This work is expected to be relevant to other highly cannibalistic hake stocks; additionally the NWFSC team welcomes input and advice from other examples where cannibalism has been included in assessments, such as for Northeast Arctic Cod. 
+
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Wildermuth_etal_2023sardineMSEclimate.png")
+background-size: contain 
+
+???
+We conducted a management strategy evaluation to assess the robustness of current and alternative Pacific sardine harvest control rules under a variety of recruitment scenarios representing potential projections of future climate conditions in the California Current. The current environmentally  informed control rule modifies the harvest rate for the northern sardine subpopulation based on average sea surface temperatures measured during California Cooperative Oceanic Fisheries 24 Investigations (CalCOFI) field cruises. This rule prioritizes catch at intermediate biomass levels but may increase variability in catch and closure frequency compared to alternative control rules, especially if recruitment is unrelated to ocean temperatures. Fishing at maximum sustainable yield and using dynamically estimated reference points reduced the frequency of biomass falling below 150,000 mt by up to 17%, while using survey index-based biomass estimates resulted in a 29 14% higher risk of delayed fishery closure during stock declines than when using assessment based estimates. 
+
+---
+.pull-left[
+# Forage fish index
+
 ![Bluefish illustration, credit NOAA Fisheries](https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png)
 "... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." `r Cite(myBib, "collette_bigelow_2002")`  
 ]
@@ -170,11 +246,11 @@ knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/202
 knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Mackerel-Atlantic-NOAAFisheries.png")
 #credit: NOAA fisheries
 
-knitr::include_graphics("https://diveary.com/img/species/cache/323__jpg.jpeg") 
-#credit:  https://diveary.com/species/show/id/323/name/red-eye+round+herring
+knitr::include_graphics("https://www.fishbase.se/images/thumbnails/jpg/tn_Etter_u2.jpg") 
+#credit:  Fishbase
 
-knitr::include_graphics("https://www.vims.edu/research/departments/fisheries/programs/juvenile_surveys/netnotes_listing/_photosets/0910_dec_jan/_northernsandlance.jpg")
-#credit: VIMS, https://www.vims.edu/research/departments/fisheries/programs/juvenile_surveys/netnotes_listing/0910_dec_jan.php
+knitr::include_graphics("https://objects.liquidweb.services/images/201412/robert_aguilar,_serc_14908290116_f863c14a2a_b.jpg")
+#credit: Smithsonian, Robert Aguilar
 
 knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png")
 #credit: NOAA fisheries
@@ -189,10 +265,8 @@ knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/202
 .contrib[
 Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/tm2020/
 ]
-]
 
-.center[
-We built a spatial "forage index" based on 20 prey groups using stomach contents of 22 predators 
+VAST model-based "forage index" aggregating 20 prey groups using stomach contents of 22 predators: Gaichas et al in press, http://dx.doi.org/10.1139/cjfas-2023-0093
 ]
 
 ???
@@ -210,7 +284,7 @@ Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Enviro
 .pull-left[  
 ## How to include in the stock assessment? 
 
-A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")` with the forage index as a catchability covariate.
+A new bluefish assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")` with the forage index as a catchability covariate.
 
 ```{r}
 # strata.limits <- as.list(c("AllEPU" = allEPU2, 
@@ -261,7 +335,7 @@ stratlook <- data.frame(Stratum = c("Stratum_1",
 ```
 
 
-```{r fallall, fig.asp=.5}
+```{r fallall, fig.asp=.6}
 #, fig.cap="Fall forage indices scaled to the maximum value (Mid Atlantic 1985) for ecoregions Georges Bank (GB), Gulf of Maine (GOM), Mid Atlantic Bight (MAB), and bluefish assessment index areas in state waters within 3 miles of shore (StateWaters) and bottom trawl survey index strata (SurveyBluefish)."
 splitout <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/forageindex/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv")
 splitoutput <- splitout %>%
@@ -297,8 +371,9 @@ Application of the forage fish index to the recreational catch per angler catcha
 
 .pull-right[
 
- **The inclusion of the forage fish index improved the fit of all models.** 
-```{r, fig.asp=0.9}
+*The inclusion of the forage fish index improved model fit.* 
+
+```{r, fig.asp=0.8}
 
 u1 <- "https://github.com/NOAA-EDAB/forageindex/raw/main/WHAMoutput/BF28C_m7_ecov_off.rds"
 u2 <- "https://github.com/NOAA-EDAB/forageindex/raw/main/WHAMoutput/BF28C_m7_ecov_on.rds"
@@ -331,58 +406,6 @@ WHAM is a state space stock assessment model framework: https://timjmiller.githu
 The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
 The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
 The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
-
-
-
-
----
-background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/work-in-progress.png)
-background-size: 200px
-background-position: bottom right
-
-# [Georges Bank Keyrun Review](https://ices-library.figshare.com/articles/report/Working_Group_on_Multispecies_Assessment_Methods_WGSAM_outputs_from_2022_meeting_/22087292) and Work in progress
-
-.pull-left[
-*  Challenge of place based approach for stocks with substantial dynamics outside Georges Bank: "In that case, expanding the models outside the boundaries of the EPU, and/or explicitly accounting for the input/output of fish and energy across the boundaries will likely be needed"
-
-*  Dedicated R packages for data positively reviewed
-
-*  Standardize diet interactions and better quantify other food in estimation models using Rpath
-
-*  Do model self-tests
-
-*  Model specific structural and sensitivity recommendations
-]
-
-.pull-right[
-## In progress
-
-*  Self tests (4 species Hydra, ToR c)
-
-*  Model specific recommendations in progress
-    +  Fleet changes
-    +  Feeding parameters
-
-*  Testing in progress (ToR c)
-
-*  Work continues on input datasets
-]
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Liu_etal_2023Wcoastsppdist.png")
-background-size: contain 
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Wassermann_etal_CEATTLEhake.png")
-background-size: contain 
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Kaplan_etal_CCAtlantis.png")
-background-size: contain 
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Wildermuth_etal_2023sardineMSEclimate.png")
-background-size: contain 
 
 ---
 
