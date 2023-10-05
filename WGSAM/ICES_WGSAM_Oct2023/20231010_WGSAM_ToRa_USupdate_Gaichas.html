@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Multispecies models: US update</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas, Presenter   Contributors: Andy Beet, Joe Caracappa, Kiersten Curti, Gavin Fay (UMass Dartmouth), Sarah Gaichas, Robert Gamble, Chris Harvey, Isaac Kaplan, Ron Klasky (S&amp;T), Scott Large, Sean Lucey, Maria Cristina Perez (UMass Dartmouth), Howard Townsend (S&amp;T), Sarah Weisberg (Stony Brook U)" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+.title[
+# Multispecies models: US update
+]
+.subtitle[
+## WGSAM ToR a, 10 October 2023
+]
+.author[
+### Sarah Gaichas, Presenter<br /><br /><br />Contributors: Andy Beet, Joe Caracappa, Kiersten Curti, Gavin Fay (UMass Dartmouth),<br />Sarah Gaichas, Robert Gamble, Chris Harvey, Isaac Kaplan, Ron Klasky (S&amp;T), Scott Large, Sean Lucey, Maria Cristina Perez (UMass Dartmouth),<br />Howard Townsend (S&amp;T), Sarah Weisberg (Stony Brook U)
+]
+
+---
+
+class: top, left
+
+
+
+
+
+
+# Updates
+
+.pull-left-40[  
+## Since WGSAM 2022
+
+*  Atlantis `\(^{*+}\)`
+*  Rpath `\(^{*+}\)`
+*  MS-Keyrun project, ICES WGSAM review `\(^+\)`
+*  Multspecies model skill assessment `\(^+\)`
+*  Multspecies MSE `\(^+\)`
+
+`\(^*\)` climate-y  
+`\(^+\)` management-y
+
+]
+
+.pull-right-60[
+![xkcd comic 1328 titled Update](https://imgs.xkcd.com/comics/update.png)
+
+.right[.contrib[https://xkcd.com/1328]]
+]
+
+???
+Everyone loves an update
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Balance_concept.png")
+background-size: 700px
+background-position: right
+
+# More Diverse uses of end to end and food web models
+
+## Atlantis &amp;darr; and Rpath &amp;rarr;
+
+.pull-left[
+![:img NEUSmap, 90%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
+]
+
+.pull-right[]
+
+---
+background-image: url("https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr3_lrg.jpg")
+background-size: 500px
+background-position: right
+
+# Atlantis NEUSv2: **major** update
+
+.pull-left[
+## Joe Carracappa, Andy Beet, Robert Gamble
+*  Forcing with GLORYS12V1 and primary production in the newly calibrated model &lt;a name=cite-caracappa_northeast_2022&gt;&lt;/a&gt;([Caracappa, et al., 2022](https://www.sciencedirect.com/science/article/pii/S030438002200148X))
+*  Running in the cloud via NOAA HPC
+
+## In progress
+*  Sensitivity to fishing scenarios
+*  Testing ecosystem overfishing indicators for the Northeast US
+*  Integrating spatial fleets and ports of origin
+*  Climate projections using MOM-6 planned
+
+.footnote[https://github.com/NOAA-EDAB/neus-atlantis]  
+]
+
+.pull-right[]
+
+---
+background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/Weisberg_PopDy_Poster_2023.png")
+background-size: 700px
+background-position: right
+
+# Rpath: Gulf of Maine
+
+.pull-left-40[
+Sarah Weisberg PhD thesis section/PopDy Fellowship 
+*Advancing Climate-Informed, Ecosystem-Based Fisheries Management Through Food Web Modeling, Indicator Development And Risk Analysis In The Rapidly Warming Gulf Of Maine*
+
+*  Ecological network analysis shows regimes in Gulf of Maine food web efficiency/resilience. Highly efficient food webs have lower resilience due to fewer trophic pathways decreasing redundancy. 
+
+* The Gulf of Maine had low resilience in the 2000s, corresponding to poor fish condition 
+
+.footnote[p.s. [Shiny GOM used in IEA course](https://connect.fisheries.noaa.gov/content/6c128564-f8b2-49c4-8afc-614f9e2e7a5b/)]
+
+]
+
+
+.pull-right-60[]
+
+---
+# Forage fish index
+
+.pull-left[
+![Bluefish illustration, credit NOAA Fisheries](https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png)
+"... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys."   
+]
+
+.pull-right[
+## Does prey drive predator availability?  
+
+*Bluefish diet in the Northeast US*  
+
+&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://objects.liquidweb.services/images/201909/robert_aguilar,_serc_48650727166_3ce8edc47d_b.jpg" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Butterfish-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Scup-NOAAFisheries_0.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Mackerel-Atlantic-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://diveary.com/img/species/cache/323__jpg.jpeg" width="25%" /&gt;&lt;img src="https://www.vims.edu/research/departments/fisheries/programs/juvenile_surveys/netnotes_listing/_photosets/0910_dec_jan/_northernsandlance.jpg" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png" width="25%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-01/640x427-Atlantic_Menhaden_NB_W.jpg" width="25%" /&gt;
+.contrib[
+Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/tm2020/
+]
+]
+
+.center[
+We built a spatial "forage index" based on 20 prey groups using stomach contents of 22 predators 
+]
+
+???
+&lt;font size="-1"&gt;&lt;/font&gt;
+
+Changing distribution and abundance of small pelagics may drive changes in predator distributions, affecting predator availability to fisheries and surveys. However, small pelagic fish are difficult to survey directly, so we developed a novel method of assessing small pelagic fish aggregate abundance via predator diet data. We used piscivore diet data collected from multiple bottom trawl surveys within a Vector Autoregressive Spatio-Temporal (VAST) model to assess trends of small pelagics on the Northeast US shelf. The goal was to develop a spatial “forage index” to inform survey and/or fishery availability in the bluefish (Pomatomus saltatrix) stock assessment. Using spring and fall surveys from 1973-2020, 20 small pelagic groups were identified as major bluefish prey using the diet data. Then, predators were grouped by diet similarity to identify 19 piscivore species with the most similar diet to bluefish in the region. Diets from all 20 piscivores were combined for the 20 prey groups at each surveyed location, and the total weight of small pelagic prey per predator stomach at each location was input into a Poisson-link delta model to estimate expected prey mass per predator stomach. Best fit models included spatial and spatio-temporal random effects, with predator mean length, number of predator species, and sea surface temperature as catchability covariates. Spring and fall prey indices were split into inshore and offshore areas to reflect changing prey availability over time in areas available to the recreational fishery and the bottom trawl survey, and also to contribute to regional ecosystem reporting
+
+Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic groups were identified as major bluefish prey with 10 or more observations (in descending order of observations): Longfin squids (*Doryteuthis* formerly *Loligo* sp.), Anchovy family (Engraulidae), bay anchovy (*Anchoa mitchilli*), Atlantic butterfish, (*Peprilus triachanthus*), Cephalopoda, (*Anchoa hepsetus*), red eye round herring (*Etrumeus teres*), Sandlance (*Ammodytes* sp.), scup (*Stenotomus chrysops*), silver hake (*Merluccius bilinearis*), shortfin squids (*Illex* sp.), Atlantic herring (*Clupea harengus*), Herring family (Clupeidae), Bluefish (*Pomatomus saltatrix*), silver anchovy (*Engraulis eurystole*), longfin inshore squid (*Doryteuthis pealeii*), Atlantic mackerel (*Scomber scombrus*), flatfish (Pleuronectiformes), weakfish (*Cynoscion regalis*), and Atlantic menhaden (*Brevoortia tyrannus*). 
+
+Prey categories such as fish unidentified, Osteichthyes, and unidentified animal remains were not included in the prey list. Although unidentified fish and Osteichthyes can comprise a significant portion of bluefish stomach contents, we cannot assume that unidentified fish in other predator stomachs represent unidentified fish in bluefish stomachs.  
+
+Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Environmental Research Center; redeye round herring photo--https://diveary.com ; sandlance photo--Virginia Institute of Marine Science; all others NOAA Fisheries.
+
+---
+.pull-left[  
+## How to include in the stock assessment? 
+
+A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM)  with the forage index as a catchability covariate.
+
+
+
+
+&lt;img src="20231010_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/fallall-1.png" width="504" /&gt;
+
+Application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error, and led to an overall decreasing trend in catchability over time. 
+]
+
+.pull-right[
+
+ **The inclusion of the forage fish index improved the fit of all models.** 
+&lt;img src="20231010_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="504" /&gt;
+
+The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to &lt;span style="color:#cd5c5c;"&gt;higher biomass estimates from the assessment including forage fish.&lt;/span&gt;  
+
+]
+
+
+???
+WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
+
+The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
+The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
+The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
+
+
+
+
+---
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/work-in-progress.png)
+background-size: 200px
+background-position: bottom right
+
+# [Georges Bank Keyrun Review](https://ices-library.figshare.com/articles/report/Working_Group_on_Multispecies_Assessment_Methods_WGSAM_outputs_from_2022_meeting_/22087292) and Work in progress
+
+.pull-left[
+*  Challenge of place based approach for stocks with substantial dynamics outside Georges Bank: "In that case, expanding the models outside the boundaries of the EPU, and/or explicitly accounting for the input/output of fish and energy across the boundaries will likely be needed"
+
+*  Dedicated R packages for data positively reviewed
+
+*  Standardize diet interactions and better quantify other food in estimation models using Rpath
+
+*  Do model self-tests
+
+*  Model specific structural and sensitivity recommendations
+]
+
+.pull-right[
+## In progress
+
+*  Self tests (4 species Hydra, ToR c)
+
+*  Model specific recommendations in progress
+    +  Fleet changes
+    +  Feeding parameters
+
+*  Testing in progress (ToR c)
+
+*  Work continues on input datasets
+]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Liu_etal_2023Wcoastsppdist.png")
+background-size: contain 
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Wassermann_etal_CEATTLEhake.png")
+background-size: contain 
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Kaplan_etal_CCAtlantis.png")
+background-size: contain 
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Wildermuth_etal_2023sardineMSEclimate.png")
+background-size: contain 
+
+---
+
+## Additional resources
+
+[Alaska multispecies and ecosystem models](https://www.integratedecosystemassessment.noaa.gov/regions/alaska/ebs-integrated-modeling)
+
+[California Current Future Seas MSEs](https://www.integratedecosystemassessment.noaa.gov/regions/california-current/cc-projects-future-seas)
+
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
