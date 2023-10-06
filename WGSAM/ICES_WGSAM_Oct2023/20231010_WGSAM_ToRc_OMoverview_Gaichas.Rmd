@@ -44,9 +44,35 @@ library(readr)
 
 ```
 
+## Outline
+
+.pull-left[
+
+* Skill assessment with Atlantis "data"
+
+    1. Quick Atlantis overview
+    1. R package `atlantisom`
+    1. Multispecies assessment
+    1. Food web models: WIP 
+
+]
+
+.pull-right[
+* Discussion: what's next
+ 
+    + Progress from modeling groups
+    + Discuss plans for 
+        + common input parameters
+        + common outputs
+        + how to do comparisons
 
 
-# Multispecies model skill assessment
+![:img poseidon](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/poseidon-1024x6391.jpg)
+]
+
+---
+
+## Multispecies model skill assessment
 
 .pull-left-40[
 [Stow et al. 2009](https://www.sciencedirect.com/science/article/abs/pii/S0924796308001103?via%3Dihub)
@@ -58,221 +84,6 @@ library(readr)
 ]
 ???
 "Both our model predictions and the observations reside in a halo of uncertainty and the true state of the system is assumed to be unknown, but lie within the observational uncertainty (Fig. 1a). A model starts to have skill when the observational and predictive uncertainty halos overlap, in the ideal case the halos overlap completely (Fig. 1b). Thus, skill assessment requires a set of quantitative metrics and procedures for comparing model output with observational data in a manner appropriate to the particular application."
-
----
-## [ms-keyrun simulated data](https://noaa-edab.github.io/ms-keyrun/articles/SimData.html) 
-
-<iframe width="1212" height="682" src="https://noaa-edab.github.io/ms-keyrun/articles/SimData.html" title="MS-keyrun simulated data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>
-
----
-## Multispecies model skill assessment based on NOBA Atlantis (Townsend et al, WIP)
-
-.pull-left[
-Stepwise development process of self fitting, fitting to atlantis output, then skill assessment using atlantis output
-
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSSPMfittoNOBA.png)
-
-Profiles for estimated parameters; but 
-*what to compare K values to?*
-
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSSPMfittoNOBAdiagK.png)
-]
-
-.pull-right[
-Can test model diagnostic tools as well
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSSPMfittoNOBAretro.png)
-Using simulated data in [`mskeyrun` package](https://noaa-edab.github.io/ms-keyrun/), available to all
-]
-
-
----
-## Initial results for Hydra: Single model fit to biomass vs biomass skill
-
-.pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5klogs1Bfit.png)
-]
-
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5klogBskill.png)
-]
-
-.center[
-*MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
-]
----
-## Initial results for Hydra: Biomass Skill across model structures
-
-.pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/5binlogBskill.png)
-]
-
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/10binlogBskill.png)
-]
-.center[
-*MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
-]
-
----
-## Initial results for Hydra: example skill summary statistics, 5 bin model structures
-
-.pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/skill5binlog.png)
-]
-
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MEF5bin.png)
-]
-.center[
-*MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
-]
-
----
-## Multispecies model skill comparison, ICES WGSAM 2023-2024
-
-Do the same thing with Gadget, CEATTLE, Mizer, LeMans, Rpath... more participants welcome!
-
-.pull-left[
-[Simulated datasets](https://github.com/NOAA-EDAB/ms-keyrun/issues/56) have been added to mskeyrun
-
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SimDataIssueMSkeyrun.png)
-
-]
-
-.pull-right[
-[Discussion ongoing](https://github.com/NOAA-EDAB/ms-keyrun/discussions) for planned comparisons
-
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSkeyrunDIscussions.png)
-
-]
-
----
-
-
-## Outline
-
-.pull-left[
-* Management decisions and models
-
-* Assessment model testing  
-
-    * What do models need to do?
-    * Challenges with what models need to do  
-    * Addressing challenges with Atlantis  
-
-* Skill assessment with Atlantis "data"
-
-    1. R package `atlantisom`
-    1. Single species assessment
-    1. Multispecies assessment
-    1. Other models? Ensembles?
-
-]
-
-.pull-right[
-* Discussion: what's next
- 
-    + Automation of other model inputs!
-    * Atlantis output verification
-    * New outputs?
-    + Best practices for 
-        + dataset creation
-        + input parameter estimation
-
-
-![:img poseidon](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/poseidon-1024x6391.jpg)
-]
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/noaafisheries.png")
-background-size: 900px
-background-position: bottom center
-
-# We do a lot of assessments
-
-.center[
-![:img NOAAlogo, 20%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/noaa-logo.PNG)  
-<!--![:img noaafisheries, 85%](EDAB_images/noaafisheries.png)-->
-]
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ecomods.png")
-background-size: 900px
-background-position: bottom center
-
-# With a wide range of models
-
-.center[
-<!--![:img ecomods, 85%](EDAB_images/ecomods.png)-->
-]
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/modeling_study.png")
-background-size: 500px
-background-position: right bottom
-
-# How do we know they are right?
-
- * Fits to historical data (hindcast)
- 
- * Influence of data over time (retrospective diagnostics)
- 
- * Keep as simple and focused as possible
- 
- * Simulation testing
-
-# But, what if 
-
-##   data are noisy? 
-
-##   we need to model complex interactions?
-
-##   conditions change over time?
-
-.footnote[
-https://xkcd.com/2323/
-]
-
----
-## Skill assessment background (see [Journal of Marine Systems Special Issue](https://www.sciencedirect.com/journal/journal-of-marine-systems/vol/76/issue/1))
-
-.pull-left-40[
-[Stow et al. 2009](https://www.sciencedirect.com/science/article/abs/pii/S0924796308001103?via%3Dihub)
-![:img Stow et al 2009 Fig 1](https://ars.els-cdn.com/content/image/1-s2.0-S0924796308001103-gr1.jpg)
-]
-.pull-right-60[
-[Olsen et al. 2016](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146467)
-![:img Olsen et al Fig 1](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/pone.0146467.g001.png) 
-]
-???
-"Both our model predictions and the observations reside in a halo of uncertainty and the true state of the system is assumed to be unknown, but lie within the observational uncertainty (Fig. 1a). A model starts to have skill when the observational and predictive uncertainty halos overlap, in the ideal case the halos overlap completely (Fig. 1b). Thus, skill assessment requires a set of quantitative metrics and procedures for comparing model output with observational data in a manner appropriate to the particular application."
-
----
-## Skill assessment with ecological interactions... fit criteria alone are not sufficient
-*Ignore predation at your peril: results from multispecies state-space modeling  *  [Trijoulet et al. 2020](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2664.13515)
->Ignoring trophic interactions that occur in marine ecosystems induces bias in stock assessment outputs and results in low model predictive ability with subsequently biased reference points.  
-
-.pull-left-40[
-![VanessaPaper](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/VanessaPaper.png)
-
-EM1: multispecies state space 
-
-EM2: multispecies, no process error 
-
-EM3: single sp. state space, constant M 
-
-EM4: single sp. state space, age-varying M 
-
-*note difference in scale of bias for single species!*
-
-]
-.pull-right-60[
-![modcomp](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/jpe13515-fig-0004-m.jpg)
-]
-
-???
-This is an important paper both because it demonstrates the importance of addressing strong species interactions, and it shows that measures of fit do not indicate good model predictive performance. Ignoring process error caused bias, but much smaller than ignoring species interactions.
-See also Vanessa's earlier paper evaluating diet data interactions with multispecies models  
 
 
 ---
@@ -347,6 +158,12 @@ background-position: right bottom
 * select species
 * run `om_species`
 
+## additions!
+
+* consumption
+* subannual catch
+* biomass pools
+
 ---
 background-image: url("https://github.com/sgaichas/poseidon-dev/raw/master/docs/images/atlantisomDataFlow_data.png")
 background-size: 625px
@@ -405,15 +222,6 @@ Survey with catchability and selectivity
 ![:img halibut ages, 75%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBAhalibutage.png)
 ]
 ]
----
-## `atlantisom` outputs, diet compositions, [link](https://sgaichas.github.io/poseidon-dev/SurveyDietCompTest.html)
-
-.pull-left[
-![true diets](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBAcoddiettrue.png)
-]
-.pull-right[
-![seasonal survey diets](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBAcodspringfallsurvdiet.png)
-]
 
 ---
 ## Testing a simple "sardine" assessment, CC Atlantis [Kaplan et al. 2021](https://www.frontiersin.org/articles/10.3389/fmars.2021.624355/full)
@@ -431,110 +239,49 @@ Will revisit with newer CC model; issues with different growth than assumed in S
 ]
 
 ---
-## Cod assessment based on NOBA Atlantis (Li, WIP)
-
-https://github.com/Bai-Li-NOAA/poseidon-dev/blob/nobacod/NOBA_cod_files/README.MD
+## `atlantisom` outputs, diet compositions, [link](https://sgaichas.github.io/poseidon-dev/SurveyDietCompTest.html)
 
 .pull-left[
-Conversion from SAM to SS successful
-![](https://github.com/Bai-Li-NOAA/poseidon-dev/raw/nobacod/NOBA_cod_files/README_files/figure-gfm/sam_ss_comparison-1.png)
+![true diets](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBAcoddiettrue.png)
 ]
 .pull-right[
-Fitting to NOBA data more problematic
-![](https://github.com/Bai-Li-NOAA/poseidon-dev/raw/nobacod/NOBA_cod_files/README_files/figure-gfm/unnamed-chunk-1-1.png)
-
-]
----
-## Multispecies assessment based on NOBA Atlantis (Townsend et al, WIP)
-
-.pull-left[
-Stepwise development process of self fitting, fitting to atlantis output, then skill assessment using atlantis output
-
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSSPMfittoNOBA.png)
-
-Profiles for estimated parameters; but 
-*what to compare K values to?*
-
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSSPMfittoNOBAdiagK.png)
+![seasonal survey diets](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBAcodspringfallsurvdiet.png)
 ]
 
-.pull-right[
-Can test model diagnostic tools as well
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSSPMfittoNOBAretro.png)
-Using simulated data in [`mskeyrun` package](https://noaa-edab.github.io/ms-keyrun/), available to all
-]
 
 ---
-## ms-keyrun simulated data
+## [ms-keyrun simulated data](https://noaa-edab.github.io/ms-keyrun/articles/SimData.html) 
 
 <iframe width="1212" height="682" src="https://noaa-edab.github.io/ms-keyrun/articles/SimData.html" title="MS-keyrun simulated data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>
 
 ---
-## Initial results for Hydra: Example fits to biomass (left) and catch (right)
+## Dataset additions
 
-.pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5klogs1Bfit.png)
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5klogs2Bfit.png)
-]
-
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5kfleet1fit.png)
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5kfleet2fit.png)
-]
 
 ---
-## Initial results for Hydra: Example fit to biomass vs biomass skill
+## Initial results, Hydra
 
-.pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5klogs1Bfit.png)
-]
 
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5klogBskill.png)
-]
-
-.center[
-*MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
-]
 ---
-## Initial results for Hydra: Biomass Skill across models
+## Multispecies model skill comparison, ICES WGSAM 2023-2024
+
+Do the same thing with Gadget, CEATTLE, Mizer, LeMans, Rpath... more participants welcome!
 
 .pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/5binBskill.png)
+[Simulated datasets](https://github.com/NOAA-EDAB/ms-keyrun/issues/56) have been added to mskeyrun
+
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SimDataIssueMSkeyrun.png)
+
 ]
 
 .pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/10binBskill.png)
-]
-.center[
-*MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
-]
----
-## Initial results for Hydra: Biomass Skill across models
+[Discussion ongoing](https://github.com/NOAA-EDAB/ms-keyrun/discussions) for planned comparisons
 
-.pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/5binlogBskill.png)
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSkeyrunDIscussions.png)
+
 ]
 
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/10binlogBskill.png)
-]
-.center[
-*MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
-]
----
-## Initial results for Hydra: example skill summary statistics, 5 bin models
 
-.pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/skill5binlog.png)
-]
-
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MEF5bin.png)
-]
-.center[
-*MODELS SHOWN ARE EXAMPLE TRIAL FITS, NOT FINISHED OR GOOD MODELS*
-]
 ---
 ## P.S. What else could we test?
 .center[
@@ -556,17 +303,16 @@ https://xkcd.com/1885/
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/scenario_4.png")
 background-size: 500px
 background-position: right
-## Difficulties so far
+## Discussion and plans for this week
 .pull-left-60[
 Atlantis related
 
-*  Understanding Atlantis outputs (much improved with documentation since 2015)
-*  Reconciling different Atlantis outputs, which to use?
 *  Calculations correct? attempted M, per capita consumption
     
 Skill assessment related
 
-*  Running stock assessment models is difficult to automate. A lot of decisions are made by iterative running and diagnostic checks.
+*  Running stock assessment models is difficult to automate. A lot of decisions are made by iterative running and diagnostic checks. 
+*. Do we want to automate to have more repetitions? Or tailor a small set of fits to a single dataset?
 *  Generating input parameters for models that are consistent with Atlantis can be time consuming (Atlantis is a little too realistic...)
     + Fit vonB length at age models to atlantisom output for input to length based model, not all converge (!)
     + What is M (see above)
