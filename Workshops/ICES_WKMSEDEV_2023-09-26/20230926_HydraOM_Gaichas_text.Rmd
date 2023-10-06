@@ -42,6 +42,7 @@ myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
 Combining existing tools to evaluate EBFM procedures: Link multispecies model to MSE framework with built in single species assessment tools for New England prototype EBFM MSE (pMSE)
 
 Fundamental objectives:
+
 *  Maintain or increase inflation adjusted total value for the fishery
 *  Preserve ecosystem function and structure
 *  Maintain stock complex biomass around levels that optimize fishing opportunities 
@@ -73,6 +74,7 @@ Results: additional flexibility and increased yield possible with EBFM "ceilings
 ## Multispecies catch at length Hydra `r Cite(myBib, "gaichas_combining_2017")`
 
 *Hydra-Associated GitHub repositories*
+
 * hydra-sim (Simulation Model Wiki): https://github.com/NOAA-EDAB/hydra_sim/wiki
 * hydra-sim (estimation fork): https://github.com/thefaylab/hydra_sim
 * hydradata (estimation fork): https://github.com/thefaylab/hydradata
@@ -147,7 +149,6 @@ https://gavinfay.shinyapps.io/results-viewer/
 
 Tradeoffs between forage groups and mixed impacts to predators apparent when multiple species and full predator prey interaction feedbacks can be included
 
-  
 * Rpath Ecosense functions evaluate parameter uncertainty within a scenario
 
 * Now we have MSE closed loop possibilities in Rpath `r Cite(myBib, "lucey_evaluating_2021")`
@@ -156,7 +157,6 @@ Tradeoffs between forage groups and mixed impacts to predators apparent when mul
 
 ## Herring MSE food web model results: ecosystem uncertainty?
 
-  
 Compare 10% change (green, same as previous slide gray boxes) with more extreme "herring" biomass:  
 * 50% increase from base herring biomass (red)
 * 50% decrease from base herring biomass (blue)
@@ -167,28 +167,31 @@ More system uncertainty with increased herring biomass?
 
   
 ## Joe Carracappa, Andy Beet, Robert Gamble
+
 *  Forcing with GLORYS12V1 and primary production in the newly calibrated model `r Cite(myBib, "caracappa_northeast_2022")`
 *  Running in the cloud via NOAA HPC
 
 ## In progress
+
 *  Sensitivity to fishing scenarios
 *  Testing ecosystem overfishing indicators for the Northeast US
 *  Integrating spatial fleets and ports of origin
 *  Climate projections using MOM-6 planned
 
-.footnote[https://github.com/NOAA-EDAB/neus-atlantis]  
+https://github.com/NOAA-EDAB/neus-atlantis 
 
  
 ## References
-.contrib[
+
 ```{r refs, echo=FALSE, results="asis"}
 PrintBibliography(myBib)
 ```
-]  
+
 
 ## Additional Resources
 
 [EBFM pMSE June 2023 New England Council](https://www.nefmc.org/library/june-2023-ecosystem-based-fishery-management-ebfm-committee)
+
 *  [Presentation](https://d23h0vhsm26o6d.cloudfront.net/2_Draft-final-Prototype-Management-Evaluation-pMSE-simulation-results-and-output-2nd-mailing_2023-07-06-181333_tsor.pdf)
 *  [Final Report](https://d23h0vhsm26o6d.cloudfront.net/pMSE-Final-Report2.pdf)
 *  [One Page Summaries](https://d23h0vhsm26o6d.cloudfront.net/4b_pMSE-one-page-sumamries_2023-07-06-181512_pgju.pdf)
