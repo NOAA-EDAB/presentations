@@ -1,11 +1,12 @@
 ---
-title: "Multispecies Operating Models"
-subtitle: "ICES WKMSEDEV<br /> 28 September 2023"
-author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Andy Beet, Joe Caracappa,  Gavin Fay (UMass Dartmouth), Sarah Gaichas, Robert Gamble,<br />Madeleine Guyant (UMass Dartmouth), Jerelle Jesse (GMRI/UMaine), Lisa Kerr (GMRI/UMaine),<br />Emily Liljestrand (UMass/NEFSC), Sean Lucey, Maria Cristina Perez (UMass Dartmouth)"
+title: "New England EBFM prototype MSE"
+subtitle: "ICES WGSAM ToR E MSE"
+author: "Sarah Gaichas, Presenter<br /><br /><br />Authors: <br /><br />Gavin Fay (UMass Dartmouth)<br />Lisa Kerr (GMRI/UMaine)<br />Madeleine Guyant (UMass Dartmouth)<br />Jerelle Jesse (GMRI/UMaine)<br />Emily Liljestrand (UMass/NEFSC)"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
     lib_dir: libs
+    seal: false
     nature:
       titleSlideClass: ["right", "middle", "my-title"]
       ratio: "16:9"
@@ -49,11 +50,15 @@ myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
 
 ```
 
-# Multispecies and Ecosystem Operating Models
+# EBFM "prototype" MSE in New England
 
 ## Overview
 
-Combining existing tools to evaluate EBFM procedures: Link multispecies model to MSE framework with built in single species assessment tools for New England prototype EBFM MSE (pMSE)
+Goal: Demonstrate how MSE can be used to evaluate EBFM management strategies for a Georges Bank Ecosystem Production Unit.
+
+Process:
+*  Worked iteratively with management committee and advisors as stakeholders 
+*  Combined existing tools to evaluate EBFM procedures: Link multispecies model to MSE framework with built in single species assessment tools
 
 Fundamental objectives:
 *  Maintain or increase inflation adjusted total value for the fishery
@@ -62,12 +67,6 @@ Fundamental objectives:
 *  Prevent overfishing
 *  Response of regulations to stocks at low abundance, and recovery of depleted stocks
 *  Reduce regulatory complexity
-
-Example explanatory materials, including Rshiny for exploring results
-
-p.s. Food web model Rpath MSE capabilities
-
-p.p.s. Atlantis potential
 
 ---
 background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/pMSEhydra.png)
@@ -108,29 +107,31 @@ Results: additional flexibility and increased yield possible with EBFM "ceilings
 * main branch (including wiki): https://github.com/lkerr/groundfish-MSE
 * pMSE branch: https://github.com/lkerr/groundfish-MSE/tree/JJ-EBFM
 * includes [ASAP model](https://noaa-fisheries-integrated-toolbox.github.io/ASAP) and Plan B smooth
-* uses SAMtool state space surplus production assessment
+* uses SAMtool state space surplus production assessment for complexes
+* index-based "floors" for stocks within complexes
 
 ]
 
 ---
-# Setup 
-.pull-left[
+# Setup
+.pull-left-60[
 
 ## Management Alternatives
 
-*  Single-species management, with stock-specific assessments and catch advice.
-*  Single-species management, with stock-specific assessments and catch advice and
-dynamic reference points.
-*  Stock complex management, with stock-complex level assessments and abundance
-index thresholds.
-*  Stock complex management, with stock-complex level assessments and abundance
-index thresholds, with gear-based stock complexes.
-*  Stock complex management, with stock-complex level assessments and dynamic
-reference points.
+**SS Static** .contrib[Single-species management, stock-specific assessment and catch advice.]  
+**SS Dynamic** .contrib[Single-species as above with dynamic reference points.]  
 
+**Feeding Complex Static** .contrib[Stock complex management and assessment: trophic complexes.]  
+**Feeding Complex Dynamic** .contrib[Stock complex as above with dynamic reference points.]  
+
+**Gear Complex Static** .contrib[Stock complex management and assessment: gear-based complexes.]  
+**Gear Complex Dynamic** .contrib[Stock complex as above dynamic reference points.]  
+
+*Static* = full time series for reference points  
+*Dynamic* = most recent 10 years for reference points
 ]
 
-.pull-right[
+.pull-right-40[
 
 ## Operating Model Scenarios
 
@@ -154,18 +155,59 @@ background-size: 990px
 background-position: center bottom
 # Multispecies management alternatives
 
+---
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Fayetal_pMSE_keytakeaways.png)
+background-size: 1100px
+background-position: center bottom
+# Key takeaways
+
+*  Stock complex management resulted in higher and less variable catches (results below are for the trophic based complexes).
+*  Higher catches did not come at the expense of stock conservation status
+*  Catch closer to catch advice under stock complex management
+*  Results similar for different operating model initial condition scenarios: 
+
+red: high B, brown: high predators, green: high prey, blue: low B, purple: $F
+
+???
+Increased Predator Pressure (higher M1 on forage)
+*  More variable total annual catches
+*  Higher under-used quota
+*  Lower catches
+Increased Prey availability (more other food for modeled predators)
+*  All the above, plus fewer stocks below limits
+Price-based fleet dynamics (higher relative catchability on more valuable stocks)
+*  More stocks below limits
+
 
 ---
-# Example Results
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Fayetal_pMSEradar_plot.png)
+background-size: 700px
+background-position: right
 
-.pull-left-60[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Fayetal_pMSEresultfacets.png)
+.pull-left-40[
+# Relative performance of management alternatives
+Points closer to the exterior edge indicate a better performance for the metric than points closer to the center.
+
+*  Stock complex management generally out preformed single species based management.
+*  Gear based complexes resulted in higher variability and more underutilized quota than the trophic based complexes.
+
 ]
 
-.pull-right-40[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Fayetal_pMSEresultspider.png)
-]
+---
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Fayetal_pMSEmetric_short_boxplots.png)
+background-size: 1000px
+background-position: right bottom
+## Short term
+First 5 years  
+of projection
 
+---
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Fayetal_pMSEmetric_long_boxplots.png)
+background-size: 1000px
+background-position: right bottom
+## Long term
+Last 20 years  
+of projection
 
 ---
 # Outreach materials
@@ -190,102 +232,6 @@ https://gavinfay.shinyapps.io/results-viewer/
 ]
   
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Balance_concept.png")
-background-size: 700px
-background-position: right
-
-# More Potential Ecosystem Operating Models
-
-## Atlantis &darr; and Rpath &rarr;
-
-.pull-left[
-![:img NEUSmap, 90%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
-]
-
-.pull-right[]
-
----
-# Food web responses to management?
-
-## [Rpath](https://github.com/NOAA-EDAB/Rpath) `r Cite(myBib, "lucey_conducting_2020")` with MSE capability `r Cite(myBib, "lucey_evaluating_2021")`
-
-.pull-left[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSE_Rpath_Page_05.png)
-]
-
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MSE_Rpath_Page_14.png)
-]
-
-[Rpath MSE course code](https://github.com/thefaylab/cinar-mse-projects/blob/main/multispecies/RpathOM_HCR_PSPS.md)
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/herrup10pann.png")
-background-size: 830px
-background-position: right bottom
-
-## Herring MSE food web model results: ecosystem tradeoffs
-
-Tradeoffs between forage groups and mixed impacts to predators apparent when multiple species and full predator prey interaction feedbacks can be included
-
-.pull-left-30[
-* Rpath Ecosense functions evaluate parameter uncertainty within a scenario
-
-* Now we have MSE closed loop possibilities in Rpath `r Cite(myBib, "lucey_evaluating_2021")`
-
-* Can implement HCRs with predator prey interactions 
-
-]
-.pull-right-70[
-
-]
-
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/fwcompresults.png")
-background-size: 780px
-background-position: right bottom
-
-## Herring MSE food web model results: ecosystem uncertainty?
-
-.pull-left-30[
-Compare 10% change (green, same as previous slide gray boxes) with more extreme "herring" biomass:  
-* 50% increase from base herring biomass (red)
-* 50% decrease from base herring biomass (blue)
-
-More system uncertainty with increased herring biomass?
-]
-
-.pull-right-70[
-
-]
-
----
-background-image: url("https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr3_lrg.jpg")
-background-size: 500px
-background-position: right
-
-# Atlantis NEUSv2: **major** update
-
-.pull-left[
-## Joe Carracappa, Andy Beet, Robert Gamble
-*  Forcing with GLORYS12V1 and primary production in the newly calibrated model `r Cite(myBib, "caracappa_northeast_2022")`
-*  Running in the cloud via NOAA HPC
-
-## In progress
-*  Sensitivity to fishing scenarios
-*  Testing ecosystem overfishing indicators for the Northeast US
-*  Integrating spatial fleets and ports of origin
-*  Climate projections using MOM-6 planned
-
-.footnote[https://github.com/NOAA-EDAB/neus-atlantis]  
-]
-
-
-
-.pull-right[]
-
----
 ## References
 .contrib[
 ```{r refs, echo=FALSE, results="asis"}
@@ -296,13 +242,14 @@ PrintBibliography(myBib)
 ## Additional Resources
 
 [EBFM pMSE June 2023 New England Council](https://www.nefmc.org/library/june-2023-ecosystem-based-fishery-management-ebfm-committee)
-*  [Presentation](https://d23h0vhsm26o6d.cloudfront.net/2_Draft-final-Prototype-Management-Evaluation-pMSE-simulation-results-and-output-2nd-mailing_2023-07-06-181333_tsor.pdf)
+*  [June Presentation](https://d23h0vhsm26o6d.cloudfront.net/2_Draft-final-Prototype-Management-Evaluation-pMSE-simulation-results-and-output-2nd-mailing_2023-07-06-181333_tsor.pdf)
+*  [September Update Presentation](https://docs.google.com/presentation/d/15C5KYXyPWy-TYKzAeWPsGH_FyvPLZJMf0mpqHJaqTjI/edit#slide=id.g279865ce07c_0_0)
 *  [Final Report](https://d23h0vhsm26o6d.cloudfront.net/pMSE-Final-Report2.pdf)
 *  [One Page Summaries](https://d23h0vhsm26o6d.cloudfront.net/4b_pMSE-one-page-sumamries_2023-07-06-181512_pgju.pdf)
-*  ICES WKMSEDEV sharepoint: Background Documents
+*  ICES WGSAM sharepoint: Background Documents
 
 
 .footnote[
 Slides available at https://noaa-edab.github.io/presentations  
-Contact: <Sarah.Gaichas@noaa.gov>
+Contact: <gfay@umassd.edu>
 ]
