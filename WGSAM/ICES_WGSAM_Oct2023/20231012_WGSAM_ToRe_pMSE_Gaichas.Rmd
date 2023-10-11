@@ -49,10 +49,14 @@ myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
 #           dashed = FALSE
 
 ```
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NEFMCUmassDGMRI_logos.png)
+background-size: 350px
+background-position: top right
+
 
 # EBFM "prototype" MSE in New England
 
-## Overview
+## Gavin Fay, Lisa Kerr, Emily Liljestrand, Jerelle Jesse, Madeleine Guyant 
 
 Goal: Demonstrate how MSE can be used to evaluate EBFM management strategies for a Georges Bank Ecosystem Production Unit.
 
@@ -76,7 +80,7 @@ background-position: right
 # [EBFM pMSE](https://d23h0vhsm26o6d.cloudfront.net/pMSE-Final-Report2.pdf) 
 
 .pull-left-30[
-## Gavin Fay, Lisa Kerr, Madeleine Guyant, Jerelle Jesse, Emily Liljestrand
+## Summary
 
 Hydra: multispecies operating model conditioned on Georges Bank data within MSE framework as prototype test of EBFM strategies. 
 
@@ -93,8 +97,8 @@ Results: additional flexibility and increased yield possible with EBFM "ceilings
 
 *Hydra-Associated GitHub repositories*
 * hydra-sim (Simulation Model Wiki): https://github.com/NOAA-EDAB/hydra_sim/wiki
-* hydra-sim (estimation fork): https://github.com/thefaylab/hydra_sim
-* hydradata (estimation fork): https://github.com/thefaylab/hydradata
+* hydra-sim (pMSE/estimation fork): https://github.com/thefaylab/hydra_sim
+* hydradata (mskeyrun fork): https://github.com/thefaylab/hydradata
 * hydra-diag (diagnostics): https://github.com/thefaylab/hydra_diag
 ]
 
@@ -211,7 +215,6 @@ of projection
 
 ---
 # Outreach materials
-
 .pull-left[
 ## Summary pages
 
@@ -229,15 +232,15 @@ of projection
 
 https://gavinfay.shinyapps.io/results-viewer/
 
+![shiny screenshot](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Fayetal_pMSEshiny.png)
+
 ]
   
 ---
-## References
-.contrib[
-```{r refs, echo=FALSE, results="asis"}
-PrintBibliography(myBib)
-```
-]  
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NEFMCUmassDGMRI_logos.png)
+background-size: 450px
+background-position: top right
+# Thank you!
 
 ## Additional Resources
 
@@ -248,6 +251,13 @@ PrintBibliography(myBib)
 *  [One Page Summaries](https://d23h0vhsm26o6d.cloudfront.net/4b_pMSE-one-page-sumamries_2023-07-06-181512_pgju.pdf)
 *  ICES WGSAM sharepoint: Background Documents
 
+
+## References
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]
 
 .footnote[
 Slides available at https://noaa-edab.github.io/presentations  
