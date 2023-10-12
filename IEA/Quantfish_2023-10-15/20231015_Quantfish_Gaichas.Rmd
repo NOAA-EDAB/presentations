@@ -85,6 +85,36 @@ Can localized predator-prey observations scale to coastwide assessment and manag
 Changing distribution and abundance of small pelagics may drive changes in predator distributions, affecting predator availability to fisheries and surveys. However, small pelagic fish are difficult to survey directly, so we developed a novel method of assessing small pelagic fish aggregate abundance via predator diet data. We used piscivore diet data collected from multiple bottom trawl surveys within a Vector Autoregressive Spatio-Temporal (VAST) model to assess trends of small pelagics on the Northeast US shelf. The goal was to develop a spatial “forage index” to inform survey and/or fishery availability in the bluefish (Pomatomus saltatrix) stock assessment. Using spring and fall surveys from 1973-2020, 20 small pelagic groups were identified as major bluefish prey using the diet data. Then, predators were grouped by diet similarity to identify 19 piscivore species with the most similar diet to bluefish in the region. Diets from all 20 piscivores were combined for the 20 prey groups at each surveyed location, and the total weight of small pelagic prey per predator stomach at each location was input into a Poisson-link delta model to estimate expected prey mass per predator stomach. Best fit models included spatial and spatio-temporal random effects, with predator mean length, number of predator species, and sea surface temperature as catchability covariates. Spring and fall prey indices were split into inshore and offshore areas to reflect changing prey availability over time in areas available to the recreational fishery and the bottom trawl survey, and also to contribute to regional ecosystem reporting
 
 ---
+## Objective
+
+Create a “forage index” to evaluate changes in small pelagics  over time and in space in the Northeast US continental shelf ecosystem.
+
+Two applications: 
+
+1. addressing uncertainty in the stock assessment for a key predator species, bluefish (*Pomatomus saltatrix*), and 
+
+1. describing aggregate forage species trends for integrated ecosystem assessment
+
+---
+## Methods
+
+1. Alternative ways to build a forage index: data sources, design vs. model based methods 
+
+1. A promising method: Vector Autoregressive Spatio-Temporal (VAST) modeling
+
+1. Identify forage species: what are bluefish prey?
+
+1. Can we use predators as "samplers"? Which predators?
+
+1. What affects the sampling process? Covariates
+
+1. Which model is best? Selection
+
+1. Index sensitivity
+
+1. Stock assessment application
+
+---
 ## Bluefish diet in the Northeast US: a mix of managed and unmanaged small pelagics 
 
 .pull-left-30[
@@ -218,6 +248,7 @@ Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic group
 Prey categories such as fish unidentified, Osteichthyes, and unidentified animal remains were not included in the prey list. Although unidentified fish and Osteichthyes can comprise a significant portion of bluefish stomach contents, we cannot assume that unidentified fish in other predator stomachs represent unidentified fish in bluefish stomachs.  
 
 Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Environmental Research Center; redeye round herring photo--https://diveary.com ; sandlance photo--Virginia Institute of Marine Science; all others NOAA Fisheries.
+
 
 ---
 ## Bottom trawl survey small pelagics abundance estimates ([Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf))
