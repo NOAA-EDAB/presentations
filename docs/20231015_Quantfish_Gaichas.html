@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Assessing small pelagic fish trends in space  and time using piscivore diet data</title>
+    <title>Assessing small pelagic fish trends in space  and time using piscivore stomach contents</title>
     <meta charset="utf-8" />
     <meta name="author" content="Sarah Gaichas^1, James Gartland^2, Brian Smith^1, Anthony Wood^1, Elizabeth Ng^3,  Michael Celestino^4, Katie Drew^5, Abigail Tyrell^{1,6}, and James Thorson^7" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,7 +13,7 @@
 class: right, bottom, my-title, title-slide
 
 .title[
-# Assessing small pelagic fish trends in space<br /> and time using piscivore diet data
+# Assessing small pelagic fish trends in space<br /> and time using piscivore stomach contents
 ]
 .subtitle[
 ## Quantfish <br /> 15 October 2023
@@ -32,7 +32,50 @@ class: top, left
 
 
 
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/forageSeattleTimes.png"), url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/allcomponents.png")
+background-size: 590px, 550px
+background-position: top left, bottom right
 
+.right[
+# Motivation
+
+Small pelagics as forage; 
+Importance as a group  
+
+How much?  
+Where and when?  
+Drive predator and fishery distributions  
+]
+
+
+???
+
+Small pelagics are widely recognized for their critical function as forage, supporting human populations as well as harvested fish and protected species in ecosystems worldwide. In some ecosystems, one or two small pelagic species may dominate as forage , while in others a wide variety of small pelagic species fill this role together. In both instances, understanding fluctuations in small pelagics is an important component of an ecosystem approach to management: low abundance of small pelagics can have implications for both directed small pelagic fisheries and management of their predators. Conversely, high aggregate abundance of small pelagics can provide a robust forage supply for generalist predators even if individual small pelagic species are depleted. Fish predators generally select the most abundant prey in the environment, so as individual prey populations vary, fish predators respond by switching prey. 
+
+In addition to abundance, spatial distribution of small pelagics has clear implications for both predators and fisheries.  Central place foragers such as seabirds require small pelagics close to breeding colonies during the breeding season, while free ranging highly mobile fish predators can follow small pelagics if their distributions shift further offshore.  Similarly, fisheries prosecuted on large vessels are better equipped to follow mobile predators offshore, while shore based artisanal and recreational fisheries may lose access to mobile predators that follow prey offshore. Changing spatial distribution can also impact stock assessments if changing availability of assessed fish cannot be incorporated into assessment models.   
+
+---
+# Northeast US: How much? Where and when?
+
+.pull-left[
+## Stock assessments ([ASMFC](http://www.asmfc.org/species/atlantic-menhaden),  [StockSmart](https://apps-st.fisheries.noaa.gov/stocksmart?app=homepage))
+
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/herrmackmenhaden_assess.png)
+]
+
+.pull-right[
+## Bottom trawl survey "planktivores" abundance estimates ([Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf))
+
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-1-1.png" width="95%" /&gt;
+]
+
+???
+
+Bottom trawls are not designed for efficient sampling of small pelagics. While we can estimate aggregate planktivore biomass for different ecoregions on the Northeast US shelf, estimates have high observation error. Black lines = NEFSC bottom trawl, Red lines = NEAMAP inshore bottom trawl. Orange line on GB Fall indicates significant increasing long term trend.
+
+Many exploited small pelagic populations have a long history of scientific assessment, providing insight into long term and short term fluctuations relevant to both the fishery and the wider ecosystem. However, spatial shifts within a small pelagic stock’s range affecting different predator populations and distributions are difficult to track using conventional spatially aggregated stock assessment approaches. In addition, for ecosystems where small pelagics represent a mix of managed and unmanaged species, information on unmanaged species is often lacking, hindering assessment of the status of the full forage base supporting predators and other fisheries.
+
+---
 # Does prey drive availability of bluefish?
 
 ## Bluefish, *Pomatomus saltatrix*
@@ -58,40 +101,19 @@ Can localized predator-prey observations scale to coastwide assessment and manag
 ???
 &lt;font size="-1"&gt;&lt;/font&gt;
 
-Changing distribution and abundance of small pelagics may drive changes in predator distributions, affecting predator availability to fisheries and surveys. However, small pelagic fish are difficult to survey directly, so we developed a novel method of assessing small pelagic fish aggregate abundance via predator diet data. We used piscivore diet data collected from multiple bottom trawl surveys within a Vector Autoregressive Spatio-Temporal (VAST) model to assess trends of small pelagics on the Northeast US shelf. The goal was to develop a spatial “forage index” to inform survey and/or fishery availability in the bluefish (Pomatomus saltatrix) stock assessment. Using spring and fall surveys from 1973-2020, 20 small pelagic groups were identified as major bluefish prey using the diet data. Then, predators were grouped by diet similarity to identify 19 piscivore species with the most similar diet to bluefish in the region. Diets from all 20 piscivores were combined for the 20 prey groups at each surveyed location, and the total weight of small pelagic prey per predator stomach at each location was input into a Poisson-link delta model to estimate expected prey mass per predator stomach. Best fit models included spatial and spatio-temporal random effects, with predator mean length, number of predator species, and sea surface temperature as catchability covariates. Spring and fall prey indices were split into inshore and offshore areas to reflect changing prey availability over time in areas available to the recreational fishery and the bottom trawl survey, and also to contribute to regional ecosystem reporting
+Changing distribution and abundance of small pelagics may drive changes in predator distributions, affecting predator availability to fisheries and surveys.Bluefish are medium-sized, rapidly growing pelagic piscivores known to prey on a wide variety of small pelagics and to target areas of dense prey. Participants in the US bluefish fishery have raised concerns that changes in prey distribution may change bluefish availability to surveys and recreational fisheries, creating uncertainty in stock assessments and subsequent fishery management ([MAFMC Fishery performance report, 2021](https://www.mafmc.org/s/8_BF-FPR-2021.pdf)). Therefore, spatial and temporal trends in the small pelagic prey of bluefish needed to be characterized to address this concern. 
 
 ---
-## Bluefish diet in the Northeast US: a mix of managed and unmanaged small pelagics 
+## Objective
 
-.pull-left-30[
-&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://objects.liquidweb.services/images/201909/robert_aguilar,_serc_48650727166_3ce8edc47d_b.jpg" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Butterfish-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://images.marinespecies.org/thumbs/31939_ammodytes.jpg?w=700" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Mackerel-Atlantic-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://www.fishbase.se/images/thumbnails/jpg/tn_Etter_u2.jpg" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-01/640x427-Atlantic_Menhaden_NB_W.jpg" width="45%" /&gt;
-.contrib[
-Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/tm2020/
-]
-]
+Create a “forage index” to evaluate changes in small pelagics  over time and in space in the Northeast US continental shelf ecosystem.
 
-.pull-right-70[
+Two applications: 
 
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-2-1.png" width="756" /&gt;
+1. addressing uncertainty in the stock assessment for a key predator species, bluefish (*Pomatomus saltatrix*), and 
 
-] 
+1. describing aggregate forage species trends for integrated ecosystem assessment
 
-
-???
-Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic groups were identified as major bluefish prey with 10 or more observations (in descending order of observations): Longfin squids (*Doryteuthis* formerly *Loligo* sp.), Anchovy family (Engraulidae), bay anchovy (*Anchoa mitchilli*), Atlantic butterfish, (*Peprilus triachanthus*), Cephalopoda, (*Anchoa hepsetus*), red eye round herring (*Etrumeus teres*), Sandlance (*Ammodytes* sp.), scup (*Stenotomus chrysops*), silver hake (*Merluccius bilinearis*), shortfin squids (*Illex* sp.), Atlantic herring (*Clupea harengus*), Herring family (Clupeidae), Bluefish (*Pomatomus saltatrix*), silver anchovy (*Engraulis eurystole*), longfin inshore squid (*Doryteuthis pealeii*), Atlantic mackerel (*Scomber scombrus*), flatfish (Pleuronectiformes), weakfish (*Cynoscion regalis*), and Atlantic menhaden (*Brevoortia tyrannus*). 
-
-Prey categories such as fish unidentified, Osteichthyes, and unidentified animal remains were not included in the prey list. Although unidentified fish and Osteichthyes can comprise a significant portion of bluefish stomach contents, we cannot assume that unidentified fish in other predator stomachs represent unidentified fish in bluefish stomachs.  
-
-Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Environmental Research Center; redeye round herring photo--https://diveary.com ; sandlance photo--Virginia Institute of Marine Science; all others NOAA Fisheries.
-
----
-## Bottom trawl survey small pelagics abundance estimates ([Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf))
-
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="95%" /&gt;
-
-???
-
-Bottom trawls are not designed for efficient sampling of small pelagics. While we can estimate aggregate planktivore biomass for different ecoregions on the Northeast US shelf, estimates have high observation error. Black lines = NEFSC bottom trawl, Red lines = NEAMAP inshore bottom trawl. Orange line on GB Fall indicates significant increasing long term trend.
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Ng2022dietvsassess.png"), url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png")
@@ -108,9 +130,26 @@ background-position: right, left
 ???
 
 ---
+## Methods
+
+1. Vector Autoregressive Spatio-Temporal (VAST) modeling
+
+1. Identify forage species: what are bluefish prey?
+
+1. Can we use predators as "samplers"? Which predators?
+
+1. What affects the sampling process? Covariates
+
+1. Which model is best? Selection
+
+1. Index sensitivity
+
+1. Stock assessment application
+
+---
 ## Vector Autoregressive Spatio-Temporal (VAST) modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson, et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
 
-VAST models two linear predictors for an index: 1. encounter rate,  and 2. positive catch (amount in stomach)
+VAST is a Geostatistical generalized linear mixed effects model (GLMM) that models two linear predictors for an index: 1. encounter rate,  and 2. positive catch (amount in stomach)
 
 A full model for the first linear predictor `\(\rho_1\)` for each observation `\(i\)` can include:
 *  fixed intercepts `\(\beta_1\)` for each category `\(c\)` and time `\(t\)`, 
@@ -134,11 +173,57 @@ Spatial and spatio-temporal correlation decay with increasing distance estimated
 Initial model selection consistently supported the inclusion of spatial and spatio-temporal random effects and anisotropy across all datasets: fall, spring, and annual. 
 
 ---
+## Modeling spatial and spatio-temporal variation
+
+.pull-left[
+Observations correlated in space and in space over time due to unmeasured processes are modeled as Gaussian Random Fields with mulstvariate normal effects:
+
+`\(\omega_1\)` ~ MVN(0, **R**~1~); `\(\omega_2\)` ~ MVN(0, **R**~2~)   
+`\(\varepsilon_1\)`(,t) ~ MVN(0, **R**~1~); `\(\varepsilon_2\)`(,t) ~ MVN(0, **R**~2~)  
+  
+Mat\'ern correlation function between locations s~a~ and s~b~
+
+
+
+]
+
+.pull-right[
+How? Specify n "knots" to group observation locations, assume constant variation within a timestep at a knot
+
+
+]
+
+---
+## Defining bluefish prey from stomachs: a mix of managed and unmanaged small pelagics 
+
+.pull-left-30[
+&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://objects.liquidweb.services/images/201909/robert_aguilar,_serc_48650727166_3ce8edc47d_b.jpg" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Butterfish-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://images.marinespecies.org/thumbs/31939_ammodytes.jpg?w=700" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Mackerel-Atlantic-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://www.fishbase.se/images/thumbnails/jpg/tn_Etter_u2.jpg" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-01/640x427-Atlantic_Menhaden_NB_W.jpg" width="45%" /&gt;
+.contrib[
+Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/tm2020/
+]
+]
+
+.pull-right-70[
+
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="756" /&gt;
+
+] 
+
+
+???
+Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic groups were identified as major bluefish prey with 10 or more observations (in descending order of observations): Longfin squids (*Doryteuthis* formerly *Loligo* sp.), Anchovy family (Engraulidae), bay anchovy (*Anchoa mitchilli*), Atlantic butterfish, (*Peprilus triachanthus*), Cephalopoda, (*Anchoa hepsetus*), red eye round herring (*Etrumeus teres*), Sandlance (*Ammodytes* sp.), scup (*Stenotomus chrysops*), silver hake (*Merluccius bilinearis*), shortfin squids (*Illex* sp.), Atlantic herring (*Clupea harengus*), Herring family (Clupeidae), Bluefish (*Pomatomus saltatrix*), silver anchovy (*Engraulis eurystole*), longfin inshore squid (*Doryteuthis pealeii*), Atlantic mackerel (*Scomber scombrus*), flatfish (Pleuronectiformes), weakfish (*Cynoscion regalis*), and Atlantic menhaden (*Brevoortia tyrannus*). 
+
+Prey categories such as fish unidentified, Osteichthyes, and unidentified animal remains were not included in the prey list. Although unidentified fish and Osteichthyes can comprise a significant portion of bluefish stomach contents, we cannot assume that unidentified fish in other predator stomachs represent unidentified fish in bluefish stomachs.  
+
+Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Environmental Research Center; redeye round herring photo--https://diveary.com ; sandlance photo--Virginia Institute of Marine Science; all others NOAA Fisheries.
+
+
+---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishOnlyFallData_by_year.png")
 background-size: 650px
 background-position: right top
 
-## Bluefish stomachs only?
+## Which predators: Bluefish stomachs only?
 
 .pull-left[
 Due to uneven "sampling" of Atlantic herring by predators, ([Ng, et al., 2021](https://doi.org/10.1093/icesjms/fsab026)) recommended aggregating across predators to improve the diet-based Atlantic herring biomass index. 

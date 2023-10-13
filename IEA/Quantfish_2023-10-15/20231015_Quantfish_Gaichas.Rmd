@@ -1,5 +1,5 @@
 ---
-title: "Assessing small pelagic fish trends in space<br /> and time using piscivore diet data"
+title: "Assessing small pelagic fish trends in space<br /> and time using piscivore stomach contents"
 subtitle: "Quantfish <br /> 15 October 2023"
 author: Sarah Gaichas$^1$, James Gartland$^2$, Brian Smith$^1$, Anthony Wood$^1$, Elizabeth Ng$^3$,<br />  Michael Celestino$^4$, Katie Drew$^5$, Abigail Tyrell$^{1,6}$, and James Thorson$^7$ 
 institute: <span style="font-weight:normal;"><font size="-0.5">$^1$NOAA NMFS Northeast Fisheries Science Center, Woods Hole, MA, USA; $^2$Virginia Institute of Marine Science, Gloucester Point, VA, USA; $^3$University of Washington, Seattle, WA, USA; $^4$New Jersey Department of Environmental Protection, Port Republic, NJ, USA; $^5$Atlantic States Marine Fisheries Commission, Arlington, VA, USA; $^6$Ocean Associates Inc, Arlington, VA, USA; $^7$NOAA NMFS Alaska Fisheries Science Center, Seattle, WA, USA</font></span>
@@ -56,7 +56,181 @@ myBib <- ReadBib("./FishDiet_Ecoindicators.bib", check = FALSE)
 #           dashed = FALSE
 
 ```
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/forageSeattleTimes.png"), url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/allcomponents.png")
+background-size: 590px, 550px
+background-position: top left, bottom right
 
+.right[
+# Motivation
+
+Small pelagics as forage; 
+Importance as a group  
+
+How much?  
+Where and when?  
+Drive predator and fishery distributions  
+]
+
+
+???
+
+Small pelagics are widely recognized for their critical function as forage, supporting human populations as well as harvested fish and protected species in ecosystems worldwide. In some ecosystems, one or two small pelagic species may dominate as forage , while in others a wide variety of small pelagic species fill this role together. In both instances, understanding fluctuations in small pelagics is an important component of an ecosystem approach to management: low abundance of small pelagics can have implications for both directed small pelagic fisheries and management of their predators. Conversely, high aggregate abundance of small pelagics can provide a robust forage supply for generalist predators even if individual small pelagic species are depleted. Fish predators generally select the most abundant prey in the environment, so as individual prey populations vary, fish predators respond by switching prey. 
+
+In addition to abundance, spatial distribution of small pelagics has clear implications for both predators and fisheries.  Central place foragers such as seabirds require small pelagics close to breeding colonies during the breeding season, while free ranging highly mobile fish predators can follow small pelagics if their distributions shift further offshore.  Similarly, fisheries prosecuted on large vessels are better equipped to follow mobile predators offshore, while shore based artisanal and recreational fisheries may lose access to mobile predators that follow prey offshore. Changing spatial distribution can also impact stock assessments if changing availability of assessed fish cannot be incorporated into assessment models.   
+
+---
+# Northeast US: How much? Where and when?
+
+.pull-left[
+## Stock assessments ([ASMFC](http://www.asmfc.org/species/atlantic-menhaden),  [StockSmart](https://apps-st.fisheries.noaa.gov/stocksmart?app=homepage))
+
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/herrmackmenhaden_assess.png)
+]
+
+.pull-right[
+## Bottom trawl survey "planktivores" abundance estimates ([Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf))
+
+```{r, fig.asp=0.85, out.width="95%", results='hide'}
+
+# code modified from Kim Bastille's ecodata macrofauna_MAB.Rmd
+
+#Time series constants
+shade.alpha <- 0.3
+shade.fill <- "lightgrey"
+lwd <- 1
+pcex <- 2
+trend.alpha <- 0.5
+trend.size <- 2
+hline.size <- 1
+hline.alpha <- 0.35
+hline.lty <- "dashed"
+label.size <- 5
+hjust.label <- 1.5
+letter_size <- 4
+feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
+x.shade.min <- 2012
+x.shade.max <- 2022
+series.col <- c("indianred","black")
+#Function for custom ggplot facet labels
+label <- function(variable,value){
+  return(facet_names[value])
+}
+
+planktivores <- ecodata::aggregate_biomass %>%
+  dplyr::filter(Var %in% c("Planktivore Fall Biomass Index",
+                           "Planktivore Spring Biomass Index",
+                           "Planktivore Fall Biomass Standard Error",
+                           "Planktivore Spring Biomass Standard Error"))%>%
+  tidyr::separate(Var, c("feeding.guild", "season", "Biomass", "Var1"), sep = " ") %>% #, "Null", "Area"
+  tidyr::unite("Var", feeding.guild:season, sep = " ") %>%
+  dplyr::mutate(stat = recode(Var1, Index = "Mean",
+                      Standard = "SD"),
+                Value = as.numeric(Value),
+                Time = as.integer(Time)) %>%
+  dplyr::select(-Biomass, -Var1,  -Units) %>% #-Null,
+  # dplyr::filter(!Area == "-") %>%
+  dplyr::group_by(Var, Time, EPU) %>% #, Area
+  tidyr::pivot_wider(names_from =  stat, values_from =  Value) %>% #, Area id_cols = c(Var, Time, EPU)
+  tidyr::unnest(cols = c(Mean, SD))
+  #dplyr::filter(!Mean == "NULL") %>%
+  #dplyr::ungroup() #%>%
+  #dplyr::mutate(Mean = as.numeric(Mean))
+
+
+agg_bio<-planktivores %>% dplyr::filter(EPU %in% c("MAB", "GB", "GOM"),
+         Time >= 1968) %>%
+  dplyr::group_by(Var, EPU) %>%
+  dplyr::mutate(hline = mean(Mean, na.rm = T), 
+                 upper = Mean + (2*SD),
+                lower = Mean - (2*SD)) %>%
+  dplyr::ungroup()  
+ 
+
+agg_bio$Var <- factor(agg_bio$Var,levels = c("Planktivore Spring",
+                                                    "Planktivore Fall"))
+series.col <- rep("black",length(unique(agg_bio$Var)))
+facet_names <- list("Planktivores" = expression("Planktivores")
+                    )
+#Get NEAMAP
+neamap <- ecodata::mab_inshore_survey %>%
+  tidyr::separate(Var, into = c("Var",  "Val"), sep = "-") %>% 
+  tidyr::pivot_wider(names_from = Val, values_from = Value) %>% 
+  dplyr::mutate(Value = as.numeric(Value), 
+                CV = as.numeric(CV)) %>% 
+  dplyr::group_by(Var) %>%
+  dplyr::mutate(hline = mean(Value),
+         SD = Value * CV, #calculate SD from CV
+         upper = Value + (2*SD),
+         lower = Value - (2*SD))
+
+neamap$Var <- factor(neamap$Var,levels = c("Piscivore Spring","Piscivore Fall",
+                                           "Benthivore Spring", "Benthivore Fall",
+                                           "Planktivore Spring", "Planktivore Fall",
+                                           "Benthos Spring", "Benthos Fall"))
+
+### Planktivore
+neamap.3<-neamap %>%
+  dplyr::filter(str_detect(Var,"Planktivore"))
+p3<-agg_bio %>%
+  dplyr::filter(str_detect(Var,"Planktivore")) %>%
+  ggplot2::ggplot() +
+
+  #Highlight last ten years
+  ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
+      xmin = x.shade.min , xmax = x.shade.max ,
+      ymin = -Inf, ymax = Inf) +
+  #Test for trend and add lines
+  ecodata::geom_gls(aes(x = Time, y = Mean,
+               color = Var),
+             alpha = trend.alpha, size = trend.size) +
+  ecodata::geom_lm(aes(x = Time, y = Mean,
+               color = Var),
+             alpha = trend.alpha, size = trend.size) +
+  #ecodata::geom_lm(aes(x = Time, y = Mean))+
+
+  #Add time series
+  ggplot2::geom_ribbon(aes(x = Time, ymin = pmax(lower,0), ymax = upper),
+              alpha = 0.5,
+              fill = "grey") +
+  ggplot2::geom_line(aes(x = Time, y = Mean),size = lwd-0.5) +
+  ggplot2::geom_point(aes(x = Time, y = Mean),size = pcex-0.5) +
+  ggplot2::scale_color_manual(values = series.col, aesthetics = "color")+
+  ggplot2::guides(color = FALSE) +
+  ggplot2::geom_hline(aes(yintercept = hline,
+                 group = Var),
+             size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+  ggplot2::facet_wrap(EPU ~ Var~.,ncol = 2, scales = "free_y") +
+       #Add NEAMAP
+  ggplot2::geom_ribbon(data = neamap.3, aes(ymax = pmax(upper, 0), ymin = lower, x = Time),
+                fill = "pink", alpha = 0.5) +
+  ggplot2::geom_line(data = neamap.3, aes(x = Time, y = Value),
+            color = "#ca0020")+
+  ggplot2::geom_point(data = neamap.3, aes(x = Time, y = Value),
+             size = pcex-0.5,
+             color = "#ca0020")+
+
+  #Axis and theme
+  ggplot2::scale_x_continuous(breaks = seq(1970, 2020, by = 10), expand = c(0.01, 0.01)) +
+  #ylim(0, 600)+
+  ggplot2::ylab(expression("Biomass (kg tow"^-1*")")) +
+  ecodata::theme_facet()+
+  ggplot2::theme(strip.text=element_text(hjust=0),
+        axis.title.x=element_blank())
+
+p3
+
+```
+]
+
+???
+
+Bottom trawls are not designed for efficient sampling of small pelagics. While we can estimate aggregate planktivore biomass for different ecoregions on the Northeast US shelf, estimates have high observation error. Black lines = NEFSC bottom trawl, Red lines = NEAMAP inshore bottom trawl. Orange line on GB Fall indicates significant increasing long term trend.
+
+Many exploited small pelagic populations have a long history of scientific assessment, providing insight into long term and short term fluctuations relevant to both the fishery and the wider ecosystem. However, spatial shifts within a small pelagic stock’s range affecting different predator populations and distributions are difficult to track using conventional spatially aggregated stock assessment approaches. In addition, for ecosystems where small pelagics represent a mix of managed and unmanaged species, information on unmanaged species is often lacking, hindering assessment of the status of the full forage base supporting predators and other fisheries.
+
+---
 # Does prey drive availability of bluefish?
 
 ## Bluefish, *Pomatomus saltatrix*
@@ -82,7 +256,7 @@ Can localized predator-prey observations scale to coastwide assessment and manag
 ???
 <font size="-1"></font>
 
-Changing distribution and abundance of small pelagics may drive changes in predator distributions, affecting predator availability to fisheries and surveys. However, small pelagic fish are difficult to survey directly, so we developed a novel method of assessing small pelagic fish aggregate abundance via predator diet data. We used piscivore diet data collected from multiple bottom trawl surveys within a Vector Autoregressive Spatio-Temporal (VAST) model to assess trends of small pelagics on the Northeast US shelf. The goal was to develop a spatial “forage index” to inform survey and/or fishery availability in the bluefish (Pomatomus saltatrix) stock assessment. Using spring and fall surveys from 1973-2020, 20 small pelagic groups were identified as major bluefish prey using the diet data. Then, predators were grouped by diet similarity to identify 19 piscivore species with the most similar diet to bluefish in the region. Diets from all 20 piscivores were combined for the 20 prey groups at each surveyed location, and the total weight of small pelagic prey per predator stomach at each location was input into a Poisson-link delta model to estimate expected prey mass per predator stomach. Best fit models included spatial and spatio-temporal random effects, with predator mean length, number of predator species, and sea surface temperature as catchability covariates. Spring and fall prey indices were split into inshore and offshore areas to reflect changing prey availability over time in areas available to the recreational fishery and the bottom trawl survey, and also to contribute to regional ecosystem reporting
+Changing distribution and abundance of small pelagics may drive changes in predator distributions, affecting predator availability to fisheries and surveys.Bluefish are medium-sized, rapidly growing pelagic piscivores known to prey on a wide variety of small pelagics and to target areas of dense prey. Participants in the US bluefish fishery have raised concerns that changes in prey distribution may change bluefish availability to surveys and recreational fisheries, creating uncertainty in stock assessments and subsequent fishery management ([MAFMC Fishery performance report, 2021](https://www.mafmc.org/s/8_BF-FPR-2021.pdf)). Therefore, spatial and temporal trends in the small pelagic prey of bluefish needed to be characterized to address this concern. 
 
 ---
 ## Objective
@@ -95,12 +269,25 @@ Two applications:
 
 1. describing aggregate forage species trends for integrated ecosystem assessment
 
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Ng2022dietvsassess.png"), url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png")
+background-size: 800px, 400px
+background-position: right, left
+
+## Fish stomach contents &rarr; Atlantic herring biomass estimates `r Cite(myBib, "ng_predator_2021")`
+
+<!--.pull-left-40[
+![:img Ng paper title](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png)
+]
+
+.pull-right-60[]-->
+???
+
 ---
 ## Methods
 
-1. Alternative ways to build a forage index: data sources, design vs. model based methods 
-
-1. A promising method: Vector Autoregressive Spatio-Temporal (VAST) modeling
+1. Vector Autoregressive Spatio-Temporal (VAST) modeling
 
 1. Identify forage species: what are bluefish prey?
 
@@ -115,7 +302,54 @@ Two applications:
 1. Stock assessment application
 
 ---
-## Bluefish diet in the Northeast US: a mix of managed and unmanaged small pelagics 
+## Vector Autoregressive Spatio-Temporal (VAST) modeling `r Cite(myBib, c("thorson_comparing_2017", "thorson_guidance_2019"))`
+
+VAST is a Geostatistical generalized linear mixed effects model (GLMM) that models two linear predictors for an index: 1. encounter rate,  and 2. positive catch (amount in stomach)
+
+A full model for the first linear predictor $\rho_1$ for each observation $i$ can include:
+*  fixed intercepts $\beta_1$ for each category $c$ and time $t$, 
+*  spatial random effects $\omega_1$ for each location $s$ and category, 
+*  spatio-temporal random effects $\varepsilon_1$ for each location, category, and time, 
+*  fixed vessel effects $\eta_1$ by vessel $v$ and category, and 
+*  fixed catchability impacts $\lambda_1$ of covariates $Q$ for each observation and variable $k$: 
+
+$$\rho_1(i) = \beta_1(c_i, t_i) + \omega_1^*(s_i, c_i) + \varepsilon_1^*(s_i, c_i, t_i) + \eta_1(v_i, c_i) + \sum_{k=1}^{n_k} \lambda_1(k) Q(i,k)$$ 
+
+The full model for the second linear predictor $\rho_2$ has the same structure, estimating $\beta_2$, $\omega_2$, $\varepsilon_2$, $\eta_2$, and $\lambda_2$ using the observations, categories, locations, times, and covariates. 
+
+We modeled aggregate small pelagic prey as a single category, and apply a Poisson-link delta model to estimate expected prey mass per predator stomach as in `r Cite(myBib, "ng_predator_2021")`.
+
+VAST model code and documentation: https://github.com/James-Thorson-NOAA/VAST
+
+
+???
+Spatial and spatio-temporal correlation decay with increasing distance estimated as $\kappa$ in a Matern function with fixed smoothness and geometric anisotropy (directional correlation, optionally estimated by the model). 
+
+Initial model selection consistently supported the inclusion of spatial and spatio-temporal random effects and anisotropy across all datasets: fall, spring, and annual. 
+
+---
+## Modeling spatial and spatio-temporal variation
+
+.pull-left[
+Observations correlated in space and in space over time due to unmeasured processes are modeled as Gaussian Random Fields with mulstvariate normal effects:
+
+$\omega_1$ ~ MVN(0, **R**~1~); $\omega_2$ ~ MVN(0, **R**~2~)   
+$\varepsilon_1$(,t) ~ MVN(0, **R**~1~); $\varepsilon_2$(,t) ~ MVN(0, **R**~2~)  
+  
+Mat\'ern correlation function between locations s~a~ and s~b~
+
+
+
+]
+
+.pull-right[
+How? Specify n "knots" to group observation locations, assume constant variation within a timestep at a knot
+
+
+]
+
+---
+## Defining bluefish prey from stomachs: a mix of managed and unmanaged small pelagics 
 
 .pull-left-30[
 ```{r, crop=TRUE, fig.show='hold', out.width="45%"}
@@ -251,191 +485,11 @@ Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Enviro
 
 
 ---
-## Bottom trawl survey small pelagics abundance estimates ([Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf))
-
-```{r, fig.asp=0.55, out.width="95%", results='hide'}
-
-# code modified from Kim Bastille's ecodata macrofauna_MAB.Rmd
-
-#Time series constants
-shade.alpha <- 0.3
-shade.fill <- "lightgrey"
-lwd <- 1
-pcex <- 2
-trend.alpha <- 0.5
-trend.size <- 2
-hline.size <- 1
-hline.alpha <- 0.35
-hline.lty <- "dashed"
-label.size <- 5
-hjust.label <- 1.5
-letter_size <- 4
-feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
-x.shade.min <- 2012
-x.shade.max <- 2022
-series.col <- c("indianred","black")
-#Function for custom ggplot facet labels
-label <- function(variable,value){
-  return(facet_names[value])
-}
-
-planktivores <- ecodata::aggregate_biomass %>%
-  dplyr::filter(Var %in% c("Planktivore Fall Biomass Index",
-                           "Planktivore Spring Biomass Index",
-                           "Planktivore Fall Biomass Standard Error",
-                           "Planktivore Spring Biomass Standard Error"))%>%
-  tidyr::separate(Var, c("feeding.guild", "season", "Biomass", "Var1"), sep = " ") %>% #, "Null", "Area"
-  tidyr::unite("Var", feeding.guild:season, sep = " ") %>%
-  dplyr::mutate(stat = recode(Var1, Index = "Mean",
-                      Standard = "SD"),
-                Value = as.numeric(Value),
-                Time = as.integer(Time)) %>%
-  dplyr::select(-Biomass, -Var1,  -Units) %>% #-Null,
-  # dplyr::filter(!Area == "-") %>%
-  dplyr::group_by(Var, Time, EPU) %>% #, Area
-  tidyr::pivot_wider(names_from =  stat, values_from =  Value) %>% #, Area id_cols = c(Var, Time, EPU)
-  tidyr::unnest(cols = c(Mean, SD))
-  #dplyr::filter(!Mean == "NULL") %>%
-  #dplyr::ungroup() #%>%
-  #dplyr::mutate(Mean = as.numeric(Mean))
-
-
-agg_bio<-planktivores %>% dplyr::filter(EPU %in% c("MAB", "GB"),
-         Time >= 1968) %>%
-  dplyr::group_by(Var, EPU) %>%
-  dplyr::mutate(hline = mean(Mean, na.rm = T), 
-                 upper = Mean + (2*SD),
-                lower = Mean - (2*SD)) %>%
-  dplyr::ungroup()  
- 
-
-agg_bio$Var <- factor(agg_bio$Var,levels = c("Planktivore Spring",
-                                                    "Planktivore Fall"))
-series.col <- rep("black",length(unique(agg_bio$Var)))
-facet_names <- list("Planktivores" = expression("Planktivores")
-                    )
-#Get NEAMAP
-neamap <- ecodata::mab_inshore_survey %>%
-  tidyr::separate(Var, into = c("Var",  "Val"), sep = "-") %>% 
-  tidyr::pivot_wider(names_from = Val, values_from = Value) %>% 
-  dplyr::mutate(Value = as.numeric(Value), 
-                CV = as.numeric(CV)) %>% 
-  dplyr::group_by(Var) %>%
-  dplyr::mutate(hline = mean(Value),
-         SD = Value * CV, #calculate SD from CV
-         upper = Value + (2*SD),
-         lower = Value - (2*SD))
-
-neamap$Var <- factor(neamap$Var,levels = c("Piscivore Spring","Piscivore Fall",
-                                           "Benthivore Spring", "Benthivore Fall",
-                                           "Planktivore Spring", "Planktivore Fall",
-                                           "Benthos Spring", "Benthos Fall"))
-
-### Planktivore
-neamap.3<-neamap %>%
-  dplyr::filter(str_detect(Var,"Planktivore"))
-p3<-agg_bio %>%
-  dplyr::filter(str_detect(Var,"Planktivore")) %>%
-  ggplot2::ggplot() +
-
-  #Highlight last ten years
-  ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
-      xmin = x.shade.min , xmax = x.shade.max ,
-      ymin = -Inf, ymax = Inf) +
-  #Test for trend and add lines
-  ecodata::geom_gls(aes(x = Time, y = Mean,
-               color = Var),
-             alpha = trend.alpha, size = trend.size) +
-  ecodata::geom_lm(aes(x = Time, y = Mean,
-               color = Var),
-             alpha = trend.alpha, size = trend.size) +
-  #ecodata::geom_lm(aes(x = Time, y = Mean))+
-
-  #Add time series
-  ggplot2::geom_ribbon(aes(x = Time, ymin = pmax(lower,0), ymax = upper),
-              alpha = 0.5,
-              fill = "grey") +
-  ggplot2::geom_line(aes(x = Time, y = Mean),size = lwd-0.5) +
-  ggplot2::geom_point(aes(x = Time, y = Mean),size = pcex-0.5) +
-  ggplot2::scale_color_manual(values = series.col, aesthetics = "color")+
-  ggplot2::guides(color = FALSE) +
-  ggplot2::geom_hline(aes(yintercept = hline,
-                 group = Var),
-             size = hline.size,
-             alpha = hline.alpha,
-             linetype = hline.lty)+
-  ggplot2::facet_wrap(EPU ~ Var~.,ncol = 2, scales = "free_y") +
-       #Add NEAMAP
-  ggplot2::geom_ribbon(data = neamap.3, aes(ymax = pmax(upper, 0), ymin = lower, x = Time),
-                fill = "pink", alpha = 0.5) +
-  ggplot2::geom_line(data = neamap.3, aes(x = Time, y = Value),
-            color = "#ca0020")+
-  ggplot2::geom_point(data = neamap.3, aes(x = Time, y = Value),
-             size = pcex-0.5,
-             color = "#ca0020")+
-
-  #Axis and theme
-  ggplot2::scale_x_continuous(breaks = seq(1970, 2020, by = 10), expand = c(0.01, 0.01)) +
-  #ylim(0, 600)+
-  ggplot2::ylab(expression("Biomass (kg tow"^-1*")")) +
-  ecodata::theme_facet()+
-  ggplot2::theme(strip.text=element_text(hjust=0),
-        axis.title.x=element_blank())
-
-p3
-
-```
-
-???
-
-Bottom trawls are not designed for efficient sampling of small pelagics. While we can estimate aggregate planktivore biomass for different ecoregions on the Northeast US shelf, estimates have high observation error. Black lines = NEFSC bottom trawl, Red lines = NEAMAP inshore bottom trawl. Orange line on GB Fall indicates significant increasing long term trend.
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Ng2022dietvsassess.png"), url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png")
-background-size: 800px, 400px
-background-position: right, left
-
-## Fish stomach contents &rarr; Atlantic herring biomass estimates `r Cite(myBib, "ng_predator_2021")`
-
-<!--.pull-left-40[
-![:img Ng paper title](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png)
-]
-
-.pull-right-60[]-->
-???
-
----
-## Vector Autoregressive Spatio-Temporal (VAST) modeling `r Cite(myBib, c("thorson_comparing_2017", "thorson_guidance_2019"))`
-
-VAST models two linear predictors for an index: 1. encounter rate,  and 2. positive catch (amount in stomach)
-
-A full model for the first linear predictor $\rho_1$ for each observation $i$ can include:
-*  fixed intercepts $\beta_1$ for each category $c$ and time $t$, 
-*  spatial random effects $\omega_1$ for each location $s$ and category, 
-*  spatio-temporal random effects $\varepsilon_1$ for each location, category, and time, 
-*  fixed vessel effects $\eta_1$ by vessel $v$ and category, and 
-*  fixed catchability impacts $\lambda_1$ of covariates $Q$ for each observation and variable $k$: 
-
-$$\rho_1(i) = \beta_1(c_i, t_i) + \omega_1^*(s_i, c_i) + \varepsilon_1^*(s_i, c_i, t_i) + \eta_1(v_i, c_i) + \sum_{k=1}^{n_k} \lambda_1(k) Q(i,k)$$ 
-
-The full model for the second linear predictor $\rho_2$ has the same structure, estimating $\beta_2$, $\omega_2$, $\varepsilon_2$, $\eta_2$, and $\lambda_2$ using the observations, categories, locations, times, and covariates. 
-
-We modeled aggregate small pelagic prey as a single category, and apply a Poisson-link delta model to estimate expected prey mass per predator stomach as in `r Cite(myBib, "ng_predator_2021")`.
-
-VAST model code and documentation: https://github.com/James-Thorson-NOAA/VAST
-
-
-???
-Spatial and spatio-temporal correlation decay with increasing distance estimated as $\kappa$ in a Matern function with fixed smoothness and geometric anisotropy (directional correlation, optionally estimated by the model). 
-
-Initial model selection consistently supported the inclusion of spatial and spatio-temporal random effects and anisotropy across all datasets: fall, spring, and annual. 
-
----
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishOnlyFallData_by_year.png")
 background-size: 650px
 background-position: right top
 
-## Bluefish stomachs only?
+## Which predators: Bluefish stomachs only?
 
 .pull-left[
 Due to uneven "sampling" of Atlantic herring by predators, `r Citep(myBib, "ng_predator_2021")` recommended aggregating across predators to improve the diet-based Atlantic herring biomass index. 
