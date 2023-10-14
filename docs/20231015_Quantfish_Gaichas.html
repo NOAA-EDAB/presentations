@@ -54,26 +54,6 @@ Small pelagics are widely recognized for their critical function as forage, supp
 
 In addition to abundance, spatial distribution of small pelagics has clear implications for both predators and fisheries.  Central place foragers such as seabirds require small pelagics close to breeding colonies during the breeding season, while free ranging highly mobile fish predators can follow small pelagics if their distributions shift further offshore.  Similarly, fisheries prosecuted on large vessels are better equipped to follow mobile predators offshore, while shore based artisanal and recreational fisheries may lose access to mobile predators that follow prey offshore. Changing spatial distribution can also impact stock assessments if changing availability of assessed fish cannot be incorporated into assessment models.   
 
----
-# Northeast US: How much? Where and when?
-
-.pull-left[
-## Stock assessments ([ASMFC](http://www.asmfc.org/species/atlantic-menhaden),  [StockSmart](https://apps-st.fisheries.noaa.gov/stocksmart?app=homepage))
-
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/herrmackmenhaden_assess.png)
-]
-
-.pull-right[
-## Bottom trawl survey "planktivores" abundance estimates ([Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf))
-
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-1-1.png" width="95%" /&gt;
-]
-
-???
-
-Bottom trawls are not designed for efficient sampling of small pelagics. While we can estimate aggregate planktivore biomass for different ecoregions on the Northeast US shelf, estimates have high observation error. Black lines = NEFSC bottom trawl, Red lines = NEAMAP inshore bottom trawl. Orange line on GB Fall indicates significant increasing long term trend.
-
-Many exploited small pelagic populations have a long history of scientific assessment, providing insight into long term and short term fluctuations relevant to both the fishery and the wider ecosystem. However, spatial shifts within a small pelagic stock’s range affecting different predator populations and distributions are difficult to track using conventional spatially aggregated stock assessment approaches. In addition, for ecosystems where small pelagics represent a mix of managed and unmanaged species, information on unmanaged species is often lacking, hindering assessment of the status of the full forage base supporting predators and other fisheries.
 
 ---
 # Does prey drive availability of bluefish?
@@ -114,6 +94,26 @@ Two applications:
 
 1. describing aggregate forage species trends for integrated ecosystem assessment
 
+---
+# Northeast US: How much? Where and when?
+
+.pull-left[
+## Stock assessments ([ASMFC](http://www.asmfc.org/species/atlantic-menhaden),  [StockSmart](https://apps-st.fisheries.noaa.gov/stocksmart?app=homepage))
+
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/herrmackmenhaden_assess.png)
+]
+
+.pull-right[
+## Bottom trawl survey "planktivores" abundance estimates ([Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf))
+
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-1-1.png" width="95%" /&gt;
+]
+
+???
+
+Bottom trawls are not designed for efficient sampling of small pelagics. While we can estimate aggregate planktivore biomass for different ecoregions on the Northeast US shelf, estimates have high observation error. Black lines = NEFSC bottom trawl, Red lines = NEAMAP inshore bottom trawl. Orange line on GB Fall indicates significant increasing long term trend.
+
+Many exploited small pelagic populations have a long history of scientific assessment, providing insight into long term and short term fluctuations relevant to both the fishery and the wider ecosystem. However, spatial shifts within a small pelagic stock’s range affecting different predator populations and distributions are difficult to track using conventional spatially aggregated stock assessment approaches. In addition, for ecosystems where small pelagics represent a mix of managed and unmanaged species, information on unmanaged species is often lacking, hindering assessment of the status of the full forage base supporting predators and other fisheries.
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Ng2022dietvsassess.png"), url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NgPredStomForageB2022.png")
@@ -130,7 +130,7 @@ background-position: right, left
 ???
 
 ---
-## Methods
+## Outline
 
 1. Vector Autoregressive Spatio-Temporal (VAST) modeling
 
@@ -175,23 +175,46 @@ Initial model selection consistently supported the inclusion of spatial and spat
 ---
 ## Modeling spatial and spatio-temporal variation
 
-.pull-left[
-Observations correlated in space and in space over time due to unmeasured processes are modeled as Gaussian Random Fields with mulstvariate normal effects:
+.pull-left-60[
+Observations correlated in space and in space over time due to unmeasured processes are modeled as multivariate normal Gaussian Random Fields (GRF):
 
-`\(\omega_1\)` ~ MVN(0, **R**~1~); `\(\omega_2\)` ~ MVN(0, **R**~2~)   
-`\(\varepsilon_1\)`(,t) ~ MVN(0, **R**~1~); `\(\varepsilon_2\)`(,t) ~ MVN(0, **R**~2~)  
+`\(\omega_1\)` ~ MVN(0, `\(\mathbf R_1\)`); `\(\omega_2\)` ~ MVN(0, `\(\mathbf R_2\)`)   
+`\(\varepsilon_1\)`(,t) ~ MVN(0, `\(\mathbf R_1\)`); `\(\varepsilon_2\)`(,t) ~ MVN(0, `\(\mathbf R_2\)`) 
+
+Spatial and spatio-temporal correlation decay with increasing distance `\(\mathbf d\)` estimated as `\(\kappa\)` in a Mat&amp;eacute;rn function with fixed smoothness `\(\nu\)` and geometric anisotropy `\(H\)` (directional correlation). 
   
-Mat\'ern correlation function between locations s~a~ and s~b~
+Correlation function between locations `\(s\)` and `\(s'\)`:
 
+`$$\mathbf R_1(s, s') = \frac{1}{2^{\nu-1}\Gamma(\nu)} \times (\kappa_1 \lvert \mathbf d(s,s') \mathbf H  \rvert)^\nu \times K_\nu (\kappa_1 \lvert \mathbf d(s,s') \mathbf H  \rvert)$$`
 
+Estimation uses stochastic partial differential equation (SPDE) approximation to GRF.
+
+]
+
+.pull-right-40[
+
+![:img fall forage index aniso, 85%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Aniso.png)
 
 ]
 
-.pull-right[
-How? Specify n "knots" to group observation locations, assume constant variation within a timestep at a knot
+---
+.pull-left-30[
+## Spatial estimation assumptions
 
+VAST has built-in "extrapolation grids" for many surveyed areas, including the Northeast US.
 
+Observations in space are used to define fixed locations ("knots") covering the full extent of the model. We assume constant variation within a timestep at a knot. 
+
+Modelers specify the number of knots to group observation locations, to balance computation time and resolution. We used 500 knots:  
 ]
+
+.pull-right-70[
+![:img fall forage index knots, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Data_and_knots.png)
+]
+
+---
+## Estimating density in space and the index
+
 
 ---
 ## Defining bluefish prey from stomachs: a mix of managed and unmanaged small pelagics 
