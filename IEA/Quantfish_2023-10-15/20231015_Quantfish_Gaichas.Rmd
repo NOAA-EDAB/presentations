@@ -328,6 +328,27 @@ Spatial and spatio-temporal correlation decay with increasing distance estimated
 Initial model selection consistently supported the inclusion of spatial and spatio-temporal random effects and anisotropy across all datasets: fall, spring, and annual. 
 
 ---
+.pull-left-30[
+## Spatial estimation assumptions
+
+VAST has built-in "extrapolation grids" for many surveyed areas, including the Northeast US.
+
+Observations in space are used to define fixed locations ("knots") covering the full extent of the model. We assume constant variation within a timestep at a knot. 
+
+Modelers specify the number of knots to group observation locations, to balance computation time and resolution. We used 500 knots:  
+]
+
+.pull-right-70[
+![:img fall forage index knots, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Data_and_knots.png)
+]
+
+???
+Extrapolation grid:" area over which densities will be extrapolated to calculate derived quantities" encompassing survey area allows comparison with design-based estimates
+
+Knots are defined that "minimize the average distance between samples and knots" using k-means clustering, which results in knots in proportion to sampling intensity across the area.
+
+
+---
 ## Modeling spatial and spatio-temporal variation
 
 .pull-left-60[
@@ -352,23 +373,10 @@ Estimation uses stochastic partial differential equation (SPDE) approximation to
 
 ]
 
----
-.pull-left-30[
-## Spatial estimation assumptions
-
-VAST has built-in "extrapolation grids" for many surveyed areas, including the Northeast US.
-
-Observations in space are used to define fixed locations ("knots") covering the full extent of the model. We assume constant variation within a timestep at a knot. 
-
-Modelers specify the number of knots to group observation locations, to balance computation time and resolution. We used 500 knots:  
-]
-
-.pull-right-70[
-![:img fall forage index knots, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Data_and_knots.png)
-]
 
 ---
 ## Estimating density in space and the index
+
 
 
 ---
