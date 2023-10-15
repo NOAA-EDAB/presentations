@@ -6,6 +6,8 @@
     <meta name="author" content="Sarah Gaichas^1, James Gartland^2, Brian Smith^1, Anthony Wood^1, Elizabeth Ng^3,  Michael Celestino^4, Katie Drew^5, Abigail Tyrell^{1,6}, and James Thorson^7" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/tabwid/tabwid.css" rel="stylesheet" />
+    <link href="libs/tabwid/scrool.css" rel="stylesheet" />
     <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
   </head>
   <body>
@@ -90,7 +92,7 @@ Create a “forage index” to evaluate changes in small pelagics  over time and
 
 Two applications: 
 
-1. addressing uncertainty in the stock assessment for a key predator species, bluefish (*Pomatomus saltatrix*), and 
+1. addressing uncertainty in the stock assessment for a key predator species, bluefish (*Pomatomus saltatrix*) 
 
 1. describing aggregate forage species trends for integrated ecosystem assessment
 
@@ -208,7 +210,7 @@ Correlation function between locations `\(s\)` and `\(s'\)`:
 
 `$$\mathbf R_1(s, s') = \frac{1}{2^{\nu-1}\Gamma(\nu)} \times (\kappa_1 \lvert \mathbf d(s,s') \mathbf H  \rvert)^\nu \times K_\nu (\kappa_1 \lvert \mathbf d(s,s') \mathbf H  \rvert)$$`
 
-Estimation uses stochastic partial differential equation (SPDE) approximation to GRF.
+Estimation uses stochastic partial differential equation (SPDE) approximation.
 
 ]
 
@@ -262,13 +264,16 @@ Due to uneven "sampling" of Atlantic herring by predators, ([Ng, et al., 2021](h
 Between 1985-2021 there were: 
 .contrib[
 
-*  25634 survey stations with diet collections. 
-*  22751 survey stations with piscivore diets. 
-    +  9027 piscivore stations with bluefish prey; 
-    +  40% of piscivore stations have bluefish prey. 
-*  1814 survey stations with bluefish diets. 
-    +  905 bluefish stations with bluefish prey;
+*  25634 NEFSC survey stations with stomach collections. 
+*  22751 NEFSC survey stations with piscivore stomachs. 
+    +  8869 piscivore stations with bluefish prey; 
+    +  39% of piscivore stations have bluefish prey. 
+*  1814 NEFSC survey stations with bluefish stomachs. 
+    +  907 bluefish stations with bluefish prey;
     +  50% of bluefish stations have bluefish prey.
+*  3838 NEAMAP survey stations with piscivore stomachs
+    +  2369 piscivore stations with bluefish prey;
+    +  62% of piscivore stations have bluefish prey.
     
 ]
 For this index combining multiple small pelagic prey, aggregating across predators most similar to bluefish both increases sample size and reduces sampling variability due to different predator availability to surveys.
@@ -326,13 +331,13 @@ Sea surface temperature (SST) &amp;rarr; likely to affect predator activity and 
 *  Many missing SST measurements for surveys before 1991
 *  NOAA OI SST V2 High Resolution Dataset &lt;a name=cite-reynolds_daily_2007&gt;&lt;/a&gt;([Reynolds, et al., 2007](https://journals.ametsoc.org/view/journals/clim/20/22/2007jcli1824.1.xml)) filled gaps
 
-Model selection consistently included number of predator species, mean predator size, and SST as covariates using fall, spring, and annual datasets
+Model selection consistently included number of predator species, mean predator size, and SST as catchability covariates using fall, spring, and annual datasets
 ]
 
 .pull-right[
 ]
 .footnote[
-All piscivore diet collection stations, fall Northeast Fisheries Science Center surveys &amp;rarr;
+All piscivore diet collection stations, fall NEFSC and NEAMAP surveys &amp;rarr;
 ]
 
 
@@ -359,7 +364,7 @@ Indices for aggregate small pelagics from piscivore stomachs can be calculated f
 NEFSC survey strata definitions are built into the VAST `northwest-atlantic` extrapolation grid already. We defined additional new strata to address the recreational inshore-offshore 3 mile boundary. The area within and outside 3 miles of shore was defined using the `sf` R package as a 3 nautical mile (approximated as 5.556 km) buffer from a high resolution coastline from the`rnaturalearth` R package. This buffer was then intersected with the current `FishStatsUtils::northwest_atlantic_grid` built into VAST and saved using code [here](https://github.com/sgaichas/bluefishdiet/blob/main/VASTcovariates_updatedPreds_sst_3mi.Rmd#L49-L94). Then, the new State and Federal waters strata were used to split NEFSC survey strata where applicable, and the new full set of strata were used along with a modified function from `FishStatsUtils::Prepare_NWA_Extrapolation_Data_Fn` to build a custom extrapolation grid for VAST as described in detail [here](https://sgaichas.github.io/bluefishdiet/VASTcovariates_finalmodbiascorrect_3misurvstrat.html). 
 
 ---
-background-image: url("https://github.com/sgaichas/bluefishdiet/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
+background-image: url("https://github.com/NOAA-EDAB/forageindex/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
 background-size: 560px
 background-position: right top
 
@@ -368,10 +373,8 @@ background-position: right top
 
 
 .pull-left[
-&lt;div class="figure"&gt;
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/WHAMfall-1.png" alt="Time series of VAST estimated fall forage indices for input into the bluefish assessment, 1985-2021" width="504" /&gt;
-&lt;p class="caption"&gt;Time series of VAST estimated fall forage indices for input into the bluefish assessment, 1985-2021&lt;/p&gt;
-&lt;/div&gt;
+
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/fallall-1.png" width="504" /&gt;
 
 VAST estimated Fall forage biomass density &amp;rarr;
 ]
@@ -381,25 +384,207 @@ VAST estimated Fall forage biomass density &amp;rarr;
 ???
 
 ---
+background-image: url("https://github.com/NOAA-EDAB/forageindex/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
+background-size: 1000px
+background-position: right
+
+## Comparisons: Spatial
+
+.pull-left[
+Forage fish habitat occupancy, &lt;a name=cite-friedland_forage_2023&gt;&lt;/a&gt;([Friedland, et al., 2023](https://onlinelibrary.wiley.com/doi/abs/10.1002/mcf2.10230))
+![:img Kevin's forage fish occupancy maps ](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Friedlandetal2023_fallforageoccupancy.png)
+.contrib[
+Fig 4. Mean occupancy habitats at the 20% (light blue) and 80% (dark blue) quantile thresholds across forage species; gray shows the model extent. Taxa with autumn models include (D) Round Herring, (E) longfin inshore squid, (F) Atlantic Chub Mackerel, (G) Spanish Sardine, (H) Butterfish, and (I) Atlantic Thread Herring. Offshore wind lease areas are outlined in red. The dashed line marks the 100-m depth contour.
+]
+]
+
+.pull-right[
+
+]
+
+---
+## Comparisons: Design based survey aggregate forage
+
+.pull-left[
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/tscomp-1.png" width="504" /&gt;
+
+]
+
+.pull-right[
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/corr-1.png" width="504" /&gt;
+
+]
+
+---
+## What drives differences?
+
+
+
+
+
+
+
+
+.pull-left[
+
+&lt;div class="figure"&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/sppprop-1.png" alt="Comparison of raw proportional species composition from all predator stomachs combined (source = stomach, red) to the raw proportional species composition from bottom trawl survey sampling (source = survey, black) in the model domain forall regions and seasons from 1985-2021." width="504" /&gt;
+&lt;p class="caption"&gt;Comparison of raw proportional species composition from all predator stomachs combined (source = stomach, red) to the raw proportional species composition from bottom trawl survey sampling (source = survey, black) in the model domain forall regions and seasons from 1985-2021.&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/silver-1.png" width="504" /&gt;
+
+]
+
+---
+## What drives differences?
+
+.pull-left[
+
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/sandlance-1.png" width="504" /&gt;
+
+]
+
+.pull-right[
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unmanagedprop-1.png" width="504" /&gt;
+
+]
+
+---
+## Sensitivities
+
+
+---
+## Sensitivities
+
+---
+## Integrating into stock assessment 
+
+.pull-left[
+A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) &lt;a name=cite-stock_woods_2021&gt;&lt;/a&gt;([Stock, et al., 2021](https://www.sciencedirect.com/science/article/pii/S0165783621000953)).
+
+WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
+
+Forage fish indices were explored as covariates on catchability for the fishery independent bottom trawl surveys (R/V Bigelow), but did not improve the assessment.
+
+However, the application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error.  
+]
+
+.pull-right[
+
+
+
+&lt;div class="figure"&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/WHAMq-1.png" alt="Fall state waters forage index fit as a catchabilty covariate within the bluefish assessment model (top), with resulting catchability, q, for the recreational fishery catch per unit effort (MRIP) index (bottom)." width="504" /&gt;
+&lt;p class="caption"&gt;Fall state waters forage index fit as a catchabilty covariate within the bluefish assessment model (top), with resulting catchability, q, for the recreational fishery catch per unit effort (MRIP) index (bottom).&lt;/p&gt;
+&lt;/div&gt;
+
+]
+???
+
+
+The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
+The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
+The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
+
+---
+.pull-left[
+## Do prey affect bluefish availability? Yes, for the recreational CPUE index
+
+
+
+&lt;template id="65229da5-8070-47d0-8885-4282e27dd79b"&gt;&lt;style&gt;
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-30944f00{}.cl-308f5176{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-308f67b0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-308f67ba{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-308f9654{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-308f9655{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-308f965e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-308f9668{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-308f9669{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-308f9672{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-30944f00'&gt;&lt;caption class="Table Caption"&gt;
+
+Bluefish stock assessment model fit and retrospective diagnostics with (model = ecov_on) and without (model = ecov_off) the fall StateWaters forage index included as a catchability covariate on the recreational fishery catch per unit effort index. Mohn's rho values (rho) indicate retrospective performance for recruitment (R), spawning stock biomass (SSB) and fully selected fishing mortality (Fbar).
+
+&lt;/caption&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-308f9672"&gt;&lt;p class="cl-308f67b0"&gt;&lt;span class="cl-308f5176"&gt;model&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9669"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;dAIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9669"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;AIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9669"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;rho_R&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9669"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;rho_SSB&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9669"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;rho_Fbar&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-308f9655"&gt;&lt;p class="cl-308f67b0"&gt;&lt;span class="cl-308f5176"&gt;ecov_on&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9654"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;0.0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9654"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;3,230.6&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9654"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;-0.0136&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9654"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;0.0880&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9654"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;-0.0641&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-308f9668"&gt;&lt;p class="cl-308f67b0"&gt;&lt;span class="cl-308f5176"&gt;ecov_off&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f965e"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;5.6&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f965e"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;3,236.2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f965e"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;0.0104&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f965e"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;0.1301&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f965e"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;-0.0962&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="eb92e567-621d-4803-bb7a-8ad0c4d4fc39"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("eb92e567-621d-4803-bb7a-8ad0c4d4fc39");
+var template = document.getElementById("65229da5-8070-47d0-8885-4282e27dd79b");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+]
+
+.pull-right[
+*The inclusion of the forage fish index improved model fit.* 
+
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-10-1.png" width="504" /&gt;
+
+]
+
+The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to &lt;span style="color:#cd5c5c;"&gt;higher biomass estimates from the assessment including forage fish.&lt;/span&gt;  
+
+---
 ## Ecosystem reporting: Can forage indices link zooplankton and fish productivity?
 
 .pull-left[
 
 
 
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-9-1.png" width="504" /&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-11-1.png" width="504" /&gt;
 
 .left[
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-10-1.png" width="90%" /&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-12-1.png" width="90%" /&gt;
 ]
 ]
 
 .pull-right[
 
-&lt;div class="figure"&gt;
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/SOEforage-1.png" alt="Time series of VAST estimated fall forage indices for the 2023 State of the Ecosystem report" width="504" /&gt;
-&lt;p class="caption"&gt;Time series of VAST estimated fall forage indices for the 2023 State of the Ecosystem report&lt;/p&gt;
-&lt;/div&gt;
+#### MAB
+
+.center[
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/MAforagebio-1.png" width="50%" /&gt;
+]
+
+#### NE
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/NEforagebio-1.png" width="100%" /&gt;
 
 ]
 
@@ -422,30 +607,8 @@ Complex food web, generalist predators
 ]
 
 ---
-## Do prey affect bluefish availability? Depends on the index. *Preliminary results...Review in December*
+## Next steps
 
-.pull-left[
-A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) &lt;a name=cite-stock_woods_2021&gt;&lt;/a&gt;([Stock, et al., 2021](https://www.sciencedirect.com/science/article/pii/S0165783621000953)).
-
-Forage fish indices were explored as covariates on catchability for the fishery independent bottom trawl surveys, but either did not improve the assessment, or the exploratory models did not converge.
-
-However, the application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error.  **The inclusion of the forage fish index improved the fit of all models.**
-]
-
-.pull-right[
-![:img preliminary results of including the forage fish index within the bluefish assessment comparing fishing mortality, recruitment, and spawning stock biomass time series between models with (purple, blue) and without (green, yellow) the index](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishWHAMecovPRELIM.png)
-]
-
-The use of the forage fish index as a covariate on catchability led to an overall decreasing trend in catchability over time.  The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to &lt;span style="color:#5D3FD3;"&gt;higher biomass estimates from the assessment including forage fish.&lt;/span&gt;  
-
-
-
-???
-WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
-
-The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
-The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
-The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
 
 
 ---
@@ -466,6 +629,17 @@ Journal of Fisheries and Aquatic Sciences_. ISSN: 0706-652X. DOI:
 URL:
 [http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128)
 (visited on Jul. 20, 2018).
+
+&lt;a name=bib-friedland_forage_2023&gt;&lt;/a&gt;[Friedland, K. D. et
+al.](#cite-friedland_forage_2023) (2023). "Forage Fish Species Prefer
+Habitat within Designated Offshore Wind Energy Areas in the U.S.
+Northeast Shelf Ecosystem". En. In: _Marine and Coastal Fisheries_
+15.2. \_ eprint:
+https://onlinelibrary.wiley.com/doi/pdf/10.1002/mcf2.10230, p. e10230.
+ISSN: 1942-5120. DOI:
+[10.1002/mcf2.10230](https://doi.org/10.1002%2Fmcf2.10230). URL:
+[https://onlinelibrary.wiley.com/doi/abs/10.1002/mcf2.10230](https://onlinelibrary.wiley.com/doi/abs/10.1002/mcf2.10230)
+(visited on Aug. 07, 2023).
 
 &lt;a name=bib-link_does_2002&gt;&lt;/a&gt;[Link, J.](#cite-link_does_2002) (2002).
 "Does food web theory work for marine ecosystems?" En. In: _Marine

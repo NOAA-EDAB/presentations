@@ -31,9 +31,14 @@ knitr::opts_chunk$set(echo = F,
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 #Plotting and data libraries
 library(tidyverse)
+theme_set(theme_bw())
 library(tidyr)
 library(here)
 library(sf)
+library(patchwork)
+library(ggpubr)
+library(data.table)
+library(forcats)
 ```
 
 ```{r, load_refs, include=FALSE, cache=FALSE}
@@ -114,7 +119,7 @@ Create a “forage index” to evaluate changes in small pelagics  over time and
 
 Two applications: 
 
-1. addressing uncertainty in the stock assessment for a key predator species, bluefish (*Pomatomus saltatrix*), and 
+1. addressing uncertainty in the stock assessment for a key predator species, bluefish (*Pomatomus saltatrix*) 
 
 1. describing aggregate forage species trends for integrated ecosystem assessment
 
@@ -363,7 +368,7 @@ Correlation function between locations $s$ and $s'$:
 
 $$\mathbf R_1(s, s') = \frac{1}{2^{\nu-1}\Gamma(\nu)} \times (\kappa_1 \lvert \mathbf d(s,s') \mathbf H  \rvert)^\nu \times K_\nu (\kappa_1 \lvert \mathbf d(s,s') \mathbf H  \rvert)$$
 
-Estimation uses stochastic partial differential equation (SPDE) approximation to GRF.
+Estimation uses stochastic partial differential equation (SPDE) approximation.
 
 ]
 
@@ -528,13 +533,16 @@ Due to uneven "sampling" of Atlantic herring by predators, `r Citep(myBib, "ng_p
 Between 1985-2021 there were: 
 .contrib[
 
-*  25634 survey stations with diet collections. 
-*  22751 survey stations with piscivore diets. 
-    +  9027 piscivore stations with bluefish prey; 
-    +  40% of piscivore stations have bluefish prey. 
-*  1814 survey stations with bluefish diets. 
-    +  905 bluefish stations with bluefish prey;
+*  25634 NEFSC survey stations with stomach collections. 
+*  22751 NEFSC survey stations with piscivore stomachs. 
+    +  8869 piscivore stations with bluefish prey; 
+    +  39% of piscivore stations have bluefish prey. 
+*  1814 NEFSC survey stations with bluefish stomachs. 
+    +  907 bluefish stations with bluefish prey;
     +  50% of bluefish stations have bluefish prey.
+*  3838 NEAMAP survey stations with piscivore stomachs
+    +  2369 piscivore stations with bluefish prey;
+    +  62% of piscivore stations have bluefish prey.
     
 ]
 For this index combining multiple small pelagic prey, aggregating across predators most similar to bluefish both increases sample size and reduces sampling variability due to different predator availability to surveys.
@@ -559,7 +567,7 @@ NEAMAP survey stations with diet collections for piscivores (n = 3838) had a hig
 
 .pull-left[
 ```{r, fig.asp=1}
-dietoverlap <- read_csv("https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/datfromshiny/tgmat.2022-02-15.csv")
+dietoverlap <- read_csv("https://raw.githubusercontent.com/NOAA-EDAB/forageindex/main/fhdat/tgmat.2022-02-15.csv")
 
 library(dendextend)
 
@@ -692,13 +700,13 @@ Sea surface temperature (SST) &rarr; likely to affect predator activity and feed
 *  Many missing SST measurements for surveys before 1991
 *  NOAA OI SST V2 High Resolution Dataset `r Cite(myBib, "reynolds_daily_2007")` filled gaps
 
-Model selection consistently included number of predator species, mean predator size, and SST as covariates using fall, spring, and annual datasets
+Model selection consistently included number of predator species, mean predator size, and SST as catchability covariates using fall, spring, and annual datasets
 ]
 
 .pull-right[
 ]
 .footnote[
-All piscivore diet collection stations, fall Northeast Fisheries Science Center surveys &rarr;
+All piscivore diet collection stations, fall NEFSC and NEAMAP surveys &rarr;
 ]
 
 
@@ -739,6 +747,16 @@ bfoffshoregrid <-  FishStatsUtils::northwest_atlantic_grid %>%
 
 MAB <- c(1010:1080, 1100:1120, 1600:1750, 3010:3450, 3470, 3500, 3510)
 GB  <- c(1090, 1130:1210, 1230, 1250, 3460, 3480, 3490, 3520:3550)
+GOM <- c(1220, 1240, 1260:1290, 1360:1400, 3560:3830)
+
+MABgrid <-  FishStatsUtils::northwest_atlantic_grid %>%
+  filter(stratum_number %in% c(MAB))
+
+GBgrid <-  FishStatsUtils::northwest_atlantic_grid %>%
+  filter(stratum_number %in% c(GB))
+
+GOMgrid <-  FishStatsUtils::northwest_atlantic_grid %>%
+  filter(stratum_number %in% c(GOM))
 
 MABGBgrid <-  FishStatsUtils::northwest_atlantic_grid %>%
   filter(stratum_number %in% c(MAB, GB))
@@ -768,27 +786,29 @@ theme_set(theme_bw())
 ggplot(data = ecodata::coast) +
   geom_sf() + 
   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = MABGBgrid, aes(x = Lon, y = Lat), size=0.05, colour = "green",  alpha=0.1) +
+  geom_point(data = MABgrid, aes(x = Lon, y = Lat), colour = "green", size=0.05, alpha=0.1) +
+  geom_point(data = GBgrid, aes(x = Lon, y = Lat), colour = "orange", size=0.05, alpha=0.1) +
+  geom_point(data = GOMgrid, aes(x = Lon, y = Lat), colour = "red", size=0.05, alpha=0.1) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) + #full extent of VAST model
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) + #zoomed to Hatteras and N
-  ggtitle("Mid Atlantic and Georges Bank (green), general bluefish range")
+  ggtitle("MAB (green), GB (orange), GOM (red)")
 
 
 ggplot(data = ecodata::coast) +
   geom_sf() + 
   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = MABGBgrid, aes(x = Lon, y = Lat), size=0.05, colour = "green",  alpha=0.1) +
-  geom_point(data = albinshoregrid, aes(x = Lon, y = Lat), size=0.03, colour = "blue") +
+  geom_point(data = MABGBgrid, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
+  geom_point(data = albinshoregrid, aes(x = Lon, y = Lat), size=0.03, colour = "lightblue") +
   geom_point(data = bfinshoregrid, aes(x = Lon, y = Lat), size=0.05, colour = "blue",  alpha=0.3) +
-  geom_point(data = bfoffshoregrid, aes(x = Lon, y = Lat), size=0.05, colour = "orange",  alpha=0.3) +
+  geom_point(data = bfoffshoregrid, aes(x = Lon, y = Lat), size=0.05, colour = "lightblue1",  alpha=0.3) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
-  ggtitle("Inshore (dark and light blue) and offshore (orange) bluefish survey strata")
+  ggtitle("Inshore (light and dark blue) and offshore (light blue) bluefish survey strata")
 
 ggplot(data = ecodata::coast) +
   geom_sf() + 
   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = MABGBgrid, aes(x = Lon, y = Lat), size=0.05, colour = "green",  alpha=0.1) +
+  geom_point(data = MABGBgrid, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
   geom_point(data = statewatersgrid, aes(x = Lon, y = Lat), size=0.03, colour = "purple",  alpha=0.5) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
@@ -802,81 +822,91 @@ Indices for aggregate small pelagics from piscivore stomachs can be calculated f
 NEFSC survey strata definitions are built into the VAST `northwest-atlantic` extrapolation grid already. We defined additional new strata to address the recreational inshore-offshore 3 mile boundary. The area within and outside 3 miles of shore was defined using the `sf` R package as a 3 nautical mile (approximated as 5.556 km) buffer from a high resolution coastline from the`rnaturalearth` R package. This buffer was then intersected with the current `FishStatsUtils::northwest_atlantic_grid` built into VAST and saved using code [here](https://github.com/sgaichas/bluefishdiet/blob/main/VASTcovariates_updatedPreds_sst_3mi.Rmd#L49-L94). Then, the new State and Federal waters strata were used to split NEFSC survey strata where applicable, and the new full set of strata were used along with a modified function from `FishStatsUtils::Prepare_NWA_Extrapolation_Data_Fn` to build a custom extrapolation grid for VAST as described in detail [here](https://sgaichas.github.io/bluefishdiet/VASTcovariates_finalmodbiascorrect_3misurvstrat.html). 
 
 ---
-background-image: url("https://github.com/sgaichas/bluefishdiet/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
+background-image: url("https://github.com/NOAA-EDAB/forageindex/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
 background-size: 560px
 background-position: right top
 
 ## Results: Fall Forage Index
 
 ```{r}
-WHAMinputsviz <- function(infile) {
-  
-  splitoutput <- read.csv(infile)
-  
-  # warning, hardcoded. obviously
-  stratlook <- data.frame(Stratum = c("Stratum_1",
-                                      "Stratum_2",
-                                      "Stratum_3",
-                                      "Stratum_4",
-                                      "Stratum_5",
-                                      "Stratum_6",
-                                      "Stratum_7",
-                                      "Stratum_8",
-                                      "Stratum_9",
-                                      "Stratum_10",
-                                      "Stratum_11",
-                                      "Stratum_12",
-                                      "Stratum_13",
-                                      "Stratum_14",
-                                      "Stratum_15"),
-                          Region  = c("AllEPU", 
-                                      "MABGB", 
-                                      "MABGBstate", 
-                                      "MABGBfed", 
-                                      "MAB",
-                                      "GB",
-                                      "GOM",
-                                      "bfall",
-                                      "bfin",
-                                      "bfoff",
-                                      "MABGBalbinshore",
-                                      "MABGBothoffshore",
-                                      "albbfin",
-                                      "albbfall",
-                                      "allother"))
-  
-    # The palette with grey:
-cbPalette <- c("#999999",  "#56B4E9", "#E69F00", "#CC79A7", "#009E73", "#F0E442", "#0072B2", "#D55E00")
-
-  
-  forageindex <- splitoutput %>%
-    left_join(stratlook) %>%
-    dplyr::select(Time, Region, Estimate, SE=Std..Error.for.Estimate) %>%
-    tidyr::pivot_longer(c(Estimate, SE), names_to = "Var") %>%
-    dplyr::group_by(Var) %>%
-    tidyr::pivot_wider(names_from = Region, values_from = value) %>%
-    dplyr::mutate(SurvIn2 = bfin,
-                  SurvIn2Off = bfall,
-                  SurvIn1 = albbfin, 
-                  SurvIn1Off = albbfall, 
-                  StateWaters = MABGBstate,
-                  FedWaters =   MABGBfed) %>%
-    dplyr::select(Time, SurvIn2, SurvIn2Off, SurvIn1, SurvIn1Off, StateWaters) %>%
-    tidyr::pivot_longer(!c(Time, Var), names_to = "Region", values_to = "value") %>%
-    tidyr::pivot_wider(names_from = "Var", values_from = "value")
- 
-  ggplot(forageindex, aes(x=Time, y=Estimate, colour = Region)) +
-    geom_errorbar(aes(ymin=Estimate+SE, ymax=Estimate-SE))+
-    geom_point()+
-    geom_line() +
-    scale_colour_manual(values=cbPalette)
-  
-} 
+# strata.limits <- as.list(c("AllEPU" = allEPU2, 
+#                            "MABGB" = MABGB2,
+#                            "MABGBstate" = MABGBstate,
+#                            "MABGBfed" = MABGBfed,
+#                            "MAB" = MAB2,
+#                            "GB" = GB2,
+#                            "GOM" = GOM2,
+#                            "bfall" = bfall2,
+#                            "bfin" = bfinshore2,
+#                            "bfoff" = bfoffshore2,
+#                            "MABGBalbinshore" = albinshore2,
+#                            "MABGBothoffshore" = MABGBothoffshore2,
+#                            "albbfin" = albbfinshore,
+#                            "albbfall" = albbfall,
+#                            "allother" = allother2))
+stratlook <- data.frame(Stratum = c("Stratum_1",
+                                    "Stratum_2",
+                                    "Stratum_3",
+                                    "Stratum_4",
+                                    "Stratum_5",
+                                    "Stratum_6",
+                                    "Stratum_7",
+                                    "Stratum_8",
+                                    "Stratum_9",
+                                    "Stratum_10",
+                                    "Stratum_11",
+                                    "Stratum_12",
+                                    "Stratum_13",
+                                    "Stratum_14",
+                                    "Stratum_15"),
+                        Region  = c("AllEPU", 
+                                    "MABGB", 
+                                    "MABGBstate", 
+                                    "MABGBfed", 
+                                    "MAB",
+                                    "GB",
+                                    "GOM",
+                                    "bfall",
+                                    "bfin",
+                                    "bfoff",
+                                    "MABGBalbinshore",
+                                    "MABGBothoffshore",
+                                    "albbfin",
+                                    "albbfall",
+                                    "allother"))
 ```
 
 .pull-left[
-```{r WHAMfall, fig.cap="Time series of VAST estimated fall forage indices for input into the bluefish assessment, 1985-2021", fig.asp=0.8}
-WHAMinputsviz(infile = url("https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv"))
+
+```{r fallall, fig.asp=1.0}
+#, fig.cap="Fall forage indices scaled to the maximum value (Mid Atlantic 1985) for ecoregions Georges Bank (GB), Gulf of Maine (GOM), Mid Atlantic Bight (MAB), and bluefish assessment index areas in state waters within 3 miles of shore (StateWaters) and bottom trawl survey index strata (SurveyBluefish)."
+splitout <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/forageindex/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv")
+splitoutput <- splitout %>%
+  dplyr::left_join(stratlook) %>%
+  dplyr::filter(Region %in% c("GOM", "GB", "MAB","MABGBstate", "bfin")) %>%
+  dplyr::mutate(Type = ifelse(Region %in% c("GOM", "GB", "MAB"), "Ecoregion", "Bluefish"),
+                Region = case_when(Region == "MABGBstate" ~ "StateWaters",
+                                   Region == "bfin" ~ "SurveyBluefish",
+                                   TRUE ~ Region))
+
+foragemax <- max(splitoutput$Estimate)
+
+ggplot(splitoutput, aes(x=Time, y=Estimate, colour=Region)) +
+  #geom_errorbar(aes(ymin=Estimate+Std..Error.for.Estimate, ymax=Estimate-Std..Error.for.Estimate))+
+  geom_ribbon(aes(ymin=Estimate+Std..Error.for.Estimate, ymax=Estimate-Std..Error.for.Estimate, fill=Region), linetype = 0, alpha = 0.15)+
+  geom_point(aes(shape=Region))+
+  geom_line()+
+  scale_color_manual(values=c("orange", "red", "green3", "purple", "blue")) +
+  scale_fill_manual(values=c("orange", "red", "green3", "purple", "blue")) +
+  facet_wrap(~fct_relevel(Type, "Ecoregion", "Bluefish"), scales = "free_y", ncol = 1) +
+  scale_y_continuous(labels=function(x)round(x/foragemax, digits = 2))+
+  ylab("Relative forage biomass scaled to maximum")  
+  
+  
+  #guides(colour = guide_legend(ncol=2)) +
+  #theme(legend.position = c(1, 0),
+  #      legend.justification = c(1, 0))
+  #theme(legend.position="none")
 ```
 
 VAST estimated Fall forage biomass density &rarr;
@@ -885,6 +915,918 @@ VAST estimated Fall forage biomass density &rarr;
 .pull-right[
 ]
 ???
+
+---
+background-image: url("https://github.com/NOAA-EDAB/forageindex/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
+background-size: 1000px
+background-position: right
+
+## Comparisons: Spatial
+
+.pull-left[
+Forage fish habitat occupancy, `r Cite(myBib, "friedland_forage_2023")`
+![:img Kevin's forage fish occupancy maps ](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Friedlandetal2023_fallforageoccupancy.png)
+.contrib[
+Fig 4. Mean occupancy habitats at the 20% (light blue) and 80% (dark blue) quantile thresholds across forage species; gray shows the model extent. Taxa with autumn models include (D) Round Herring, (E) longfin inshore squid, (F) Atlantic Chub Mackerel, (G) Spanish Sardine, (H) Butterfish, and (I) Atlantic Thread Herring. Offshore wind lease areas are outlined in red. The dashed line marks the 100-m depth contour.
+]
+]
+
+.pull-right[
+
+]
+
+---
+## Comparisons: Design based survey aggregate forage
+
+.pull-left[
+```{r tscomp}
+#fig.cap="Time series of VAST stomach contents based forage index (red) compared with survey based index (black) by season and region (GOM = Gulf of Maine, GB = Georges Bank, MAB = Mid Atlantic Bight)."
+
+## Survey index I calculated in CompareVASTforageSOE.Rmd 
+
+u1 <- "https://github.com/NOAA-EDAB/forageindex/raw/main/survdat/Aggregate_ForageIndex_Survey.RData"
+
+load(url(u1, method="libcurl"))
+
+survforage <- survey.data %>%
+  dplyr::filter(Var %in% c("ForageIndex Fall Biomass Index",
+                           "ForageIndex Spring Biomass Index",
+                           "ForageIndex Fall Biomass Standard Error",
+                           "ForageIndex Spring Biomass Standard Error"),
+                Region %in% c("MAB", "GB", "GOM")) %>%
+  tidyr::separate(Var, c("feeding.guild", "season", "Biomass", "Var1", NA), sep = " ") %>%
+  tidyr::unite("Var", feeding.guild:season, sep = " ") %>%
+  dplyr::mutate(stat = recode(Var1, Index = "Mean",
+                      Standard = "SD")) %>%
+  dplyr::select(-Biomass, -Var1,  -Units) %>%
+  # dplyr::filter(!Area == "-") %>%
+  dplyr::group_by(Var, Time, Region) %>%
+  tidyr::pivot_wider(id_cols = c(Var, Time, Region),names_from =  stat, values_from =  Value) %>%
+  dplyr::filter(!Mean == "NULL") %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(Mean = as.numeric(Mean))
+
+survforage <- survforage %>%
+  dplyr::filter(Time > 1984,
+                Time < 2022) %>%
+  dplyr::group_by(Var, Region) %>%
+  dplyr::mutate(hline = mean(Mean, na.rm = T), 
+                tssd = sd(SD, na.rm = T),
+                 upper = Mean + (2*SD),
+                lower = Mean - (2*SD)) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(stdsurvForage = (Mean-hline)/tssd,
+                #cv = SD/Mean,
+                stdsurvForageupper = (upper-hline)/tssd,
+                stdsurvForagelower = (lower-hline)/tssd,
+                censurvForage = (log(Mean)-log(hline)),
+                censurvForageupper = (log(upper)-log(hline)),
+                censurvForagelower = (log(lower)-log(hline)))
+
+survforage$Var <- factor(survforage$Var,levels = c("ForageIndex Spring",
+                                                    "ForageIndex Fall"))
+survforage$Region <- factor(survforage$Region, levels = c("GOM", "GB", "MAB"))
+
+series.col <- rep("black",length(unique(survforage$Var)))
+facet_names <- list("Forage" = expression("Forage")
+                    )
+
+survforage <- survforage %>%
+  mutate(CompVar = recode(Var, "ForageIndex Spring" = "Spring",
+                         "ForageIndex Fall" = "Fall"))  %>%
+  rename(EPU = Region)
+  
+
+survforage$CompVar <- factor(survforage$CompVar,levels = c("Spring",
+                                                    "Fall"))
+#### Forage Index from ecodata
+forage <- ecodata::forage_index %>%
+  dplyr::filter(Var %in% c(#"Annual Forage Fish Biomass Estimate",
+                           #"Annual Forage Fish Biomass Estimate SE",
+                           "Fall Forage Fish Biomass Estimate",
+                           "Fall Forage Fish Biomass Estimate SE",
+                           "Spring Forage Fish Biomass Estimate",
+                           "Spring Forage Fish Biomass Estimate SE"),
+                EPU %in% c("GOM", "GB", "MAB"))%>%
+  tidyr::separate(Var, c("season", "feeding.guild", NA,"Biomass", NA, "Var1"), sep = " ", extra = "drop", fill = "right") %>% 
+  tidyr::unite("Var", feeding.guild:season, sep = " ") %>%
+  dplyr::mutate(stat = recode(Var1, .missing = "Mean",
+                      SE = "SD")) %>%
+  dplyr::select(-Biomass, -Var1, -Units) %>%
+  # dplyr::filter(!Area == "-") %>%
+  dplyr::group_by(Var, Time, EPU) %>%
+  tidyr::pivot_wider(id_cols = c(Var, Time, EPU),names_from =  stat, values_from =  Value) %>%
+  dplyr::filter(!Mean == "NULL") %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(Mean = as.numeric(Mean))
+
+forage_std <- forage %>%
+  dplyr::group_by(Var, EPU) %>%
+  dplyr::mutate(hline = mean(Mean, na.rm = T), 
+                tssd = sd(SD, na.rm = T),
+                 upper = Mean + (2*SD),
+                lower = Mean - (2*SD)) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(stdForage = (Mean-hline)/tssd,
+                #cv = SD/Mean,
+                stdForageupper = (upper-hline)/tssd,
+                stdForagelower = (lower-hline)/tssd,
+                cenForage = (log(Mean)-log(hline)),
+                cenForageupper = (log(upper)-log(hline)),
+                cenForagelower = (log(lower)-log(hline)))
+
+forage_std$Var <- factor(forage_std$Var,levels = c("Forage Spring",
+                                                    "Forage Fall"))
+forage_std$EPU <- factor(forage_std$EPU, levels = c("GOM", "GB", "MAB"))
+series.col <- rep("black",length(unique(forage_std$Var)))
+facet_names <- list("Forage" = expression("Forage")
+                    )
+forage_std <- forage_std %>%
+  mutate(CompVar = recode(Var, "Forage Spring" = "Spring",
+                         "Forage Fall" = "Fall")) 
+ 
+forage_std$CompVar <- factor(forage_std$CompVar,levels = c("Spring",
+                                                    "Fall"))
+# plot time series together
+
+# ecodata plot constants
+#Time series constants
+shade.alpha <- 0.3
+shade.fill <- "lightgrey"
+lwd <- 1
+pcex <- 2
+trend.alpha <- 0.5
+trend.size <- 2
+hline.size <- 1
+hline.alpha <- 0.35
+hline.lty <- "dashed"
+label.size <- 5
+hjust.label <- 1.5
+letter_size <- 4
+feeding.guilds <- c("Apex Predator","Piscivore","Planktivore","Benthivore","Benthos")
+x.shade.min <- 2011
+x.shade.max <- 2021
+series.col <- c("indianred","black")
+#Function for custom ggplot facet labels
+label <- function(variable,value){
+  return(facet_names[value])
+}
+
+# legend function
+addSmallLegend <- function(myPlot, pointSize = 2, textSize = 6, spaceLegend = 0.5) {
+    myPlot +
+        guides(shape = guide_legend(override.aes = list(size = pointSize)),
+               color = guide_legend(override.aes = list(size = pointSize)),
+               fill = guide_legend(ncol = 1)) +
+        theme(legend.title = element_text(size = textSize), 
+              legend.text  = element_text(size = textSize),
+              legend.key.size = unit(spaceLegend, "lines"))
+}
+
+# actual plot
+
+p8<-survforage %>%
+  #dplyr::filter(str_detect(Var,"Planktivore")) %>%
+  ggplot2::ggplot() +
+
+  #Highlight last ten years
+  #ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
+  #    xmin = x.shade.min , xmax = x.shade.max ,
+  #    ymin = -Inf, ymax = Inf) +
+  #Test for trend and add lines
+  # ecodata::geom_gls(aes(x = Time, y = stdsurvForage,
+  #              color = CompVar),
+  #            alpha = trend.alpha, size = trend.size) +
+  # ecodata::geom_lm(aes(x = Time, y = stdsurvForage,
+  #              color = CompVar),
+  #            alpha = trend.alpha, size = trend.size) +
+  # #ecodata::geom_lm(aes(x = Time, y = Mean))+
+
+  #Add time series
+  ggplot2::geom_ribbon(aes(x = Time, ymin = pmax(stdsurvForagelower), ymax = stdsurvForageupper),
+              alpha = 0.5,
+              fill = "grey") +
+  ggplot2::geom_line(aes(x = Time, y = stdsurvForage),size = lwd-0.5) +
+  ggplot2::geom_point(aes(x = Time, y = stdsurvForage),size = pcex-0.5) +
+  ggplot2::scale_color_manual(values = series.col, aesthetics = "color")+
+  ggplot2::guides(color = FALSE) +
+  ggplot2::geom_hline(aes(yintercept = 0,
+                 group = CompVar),
+             size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+       #Add Forage Index
+  ggplot2::geom_ribbon(data = forage_std, aes(ymin = stdForagelower, ymax = stdForageupper, x = Time),
+                fill = "pink", alpha = 0.5) +
+  ggplot2::geom_line(data = forage_std, aes(x = Time, y = stdForage),
+            color = "#ca0020")+
+  ggplot2::geom_point(data = forage_std, aes(x = Time, y = stdForage),
+             size = pcex-0.5,
+             color = "#ca0020")+
+  # # trend test forage indices
+  # ecodata::geom_gls(data = forage_std, aes(x = Time, y = stdForage,
+  #              color = CompVar),
+  #            alpha = trend.alpha, size = trend.size) +
+  # ecodata::geom_lm(data = forage_std, aes(x = Time, y = stdForage,
+  #              color = CompVar),
+  #            alpha = trend.alpha, size = trend.size) +
+  
+  ggplot2::facet_wrap(EPU ~ CompVar~.,ncol = 2, scales = "free_y") +
+
+  #Axis and theme
+  ggplot2::scale_x_continuous(breaks = seq(1980, 2020, by = 10), expand = c(0.01, 0.01)) +
+  #ylim(0, 600)+
+  ggplot2::ylab(expression("Standardized Biomass Index")) +
+  ecodata::theme_facet()+
+  ggplot2::theme(strip.text=element_text(hjust=0),
+        axis.title.x=element_blank())
+
+p8
+
+p9<-survforage %>%
+  #dplyr::filter(str_detect(Var,"Planktivore")) %>%
+  ggplot2::ggplot() +
+
+  #Highlight last ten years
+  #ggplot2::annotate("rect", fill = shade.fill, alpha = shade.alpha,
+  #    xmin = x.shade.min , xmax = x.shade.max ,
+  #    ymin = -Inf, ymax = Inf) +
+  #Test for trend and add lines
+  # ecodata::geom_gls(aes(x = Time, y = censurvForage,
+  #              color = CompVar),
+  #            alpha = trend.alpha, size = trend.size) +
+  # ecodata::geom_lm(aes(x = Time, y = censurvForage,
+  #              color = CompVar),
+  #            alpha = trend.alpha, size = trend.size) +
+  # #ecodata::geom_lm(aes(x = Time, y = Mean))+
+
+  #Add time series
+  ggplot2::geom_ribbon(aes(x = Time, ymin = pmax(censurvForagelower), ymax = censurvForageupper),
+              alpha = 0.5,
+              fill = "grey") +
+  ggplot2::geom_line(aes(x = Time, y = censurvForage),size = lwd-0.5) +
+  ggplot2::geom_point(aes(x = Time, y = censurvForage),size = pcex-0.5) +
+  ggplot2::scale_color_manual(values = series.col, aesthetics = "color")+
+  ggplot2::guides(color = FALSE) +
+  ggplot2::geom_hline(aes(yintercept = 0,
+                 group = CompVar),
+             size = hline.size,
+             alpha = hline.alpha,
+             linetype = hline.lty)+
+       #Add Forage Index
+  ggplot2::geom_ribbon(data = forage_std, aes(ymin = cenForagelower, ymax = cenForageupper, x = Time),
+                fill = "pink", alpha = 0.5) +
+  ggplot2::geom_line(data = forage_std, aes(x = Time, y = cenForage),
+            color = "#ca0020")+
+  ggplot2::geom_point(data = forage_std, aes(x = Time, y = cenForage),
+             size = pcex-0.5,
+             color = "#ca0020")+
+  # # trend test forage indices
+  # ecodata::geom_gls(data = forage_std, aes(x = Time, y = cenForage,
+  #              color = CompVar),
+  #            alpha = trend.alpha, size = trend.size) +
+  # ecodata::geom_lm(data = forage_std, aes(x = Time, y = cenForage,
+  #              color = CompVar),
+  #            alpha = trend.alpha, size = trend.size) +
+  
+  ggplot2::facet_wrap(EPU ~ CompVar~.,ncol = 2, scales = "free_y") +
+
+  #Axis and theme
+  ggplot2::scale_x_continuous(breaks = seq(1980, 2020, by = 10), expand = c(0.01, 0.01)) +
+  #ylim(0, 600)+
+  ggplot2::ylab(expression("Standardized Biomass Index")) +
+  ecodata::theme_facet()+
+  ggplot2::theme(strip.text=element_text(hjust=0),
+        axis.title.x=element_blank())
+
+#p9 check formula
+```
+
+]
+
+.pull-right[
+```{r corr}
+#, fig.cap="VAST stomach contents based forage index (VASTForage) compared with survey based index (SurvForage) by season and region (GOM = Gulf of Maine, GB = Georges Bank, MAB = Mid Atlantic Bight). Pearson correlation coefficients (*R*) and correlation significance (*p*) are shown for each season/region."
+
+# compare them
+
+survforage_comp <- survforage %>%
+  tidyr::separate(Var, c(NA, "Season"), sep = " ") %>%
+  dplyr::select(Time, Season, EPU, stdsurvForage, stdsurvForageupper, stdsurvForagelower,
+                censurvForage) %>%
+  dplyr::mutate(Time = as.integer(Time))
+
+compareforageagg <- forage_std %>%
+  tidyr::separate(Var, c(NA, "Season"), sep = " ") %>%
+  dplyr::select(Time, Season, EPU, stdForage, stdForageupper, stdForagelower,
+                cenForage) %>%
+  left_join(survforage_comp) 
+
+ggplot2::ggplot(compareforageagg, aes(x=stdForage, y=stdsurvForage)) +
+  geom_point(color="blue", alpha=0.1)+
+  geom_abline(intercept = 0, slope = 1, lty=3) +
+  geom_smooth(method=lm) +
+  stat_cor(method="pearson") +
+  ggplot2::ylab(expression("Standardized SurvForage Index")) +
+  ggplot2::xlab(expression("Standardized VASTForage Index")) +
+  ecodata::theme_facet() +
+  facet_grid(fct_relevel(EPU,  "GOM", "GB", "MAB")~
+               fct_relevel(Season, "Spring", "Fall")) 
+
+# gets same answer but check formula
+# ggplot2::ggplot(compareforageagg, aes(x=cenForage, y=censurvForage)) +
+#   geom_point(color="blue", alpha=0.1)+
+#   geom_abline(intercept = 0, slope = 1, lty=3) +
+#   geom_smooth(method=lm) +
+#   stat_cor(method="pearson") +
+#   ecodata::theme_facet() +
+#   facet_grid(fct_relevel(EPU,  "GOM", "GB", "MAB")~
+#                fct_relevel(Season, "Spring", "Fall")) 
+
+  
+```
+
+]
+
+---
+## What drives differences?
+```{r groups, ft.arraystretch = 1}
+
+#  unique(forageindex$SCINAME)
+#  [1] ENGRAULIDAE           LOLIGO PLEI           CLUPEA HARENGUS       SCOMBER SCOMBRUS     
+#  [5] ANCHOA MITCHILLI      POMATOMUS SALTATRIX   PEPRILUS TRIACANTHUS  PLEURONECTIFORMES    
+#  [9] MERLUCCIUS            PEPRILUS              CLUPEIDAE             AMMODYTES            
+# [13] LOLIGO PEALEII        BREVOORTIA            ETRUMEUS TERES        STENOTOMUS CHRYSOPS  
+# [17] ENGRAULIS EURYSTOLE   MERLUCCIUS BILINEARIS CEPHALOPODA           ANCHOA HEPSETUS      
+# [21] CYNOSCION REGALIS     AMMODYTES AMERICANUS  AMMODYTES DUBIUS      ILLEX ILLECEBROSUS
+
+#  unique(blueprey$pynam)
+#  [1] "LOLIGO SP"             "ENGRAULIDAE"           "ANCHOA MITCHILLI"      "PEPRILUS TRIACANTHUS" 
+#  [5] "CEPHALOPODA"           "ANCHOA HEPSETUS"       "ETRUMEUS TERES"        "AMMODYTES SP"         
+#  [9] "STENOTOMUS CHRYSOPS"   "MERLUCCIUS BILINEARIS" "ILLEX SP"              "CLUPEA HARENGUS"      
+# [13] "CLUPEIDAE"             "POMATOMUS SALTATRIX"   "ENGRAULIS EURYSTOLE"   "LOLIGO PEALEII"       
+# [17] "SCOMBER SCOMBRUS"      "PLEURONECTIFORMES"     "CYNOSCION REGALIS"     "BREVOORTIA TYRANNUS"  
+
+# colors from http://medialab.github.io/iwanthue/ 12 hard(Force vector) colorblind friendly full range H C L
+# sorted by diff
+
+# unmanaged "#890058",
+# managed "#afe5ff"
+
+sandlances <- data.frame(prey=c("AMMODYTES",
+                                "AMMODYTES SP",
+                                "AMMODYTES AMERICANUS",  
+                                "AMMODYTES DUBIUS"),
+                         preycol=c("#3b0062",
+                                   "#3b0062",
+                                   "#3b0062",
+                                   "#3b0062"),
+                         mgtcol=c("#890058",
+                                  "#890058",
+                                  "#890058",
+                                  "#890058"))
+                                  
+sandlances$group <- "sandlances"
+  
+anchovies <- data.frame(prey=c("ENGRAULIDAE", 
+                               "ANCHOA MITCHILLI",
+                               "ANCHOA HEPSETUS",
+                               "ENGRAULIS EURYSTOLE"),
+                         preycol=c("#004d15",
+                                   "#004d15",
+                                   "#004d15",
+                                   "#004d15"),
+                         mgtcol=c("#890058",
+                                  "#890058",
+                                  "#890058",
+                                  "#890058"))  
+                                  
+anchovies$group <- "anchovies"
+  
+herrings <- data.frame(prey=c("CLUPEA HARENGUS",
+                              "CLUPEIDAE",
+                              "ETRUMEUS TERES"),
+                         preycol=c("#ff3c98",
+                                   "#ff3c98",
+                                   "#ff3c98"),
+                         mgtcol=c("#afe5ff",
+                                  "#afe5ff",
+                                  "#890058")) 
+                                  
+herrings$group <- "herrings"
+  
+squids <- data.frame(prey=c("LOLIGO SP",
+                            "LOLIGO PLEI",
+                            "LOLIGO PEALEII",
+                            "ILLEX SP",
+                            "ILLEX ILLECEBROSUS",
+                            "CEPHALOPODA"),
+                         preycol=c("#a9f2ff",
+                                   "#a9f2ff",
+                                   "#a9f2ff",
+                                   "#a9f2ff",
+                                   "#a9f2ff",
+                                   "#a9f2ff"),
+                         mgtcol=c("#afe5ff",
+                                  "#890058",
+                                  "#afe5ff",
+                                  "#afe5ff",
+                                  "#afe5ff",
+                                  "#890058")) 
+                                  
+squids$group <- "squids"
+  
+silverhake <- data.frame(prey=c("MERLUCCIUS",
+                                "MERLUCCIUS BILINEARIS"),
+                         preycol=c("#be5000",
+                                   "#be5000"),
+                         mgtcol=c("#afe5ff",
+                                  "#afe5ff"))
+                                  
+silverhake$group <- "silverhake"
+
+butterfish <- data.frame(prey=c("PEPRILUS",
+                                "PEPRILUS TRIACANTHUS"),
+                         preycol=c("#d6b8ff",
+                                   "#d6b8ff"),
+                         mgtcol=c("#afe5ff",
+                                  "#afe5ff"))
+                                  
+butterfish$group <- "butterfish"
+
+bluefish <- data.frame(prey=c("POMATOMUS SALTATRIX"),
+                         preycol=c("#2eff7d"),
+                         mgtcol=c("#afe5ff"))
+
+bluefish$group <- "bluefish"
+
+mackerel <- data.frame(prey=c("SCOMBER SCOMBRUS"),
+                         preycol=c("#ffb4b5"),
+                         mgtcol=c("#afe5ff"))
+
+mackerel$group <- "mackerel"
+
+scup <- data.frame(prey=c("STENOTOMUS CHRYSOPS"),
+                         preycol=c("#1810b8"),
+                         mgtcol=c("#afe5ff"))
+
+scup$group <- "scup"
+
+weakfish <- data.frame(prey=c("CYNOSCION REGALIS"),
+                         preycol=c("#759700"),
+                         mgtcol=c("#afe5ff"))
+
+weakfish$group <- "weakfish"
+
+menhaden <- data.frame(prey=c("BREVOORTIA",
+                              "BREVOORTIA TYRANNUS"),
+                         preycol=c("#547aff",
+                                   "#547aff"),
+                         mgtcol=c("#afe5ff",
+                                  "#afe5ff"))
+                              
+menhaden$group <- "menhaden"
+
+# otherflats <- data.frame(prey = c("PLEURONECTIFORMES"),
+#                          preycol=c("#48beff"),
+#                          mgtcol=c("#890058"))
+
+#otherflats$group <- "otherflats"
+
+preycolcode <- rbind(sandlances,
+                     anchovies,
+                     herrings,
+                     squids,
+                     silverhake,
+                     butterfish,
+                     bluefish,
+                     mackerel,
+                     scup,
+                     weakfish,
+                     menhaden#,
+                     #otherflats
+                     )
+
+preycolcode <- preycolcode %>% 
+  dplyr::mutate(managed = ifelse(mgtcol=="#afe5ff", TRUE, FALSE)) %>%
+  dplyr::rename(bluepynam = prey)
+
+preycols <- preycolcode$preycol
+names(preycols) <- as.factor(preycolcode$prey)
+
+mgtcols <- preycolcode$mgtcol
+names(mgtcols) <- as.factor(preycolcode$prey)
+
+# flextable::flextable(preycolcode %>% 
+#                        dplyr::select(bluepynam, group, managed) %>%
+#                        dplyr::mutate(bluepynam = stringr::str_to_sentence(bluepynam),
+#                                      managed = ifelse(managed, "Yes", "No"))) %>%
+#   flextable::set_header_labels(bluepynam = 'Prey name', 
+#                                group = "Prey group", 
+#                                managed = "Managed species?") %>%
+#   flextable::set_caption("Prey species names in Northeast Fisheries Science Center (NEFSC) stomach contents and survey data with corresponding prey groups and management categories used in analysis.") %>%
+#   #flextable::autofit()
+#   flextable::width(width = c(3, 2, 1))
+
+```
+
+
+```{r dietspp}
+
+#Dominant species in diet based index. species comp (raw)
+
+u1 <- "https://github.com/NOAA-EDAB/forageindex/raw/main/fhdat/bluepyall_stn.rds"
+
+bluepyall_stn <- readRDS(url(u1, method="libcurl"))
+
+ MAB <- data.frame(stratum = c(1010:1080, 1100:1120, 1600:1750, 3010:3450, 3470, 3500, 3510),
+                      EPU = "MAB")
+ 
+ GB <- data.frame(stratum = c(1090, 1130:1210, 1230, 1250, 3460, 3480, 3490, 3520:3550),
+                  EPU = "GB")
+ 
+ GOM <- data.frame(stratum = c(1220, 1240, 1260:1290, 1360:1400, 3560:3830),
+                   EPU = "GOM")
+  
+EPUlook <- dplyr::bind_rows(MAB, GB, GOM)
+
+foragesppwt <- bluepyall_stn %>%
+  dplyr::left_join(EPUlook) %>%
+  dplyr::filter(blueprey=="blueprey",
+                !is.na(EPU)) %>%
+  dplyr::group_by(year, season_ng, EPU, bluepynam) %>%
+  dplyr::summarise(pysum = sum(bluepywt)) %>%
+  dplyr::mutate(pyprop = pysum / sum(pysum)) %>%
+  dplyr::ungroup() %>%
+  dplyr::left_join(preycolcode)
+
+foragegroupprop <- foragesppwt %>%
+  dplyr::group_by(year, season_ng, EPU, group) %>%
+  dplyr::summarise(groupsum = sum(pysum)) %>%
+  dplyr::mutate(groupprop = groupsum / sum(groupsum)) 
+
+foragemanagedprop <- foragesppwt %>%
+  dplyr::group_by(year, season_ng, EPU, managed) %>%
+  dplyr::summarise(mgtsum = sum(pysum)) %>%
+  dplyr::mutate(mgtprop = mgtsum / sum(mgtsum)) 
+  
+
+```
+
+
+```{r surveyspp}
+
+#Dominant species in survey forage index
+
+u1 <- "https://github.com/NOAA-EDAB/forageindex/raw/main/survdat/Survdat.RData"
+
+load(url(u1, method="libcurl"))
+
+pulldate <- survey$pullDate
+functioncall <- survey$functionCall
+survdat <- survey$survdat
+
+#Aggregate species----
+#Grab species list
+#load(here('data_raw/SOE_species_list.RData'))
+
+# see https://stackoverflow.com/questions/32914357/dplyr-inner-join-with-a-partial-string-match
+# https://stackoverflow.com/questions/60993676/join-data-frames-based-fuzzy-matching-of-strings
+
+library(fuzzyjoin)
+
+bluepreyonly <- blueprey %>%
+  dplyr::select(pynam)
+
+my_match_fun <- Vectorize(function(x,y) agrepl(x, y, ignore.case=TRUE))#, max.distance = 0.12, useBytes = TRUE))
+
+foragelist <- ecodata::species_groupings %>%
+  mutate(charsciname = as.character(SCINAME)) %>%
+  #regex_inner_join(blueprey, by = c(charsciname = "pynam"))
+  #fuzzy_inner_join(blueprey, by = c(charsciname = "pynam"), match_fun = str_detect)
+  fuzzy_inner_join(bluepreyonly, by = c(charsciname = "pynam"), match_fun = my_match_fun)
+
+# missing specific sandlances, I want all three of these
+sandlances <- ecodata::species_groupings %>% filter(str_detect(SCINAME, "AMMO"))
+
+# missing Illex
+illex <- ecodata::species_groupings %>% filter(str_detect(SCINAME, "ILLEX"),
+                                               !str_detect(SCINAME, "EGG"))
+
+forageindex <- foragelist %>%
+  dplyr::select(-charsciname, -pynam) %>%
+  bind_rows(sandlances, illex) %>%
+  distinct() %>%
+  mutate(ForageIndex = "ForageIndex")
+
+species_groupings_forage <- ecodata::species_groupings %>%
+  left_join(forageindex)
+
+species <- as.data.table(species_groupings_forage)
+
+#Merge to get species group and fed managed status
+survdat <- merge(survdat, unique(species[, list(SVSPP, SCINAME, ForageIndex)]), 
+                 by = 'SVSPP', all.x = T)
+
+foragesurv <- survdat %>%
+  tibble::as.tibble() %>%
+  dplyr::rename_with(tolower, .cols = everything()) %>%
+  dplyr::mutate(stratum = as.integer(stratum)) %>%
+  dplyr::left_join(EPUlook) %>%
+  dplyr::filter(!is.na(forageindex),
+                !is.na(EPU)) %>%
+  dplyr::group_by(year, season, EPU, sciname) %>%
+  dplyr::summarise(pysum = sum(biomass)) %>%
+  dplyr::rename(season_ng = season, bluepynam = sciname) %>%
+  dplyr::mutate(pyprop = pysum / sum(pysum)) %>%
+  dplyr::ungroup() %>%
+  dplyr::left_join(preycolcode)
+
+
+survforagegroupprop <- foragesurv %>%
+  dplyr::group_by(year, season_ng, EPU, group) %>%
+  dplyr::summarise(groupsum = sum(pysum)) %>%
+  dplyr::mutate(groupprop = groupsum / sum(groupsum)) 
+
+survforagemanagedprop <- foragesurv %>%
+  dplyr::group_by(year, season_ng, EPU, managed) %>%
+  dplyr::summarise(mgtsum = sum(pysum)) %>%
+  dplyr::mutate(mgtprop = mgtsum / sum(mgtsum)) 
+
+
+```
+
+.pull-left[
+
+```{r sppprop, fig.cap="Comparison of raw proportional species composition from all predator stomachs combined (source = stomach, red) to the raw proportional species composition from bottom trawl survey sampling (source = survey, black) in the model domain forall regions and seasons from 1985-2021."}
+
+compgroup <- foragegroupprop %>%
+  dplyr::filter(year > 1984) %>%
+  dplyr::select(-groupsum) %>%
+  dplyr::rename(dietgroupprop = groupprop) %>%
+  dplyr::left_join(survforagegroupprop) %>%
+  dplyr::select(Time=year, Season=season_ng, EPU, group, stomach=dietgroupprop, survey=groupprop) %>%
+  tidyr::pivot_longer(c(stomach, survey), names_to = "source", values_to = "proportion")
+
+aggprop <- compgroup %>%
+  dplyr::filter(!is.na(group)) %>%
+  dplyr::group_by(group, source) %>%
+  dplyr::summarise(sumprop = sum(proportion, na.rm=TRUE)) %>%
+  dplyr::group_by(source) %>%
+  dplyr::mutate(newprop = sumprop / sum(sumprop))
+
+agggroups <- ggplot2::ggplot(aggprop, 
+                aes(group, newprop, fill=source)) +
+  ggplot2::geom_bar(stat = "identity", position = 'dodge') +
+  ggplot2::scale_fill_manual(values = c("indianred", "black"), aesthetics = "fill")+
+  ggplot2::ylab(expression("Proportion forage group")) +
+  guides(x=guide_axis(angle = 45))
+
+agggroups
+
+psilverhake <- ggplot2::ggplot(compgroup %>% dplyr::filter(group=="silverhake"), 
+                aes(x=Time, y=proportion, colour=source)) +
+  #ggplot2::geom_col() +
+  ggplot2::geom_path() +
+  ggplot2::scale_color_manual(values = c("indianred", "black"), aesthetics = "color")+
+  #ggplot2::scale_fill_manual(values = c("indianred", "black"), aesthetics = "fill")+
+  ggplot2::ylab(expression("Proportion silver hake")) +
+  ecodata::theme_facet() +
+  facet_grid(fct_relevel(EPU,  "GOM", "GB", "MAB")~
+               fct_relevel(Season, "SPRING", "FALL")) 
+
+psquids <- ggplot2::ggplot(compgroup %>% dplyr::filter(group=="squids"), 
+                aes(x=Time, y=proportion, colour=source)) +
+  #ggplot2::geom_col() +
+  ggplot2::geom_path() +
+  ggplot2::scale_color_manual(values = c("indianred", "black"), aesthetics = "color")+
+  #ggplot2::scale_fill_manual(values = c("indianred", "black"), aesthetics = "fill")+
+  ggplot2::ylab(expression("Proportion squids")) +
+  ecodata::theme_facet() +
+  facet_grid(fct_relevel(EPU,  "GOM", "GB", "MAB")~
+               fct_relevel(Season, "SPRING", "FALL")) 
+
+psandlances <- ggplot2::ggplot(compgroup %>% dplyr::filter(group=="sandlances"), 
+                aes(x=Time, y=proportion, colour=source)) +
+  #ggplot2::geom_col() +
+  ggplot2::geom_path() +
+  ggplot2::scale_color_manual(values = c("indianred", "black"), aesthetics = "color")+
+  #ggplot2::scale_fill_manual(values = c("indianred", "black"), aesthetics = "fill")+
+  ggplot2::ylab(expression("Proportion sandlances")) +
+  ecodata::theme_facet() +
+  facet_grid(fct_relevel(EPU,  "GOM", "GB", "MAB")~
+               fct_relevel(Season, "SPRING", "FALL")) 
+
+
+pherrings <- ggplot2::ggplot(compgroup %>% dplyr::filter(group=="herrings"), 
+                aes(x=Time, y=proportion, colour=source)) +
+  #ggplot2::geom_col() +
+  ggplot2::geom_path() +
+  ggplot2::scale_color_manual(values = c("indianred", "black"), aesthetics = "color")+
+  #ggplot2::scale_fill_manual(values = c("indianred", "black"), aesthetics = "fill")+
+  ggplot2::ylab(expression("Proportion herrings")) +
+  ecodata::theme_facet() +
+  facet_grid(fct_relevel(EPU,  "GOM", "GB", "MAB")~
+               fct_relevel(Season, "SPRING", "FALL")) 
+
+corrgroup <- foragegroupprop %>%
+  dplyr::filter(year > 1984) %>%
+  dplyr::select(-groupsum) %>%
+  dplyr::rename(dietgroupprop = groupprop) %>%
+  dplyr::left_join(survforagegroupprop) %>%
+  dplyr::select(Time=year, Season=season_ng, EPU, group, stomach=dietgroupprop, survey=groupprop)
+
+
+```
+
+]
+
+.pull-right[
+```{r silver}
+#, fig.cap="Proportion of silver hake in stomach contents data (red) compared with survey biomass sampling (black) over time by region and season."
+psilverhake
+
+```
+
+]
+
+---
+## What drives differences?
+
+.pull-left[
+
+```{r sandlance}
+#, fig.cap="Proportion of sandlance species in stomach contents data (red) compared with survey biomass sampling (black) over time by region and season."
+
+psandlances
+
+```
+
+]
+
+.pull-right[
+```{r unmanagedprop}
+#, fig.cap="Proportion of unmanaged forage species in stomach contents data (red) compared with survey biomass sampling (black) over time by region and season."
+
+compmanaged <- foragemanagedprop %>%
+  dplyr::filter(year > 1984) %>%
+  dplyr::select(-mgtsum) %>%
+  dplyr::rename(dietmgtprop = mgtprop) %>%
+  dplyr::left_join(survforagemanagedprop) %>%
+  dplyr::select(Time=year, Season=season_ng, EPU, managed, stomach=dietmgtprop, survey=mgtprop) %>%
+  tidyr::pivot_longer(c(stomach, survey), names_to = "source", values_to = "proportion")
+
+ggplot2::ggplot(compmanaged %>% dplyr::filter(managed==FALSE), 
+                aes(x=Time, y=proportion, colour=source)) +
+  #ggplot2::geom_col() +
+  ggplot2::geom_path() +
+  ggplot2::scale_color_manual(values = c("indianred", "black"), aesthetics = "color")+
+  #ggplot2::scale_fill_manual(values = c("indianred", "black"), aesthetics = "fill")+
+  ggplot2::ylab(expression("Proportion unmanaged forage species")) +
+  ecodata::theme_facet() +
+  facet_grid(fct_relevel(EPU,  "GOM", "GB", "MAB")~
+               fct_relevel(Season, "SPRING", "FALL")) 
+
+```
+
+]
+
+---
+## Sensitivities
+
+
+---
+## Sensitivities
+
+---
+## Integrating into stock assessment 
+
+.pull-left[
+A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")`.
+
+WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
+
+Forage fish indices were explored as covariates on catchability for the fishery independent bottom trawl surveys (R/V Bigelow), but did not improve the assessment.
+
+However, the application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error.  
+]
+
+.pull-right[
+```{r results='hide', message=FALSE}
+
+u1 <- "https://github.com/NOAA-EDAB/forageindex/raw/main/WHAMoutput/BF28C_m7_ecov_off.rds"
+u2 <- "https://github.com/NOAA-EDAB/forageindex/raw/main/WHAMoutput/BF28C_m7_ecov_on.rds"
+  
+ecov_off <- readRDS(url(u1, method="libcurl"))
+ecov_on <- readRDS(url(u2, method="libcurl"))
+
+mods <- list(ecov_off, ecov_on)
+names(mods) <- c("ecov_off", "ecov_on")
+
+compwham <- wham::compare_wham_models(mods, do.plot = F, fdir = here::here("data"))
+
+```
+
+
+```{r WHAMq, fig.asp = 0.8, fig.cap="Fall state waters forage index fit as a catchabilty covariate within the bluefish assessment model (top), with resulting catchability, q, for the recreational fishery catch per unit effort (MRIP) index (bottom)."}
+
+StateWaters <- splitoutput |>
+  dplyr::filter(Region == "StateWaters") |>
+  dplyr::mutate(logStateW = log(Estimate)) |>
+  dplyr::select(year = Time, logStateW, SE = Std..Error.for.ln.Estimate.)
+
+forageobs <- ecov_on$input$data$Ecov_obs
+forageest <- ecov_on$rep$Ecov_out[,,1][,3]
+forageestse <- ecov_on$rep$Ecov_obs_sigma
+
+StateWatersWHAM <- StateWaters |>
+  bind_cols(forageobs=forageobs, 
+            forageest=forageest, 
+            forageestse=forageestse)
+
+foragefit <- ggplot(StateWatersWHAM, aes(x=year, y=forageobs, color="ln_StateWaters")) + #y=logStateW
+  geom_point() +
+  geom_ribbon(aes(ymin=forageobs-(1.96*SE), ymax=forageobs+(1.96*SE), fill="ln_StateWaters"),  linetype = 0, alpha = 0.15) +
+  geom_line(aes(x=year, y=forageest, color="WHAM_fit"))+
+  geom_ribbon(aes(ymin=forageest-(forageestse), ymax=forageest+(forageestse), 
+                  fill="WHAM_fit"),  linetype = 0, alpha = 0.15) +
+  scale_color_manual(name='Forage Index',
+                     breaks=c('WHAM_fit', 'ln_StateWaters'),
+                     values=c('ln_StateWaters'='purple', 'WHAM_fit'="indianred"),
+                     aesthetics = c("colour", "fill")) +
+  xlab("Year") +
+  ylab("ln(State Waters fall forage)")
+
+
+forageqMRIP <- ecov_on$rep$q[,3]
+noqMRIP <- ecov_off$rep$q[,3]
+assyear <- 1985:2021
+
+se <- summary(ecov_on$sdrep)
+se <- matrix(se[rownames(se) == "logit_q_mat",2], length(ecov_on$years))
+forageqMRIPse <- se[,3]
+
+WHAMq <- data.frame(year=assyear, ecovq=forageqMRIP, se=forageqMRIPse, qbase=noqMRIP)
+
+WHAMfit <- ggplot(WHAMq, aes(x=year, y=ecovq, color='ecov_on'))+
+  geom_line()+ #color="indianred"
+  geom_ribbon(aes(ymin=ecovq*exp(-1.96*se), ymax=ecovq*exp(1.96*se), fill='ecov_on'),  linetype = 0, alpha = 0.15)+ 
+  geom_line(aes(x=year, y=qbase, color='ecov_off')) +
+  scale_color_manual(name='MRIP Catchability',
+                     breaks=c('ecov_off', 'ecov_on'),
+                     values=c('ecov_on'='indianred', 'ecov_off'="black"),
+                     aesthetics = c("colour", "fill")) +
+  xlab("Year") +
+  ylab("Estimated catchability, q")
+
+foragefit + WHAMfit + plot_layout(ncol = 1)
+
+```
+
+]
+???
+
+
+The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
+The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
+The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
+
+---
+.pull-left[
+## Do prey affect bluefish availability? Yes, for the recreational CPUE index
+
+
+```{r WHAMresults, ft.arraystretch = 1}
+
+compwhamtab <- as.data.frame(compwham$tab) |>
+  tibble::rownames_to_column(var = "model")
+
+flextable::flextable(compwhamtab) |>
+  flextable::set_caption("Bluefish stock assessment model fit and retrospective diagnostics with (model = ecov_on) and without (model = ecov_off) the fall StateWaters forage index included as a catchability covariate on the recreational fishery catch per unit effort index. Mohn's rho values (rho) indicate retrospective performance for recruitment (R), spawning stock biomass (SSB) and fully selected fishing mortality (Fbar).")
+
+```
+]
+
+.pull-right[
+*The inclusion of the forage fish index improved model fit.* 
+
+```{r, fig.asp=0.9}
+
+
+plotwham <- wham::compare_wham_models(mods, do.table = F, plot.opts=list(kobe.prob=FALSE,
+                                                                         which=1),
+                                      fdir=here::here("data"))
+
+plotwham$g[[1]] + 
+  scale_color_manual(values = c("black", "indianred")) + 
+  scale_fill_manual(values = c("black", "indianred")) +
+  theme(legend.position = "right")
+
+```
+
+]
+
+The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to <span style="color:#cd5c5c;">higher biomass estimates from the assessment including forage fish.</span>  
 
 ---
 ## Ecosystem reporting: Can forage indices link zooplankton and fish productivity?
@@ -912,59 +1854,17 @@ epu_abbr = "MAB"
 
 .pull-right[
 
-```{r SOEforage, fig.cap="Time series of VAST estimated fall forage indices for the 2023 State of the Ecosystem report", fig.asp=1}
+#### MAB
 
-splitoutput <- read.csv(url("https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv"))
+.center[
+```{r MAforagebio, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R"), fig.asp=.5, out.width="50%"}
+#fig.cap = "Forage fish index based on spring and fall survey predator diets in the Mid Atlantic.", 
+```
+]
 
-# warning, hardcoded. obviously
-  stratlook <- data.frame(Stratum = c("Stratum_1",
-                                      "Stratum_2",
-                                      "Stratum_3",
-                                      "Stratum_4",
-                                      "Stratum_5",
-                                      "Stratum_6",
-                                      "Stratum_7",
-                                      "Stratum_8",
-                                      "Stratum_9",
-                                      "Stratum_10",
-                                      "Stratum_11",
-                                      "Stratum_12",
-                                      "Stratum_13",
-                                      "Stratum_14",
-                                      "Stratum_15"),
-                          Region  = c("AllEPU", 
-                                      "MABGB", 
-                                      "MABGBstate", 
-                                      "MABGBfed", 
-                                      "MAB",
-                                      "GB",
-                                      "GOM",
-                                      "bfall",
-                                      "bfin",
-                                      "bfoff",
-                                      "MABGBalbinshore",
-                                      "MABGBothoffshore",
-                                      "albbfin",
-                                      "albbfall",
-                                      "allother"))
-
-forageindexSOE <- splitoutput %>%
-    left_join(stratlook) %>%
-    dplyr::select(Time, Region, Estimate, SE=Std..Error.for.Estimate) %>%
-    tidyr::pivot_longer(c(Estimate, SE), names_to = "Var") %>%
-    dplyr::group_by(Var) %>%
-    tidyr::pivot_wider(names_from = Region, values_from = value) %>%
-    dplyr::select(Time, MAB, GB, GOM) %>%
-    tidyr::pivot_longer(!c(Time, Var), names_to = "Region", values_to = "value") %>%
-    dplyr::mutate(Region = factor(Region, levels = c("GOM", "GB", "MAB"))) %>%
-    tidyr::pivot_wider(names_from = "Var", values_from = "value")
- 
-  ggplot(forageindexSOE, aes(x=Time, y=Estimate, colour = Region)) +
-    geom_errorbar(aes(ymin=Estimate+SE, ymax=Estimate-SE))+
-    geom_point()+
-    geom_line() + 
-    scale_y_continuous(limits = c(0,NA)) +
-    facet_wrap(~Region, scales = "free_y", nrow = 3)
+#### NE
+```{r NEforagebio, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-forage-index.R"),  fig.asp=.5, out.width="100%"}
+#fig.cap = "Forage fish index based on spring and fall survey predator diets on Georges Bank (GB) and in the Gulf of Maine (GOM).",
 ```
 
 ]
@@ -988,30 +1888,8 @@ Complex food web, generalist predators
 ]
 
 ---
-## Do prey affect bluefish availability? Depends on the index. *Preliminary results...Review in December*
+## Next steps
 
-.pull-left[
-A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")`.
-
-Forage fish indices were explored as covariates on catchability for the fishery independent bottom trawl surveys, but either did not improve the assessment, or the exploratory models did not converge.
-
-However, the application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error.  **The inclusion of the forage fish index improved the fit of all models.**
-]
-
-.pull-right[
-![:img preliminary results of including the forage fish index within the bluefish assessment comparing fishing mortality, recruitment, and spawning stock biomass time series between models with (purple, blue) and without (green, yellow) the index](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishWHAMecovPRELIM.png)
-]
-
-The use of the forage fish index as a covariate on catchability led to an overall decreasing trend in catchability over time.  The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to <span style="color:#5D3FD3;">higher biomass estimates from the assessment including forage fish.</span>  
-
-
-
-???
-WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
-
-The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
-The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
-The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
 
 
 ---
