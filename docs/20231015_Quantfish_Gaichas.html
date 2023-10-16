@@ -18,7 +18,7 @@ class: right, bottom, my-title, title-slide
 # Assessing small pelagic fish trends in space<br /> and time using piscivore stomach contents
 ]
 .subtitle[
-## Quantfish <br /> 15 October 2023
+## Quantfish <br /> 16 October 2023
 ]
 .author[
 ### Sarah Gaichas<span class="math inline"><sup>1</sup></span>, James Gartland<span class="math inline"><sup>2</sup></span>, Brian Smith<span class="math inline"><sup>1</sup></span>, Anthony Wood<span class="math inline"><sup>1</sup></span>, Elizabeth Ng<span class="math inline"><sup>3</sup></span>,<br /> Michael Celestino<span class="math inline"><sup>4</sup></span>, Katie Drew<span class="math inline"><sup>5</sup></span>, Abigail Tyrell<span class="math inline"><sup>1, 6</sup></span>, and James Thorson<span class="math inline"><sup>7</sup></span>
@@ -96,7 +96,13 @@ Two applications:
 
 1. Describing aggregate forage species trends for integrated ecosystem assessment
 
+.pull-left[
+![Bluefish illustration, credit NOAA Fisheries](https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png)
+]
 
+.pull-right[
+![forage](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/mackerel.png)
+]
 
 ---
 ## Northeast US: How much? Where and when?
@@ -136,6 +142,8 @@ background-position: right, left
 ---
 ## Outline
 
+.pull-left-60[
+
 1. Vector Autoregressive Spatio-Temporal (VAST) modeling
 
 1. Identify forage species: what are bluefish prey?
@@ -152,8 +160,17 @@ background-position: right, left
 
 1. Discussion
 
+]
 
-Gaichas et al in press, http://dx.doi.org/10.1139/cjfas-2023-0093
+.pull-right-40[
+![xkcd maps](https://imgs.xkcd.com/comics/heatmap.png)
+.contrib[
+https://xkcd.com/1138
+]
+]
+
+Gaichas et al. in press, http://dx.doi.org/10.1139/cjfas-2023-0093
+
 
 ---
 ## Vector Autoregressive Spatio-Temporal (VAST) modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson, et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
@@ -231,15 +248,34 @@ Estimation uses stochastic partial differential equation (SPDE) approximation.
 ---
 ## Estimating density in space and the index
 
-Expected mass of forage in a predator stomach is the product of the encounter probability of forage in the stomach times weight in the stomach. 
+.pull-left[
 
-Poisson link delta model
+Poisson link delta model ([Ng, et al., 2021](https://doi.org/10.1093/icesjms/fsab026))
+
 Probability of encounter Poisson: `\(p(i) = 1 - exp[-n(i)]\)`
 
-Index based on area weighting
+Mass of prey per stomach given encounter: `\(r(i) = \frac{n(i)}{p(i)}w(i)\)`
 
-Bias correction
+Probability for weight `\(B\)` in stomach:
 
+$$ Pr[b(i) = B] =  \begin{cases} 1-p(i), B = 0\\\\p(i) \times g[B|r(i), \sigma_b^2], B &gt; 0 \end{cases},$$  
+
+where `\(g\)` is a Gamma function.  
+
+]
+
+.pull-right[
+Density `\(b\)` at a location (knot) `\(s\)` for year `\(t\)` is then the predicted weight in a stomach (linear predictor for encounter * linear predictor for weight given encounter):
+
+`$$\hat{b}_{s,t} = \hat{n}_{s,t}\hat{w}_{s,t}$$`
+
+Index based on area `\(a\)` weighting for each of 500 knots (or subsets): 
+
+`$$I_t = \sum_{s=1}^{500} a_s\hat{b}_{s,t}$$`
+
+Bias correction as in &lt;a name=cite-thorson_implementing_2016&gt;&lt;/a&gt;([Thorson, et al., 2016](https://www.sciencedirect.com/science/article/pii/S0165783615301399))
+
+]
 
 ---
 ## Defining bluefish prey from stomachs: a mix of managed and unmanaged small pelagics 
@@ -373,7 +409,7 @@ SST is also likely to affect prey distribution, but differently for each prey sp
 &lt;p class="caption"&gt;Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown.&lt;/p&gt;
 &lt;/div&gt;
 
-Indices for aggregate small pelagics from piscivore stomachs can be calculated for any subset of the full model domain. Bias correction of the resulting indices is then applied &lt;a name=cite-thorson_implementing_2016&gt;&lt;/a&gt;([Thorson, et al., 2016](https://www.sciencedirect.com/science/article/pii/S0165783615301399)). 
+Indices for aggregate small pelagics from piscivore stomachs can be calculated for any subset of the full model domain. Bias correction of the resulting indices is then applied ([Thorson, et al., 2016](https://www.sciencedirect.com/science/article/pii/S0165783615301399)). 
 
 ???
 NEFSC survey strata definitions are built into the VAST `northwest-atlantic` extrapolation grid already. We defined additional new strata to address the recreational inshore-offshore 3 mile boundary. The area within and outside 3 miles of shore was defined using the `sf` R package as a 3 nautical mile (approximated as 5.556 km) buffer from a high resolution coastline from the`rnaturalearth` R package. This buffer was then intersected with the current `FishStatsUtils::northwest_atlantic_grid` built into VAST and saved using code [here](https://github.com/sgaichas/bluefishdiet/blob/main/VASTcovariates_updatedPreds_sst_3mi.Rmd#L49-L94). Then, the new State and Federal waters strata were used to split NEFSC survey strata where applicable, and the new full set of strata were used along with a modified function from `FishStatsUtils::Prepare_NWA_Extrapolation_Data_Fn` to build a custom extrapolation grid for VAST as described in detail [here](https://sgaichas.github.io/bluefishdiet/VASTcovariates_finalmodbiascorrect_3misurvstrat.html). 
@@ -399,8 +435,8 @@ VAST estimated Fall forage biomass density &amp;rarr;
 ???
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/forageindex/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
-background-size: 1000px
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/cropped_ln_density-predicted.png")
+background-size: 600px
 background-position: right
 
 ## Comparisons: Spatial
@@ -555,7 +591,7 @@ The MRIP index fit with the annual forage fish index did not converge or hessian
 
 
 
-&lt;template id="69ceb28a-6e38-4c3f-a464-8affc8c5d9b3"&gt;&lt;style&gt;
+&lt;template id="05b09eee-bf11-41a1-b6ab-6cc5efd9bc95"&gt;&lt;style&gt;
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -589,15 +625,15 @@ The MRIP index fit with the annual forage fish index did not converge or hessian
 .tabwid table tr {
 background-color: transparent;
 }
-&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-e00036f0{}.cl-dffb0d6a{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dffb2700{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dffb270a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dffb5d10{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dffb5d1a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dffb5d1b{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dffb5d1c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dffb5d24{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dffb5d25{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-e00036f0'&gt;&lt;caption class="Table Caption"&gt;
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-57112fc0{}.cl-56e24b42{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-56e2641a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-56e26424{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-56e2a010{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-56e2a01a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-56e2a01b{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-56e2a024{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-56e2a02e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-56e2a02f{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-57112fc0'&gt;&lt;caption class="Table Caption"&gt;
 
 Bluefish stock assessment model fit and retrospective diagnostics with (model = ecov_on) and without (model = ecov_off) the fall StateWaters forage index included as a catchability covariate on the recreational fishery catch per unit effort index. Mohn's rho values (rho) indicate retrospective performance for recruitment (R), spawning stock biomass (SSB) and fully selected fishing mortality (Fbar).
 
-&lt;/caption&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dffb5d25"&gt;&lt;p class="cl-dffb2700"&gt;&lt;span class="cl-dffb0d6a"&gt;model&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d24"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;dAIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d24"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;AIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d24"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;rho_R&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d24"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;rho_SSB&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d24"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;rho_Fbar&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dffb5d1a"&gt;&lt;p class="cl-dffb2700"&gt;&lt;span class="cl-dffb0d6a"&gt;ecov_on&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d10"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;0.0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d10"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;3,230.6&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d10"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;-0.0136&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d10"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;0.0880&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d10"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;-0.0641&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dffb5d1c"&gt;&lt;p class="cl-dffb2700"&gt;&lt;span class="cl-dffb0d6a"&gt;ecov_off&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d1b"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;5.6&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d1b"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;3,236.2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d1b"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;0.0104&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d1b"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;0.1301&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d1b"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;-0.0962&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
-&lt;div class="flextable-shadow-host" id="883172d7-6d68-46fb-b381-5f8f930c6b0c"&gt;&lt;/div&gt;
+&lt;/caption&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-56e2a02f"&gt;&lt;p class="cl-56e2641a"&gt;&lt;span class="cl-56e24b42"&gt;model&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a02e"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;dAIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a02e"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;AIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a02e"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;rho_R&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a02e"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;rho_SSB&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a02e"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;rho_Fbar&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-56e2a01a"&gt;&lt;p class="cl-56e2641a"&gt;&lt;span class="cl-56e24b42"&gt;ecov_on&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a010"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;0.0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a010"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;3,230.6&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a010"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;-0.0136&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a010"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;0.0880&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a010"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;-0.0641&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-56e2a024"&gt;&lt;p class="cl-56e2641a"&gt;&lt;span class="cl-56e24b42"&gt;ecov_off&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a01b"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;5.6&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a01b"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;3,236.2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a01b"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;0.0104&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a01b"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;0.1301&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-56e2a01b"&gt;&lt;p class="cl-56e26424"&gt;&lt;span class="cl-56e24b42"&gt;-0.0962&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="48bc8269-5428-403a-907d-563c6356194c"&gt;&lt;/div&gt;
 &lt;script&gt;
-var dest = document.getElementById("883172d7-6d68-46fb-b381-5f8f930c6b0c");
-var template = document.getElementById("69ceb28a-6e38-4c3f-a464-8affc8c5d9b3");
+var dest = document.getElementById("48bc8269-5428-403a-907d-563c6356194c");
+var template = document.getElementById("05b09eee-bf11-41a1-b6ab-6cc5efd9bc95");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -621,6 +657,68 @@ fantome.appendChild(templateContent);
 The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to &lt;span style="color:#cd5c5c;"&gt;higher biomass estimates from the assessment including forage fish.&lt;/span&gt;  
 
 ---
+## Including ecosystem information for fish stocks: Alaska Ecosystem and Socioeconomic Profiles
+
+.pull-left[
+
+![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)  
+&amp;nbsp; 
+
+Ecosystem and Socioeconomic Profiles (ESPs) 
+]
+
+.pull-right[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/GOApcodESPrisk.png)
+]
+
+.footnote[
+
+Pacific cod example from Alaska: https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheries-science-center-year-review and https://apps-afsc.fisheries.noaa.gov/refm/docs/2021/GOApcod.pdf
+]
+
+
+???
+Our ESP process was developed from the AFSC process, but we adjusted things slightly because of how our benchmarks are scheduled and because we are providing scientific advice to multiple Councils. 
+
+The ESP framework is an iterative cycle that complements the stock assessment cycle. First I will give you an overview of the ESP cycle, and then I will explain each step in more detail. The ESP begins with the development of the problem statement by identifying the topics that the assessment working group and ESP team want to assess. This process includes a literature review or other method of gathering existing information on the stock, such as reviewing prior assessments and research recommendations. Next, a conceptual model is created that links important processes and pressures to stock performance. From these linkages, we develop indicators that can be used to monitor the system conditions. Next, the indicators are analyzed to determine their status and the likely impacts on the stock. Some indicators may be tested for inclusion in assessment models. Finally, all of these analyses are synthesized into a report card to provide general recommendations for fishery management.
+
+
+
+---
+## Northeast US Bluefish *Pomatomus saltatrix* ESP, reviewed December 2022
+
+.pull-left[
+
+![Bluefish ESP conceptual model](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
+.contrib[Figure and table by Abigail Tyrell]
+]
+
+.pull-right[
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/TOR1.svg)
+]
+
+The full ESP document is available as a working paper from the [stock assessment data portal](https://apps-nefsc.fisheries.noaa.gov/saw/sasi_files.php?year=2022&amp;species_id=32&amp;stock_id=6&amp;review_type_id=5&amp;info_type_id=5&amp;map_type_id=&amp;filename=WP%2001%20Tyrell%20etAl%202022%20-%20ESP.pdf) 
+
+## Ecosystem considerations can apply to observation as well as population processes 
+
+???
+
+---
+## What have we learned? New England Atlantic Herring as forage &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128)).
+.pull-left-30[
+Complex food web, generalist predators
+- Weak individual predator response to many herring harvest control rules
+- (Stronger predator response to changing herring growth)
+- Herring is one of several important prey (36-40 in plot)
+- Assessing multiple prey together will likely show stronger effects on predators
+]
+.pull-right-70[
+![NEUSfw](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/LinkNEUSfoodweb.png)
+.contrib[The original "horrendogram" &lt;a name=cite-link_does_2002&gt;&lt;/a&gt;([Link, 2002](https://www.int-res.com/abstracts/meps/v230/p1-9/))]
+]
+
+
+---
 ## Extensions: Can forage indices link zooplankton and fish productivity?
 
 .pull-left[
@@ -639,7 +737,7 @@ The recreational index is important in scaling the biomass results, and the lowe
 #### MAB
 
 .center[
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/MAforagebio-1.png" width="50%" /&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/MAforagebio-1.png" width="70%" /&gt;
 ]
 
 #### NE
@@ -651,30 +749,57 @@ The recreational index is important in scaling the biomass results, and the lowe
 aggregate forage important in this system with many forage species: Jason Link horrendogram
 
 potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
----
-## What have we learned? New England Atlantic Herring as forage &lt;a name=cite-deroba_dream_2018&gt;&lt;/a&gt;([Deroba, et al., 2018](http://www.nrcresearchpress.com/doi/10.1139/cjfas-2018-0128)).
-.pull-left-30[
-Complex food web, generalist predators
-- Weak individual predator response to many herring harvest control rules
-- (Stronger predator response to changing herring growth)
-- Herring is one of several important prey (36-40 in plot)
-- Assessing multiple prey together will likely show stronger effects on predators
-]
-.pull-right-70[
-![NEUSfw](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/LinkNEUSfoodweb.png)
-.contrib[The original "horrendogram" &lt;a name=cite-link_does_2002&gt;&lt;/a&gt;([Link, 2002](https://www.int-res.com/abstracts/meps/v230/p1-9/))]
-]
 
 ---
+## Mid-Atlantic Council Ecosystem Risk Assessment: New indices
+
+**Food web (Council-managed predators): change to "Food web: Prey availability"**
+
+.contrib[
+This element is applied at the species level. 
+Fish stocks and protected species stocks are managed using single species approaches, but fish and protected species stocks exist within a food web of predator and prey interactions. This element is one of two separating food web risks to achieving OY for Council managed species from two sources. This first element assesses prey availability for each species, and the second food web risk element assesses predation pressure on each species (see next element). 
+]
+  
+**Proposed definition**: Risk of not achieving OY for Council managed species due to availability of prey.
+
+Indicators:
+.pull-left[
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-14-1.png" width="120%" /&gt;
+]
+.pull-right[
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/MAforageind-1.png" width="504" /&gt;
+]
+
+???
+Potential risk criteria:
+ 
+
+| Risk Level         | Definition                                                          |  
+|:-------------------|:--------------------------------------------------------------------|
+| Low  | Prey availability high (not limiting) and/or good fish condition past 5 years |
+| Low-Moderate | Aggregate prey available for this species has stable or increasing trend, moderate condition |
+| Moderate-High | Aggregate prey available for this species has significant decreasing trend, poor condition |
+| High | Managed species highly dependent on prey with limited and declining availability, poor condition |
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_3.png")
+background-size: 500px
+background-position: right
+
 ## Next steps
 
 Update for 2024 ecosystem reporting
 
-Benthic index for food web modeling
+Benthic index for food web modeling, risk assessment
 
-Add predator functional response?
+Improvements/exploration: 
 
-Multivariate model tracking prey groups?
+*   Add predator functional response?
+
+*   Multivariate model tracking prey groups?
+
+*   Your ideas here!
 
 ---
 ## Thank you!  References
@@ -772,12 +897,6 @@ Research_ 175, pp. 66-74. ISSN: 0165-7836. DOI:
 URL:
 [https://www.sciencedirect.com/science/article/pii/S0165783615301399](https://www.sciencedirect.com/science/article/pii/S0165783615301399)
 (visited on Jul. 29, 2022).
-]
-
-## Additional resources
-
-.contrib[
-[Northeast US State of the Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
 ]
 
 .footnote[
