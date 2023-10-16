@@ -119,12 +119,14 @@ Create a “forage index” to evaluate changes in small pelagics  over time and
 
 Two applications: 
 
-1. addressing uncertainty in the stock assessment for a key predator species, bluefish (*Pomatomus saltatrix*) 
+1. Addressing uncertainty in the stock assessment for a key predator species, bluefish (*Pomatomus saltatrix*) 
 
-1. describing aggregate forage species trends for integrated ecosystem assessment
+1. Describing aggregate forage species trends for integrated ecosystem assessment
+
+
 
 ---
-# Northeast US: How much? Where and when?
+## Northeast US: How much? Where and when?
 
 .pull-left[
 ## Stock assessments ([ASMFC](http://www.asmfc.org/species/atlantic-menhaden),  [StockSmart](https://apps-st.fisheries.noaa.gov/stocksmart?app=homepage))
@@ -306,6 +308,11 @@ background-position: right, left
 
 1. Stock assessment application
 
+1. Discussion
+
+
+Gaichas et al in press, http://dx.doi.org/10.1139/cjfas-2023-0093
+
 ---
 ## Vector Autoregressive Spatio-Temporal (VAST) modeling `r Cite(myBib, c("thorson_comparing_2017", "thorson_guidance_2019"))`
 
@@ -382,6 +389,14 @@ Estimation uses stochastic partial differential equation (SPDE) approximation.
 ---
 ## Estimating density in space and the index
 
+Expected mass of forage in a predator stomach is the product of the encounter probability of forage in the stomach times weight in the stomach. 
+
+Poisson link delta model
+Probability of encounter Poisson: $p(i) = 1 - exp[-n(i)]$
+
+Index based on area weighting
+
+Bias correction
 
 
 ---
@@ -786,9 +801,9 @@ theme_set(theme_bw())
 ggplot(data = ecodata::coast) +
   geom_sf() + 
   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = MABgrid, aes(x = Lon, y = Lat), colour = "green", size=0.05, alpha=0.1) +
-  geom_point(data = GBgrid, aes(x = Lon, y = Lat), colour = "orange", size=0.05, alpha=0.1) +
-  geom_point(data = GOMgrid, aes(x = Lon, y = Lat), colour = "red", size=0.05, alpha=0.1) +
+  geom_point(data = MABgrid, aes(x = Lon, y = Lat), colour = "green3", size=0.05, alpha=0.5) +
+  geom_point(data = GBgrid, aes(x = Lon, y = Lat), colour = "orange", size=0.05, alpha=0.5) +
+  geom_point(data = GOMgrid, aes(x = Lon, y = Lat), colour = "red", size=0.05, alpha=0.5) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) + #full extent of VAST model
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) + #zoomed to Hatteras and N
   ggtitle("MAB (green), GB (orange), GOM (red)")
@@ -798,8 +813,8 @@ ggplot(data = ecodata::coast) +
   geom_sf() + 
   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
   geom_point(data = MABGBgrid, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
-  geom_point(data = albinshoregrid, aes(x = Lon, y = Lat), size=0.03, colour = "lightblue") +
-  geom_point(data = bfinshoregrid, aes(x = Lon, y = Lat), size=0.05, colour = "blue",  alpha=0.3) +
+  geom_point(data = albinshoregrid, aes(x = Lon, y = Lat), size=0.03, colour = "lightblue",  alpha=0.3) +
+  geom_point(data = bfinshoregrid, aes(x = Lon, y = Lat), size=0.05, colour = "blue") +
   geom_point(data = bfoffshoregrid, aes(x = Lon, y = Lat), size=0.05, colour = "lightblue1",  alpha=0.3) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
@@ -1558,7 +1573,7 @@ survforagemanagedprop <- foragesurv %>%
 
 .pull-left[
 
-```{r sppprop, fig.cap="Comparison of raw proportional species composition from all predator stomachs combined (source = stomach, red) to the raw proportional species composition from bottom trawl survey sampling (source = survey, black) in the model domain forall regions and seasons from 1985-2021."}
+```{r sppprop, fig.cap="Comparison of raw proportional species composition from all predator stomachs combined (source = stomach, red) to the raw proportional species composition from bottom trawl survey sampling (source = survey, black) in the model domain forall regions and seasons from 1985-2021.", fig.asp=0.6}
 
 compgroup <- foragegroupprop %>%
   dplyr::filter(year > 1984) %>%
@@ -1642,7 +1657,7 @@ corrgroup <- foragegroupprop %>%
 ]
 
 .pull-right[
-```{r silver}
+```{r silver, fig.cap="Proportion silver hake in stomach contents data (red) and survey biomass sampling (black)."}
 #, fig.cap="Proportion of silver hake in stomach contents data (red) compared with survey biomass sampling (black) over time by region and season."
 psilverhake
 
@@ -1655,8 +1670,8 @@ psilverhake
 
 .pull-left[
 
-```{r sandlance}
-#, fig.cap="Proportion of sandlance species in stomach contents data (red) compared with survey biomass sampling (black) over time by region and season."
+```{r sandlance, fig.cap="Proportion sandlance species in stomach contents data (red) and survey biomass sampling (black)."}
+#
 
 psandlances
 
@@ -1665,8 +1680,8 @@ psandlances
 ]
 
 .pull-right[
-```{r unmanagedprop}
-#, fig.cap="Proportion of unmanaged forage species in stomach contents data (red) compared with survey biomass sampling (black) over time by region and season."
+```{r unmanagedprop, fig.cap="Proportion unmanaged forage groups in stomach contents (red) and survey sampling (black)."}
+#
 
 compmanaged <- foragemanagedprop %>%
   dplyr::filter(year > 1984) %>%
@@ -1692,11 +1707,193 @@ ggplot2::ggplot(compmanaged %>% dplyr::filter(managed==FALSE),
 ]
 
 ---
-## Sensitivities
+## Prey exclusion sensitivities: minor prey (left) and major prey (herring, silver hake, makerel; right)
 
+.pull-left[
+```{r preycut1, fig.cap="Fall forage index trends using different prey cut-offs.", fig.height=8}
+# compare 2022 prey list to paper update preylist for indices
+
+
+splitoutold <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/forageindex/main/pyindex/2022/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv")
+splitoutnew <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/forageindex/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv")
+
+splitoutput2022 <- splitoutold %>%
+  dplyr::mutate(Season = "fall",
+                modname = "Survey10Prey") |>
+  dplyr::left_join(stratlook) %>%
+  dplyr::filter(Region %in% c("GOM", "GB", "MAB","MABGBstate", "bfin")) %>%
+  dplyr::mutate(Type = ifelse(Region %in% c("GOM", "GB", "MAB"), "Ecoregion", "Bluefish"),
+                Region = case_when(Region == "MABGBstate" ~ "StateWaters",
+                                   Region == "bfin" ~ "SurveyBluefish",
+                                   TRUE ~ Region))
+
+splitoutput2023 <- splitoutnew %>%
+  dplyr::mutate(Season = "fall",
+                modname = "Combined25Prey") |>
+  dplyr::left_join(stratlook) %>%
+  dplyr::filter(Region %in% c("GOM", "GB", "MAB","MABGBstate", "bfin")) %>%
+  dplyr::mutate(Type = ifelse(Region %in% c("GOM", "GB", "MAB"), "Ecoregion", "Bluefish"),
+                Region = case_when(Region == "MABGBstate" ~ "StateWaters",
+                                   Region == "bfin" ~ "SurveyBluefish",
+                                   TRUE ~ Region))
+
+foragemax <- max(splitoutput2023$Estimate) #scale to new prey list
+
+splitoutput <- splitoutput2022 |> bind_rows(splitoutput2023)
+
+foragetsmean <- splitoutput %>%
+  dplyr::group_by(modname, Region) %>%
+  dplyr::mutate(fmean = mean(Estimate)) 
+
+ggplot(foragetsmean |> filter(Season =="fall"), aes(x=Time, y=((Estimate-fmean)/fmean), colour=modname)) +
+  #geom_errorbar(aes(ymin=(Estimate+Std..Error.for.Estimate - fmean)/fmean, 
+  #                  ymax=(Estimate-Std..Error.for.Estimate - fmean)/fmean))+
+  geom_point(aes(shape=modname))+
+  geom_line()+
+  #acet_wrap(~fct_relevel(Type, "Ecoregion", "Bluefish"), scales = "free_y") +
+  facet_wrap(~Region, scales = "free_y", ncol = 1) +
+  #scale_y_continuous(labels=function(x)round(x/foragemax, digits = 2))+
+  ylab("Relative forage biomass scaled to time series mean")  +
+  ggtitle("Fall models: trend comparison") +
+  theme(#legend.position = c(1, 0),
+        #legend.justification = c(1, 0),
+        legend.position = "bottom",
+        legend.text = element_text(size=rel(0.5)),
+        legend.key.size = unit(0.5, 'lines'),
+        legend.title = element_text(size=rel(0.5)))
+
+```
+
+]
+
+.pull-right[
+
+```{r noassessedprey1, fig.cap="Fall forage index trends using different prey groups.", fig.height=8}
+splitoutunmod <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/forageindex/main/pyindex/unmod/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv")
+
+splitoutputunmod <- splitoutunmod %>%
+  dplyr::mutate(Season = "fall",
+                modname = "noHerringHakeMack") |>
+  dplyr::left_join(stratlook) %>%
+  dplyr::filter(Region %in% c("GOM", "GB", "MAB","MABGBstate", "bfin")) %>%
+  dplyr::mutate(Type = ifelse(Region %in% c("GOM", "GB", "MAB"), "Ecoregion", "Bluefish"),
+                Region = case_when(Region == "MABGBstate" ~ "StateWaters",
+                                   Region == "bfin" ~ "SurveyBluefish",
+                                   TRUE ~ Region))
+splitoutput2023 <- splitoutput2023 %>%
+  dplyr::mutate(modname = "allPrey")
+
+splitoutput <- splitoutputunmod |> bind_rows(splitoutput2023)
+
+foragetsmean <- splitoutput %>%
+  dplyr::group_by(modname, Region) %>%
+  dplyr::mutate(fmean = mean(Estimate)) 
+
+ggplot(foragetsmean |> filter(Season =="fall"), aes(x=Time, y=((Estimate-fmean)/fmean), colour=modname)) +
+  #geom_errorbar(aes(ymin=(Estimate+Std..Error.for.Estimate - fmean)/fmean, 
+  #                  ymax=(Estimate-Std..Error.for.Estimate - fmean)/fmean))+
+  geom_point(aes(shape=modname))+
+  geom_line()+
+  #acet_wrap(~fct_relevel(Type, "Ecoregion", "Bluefish"), scales = "free_y") +
+  facet_wrap(~Region, scales = "free_y", ncol = 1) +
+  #scale_y_continuous(labels=function(x)round(x/foragemax, digits = 2))+
+  ylab("Relative forage biomass scaled to time series mean")  +
+  ggtitle("Fall models: trend comparison") +
+  theme(#legend.position = c(1, 0),
+        #legend.justification = c(1, 0),
+        legend.position = "bottom",
+        legend.text = element_text(size=rel(0.5)),
+        legend.key.size = unit(0.5, 'lines'),
+        legend.title = element_text(size=rel(0.5)))
+
+```
+
+]
 
 ---
-## Sensitivities
+## Predator exclusion sensitivities: low sample predators (left) vs high sample predators (right)
+
+.pull-left[
+```{r}
+# build modcompareindex in forageindex directory, save as csv, move to data file here and read in
+
+modcompareindex <- read.csv(here::here("data/modcompareindex.csv"))
+
+```
+
+```{r comptrend1, fig.cap="Trend comparison between fall forage indices using different predator groups: exclude predators with low sampling (fourspot flounder, longfin squid) vs. full predator list (current method).", fig.height=8}
+splitoutput <- modcompareindex %>%
+  dplyr::mutate(Season = modname |> map(str_split, pattern = "_") |> map_chr(c(1,2))) %>%
+  dplyr::mutate(Data = modname |> map(str_split, pattern = "_") |> map_chr(c(1,7), .default = "allpreds")) %>%
+  dplyr::left_join(stratlook) %>%
+  dplyr::filter(Region %in% c("GOM", "GB", "MAB","MABGBstate", "bfin")) %>%
+  dplyr::mutate(Type = ifelse(Region %in% c("GOM", "GB", "MAB"), "Ecoregion", "Bluefish"),
+                Region = case_when(Region == "MABGBstate" ~ "StateWaters",
+                                   Region == "bfin" ~ "SurveyBluefish",
+                                   TRUE ~ Region))
+
+foragemax <- max(splitoutput$Estimate)
+
+
+foragetsmean <- splitoutput %>%
+  dplyr::group_by(modname, Region) %>%
+  dplyr::mutate(fmean = mean(Estimate)) 
+
+
+ggplot(foragetsmean |> filter(Season =="fall",
+                             Data %in% c("allpreds",
+                                         "no4spot",
+                                         "nololigo")), 
+       aes(x=Time, y=((Estimate-fmean)/fmean), colour=Data)) +
+  #geom_errorbar(aes(ymin=(Estimate+Std..Error.for.Estimate - fmean)/fmean, 
+  #                  ymax=(Estimate-Std..Error.for.Estimate - fmean)/fmean))+
+  geom_point(aes(shape=Data))+
+  geom_line()+
+  #acet_wrap(~fct_relevel(Type, "Ecoregion", "Bluefish"), scales = "free_y") +
+  facet_wrap(~Region, scales = "free_y", ncol = 1) +
+  #scale_y_continuous(labels=function(x)round(x/foragemax, digits = 2))+
+  ylab("Relative forage biomass scaled to time series mean")  +
+  ggtitle("Fall models: trend comparison") +
+  theme(#legend.position = c(1, 0),
+        #legend.justification = c(1, 0)
+        legend.position = "bottom",
+        legend.text = element_text(size=rel(0.5)),
+        legend.key.size = unit(0.5, 'lines'),
+        legend.title = element_text(size=rel(0.5)))
+
+```
+
+]
+
+.pull-right[
+```{r comptrend3, fig.cap="Trend comparison between fall forage indices using different predator groups: exclude predators with high sampling (white hake, spiny dogfish) vs. full predator list (current method).", fig.height=8}
+
+
+ggplot(foragetsmean |> filter(Season =="fall",
+                             Data %in% c("allpreds",
+                                         "nowhake",
+                                         "nospdog")), 
+       aes(x=Time, y=((Estimate-fmean)/fmean), colour=Data)) +
+  #geom_errorbar(aes(ymin=(Estimate+Std..Error.for.Estimate - fmean)/fmean, 
+  #                  ymax=(Estimate-Std..Error.for.Estimate - fmean)/fmean))+
+  geom_point(aes(shape=Data))+
+  geom_line()+
+  #acet_wrap(~fct_relevel(Type, "Ecoregion", "Bluefish"), scales = "free_y") +
+  facet_wrap(~Region, scales = "free_y", ncol = 1) +
+  #scale_y_continuous(labels=function(x)round(x/foragemax, digits = 2))+
+  ylab("Relative forage biomass scaled to time series mean")  +
+  ggtitle("Fall models: trend comparison")+
+  theme(#legend.position = c(1, 0),
+        #legend.justification = c(1, 0)
+        legend.position = "bottom",
+        legend.text = element_text(size=rel(0.5)),
+        legend.key.size = unit(0.5, 'lines'),
+        legend.title = element_text(size=rel(0.5)))
+
+```
+
+]
+
 
 ---
 ## Integrating into stock assessment 
@@ -1730,7 +1927,13 @@ compwham <- wham::compare_wham_models(mods, do.plot = F, fdir = here::here("data
 
 ```{r WHAMq, fig.asp = 0.8, fig.cap="Fall state waters forage index fit as a catchabilty covariate within the bluefish assessment model (top), with resulting catchability, q, for the recreational fishery catch per unit effort (MRIP) index (bottom)."}
 
-StateWaters <- splitoutput |>
+StateWaters <- splitoutnew |>
+  dplyr::left_join(stratlook) %>%
+  dplyr::filter(Region %in% c("GOM", "GB", "MAB","MABGBstate", "bfin")) %>%
+  dplyr::mutate(Type = ifelse(Region %in% c("GOM", "GB", "MAB"), "Ecoregion", "Bluefish"),
+                Region = case_when(Region == "MABGBstate" ~ "StateWaters",
+                                   Region == "bfin" ~ "SurveyBluefish",
+                                   TRUE ~ Region)) |>
   dplyr::filter(Region == "StateWaters") |>
   dplyr::mutate(logStateW = log(Estimate)) |>
   dplyr::select(year = Time, logStateW, SE = Std..Error.for.ln.Estimate.)
@@ -1808,9 +2011,9 @@ flextable::flextable(compwhamtab) |>
 ]
 
 .pull-right[
-*The inclusion of the forage fish index improved model fit.* 
+*Inclusion of the forage fish index improved model fit.* 
 
-```{r, fig.asp=0.9}
+```{r, fig.asp=1}
 
 
 plotwham <- wham::compare_wham_models(mods, do.table = F, plot.opts=list(kobe.prob=FALSE,
@@ -1829,7 +2032,7 @@ plotwham$g[[1]] +
 The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to <span style="color:#cd5c5c;">higher biomass estimates from the assessment including forage fish.</span>  
 
 ---
-## Ecosystem reporting: Can forage indices link zooplankton and fish productivity?
+## Extensions: Can forage indices link zooplankton and fish productivity?
 
 .pull-left[
 
@@ -1857,7 +2060,7 @@ epu_abbr = "MAB"
 #### MAB
 
 .center[
-```{r MAforagebio, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R"), fig.asp=.5, out.width="50%"}
+```{r MAforagebio, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R"), fig.asp=.6, out.width="50%"}
 #fig.cap = "Forage fish index based on spring and fall survey predator diets in the Mid Atlantic.", 
 ```
 ]
@@ -1890,7 +2093,13 @@ Complex food web, generalist predators
 ---
 ## Next steps
 
+Update for 2024 ecosystem reporting
 
+Benthic index for food web modeling
+
+Add predator functional response?
+
+Multivariate model tracking prey groups?
 
 ---
 ## Thank you!  References

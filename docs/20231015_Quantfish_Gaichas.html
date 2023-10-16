@@ -92,12 +92,14 @@ Create a “forage index” to evaluate changes in small pelagics  over time and
 
 Two applications: 
 
-1. addressing uncertainty in the stock assessment for a key predator species, bluefish (*Pomatomus saltatrix*) 
+1. Addressing uncertainty in the stock assessment for a key predator species, bluefish (*Pomatomus saltatrix*) 
 
-1. describing aggregate forage species trends for integrated ecosystem assessment
+1. Describing aggregate forage species trends for integrated ecosystem assessment
+
+
 
 ---
-# Northeast US: How much? Where and when?
+## Northeast US: How much? Where and when?
 
 .pull-left[
 ## Stock assessments ([ASMFC](http://www.asmfc.org/species/atlantic-menhaden),  [StockSmart](https://apps-st.fisheries.noaa.gov/stocksmart?app=homepage))
@@ -147,6 +149,11 @@ background-position: right, left
 1. Index sensitivity
 
 1. Stock assessment application
+
+1. Discussion
+
+
+Gaichas et al in press, http://dx.doi.org/10.1139/cjfas-2023-0093
 
 ---
 ## Vector Autoregressive Spatio-Temporal (VAST) modeling &lt;a name=cite-thorson_comparing_2017&gt;&lt;/a&gt;&lt;a name=cite-thorson_guidance_2019&gt;&lt;/a&gt;([Thorson, et al., 2017](https://doi.org/10.1093/icesjms/fsw193); [Thorson, 2019](http://www.sciencedirect.com/science/article/pii/S0165783618302820))
@@ -224,6 +231,14 @@ Estimation uses stochastic partial differential equation (SPDE) approximation.
 ---
 ## Estimating density in space and the index
 
+Expected mass of forage in a predator stomach is the product of the encounter probability of forage in the stomach times weight in the stomach. 
+
+Poisson link delta model
+Probability of encounter Poisson: `\(p(i) = 1 - exp[-n(i)]\)`
+
+Index based on area weighting
+
+Bias correction
 
 
 ---
@@ -435,7 +450,10 @@ Fig 4. Mean occupancy habitats at the 20% (light blue) and 80% (dark blue) quant
 ]
 
 .pull-right[
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/silver-1.png" width="504" /&gt;
+&lt;div class="figure"&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/silver-1.png" alt="Proportion silver hake in stomach contents data (red) and survey biomass sampling (black)." width="504" /&gt;
+&lt;p class="caption"&gt;Proportion silver hake in stomach contents data (red) and survey biomass sampling (black).&lt;/p&gt;
+&lt;/div&gt;
 
 ]
 
@@ -444,21 +462,62 @@ Fig 4. Mean occupancy habitats at the 20% (light blue) and 80% (dark blue) quant
 
 .pull-left[
 
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/sandlance-1.png" width="504" /&gt;
+&lt;div class="figure"&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/sandlance-1.png" alt="Proportion sandlance species in stomach contents data (red) and survey biomass sampling (black)." width="504" /&gt;
+&lt;p class="caption"&gt;Proportion sandlance species in stomach contents data (red) and survey biomass sampling (black).&lt;/p&gt;
+&lt;/div&gt;
 
 ]
 
 .pull-right[
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unmanagedprop-1.png" width="504" /&gt;
+&lt;div class="figure"&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unmanagedprop-1.png" alt="Proportion unmanaged forage groups in stomach contents (red) and survey sampling (black)." width="504" /&gt;
+&lt;p class="caption"&gt;Proportion unmanaged forage groups in stomach contents (red) and survey sampling (black).&lt;/p&gt;
+&lt;/div&gt;
 
 ]
 
 ---
-## Sensitivities
+## Prey exclusion sensitivities: minor prey (left) and major prey (herring, silver hake, makerel; right)
 
+.pull-left[
+&lt;div class="figure"&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/preycut1-1.png" alt="Fall forage index trends using different prey cut-offs." width="504" /&gt;
+&lt;p class="caption"&gt;Fall forage index trends using different prey cut-offs.&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+&lt;div class="figure"&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/noassessedprey1-1.png" alt="Fall forage index trends using different prey groups." width="504" /&gt;
+&lt;p class="caption"&gt;Fall forage index trends using different prey groups.&lt;/p&gt;
+&lt;/div&gt;
+
+]
 
 ---
-## Sensitivities
+## Predator exclusion sensitivities: low sample predators (left) vs high sample predators (right)
+
+.pull-left[
+
+
+&lt;div class="figure"&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/comptrend1-1.png" alt="Trend comparison between fall forage indices using different predator groups: exclude predators with low sampling (fourspot flounder, longfin squid) vs. full predator list (current method)." width="504" /&gt;
+&lt;p class="caption"&gt;Trend comparison between fall forage indices using different predator groups: exclude predators with low sampling (fourspot flounder, longfin squid) vs. full predator list (current method).&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+&lt;div class="figure"&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/comptrend3-1.png" alt="Trend comparison between fall forage indices using different predator groups: exclude predators with high sampling (white hake, spiny dogfish) vs. full predator list (current method)." width="504" /&gt;
+&lt;p class="caption"&gt;Trend comparison between fall forage indices using different predator groups: exclude predators with high sampling (white hake, spiny dogfish) vs. full predator list (current method).&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
 
 ---
 ## Integrating into stock assessment 
@@ -496,7 +555,7 @@ The MRIP index fit with the annual forage fish index did not converge or hessian
 
 
 
-&lt;template id="65229da5-8070-47d0-8885-4282e27dd79b"&gt;&lt;style&gt;
+&lt;template id="69ceb28a-6e38-4c3f-a464-8affc8c5d9b3"&gt;&lt;style&gt;
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -530,15 +589,15 @@ The MRIP index fit with the annual forage fish index did not converge or hessian
 .tabwid table tr {
 background-color: transparent;
 }
-&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-30944f00{}.cl-308f5176{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-308f67b0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-308f67ba{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-308f9654{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-308f9655{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-308f965e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-308f9668{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-308f9669{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-308f9672{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-30944f00'&gt;&lt;caption class="Table Caption"&gt;
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-e00036f0{}.cl-dffb0d6a{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dffb2700{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dffb270a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dffb5d10{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dffb5d1a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dffb5d1b{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dffb5d1c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dffb5d24{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dffb5d25{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-e00036f0'&gt;&lt;caption class="Table Caption"&gt;
 
 Bluefish stock assessment model fit and retrospective diagnostics with (model = ecov_on) and without (model = ecov_off) the fall StateWaters forage index included as a catchability covariate on the recreational fishery catch per unit effort index. Mohn's rho values (rho) indicate retrospective performance for recruitment (R), spawning stock biomass (SSB) and fully selected fishing mortality (Fbar).
 
-&lt;/caption&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-308f9672"&gt;&lt;p class="cl-308f67b0"&gt;&lt;span class="cl-308f5176"&gt;model&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9669"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;dAIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9669"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;AIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9669"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;rho_R&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9669"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;rho_SSB&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9669"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;rho_Fbar&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-308f9655"&gt;&lt;p class="cl-308f67b0"&gt;&lt;span class="cl-308f5176"&gt;ecov_on&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9654"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;0.0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9654"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;3,230.6&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9654"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;-0.0136&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9654"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;0.0880&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f9654"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;-0.0641&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-308f9668"&gt;&lt;p class="cl-308f67b0"&gt;&lt;span class="cl-308f5176"&gt;ecov_off&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f965e"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;5.6&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f965e"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;3,236.2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f965e"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;0.0104&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f965e"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;0.1301&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-308f965e"&gt;&lt;p class="cl-308f67ba"&gt;&lt;span class="cl-308f5176"&gt;-0.0962&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
-&lt;div class="flextable-shadow-host" id="eb92e567-621d-4803-bb7a-8ad0c4d4fc39"&gt;&lt;/div&gt;
+&lt;/caption&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dffb5d25"&gt;&lt;p class="cl-dffb2700"&gt;&lt;span class="cl-dffb0d6a"&gt;model&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d24"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;dAIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d24"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;AIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d24"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;rho_R&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d24"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;rho_SSB&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d24"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;rho_Fbar&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dffb5d1a"&gt;&lt;p class="cl-dffb2700"&gt;&lt;span class="cl-dffb0d6a"&gt;ecov_on&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d10"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;0.0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d10"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;3,230.6&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d10"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;-0.0136&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d10"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;0.0880&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d10"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;-0.0641&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dffb5d1c"&gt;&lt;p class="cl-dffb2700"&gt;&lt;span class="cl-dffb0d6a"&gt;ecov_off&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d1b"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;5.6&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d1b"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;3,236.2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d1b"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;0.0104&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d1b"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;0.1301&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dffb5d1b"&gt;&lt;p class="cl-dffb270a"&gt;&lt;span class="cl-dffb0d6a"&gt;-0.0962&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="883172d7-6d68-46fb-b381-5f8f930c6b0c"&gt;&lt;/div&gt;
 &lt;script&gt;
-var dest = document.getElementById("eb92e567-621d-4803-bb7a-8ad0c4d4fc39");
-var template = document.getElementById("65229da5-8070-47d0-8885-4282e27dd79b");
+var dest = document.getElementById("883172d7-6d68-46fb-b381-5f8f930c6b0c");
+var template = document.getElementById("69ceb28a-6e38-4c3f-a464-8affc8c5d9b3");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -553,25 +612,25 @@ fantome.appendChild(templateContent);
 ]
 
 .pull-right[
-*The inclusion of the forage fish index improved model fit.* 
+*Inclusion of the forage fish index improved model fit.* 
 
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-10-1.png" width="504" /&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-11-1.png" width="504" /&gt;
 
 ]
 
 The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to &lt;span style="color:#cd5c5c;"&gt;higher biomass estimates from the assessment including forage fish.&lt;/span&gt;  
 
 ---
-## Ecosystem reporting: Can forage indices link zooplankton and fish productivity?
+## Extensions: Can forage indices link zooplankton and fish productivity?
 
 .pull-left[
 
 
 
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-11-1.png" width="504" /&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-12-1.png" width="504" /&gt;
 
 .left[
-&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-12-1.png" width="90%" /&gt;
+&lt;img src="20231015_Quantfish_Gaichas_files/figure-html/unnamed-chunk-13-1.png" width="90%" /&gt;
 ]
 ]
 
@@ -609,7 +668,13 @@ Complex food web, generalist predators
 ---
 ## Next steps
 
+Update for 2024 ecosystem reporting
 
+Benthic index for food web modeling
+
+Add predator functional response?
+
+Multivariate model tracking prey groups?
 
 ---
 ## Thank you!  References
