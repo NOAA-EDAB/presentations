@@ -5,23 +5,19 @@ author: Sarah K. Gaichas$^1$, Brandon Muffley$^2$, Geret DePiper$^1$, Kimberly B
 institute: <span style="font-weight:normal;"><font size="-0.5">$^1$NOAA NMFS Northeast Fisheries Science Center, Woods Hole, MA, USA;<br /> $^2$Mid-Atlantic Fishery Management Council, Dover, DE, USA;<br /> $^3$Ocean Associates Inc, Arlington, VA, USA</font></span>
 output:
   xaringan::moon_reader:
-    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css", "libs/cols.css"]
     lib_dir: libs
     nature:
-      titleSlideClass: ["right", "bottom", "my-title"]
+      titleSlideClass: ["right", "middle", "my-title"]
       ratio: "16:9"
       highlightStyle: githubp
       highlightLines: true
       countIncrementalSlides: false
-      beforeInit: "libs/macros.js"
-  revealjs: 
-    slide-number: true
-    chalkboard: 
-      buttons: false
-    preview-links: auto
-    logo: images/quarto.png
-    css: styles.css
-    footer: <https://quarto.org>
+      beforeInit: ["libs/macros.js", "libs/cols_macro.js"]
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
 ---
 class: top, left
 
@@ -323,7 +319,7 @@ plot(qrcode::qr_code("https://www.mafmc.org/s/Tab11_2023-Mid-Atlantic-State-of-t
 ]
 ---
 .pull-left[ 
-## Risks: Climate change Mid Atlantic
+## Risks: Climate change Mid Atlantic (a.k.a. indicator shock-and-awe)
 
 Indicators: ocean currents, temperature, seasons
 ```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"), fig.width=4}
@@ -384,11 +380,11 @@ Seasonal sea surface temperatures in 2022 were above average for most of the yea
 Climate*: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk
 
 *Multiple drivers with different impacts by species*    
-* Seasonal estuarine conditions affect life stages of striped bass, blue crabs, summer flounder, black sea bass differently
+* Seasonal estuarine conditions affect life stages of managed species differently
+* Ocean acidification impact on commercial species  
+![:img Mid Seasonal pH](https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC.jpg)
 
-* Ocean acidification approaching sensitivity thresholds in commercial shellfish habitats  
-
-* Gulf stream warm core rings more abundant, important to shortfin squid availability 
+* Warm core rings important to *Illex* availability. 
 
 &nbsp;  
 &nbsp;  
@@ -697,6 +693,40 @@ Results for 2 of 16 performance metrics:
 * Rank order of management options maintained, but degraded performance when considering ecosystem change
 
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/2023RespMemoBody_Page_1.png")
+background-size: 520px
+background-position: right
+
+## Priority requests from managers
+
+.pull-left-60[
+
+*  Highest priority requests in progress
+    -  System level thresholds and reference points
+    -  Trend analysis, inflections and break points
+    -  Regime shifts
+*  Identified some gaps
+    - Short term forecasts
+    - Management complexity
+    - Recreational bycatch
+*  Stock level indicators best addressed in assessment?
+
+![:img bluefish ESP conceptual model, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
+]
+
+.pull-right-40[
+]
+
+
+???
+
+The Bluefish Research Track ESP was presented December 7 2022, and was well received by CIE reviewers. Reviewers commented that it was the most complete treatment of a stock assessment "ecosystem ToR" they had seen, and formed a good basis for integrating further ecosystem information into the stock assessment in the future. The full ESP document is available as a working paper from the [stock assessment data portal](https://apps-nefsc.fisheries.noaa.gov/saw/sasi_files.php?year=2022&species_id=32&stock_id=6&review_type_id=5&info_type_id=5&map_type_id=&filename=WP%2001%20Tyrell%20etAl%202022%20-%20ESP.pdf). 
+
+In addition to the conceptual model, a summary table was developed for bluefish ecosystem indicators. This type of summary could contribute to OFL CV decisions with further information on how these indicator levels affect uncertainty in assessment.
+
+
+
+---
 background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ecodata.png)
 background-size: 350px
 background-position: bottom right
@@ -735,14 +765,96 @@ background-position: bottom right
 .footnote[
 State of the Ecosystem data on github https://github.com/NOAA-EDAB/ecodata
 ]
+
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/IMG_2733.jpg")
-background-size: cover
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
+background-size: 350px
+background-position: right bottom
 
-## Questions?
+## THANK YOU! SOEs made possible by (at least) 71 contributors from 20+ institutions
+
+.table[
+![:col_row 
+    Kimberly Bastille<br>
+    Aaron Beaver (Anchor QEA)<br>
+    Andy Beet<br>
+    Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
+    Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
+    Zhuomin Chen (U Connecticut)<br>
+    Joseph Caracappa<br>
+    Doug Christel (GARFO)<br>
+    Patricia Clay<br>
+    Lisa Colburn<br>
+    Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
+    Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
+    Art Degaetano (Cornell U)<br>
+    Geret DePiper<br>
+    Dan Dorfman (NOAA-NOS-NCCOS)<br> 
+    Hubert du Pontavice<br>
+    Emily Farr (NMFS Office of Habitat Conservation)<br>
+    Michael Fogarty<br>
+    Paula Fratantoni<br>
+    Kevin Friedland<br>
+    Marjy Friedrichs (Virginia Institute of Marine Science)<br>
+    Sarah Gaichas<br>
+    Ben Galuardi (GARFO)<br>
+    Avijit Gangopadhyay (School for Marine Science and Technology UMass Dartmouth)<br>
+    James Gartland (Virginia Institute of Marine Science),
+    
+    Lori Garzio (Rutgers University)<br>
+    Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
+    Sean Hardison<br>
+    Kimberly Hyde<br>
+    John Kosik<br>
+    Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
+    Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
+    Scott Large<br>
+    Gabe Larouche (Cornell U)<br>
+    Daniel Linden<br>
+    Andrew Lipsky<br>
+    Sean Lucey<br>
+    Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
+    Chris Melrose<br>
+    Shannon Meseck<br>
+    Ryan Morse<br>
+    Ray Mroch (SEFSC)<br>
+    Brandon Muffley (MAFMC)<br>
+    Kimberly Murray<br>
+    Janet Nye (University of North Carolina at Chapel Hill)<br>
+    Chris Orphanides<br>
+    Richard Pace<br>
+    Debi Palka<br>
+    Tom Parham (Maryland DNR),
+    
+    Charles Perretti<br>
+    CJ Pellerin (NOAA Chesapeake Bay Office)<br>
+    Kristin Precoda<br>
+    Grace Roskar (NMFS Office of Habitat Conservation)<br>
+    Grace Saba (Rutgers)<br>
+    Vincent Saba<br>
+    Sarah Salois<br>
+    Chris Schillaci (GARFO)<br>
+    Amy Schueller (SEFSC)<br>
+    Teresa Schwemmer (Stony Brook University)<br>
+    Dave Secor (CBL)<br>
+    Angela Silva<br>
+    Adrienne Silver (UMass/SMAST)<br>
+    Emily Slesinger (Rutgers University)<br>
+    Laurel Smith<br>
+    Talya tenBrink (GARFO)<br>
+    Bruce Vogt (NOAA Chesapeake Bay Office)<br>
+    Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
+    John Walden<br>
+    Harvey Walsh<br>
+    Changhua Weng<br>
+    Timothy White (Environmental Studies Program BOEM)<br>
+    Sarah Wilkin (NMFS Office of Protected Resources)<br>
+    Mark Wuenschel ]
+]
+
+???
 
 
-# Thank you
 
 ---
 ## Links and References
