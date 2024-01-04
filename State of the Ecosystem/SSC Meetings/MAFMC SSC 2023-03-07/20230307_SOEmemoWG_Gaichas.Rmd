@@ -659,7 +659,7 @@ Mid-Atlantic commercial fishing communities
 
 ```{r, out.width="100%"}
 #get rid of the gray excel outline using R package magick
-ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/EJ_Commercial_MAB_2023.PNG") 
+ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/EJ_Commercial_MAB_2023.PNG") 
 
 # from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
 # get height, width and crop longer side to match shorter side
@@ -693,7 +693,7 @@ Mid-Atlantic recreational fishing communities
 .pull-right[
 ```{r, out.width="100%"}
 #get rid of the gray excel outline using R package magick
-RecEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/EJ_Recreational_MAB_2023.PNG") 
+RecEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/EJ_Recreational_MAB_2023.PNG") 
 
 # from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
 # get height, width and crop longer side to match shorter side
@@ -907,7 +907,7 @@ Indicator: cold pool indices
 ```
 
 Indicator: Mid Atlantic Ocean acidification
-![:img Mid Seasonal pH](https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC%20-%20Grace%20Saba.jpg)
+![:img Mid Seasonal pH](https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/Saba_Fig_SOE_MAFMC%20-%20Grace%20Saba.jpg)
 
 ]
 
@@ -962,7 +962,7 @@ Increased production by smaller phytoplankton implies less efficient transfer of
 Indicator: fish condition 
 ```{r, out.width="120%"}
 #knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg")
-fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/MAB_Condition_allsex_2023_viridis.jpg") 
+fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/MAB_Condition_allsex_2023_viridis.jpg") 
 magick::image_trim(fishcond)
 ```
 <!--![:img Fish condition figure, 120%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg)-->
@@ -1161,7 +1161,7 @@ p2
 
 ---
 
-background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/SOE_2023_right_whales_hatteras_frame_v3.jpg")
+background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/SOE_2023_right_whales_hatteras_frame_v3.jpg")
 background-size: 500px
 background-position: right
 

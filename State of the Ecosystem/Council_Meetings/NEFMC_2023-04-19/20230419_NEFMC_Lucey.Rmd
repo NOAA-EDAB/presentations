@@ -602,7 +602,7 @@ New England commercial fishing communities
 
 ```{r, out.width="100%"}
 #get rid of the gray excel outline using R package magick
-ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/EJ_Commercial_NE_2023.PNG") 
+ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/EJ_Commercial_NE_2023.PNG") 
 
 # from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
 # get height, width and crop longer side to match shorter side
@@ -772,7 +772,7 @@ Indicator: cold pool indices
 ```
 
 Indicator: Ocean acidification
-![:img NE Seasonal pH](https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_NEFMC.jpg)
+![:img NE Seasonal pH](https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/Saba_Fig_SOE_NEFMC.jpg)
 
 ]
 
@@ -835,7 +835,7 @@ Indicator: fish condition
 Georges Bank
 ```{r, out.width="120%"}
 #knitr::include_graphics("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg")
-fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/GB_Condition_allsex_2023_viridis.jpg") 
+fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/GB_Condition_allsex_2023_viridis.jpg") 
 magick::image_trim(fishcond)
 ```
 ]
@@ -844,7 +844,7 @@ magick::image_trim(fishcond)
 Gulf of Maine
 ```{r, out.width="120%"}
 #knitr::include_graphics("EDAB_images/MAB_Condition_allsex_2022_viridis.jpg")
-fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/GOM_Condition_allsex_2023_viridis.jpg") 
+fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/GOM_Condition_allsex_2023_viridis.jpg") 
 magick::image_trim(fishcond)
 ```
 
@@ -980,7 +980,7 @@ Shifting species distributions alter both species interactions, fishery interact
 
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Cumulative_Timeline_Full_Region_SoE2023_v2-01.png")
+background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/Cumulative_Timeline_Full_Region_SoE2023_v2-01.png")
 background-size: 500px
 background-position: right
 
@@ -1084,7 +1084,7 @@ p2
 
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/SOE_2023_right_whales_hatteras_frame_v3.jpg")
+background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/SOE_2023_right_whales_hatteras_frame_v3.jpg")
 background-size: 500px
 background-position: right
 
