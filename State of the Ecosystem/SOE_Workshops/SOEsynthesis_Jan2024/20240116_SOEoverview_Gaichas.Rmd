@@ -564,9 +564,9 @@ a <- ecodata::plot_stock_status(report = "MidAtlantic")
 
 a$p + ggplot2::coord_cartesian(xlim=c(0,2), ylim=c(0,2)) +
   ggplot2::annotation_custom(gridExtra::tableGrob(a$unknown,
-                             theme = gridExtra::ttheme_minimal(), 
+                             theme = gridExtra::ttheme_default(base_size = 7), 
                              rows=NULL), 
-                             xmin=1, xmax=2, ymin=1.5, ymax=2)
+                             xmin=0.8, xmax=1.8, ymin=1.5, ymax=2)
 
 ```
 
@@ -708,7 +708,13 @@ Indicator: Stock status
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-stock-status.R")
 #stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target.")
 
-ecodata::plot_stock_status(report = "NewEngland")
+a <- ecodata::plot_stock_status(report = "NewEngland")
+
+a$p + ggplot2::coord_cartesian(xlim=c(0,3), ylim=c(0,2)) +
+  ggplot2::annotation_custom(gridExtra::tableGrob(a$unknown,
+                             theme = gridExtra::ttheme_default(base_size = 7), 
+                             rows=NULL), 
+                             xmin=1, xmax=2, ymin=1.5, ymax=2)
 ```
 .contrib[
 Stocks below BMSY increased from 8 to 9, stocks below ½ BMSY decreased from 6 to 4. Spiny dogfish results from RT are unofficial.  Management still likely playing large role in seafood declines
