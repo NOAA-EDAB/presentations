@@ -1204,10 +1204,14 @@ Implications: Highlighted communities may be vulnerable to changes in fishing pa
 .pull-left[
 Indicators: Harbor porpoise and gray seal bycatch
 .reduced_opacity[
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"), fig.height=3}
+```{r,  fig.height=3}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"),
+ecodata::plot_harborporpoise()
 ```
 
-```{r, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"), fig.height=3}
+```{r,  fig.height=3}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"),
+ecodata::plot_grayseal()
 ```
 ]
 ]
