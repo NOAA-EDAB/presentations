@@ -522,7 +522,7 @@ Other ocean uses: offshore wind development
 .pull-left[
 Indicator: Commercial landings 
 
-```{r,  fig.asp=0.9}
+```{r,  fig.asp=0.8}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"),
 #total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
 
@@ -667,7 +667,7 @@ Climate change also seems to be shifting the distribution of surfclams and ocean
 .pull-left[
 Indicators: Commercial landings 
 
-```{r, fig.asp=1}
+```{r, fig.asp=0.9}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-total-landings.R"),
 #total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
 
@@ -675,7 +675,7 @@ a <- ecodata::plot_comdat(report = "NewEngland", varName = "landings")
 
 a + ggplot2::facet_wrap(~EPU, ncol = 1)
 ```
-I never put NAFO back in for 2019-2022. ARGH Andy working on it
+I never put NAFO back in for 2019-2022...
 
 ]
 
@@ -735,7 +735,7 @@ Stocks below BMSY increased from 8 to 9, stocks below ½ BMSY decreased from 6 t
 
 .pull-right[
 Indicator: Survey biomass
-```{r ,  fig.width=8, fig.asp = 0.85}
+```{r ,  fig.width=8, fig.asp = 0.85, results='hide'}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-aggregate-biomass-gb.R"),
 
 a <- ecodata::plot_aggregate_biomass(report = "NewEngland", EPU = "GB") + ggplot2::ggtitle("Georges Bank")
@@ -766,12 +766,12 @@ Monitor:
 * ecosystem composition and production changes  
 * fishing engagement  
 
-```{r , fig.width=5, fig.asp=.9}
+```{r , fig.width=6, fig.asp=.3}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), 
 a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(expand = FALSE)
 b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(expand = FALSE) 
 
-a/b
+a+b
 
 ```
 
@@ -779,7 +779,7 @@ a/b
 
 .pull-right[
 
-```{r,  fig.width=4, fig.asp=1}
+```{r,  fig.width=6, fig.asp=1}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-commercial-landings.R"),
 # comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
 ecodata::plot_comdat(report = "NewEngland", plottype = "guild")
@@ -795,7 +795,7 @@ ecodata::plot_comdat(report = "NewEngland", plottype = "guild")
 .pull-left[
 Indicator: Commercial Revenue 
 
-```{r }
+```{r, fig.asp=.5 }
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")
 #, fig.width = 5, fig.asp = 0.45
 #comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
@@ -818,10 +818,10 @@ Indicator: Bennet--price and volume indices
 
 ```
 
-```{r , fig.width = 7.5, fig.asp = 0.45}
+```{r , fig.width = 5, fig.asp = 0.9}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R")
 #bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight."
-ecodata::plot_bennet(report="MidAtlantic")
+ecodata::plot_bennet(report="MidAtlantic") + ggplot2::facet_wrap(~Var, ncol=1)
 ```
 ]
 
@@ -855,7 +855,7 @@ Indicator: Bennet--price and volume indices
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet.R"),  fig.asp=.35, results = 'hide'
 ```
 
-```{r , fig.width = 7.5, fig.asp = 0.45, results = 'hide'}
+```{r , fig.width = 7.5, fig.asp = 0.9, results = 'hide'}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet-all.R")
 ecodata::plot_bennet(report="NewEngland")
 ```
