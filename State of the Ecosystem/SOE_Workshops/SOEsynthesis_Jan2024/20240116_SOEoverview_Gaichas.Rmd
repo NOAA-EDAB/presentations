@@ -1,6 +1,6 @@
 ---
 title: "State of the Ecosystem Structure <br /> Proposed 2024"
-subtitle: "SOE January Synthesis Meeting<br /> 16-18 January 2024"
+subtitle: "SOE January Synthesis Meeting<br /> 16 January 2024"
 author: "Sarah Gaichas, Andy Beet, Brandon Beltz, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith<br /> Northeast Fisheries Science Center<br /> and all SOE contributors"
 output:
   xaringan::moon_reader:
@@ -113,13 +113,15 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 1. Graphical summary
     + Page 1 report card re: objectives &rarr;
     + Page 2 risk summary bullets
-    + Page 3 <p style="color:#FF6A6A;">2023 snapshot<p>*
+    + Page 3 *2023 snapshot**
 1. Performance relative to management objectives
 1. Risks to meeting management objectives
-    + <p style="color:#FF6A6A;">Climate and Ecosystem risks<p>*
+    + *Climate and Ecosystem risks**
     + Offshore wind development
     
-* except for 2 <p style="color:#FF6A6A;">synthetic replacements<p>
+.contrib[
+* except for 2 *synthetic replacements*
+]
 
 ![:img State of the Ecosystem page 1 summary table, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png)![:img State of the Ecosystem page 2 risk bullets, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_3.png)
 
@@ -185,16 +187,23 @@ Characterizing ecosystem change for fishery management
 ---
 ## New PAGE 3 this year; 2023 Highlights/Overview/Postmortem
 
+.pull-left[
 Needs a name 
 
 Bulleted and graphical observations of anomalous conditions in 2023
 
-*  GOM phytoplankton bloom off the scale
-*  Hypoxia and mortality events of NJ this summer
 *  Warm water everywhere EXCEPT in Spring on the NEUS shelf
-*  Gulf Stream both pulling water off the shelf and intruding on the shelf
+*  Hypoxia and mortality events in NJ coastal ocean this summer
+*  GOM summer phytoplankton bloom off the scale
+*  Heatwaves (??)
+*  Gulf Stream changes radically altering shelf break habitats
 
 THIS WILL BE DECIDED ON WEDNESDAY  
+]
+
+.pull-right[
+![:img GOM chlorophyll anomaly](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/W_1998_2023-GOM-CHLOR_A-STACKED_TIMESERIES.PNG)
+]
 
 ---
 ## State of the Ecosystem report scale and figures
@@ -344,11 +353,11 @@ knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
         - Regime shifts
         - Ecosystem reorganization
 * Risk categories
-    - <p style="color:#FF6A6A;">Long term trends and current status:</p>
-            - <p style="color:#FF6A6A;">Distribution shifts</p>
-            - <p style="color:#FF6A6A;">Changes in timing</p>
-            - <p style="color:#FF6A6A;">Changes in productivity</p> 
-            - <p style="color:#FF6A6A;">Changes in physiology</p>
+    - *Long term trends and current status:*
+            - *Distribution shifts*
+            - *Changes in productivity*
+            - *Changes in timing*
+            - *Changes in physiology*
     - Other ocean uses
         - Offshore wind development
 ]
@@ -513,7 +522,7 @@ Other ocean uses: offshore wind development
 .pull-left[
 Indicator: Commercial landings 
 
-```{r,  fig.asp=1}
+```{r,  fig.asp=0.9}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"),
 #total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
 
@@ -627,7 +636,7 @@ Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
 .contrib[ 
 * Declining managed benthos, aggregate planktivores
 
-```{r, fig.width=4.5, fig.asp=1}
+```{r, fig.width=5, fig.asp=1.2}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), 
 # comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
 
@@ -658,11 +667,13 @@ Climate change also seems to be shifting the distribution of surfclams and ocean
 .pull-left[
 Indicators: Commercial landings 
 
-```{r, fig.asp=.4}
+```{r, fig.asp=1}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-total-landings.R"),
 #total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
 
-ecodata::plot_comdat(report = "NewEngland", varName = "landings")
+a <- ecodata::plot_comdat(report = "NewEngland", varName = "landings")
+
+a + ggplot2::facet_wrap(~EPU, ncol = 1)
 ```
 I never put NAFO back in for 2019-2022. ARGH Andy working on it
 
