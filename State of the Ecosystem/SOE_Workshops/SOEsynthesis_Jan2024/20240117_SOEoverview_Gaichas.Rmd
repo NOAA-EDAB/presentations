@@ -144,9 +144,54 @@ THIS WILL BE DECIDED ON WEDNESDAY
 ]
 
 ---
-## Risks: Distribution shifts
+## A suggested revision
 
-Indicators/observations
+## Risks to Meeting Manaagement Objectives
+
+.pull-left[
+
+### Risks to Spatial Management/Allocation
+Indicators of Distribution Shifts
+Drivers
+Implications
+
+### Risks to Seasonal Management/Timed Closures
+Indicators of Changing Timing (Phenology)
+Drivers
+Implications
+]
+
+.pull-right[
+
+### Risks to Quota Management/Rebuilding
+Indicators of Changing Productivity
+Drivers 
+Implications
+
+Indicators of Changing Mortality
+Drivers 
+Implications
+
+]
+
+
+---
+## Risks to Spatial Management/Allocation 
+
+Distribution shifts: species
+
+.pull-left[
+![:img black sea bass survey](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/black_sea_bass_kde.png)
+]
+
+.pull-right[
+![:img summer flounder survey](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/summer_flounder_kde.png)
+]
+
+---
+## Risks to Spatial Management/Allocation 
+
+Distribution shifts: multispecies
 
 .pull-left[
 
@@ -172,16 +217,6 @@ ecodata::plot_HMS_species_distribution()
 
 ]
 
----
-## Risks: Distribution shifts
-
-.pull-left[
-![:img black sea bass survey](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/black_sea_bass_kde.png)
-]
-
-.pull-right[
-![:img summer flounder survey](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/summer_flounder_kde.png)
-]
 ---
 ## What drives distribution shifts?
 Habitat suitability
@@ -256,9 +291,57 @@ Fig 4. Mean occupancy habitats at the 20% (light blue) and 80% (dark blue) quant
 *  Survey catchability
 *  Expect declines in forage fish and NARW foraging with declines in Calanus (GOM)
 
+---
+### Risks to Seasonal Management/Timed Closures
+Indicators of Changing Timing (Phenology)
+
+.pull-left[
+Biological Observations
+*  Phytoplankton bloom timing
+*  Zooplankton
+*  HMS Migration
+*  Baleen whale habitat
+*  Others?
+]
+
+.pull-right[
+
+]
 
 ---
-## Risks:  Productivity change
+## What drives timing change?
+
+Thermal transition dates
+
+.pull-left-30[
+```{r}
+ecodata::plot_trans_dates(report = "MidAtlantic")
+
+```
+
+]
+
+.pull-right-70[
+```{r}
+ecodata::plot_trans_dates(report = "NewEngland")
+
+```
+
+]
+
+Mixing/stratification timing
+
+---
+## Timing change: Implications
+
+Could result in mismatch if prey and predator shifts are not synchronized'
+
+Survey catchability nonstationary
+
+---
+## Risks to Quota Management/Rebuilding
+
+Risks:  Productivity change
 .pull-left-30[
 Biological Observations
 *  Ecosystem productivity
@@ -277,7 +360,9 @@ ecodata::plot_energy_density()
 
 ]
 ---
-## Risks: Productivity change
+## Risks to Quota Management/Rebuilding
+
+Risks: Productivity change
 
 .pull-left[
 ```{r, fig.width=12}
@@ -293,7 +378,9 @@ ecodata::plot_chl_pp(report = "NewEngland", varName = "pp", plottype = "monthly"
 ]
 
 ---
-## Risks: Productivity change
+## Risks to Quota Management/Rebuilding
+
+Risks: Productivity change
 
 .pull-left[
 ```{r}
@@ -314,8 +401,11 @@ a/b
 
 ]
 
+
 ---
-## Risks: Productivity change 
+## Risks to Quota Management/Rebuilding
+
+Risks: Productivity change
 
 .pull-left[
 
@@ -337,7 +427,9 @@ a/c/b
 ```
 ]
 ---
-## Risks:  Productivity change (GOM)
+## Risks to Quota Management/Rebuilding
+
+Risks: Productivity change (GOM)
 
 .pull-left[
 Seabird productivity (GOM)
@@ -390,54 +482,11 @@ Ecosystem overfishing (i.e. changes in the amount of productivity that can susta
 Periods of low condition indicate poor health, possibly leading to slower growth and lower recruitment success
 
 
----
-## Risks:  Timing change
-
-.pull-left[
-Biological Observations
-*  Phytoplankton bloom timing
-*  Zooplankton
-*  HMS Migration
-*  Baleen whale habitat
-*  Others?
-]
-
-.pull-right[
-
-]
 
 ---
-## What drives timing change?
+## Risks to Quota Management/Rebuilding
 
-Thermal transition dates
-
-.pull-left-30[
-```{r}
-ecodata::plot_trans_dates(report = "MidAtlantic")
-
-```
-
-]
-
-.pull-right-70[
-```{r}
-ecodata::plot_trans_dates(report = "NewEngland")
-
-```
-
-]
-
-Mixing/stratification timing
-
----
-## Timing change: Implications
-
-Could result in mismatch if prey and predator shifts are not synchronized'
-
-Survey catchability nonstationary
-
----
-## Risks: Physiological change
+MORTALITY/Physiological change
 
 Biological Observations
 *  Changes in metabolic rates (growth, condition, reproduction)
