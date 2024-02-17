@@ -32,6 +32,10 @@ class: right, bottom, my-title, title-slide
 
 ---
 
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/nes-components-abstracted.png")
+background-size: 600px
+background-position: right bottom
+
 class: top, left
 
 &lt;style&gt;
@@ -50,21 +54,47 @@ p.caption {
 
 
 
+.center[
+# What do *you* think EBFM means?
+]
+
+--
+*"Increased uncertainty and lower quotas"*  
+  
+--
+*"Bad for me because I fish for forage fish"*   
+  
+--
+*"It's really complex and difficult to implement"*  
+  
+--
+*"The ocean is changing and we need to account for that"*   
+  
+--
+*"It could be really effective if done right"* 
+   
+--
+
+How can we effectively communicate and use ecosystem information?
+
+
+---
 ## Goal: more effective resource management making best use of available science
 
 .pull-left[
 *Outline*
-- Systematic approaches using ecosystem information
+- Using ecosystem information at multiple levels
 
     * Stock assessment
-    * Single species catch limits
+    * Ecosystem reporting
     * Ecosystem approach (EAFM) for interactions
     * Multispecies and ecosystem level tradeoffs
 
-- How can ecosystem information support these decisions? 
+- How to support management decisions? 
 
+    * Management-science collaboration!
     * Key tools: ecosystem indicators, conceptual modeling, risk assessment, management strategy evaluation
-    * Developing decision processes along with products
+    * Iteratively developing decision processes along with science products
 
 .footnote[
 Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Document](https://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08-palr.pdf)
@@ -109,7 +139,7 @@ https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
 ![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)  
 &amp;nbsp; 
 
-Ecosystem and Socioeconomic Profiles (ESPs) &lt;a name=cite-shotwell_synthesizing_2022&gt;&lt;/a&gt;&lt;a name=cite-haltuch_oceanographic_2020&gt;&lt;/a&gt;&lt;a name=cite-tolimieri_oceanographic_2018&gt;&lt;/a&gt;&lt;a name=cite-dorn_risk_2020&gt;&lt;/a&gt;([Shotwell, et al., 2022](https://www.sciencedirect.com/science/article/pii/S0967064522000558); [Haltuch, et al., 2020](https://onlinelibrary.wiley.com/doi/abs/10.1111/fog.12459); [Tolimieri, et al., 2018](https://onlinelibrary.wiley.com/doi/abs/10.1111/fog.12266); [Dorn, et al., 2020](https://doi.org/10.1080/20964129.2020.1813634))
+Ecosystem and Socioeconomic Profiles (ESPs) &lt;a name=cite-shotwell_synthesizing_2022&gt;&lt;/a&gt;&lt;a name=cite-haltuch_oceanographic_2020&gt;&lt;/a&gt;&lt;a name=cite-tolimieri_oceanographic_2018&gt;&lt;/a&gt;&lt;a name=cite-dorn_risk_2020&gt;&lt;/a&gt;([Shotwell et al., 2022](https://www.sciencedirect.com/science/article/pii/S0967064522000558); [Haltuch et al., 2020](https://onlinelibrary.wiley.com/doi/abs/10.1111/fog.12459); [Tolimieri et al., 2018](https://onlinelibrary.wiley.com/doi/abs/10.1111/fog.12266); [Dorn et al., 2020](https://doi.org/10.1080/20964129.2020.1813634))
 ]
 
 .pull-right[
@@ -153,24 +183,26 @@ In addition to the conceptual model, a summary table was developed for bluefish 
 ## Does prey drive *availability* of bluefish?
 
 .pull-left-70[
-![:img Bluefish illustration, credit NOAA Fisheries, 50%](https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png)
-"... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." &lt;a name=cite-collette_bigelow_2002&gt;&lt;/a&gt;([Collette, et al., 2002](#bib-collette_bigelow_2002))
+.center[
+![:img Bluefish illustration NOAA Fisheries, 50%](https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png)
+]
+
+"... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." &lt;a name=cite-collette_bigelow_2002&gt;&lt;/a&gt;([Collette et al., 2002](#bib-collette_bigelow_2002))
 
 "From Raritan Bay to Rockaway Inlet, we have had a phenomenal bluefish year with lots of bunker and other bait, ultimately leading to an abundance of bluefish." [Mid-Atlantic Bluefish Fishery Performance Report, 2021](https://www.mafmc.org/s/8_BF-FPR-2021.pdf)
 ]
 
 .pull-right-30[
+*Bluefish diet, Northeast US*  
 
-*Bluefish diet in the Northeast US*  
-
-&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://objects.liquidweb.services/images/201909/robert_aguilar,_serc_48650727166_3ce8edc47d_b.jpg" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Butterfish-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://images.marinespecies.org/thumbs/31939_ammodytes.jpg?w=700" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Mackerel-Atlantic-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://www.fishbase.se/images/thumbnails/jpg/tn_Etter_u2.jpg" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png" width="45%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-01/640x427-Atlantic_Menhaden_NB_W.jpg" width="45%" /&gt;
+&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png" width="33%" /&gt;&lt;img src="https://objects.liquidweb.services/images/201909/robert_aguilar,_serc_48650727166_3ce8edc47d_b.jpg" width="33%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Butterfish-NOAAFisheries.png" width="33%" /&gt;&lt;img src="https://images.marinespecies.org/thumbs/31939_ammodytes.jpg?w=700" width="33%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Mackerel-Atlantic-NOAAFisheries.png" width="33%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png" width="33%" /&gt;&lt;img src="https://www.fishbase.se/images/thumbnails/jpg/tn_Etter_u2.jpg" width="33%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png" width="33%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png" width="33%" /&gt;&lt;img src="https://media.fisheries.noaa.gov/styles/original/s3/2021-01/640x427-Atlantic_Menhaden_NB_W.jpg" width="33%" /&gt;
 .contrib[
 Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/tm2020/
 ]
 ]
 
 .center[
-We built a spatial "forage index" based on 20 prey groups using stomach contents of 22 predators &lt;a name=cite-gaichas_assessing_2023&gt;&lt;/a&gt;([Gaichas, et al., 2023](https://cdnsciencepub.com/doi/10.1139/cjfas-2023-0093))
+New spatial "forage index" of 20 prey groups from stomach contents of 22 predators &lt;a name=cite-gaichas_assessing_2023&gt;&lt;/a&gt;([Gaichas et al., 2023](https://cdnsciencepub.com/doi/10.1139/cjfas-2023-0093))
 ]
 
 ???
@@ -186,9 +218,9 @@ Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Enviro
 
 ---
 .pull-left[  
-## How to include in the bluefish assessment? 
+## Quotas won't always go down  
 
-A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) &lt;a name=cite-stock_woods_2021&gt;&lt;/a&gt;([Stock, et al., 2021](https://www.sciencedirect.com/science/article/pii/S0165783621000953)) with the forage index as a catchability covariate.
+The bluefish assessment was implemented using the Woods Hole Assessment Model (WHAM) &lt;a name=cite-stock_woods_2021&gt;&lt;/a&gt;([Stock et al., 2021](https://www.sciencedirect.com/science/article/pii/S0165783621000953)) with the forage index as a catchability covariate.
 
 
 
@@ -216,44 +248,22 @@ The Bigelow index fit with the fall forage fish index did not improve the model 
 The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
 The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
 
-
 ---
-## Integrated Ecosystem Assessment and the MAFMC Ecosystem Approach
-
-Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing EAFM is done in collaboration between managers, stakeholders, and scientists. https://www.mafmc.org/eafm 
-
-.pull-left[
-![:img IEA process from goal setting to assessment to strategy evaluation with feedbacks, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/iea-loop.png)
-.footnote[
-https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
-]
-]
-.pull-right[
-![:img Mid-Atlantic EAFM framework with full details in speaker notes, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
-   * Direct link between ecosystem reporting and risk assessment
-   * Conceptual model links across risk elements for fisheries, species
-   * Management strategy evaluation includes key risks
-
-]
-???
-&lt;a name=cite-gaichas_framework_2016&gt;&lt;/a&gt;([Gaichas, et al., 2016](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)) The Council’s EAFM framework has similarities to the IEA loop. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
-
----
-# Northeast US State of the Ecosystem (SOE) reporting
+# Ecosystem reporting in the Northeast US
 ## Improving ecosystem information and synthesis for fishery managers
 
 .pull-left-70[
 
-- Ecosystem indicators linked to management objectives &lt;a name=cite-depiper_operationalizing_2017&gt;&lt;/a&gt;([DePiper, et al., 2017](https://academic.oup.com/icesjms/article/74/8/2076/3094701))
+- Ecosystem indicators linked to management objectives &lt;a name=cite-depiper_operationalizing_2017&gt;&lt;/a&gt;([DePiper et al., 2017](https://academic.oup.com/icesjms/article/74/8/2076/3094701))
     + Contextual information
     + Annual reporting since 2016
     + Fishery-relevant subset of full Ecosystem Status Reports
 
-- Open science emphasis &lt;a name=cite-bastille_improving_2021&gt;&lt;/a&gt;([Bastille, et al., 2021](https://doi.org/10.1080/08920753.2021.1846155))
+- Open science emphasis &lt;a name=cite-bastille_improving_2021&gt;&lt;/a&gt;([Bastille et al., 2021](https://doi.org/10.1080/08920753.2021.1846155))
 
-- Used within Mid-Atlantic Fishery Management Council's Ecosystem Process &lt;a name=cite-muffley_there_2021&gt;&lt;/a&gt;([Muffley, et al., 2021](https://doi.org/10.1080/08920753.2021.1846156))
-    + Risk assessment &lt;a name=cite-gaichas_implementing_2018&gt;&lt;/a&gt;([Gaichas, et al., 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00442/abstract))
-    + Conceptual modeling &lt;a name=cite-depiper_learning_2021&gt;&lt;/a&gt;([DePiper, et al., 2021](https://doi.org/10.1093/icesjms/fsab054))
+- Used within Mid-Atlantic Fishery Management Council's Ecosystem Process &lt;a name=cite-muffley_there_2021&gt;&lt;/a&gt;([Muffley et al., 2021](https://doi.org/10.1080/08920753.2021.1846156))
+    + Risk assessment &lt;a name=cite-gaichas_implementing_2018&gt;&lt;/a&gt;([Gaichas et al., 2018](https://www.frontiersin.org/articles/10.3389/fmars.2018.00442/abstract))
+    + Conceptual modeling &lt;a name=cite-depiper_learning_2021&gt;&lt;/a&gt;([DePiper et al., 2021](https://doi.org/10.1093/icesjms/fsab054))
     + Management strategy evaluation ([MSE](https://www.mafmc.org/actions/summer-flounder-mse))
 
  
@@ -265,8 +275,6 @@ https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
 
 
 ]
-
-
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png")
@@ -334,40 +342,53 @@ Other ocean uses: offshore wind development
 ]
 
 ---
-## Implications: Climate change and Mid-Atlantic managed species
+## New for 2024: Align climate risks with management decisions
 
 .pull-left[
-Climate*: 6 &lt;span style="background-color:lightgreen;"&gt;low&lt;/span&gt;, 3 &lt;span style="background-color:yellow;"&gt;low-mod&lt;/span&gt;, 4 &lt;span style="background-color:orange;"&gt;mod-high&lt;/span&gt;, 1 &lt;span style="background-color:red;"&gt;high&lt;/span&gt; risk
+* Distribution shifts and risks to allocation, bycatch management
 
-*Multiple drivers with different impacts by species*    
-* Seasonal estuarine conditions affect life stages of striped bass, blue crabs, summer flounder, black sea bass differently
+&lt;img src="20240305_WFC_Gaichas_files/figure-html/unnamed-chunk-6-1.png" width="576" /&gt;
 
-* Ocean acidification approaching sensitivity thresholds in commercial shellfish habitats  
-
-* Gulf stream warm core rings more abundant, important to shortfin squid availability 
-
-&amp;nbsp;  
-&amp;nbsp;  
-&amp;nbsp; 
-&amp;nbsp; 
-&amp;nbsp;  
-
-.contrib[
-*Climate vulnerability and Distribution Shift risk levels from climate vulnerability analysis &lt;a name=cite-hare_vulnerability_2016&gt;&lt;/a&gt;([Hare, et al., 2016](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146756))
-]
-
+* Main drivers: temperature and ocean circulation
+* Unlikely to revert to 1980s conditions in the short term
+* Reconsider allocations, spatial bycatch management
 
 ]
 
 .pull-right[
-DistShift*: 2 &lt;span style="background-color:lightgreen;"&gt;low&lt;/span&gt;, 9 &lt;span style="background-color:orange;"&gt;mod-high&lt;/span&gt;, 3 &lt;span style="background-color:red;"&gt;high&lt;/span&gt; risk species 
-
-* Managed species shifts already impacting allocation discussions
-
-&lt;img src="20240305_WFC_Gaichas_files/figure-html/unnamed-chunk-6-1.png" width="576" /&gt;
-
 &lt;img src="20240305_WFC_Gaichas_files/figure-html/unnamed-chunk-7-1.png" width="504" /&gt;
+
+## More risks
+
+* Timing shifts and risks to seasonal management
+* Productivity shifts and risks to quota setting, reference points
+
+
 ]
+
+???
+
+---
+## Integrated Ecosystem Assessment and the MAFMC Ecosystem Approach
+
+Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing EAFM is done in collaboration between managers, stakeholders, and scientists. https://www.mafmc.org/eafm 
+
+.pull-left[
+![:img IEA process from goal setting to assessment to strategy evaluation with feedbacks, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/iea-loop.png)
+.footnote[
+https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+]
+.pull-right[
+![:img Mid-Atlantic EAFM framework with full details in speaker notes, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+   * Direct link between ecosystem reporting and risk assessment
+   * Conceptual model links across risk elements for fisheries, species
+   * Management strategy evaluation includes key risks
+
+]
+???
+&lt;a name=cite-gaichas_framework_2016&gt;&lt;/a&gt;([Gaichas et al., 2016](https://www.frontiersin.org/articles/10.3389/fmars.2016.00105/full)) The Council’s EAFM framework has similarities to the IEA loop. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
+
 
 ---
 ## State of the Ecosystem &amp;rarr; MAFMC Risk assessent example: Commercial revenue
@@ -940,8 +961,8 @@ Ranked moderate-high risk due to the significant long term revenue decrease
 * Council proceeding with management strategy evaluation (MSE) addressing [recreational fishery discards](https://www.mafmc.org/actions/summer-flounder-mse) using information from conceptual modeling.
 ]
 .pull-right[
-<div id="htmlwidget-e66ead049af371fcac5b" style="width:100%;height:710px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e66ead049af371fcac5b">{"x":{"url":"20240305_WFC_Gaichas_files/figure-html//widgets/widget_sfconceptmod.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-302cac32f296d40c66f1" style="width:100%;height:710px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-302cac32f296d40c66f1">{"x":{"url":"20240305_WFC_Gaichas_files/figure-html//widgets/widget_sfconceptmod.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 
 ]
 
@@ -988,7 +1009,7 @@ Species in the MAB had mixed condition in 2022. Fish productivity based on surve
 ]
 
 .pull-right[
-Indicator: fish productivity anomaly &lt;a name=cite-perretti_regime_2017&gt;&lt;/a&gt;([Perretti, et al., 2017](http://www.int-res.com/abstracts/meps/v574/p1-11/))
+Indicator: fish productivity anomaly &lt;a name=cite-perretti_regime_2017&gt;&lt;/a&gt;([Perretti et al., 2017](http://www.int-res.com/abstracts/meps/v574/p1-11/))
 &lt;img src="20240305_WFC_Gaichas_files/figure-html/unnamed-chunk-10-1.png" width="504" /&gt;
 
 .contrib[
@@ -1161,14 +1182,6 @@ https://onlinelibrary.wiley.com/doi/pdf/10.1111/fog.12459, pp. 122-136.
 ISSN: 1365-2419. DOI:
 [10.1111/fog.12459](https://doi.org/10.1111%2Ffog.12459). (Visited on
 Mar. 10, 2022).
-
-&lt;a name=bib-hare_vulnerability_2016&gt;&lt;/a&gt;[Hare, J. A. et
-al.](#cite-hare_vulnerability_2016) (2016). "A Vulnerability Assessment
-of Fish and Invertebrates to Climate Change on the Northeast U.S.
-Continental Shelf". In: _PLOS ONE_ 11.2, p. e0146756. ISSN: 1932-6203.
-DOI:
-[10.1371/journal.pone.0146756](https://doi.org/10.1371%2Fjournal.pone.0146756).
-(Visited on Mar. 01, 2016).
 
 &lt;a name=bib-muffley_there_2021&gt;&lt;/a&gt;[Muffley, B. et
 al.](#cite-muffley_there_2021) (2021). "There Is no I in EAFM Adapting

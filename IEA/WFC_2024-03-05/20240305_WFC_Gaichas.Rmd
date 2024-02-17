@@ -19,6 +19,10 @@ output:
     reveal_plugins: ["notes", "search"]
 
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/nes-components-abstracted.png")
+background-size: 600px
+background-position: right bottom
+
 class: top, left
 
 <style>
@@ -76,21 +80,47 @@ myBib <- ReadBib("./operationalSOE.bib", check = FALSE)
 
 ```
 
+.center[
+# What do *you* think EBFM means?
+]
+
+--
+*"Increased uncertainty and lower quotas"*  
+  
+--
+*"Bad for me because I fish for forage fish"*   
+  
+--
+*"It's really complex and difficult to implement"*  
+  
+--
+*"The ocean is changing and we need to account for that"*   
+  
+--
+*"It could be really effective if done right"* 
+   
+--
+
+How can we effectively communicate and use ecosystem information?
+
+
+---
 ## Goal: more effective resource management making best use of available science
 
 .pull-left[
 *Outline*
-- Systematic approaches using ecosystem information
+- Using ecosystem information at multiple levels
 
     * Stock assessment
-    * Single species catch limits
+    * Ecosystem reporting
     * Ecosystem approach (EAFM) for interactions
     * Multispecies and ecosystem level tradeoffs
 
-- How can ecosystem information support these decisions? 
+- How to support management decisions? 
 
+    * Management-science collaboration!
     * Key tools: ecosystem indicators, conceptual modeling, risk assessment, management strategy evaluation
-    * Developing decision processes along with products
+    * Iteratively developing decision processes along with science products
 
 .footnote[
 Word cloud based on [Mid-Atlantic Fishery Management Council EAFM Guidance Document](https://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08-palr.pdf)
@@ -179,17 +209,19 @@ In addition to the conceptual model, a summary table was developed for bluefish 
 ## Does prey drive *availability* of bluefish?
 
 .pull-left-70[
+.center[
 ![:img Bluefish illustration NOAA Fisheries, 50%](https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png)
+]
+
 "... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." `r Cite(myBib, "collette_bigelow_2002")`
 
 "From Raritan Bay to Rockaway Inlet, we have had a phenomenal bluefish year with lots of bunker and other bait, ultimately leading to an abundance of bluefish." [Mid-Atlantic Bluefish Fishery Performance Report, 2021](https://www.mafmc.org/s/8_BF-FPR-2021.pdf)
 ]
 
 .pull-right-30[
-
 *Bluefish diet, Northeast US*  
 
-```{r, crop=TRUE, fig.show='hold', out.width="45%"}
+```{r, crop=TRUE, fig.show='hold', out.width="33%"}
 
 knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png")
 #credit: NOAA fisheries
@@ -228,7 +260,7 @@ Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/t
 ]
 
 .center[
-We built a spatial "forage index" based on 20 prey groups using stomach contents of 22 predators `r Cite(myBib, "gaichas_assessing_2023")`
+New spatial "forage index" of 20 prey groups from stomach contents of 22 predators `r Cite(myBib, "gaichas_assessing_2023")`
 ]
 
 ???
@@ -244,9 +276,9 @@ Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Enviro
 
 ---
 .pull-left[  
-## How to include in the bluefish assessment? 
+## Quotas won't always go down  
 
-A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")` with the forage index as a catchability covariate.
+The bluefish assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")` with the forage index as a catchability covariate.
 
 ```{r}
 # strata.limits <- as.list(c("AllEPU" = allEPU2, 
@@ -297,7 +329,7 @@ stratlook <- data.frame(Stratum = c("Stratum_1",
 ```
 
 
-```{r fallall, fig.asp=0.8}
+```{r fallall, fig.asp=0.7}
 #, fig.cap="Fall forage indices scaled to the maximum value (Mid Atlantic 1985) for ecoregions Georges Bank (GB), Gulf of Maine (GOM), Mid Atlantic Bight (MAB), and bluefish assessment index areas in state waters within 3 miles of shore (StateWaters) and bottom trawl survey index strata (SurveyBluefish)."
 splitout <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/forageindex/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv")
 splitoutput <- splitout %>%
@@ -375,30 +407,8 @@ The Bigelow index fit with the fall forage fish index did not improve the model 
 The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
 The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
 
-
 ---
-## Integrated Ecosystem Assessment and the MAFMC Ecosystem Approach
-
-Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing EAFM is done in collaboration between managers, stakeholders, and scientists. https://www.mafmc.org/eafm 
-
-.pull-left[
-![:img IEA process from goal setting to assessment to strategy evaluation with feedbacks, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/iea-loop.png)
-.footnote[
-https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
-]
-]
-.pull-right[
-![:img Mid-Atlantic EAFM framework with full details in speaker notes, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
-   * Direct link between ecosystem reporting and risk assessment
-   * Conceptual model links across risk elements for fisheries, species
-   * Management strategy evaluation includes key risks
-
-]
-???
-`r Cite(myBib,"gaichas_framework_2016")` The Council’s EAFM framework has similarities to the IEA loop. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
-
----
-# Northeast US State of the Ecosystem (SOE) reporting
+# Ecosystem reporting in the Northeast US
 ## Improving ecosystem information and synthesis for fishery managers
 
 .pull-left-70[
@@ -424,8 +434,6 @@ https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
 
 
 ]
-
-
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png")
@@ -497,35 +505,10 @@ plot(qrcode::qr_code("https://www.mafmc.org/s/Tab11_2023-Mid-Atlantic-State-of-t
 ]
 
 ---
-## Implications: Climate change and Mid-Atlantic managed species
+## New for 2024: Align climate risks with management decisions
 
 .pull-left[
-Climate*: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk
-
-*Multiple drivers with different impacts by species*    
-* Seasonal estuarine conditions affect life stages of striped bass, blue crabs, summer flounder, black sea bass differently
-
-* Ocean acidification approaching sensitivity thresholds in commercial shellfish habitats  
-
-* Gulf stream warm core rings more abundant, important to shortfin squid availability 
-
-&nbsp;  
-&nbsp;  
-&nbsp; 
-&nbsp; 
-&nbsp;  
-
-.contrib[
-*Climate vulnerability and Distribution Shift risk levels from climate vulnerability analysis `r Cite(myBib,"hare_vulnerability_2016")`
-]
-
-
-]
-
-.pull-right[
-DistShift*: 2 <span style="background-color:lightgreen;">low</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species 
-
-* Managed species shifts already impacting allocation discussions
+* Distribution shifts and risks to allocation, bycatch management
 
 ```{r, fig.width=8, fig.asp=0.3}
 a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(xlim = c(1969,2021))
@@ -534,10 +517,48 @@ b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(xl
 a+b
 ```
 
+* Main drivers: temperature and ocean circulation
+* Unlikely to revert to 1980s conditions in the short term
+* Reconsider allocations, spatial bycatch management
+
+]
+
+.pull-right[
 ```{r , fig.width=7, fig.asp=0.8}
 ecodata::plot_HMS_species_distribution() + ggplot2::ggtitle("Whale and Dolphin Distribution Shifts")
 ```
+
+## More risks
+
+* Timing shifts and risks to seasonal management
+* Productivity shifts and risks to quota setting, reference points
+
+
 ]
+
+???
+
+---
+## Integrated Ecosystem Assessment and the MAFMC Ecosystem Approach
+
+Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing EAFM is done in collaboration between managers, stakeholders, and scientists. https://www.mafmc.org/eafm 
+
+.pull-left[
+![:img IEA process from goal setting to assessment to strategy evaluation with feedbacks, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/iea-loop.png)
+.footnote[
+https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+]
+.pull-right[
+![:img Mid-Atlantic EAFM framework with full details in speaker notes, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+   * Direct link between ecosystem reporting and risk assessment
+   * Conceptual model links across risk elements for fisheries, species
+   * Management strategy evaluation includes key risks
+
+]
+???
+`r Cite(myBib,"gaichas_framework_2016")` The Council’s EAFM framework has similarities to the IEA loop. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
+
 
 ---
 ## State of the Ecosystem &rarr; MAFMC Risk assessent example: Commercial revenue
