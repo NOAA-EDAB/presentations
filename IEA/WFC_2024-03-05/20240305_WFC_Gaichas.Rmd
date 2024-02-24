@@ -20,8 +20,8 @@ output:
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/nes-components-abstracted.png")
-background-size: 600px
-background-position: right bottom
+background-size: 550px
+background-position: right
 
 class: top, left
 
@@ -83,22 +83,32 @@ myBib <- ReadBib("./operationalSOE.bib", check = FALSE)
 .center[
 # What do *you* think EBFM means?
 ]
-
+  
+--
+*"Bad for me because I fish for forage fish"*  
+<br />
+<br />
+  
 --
 *"Increased uncertainty and lower quotas"*  
-  
---
-*"Bad for me because I fish for forage fish"*   
-  
+<br />
+<br />
+
 --
 *"It's really complex and difficult to implement"*  
+<br />
+<br />
   
 --
 *"The ocean is changing and we need to account for that"*   
+<br />
+<br />
   
 --
 *"It could be really effective if done right"* 
-   
+<br />
+<br />
+
 --
 
 How can we effectively communicate and use ecosystem information?
@@ -391,7 +401,12 @@ The Albatross index fit with the fall forage fish index did not converge or hess
 The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
 
 ---
-## Ecosystem reporting in the Northeast US: Focus on the fishery management audience
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_1.png")
+background-size: 380px
+background-position: right
+
+## Ecosystem reporting in the Northeast US: 
+## Focus on the fishery management audience
 
 .pull-left-70[
 
@@ -407,15 +422,10 @@ The MRIP index fit with the annual forage fish index did not converge or hessian
     + Conceptual modeling `r Cite(myBib,"depiper_learning_2021")`
     + Management strategy evaluation ([MSE](https://www.mafmc.org/actions/summer-flounder-mse))
 
- 
 ]
 
-.pull-right-30[
-![:img 2023 SOE Mid Atlantic Cover Page, 100%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_1.png)
+.pull-right-30[]
 
-
-
-]
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png")
@@ -445,6 +455,11 @@ Protected species:
 .pull-right-40[]
 
 ---
+background-image: url("https://www.fisheries.noaa.gov/s3/styles/original/s3/2022-08/640x427-Sea-Scallop-Atlantic-NOAAFisheries.png?itok=GTO_x4Wo")
+background-size: 150px
+background-position: right
+
+
 .pull-left[
 ## Reporting ecosystem risks for managers
 
@@ -458,13 +473,13 @@ ecodata::plot_bottom_temp_comp()
 
 .pull-right[
 *2024 Report*
-![:img scallop stress bottom temp, 85%](https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/bottom_temp_threshold_17_19_Elephant_Trunk.png)
+![:img scallop stress bottom temp, 90%](https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/bottom_temp_threshold_17_19_Elephant_Trunk.png)
 ]
 
 ???
 
 ---
-## Integrated Ecosystem Assessment and the MAFMC Ecosystem Approach
+## Adapting Integrated Ecosystem Assessment to managers' needs
 
 Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing EAFM is done in collaboration between managers, stakeholders, and scientists. https://www.mafmc.org/eafm 
 
@@ -671,7 +686,7 @@ risk.sppsector %>%
 ???
 ---
 .pull-left[
-## How is MAFMC using the risk assessment?
+## How has MAFMC used the risk assessment?
 
 * Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
 
@@ -738,7 +753,8 @@ Results for 2 of 16 performance metrics:
 .pull-left[
 ## Frontiers: multispecies and system level advice 
 
-Indicator: fish condition 
+Fish condition 
+
 ```{r, crop=TRUE, fig.width=8, fig.asp=1}
 #knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//MAB_Condition_allsex_2022_viridis.jpg")
 #fishcond <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/MAB_Condition_allsex_2023_viridis.jpg") 
@@ -747,15 +763,13 @@ Indicator: fish condition
 ecodata::plot_condition()
 ```
 
-&rarr;
-Implications: 
-Species in the MAB had mixed condition in 2023. Fish productivity based on surveys and assessments has been below average. 
+Species in the MAB had low condition 2000-2010. Fish productivity based on surveys and assessments has been below average since then. 
 
 ]
 
 .pull-right[
-Indicator: fish productivity anomaly `r Cite(myBib, 'perretti_regime_2017')`
-```{r, fig.asp=.9}
+Fish productivity anomaly `r Cite(myBib, 'perretti_regime_2017')`
+```{r, fig.asp=1.1}
 a <- ecodata::plot_productivity_anomaly(report = "MidAtlantic") + 
   ggplot2::coord_cartesian(xlim=c(1980,2022)) +
   ggplot2::guides(fill=guide_legend(ncol=1)) + 
