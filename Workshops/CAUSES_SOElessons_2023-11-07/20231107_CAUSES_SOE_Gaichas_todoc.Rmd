@@ -1,0 +1,354 @@
+---
+title: "State of the Ecosystem"
+subtitle: "Lessons Learned from US Reporting<br /><br />CAUSES <br /> 7 November 2023"
+author: Sarah K. Gaichas$^1$, Brandon Muffley$^2$, Geret DePiper$^1$, Kimberly Bastille$^{1,3}$,<br /> Kimberly J. W. Hyde$^1$, Scott Large$^1$, Sean M. Lucey$^1$, and Laurel Smith$^1$
+institute: <span style="font-weight:normal;"><font size="-0.5">$^1$NOAA NMFS Northeast Fisheries Science Center, Woods Hole, MA, USA;<br /> $^2$Mid-Atlantic Fishery Management Council, Dover, DE, USA;<br /> $^3$Ocean Associates Inc, Arlington, VA, USA</font></span>
+output:
+  bookdown::word_document2: default
+always_allow_html: true
+---
+
+$^1$NOAA NMFS Northeast Fisheries Science Center, Woods Hole, MA, USA;<br /> $^2$Mid-Atlantic Fishery Management Council, Dover, DE, USA;<br /> $^3$Ocean Associates Inc, Arlington, VA, USA
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
+                      warning = F,
+                      message = F)
+
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+library(kableExtra)
+library(ecodata)
+library(readxl); library(data.table)
+library(DT)
+library(widgetframe)
+
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./MidSOE.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+# Goal: include climate and ecosystem information in management decision processes
+
+*Overview*
+What types of decisions are made?
+
+    * Single species catch limits
+    * Allocations to fleets or areas
+    * Coordination across boundaries and sectors 
+    * Multispecies and ecosystem level tradeoffs
+
+How can ecosystem information support these decisions? 
+
+    * Key tools: ecosystem reporting, risk assessment, managment strategy evaluation
+    * Developing decision processes along with products
+
+
+![Word cloud based on Mid-Atlantic Fishery Management Council EAFM Guidance Document, https://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08-palr.pdf](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_EAFMwordcloud.png)
+]
+
+## Lessons Learned  
+
+Develop reporting for and with a specific audience:
+
++  Show up to management meetings. Regularly. 
+
++  Center on management objectives.
+
++  Focus on management implications.
+
++  Listen, and respond to requests.
+
++  Iterate.
+
+ 
+"How can we use this?"
+
++  Collaborate across disciplines, with managers and stakeholders.
+
++  Prepare some examples.
+
++  Expect them to be changed!
+
++  Listen, and respond to requests.
+
++  Iterate.
+
+
+   
+## Background: Federal fishery management in the US
+
+Eight regional Fishery Management Councils establish plans for sustainable management of stocks within their jurisdictions. All are governed by the same law, but tailor management to their regional stakeholder needs.
+
+![US map highlighting regions for each fishery management council](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/USCouncils.png)
+
+More information: http://www.fisherycouncils.org/  
+https://www.fisheries.noaa.gov/topic/laws-policies#magnuson-stevens-act
+
+# Northeast US State of the Ecosystem (SOE) reporting: Improving ecosystem information and synthesis for fishery managers
+
+- Ecosystem indicators linked to management objectives `r Cite(myBib, "depiper_operationalizing_2017")`
+    + Contextual information
+    + Annual reporting since 2016
+    + Fishery-relevant subset of full Ecosystem Status Reports
+
+- Open science emphasis `r Cite(myBib, "bastille_improving_2021")`
+
+- Used within Mid-Atlantic Fishery Management Council's Ecosystem Process `r Cite(myBib, "muffley_there_2021")`
+    + Risk assessment `r Cite(myBib,"gaichas_implementing_2018")`
+    + Conceptual modeling `r Cite(myBib,"depiper_learning_2021")`
+    + Management strategy evaluation ([MSE](https://www.mafmc.org/actions/summer-flounder-mse))
+
+
+![2023 SOE Mid Atlantic Cover Page](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_1.png)
+
+
+## Lesson: Synthesize
+
+Characterizing ecosystem change for fishery management with *synthesis themes*
+
+* Societal, biological, physical and chemical factors comprise the **multiple system drivers** that influence marine ecosystems through a variety of different pathways. 
+* Changes in the multiple drivers can lead to **regime shifts** — large, abrupt and persistent changes in the structure and function of an ecosystem.  
+* Regime shifts and changes in how the multiple system drivers interact can result in **ecosystem reorganization** as species and humans respond and adapt to the new environment.
+
+
+![Multiple System Drivers](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//SystemDrivers_v5.jpg)
+
+ 
+![Ecosystem Regime Shifts and Reorganization](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//RegimeShift_V5.jpg)
+
+   
+## Lesson: Short and Focused
+
+1. Graphical summary
+    + Page 1 report card re: objectives &rarr;
+    + Page 2 risk summary bullets
+    + Page 3 synthesis themes
+1. Performance relative to management objectives
+1. Risks to meeting management objectives
+
+
+![State of the Ecosystem page 1 summary table](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png)![State of the Ecosystem page 2 risk bullets](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_3.png)
+
+
+## (not) Risks: Climate change Mid Atlantic (a.k.a. indicator shock-and-awe)
+
+We have found showing these unconnected to species or management to have little impact. 
+
+Indicators: ocean currents, temperature, seasons
+```{r,  fig.width=4}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R"),
+ecodata::plot_gsi()
+```
+
+```{r,  fig.width=4}
+#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R"),
+ecodata::plot_trans_dates(varName = "length")
+```
+]
+
+```{r seasonal-sst-anom-gridded,   fig.width = 8, fig.asp = .6}
+#fig.cap="MAB (grey outline) seasonal sea surface temperature (SST) time series overlaid onto 2021 seasonal spatial anomalies. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall.",code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-seasonal-sst-anom-gridded.R"),
+
+ecodata::plot_seasonal_sst_anomaly_gridded()
+```
+
+```{r bottom-temp,   fig.width = 6, fig.asp = .4}
+#fig.cap="MAB seasonal bottom temperature (BT) anomaly time series. Seasons are defined as: Jan-Mar for winter, Apr-Jun for spring, Jul-Sep for summer, and Oct-Dec for fall. The final 2 years of each time series (open circles) are modeled estimates subject to change.",code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-bottom-temp-hi-res-ts.R"),
+
+ecodata::plot_bottom_temp_comp()
+```
+
+
+The Gulf Stream is trending north. Ocean summer is lasting longer. In contrast to SST, long term bottom temperature is increasing in all seasons. Few surface and no bottom extreme warming events in 2022.
+
+   
+## Climate Change Implications: focus on managed species
+
+Climate*: 6 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span>, 4 <span style="background-color:orange;">mod-high</span>, 1 <span style="background-color:red;">high</span> risk
+
+*Multiple drivers with different impacts by species*    
+* Seasonal estuarine conditions affect life stages of managed species differently
+* Ocean acidification impact on commercial species  
+![Mid Seasonal pH](https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/Saba_Fig_SOE_MAFMC.jpg)
+
+* Warm core rings important to *Illex* availability. 
+
+*Climate vulnerability and Distribution Shift risk levels from climate vulnerability analysis `r Cite(myBib,"hare_vulnerability_2016")`
+
+ 
+DistShift*: 2 <span style="background-color:lightgreen;">low</span>, 9 <span style="background-color:orange;">mod-high</span>, 3 <span style="background-color:red;">high</span> risk species 
+
+* Managed species shifts already impacting allocation discussions
+
+*New Indicator: protected species shifts*
+```{r ,  fig.width=7, fig.asp=0.8}
+#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-protectedspp-dist-shifts.R"),
+ecodata::plot_HMS_species_distribution()
+```
+]
+
+
+   
+# SOE use in management: Mid-Atlantic Fishery Management Council (MAFMC)
+
+![US East Coast map highlighting Mid-Atlantic council jurisdiction](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MACouncil.png)
+
+![MAFMC fishery management plans and species](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMPs3.png)
+
+Source: http://www.mafmc.org/fishery-management-plans
+
+   
+## Integrated Ecosystem Assessment and the MAFMC Ecosystem Approach
+
+Diverse stakeholders agreed that an ecosystem approach was necessary. Developing and implementing EAFM is done in collaboration between managers, stakeholders, and scientists. https://www.mafmc.org/eafm
+
+ 
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/iea-loop.png)
+
+
+ 
+![Mid-Atlantic EAFM framework](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+   * Direct link between ecosystem reporting and risk assessment
+   * Conceptual model links across risk elements for fisheries, species
+   * Management strategy evaluation includes key risks
+
+
+`r Cite(myBib,"gaichas_framework_2016")` The Council’s EAFM framework has similarities to the IEA loop. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
+
+   
+## SOE --> Risk Assessment
+
+Every year, ecosystem indicators presented are reviewed against Council-determined risk criteria toi develop a risk table spanning multiple objectives, species, and fisheries. 
+
+![Example MAFMC risk table, management 2019](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/mgttable2019.png)
+
+![Example MAFMC risk table, species 2019](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/sptable2019.png)
+
+
+![Example MAFMC risk table, ecosystem 2019](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ecotable2019.png)
+
+
+## SOE use in management: MAFMC
+
+* Based on risk assessment, the Council selected summer flounder as high-risk fishery for conceptual modeling
+* Council completed management strategy evaluation (MSE) addressing [recreational fishery discards](https://www.mafmc.org/actions/summer-flounder-mse) using information from conceptual modeling.
+]
+ 
+In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
+
+
+![Static conceptual model discards](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/consmod-discards2.png)
+
+   
+## MSE results: can improve on current management, but distribution shifts lower expectations
+Results for 2 of 16 performance metrics:
+
+
+![Summer flounder MSE results by OM](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/keepOneNoOFkey.png)
+
+
+
+[August MAFMC briefing materials](https://www.mafmc.org/s/Tab02_Summer-Flounder-MSE_2022-08.pdf) and [full results on the web](https://gavinfay.github.io/fluke-mafmc-recdisc/summary-metrics.html)
+
+
+* Linked recreational demand and population dynamics model
+* Alternative operating model included northward distribution shift as change in availability by state
+* Rank order of management options maintained, but degraded performance when considering ecosystem change
+
+
+# Lesson: Prioritize requests from managers
+
+
+*  Highest priority requests in progress
+    -  System level thresholds and reference points
+    -  Trend analysis, inflections and break points
+    -  Regime shifts
+*  Identified some gaps
+    - Short term forecasts
+    - Management complexity
+    - Recreational bycatch
+*  Stock level indicators best addressed in assessment?
+
+![bluefish ESP conceptual model](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
+
+The Bluefish Research Track ESP was presented December 7 2022, and was well received by CIE reviewers. Reviewers commented that it was the most complete treatment of a stock assessment "ecosystem ToR" they had seen, and formed a good basis for integrating further ecosystem information into the stock assessment in the future. The full ESP document is available as a working paper from the [stock assessment data portal](https://apps-nefsc.fisheries.noaa.gov/saw/sasi_files.php?year=2022&species_id=32&stock_id=6&review_type_id=5&info_type_id=5&map_type_id=&filename=WP%2001%20Tyrell%20etAl%202022%20-%20ESP.pdf). 
+
+In addition to the conceptual model, a summary table was developed for bluefish ecosystem indicators. This type of summary could contribute to OFL CV decisions with further information on how these indicator levels affect uncertainty in assessment.
+
+
+
+# Entry points for ecosystem information in management decisions: where to start?
+
+
+*Management decisions*
+1.  What are our issues and goals?
+1.  Current decisions  
+    +  Stock assessments
+    +  Advice on catch levels
+    +  Harvest control rules
+1.  New (current) decisions  
+    +  Habitat change or restoration
+    +  Changing species distribution and interactions
+    +  Tradeoffs between fisheries
+    +  Tradeoffs between ocean use sectors
+
+
+*Methods and tools*
+1.  Stakeholder engagement, surveys, strategic planning  
+1.  Add information to current process  
+    +  Ecosystem ToRs, overviews, SOE
+    +  Risk or uncertainty assessments
+    +  Management strategy evaluation
+1.  Integrate across current processes  
+    +  Risk assessment
+    +  Conceptual models
+    +  Scenario planning
+    +  MSE (again)
+
+State of the Ecosystem data on github https://github.com/NOAA-EDAB/ecodata
+
+
+   
+
+# Links
+ 
+* [US EBFM Policy](https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-policy), [US EBFM Roadmap](https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-management-road-map)  
+* [US Integrated Ecosystem Assessments](https://www.integratedecosystemassessment.noaa.gov/)
+* [Northeast US Ecosystem Reports](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)  
+* [Ecosystem Report Technical Documentation](https://noaa-edab.github.io/tech-doc)  
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+* [2023 Mid-Atlantic SOE report](https://www.mafmc.org/s/Tab11_2023-Mid-Atlantic-State-of-the-Ecosystem.pdf)
+* [MAFMC SSC](https://www.mafmc.org/ssc)
+* [MAFMC EAFM](https://www.mafmc.org/eafm)
+* [MAFMC EAFM Summer Flounder MSE](https://www.mafmc.org/actions/summer-flounder-mse)
+
+# References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+
+
+
