@@ -113,16 +113,12 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 1. Graphical summary
     + Page 1 report card re: objectives &rarr;
     + Page 2 risk summary bullets
-    + Page 3 *2023 snapshot**
+    + Page 3 *2023 snapshot*
 1. Performance relative to management objectives
 1. Risks to meeting management objectives
-    + *Climate and Ecosystem risks**
+    + *Climate and Ecosystem risks*
     + Offshore wind development
     
-.contrib[
-* except for 2 *synthetic replacements*
-]
-
 ![:img State of the Ecosystem page 1 summary table, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_2.png)![:img State of the Ecosystem page 2 risk bullets, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_3.png)
 
 ]
@@ -166,6 +162,12 @@ knitr::kable(mng_obj, linesep = "",
 ```
 ]
 
+???
+.contrib[
+* except for 2 *synthetic replacements*
+]
+
+
 ---
 ## Ecosystem synthesis themes: still framing! but replace p.3 with 2023 Highlights
 
@@ -192,7 +194,7 @@ Characterizing ecosystem change for fishery management
 Spatial scale
 ![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//EPU_Designations_Map.jpg)
 
-A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html) (2021 Memo 5), detailed [technical methods documentation](https://NOAA-EDAB.github.io/tech-doc) and [indicator data](https://github.com/NOAA-EDAB/ecodata) are available online.  
+A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html), detailed [technical methods documentation](https://NOAA-EDAB.github.io/tech-doc), and indicator [data](https://github.com/NOAA-EDAB/ecodata) and [catalog](https://noaa-edab.github.io/catalog/) are available online.  
 ]
 
 .pull-right[
@@ -245,12 +247,12 @@ No color line = not significant or < 30 years
         - Climate and ecosystem drivers of fishery risk
         - Future considerations
 * Risk categories
-    _ Climate and Ecosystem Change
-        - *Risk to spatial management*
-        - *Risk to seasonal management*
-        - *Risk to quota setting/rebuilding*
-    - Other ocean uses
-        - Offshore wind development
+    + *Climate and Ecosystem Change*
+        + *Risk to spatial management*
+        + *Risk to seasonal management*
+        + *Risk to quota setting/rebuilding*
+    + Other ocean uses
+        + Offshore wind development
 ]
 
 
@@ -373,20 +375,22 @@ background-position: right
 **Risks to meeting fishery management objectives**  
 
 .pull-left-60[
-Climate: warming and changing oceanography continue
-*  Heat waves and Gulf Stream instability
-*  Estuarine, coastal, and offshore habitats affected, with range of species responses
-*  Distribution shifts complicate management
-*  Multiple fish with poor condition, declining productivity 
+Climate: risks to spatial & seasonal management, quota setting and rebuilding
+*  Fish and protected species distribution shifts
+    - Forage fish shifts
+    - Increased temperature, changing oceanography, smaller cold pool
+*  Changes to spawn timing and migration
+    - Fall bloom timing and food availability changing 
+    - Longer summer conditions
+*  Multiple fish stocks with poor condition, declining productivity 
+    - Prey quality and abundance changing
+    - Multiple stressors: temperature, OA, low oxygen
 
 Other ocean uses: offshore wind development
 *  Current revenue in proposed areas
-    - 1-34% by port (some with EJ concerns)
-    - up to 17% by managed species
-*  Different development impacts for species preferring soft bottom vs. hard bottom 
+    - 1-23% by port (some with EJ concerns)
+    - up to 20% by managed species
 *  Overlap with important right whale foraging habitats, increased vessel strike and noise risks 
-*  Rapid buildout in patchwork of areas 
-*  Scientific survey mitigation required
 ]
 .pull-right-40[]
 
@@ -409,7 +413,6 @@ Notable 2023 events and conditions
 *  2nd ranked GOM bottom heatwave
 *  Warm water everywhere EXCEPT in Spring on the NEUS shelf
 *  Gulf Stream changes altering shelf break habitats
-
 *  El Nino. Warmest year on record globally. Again.
 ]
 
@@ -462,7 +465,7 @@ ecodata::plot_rec_hms(shadedRegion = c(2014,2023), report="MidAtlantic")
 
 ]
 
-Multiple potential drivers of landings changes: ecosystem and stock production, management actions, market conditions (including COVID-19 disruptions), and environmental change.
+Multiple potential drivers of landings changes: ecosystem and stock production, management actions, market conditions, and environmental change.
 
 ???
 The long-term declining trend in landings didn't change.
@@ -487,6 +490,9 @@ a$p + ggplot2::coord_cartesian(xlim=c(0,2), ylim=c(0,2)) +
 
 ```
 
+.contrib[
+Most stocks have good status. Spiny dogfish B and F status have improved. Mackerel F status has improved, but B is still below the target. Fluke F is above the limit.
+]
 ]
 
 .pull-right[
@@ -498,14 +504,14 @@ Indicators: Total ABC or ACL, and Realized catch relative to management target
 #, fig.width = 5, fig.asp = 0.5
 #abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries."
 
-ecodata::plot_abc.acl(report = "MidAtlantic", plottype = "Stacked")
+ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Stacked")
 ```
 
 ```{r , fig.width=5, fig.asp=0.4}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R"),
 #abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. Chub mackerel removed due extremely low catch. Outliers = Recreational Black Sea Bass.  Possible management success story? - See comment in google doc."
 
-ecodata::plot_abc.acl(report = "MidAtlantic", plottype = "Catch")
+ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Catch")
 ```
 
 .contrib[
@@ -534,7 +540,7 @@ ecodata::plot_aggregate_biomass(report = "MidAtlantic")
 ```
 
 .contrib[
-Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
+Key: Black = NEFSC survey; <span style="color:#FF6A6A;">Red = NEAMAP survey</span>
 *New species categories, more southern species in Benthivores*
 ]
 
@@ -899,60 +905,62 @@ Council request: which New England ports have significant reliance on Mid-Atlant
 ```{r wind-rev-NE-MAFMC,  fig.width=6.5, fig.asp=.36, fig.align='left'}
 #fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.",
 df.symbol <- ecodata::wind_port %>% filter(EPU == "NE", 
-                                           !Var %in% c("WEA_MAX", "TOT_MAX", 
+                                           !Var %in% c("MaxVal", "TOT_MAX", 
                                                      "perc_MIN", "perc_MAX")) %>% 
-   pivot_wider( names_from = Var, values_from = Value) %>%
-  dplyr::mutate(City = paste0(City,State)) %>% 
-  dplyr::filter(City %in% c("POINT JUDITH RI",
-                            "NORTH KINGSTOWN RI",
-                            "BOSTON MA",
-                            "WOODS HOLE MA",
-                            "HYANNIS MA",
-                            "BARNSTABLE MA")) %>%
-  dplyr::select(City, EJ, Gent) %>% 
-  pivot_longer(cols = c(EJ, Gent), names_to = "Variable") %>% 
+   tidyr::pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(City = paste0(City,",", State)) %>% 
+  dplyr::filter(City %in% c("Point Judith, RI",
+                          #  "North Kingstown RI",
+                          #  "Boston MA",
+                          #  "Woods Hole MA",
+                          #  "Hyannis MA",
+                            "Barnstable, MA")) %>%
+  dplyr::select(City, EJ, Gentrification) %>% 
+  pivot_longer(cols = c(EJ, Gentrification), names_to = "Variable") %>% 
   filter(!value == "NA") %>% 
-  dplyr::mutate(symbol = recode(Variable, EJ = -7, Gent = -3), 
+  dplyr::mutate(symbol = recode(Variable, EJ = -7, Gentrification = -3), 
                 Variable = recode(Variable,"EJ"= "Mid-High to High EJ Concerns" , 
-                                  "Gent" ="Mid-High to High Gentrificaiton Concerns"))
+                                  "Gentrification" ="Mid-High to High Gentrificaiton Concerns"))
 
 # Percentage plot
 
 df.all.perc<- ecodata::wind_port %>% filter(EPU == "NE") %>%
-  pivot_wider( names_from = Var, values_from = Value) %>%
-  dplyr::mutate(ordering = WEA_MAX,  
-                City = paste0(City, State), 
-                TOT_MAX = c(100 - perc_MIN - perc_MAX)) %>% 
-  pivot_longer(cols = c(perc_MIN,  perc_MAX, TOT_MAX), names_to="Var", values_to = "Value") %>% 
+  tidyr::pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(ordering = MaxVal,
+                   City = paste0(City, ",", State),
+                   perc_dif =  c(perc_MAX - perc_MIN),
+                   TOT_MAX = c(100 - perc_dif - perc_MIN)) %>% 
+  tidyr::pivot_longer(cols = c(perc_MIN,  perc_dif, TOT_MAX), names_to="Var", values_to = "Value") %>% 
   dplyr::arrange(desc(ordering)) %>%
-  dplyr::filter(City %in% c("POINT JUDITH RI",
-                            "NORTH KINGSTOWN RI",
-                            "BOSTON MA",
-                            "WOODS HOLE MA",
-                            "HYANNIS MA",
-                            "BARNSTABLE MA")) %>%
+  dplyr::filter(City %in% c("Point Judith, RI",
+                            #"North Kingstown RI",
+                            #"Boston MA",
+                            #"Woods Hole MA",
+                            #"Hyannis MA",
+                            "Barnstable, MA")) %>%
   dplyr::mutate(City = factor(City, levels = unique(City))) %>% 
-  dplyr::filter(!Var %in% c("WEA_MAX", "EJ", "Gent")) %>% 
+  dplyr::filter(!Var %in% c("MaxVal", "EJ", "Gentrification")) %>% 
   dplyr::mutate(Var = recode(Var,"perc_MIN"= "WEA Revenue" , 
-                             "perc_MAX" ="WEA Revenue Range", 
+                             "perc_dif" ="WEA Revenue Range", 
                              "TOT_MAX" = "Non-WEA Revenue"), 
                 Var = factor(Var, levels = c("Non-WEA Revenue", 
                                              "WEA Revenue Range", 
                                              "WEA Revenue")))
 p2<-ggplot2::ggplot()+
   ggplot2::geom_bar(data = df.all.perc, aes(fill = Var, y = reorder(City, ordering), x = Value), stat="identity" )+
-  scale_fill_brewer()+
+  ggplot2::scale_fill_brewer()+
   ggplot2::theme(legend.position = "bottom", 
                  legend.title = element_blank(), 
                  legend.box="vertical", legend.margin=margin())+
   ggplot2::geom_point(data = df.symbol, aes(x = symbol,y = City, shape = Variable)) +
-  scale_shape_manual(values = c(17, 16)) +
+  ggplot2::scale_shape_manual(values = c(17, 16)) +
   ggplot2::ggtitle("Port Revenue from WEA, majority MAFMC species")+
   ggplot2::xlab(expression("Port Revenue (%)"))+
   ggplot2::ylab(element_blank())+
   ecodata::theme_ts()
 
 p2
+
 ```
 
 ]
