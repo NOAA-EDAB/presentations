@@ -375,16 +375,10 @@ background-position: right
 **Risks to meeting fishery management objectives**  
 
 .pull-left-60[
-Climate: risks to spatial & seasonal management, quota setting and rebuilding
+Climate: risks to spatial and seasonal management, quota setting and rebuilding
 *  Fish and protected species distribution shifts
-    - Forage fish shifts
-    - Increased temperature, changing oceanography, smaller cold pool
-*  Changes to spawn timing and migration
-    - Fall bloom timing and food availability changing 
-    - Longer summer conditions
-*  Multiple fish stocks with poor condition, declining productivity 
-    - Prey quality and abundance changing
-    - Multiple stressors: temperature, OA, low oxygen
+*  Changing spawning and migration timing
+*  Multiple stocks with poor condition, declining productivity 
 
 Other ocean uses: offshore wind development
 *  Current revenue in proposed areas
@@ -491,7 +485,7 @@ a$p + ggplot2::coord_cartesian(xlim=c(0,2), ylim=c(0,2)) +
 ```
 
 .contrib[
-Most stocks have good status. Spiny dogfish B and F status have improved. Mackerel F status has improved, but B is still below the target. Fluke F is above the limit.
+Most stocks have good status. Spiny dogfish B and F status have improved. Mackerel F status has improved, but B is still below the target. Summer flounder F exceeds the limit.
 ]
 ]
 
@@ -547,33 +541,32 @@ Key: Black = NEFSC survey; <span style="color:#FF6A6A;">Red = NEAMAP survey</spa
 ]
 
 .pull-right[
-.contrib[ 
-* Declining managed benthos, aggregate planktivores
-
-```{r, fig.width=4, fig.asp=1.2}
+```{r, fig.width=5, fig.asp=1}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), 
 # comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
 
-ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild")
+ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild") + 
+  ggplot2::ggtitle(ggplot2::element_blank()) +
+  ggplot2::theme(legend.position = "right")
 ```
-
+.contrib[ 
+* Declining managed benthos, aggregate planktivores
 * Recreational drivers differ: shark fishery management, possibly survey methodology
+]
 
 Monitor: 
-* climate risks including warming, ocean acidification, and shifting distributions  
-```{r, eval=FALSE}
-#species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.width=3.5, fig.asp=.9
-```  
-* ecosystem composition and production changes  
-* fishing engagement  
-]
+* Climate risks including warming, ocean acidification, and shifting distributions  
+* Ecosystem composition and production changes  
+* Fishing engagement  
+
 ]
 
 
 ???
-Because stock status is mostly acceptable, ABCs don't appear to be constraining for many stocks, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species.
+Stock status is above the minimum threshold for all but two stocks, and aggregate biomass trends appear stable, so the decline in managed commercial seafood landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. In addition, regional availability of scallops has contributed to the decline of benthos landings not managed by the MAFMC, with some of the most productive grounds currently closed through rotational management. The long term decline in total planktivore landings is largely driven by Atlantic menhaden fishery dynamics, including a consolidation of processors leading to reduced fishing capacity between the 1990s and mid-2000s. 
 
-Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
+Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council.
+
 
 ---
 ## Objective: Mid Atlantic Commercial Profits ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png)  ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png) &emsp; Risk element: <span style="background-color:orange;">CommRev</span>, unchanged
@@ -604,7 +597,7 @@ Indicator: Bennet--price and volume indices
 
 ```
 
-```{r , fig.width = 5, fig.asp = 0.9}
+```{r , fig.width = 6, fig.asp = 0.9}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R")
 #bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight."
 ecodata::plot_bennet(report="MidAtlantic") + ggplot2::facet_wrap(~Var, ncol=1)
@@ -613,10 +606,13 @@ ecodata::plot_bennet(report="MidAtlantic") + ggplot2::facet_wrap(~Var, ncol=1)
 
 
 ???
-Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
+Although the Mid-Atlantic region shows declining revenue trends since 2016, inflation-adjusted revenue from harvested species was still greater than 1982 levels until 2022. In a similar manner to seafood landings, the results here are driven in large part by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species, as well as lower quotas for Atlantic scallops. The declining Benthos category since 2012 may be partially caused by decreases in surfclam and ocean quahogs in the southern part of their range as harvest have shifted northward. Changes in other indicators, particularly those driving landings and those related to climate change, require monitoring as they may become important drivers of revenue in the future; for example:
+
+-  Surfclams, ocean quahogs, and scallops are sensitive to warming ocean temperatures and ocean acidification.   
+-  [Multiple stressors](https://noaa-edab.github.io/catalog/ocean_acidification) are interacting in Mid-Atlantic shellfish habitats.
 
 ---
-## SSC request: Net vs Gross Revenue investigations
+## SSC request: Net vs. Gross Revenue investigations
 
 ADD GERET'S FIGURES
 
