@@ -1323,7 +1323,7 @@ b / (a + patchwork::plot_spacer())
 ]
 
 ---
-## EAFM Risk Assessment: 2024 Update (new elements and criteria in review/revision)
+## EAFM Risk Assessment: 2024 Update with new elements (indicators and criteria in development/revision)
 
 .pull-left[
 *Species level risk elements*
@@ -1334,15 +1334,17 @@ b / (a + patchwork::plot_spacer())
 risk.species<-data.frame(
   Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Chub mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
   Assess  = c("l", "l", "l",  "l", "l", "l", "h", "l", "lm", "h", "l", "h", "l", "l", "h", "na", "na"),
-  Fstatus = c("l", "l", "l", "l", "l", "h", "lm", "l", "lm", "lm", "l", "h", "l", "h", "lm", "na", "na"),
-  Bstatus = c("l", "l", "lm", "l", "l", "h", "lm", "lm", "lm", "lm", "lm", "mh", "lm", "lm", "lm", "na", "na"),
-  FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
-  FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
+  Fstatus = c("l", "l", "h", "l", "l", "l", "lm", "l", "lm", "lm", "l", "h", "l", "h", "lm", "na", "na"),
+  Bstatus = c("l", "l", "lm", "l", "l", "h", "lm", "lm", "lm", "lm", "lm", "mh", "lm", "l", "lm", "na", "na"),
+  #FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
+  #FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
+  PreyA = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
+  PredP = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
   FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
   Climate = c("h", "mh", "lm", "lm", "mh", "lm", "na", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
   DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "na", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
-  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na")#,
-#  OffHabitat = c("na", "na", "l", "l", "l", "l", "na", "l", "l", "h", "na", "na", "na", "l", "l", "na", "na")#,
+  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na"),
+  OffHab = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd")#,
 )
 
 
@@ -1359,20 +1361,19 @@ risk.species<-data.frame(
 #convert to longer text for consistency and display in html table
 risk.species <- risk.species %>%
      mutate_at(vars(-Species), function(x){
-       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
      as.data.frame()
 
 #generalize to all
 risk.species %>%
   mutate_at(vars(-Species), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
   kable(format = "html", escape = F, table.attr='class="risktable"') %>%
   kable_styling(font_size = 9) 
 ```
 .contrib[
-* RT assessment decreased Spiny dogfish **Assess**, risk to low and increased **Fstatus** risk to high
-* RT assessment decreased bluefish **Bstatus** risk from high to low-moderate
-* RT assessment increased Illex **Assess** risk from low-moderate to high
+* Mackerel **Fstatus** risk reduced to low, Summer flounder risk increased to high. Spiny dogfish **Bstatus** risk decreased to low
+* Indicators in development for new Prey Availability, Predation Pressure, and Offshore Habitat elements
 ]  
 
 *Ecosystem level risk elements*
@@ -1383,13 +1384,14 @@ risk.eco<-data.frame(
   System = c("Mid-Atlantic"),
   EcoProd = c("lm"),
   #EcoDiv = c("lm"),
-  CommRev = c("mh"),
+  CommVal = c("mh"),
   RecVal = c("lm"),
   FishRes1 = c("l"),
   FishRes4 = c("mh"),
   #CommJobs = c("mh"),
   #RecJobs = c("l"),
-  FleetDiv = c("l"),
+  ComDiv = c("l"),
+  RecDiv = c("tbd"),
   Social = c("lm"),
   ComFood = c("h"),
   RecFood = c("mh")
@@ -1398,19 +1400,20 @@ risk.eco<-data.frame(
 #convert to longer text for consistency and display in html table
 risk.eco <- risk.eco %>%
      mutate_at(vars(-System), function(x){
-       recode(x,'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
      as.data.frame()
 
 #make table
 risk.eco %>%
   mutate_at(vars(-System), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
   kable(format = "html", escape = F, table.attr='class="risktable"') %>%
   kable_styling(font_size = 9) 
 
 ```
 .contrib[
 * Recreational value risk increased from low to low-moderate
+* Recreational diversity added, risk criteria in development
 ]  
 ]  
 
@@ -1445,11 +1448,12 @@ risk.sppsector %>%
   mutate_at(vars(-Species), function(x){ 
     cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey", "black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
   kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 9) 
+  kable_styling(font_size = 10) 
 
 ```
 .contrib[
 * Management fully updated for existing elements 
+* Offshore wind (OSW) risks split into 2 new elements in development, non-OSW uses added
 ]
 ]
 
