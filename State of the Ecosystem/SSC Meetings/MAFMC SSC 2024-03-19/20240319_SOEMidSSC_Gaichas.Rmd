@@ -80,7 +80,7 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 # State of the Ecosystem (SOE) reporting
 ## Improving ecosystem information and synthesis for fishery managers
 
-.pull-left[
+.pull-left-60[
 
 - Ecosystem indicators linked to management objectives `r Cite(myBib, "depiper_operationalizing_2017")`
     + Contextual information
@@ -96,7 +96,7 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 
 ]
 
-.pull-right[
+.pull-right-40[
 *The IEA Loop<sup>1</sup>*
 ![IEA process from goal setting to assessment to strategy evaluation with feedbacks](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//iea-loop.png)
 
@@ -957,8 +957,8 @@ ecodata::plot_HMS_species_distribution() + ggplot2::ggtitle("Whale and Dolphin D
 
 .pull-left[
 Drivers: Forage shifts, temperature increase
-```{r forageshifts, fig.alt="Eastward (left) and northward (right) shifts in the center of gravity for 20 forage fish species on the Northeast U.S. Shelf, with increasing trend (orange) for fall eastward and northward center of gravity.", fig.width = 8, fig.asp = .3}
-
+```{r forageshifts, fig.alt="Eastward (left) and northward (right) shifts in the center of gravity for 20 forage fish species on the Northeast U.S. Shelf, with increasing trend (orange) for fall eastward and northward center of gravity.", fig.width = 8}
+#, fig.asp = .3
 ecodata::plot_forage_index(varName = "cog")+ ggplot2::coord_cartesian(xlim = c(1982, 2021.7))
 ```
 
@@ -997,7 +997,7 @@ Future considerations
 
 Indicators: spawning timing, migration change
 
-.pull-left-70[
+.pull-left[
 
 ```{r spawntiming, fig.alt="Percent resting stage (non-spawning) mature female fish (black) with significant increases (orange) and decreases (purple) from two haddock and three yellowtail flounder stocks: CC = Cape Cod Gulf of Maine, GOM = Gulf of Maine, GB = Georges Bank, SNE = Southern New England." , fig.asp=.8}
 
@@ -1007,7 +1007,7 @@ ecodata::plot_spawn_timing() + ggplot2::ggtitle("Spring Resting Maturity Stage")
 
 ]
 
-.pull-right-30[
+.pull-right[
 *  Recreational tuna fisheries 50 days earlier in the year in 2019 compared to 2002. 
 *  In Cape Cod Bay, peak spring habitat use by right and humpback whales has shifted 18-19 days later over time.
 ]
@@ -1028,8 +1028,8 @@ ecodata::plot_trans_dates(varName = "length") + ggplot2::ggtitle("Time between s
 ```
 
 
-```{r cold-pool-time, fig.alt="Cold pool persistence index based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles).", fig.width = 3.5, fig.asp=.5, results='hide'}
-#, fig.width = 5,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
+```{r cold-pool-time, fig.alt="Cold pool persistence index based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles).",   results='hide'}
+#, fig.width = 5,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")fig.width = 3.5,fig.asp=.5,
 
 ecodata::plot_cold_pool(varName = "persistence") + ggplot2::coord_cartesian(xlim = c(1956, 2021))
 
@@ -1047,7 +1047,7 @@ Future considerations
 Indicators: fish productivity and condition
 
 .pull-left[
-```{r productivity-anomaly, fig.alt = "Fish productivity measures. Left: Small fish per large fish survey biomass anomaly in the Mid-Atlantic Bight. Right: assessment recruitment per spawning stock biomass anomaly for stocks mainly in the Mid-Atlantic. The summed anomaly across species is shown by the black line, drawn across all years with the same number of stocks analyzed.", fig.width=8, fig.asp=1.1}
+```{r productivity-anomaly, fig.alt = "Fish productivity measures. Left: Small fish per large fish survey biomass anomaly in the Mid-Atlantic Bight. Right: assessment recruitment per spawning stock biomass anomaly for stocks mainly in the Mid-Atlantic. The summed anomaly across species is shown by the black line, drawn across all years with the same number of stocks analyzed.", fig.width=8, fig.asp=1}
 #out.width='49%', fig.show='hold',
 a <- ecodata::plot_productivity_anomaly(report = "MidAtlantic") + 
   ggplot2::guides(fill=guide_legend(ncol=2)) + 
@@ -1249,15 +1249,18 @@ background-position: right
 ecodata::plot_wind_dev_speed()
 ```
 
+
 Implications:
-*  1-23% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
-*  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
+*  Current plans for buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region 
 *  Planned wind areas overlap with one of the only known right whale foraging habitats, and altered local oceanography could affect right whale prey availability. Development also brings increased vessel strike risk and the potential impacts of pile driving noise.
 ]
+
 .pull-right[]
 
 ???
-Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region 
+*  1-23% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
+*  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
+
 Evaluating the impacts to scientific surveys has begun.
 
 ---
@@ -1270,10 +1273,12 @@ Evaluating the impacts to scientific surveys has begun.
 
 * Record *low* hypoxia in Chesapeake Bay since 1995, relatively cool summer with high salinity.
 
-* Days at or above scallop stress temperature 17-19 C &rarr;
+* Sea scallop recruitment detected Spring 2022, gone in Spring 2023
+
+* Days in 2022 at or above scallop stress temperature 17-19 C &rarr;
 ]
 
-.pull-right[]
+.pull-right[
 ![:img scallop stress bottom temp, 90%](https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/bottom_temp_threshold_17_19_Elephant_Trunk.png)
 ]
 
@@ -1318,7 +1323,7 @@ b / (a + patchwork::plot_spacer())
 ]
 
 ---
-## EAFM Risk Assessment: 2024 Update (criteria in review/revision this year)
+## EAFM Risk Assessment: 2024 Update (new elements and criteria in review/revision)
 
 .pull-left[
 *Species level risk elements*
@@ -1379,7 +1384,7 @@ risk.eco<-data.frame(
   EcoProd = c("lm"),
   #EcoDiv = c("lm"),
   CommRev = c("mh"),
-  RecVal = c("l"),
+  RecVal = c("lm"),
   FishRes1 = c("l"),
   FishRes4 = c("mh"),
   #CommJobs = c("mh"),
@@ -1405,7 +1410,7 @@ risk.eco %>%
 
 ```
 .contrib[
-* Recreational value risk decreased from low-moderate to low
+* Recreational value risk increased from low to low-moderate
 ]  
 ]  
 
@@ -1416,36 +1421,47 @@ risk.eco %>%
 
 risk.sppsector<-data.frame(
   Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
-  MgtControl =  c(1,1,3,2,2,1,4,4,2,1,1,1,2,9,1,2,2,2,1,1,1,1,1,9),
-  TecInteract = c(1,1,1,3,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
-  OceanUse =    c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
-  RegComplex =  c(1,1,3,3,3,3,3,3,2,4,3,3,3,1,1,2,2,2,2,1,3,2,1,9),
-  Discards =    c(3,3,4,3,3,3,4,4,1,2,3,4,1,1,1,1,1,3,2,1,2,1,1,9),
-  Allocation =  c(1,1,4,1,4,1,4,1,1,4,1,1,4,1,1,1,1,4,1,1,1,1,1,9) 
+  FControl =  c(1,1,2,2,4,1,4,2,2,1,1,1,2,9,1,1,2,2,1,1,1,1,1,9),
+  Interact = c(1,1,1,2,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
+  #OceanUse =    c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
+  OSW1 =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
+  OSW2 =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
+  OtherUse =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
+  RegComplex =  c(1,1,4,2,4,2,4,2,2,4,3,3,3,1,1,2,1,3,2,1,4,1,1,9),
+  Discards =    c(3,3,3,3,3,3,3,4,2,2,3,3,1,1,1,1,1,2,2,2,2,1,1,9),
+  Allocation =  c(1,1,4,1,4,1,4,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,9) 
 )
 
 
 #convert to text for consistency
 risk.sppsector <- risk.sppsector %>%
      mutate_at(vars(-Species), function(x){
-       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na")}) %>%
+       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na",
+              '6' = 'tbd')}) %>%
      as.data.frame()
 
 #make table
 risk.sppsector %>%
   mutate_at(vars(-Species), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("black", "black", "black", "black", "white")), align = "c", background =factor(x, c("na", "lowest", "lowmod", "modhigh", "highest"),c("white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey", "black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
   kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 11) 
+  kable_styling(font_size = 9) 
 
 ```
 .contrib[
-* Management section not updated--to be revised this year  
+* Management fully updated for existing elements 
 ]
 ]
 
 
 ???
+
+---
+## Risk Assessment: new indicator previews
+
+---
+## Risk Assessment: new indicator previews
+
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
