@@ -614,11 +614,14 @@ Although the Mid-Atlantic region shows declining revenue trends since 2016, infl
 ---
 ## SSC request: Net vs. Gross Revenue investigations
 
-ADD GERET'S FIGURES
-```{r}
+We can calculate net revenue for ~ 1/2 of the revenue generated within the Greater Atlantic Region. The trends between the total gross revenue and gross revenue for which we can estimate costs are different. In addition, the net revenue looks to be just a scaled gross revenue metric, with trends staying the same, just the magnitude changing.
+ 
+```{profit, fig.cap="Net revenue (left) and cost coverage (right) in the Greater Atlantic Region.", out.width = "49%", fig.show='hold'}
+
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Net_revenue.png")
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Cost_Coverage.png")
 
 
-magick::image_convert()
 ```
 
 
@@ -803,7 +806,7 @@ Implications: Highlighted communities may be vulnerable to changes in fishing pa
 
 .pull-left[
 Indicators: Harbor porpoise and gray seal bycatch
-.reduced_opacity[
+
 ```{r,  fig.height=3}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"),
 ecodata::plot_harborporpoise()
@@ -813,7 +816,7 @@ ecodata::plot_harborporpoise()
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"),
 ecodata::plot_grayseal()
 ```
-]
+
 ]
 
 .pull-right[
@@ -827,6 +830,8 @@ Implications:
 
 * The increasing trend in gray seal bycatch may be related to an increase in the gray seal population (U.S. pup counts).
 ]
+???
+.reduced_opacity[]
 
 ---
 ## Objectives: All Areas Protected species *Recover endangered populations* ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)
@@ -898,7 +903,7 @@ ecodata::plot_wind_dev_speed()
 #, fig.width=5, fig.asp=.4
 #wea-spp-rev, fig.cap="Wind energy revenue in the Mid-Atlantic."
 
-ecodata::plot_wind_revenue(report = "MidAtlantic", varName = "value")
+ecodata::plot_wind_revenue(report = "MidAtlantic", varName = "value", plottype = "nofacets")
 
 ```
 Council request: which New England ports have significant reliance on Mid-Atlantic managed species?
@@ -976,7 +981,7 @@ ecodata::plot_wind_port(report = "MidAtlantic")
 
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/right_whales.jpg")
+background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/NARW_hotspots_final_2024.jpg")
 background-size: 500px
 background-position: right
 
@@ -984,8 +989,8 @@ background-position: right
 
 .pull-left[
 Implications: *revise*
-*  X% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
-*  Up to Y% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
+*  1-23% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
+*  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
 *  Development will affect species differently, negatively affecting species that prefer soft bottom habitat while potentially benefiting species that prefer hard structured habitat.
 *  Planned wind areas overlap with one of the only known right whale foraging habitats, and altered local oceanography could affect right whale prey availability. Development also brings increased vessel strike risk and the potential impacts of pile driving noise.
 ]
