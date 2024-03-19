@@ -942,7 +942,7 @@ a/b
 
 
 .pull-right[
-Cetacean distribution shifts. 
+Cetacean distribution shifts 
 
 ```{r, fig.width=7, fig.asp=0.9}
 ecodata::plot_HMS_species_distribution() + ggplot2::ggtitle("Whale and Dolphin Distribution Shifts")
@@ -990,9 +990,24 @@ a+b
 ]
 
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/EastCoastClimateScenarios.png")
+background-size: 400px
+background-position: right bottom
 ## Risks to Spatial Management
 
 Future considerations
+
+*   Distribution shifts caused by changes in thermal habitat are likely to continue as long as long-term temperature trends persist. 
+*   Near-term oceanographic forecasts are currently in development and may inform how future warming impacts species distributions.
+*   Increased oceanographic variability needs to be captured by regional ocean models and linked to species distribution processes to better understand potential future distributions. Species with high mobility or short lifespans react differently from immobile or long lived species.
+
+Adapting management to changing stock distributions and dynamic ocean processes will require continued monitoring of populations in space and evaluating management measures against a range of possible future spatial distributions. 
+
+*   [East Coast Climate Scenario Planning](https://www.mafmc.org/climate-change-scenario-planning) can help coordinate management.
+*   [Near term predictions of distribution shifts](https://www.lenfestocean.org/nb/news-and-publications/multimedia/crafting-models-to-predict-near-term-fisheries-shifts-under-climate-change) project in progress
+
+???
+https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ScenPlanningOptions.png
 
 ---
 ## Risks to Seasonal Management
@@ -1042,6 +1057,11 @@ ecodata::plot_cold_pool(varName = "persistence") + ggplot2::coord_cartesian(xlim
 
 .pull-right[
 Future considerations
+
+*  Management actions that rely on effective alignment of fisheries availability and biological processes should continue to evaluate whether prior assumptions on seasonal timings still hold.
+
+*  New indicators should be developed to monitor timing shifts for stocks.
+
 ]
 ???
 
@@ -1125,14 +1145,14 @@ a/b
 ---
 ## Risks to Quota Setting/Rebuilding
 
-Drivers: Environmental
-
 .pull-left[
-2023 Thermal habitat area by depth
+Drivers: Environmental   
+*2023 Thermal habitat area by depth*
 ```{r}
 ecodata::plot_thermal_habitat_area()
 ```
 
+*OA in shellfish habitat*
 ```{r mab-oa, out.width = '100%', fig.alt = "Locations where bottom aragonite saturation state ($\\Omega_{Arag}$; summer only: June-August) were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (left panel) and longfin squid (right panel) for the time periods 2007-2022 (dark cyan) and 2023 only (magenta). Gray circles indicate locations where bottom $\\Omega_{Arag}$ values were above the species specific sensitivity values.."}
 
 
@@ -1146,13 +1166,28 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images
 
 ]
 
-.pull-right[
-Drivers: Predation
+.pull-right[ 
+Drivers: Predation  
+*Seals increasing, sharks stable, 50% of HMS populations above target*
+```{r , fig.asp=0.9}
+a <- ecodata::plot_hms_stock_status()
 
-Future considerations
+a$p
+```
 
 ]
 
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//RegimeShift_V5.jpg")
+background-size: 500px
+background-position: right bottom
+
+## Risks to Quota Setting/Rebuilding
+
+Future considerations
+*   There is a real risk that short-term predictions in assessments and rebuilding plans that assume unchanging underlying conditions will not be as effective, given the observed change documented in the prior sections in both ecological and environmental processes. 
+*   Assumptions for species’ growth, reproduction, and natural mortality should continue to be evaluated for individual species. 
+*   With observations of system-wide productivity shifts of multiple managed stocks, more research is needed to determine whether regime shifts or ecosystem reorganization are occurring, and how this should be incorporated into management.
 
 
 ---
@@ -1473,21 +1508,44 @@ risk.sppsector %>%
 ---
 ## Risk Assessment: new indicator previews
 
+Prey Availability Risk
+
+.pull-left[
+Evaluate Forage Index for a predator
+```{r}
+ecodata::plot_forage_index() + ggplot2::coord_cartesian(xlim = c(1983, 2021.5)) + ggplot2::ggtitle("Aggregate forage fish index") 
+```
+
+*  Benthic Index in progress for the many Mid-Atlantic benthivores. 
+*  Zooplankton Indices needed for planktivores
+]
+
+.pull-right[
+Along with its Condition index
+```{r}
+ecodata::plot_condition()
+```
+
+And Productivity anomaly (lagged)
+]
+
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
 background-size: 350px
 background-position: right bottom
 
-## THANK YOU! SOEs made possible by (at least) 71 contributors from 20+ institutions UPDATE THIS
+## THANK YOU! SOEs made possible by (at least) 80 contributors from 20+ institutions
 
 .table[
 ![:col_row 
     Kimberly Bastille<br>
     Aaron Beaver (Anchor QEA)<br>
     Andy Beet<br>
+    Brandon Beltz<br>
     Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
     Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
+    Baoshan Chen (Stony Brook University)<br>
     Zhuomin Chen (U Connecticut)<br>
     Joseph Caracappa<br>
     Doug Christel (GARFO)<br>
@@ -1507,13 +1565,14 @@ background-position: right bottom
     Sarah Gaichas<br>
     Ben Galuardi (GARFO)<br>
     Avijit Gangopadhyay (School for Marine Science and Technology UMass Dartmouth)<br>
-    James Gartland (Virginia Institute of Marine Science),
+    James Gartland (Virginia Institute of Marine Science)<br>
+    Lori Garzio (Rutgers University),
     
-    Lori Garzio (Rutgers University)<br>
     Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
     Sean Hardison<br>
+    Dvora Hart<br>
     Kimberly Hyde<br>
-    John Kosik<br>
+    John Kocik<br>
     Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
     Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
     Scott Large<br>
@@ -1528,16 +1587,18 @@ background-position: right bottom
     Ray Mroch (SEFSC)<br>
     Brandon Muffley (MAFMC)<br>
     Kimberly Murray<br>
+    David Moe Nelson (NCCOS)<br>
     Janet Nye (University of North Carolina at Chapel Hill)<br>
     Chris Orphanides<br>
     Richard Pace<br>
     Debi Palka<br>
-    Tom Parham (Maryland DNR),
-    
+    Tom Parham (Maryland DNR)<br>
     Charles Perretti<br>
     CJ Pellerin (NOAA Chesapeake Bay Office)<br>
-    Kristin Precoda<br>
+    Kristin Precoda,
+    
     Grace Roskar (NMFS Office of Habitat Conservation)<br>
+    Jeffrey Runge (U Maine)<br>   
     Grace Saba (Rutgers)<br>
     Vincent Saba<br>
     Sarah Salois<br>
@@ -1555,9 +1616,11 @@ background-position: right bottom
     John Walden<br>
     Harvey Walsh<br>
     Changhua Weng<br>
+    Dave Wilcox (VIMS)<br>
     Timothy White (Environmental Studies Program BOEM)<br>
     Sarah Wilkin (NMFS Office of Protected Resources)<br>
-    Mark Wuenschel ]
+    Mark Wuenschel<br>
+    Qian Zhang (U Maryland)]
 ]
 
 ???
@@ -1594,4 +1657,21 @@ PrintBibliography(myBib)
 ]
 
 ???
+
+---
+## SSC Discussion
+
+*  Feedback on Climate and Ecosystem Change, 2023 Highlights sections
+
+*  Prioritize 2023 and 2024 SOE requests (with NEFMC if possible)
+
+*  SSC Ecosystem WG Project Priorities
+    +  Objective 1: Expanding and clarifying the ecosystem portion of the SSC OFL CV determination process (short term objective)
+        +  ABC decisions with environmentally driven recruitment (Wilberg et al)
+        +  Alternative stock performance metrics considering current conditions (Rago and Rothschild)
+    +  Objective 2: Developing prototype processes to provide multispecies and system level scientific advice appropriate for Council decision making, highlighting tradeoffs linking directly to economic and social outcomes (long term objective)
+        +  Ecosystem overfishing indicators (Beet and Gaichas)
+        +  Index Numbers for ecosystem performance (Walden and DePiper)
+    +  Objective 3: Collaborating with relevant working groups in developing the stock-specific Ecosystem and Socio-economic Profiles (ESP) process to specify stock-specific Ecosystem ToRs (moderate-term objective)
+    
 
