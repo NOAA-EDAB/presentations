@@ -1,7 +1,7 @@
 ---
 title: "State of the Ecosystem<br /> Mid Atlantic and New England 2024"
 subtitle: "East Coast Climate Coordination Team<br /> 3 April 2024"
-author: "Sarah Gaichas (presenter),<br /> Andy Beet, Brandon Beltz, Joseph Caracappa, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith<br /> Northeast Fisheries Science Center<br /> Brandon Muffley, MAFMC<br /> and all SOE contributors"
+author: "Sarah Gaichas and Joseph Caracappa, (editors),<br /> Andy Beet, Brandon Beltz,  Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith (data and section leads), <br />  and all SOE contributors"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css", "libs/cols.css"]
@@ -632,6 +632,7 @@ Recreational drivers differ: shark fishery management, possibly survey methodolo
 
 Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council.
 
+---
 ## Objective: New England Seafood production ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png)
 
 .pull-left[
@@ -825,15 +826,34 @@ Monitor changes in climate and landings drivers:
 
 .pull-right[
 Indicator: Bennet--price and volume indices
-```{r }
-#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet.R"),  fig.asp=.35, results = 'hide'
-```
+
 
 ```{r , fig.width = 7.5, fig.asp = 0.9, results = 'hide'}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet-all.R")
-ecodata::plot_bennet(report="NewEngland")
+gb <- ecodata::plot_bennet(report = "NewEngland", varName = "guild", EPU = "GB")+
+  ggplot2::ylab("Million USD (2022)")
+gom <- ecodata::plot_bennet(report = "NewEngland", varName = "guild", EPU = "GOM")+
+  ggplot2::ylab("Million USD (2022)")
+
+gb / gom + plot_layout(guides = 'collect') & theme(legend.position = 'bottom')
 ```
 ]
+???
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet.R"),  fig.asp=.35, results = 'hide'
+gb <- ecodata::plot_bennet(report = "NewEngland", varName = "total", EPU = "GB") +
+  ggplot2::ggtitle("GB revenue components") +
+  ggplot2::theme(legend.position = "bottom",
+                      legend.title = ggplot2::element_blank())+
+  ggplot2::ylab("Million USD (2022)")
+gom <- ecodata::plot_bennet(report = "NewEngland", varName = "total", EPU = "GOM") +
+  ggplot2::ggtitle("GOM revenue components") +
+  ggplot2::theme(legend.position = "bottom",
+                      legend.title = ggplot2::element_blank())+
+                      ggplot2::ylab("Million USD (2022)")
+
+gb + gom + plot_layout(guides = 'collect') & theme(legend.position = 'bottom')
+```
 
 ---
 ## Objective: Mid Atlantic Recreational opportunities ![:img increase icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//increase.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:yellow;">RecValue</span>, increased risk
@@ -1081,6 +1101,7 @@ Implications: Highlighted communities may be vulnerable to changes in fishing pa
 
 ???
 These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
+
 ---
 ## Objective: Mid Atlantic Environmental Justice and Social Vulnerability  &emsp; Risk element: <span style="background-color:yellow;">Social</span> 
 Indicators: Environmental justice vulnerability, recreational fishery engagement and reliance  
@@ -1115,7 +1136,7 @@ cropRecEJ
 
 Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 
---
+---
 ## Objective: New England Environmental Justice and Social Vulnerability
 
 Indicators: Environmental justice vulnerability, commercial fishery engagement and reliance  
@@ -1190,8 +1211,6 @@ cropRecEJ
 ]
 
 Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
-
-
 
 ---
 ## Objectives: All Areas Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)
@@ -1297,7 +1316,7 @@ Implications:
 ]
 
 ---
-## Risks to Spatial Management
+## Risks to Spatial Management: All Areas
 
 .pull-left[
 Indicators: Fish distribution shifts
@@ -1327,7 +1346,7 @@ ecodata::plot_HMS_species_distribution() + ggplot2::ggtitle("Whale and Dolphin D
 ]
 
 ---
-## Risks to Spatial Management
+## Risks to Spatial Management: All Areas
 
 .pull-left[
 Drivers: Forage shifts, temperature increase
@@ -1368,7 +1387,7 @@ a+b
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/EastCoastClimateScenarios.png")
 background-size: 400px
 background-position: right bottom
-## Risks to Spatial Management
+## Risks to Spatial Management: All Areas
 
 Future considerations
 
@@ -1385,7 +1404,7 @@ Adapting management to changing stock distributions and dynamic ocean processes 
 https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ScenPlanningOptions.png
 
 ---
-## Risks to Seasonal Management
+## Risks to Seasonal Management: All Areas
 
 Indicators: spawning timing, migration change
 
@@ -1405,7 +1424,7 @@ ecodata::plot_spawn_timing() + ggplot2::ggtitle("Spring Resting Maturity Stage")
 ]
 
 ---
-## Risks to Seasonal Management
+## Risks to Seasonal Management: All Areas
 
 Drivers
 .pull-left[
@@ -1451,7 +1470,7 @@ background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/doc
 background-size: 630px
 background-position: right
 
-## Risks to Quota Setting/Rebuilding
+## Risks to Quota Setting/Rebuilding: Mid Atlantic
 
 Indicators: fish productivity and condition
 
@@ -1492,7 +1511,7 @@ ecodata::plot_condition() +
 ```
 `r Cite(myBib, 'perretti_regime_2017')`
 ---
-## Risks to Quota Setting/Rebuilding
+## Risks to Quota Setting/Rebuilding: Mid Atlantic
 
 .pull-left[
 Drivers: Forage Quality and Abundance
@@ -1524,7 +1543,7 @@ a/b
 ]
 
 ---
-## Risks to Quota Setting/Rebuilding
+## Risks to Quota Setting/Rebuilding: Mid Atlantic
 
 .pull-left[
 Drivers: Environmental   
@@ -1557,13 +1576,140 @@ a$p
 ```
 
 ]
+---
+## Risks to Quota Setting/Rebuilding: New England
+
+Indicators: fish productivity and condition
+
+.pull-left[
+```{r ne-productivity-anomaly, fig.alt = "Fish productivity measures. Left: Small fish per large fish survey biomass anomaly in the Gulf of Maine. Right: assessment recruitment per spawning stock biomass anomaly for stocks mainly in New England. The summed anomaly across species is shown by the black line, drawn across all years with the same number of stocks analyzed.", fig.width=8, fig.asp=1}
+#out.width='49%', fig.show='hold',
+a <- ecodata::plot_productivity_anomaly(report = "NewEngland", EPU = "GOM") + 
+  ggplot2::guides(fill=guide_legend(ncol=1)) + 
+  ggplot2::theme(legend.position = "right",
+                      legend.title = ggplot2::element_blank(),
+                 plot.title =element_text(size = 11))
+
+b <- ecodata::plot_productivity_anomaly(report = "NewEngland", varName = "assessment")+ 
+  ggplot2::guides(fill=guide_legend(ncol=1)) +
+  ggplot2::theme(legend.position = "right",
+                      legend.title = ggplot2::element_blank(),
+                 plot.title =element_text(size = 11))
+
+a / b
+
+```
+]
+
+.pull-right[
+
+```{r ne-cf, fig.alt = "Condition factor for fish species in New England based on fall NEFSC bottom trawl survey data.", fig.width=12, fig.asp=1}
+
+a <- ecodata::plot_condition(report = "NewEngland", EPU = "GOM") +
+  theme(#legend.position = 'bottom',
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 11),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 10),
+        plot.title = element_text(size = 12))
+
+b <- ecodata::plot_condition(report = "NewEngland", EPU = "GB") +
+  theme(#legend.position = 'bottom',
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 11),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 10),
+        plot.title = element_text(size = 12))
+
+a/b
+```
+]
+???
+`r Cite(myBib, 'perretti_regime_2017')`
+---
+## Risks to Quota Setting/Rebuilding: New England
+
+.pull-left[
+Gulf of Maine Tern Productivity
+```{r seabird-ne-productivity, fig.alt = "Productivity of Common terns in the Gulf of Maine.",  fig.width=7.5, fig.asp=.3}
+#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seabird-ne-productivity.R"),
+
+ecodata::plot_seabird_ne(varName = "productivity") + ggplot2::coord_cartesian(xlim=c(1992,2022))
+```
+]
+
+.pull-right[
+Gulf of Maine Salmon Returns
+```{r salmon, fig.alt = "Return rate proportions and abundance of Atlantic salmon.",fig.width = 7.5,fig.asp = 0.3}
+ecodata::plot_gom_salmon()+
+  ylab('returning proportion')
+```
+]
+
+---
+## Risks to Quota Setting/Rebuilding: New England
+
+.pull-left[
+Drivers: Forage Quality and Abundance
+
+```{r ne-foragebio, fig.alt = "Forage fish index in New England for spring (blue) and fall (red) surveys, with an increase (orange) in spring GOM. Index values are relative to the maximum observation within a region across surveys."}
+#, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R")
+
+ecodata::plot_forage_index(report = "NewEngland") + ggplot2::coord_cartesian(xlim = c(1983, 2021.5)) + ggplot2::ggtitle("Aggregate forage fish index")
+```
+```{r zooplankton-season, fig.alt="Dry mass of mesozooplankton captured with a 200µm ring net towed from the bottom to surface at a deep time series station  in Wilkinson Basin between 2005-2022 (Runge et al. 2023)."}
+
+magick::image_read("https://github.com/NOAA-EDAB/ecodata/blob/dev/workshop/images/WBTS_Mesozooplankton_BIomass_2005-2022_Runge_Dullaert-Jeffrey_Runge_2024.jpg?raw=true")
+
+```
+
+]
+
+.pull-right[
+Drivers: Low tropic levels
+```{r ne-zoopanom, fig.alt="Changes in zooplankton abundance in New England for large (top left) and small (top right) copepods, Cnidarians (bottom left), and Euphausiids (bottom right), with significant increases (orange) in small copeods and Cnidarians.", fig.width=5, fig.asp=1}
+a <- ecodata::plot_zoo_abundance_anom(report = "NewEngland", varName = "copepod") + 
+  ggplot2::facet_wrap(~EPU~Var) +  ggplot2::coord_cartesian(xlim = c(1977, 2022))
+b <- ecodata::plot_zoo_abundance_anom(report = "NewEngland", varName = "euphausid") + 
+  ggplot2::facet_wrap(~EPU~Var) +  ggplot2::coord_cartesian(xlim = c(1977, 2022))
+
+a/b
+
+```
+]
+
+---
+## Risks to Quota Setting/Rebuilding: New England
+
+.pull-left[
+Drivers: Environmental   
+*2023 Thermal habitat area by depth*
+```{r}
+ecodata::plot_thermal_habitat_area(report = "NewEngland", EPU = "GB")
+```
+
+```{r}
+ecodata::plot_thermal_habitat_area(report = "NewEngland", EPU = "GOM")
+```
+
+]
+
+.pull-right[ 
+Drivers: Predation  
+*Seals increasing, sharks stable, 50% of HMS populations above target*
+```{r , fig.asp=0.9}
+ecodata::plot_seal_pups()
+
+```
+
+]
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//RegimeShift_V5.jpg")
 background-size: 500px
 background-position: right bottom
 
-## Risks to Quota Setting/Rebuilding
+## Risks to Quota Setting/Rebuilding: All Areas
 
 Future considerations
 *   There is a real risk that short-term predictions in assessments and rebuilding plans that assume unchanging underlying conditions will not be as effective, given the observed change documented in the prior sections in both ecological and environmental processes. 
@@ -1659,6 +1805,92 @@ ecodata::plot_wind_port(report = "MidAtlantic")
 ```
 ]
 
+---
+## Risks: Offshore Wind Development New England
+
+
+.pull-left[
+Indicators: fishery and community specific revenue in lease areas
+
+
+```{r}
+#, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-wea-spp-rev.R")
+#, fig.width=5, fig.asp=.4
+#wea-spp-rev, fig.cap="Wind energy revenue in New England."
+
+ecodata::plot_wind_revenue(report = "NewEngland", varName = "value")
+```
+
+Council request: which Mid-Atlantic ports have significant reliance on New England managed species?
+
+```{r wind-rev-MAB-NEFMC, fig.alt="Percent of Mid-Atlantic port revenue with majority NEFMC landings from Wind Energy Areas (WEA) in descending order from most to least port fisheries revenue from WEA. EJ = Environmental Justice.", fig.width=6.5, fig.asp=.4, fig.align='left'}
+df.symbol <- ecodata::wind_port %>% filter(EPU == "MAB", 
+                                           !Var %in% c("WEA_MAX", "TOT_MAX", 
+                                                     "perc_MIN", "perc_MAX")) %>% 
+   pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(City = paste0(City,State)) %>% 
+  dplyr::filter(City %in% c('Barnegat Light NJ',
+                            'Cape May NJ',
+                            'Newport News VA',
+                            'Point Pleasant NJ',
+                            'Point Lookout NY',
+                            'Wildwood NJ'
+                            )) %>%
+  dplyr::select(City, EJ, Gentrification) %>% 
+  pivot_longer(cols = c(EJ, Gentrification), names_to = "Variable") %>% 
+  filter(!value == "NA") %>% 
+  dplyr::mutate(symbol = recode(Variable, EJ = -7, Gent = -3), 
+                Variable = recode(Variable,"EJ"= "Mid-High to High EJ Concerns" , 
+                                  "Gent" ="Mid-High to High Gentrificaiton Concerns"))
+
+# Percentage plot
+
+df.all.perc<- ecodata::wind_port %>% filter(EPU == "MAB") %>%
+  pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(ordering = MaxVal,  
+                City = paste0(City, State), 
+                TOT_MAX = c(100 - perc_MIN - perc_MAX)) %>% 
+  pivot_longer(cols = c(perc_MIN,  perc_MAX, TOT_MAX), names_to="Var", values_to = "Value") %>% 
+  dplyr::arrange(desc(ordering)) %>%
+  dplyr::filter(City %in% c('Barnegat Light NJ',
+                            'Cape May NJ',
+                            'Newport News VA',
+                            'Point Pleasant NJ',
+                            'Point Lookout NY',
+                            'Wildwood NJ'
+                            )) %>%
+  dplyr::mutate(City = factor(City, levels = unique(City))) %>% 
+  dplyr::filter(!Var %in% c("WEA_MAX", "EJ", "Gent")) %>% 
+  dplyr::mutate(Var = recode(Var,"perc_MIN"= "WEA Revenue" , 
+                             "perc_MAX" ="WEA Revenue Range", 
+                             "TOT_MAX" = "Non-WEA Revenue"), 
+                Var = factor(Var, levels = c("Non-WEA Revenue", 
+                                             "WEA Revenue Range", 
+                                             "WEA Revenue")))
+p2<-ggplot2::ggplot()+
+  ggplot2::geom_bar(data = df.all.perc, aes(fill = Var, y = reorder(City, ordering), x = Value), stat="identity" )+
+  scale_fill_brewer()+
+  ggplot2::theme(legend.position = "bottom", 
+                 legend.title = element_blank(), 
+                 legend.box="vertical", legend.margin=margin())+
+  ggplot2::geom_point(data = df.symbol, aes(x = symbol,y = City, shape = Variable)) +
+  scale_shape_manual(values = c(17, 16)) +
+  ggplot2::ggtitle("Port Revenue from WEA, majority NEFMC species")+
+  ggplot2::xlab(expression("Port Revenue (%)"))+
+  ggplot2::ylab(element_blank())+
+  ecodata::theme_ts()
+
+p2
+```
+]
+
+.pull-right[
+```{r, fig.asp=1.1}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-wea-port-rev.R")
+
+ecodata::plot_wind_port(report = "NewEngland")
+```
+]
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/NARW_hotspots_final_2024.jpg")
@@ -1684,8 +1916,9 @@ Implications:
 .pull-right[]
 
 ???
-*  1-23% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
+*  1-23% (Mid-Atlantic) or 1-34% (New England) of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
 *  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
+*  Up to 53% of annual commercial landings and 54% of revenue for New England species occur in lease areas.
 
 Evaluating the impacts to scientific surveys has begun.
 
@@ -1748,8 +1981,163 @@ b / (a + patchwork::plot_spacer())
 ```
 ]
 
+
 ---
-## EAFM Risk Assessment: 2024 Update with new elements
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
+background-size: 350px
+background-position: right bottom
+
+## THANK YOU! SOEs made possible by (at least) 80 contributors from 20+ institutions
+
+.table[
+![:col_row 
+    Kimberly Bastille<br>
+    Aaron Beaver (Anchor QEA)<br>
+    Andy Beet<br>
+    Brandon Beltz<br>
+    Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
+    Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
+    Baoshan Chen (Stony Brook University)<br>
+    Zhuomin Chen (U Connecticut)<br>
+    Joseph Caracappa<br>
+    Doug Christel (GARFO)<br>
+    Patricia Clay<br>
+    Lisa Colburn<br>
+    Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
+    Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
+    Art Degaetano (Cornell U)<br>
+    Geret DePiper<br>
+    Dan Dorfman (NOAA-NOS-NCCOS)<br> 
+    Hubert du Pontavice<br>
+    Emily Farr (NMFS Office of Habitat Conservation)<br>
+    Michael Fogarty<br>
+    Paula Fratantoni<br>
+    Kevin Friedland<br>
+    Marjy Friedrichs (Virginia Institute of Marine Science)<br>
+    Sarah Gaichas<br>
+    Ben Galuardi (GARFO)<br>
+    Avijit Gangopadhyay (School for Marine Science and Technology UMass Dartmouth)<br>
+    James Gartland (Virginia Institute of Marine Science)<br>
+    Lori Garzio (Rutgers University),
+    
+    Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
+    Sean Hardison<br>
+    Dvora Hart<br>
+    Kimberly Hyde<br>
+    John Kocik<br>
+    Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
+    Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
+    Scott Large<br>
+    Gabe Larouche (Cornell U)<br>
+    Daniel Linden<br>
+    Andrew Lipsky<br>
+    Sean Lucey<br>
+    Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
+    Chris Melrose<br>
+    Shannon Meseck<br>
+    Ryan Morse<br>
+    Ray Mroch (SEFSC)<br>
+    Brandon Muffley (MAFMC)<br>
+    Kimberly Murray<br>
+    David Moe Nelson (NCCOS)<br>
+    Janet Nye (University of North Carolina at Chapel Hill)<br>
+    Chris Orphanides<br>
+    Richard Pace<br>
+    Debi Palka<br>
+    Tom Parham (Maryland DNR)<br>
+    Charles Perretti<br>
+    CJ Pellerin (NOAA Chesapeake Bay Office)<br>
+    Kristin Precoda,
+    
+    Grace Roskar (NMFS Office of Habitat Conservation)<br>
+    Jeffrey Runge (U Maine)<br>   
+    Grace Saba (Rutgers)<br>
+    Vincent Saba<br>
+    Sarah Salois<br>
+    Chris Schillaci (GARFO)<br>
+    Amy Schueller (SEFSC)<br>
+    Teresa Schwemmer (Stony Brook University)<br>
+    Dave Secor (CBL)<br>
+    Angela Silva<br>
+    Adrienne Silver (UMass/SMAST)<br>
+    Emily Slesinger (Rutgers University)<br>
+    Laurel Smith<br>
+    Talya tenBrink (GARFO)<br>
+    Bruce Vogt (NOAA Chesapeake Bay Office)<br>
+    Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
+    John Walden<br>
+    Harvey Walsh<br>
+    Changhua Weng<br>
+    Dave Wilcox (VIMS)<br>
+    Timothy White (Environmental Studies Program BOEM)<br>
+    Sarah Wilkin (NMFS Office of Protected Resources)<br>
+    Mark Wuenschel<br>
+    Qian Zhang (U Maryland)]
+]
+
+???
+
+
+---
+## References
+
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]
+
+
+## Additional resources
+.pull-left[
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+* [Indicator catalog](https://noaa-edab.github.io/catalog/)
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+]
+.pull-right[
+* [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: <Sarah.Gaichas@noaa.gov>
+]
+]
+
+???
+
+
+---
+
+# Extra
+
+---
+## SSC request: Net vs. Gross Revenue investigations
+
+Net revenue calculable for ~ 1/2 of the revenue generated within the Greater Atlantic Region. Trends between the total gross revenue and gross revenue for which we can estimate costs are different. Net revenue looks to be just a scaled gross revenue metric: similar trend, different magnitude.
+
+.pull-left[
+![:img Net revenue, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Net_revenue.png)
+]
+
+.pull-right[
+![:img Cost coverage, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Cost_Coverage.png)
+]
+ 
+```{r profit, out.width = "39%", fig.show='hold'}
+
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Net_revenue.png")
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Cost_Coverage.png")
+
+
+```
+
+---
+## Mid-Atlantic EAFM Risk Assessment: 2024 Update with new elements
 
 .pull-left[
 *Species level risk elements*
@@ -1885,199 +2273,4 @@ risk.sppsector %>%
 
 
 ???
-
----
-## Risk Assessment: new indicator previews
-
-Prey Availability Risk
-
-.pull-left[
-Evaluate Forage Index for a predator
-```{r}
-ecodata::plot_forage_index() + ggplot2::coord_cartesian(xlim = c(1983, 2021.5)) + ggplot2::ggtitle("Aggregate forage fish index") 
-```
-
-*  Benthic Index in progress for the many Mid-Atlantic benthivores. 
-*  Zooplankton Indices needed for planktivores
-]
-
-.pull-right[
-Along with its Condition index
-```{r}
-ecodata::plot_condition()
-```
-
-And Productivity anomaly (lagged)
-]
-
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
-background-size: 350px
-background-position: right bottom
-
-## THANK YOU! SOEs made possible by (at least) 80 contributors from 20+ institutions
-
-.table[
-![:col_row 
-    Kimberly Bastille<br>
-    Aaron Beaver (Anchor QEA)<br>
-    Andy Beet<br>
-    Brandon Beltz<br>
-    Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
-    Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
-    Baoshan Chen (Stony Brook University)<br>
-    Zhuomin Chen (U Connecticut)<br>
-    Joseph Caracappa<br>
-    Doug Christel (GARFO)<br>
-    Patricia Clay<br>
-    Lisa Colburn<br>
-    Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
-    Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
-    Art Degaetano (Cornell U)<br>
-    Geret DePiper<br>
-    Dan Dorfman (NOAA-NOS-NCCOS)<br> 
-    Hubert du Pontavice<br>
-    Emily Farr (NMFS Office of Habitat Conservation)<br>
-    Michael Fogarty<br>
-    Paula Fratantoni<br>
-    Kevin Friedland<br>
-    Marjy Friedrichs (Virginia Institute of Marine Science)<br>
-    Sarah Gaichas<br>
-    Ben Galuardi (GARFO)<br>
-    Avijit Gangopadhyay (School for Marine Science and Technology UMass Dartmouth)<br>
-    James Gartland (Virginia Institute of Marine Science)<br>
-    Lori Garzio (Rutgers University),
-    
-    Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
-    Sean Hardison<br>
-    Dvora Hart<br>
-    Kimberly Hyde<br>
-    John Kocik<br>
-    Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
-    Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
-    Scott Large<br>
-    Gabe Larouche (Cornell U)<br>
-    Daniel Linden<br>
-    Andrew Lipsky<br>
-    Sean Lucey<br>
-    Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
-    Chris Melrose<br>
-    Shannon Meseck<br>
-    Ryan Morse<br>
-    Ray Mroch (SEFSC)<br>
-    Brandon Muffley (MAFMC)<br>
-    Kimberly Murray<br>
-    David Moe Nelson (NCCOS)<br>
-    Janet Nye (University of North Carolina at Chapel Hill)<br>
-    Chris Orphanides<br>
-    Richard Pace<br>
-    Debi Palka<br>
-    Tom Parham (Maryland DNR)<br>
-    Charles Perretti<br>
-    CJ Pellerin (NOAA Chesapeake Bay Office)<br>
-    Kristin Precoda,
-    
-    Grace Roskar (NMFS Office of Habitat Conservation)<br>
-    Jeffrey Runge (U Maine)<br>   
-    Grace Saba (Rutgers)<br>
-    Vincent Saba<br>
-    Sarah Salois<br>
-    Chris Schillaci (GARFO)<br>
-    Amy Schueller (SEFSC)<br>
-    Teresa Schwemmer (Stony Brook University)<br>
-    Dave Secor (CBL)<br>
-    Angela Silva<br>
-    Adrienne Silver (UMass/SMAST)<br>
-    Emily Slesinger (Rutgers University)<br>
-    Laurel Smith<br>
-    Talya tenBrink (GARFO)<br>
-    Bruce Vogt (NOAA Chesapeake Bay Office)<br>
-    Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
-    John Walden<br>
-    Harvey Walsh<br>
-    Changhua Weng<br>
-    Dave Wilcox (VIMS)<br>
-    Timothy White (Environmental Studies Program BOEM)<br>
-    Sarah Wilkin (NMFS Office of Protected Resources)<br>
-    Mark Wuenschel<br>
-    Qian Zhang (U Maryland)]
-]
-
-???
-
-
----
-## References
-
-.contrib[
-```{r refs, echo=FALSE, results="asis"}
-PrintBibliography(myBib)
-```
-]
-
-
-## Additional resources
-.pull-left[
-* [ecodata R package](https://github.com/noaa-edab/ecodata)
-
-* [Indicator catalog](https://noaa-edab.github.io/catalog/)
-
-* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
-
-]
-.pull-right[
-* [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
-
-
-.contrib[
-
-* Slides available at https://noaa-edab.github.io/presentations
-* Contact: <Sarah.Gaichas@noaa.gov>
-]
-]
-
-???
-
----
-## SSC Discussion
-
-*  Feedback on Climate and Ecosystem Change, 2023 Highlights sections
-
-*  Prioritize 2023 and 2024 SOE requests (with NEFMC if possible)
-
-*  SSC Ecosystem WG Project Priorities
-    +  Objective 1: Expanding and clarifying the ecosystem portion of the SSC OFL CV determination process (short term objective)
-        +  ABC decisions with environmentally driven recruitment (Wilberg et al)
-        +  Alternative stock performance metrics considering current conditions (Rago and Rothschild)
-    +  Objective 2: Developing prototype processes to provide multispecies and system level scientific advice appropriate for Council decision making, highlighting tradeoffs linking directly to economic and social outcomes (long term objective)
-        +  Ecosystem overfishing indicators (Beet and Gaichas)
-        +  Index Numbers for ecosystem performance (Walden and DePiper)
-    +  Objective 3: Collaborating with relevant working groups in developing the stock-specific Ecosystem and Socio-economic Profiles (ESP) process to specify stock-specific Ecosystem ToRs (moderate-term objective)
-    
----
-
-# Extra
-
----
-## SSC request: Net vs. Gross Revenue investigations
-
-Net revenue calculable for ~ 1/2 of the revenue generated within the Greater Atlantic Region. Trends between the total gross revenue and gross revenue for which we can estimate costs are different. Net revenue looks to be just a scaled gross revenue metric: similar trend, different magnitude.
-
-.pull-left[
-![:img Net revenue, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Net_revenue.png)
-]
-
-.pull-right[
-![:img Cost coverage, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Cost_Coverage.png)
-]
- 
-```{r profit, out.width = "39%", fig.show='hold'}
-
-knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Net_revenue.png")
-knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Cost_Coverage.png")
-
-
-```
-
 
