@@ -1,8 +1,3 @@
-.tabwid {
-  font-size: initial;
-  padding-bottom: 1em;
-}
-
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -10,11 +5,10 @@
   margin-left:auto;
   margin-right:auto;
   border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
   border-color: transparent;
-  caption-side: top;
-}
-.tabwid-caption-bottom table{
-  caption-side: bottom;
 }
 .tabwid_left table{
   margin-left:0;
@@ -22,7 +16,7 @@
 .tabwid_right table{
   margin-right:0;
 }
-.tabwid td, .tabwid th {
+.tabwid td {
     padding: 0;
 }
 .tabwid a {
@@ -36,7 +30,4 @@
 }
 .tabwid table tr {
 background-color: transparent;
-}
-.katex-display {
-    margin: 0 0 !important;
 }
