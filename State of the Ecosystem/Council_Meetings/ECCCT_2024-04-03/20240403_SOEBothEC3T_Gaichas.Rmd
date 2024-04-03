@@ -1630,16 +1630,17 @@ a/b
 
 .pull-left[
 Gulf of Maine Tern Productivity
-```{r seabird-ne-productivity, fig.alt = "Productivity of Common terns in the Gulf of Maine.",  fig.width=7.5, fig.asp=.3}
+```{r seabird-ne-productivity, fig.alt = "Productivity of Common terns in the Gulf of Maine.",  fig.width=7.5, fig.asp=.6}
 #code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-seabird-ne-productivity.R"),
 
 ecodata::plot_seabird_ne(varName = "productivity") + ggplot2::coord_cartesian(xlim=c(1992,2022))
 ```
+
 ]
 
 .pull-right[
 Gulf of Maine Salmon Returns
-```{r salmon, fig.alt = "Return rate proportions and abundance of Atlantic salmon.",fig.width = 7.5,fig.asp = 0.3}
+```{r salmon, fig.alt = "Return rate proportions and abundance of Atlantic salmon.",fig.width = 7.5,fig.asp = 0.6}
 ecodata::plot_gom_salmon()+
   ylab('returning proportion')
 ```
@@ -1666,7 +1667,7 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/blob/dev/workshop/image
 
 .pull-right[
 Drivers: Low tropic levels
-```{r ne-zoopanom, fig.alt="Changes in zooplankton abundance in New England for large (top left) and small (top right) copepods, Cnidarians (bottom left), and Euphausiids (bottom right), with significant increases (orange) in small copeods and Cnidarians.", fig.width=5, fig.asp=1}
+```{r ne-zoopanom, fig.alt="Changes in zooplankton abundance in New England for large (top left) and small (top right) copepods, Cnidarians (bottom left), and Euphausiids (bottom right), with significant increases (orange) in small copeods and Cnidarians.", fig.width=5, fig.asp=1.5}
 a <- ecodata::plot_zoo_abundance_anom(report = "NewEngland", varName = "copepod") + 
   ggplot2::facet_wrap(~EPU~Var) +  ggplot2::coord_cartesian(xlim = c(1977, 2022))
 b <- ecodata::plot_zoo_abundance_anom(report = "NewEngland", varName = "euphausid") + 
