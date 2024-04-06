@@ -82,7 +82,7 @@ This element is applied at the ecosystem level. Revenue serves as a proxy for co
 
 .pull-left[
 
-```{r riskcomval, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+```{r riskcomrev, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
 # tabl <- "
 # | Risk Level         | Definition                                                          |  
 # |:-------------------|:--------------------------------------------------------------------|
@@ -841,6 +841,41 @@ risk.species %>%
 ---
 ## Offshore Habitat (new)
 
+This element will be applied at the species level, and evaluates risk of not achieving
+OY due to changes in offshore habitat quality and quantity.
+
+.pull-left[
+*Potential indicators*
+
+*  Amount of habitat  
+
+*  Quality of habitat  
+
+*  Other aspects of habitat important to support fish productivity (e.g. cold pool extent, duration, temperature) 
+
+]
+
+.pull-right[
+
+*Potential criteria*
+.table[
+```{r}
+tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
+                   "Definition" = c("No trends in offshore habitat",
+                                    "Trend in offshore habitat (1-2 measures, increase or  decrease)",
+                                    "Trend in offshore habitat (3+ measures, increase or  decrease)",
+                                    "Decreasing trend in offshore habitat, 4+ measures"))
+knitr::kable(tabl, format="html",
+             col.names = c("Risk Level", "Definition"),
+                           booktabs = T) %>%
+  #kable_styling(full_width = TRUE) %>%
+  column_spec(1, width = "10em")|>
+  column_spec(2, width = "30em")
+```
+]
+]
+
+
 ---
 class: center, center
 
@@ -850,14 +885,165 @@ class: center, center
 class: top, left
 ## Commercial Value
 
+This element is applied at the ecosystem level, and addresses the risk
+of not maximizing fishery value. Revenue serves as a proxy for
+commercial profits.
+
+.pull-left[
+.table[
+```{r riskcomval, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+# tabl <- "
+# | Risk Level         | Definition                                                          |  
+# |:-------------------|:--------------------------------------------------------------------|
+# | Low  | No trend and low variability in revenue |
+# | Low-Moderate | Increasing or high variability in revenue |
+# | Moderate-High | Significant long term revenue decrease |
+# | High | Significant recent decrease in revenue |
+# "
+# cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+
+tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
+                   "Definition" = c("No trend and low variability in revenue",
+                                    "Increasing or high variability in revenue",
+                                    "Significant long term revenue decrease",
+                                    "Significant recent decrease in revenue"))
+
+knitr::kable(tabl, format="html",
+             col.names = c("Risk Level", "Definition"),
+                           booktabs = T) %>%
+  #kable_styling(full_width = TRUE) %>%
+  column_spec(1, width = "10em")|>
+  column_spec(2, width = "30em")%>%
+  row_spec(3, bold = T, background = "orange")
+```
+]
+
+]
+.pull-right[
+```{r, fig.asp = 0.5, results='hide'}
+#comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
+ecodata::plot_comdat(report="MidAtlantic", varName="revenue") + 
+  ggplot2::theme(legend.position = "bottom",
+                      legend.title = ggplot2::element_blank())
+```
+
+]
+
+Ranked moderate-high risk due to the significant long term revenue decrease
+
+## Risk element: <span style="background-color:orange;">CommVal</span> 
+
 ---
 ## Marine Recreational Angler Trips
+
+This element is assessed at the ecosystem level where it applies equally
+to all recreationally fished species. It addresses the risk of not maximizing recreational fishery value and opportunities.
+
+.pull-left[
+.table[
+```{r riskrecval, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+# tabl <- "
+# | Risk Level         | Definition                                                          |  
+# |:-------------------|:--------------------------------------------------------------------|
+# | Low  | No trend and low variability in revenue |
+# | Low-Moderate | Increasing or high variability in revenue |
+# | Moderate-High | Significant long term revenue decrease |
+# | High | Significant recent decrease in revenue |
+# "
+# cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+
+tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
+                   "Definition" = c("No trends in angler trips",
+                                    "Increasing or high variability in angler trips",
+                                    "Significant long term decreases in angler trips",
+                                    "Significant recent decreases in angler trips"))
+
+knitr::kable(tabl, format="html",
+             col.names = c("Risk Level", "Definition"),
+                           booktabs = T) %>%
+  #kable_styling(full_width = TRUE) %>%
+  column_spec(1, width = "10em")|>
+  column_spec(2, width = "30em")%>%
+  row_spec(2, bold = T, background = "yellow")
+```
+]
+
+]
+
+.pull-right[
+````{r rec-op, fig.alt = "Recreational effort (number of trips, black) in the Mid-Atlantic, with significant increase (orange line)."}
+# code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")
+
+ecodata::plot_recdat(report = "MidAtlantic", varName = "effort")
+```
+]
+
+
+Ranked low-moderate risk due to the significant long term increase with high recent variability.
+
+## Risk element: <span style="background-color:yellow;">RecVal</span> 
 
 ---
 ## Commercial Fishery Resilience (1) - Revenue Diversity
 
+This element is applied at the ecosystem level, and addresses the
+potential risk of reduced commercial fishery business resilience by
+evaluating species diversity of revenue at the permit level.
+
+.pull-left[
+.table[
+```{r , echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+# tabl <- "
+# | Risk Level         | Definition                                                          |  
+# |:-------------------|:--------------------------------------------------------------------|
+# | Low  | No trend and low variability in revenue |
+# | Low-Moderate | Increasing or high variability in revenue |
+# | Moderate-High | Significant long term revenue decrease |
+# | High | Significant recent decrease in revenue |
+# "
+# cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+
+tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
+                   "Definition" = c("No trend in diversity measures",
+                                    "Increasing trend or high variance in diversity measure",
+                                    "Significant long term downward trend in diversity measure",
+                                    "Significant recent downward trend in diversity measure"))
+
+knitr::kable(tabl, format="html",
+             col.names = c("Risk Level", "Definition"),
+                           booktabs = T) %>%
+  #kable_styling(full_width = TRUE) %>%
+  column_spec(1, width = "10em")|>
+  column_spec(2, width = "30em")%>%
+  row_spec(1, bold = T, background = "lightgreen")
+```
+]
+
+]
+
+.pull-right[
+````{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the Mid Atlantic.")}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")
+
+ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity")
+
+
+```
+]
+
+With less than 30 years in the time series, trend was not assessed. With no trend, this element ranks low risk. However, a decline prior to 2000 is visually apparent and could be assessed with updated methods for the 2025 risk assessment.
+
+
+## Risk element: <span style="background-color:lightgreen;">FishRes1</span> 
+
 ---
 ## Commercial Fishery Resilience (2) - Shoreside Support
+
+This element is applied at the ecosystem level, and ranks the risk of
+reduced commercial fishery business resilience due to shoreside support
+infrastructure.
+
+
 
 ---
 ## Commercial Fishery Resilience (3) -- Fleet Diversity
