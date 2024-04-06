@@ -45,12 +45,10 @@ p.caption {
 
 
 
----
 ## Risk Element Example - Commercial revenue
 
 This element is applied at the ecosystem level. Revenue serves as a proxy for commercial profits.
 
-.table[
 .pull-left[
 
 &lt;table&gt;
@@ -81,7 +79,7 @@ This element is applied at the ecosystem level. Revenue serves as a proxy for co
 &lt;/table&gt;
 
 Ranked moderate-high risk due to the significant long term revenue decrease
-]
+
 ]
 .pull-right[
 &lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-1-1.png" width="504" /&gt;
@@ -105,7 +103,7 @@ level, and addresses risk to achieving OY due to scientific uncertainty
 based on analytical and data limitations.
 
 .pull-left-70[
-
+.table[
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -132,6 +130,7 @@ based on analytical and data limitations.
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+]
 ]
 
 .pull-right-30[
@@ -216,38 +215,780 @@ based on analytical and data limitations.
 
 ]
 ---
-## Fishing Mortality Status and Stock Biomass Status
-
 .pull-left[
+## Fishing Mortality and Stock Biomass Status
+
+These elements are applied at the species level. They indicate the level of risk to achieving OY from either overfishing or stock depletion, respectively.
+
 Indicator: Stock status
 
 &lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-4-1.png" width="504" /&gt;
 
-.contrib[
-Most stocks have good status. Spiny dogfish B and F status have improved. Mackerel F status has improved, but B is still below the threshold. Summer flounder F exceeds the limit.
 ]
+
+.pull-right[
+.table[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Risk Level &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Definitions &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; F &amp;lt; Fmsy; B &amp;gt; Bmsy &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low-Moderate &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Unknown, but weight of evidence indicates low overfishing risk; Bmsy &amp;gt; B &amp;gt; 0.5 Bmsy or weight of evidence indicates low risk &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Moderate-High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Unknown status &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; F &amp;gt; Fmsy; B &amp;lt; 0.5 Bmsy &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+&lt;br&gt;
+&lt;table class="risktable table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Fstatus &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Bstatus &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ocean Quahog &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Surfclam &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Summer flounder &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Scup &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Black sea bass &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Atl. mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Chub mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Butterfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Longfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Shortfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Golden tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Blueline tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bluefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spiny dogfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Monkfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Unmanaged forage &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Deepsea corals &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
 ]
 
 ---
 ## Food Web (1) - Prey Availability
 
+This element will be applied at the species level. This element is one of two
+separating food web risks to achieving OY for Council managed species
+from two sources. This first element assesses prey availability for each
+species, and the second food web risk element assesses predation
+pressure on each species (see next element).
+
+.pull-left[
+*Potential indicators*
+&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-7-1.png" width="504" /&gt;
+
+&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-8-1.png" width="504" /&gt;
+]
+
+.pull-right[
+
+*Potential criteria*
+.table[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Risk Level &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Definition &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Prey availability high (not limiting) and/or good fish condition past 5 years &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low-Moderate &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Aggregate prey available for this species has stable or increasing trend, moderate condition &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Moderate-High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Aggregate prey available for this species has significant decreasing trend, poor condition &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Managed species highly dependent on prey with limited and declining availability, poor condition &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+]
+
+
 ---
 ## Food Web (2) - Predation Pressure
+
+This element will be applied at the species level. This element is one of two
+separating food web risks to achieving OY for Council managed species
+from two sources. This second food web risk element assesses predation
+pressure on each species, and the first element assesses prey
+availability for each species (see element above).
+
+.pull-left[
+*Potential indicators*
+
+*  Predation pressure index
+
+*  Model-derived predation mortality
+
+*  Aggregate predator biomass
+]
+
+.pull-right[
+
+*Potential criteria*
+.table[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Risk Level &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Definition &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Predation pressure represents low proportion of overall mortality &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low-Moderate &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Predation pressure moderate proportion of overall mortality, decreasing mortality trend &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Moderate-High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Predation pressure moderate proportion of overall mortality, increasing mortality trend &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Predation pressure represents high proportion of overall mortality, increasing mortality trend &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+]
 
 ---
 ## Food Web (3) - Protected Species Prey
 
+This element is applied at the species level.  This element ranks the risks of not achieving protected species
+objectives due to species interactions with Council managed species.
+
+.pull-left-60[
+
+.table[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Risk Level &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Definition &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Few interactions with any protected species &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low-Moderate &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Important prey of 1-2 protected species, or important
+                  prey of 3 or more protected species with management
+                  consideration of interaction &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Moderate-High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Important prey of 3 or more protected species &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Managed species is sole prey for a protected species &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+]
+
+.pull-right-40[
+&lt;table class="risktable table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; FW3Prey &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ocean Quahog &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Surfclam &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Summer flounder &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Scup &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Black sea bass &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Atl. mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Chub mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Butterfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Longfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Shortfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Golden tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Blueline tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bluefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spiny dogfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Monkfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Unmanaged forage &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Deepsea corals &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
 ---
 ## Ecosystem Productivity
+
+This element is applied at the ecosystem level (the Mid-Atlantic
+Ecosystem Production Unit).  Productivity at the base of the food web supports and ultimately limits
+the amount of managed species production in an ecosystem.
+
+.pull-left[
+.table[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Risk Level &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Definition &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; No trends in ecosystem productivity &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; font-weight: bold;background-color: yellow !important;"&gt; Low-Moderate &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; font-weight: bold;background-color: yellow !important;"&gt; Trend in ecosystem productivity (1-2 measures, increase or decrease) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Moderate-High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Trend in ecosystem productivity (3+ measures, increase or decrease) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Decreasing trend in ecosystem productivity, 4+ measures &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+Ranked Low-moderate due to increasing zooplankton and decreasing forage trends. Patterns in fish condition and productivity also observed. No trend in primary production.
+
+## Risk Element: &lt;span style="background-color:yellow;"&gt;EcoProd&lt;/span&gt; 
+
+]
+
+.pull-right[
+&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/zoopanom-1.png" alt="Changes in zooplankton abundance in the MAB for large (top left) and small (top right) copepods, Cnidarians (bottom left), and Euphausiids (bottom right), with significant increases (orange) in small copeods and Cnidarians." width="360" /&gt;
+]
 
 ---
 ## Climate
 
----
-## Distribution Shifts
+This element is applied at the species level,
+and evaluates risks to species productivity (and therefore to achieving
+OY) due to projected climate change factors in the region. 
+
+.pull-left-60[
+&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/mab-oa-1.png" alt="Locations where bottom aragonite saturation state ($\Omega_{Arag}$; summer only: June-August) were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (left panel) and longfin squid (right panel) for the time periods 2007-2022 (dark cyan) and 2023 only (magenta). Gray circles indicate locations where bottom `\(\Omega_{Arag}\)` values were above the species specific sensitivity values." width="100%" /&gt;
+
+.table[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Risk Level &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Definition &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Low climate vulnerability ranking &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low-Moderate &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Moderate climate vulnerability ranking &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Moderate-High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; High climate vulnerability ranking, climate indicators  impacting the stock increasing (worsening) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Very high climate vulnerability ranking, climate indicators impacting the stock increasing (worsening) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+]
+
+.pull-right-40[
+&lt;table class="risktable table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Climate &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ocean Quahog &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Surfclam &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Summer flounder &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Scup &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Black sea bass &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Atl. mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: yellow !important;text-align: c;"&gt;lowmod&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Chub mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Butterfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Longfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Shortfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Golden tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Blueline tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bluefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spiny dogfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Monkfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Unmanaged forage &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Deepsea corals &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
 
 ---
+## Distribution Shifts
+This element is applied at the
+species level, and evaluates risks of species distribution shifts due to
+projected climate change in the Northeast US.
+
+.pull-left-60[
+&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/species-dist-1.png" alt="Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem: along shelf distance with increasing trend (orange), and depth with decreasing trend indicating deeper water (purple)." width="576" /&gt;
+
+.table[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Risk Level &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Definition &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Low potential for distribution shifts &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low-Moderate &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Moderate potential for distribution shifts &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Moderate-High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; High potential for distribution shifts, observed distribution shifts &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Very high potential for distribution shifts, observed  distribution shifts &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+]
+
+.pull-right-40[
+&lt;table class="risktable table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; DistShift &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ocean Quahog &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Surfclam &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Summer flounder &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Scup &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Black sea bass &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Atl. mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Chub mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Butterfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Longfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Shortfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Golden tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Blueline tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bluefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spiny dogfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Monkfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: orange !important;text-align: c;"&gt;modhigh&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Unmanaged forage &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Deepsea corals &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
 ## Estuarine and Coastal Habitat
+
+This element is applied at the species level, and evaluates risk of not
+achieving OY due to threats to estuarine and nearshore coastal
+habitat/nursery grounds.
+
+.pull-left-60[
+&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/cheswq-1.png" alt="Chesapeake Bay water quality trend, 3 year running mean proportion of areas meeting or exceeding quality thresholds based on dissolved oxygen, chlorophyll, water clarity, and submerged aquatic vegetation." width="504" /&gt;
+
+.table[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Risk Level &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Definition &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Not dependent on nearshore coastal or estuarine habitat &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Low-Moderate &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Estuarine dependent, estuarine condition stable &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Moderate-High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Estuarine dependent, estuarine condition fair &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; Estuarine dependent, estuarine condition poor &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+]
+
+.pull-right-40[
+
+&lt;table class="risktable table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; EstHabitat &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ocean Quahog &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Surfclam &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Summer flounder &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Scup &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Black sea bass &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Atl. mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Chub mackerel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Butterfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Longfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Shortfin squid &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Golden tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Blueline tilefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bluefish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: white !important;padding-right: 4px; padding-left: 4px; background-color: red !important;text-align: c;"&gt;highest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spiny dogfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Monkfish &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: lightgreen !important;text-align: c;"&gt;lowest&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Unmanaged forage &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Deepsea corals &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: black !important;padding-right: 4px; padding-left: 4px; background-color: white !important;text-align: c;"&gt;na&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
 
 ---
 ## Offshore Habitat (new)
@@ -285,7 +1026,7 @@ class: top, left
 .pull-left[
 Indicator: Commercial landings 
 
-&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-5-1.png" width="504" /&gt;
+&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-20-1.png" width="504" /&gt;
 
 
 ]
@@ -294,7 +1035,7 @@ Indicator: Commercial landings
 
 .pull-right[
 Indicators: Recreational harvest
-&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-6-1.png" width="504" /&gt;
+&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-21-1.png" width="504" /&gt;
 
 ---
 
@@ -887,7 +1628,7 @@ Prey Availability Risk
 
 .pull-left[
 Evaluate Forage Index for a predator
-&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-7-1.png" width="504" /&gt;
+&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-22-1.png" width="504" /&gt;
 
 *  Benthic Index in progress for the many Mid-Atlantic benthivores. 
 *  Zooplankton Indices needed for planktivores
@@ -895,7 +1636,7 @@ Evaluate Forage Index for a predator
 
 .pull-right[
 Along with its Condition index
-&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-8-1.png" width="504" /&gt;
+&lt;img src="20240409_SOE_MAFMCrisk_Gaichas_files/figure-html/unnamed-chunk-23-1.png" width="504" /&gt;
 
 And Productivity anomaly (lagged)
 ]
