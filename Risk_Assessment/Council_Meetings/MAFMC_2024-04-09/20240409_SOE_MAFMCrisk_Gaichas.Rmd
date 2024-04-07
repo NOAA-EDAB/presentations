@@ -1035,25 +1035,24 @@ knitr::kable(tabl, format="html",
 ```
 ]
 
+With less than 30 years in the time series, trend was not assessed. For fleet count a visual trend may be apparent, while for revenue diversity no apparent visual trend exists. With no trend, this element ranks low risk. 
 ]
 
 .pull-right[
-```{r commercial-div, fig.width = 8, fig.asp = 0.3, fig.alt = "Commercial fleet count and revenue diversity in the Mid Atlantic."}
+```{r commercial-div, fig.width = 8, fig.asp = 0.7, fig.alt = "Commercial fleet count and revenue diversity in the Mid Atlantic."}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")
 
 a <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count")
 
 b <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet diversity in revenue")
 
-a + b
+a / b
 ```
 
 ]
 
-With less than 30 years in the time series, trend was not assessed. For fleet count a visual trend may be apparent, while for revenue diversity no apparent visual trend exists. With no trend, this element ranks low risk. 
 
-
-## Risk element: <span style="background-color:lightgreen;">FishRes3</span> 
+## Risk element: <span style="background-color:lightgreen;">ComDiv</span> 
 
 
 ---
@@ -1122,11 +1121,11 @@ knitr::kable(tabl, format="html",
 
 In past risk assessments, four of the top communities (20%) had three or more of these high risk rankings, so we ranked overall social-cultural risk as low-moderate for these Mid-Atlantic communities. However, newer analyses evaluating EJ vulnerability could be incorporated into this analysis.
 ]
-
+## Risk element: <span style="background-color:yellow;">Social</span> 
 ]
 
 .pull-right[
-```{r commercial-engagement, fig.alt= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 0.85, results='hide'}
+```{r commercial-engagement, fig.alt= "Commercial engagement, reliance, and environmental justice vulnerability for the top commercially engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 0.65, results='hide'}
 #Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
@@ -1135,7 +1134,7 @@ In past risk assessments, four of the top communities (20%) had three or more of
 ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial") 
 ```
 
-```{r recreational-engagement, fig.alt= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 0.85, results='hide'}
+```{r recreational-engagement, fig.alt= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 0.65, results='hide'}
 #Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
@@ -1174,11 +1173,13 @@ knitr::kable(tabl, format="html",
 ```
 ]
 
+There is a significant long term decrease in total commercial landings and U.S. seafood landings in the Mid-Atlantic, indicating moderate-high risk using previous criteria.
+
 ]
 
 .pull-right[
 
-```{r,  fig.asp=0.8}
+```{r,  fig.asp=0.7}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"),
 #total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
 
@@ -1187,11 +1188,35 @@ ecodata::plot_comdat(report = "MidAtlantic", varName = "landings")
 
 ]
 
-There is a significant long term decrease in total commercial landings and U.S. seafood landings in the Mid-Atlantic, indicating moderate-high risk using previous criteria.
-
+## Risk element: <span style="background-color:orange;">ComFood</span> 
 
 ---
 ## Recreational/Subsistence Food Production
+
+This element is applied at the ecosystem level, and describes the risk
+of not maintaining personal food production.
+
+.pull-left[
+.table[
+```{r , echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+
+tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
+                   "Definition" = c("No trend or increase in recreational landings",
+                                    "Increasing or high variability in recreational landings",
+                                    "Significant long term decrease in recreational landings",
+                                    "Significant recent decrease in recreational landings"))
+
+knitr::kable(tabl, format="html",
+             col.names = c("Risk Level", "Definition"),
+                           booktabs = T) %>%
+  #kable_styling(full_width = TRUE) %>%
+  column_spec(1, width = "10em")|>
+  column_spec(2, width = "30em")%>%
+  row_spec(3, bold = T, background = "orange")
+```
+]
+
+]
 
 .pull-right[
 Indicators: Recreational harvest
@@ -1202,9 +1227,11 @@ Indicators: Recreational harvest
 ecodata::plot_recdat(report = "MidAtlantic", varName ="landings")
 
 ```
+]
 
----
+This significant long term decrease in both recreational landings represents a moderate-high risk to food production.
 
+## Risk element: <span style="background-color:orange;">RecFood</span> 
 
 ---
 ## EAFM Risk Assessment: 2024 Update with new elements
@@ -1271,13 +1298,13 @@ risk.eco<-data.frame(
   CommVal = c("mh"),
   RecVal = c("lm"),
   FishRes1 = c("l"),
-  FishRes4 = c("mh"),
+  FishRes2 = c("mh"),
   #CommJobs = c("mh"),
   #RecJobs = c("l"),
   ComDiv = c("l"),
   RecDiv = c("tbd"),
   Social = c("lm"),
-  ComFood = c("h"),
+  ComFood = c("mh"),
   RecFood = c("mh")
 )
 
@@ -1341,160 +1368,6 @@ risk.sppsector %>%
 ]
 ]
 
-
-???
-
----
-## Risk Assessment: new indicator previews
-
-Prey Availability Risk
-
-.pull-left[
-Evaluate Forage Index for a predator
-```{r}
-ecodata::plot_forage_index() + ggplot2::coord_cartesian(xlim = c(1983, 2021.5)) + ggplot2::ggtitle("Aggregate forage fish index") 
-```
-
-*  Benthic Index in progress for the many Mid-Atlantic benthivores. 
-*  Zooplankton Indices needed for planktivores
-]
-
-.pull-right[
-Along with its Condition index
-```{r}
-ecodata::plot_condition()
-```
-
-And Productivity anomaly (lagged)
-]
-
-
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
-background-size: 350px
-background-position: right bottom
-
-## THANK YOU! SOEs made possible by (at least) 80 contributors from 20+ institutions
-
-.table[
-![:col_row 
-    Kimberly Bastille<br>
-    Aaron Beaver (Anchor QEA)<br>
-    Andy Beet<br>
-    Brandon Beltz<br>
-    Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
-    Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
-    Baoshan Chen (Stony Brook University)<br>
-    Zhuomin Chen (U Connecticut)<br>
-    Joseph Caracappa<br>
-    Doug Christel (GARFO)<br>
-    Patricia Clay<br>
-    Lisa Colburn<br>
-    Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
-    Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
-    Art Degaetano (Cornell U)<br>
-    Geret DePiper<br>
-    Dan Dorfman (NOAA-NOS-NCCOS)<br> 
-    Hubert du Pontavice<br>
-    Emily Farr (NMFS Office of Habitat Conservation)<br>
-    Michael Fogarty<br>
-    Paula Fratantoni<br>
-    Kevin Friedland<br>
-    Marjy Friedrichs (Virginia Institute of Marine Science)<br>
-    Sarah Gaichas<br>
-    Ben Galuardi (GARFO)<br>
-    Avijit Gangopadhyay (School for Marine Science and Technology UMass Dartmouth)<br>
-    James Gartland (Virginia Institute of Marine Science)<br>
-    Lori Garzio (Rutgers University),
-    
-    Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
-    Sean Hardison<br>
-    Dvora Hart<br>
-    Kimberly Hyde<br>
-    John Kocik<br>
-    Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
-    Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
-    Scott Large<br>
-    Gabe Larouche (Cornell U)<br>
-    Daniel Linden<br>
-    Andrew Lipsky<br>
-    Sean Lucey<br>
-    Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
-    Chris Melrose<br>
-    Shannon Meseck<br>
-    Ryan Morse<br>
-    Ray Mroch (SEFSC)<br>
-    Brandon Muffley (MAFMC)<br>
-    Kimberly Murray<br>
-    David Moe Nelson (NCCOS)<br>
-    Janet Nye (University of North Carolina at Chapel Hill)<br>
-    Chris Orphanides<br>
-    Richard Pace<br>
-    Debi Palka<br>
-    Tom Parham (Maryland DNR)<br>
-    Charles Perretti<br>
-    CJ Pellerin (NOAA Chesapeake Bay Office)<br>
-    Kristin Precoda,
-    
-    Grace Roskar (NMFS Office of Habitat Conservation)<br>
-    Jeffrey Runge (U Maine)<br>   
-    Grace Saba (Rutgers)<br>
-    Vincent Saba<br>
-    Sarah Salois<br>
-    Chris Schillaci (GARFO)<br>
-    Amy Schueller (SEFSC)<br>
-    Teresa Schwemmer (Stony Brook University)<br>
-    Dave Secor (CBL)<br>
-    Angela Silva<br>
-    Adrienne Silver (UMass/SMAST)<br>
-    Emily Slesinger (Rutgers University)<br>
-    Laurel Smith<br>
-    Talya tenBrink (GARFO)<br>
-    Bruce Vogt (NOAA Chesapeake Bay Office)<br>
-    Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
-    John Walden<br>
-    Harvey Walsh<br>
-    Changhua Weng<br>
-    Dave Wilcox (VIMS)<br>
-    Timothy White (Environmental Studies Program BOEM)<br>
-    Sarah Wilkin (NMFS Office of Protected Resources)<br>
-    Mark Wuenschel<br>
-    Qian Zhang (U Maryland)]
-]
-
-???
-
-
----
-## References
-
-.contrib[
-```{r refs, echo=FALSE, results="asis"}
-PrintBibliography(myBib)
-```
-]
-
-
-## Additional resources
-.pull-left[
-* [ecodata R package](https://github.com/noaa-edab/ecodata)
-
-* [Indicator catalog](https://noaa-edab.github.io/catalog/)
-
-* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
-
-]
-.pull-right[
-* [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
-
-
-.contrib[
-
-* Slides available at https://noaa-edab.github.io/presentations
-* Contact: <Sarah.Gaichas@noaa.gov>
-]
-]
 
 ???
 
