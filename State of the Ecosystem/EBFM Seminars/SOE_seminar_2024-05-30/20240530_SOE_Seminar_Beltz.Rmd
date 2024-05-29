@@ -299,7 +299,7 @@ Profits ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw
 
 Recreational opportunities:  Effort ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Effort diversity ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
 
-Stability: Fishery ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png), Commercial ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Rec ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
+Stability: Fishery ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), Commercial ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Rec ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
 
 Social and cultural, trend not evaluated, status of:  
 *  Fishing engagement and reliance by community  
@@ -328,7 +328,7 @@ Profits Total ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentatio
 .reduced_opacity[
 Recreational opportunities:  Effort ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Effort diversity ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
 
-Stability: Fishery ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png), Commercial ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Rec ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
+Stability: Fishery ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), Commercial ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Rec ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
 
 Social and cultural, trend not evaluated, status of:  
 *  Fishing engagement and reliance by community  
@@ -520,14 +520,7 @@ Key: Black = NEFSC survey; <span style="color:#FF6A6A;">Red = NEAMAP survey</spa
 .pull-right[
 Declining managed benthos, aggregate planktivores
 .center[
-```{r, fig.width=5, fig.asp=1}
-# code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), 
-# comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
-
-ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild") + 
-  ggplot2::ggtitle(ggplot2::element_blank()) +
-  ggplot2::theme(legend.position = "right")
-```
+![:img ecodata::plot_comdat(report="MidAtlantic", plottype="guild")](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//ecodata_plot_comdat_midatlantic_guild.png)
 ]
 .contrib[ 
 Markets and availability (benthos), fishery consolidation (planktivores)
@@ -758,7 +751,7 @@ Changes in recreational fleet diversity can be considered when managers seek opt
 
 
 ---
-## Objective: Mid Atlantic Fishery Stability ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk elements: <span style="background-color:lightgreen;">FishRes1</span> and <span style="background-color:lightgreen;">FleetDiv</span>, unchanged
+## Objective: Mid Atlantic Fishery Stability ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png) &emsp; Risk elements: <span style="background-color:lightgreen;">FishRes1</span> and <span style="background-color:lightgreen;">FleetDiv</span>, unchanged
 
 .pull-left[
 *Fishery*  Indicators: Commercial fleet count, fleet diversity   
@@ -791,7 +784,7 @@ ecodata::plot_recdat(report = "MidAtlantic", varName = "catchdiversity")
 
 ]
 ---
-## Objective: Mid Atlantic Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk element: ecological diversity (put aside)
+## Objective: Mid Atlantic Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png) &emsp; Risk element: ecological diversity (put aside)
 
 .pull-left[
 *Ecological* Indicators: zooplankton and larval fish diversity (*not updated*)
