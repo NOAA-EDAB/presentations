@@ -607,9 +607,10 @@ Declining managed benthos, aggregate planktivores
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), 
 # comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
 
-ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild") + 
+p =ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild") + 
   ggplot2::ggtitle(ggplot2::element_blank()) +
   ggplot2::theme(legend.position = "right")
+print(p)
 ```
 ]
 .contrib[ 
