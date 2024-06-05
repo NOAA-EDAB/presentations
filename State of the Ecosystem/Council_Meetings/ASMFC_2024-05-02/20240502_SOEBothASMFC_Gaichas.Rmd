@@ -1,0 +1,937 @@
+---
+title: "State of the Ecosystem<br /> Mid Atlantic and New England 2024"
+subtitle: "Atlantic States Marine Fisheries Commission<br /> 2 May 2024"
+author: "Sarah Gaichas and Joseph Caracappa, (editors),<br /> Andy Beet, Brandon Beltz,  Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith (data and section leads), <br />  and all SOE contributors"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css", "libs/cols.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: ["libs/macros.js", "libs/cols_macro.js"]
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+class: top, left
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+
+<style>
+.reduced_opacity {
+  opacity: 0.5;
+}
+</style>
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+library(kableExtra)
+library(ecodata)
+library(readxl); library(data.table)
+library(DT)
+library(widgetframe)
+library(patchwork)
+
+# if figure output defaults to docs/imaages/ replace with this before moving to 
+# presentations/docs in both the html output (search and replace)
+# and folder name
+# 20220316_MAFMCSSC_Gaichas_files/figure-html/
+
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./MidSOE.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+
+# State of the Ecosystem (SOE) reporting
+## Improving ecosystem information and synthesis for fishery managers
+
+.pull-left-60[
+
+- Ecosystem indicators linked to management objectives `r Cite(myBib, "depiper_operationalizing_2017")`
+    + Contextual information
+    + Report evolving since 2016
+    + Fishery-relevant subset of full Ecosystem Status Reports
+
+- Open science emphasis `r Cite(myBib, "bastille_improving_2021")`
+
+- Used within Mid-Atlantic Fishery Management Council's Ecosystem Process `r Cite(myBib, "muffley_there_2021")`
+    + Risk assessment `r Cite(myBib,"gaichas_implementing_2018")`
+    + Conceptual modeling `r Cite(myBib,"depiper_learning_2021")`
+    + Management strategy evaluation ([MSE](https://www.mafmc.org/actions/summer-flounder-mse))
+
+]
+
+.pull-right-40[
+*The IEA Loop<sup>1</sup>*
+![IEA process from goal setting to assessment to strategy evaluation with feedbacks](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//iea-loop.png)
+
+
+.footnote[
+[1] https://www.integratedecosystemassessment.noaa.gov/national/IEA-approach
+]
+]
+???
+
+---
+## State of the Ecosystem: Changes for 2024*
+.pull-left[
+
+
+## 2024 Report Structure
+1. Graphical summary
+    + Page 1 report card re: objectives &rarr;
+    + Page 2 risk summary bullets
+    + Page 3 **2023 snapshot*
+1. Performance relative to management objectives
+1. Risks to meeting management objectives
+    + **Climate and Ecosystem risks*
+    + Offshore wind development
+    
+![:img State of the Ecosystem page 1 summary table, 45%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_2.png)![:img State of the Ecosystem page 2 risk bullets, 45%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_3.png)
+
+]
+
+.pull-right[
+
+```{r management-objectives}
+mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
+                                                 "Profits","Recreation",
+                                                 "Stability","Social & Cultural",
+                                                 "Protected Species",
+                                                 "Biomass","Productivity",
+                                                 "Trophic structure","Habitat"),
+"Indicators reported" = c("Landings; commercial total and by feeding guild; recreational harvest",
+                               "Revenue decomposed to price and volume",
+                               "Angler trips; recreational fleet diversity",
+                               "Diversity indices (fishery and ecosystem)",
+                               "Community engagement/reliance and environmental justice status",
+                               "Bycatch; population (adult and juvenile) numbers, mortalities",
+                               "Biomass or abundance by feeding guild from surveys",
+                               "Condition and recruitment of managed species, primary productivity",
+                               "Relative biomass of feeding guilds, zooplankton",
+                               "Estuarine and offshore habitat conditions"))
+
+
+knitr::kable(mng_obj, linesep = "",
+      col.names = c("Objective Categories","Indicators reported"),
+      caption = "Ecosystem-scale fishery management objectives",
+      #align = 'c',
+      booktabs = T) %>%
+  kable_styling(font_size = 14) %>%
+ # kable_styling(latex_options = "hold_position", "scale_down") %>%
+ # column_spec(c(2), width = c("25em")) %>%
+  row_spec(0, bold = TRUE) %>%
+ # group_rows("Provisioning/Cultural", 1,4) %>%
+ # group_rows("Supporting/Regulating", 5,9)
+  pack_rows("Provisioning and Cultural Services", 1,6) %>%
+  pack_rows("Supporting and Regulating Services", 7,10)
+
+
+```
+]
+
+???
+.contrib[
+* except for 2 *synthetic replacements*
+]
+
+
+---
+## Ecosystem synthesis themes
+
+Characterizing ecosystem change for fishery management
+
+* Societal, biological, physical and chemical factors comprise the **multiple system drivers** that influence marine ecosystems through a variety of different pathways. 
+* Changes in the multiple drivers can lead to **regime shifts** — large, abrupt and persistent changes in the structure and function of an ecosystem.  
+* Regime shifts and changes in how the multiple system drivers interact can result in **ecosystem reorganization** as species and humans respond and adapt to the new environment.
+
+.pull-left[
+
+![:img](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//SystemDrivers_v5.jpg)
+]
+
+.pull-right[
+![:img](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//RegimeShift_V5.jpg)
+]
+
+
+---
+## State of the Ecosystem report scale and figures
+
+.pull-left[
+Spatial scale
+![:img NEFSC survey strata used to calculate Ecosystem Production Unit biomass, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//EPU_Designations_Map.jpg)
+
+A [glossary of terms](https://noaa-edab.github.io/tech-doc/glossary.html), detailed [technical methods documentation](https://NOAA-EDAB.github.io/tech-doc), and indicator [data](https://github.com/NOAA-EDAB/ecodata) and [catalog](https://noaa-edab.github.io/catalog/) are available online.  
+]
+
+.pull-right[
+Key to figures
+```{r , fig.width=5.5, fig.asp=.9}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R")
+#species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
+
+a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(xlim = c(1969,2021))
+b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(xlim = c(1969,2021)) 
+
+a/b
+
+```  
+
+.contrib[
+Trends assessed only for 30+ years: [more information](https://noaa-edab.github.io/tech-doc/trend-analysis.html)
+
+<p style="color:#FF8C00;">Orange line = significant increase</p>
+<p style="color:#9932CC;">Purple line = significant decrease</p>
+No color line = not significant or < 30 years
+<p style="background-color:#D3D3D3;">Grey background = last 10 years</p>
+]
+]
+
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_2.png")
+background-size: 500px
+background-position: right
+
+## Mid Atlantic State of the Ecosystem Summary 2024: 
+**Performance relative to management objectives** 
+
+.pull-left-60[
+Seafood production ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png), ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) 
+
+Profits ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png), ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) 
+
+Recreational opportunities:  Effort ![:img increasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//increase.png) ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png); Effort diversity ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
+
+Stability: Fishery ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
+
+Social and cultural, trend not evaluated, status of:  
+*  Fishing engagement and reliance by community  
+*  Environmental Justice (EJ) Vulnerability by community  
+
+Protected species: 
+*  Maintain bycatch below thresholds (harbor porpoise, gray seals) ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)  
+*  Recover endangered populations (NARW) ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
+]
+.pull-right-40[]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-NE-508_Page_2.png")
+background-size: 500px
+background-position: right
+
+## New England State of the Ecosystem Summary 2024: 
+**Performance relative to management objectives - Georges Bank** 
+
+.pull-left-60[
+Seafood production Total ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), Managed ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png), Both ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
+
+Profits ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png) 
+
+Recreational opportunities:  Effort ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Effort diversity ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
+
+Stability: Fishery ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png), Commercial ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Rec ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
+
+Social and cultural, trend not evaluated, status of:  
+*  Fishing engagement and reliance by community  
+*  Environmental Justice (EJ) Vulnerability by community  
+
+Protected species: 
+*  Maintain bycatch below thresholds (harbor porpoise, gray seals) ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)  
+*  Recover endangered populations ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png), NARW ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Gray seal ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png)  
+]
+
+.pull-right-40[]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-NE-030424_Page_3.png")
+background-size: 500px
+background-position: right
+
+## New England State of the Ecosystem Summary 2024: 
+**Performance relative to management objectives - Gulf of Maine** 
+
+.pull-left-60[
+Seafood production ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png), ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
+
+Profits Total ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png); NEFMC Managed ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png), ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) 
+
+.reduced_opacity[
+Recreational opportunities:  Effort ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Effort diversity ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
+
+Stability: Fishery ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png), Commercial ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Rec ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
+
+Social and cultural, trend not evaluated, status of:  
+*  Fishing engagement and reliance by community  
+*  Environmental Justice (EJ) Vulnerability by community  
+
+Protected species: 
+*  Maintain bycatch below thresholds (harbor porpoise, gray seals) ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)  
+*  Recover endangered populations ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png), NARW ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Gray seal ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png)] Salmon ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)
+]
+.pull-right-40[]
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_3.png")
+background-size: 500px
+background-position: right
+
+## State of the Ecosystem Summary 2024: 
+**Risks to meeting fishery management objectives**  
+
+.pull-left-60[
+Climate: risks to spatial and seasonal management, quota setting and rebuilding
+*  Fish and protected species distribution shifts
+*  Changing spawning and migration timing
+*  Multiple stocks with poor condition, declining productivity 
+
+Other ocean uses: offshore wind development
+*  Current revenue in proposed areas
+    - 1-23% by Mid-Atlantic port (some with EJ concerns)
+    - 1–34% by New England port (some with EJ concerns)
+    - 1-20% by MAFMC managed species
+    - 3-54% by NEFMC managed species
+*  Overlap with important right whale foraging habitats, increased vessel strike and noise risks
+*  Gulf of Maine fisheries/offshore wind IEA in progress
+]
+.pull-right-40[]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_4.png")
+background-size: 500px
+background-position: right
+
+## State of the Ecosystem Summary 2024:
+**New section this year: 2023 Highlights**
+
+.pull-left-60[
+Notable 2023 events and conditions
+
+*  South Fork Wind and Vineyard Wind 1 construction started
+*  Scallop die-off elephant trunk 2022-2023
+*  Hypoxia and mortality events in NJ coastal ocean this summer
+*  Record *low* hypoxia in Chesapeake Bay
+*  GOM summer phytoplankton bloom off the scale
+*  2nd ranked GOM bottom heatwave
+*  Warm water everywhere EXCEPT in Spring on the NEUS shelf
+*  Gulf Stream changes altering shelf break habitats
+*  El Nino. Warmest year on record globally. Again.
+]
+
+.pull-right-40[
+]
+
+
+---
+# 2024 Performance relative to management objectives
+
+.center[
+![:img Fishing icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//5_FISHING.png) &nbsp; &nbsp; &nbsp; ![:img Fishing industry icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//6_INDUSTRY.png) &nbsp; &nbsp; &nbsp; ![:img Multiple drivers icon made by EDAB, 25%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//18.MULTIPLE_SYSTEM_DRIVERS.png) &nbsp; &nbsp; &nbsp; ![:img Spiritual cultural icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//22.SPIRITUAL_CULTURAL.png) &nbsp; &nbsp; &nbsp; ![:img Protected species icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//16.PROTECTEDSPECIES.png)
+]
+
+---
+## Objective: Mid Atlantic Seafood production ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png) &emsp; Risk elements: <span style="background-color:orange;">ComFood</span> and <span style="background-color:orange;">RecFood</span>, unchanged
+
+.pull-left[
+Indicator: Commercial landings 
+
+```{r,  fig.asp=0.8}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"),
+#total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
+
+ecodata::plot_comdat(report = "MidAtlantic", varName = "landings")
+```
+
+
+]
+
+.pull-right[
+Indicators: Recreational harvest
+```{r,  fig.asp=.4}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"),
+#, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
+
+ecodata::plot_recdat(report = "MidAtlantic", varName ="landings")
+
+```
+
+
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R")
+#, fig.width=5
+#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
+
+ecodata::plot_rec_hms(shadedRegion = c(2014,2023), report="MidAtlantic")
+
+```
+
+]
+
+Multiple potential drivers of landings changes: ecosystem and stock production, management actions, market conditions, and environmental change.
+
+???
+The long-term declining trend in landings didn't change.
+---
+## Mid Atlantic Landings drivers: Stock status? TAC? &emsp; Risk elements: Fstatus, Bstatus, MgtControl 
+
+.pull-left[
+Indicator: Stock status
+
+```{r ,  fig.asp=0.8}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"),
+#, fig.width = 7.5, fig.asp = 0.5
+#stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing).")
+
+a <- ecodata::plot_stock_status(report = "MidAtlantic")
+
+a$p + ggplot2::coord_cartesian(xlim=c(0,2), ylim=c(0,2)) +
+  ggplot2::annotation_custom(gridExtra::tableGrob(a$unknown,
+                             theme = gridExtra::ttheme_default(base_size = 7), 
+                             rows=NULL), 
+                             xmin=0.8, xmax=1.8, ymin=1.5, ymax=2)
+
+```
+
+.contrib[
+Most stocks have good status. Spiny dogfish B and F status have improved. Mackerel F status has improved, but B is still below the threshold. Summer flounder F exceeds the limit.
+]
+]
+
+.pull-right[
+
+Indicators: Total ABC or ACL, and Realized catch relative to management target
+
+```{r }
+#, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R")
+#, fig.width = 5, fig.asp = 0.5
+#abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries."
+
+ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Stacked")
+```
+
+```{r , fig.width=5, fig.asp=0.4}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R"),
+#abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. Chub mackerel removed due extremely low catch. Outliers = Recreational Black Sea Bass.  Possible management success story? - See comment in google doc."
+
+ecodata::plot_abc_acl(report = "MidAtlantic", plottype = "Catch")
+```
+
+.contrib[
+Few managed species have binding limits; Management less likely playing a role
+]
+]
+
+
+
+???
+Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2020 (top). With the addition of blueline tilefish management in 2017, an additional ABC and ACL contribute to the total 2017-2020. Discounting blueline tilefish, the recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. 
+
+Nevertheless, the percentage caught for each stock’s ABC/ACL suggests that these catch limits are not generally constraining as most species are well below the 1/1 ratio (bottom). Therefore, stock status and associated management constraints are unlikely to be driving decreased landings for the majority of species.
+
+---
+## Implications: Mid Atlantic Seafood Production Drivers
+.pull-left[
+
+Biomass does not appear to drive landings trends
+
+```{r , fig.width=8, fig.asp = 0.85}
+# code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"),
+#nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean."
+
+ecodata::plot_aggregate_biomass(report = "MidAtlantic")
+```
+
+.contrib[
+Key: Black = NEFSC survey; <span style="color:#FF6A6A;">Red = NEAMAP survey</span>
+*New species categories, more southern species in Benthivores*
+]
+
+]
+
+.pull-right[
+Declining managed benthos, aggregate planktivores
+.center[
+```{r, fig.width=5, fig.asp=1}
+# code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), 
+# comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
+
+ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild") + 
+  ggplot2::ggtitle(ggplot2::element_blank()) +
+  ggplot2::theme(legend.position = "right")
+```
+]
+.contrib[ 
+Markets and availability (benthos), fishery consolidation (planktivores)
+
+Monitor: 
+* Climate risks including warming, ocean acidification, and shifting distributions  
+* Ecosystem composition and production changes  
+* Fishing engagement
+
+]
+]
+
+
+???
+Stock status is above the minimum threshold for all but two stocks, and aggregate biomass trends appear stable, so the decline in managed commercial seafood landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as landings have been below quotas for these species. In addition, regional availability of scallops has contributed to the decline of benthos landings not managed by the MAFMC, with some of the most productive grounds currently closed through rotational management. The long term decline in total planktivore landings is largely driven by Atlantic menhaden fishery dynamics, including a consolidation of processors leading to reduced fishing capacity between the 1990s and mid-2000s. 
+
+Recreational drivers differ: shark fishery management, possibly survey methodology
+
+Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council.
+
+---
+## Objective: New England Seafood production ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png)
+
+.pull-left[
+Indicators: Commercial landings 
+
+```{r, fig.asp=0.85}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-total-landings.R"),
+#total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
+
+a <- ecodata::plot_comdat(report = "NewEngland", varName = "landings")
+
+a + ggplot2::facet_wrap(~EPU, ncol = 1)
+```
+
+]
+
+.pull-right[
+Indicators: Recreational harvest 
+
+```{r,  fig.asp=.4}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-landings.R"),
+#, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
+
+ecodata::plot_recdat(report = "NewEngland", varName ="landings")
+```
+
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-rec_hms.R")
+#, fig.width=5
+#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
+
+ecodata::plot_rec_hms(shadedRegion = c(2014,2023), report="NewEngland")
+
+```
+
+
+]
+
+Multiple drivers: ecosystem and stock production, management, market conditions, and environmental change
+
+???
+Although scallop decreases are partially explained by a decreased TAC, analyses suggest that the drop in landings is at least partially due to market disruptions due to the COVID-19 pandemic.
+However, we do not anticipate the long-term declining trend in landings to change.
+
+---
+## New England Landings drivers: Stock status? Survey biomass?
+
+.pull-left[
+Indicator: Stock status
+
+```{r , fig.width = 7.5, fig.asp=0.8}
+
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-stock-status.R")
+#stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target.")
+
+a <- ecodata::plot_stock_status(report = "NewEngland")
+
+nrow <- as.integer(dim(a$unknown)[1])
+halfnrow <- as.integer(nrow/2)
+
+
+
+a$p + ggplot2::coord_cartesian(xlim=c(0,3), ylim=c(0,2)) +
+  ggplot2::annotation_custom(gridExtra::tableGrob(a$unknown[1:halfnrow, ],
+                             theme = gridExtra::ttheme_default(base_size = 4), 
+                             rows=NULL), 
+                             xmin=0.5, xmax=1.5, ymin=1.4, ymax=1.9) +
+ggplot2::annotation_custom(gridExtra::tableGrob(a$unknown[(halfnrow+1):nrow, ],
+                             theme = gridExtra::ttheme_default(base_size = 4), 
+                             rows=NULL), 
+                             xmin=1.9, xmax=2.9, ymin=1.4, ymax=1.9)
+```
+.contrib[
+Rebuilding requirements still likely playing a role in seafood declines
+]
+
+]
+
+.pull-right[
+Indicator: Survey biomass
+```{r ,  fig.width=8, fig.asp = 0.85, results='hide'}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-aggregate-biomass-gb.R"),
+
+a <- ecodata::plot_aggregate_biomass(report = "NewEngland", EPU = "GB") + ggplot2::ggtitle("Georges Bank")
+b <- ecodata::plot_aggregate_biomass(report = "NewEngland", EPU = "GOM") + ggplot2::ggtitle("Gulf of Maine")
+
+a+b
+```
+.contrib[
+Biomass availability still seems unlikely driver
+]
+
+]
+
+---
+## Implications: New England Seafood Production
+.pull-left[
+Drivers:
+* decline in commercial landings is most likely driven by the requirement to rebuild individual stocks as well as market dynamics
+* other drivers affecting recreational landings: shark fishery management, possibly survey methodology  
+
+Monitor: 
+* climate risks including warming, ocean acidification, and shifting distributions  
+* ecosystem composition and production changes  
+* fishing engagement  
+
+```{r , fig.width=6, fig.asp=.3}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), 
+a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(expand = FALSE)
+b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(expand = FALSE) 
+
+a+b
+
+```
+
+]
+
+.pull-right[
+
+```{r,  fig.width=6, fig.asp=1}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-commercial-landings.R"),
+# comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
+ecodata::plot_comdat(report = "NewEngland", plottype = "guild")
+
+```
+
+
+]
+
+
+---
+# 2024 Risks to meeting fishery management objectives
+
+.center[
+![:img Climate icon made by EDAB, 25%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//3_CLIMATE.png) &nbsp; &nbsp; &nbsp; ![:img Wind icon made by EDAB, 25%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//24.WIND.png)
+] 
+
+.center[
+![:img Hydrography icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//1_HYDROGRAPHY.png) &nbsp; &nbsp; &nbsp; ![:img Phytoplankon icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//9_PHYTOPLANKTON.png) &nbsp; &nbsp; &nbsp; ![:img Forage fish icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//13_FORAGEFISH.png) &nbsp; &nbsp; &nbsp; ![:img Apex predators icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//17.APEXPREDATORS.png)  &nbsp; &nbsp; &nbsp; ![:img Other human uses icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//8_OTHERHUMANUSES.png) 
+]
+
+---
+## Risks to Spatial Management: All Areas
+
+.pull-left[
+Indicators: Fish distribution shifts
+
+```{r , fig.width=5.5, fig.asp=.9}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R")
+#species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
+
+a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(xlim = c(1969,2021))
+b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(xlim = c(1969,2021)) 
+
+a/b
+
+```  
+
+]
+
+
+.pull-right[
+Cetacean distribution shifts 
+
+```{r, fig.width=7, fig.asp=0.9}
+ecodata::plot_HMS_species_distribution() + ggplot2::ggtitle("Whale and Dolphin Distribution Shifts")
+
+```
+
+]
+
+---
+## Risks to Spatial Management: All Areas
+
+.pull-left[
+Drivers: Forage shifts, temperature increase
+```{r forageshifts, fig.alt="Eastward (left) and northward (right) shifts in the center of gravity for 20 forage fish species on the Northeast U.S. Shelf, with increasing trend (orange) for fall eastward and northward center of gravity.", fig.width = 8}
+#, fig.asp = .3
+ecodata::plot_forage_index(varName = "cog")+ ggplot2::coord_cartesian(xlim = c(1982, 2021.7))
+```
+
+```{r long-term-sst, fig.alt="Northeast US annual sea surface temperature (SST, black), with increasing trend (orange)."}
+
+ecodata::plot_long_term_sst() + ggplot2::coord_cartesian(xlim = c(1860, 2017))
+```
+]
+
+.pull-right[
+Drivers: changing ocean habitat  
+```{r GSI, fig.alt = "Index representing changes in the location of the Gulf Stream north wall (black). Positive values represent a more northerly Gulf Stream position, with increasing trend (orange)."}
+#, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")
+
+ecodata::plot_gsi() + ggplot2::coord_cartesian(xlim = c(1956, 2020.5))
+```
+
+.contrib[
+Cold pool temperature and spatial extent
+]
+```{r cold-pool-size, fig.alt="Seasonal cold pool mean temperature (left) and spatial extent index (right), based on bias-corrected ROMS-NWA (open circles) and GLORYS (closed circles), with declining trends (purple).", fig.width = 7.5, fig.asp = 0.4, results='hide'}
+#,  code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-cold_pool.R")
+
+a <- ecodata::plot_cold_pool(varName = "cold_pool") + ggplot2::coord_cartesian(xlim = c(1956, 2021))
+b <- ecodata::plot_cold_pool(varName = "extent") + ggplot2::coord_cartesian(xlim = c(1956, 2021))
+
+a+b
+```
+
+]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/EastCoastClimateScenarios.png")
+background-size: 400px
+background-position: right bottom
+## Risks to Spatial Management: All Areas
+
+Future considerations
+
+*   Distribution shifts caused by changes in thermal habitat are likely to continue as long as long-term temperature trends persist. 
+*   Near-term oceanographic forecasts are currently in development and may inform how future warming impacts species distributions.
+*   Increased oceanographic variability needs to be captured by regional ocean models and linked to species distribution processes to better understand potential future distributions. Species with high mobility or short lifespans react differently from immobile or long lived species.
+
+Adapting management to changing stock distributions and dynamic ocean processes will require continued monitoring of populations in space and evaluating management measures against a range of possible future spatial distributions. 
+
+*   [East Coast Climate Scenario Planning](https://www.mafmc.org/climate-change-scenario-planning) can help coordinate management.
+*   [Near term predictions of distribution shifts](https://www.lenfestocean.org/nb/news-and-publications/multimedia/crafting-models-to-predict-near-term-fisheries-shifts-under-climate-change) project in progress
+
+???
+https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ScenPlanningOptions.png
+
+
+---
+.pull-left[
+## 2023 Highlights
+
+* Hypoxia and OA off NJ
+
+![:img NJ hypoxia](https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/Figure2-GraceSaba_2024.png)
+
+* Record *low* hypoxia in Chesapeake Bay since 1995, relatively cool summer with high salinity.
+
+* Sea scallop recruitment detected Spring 2022, gone in Spring 2023
+
+* Days in 2022 at or above scallop stress temperature 17-19 C &rarr;
+]
+
+.pull-right[
+![:img scallop stress bottom temp, 90%](https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/bottom_temp_threshold_17_19_Elephant_Trunk.png)
+]
+
+???
+In Chesapeake Bay, [hypoxia conditions](https://noaa-edab.github.io/catalog/ches_bay_synthesis.html) were the lowest on record (since 1995), creating more suitable habitat for multiple fin fish and benthic species. Cooler [Chesapeake Bay water temperatures](https://noaa-edab.github.io/catalog/ches_bay_sst.html) paired with low hypoxia in the summer suggest conditions that season were favorable for striped bass. Cooler summer temperatures also support juvenile summer flounder growth.  However, warmer winter and spring water temperatures in the Chesapeake Bay, along with other environmental factors (such as low flow), may have played a role in low production of juvenile striped bass in 2023. Higher-than-average [salinity](https://noaa-edab.github.io/catalog/ch_bay_sal.html) across the Bay was likely driven by low precipitation and increased the area of available habitat for species such as croaker, spot, menhaden, and red drum, while restricting habitat area for invasive blue catfish.
+
+---
+## 2023 Highlights
+
+* Gulf Stream inshore, fewer rings
+
+.pull-left[
+![](https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/MAP_SST_Gulf_Stream_2024.png)
+]
+
+.pull-right[
+```{r}
+ecodata::plot_wcr() + ggplot2::coord_cartesian(xlim = c(1981,2021.5))
+```
+Intermittent warm waters like this can be threats to temperature sensitive species, especially species at the southern end of their range or are not mobile (e.g. scallops), while also providing suitable habitat for more southern species.
+]
+
+---
+## 2023 Highlights
+
+* Gulf of Maine giant bloom and bottom heatwave
+
+.pull-left[
+![](https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/2023-GOMbloom-internalreview.png)
+]
+
+.pull-right[
+```{r chl-current-year, fig.alt="2023 median weekly chlorophyll concentrations (green line) with standard deviation 1998-2023 (gray shading).", fig.asp=.9}
+
+a <- ecodata::plot_chl_pp(report = "MidAtlantic") + ggplot2::ggtitle("Mid Atlantic 2023")
+
+b <- ecodata::plot_chl_pp(report = "NewEngland") + ggplot2::ggtitle("New England 2023")
+
+b / (a + patchwork::plot_spacer())
+
+```
+]
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
+background-size: 350px
+background-position: right bottom
+
+## THANK YOU! SOEs made possible by (at least) 80 contributors from 20+ institutions
+
+.table[
+![:col_row 
+    Kimberly Bastille<br>
+    Aaron Beaver (Anchor QEA)<br>
+    Andy Beet<br>
+    Brandon Beltz<br>
+    Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
+    Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
+    Baoshan Chen (Stony Brook University)<br>
+    Zhuomin Chen (U Connecticut)<br>
+    Joseph Caracappa<br>
+    Doug Christel (GARFO)<br>
+    Patricia Clay<br>
+    Lisa Colburn<br>
+    Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
+    Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
+    Art Degaetano (Cornell U)<br>
+    Geret DePiper<br>
+    Dan Dorfman (NOAA-NOS-NCCOS)<br> 
+    Hubert du Pontavice<br>
+    Emily Farr (NMFS Office of Habitat Conservation)<br>
+    Michael Fogarty<br>
+    Paula Fratantoni<br>
+    Kevin Friedland<br>
+    Marjy Friedrichs (Virginia Institute of Marine Science)<br>
+    Sarah Gaichas<br>
+    Ben Galuardi (GARFO)<br>
+    Avijit Gangopadhyay (School for Marine Science and Technology UMass Dartmouth)<br>
+    James Gartland (Virginia Institute of Marine Science)<br>
+    Lori Garzio (Rutgers University),
+    
+    Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
+    Sean Hardison<br>
+    Dvora Hart<br>
+    Kimberly Hyde<br>
+    John Kocik<br>
+    Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
+    Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
+    Scott Large<br>
+    Gabe Larouche (Cornell U)<br>
+    Daniel Linden<br>
+    Andrew Lipsky<br>
+    Sean Lucey<br>
+    Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
+    Chris Melrose<br>
+    Shannon Meseck<br>
+    Ryan Morse<br>
+    Ray Mroch (SEFSC)<br>
+    Brandon Muffley (MAFMC)<br>
+    Kimberly Murray<br>
+    David Moe Nelson (NCCOS)<br>
+    Janet Nye (University of North Carolina at Chapel Hill)<br>
+    Chris Orphanides<br>
+    Richard Pace<br>
+    Debi Palka<br>
+    Tom Parham (Maryland DNR)<br>
+    Charles Perretti<br>
+    CJ Pellerin (NOAA Chesapeake Bay Office)<br>
+    Kristin Precoda,
+    
+    Grace Roskar (NMFS Office of Habitat Conservation)<br>
+    Jeffrey Runge (U Maine)<br>   
+    Grace Saba (Rutgers)<br>
+    Vincent Saba<br>
+    Sarah Salois<br>
+    Chris Schillaci (GARFO)<br>
+    Amy Schueller (SEFSC)<br>
+    Teresa Schwemmer (Stony Brook University)<br>
+    Dave Secor (CBL)<br>
+    Angela Silva<br>
+    Adrienne Silver (UMass/SMAST)<br>
+    Emily Slesinger (Rutgers University)<br>
+    Laurel Smith<br>
+    Talya tenBrink (GARFO)<br>
+    Bruce Vogt (NOAA Chesapeake Bay Office)<br>
+    Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
+    John Walden<br>
+    Harvey Walsh<br>
+    Changhua Weng<br>
+    Dave Wilcox (VIMS)<br>
+    Timothy White (Environmental Studies Program BOEM)<br>
+    Sarah Wilkin (NMFS Office of Protected Resources)<br>
+    Mark Wuenschel<br>
+    Qian Zhang (U Maryland)]
+]
+
+???
+
+
+---
+## References
+
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]
+
+
+## Additional resources
+.pull-left[
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+* [Indicator catalog](https://noaa-edab.github.io/catalog/)
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+]
+.pull-right[
+* [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: <Sarah.Gaichas@noaa.gov>
+]
+]
+
+???
+
