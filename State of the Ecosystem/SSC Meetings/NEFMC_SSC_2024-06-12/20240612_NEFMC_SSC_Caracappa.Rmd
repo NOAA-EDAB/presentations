@@ -114,8 +114,8 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 ## 2024 Report Structure
 1. Graphical summary
     + Page 1 report card re: objectives &rarr;
-    + Page 2 risk summary bullets
-    + Page 3 **2023 snapshot*
+    + Page 2&3 risk summary bullets
+    + Page 4 **2023 snapshot*
 1. Performance relative to management objectives
 1. Risks to meeting management objectives
     + **Climate and Ecosystem risks*
@@ -171,7 +171,7 @@ knitr::kable(mng_obj, linesep = "",
 
 
 ---
-## Ecosystem synthesis themes: still framing! but replace p.3 with 2023 Highlights
+## Ecosystem synthesis themes: still framing! but replace p.4 with 2023 Highlights
 
 Characterizing ecosystem change for fishery management
 
@@ -530,7 +530,7 @@ ggplot2::annotation_custom(gridExtra::tableGrob(a$unknown[(halfnrow+1):nrow, ],
                              xmin=1.9, xmax=2.9, ymin=1.4, ymax=1.9)
 ```
 .contrib[
-Stocks below BMSY increased from XX, stocks below ½ BMSY decreased from YY. Management still likely playing large role in seafood declines
+Stocks below BMSY increased from 2023, stocks below ½ BMSY stayed the same. Management still likely playing large role in seafood declines
 ]
 
 ]
@@ -925,10 +925,10 @@ Implications:
 ]
 
 ---
-## Risks to Spatial Management
+## Risks to Spatial Management:Indicators
 
 .pull-left[
-Indicators: Fish distribution shifts
+Fish distribution shifts
 
 ```{r , fig.width=5.5, fig.asp=.9}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R")
@@ -955,10 +955,10 @@ ecodata::plot_HMS_species_distribution() + ggplot2::ggtitle("Whale and Dolphin D
 ]
 
 ---
-## Risks to Spatial Management
+## Risks to Spatial Management:Drivers
 
 .pull-left[
-Drivers: Forage shifts, temperature increase
+Forage shifts, temperature increase
 ```{r forageshifts, fig.alt="Eastward (left) and northward (right) shifts in the center of gravity for 20 forage fish species on the Northeast U.S. Shelf, with increasing trend (orange) for fall eastward and northward center of gravity.", fig.width = 8}
 #, fig.asp = .3
 ecodata::plot_forage_index(varName = "cog")+ ggplot2::coord_cartesian(xlim = c(1982, 2021.7))
@@ -971,7 +971,7 @@ ecodata::plot_long_term_sst() + ggplot2::coord_cartesian(xlim = c(1860, 2017))
 ]
 
 .pull-right[
-Drivers: changing ocean habitat  
+Changing ocean habitat  
 ```{r GSI, fig.alt = "Index representing changes in the location of the Gulf Stream north wall (black). Positive values represent a more northerly Gulf Stream position, with increasing trend (orange)."}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-gsi.R")
 
@@ -996,9 +996,7 @@ a+b
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/EastCoastClimateScenarios.png")
 background-size: 400px
 background-position: right bottom
-## Risks to Spatial Management
-
-Future considerations
+## Risks to Spatial Management: Future Considerations
 
 *   Distribution shifts caused by changes in thermal habitat are likely to continue as long as long-term temperature trends persist. 
 *   Near-term oceanographic forecasts are currently in development and may inform how future warming impacts species distributions.
@@ -1013,9 +1011,9 @@ Adapting management to changing stock distributions and dynamic ocean processes 
 https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ScenPlanningOptions.png
 
 ---
-## Risks to Seasonal Management
+## Risks to Seasonal Management: Indicators
 
-Indicators: spawning timing, migration change
+Spawning timing, migration change
 
 .pull-left[
 
@@ -1033,9 +1031,8 @@ ecodata::plot_spawn_timing() + ggplot2::ggtitle("Spring Resting Maturity Stage")
 ]
 
 ---
-## Risks to Seasonal Management
+## Risks to Seasonal Management: Drivers
 
-Drivers
 .pull-left[
 ```{r transition, fig.alt="Ocean summer length in the MAB: the annual total number of days between the spring thermal transition date and the fall thermal transition date (black), with an increasing trend (orange)."}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")
@@ -1075,9 +1072,9 @@ Future considerations
 ???
 
 ---
-## Risks to Quota Setting/Rebuilding: New England
+## Risks to Quota Setting/Rebuilding: Indicators
 
-Indicators: fish productivity and condition
+Fish productivity and condition
 
 .pull-left[
 ```{r ne-productivity-anomaly, fig.alt = "Fish productivity measures. Left: Small fish per large fish survey biomass anomaly in the Gulf of Maine. Right: assessment recruitment per spawning stock biomass anomaly for stocks mainly in New England. The summed anomaly across species is shown by the black line, drawn across all years with the same number of stocks analyzed.", fig.width=8, fig.asp=1}
@@ -1125,7 +1122,7 @@ a/b
 ???
 `r Cite(myBib, 'perretti_regime_2017')`
 ---
-## Risks to Quota Setting/Rebuilding: New England
+## Risks to Quota Setting/Rebuilding: Indicators
 
 .pull-left[
 Gulf of Maine Tern Productivity
@@ -1146,26 +1143,25 @@ ecodata::plot_gom_salmon()+
 ]
 
 ---
-## Risks to Quota Setting/Rebuilding: New England
+## Risks to Quota Setting/Rebuilding: Drivers
 
 .pull-left[
-Drivers: Forage Quality and Abundance
+Forage Quality and Abundance
+```{r zooplankton-season,out.width = '50%', fig.alt="Dry mass of mesozooplankton captured with a 200µm ring net towed from the bottom to surface at a deep time series station  in Wilkinson Basin between 2005-2022 (Runge et al. 2023)."}
+
+ magick::image_read("https://github.com/NOAA-EDAB/ecodata/blob/dev/workshop/images/WBTS_Mesozooplankton_BIomass_2005-2022_Runge_Dullaert-Jeffrey_Runge_2024.jpg?raw=true")
+
+```
 
 ```{r ne-foragebio, fig.alt = "Forage fish index in New England for spring (blue) and fall (red) surveys, with an increase (orange) in spring GOM. Index values are relative to the maximum observation within a region across surveys."}
 #, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R")
 
 ecodata::plot_forage_index(report = "NewEngland") + ggplot2::coord_cartesian(xlim = c(1983, 2021.5)) + ggplot2::ggtitle("Aggregate forage fish index")
 ```
-```{r zooplankton-season, fig.alt="Dry mass of mesozooplankton captured with a 200µm ring net towed from the bottom to surface at a deep time series station  in Wilkinson Basin between 2005-2022 (Runge et al. 2023)."}
-
-magick::image_read("https://github.com/NOAA-EDAB/ecodata/blob/dev/workshop/images/WBTS_Mesozooplankton_BIomass_2005-2022_Runge_Dullaert-Jeffrey_Runge_2024.jpg?raw=true")
-
-```
-
 ]
 
 .pull-right[
-Drivers: Low tropic levels
+Low tropic levels
 ```{r ne-zoopanom, fig.alt="Changes in zooplankton abundance in New England for large (top left) and small (top right) copepods, Cnidarians (bottom left), and Euphausiids (bottom right), with significant increases (orange) in small copeods and Cnidarians.", fig.width=5, fig.asp=1.5}
 a <- ecodata::plot_zoo_abundance_anom(report = "NewEngland", varName = "copepod") + 
   ggplot2::facet_wrap(~EPU~Var) +  ggplot2::coord_cartesian(xlim = c(1977, 2022))
@@ -1178,10 +1174,10 @@ a/b
 ]
 
 ---
-## Risks to Quota Setting/Rebuilding: New England
+## Risks to Quota Setting/Rebuilding: Drivers
 
 .pull-left[
-Drivers: Environmental   
+Environmental   
 *2023 Thermal habitat area by depth*
 ```{r}
 ecodata::plot_thermal_habitat_area(report = "NewEngland", EPU = "GB")
@@ -1194,7 +1190,7 @@ ecodata::plot_thermal_habitat_area(report = "NewEngland", EPU = "GOM")
 ]
 
 .pull-right[ 
-Drivers: Predation  
+Predation  
 *Seals increasing, sharks stable, 50% of HMS populations above target*
 ```{r , fig.asp=0.9}
 ecodata::plot_seal_pups()
@@ -1208,21 +1204,19 @@ background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/doc
 background-size: 500px
 background-position: right bottom
 
-## Risks to Quota Setting/Rebuilding
+## Risks to Quota Setting/Rebuilding: Future Considerations
 
-Future considerations
 *   There is a real risk that short-term predictions in assessments and rebuilding plans that assume unchanging underlying conditions will not be as effective, given the observed change documented in the prior sections in both ecological and environmental processes. 
 *   Assumptions for species’ growth, reproduction, and natural mortality should continue to be evaluated for individual species. 
 *   With observations of system-wide productivity shifts of multiple managed stocks, more research is needed to determine whether regime shifts or ecosystem reorganization are occurring, and how this should be incorporated into management.
 
 
 ---
----
-## Risks: Offshore Wind Development New England
+## Risks: Offshore Wind Development: Indicators
 
 
 .pull-left[
-Indicators: fishery and community specific revenue in lease areas
+Fishery and community specific revenue in lease areas
 
 
 ```{r}
@@ -1234,7 +1228,6 @@ ecodata::plot_wind_revenue(report = "NewEngland", varName = "value")
 ```
 
 Council request: which Mid-Atlantic ports have significant reliance on New England managed species?
-
 ```{r wind-rev-MAB-NEFMC, fig.alt="Percent of Mid-Atlantic port revenue with majority NEFMC landings from Wind Energy Areas (WEA) in descending order from most to least port fisheries revenue from WEA. EJ = Environmental Justice.", fig.width=6.5, fig.asp=.4, fig.align='left'}
 df.symbol <- ecodata::wind_port %>% filter(EPU == "MAB", 
                                            !Var %in% c("WEA_MAX", "TOT_MAX", 
@@ -1309,7 +1302,7 @@ background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/
 background-size: 500px
 background-position: right
 
-## Risks: Offshore Wind Development Summary
+## Risks: Offshore Wind Development: Implications
 
 .pull-left[
 
@@ -1516,173 +1509,8 @@ PrintBibliography(myBib)
 .contrib[
 
 * Slides available at https://noaa-edab.github.io/presentations
-* Contact: <Sarah.Gaichas@noaa.gov>
+* Contact: <joseph.caracappa@noaa.gov>
 ]
 ]
 
 ???
-
-
----
-
-# Extra
-
----
-## SSC request: Net vs. Gross Revenue investigations
-
-Net revenue calculable for ~ 1/2 of the revenue generated within the Greater Atlantic Region. Trends between the total gross revenue and gross revenue for which we can estimate costs are different. Net revenue looks to be just a scaled gross revenue metric: similar trend, different magnitude.
-
-.pull-left[
-![:img Net revenue, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Net_revenue.png)
-]
-
-.pull-right[
-![:img Cost coverage, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Cost_Coverage.png)
-]
- 
-```{r profit, out.width = "39%", fig.show='hold'}
-
-knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Net_revenue.png")
-knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Cost_Coverage.png")
-
-
-```
-
----
-## Mid-Atlantic EAFM Risk Assessment: 2024 Update with new elements
-
-.pull-left[
-*Species level risk elements*
-```{r sptable}
-#tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
-
-# spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
-risk.species<-data.frame(
-  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Chub mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
-  Assess  = c("l", "l", "l",  "l", "l", "l", "h", "l", "lm", "h", "l", "h", "l", "l", "h", "na", "na"),
-  Fstatus = c("l", "l", "h", "l", "l", "l", "lm", "l", "lm", "lm", "l", "h", "l", "h", "lm", "na", "na"),
-  Bstatus = c("l", "l", "lm", "l", "l", "h", "lm", "lm", "lm", "lm", "lm", "mh", "lm", "l", "lm", "na", "na"),
-  #FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
-  #FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
-  PreyA = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
-  PredP = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
-  FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
-  Climate = c("h", "mh", "lm", "lm", "mh", "lm", "na", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
-  DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "na", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
-  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na"),
-  OffHab = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd")#,
-)
-
-
-# these elements were removed by the council
-#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
-#  FoodSafe = c(),
-
-# one column test
-# risk.species %>%
-#   mutate(Fstatus = 
-#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
-#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
-
-#convert to longer text for consistency and display in html table
-risk.species <- risk.species %>%
-     mutate_at(vars(-Species), function(x){
-       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
-     as.data.frame()
-
-#generalize to all
-risk.species %>%
-  mutate_at(vars(-Species), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 9) 
-```
-.contrib[
-* Mackerel and dogfish **Fstatus** risk reduced to low, Summer flounder risk increased to high. Spiny dogfish **Bstatus** risk decreased to low
-* Indicators in development for new Prey Availability, Predation Pressure, and Offshore Habitat elements
-]  
-
-*Ecosystem level risk elements*
-```{r ecotable}
-#tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
-
-risk.eco<-data.frame(
-  System = c("Mid-Atlantic"),
-  EcoProd = c("lm"),
-  #EcoDiv = c("lm"),
-  CommVal = c("mh"),
-  RecVal = c("lm"),
-  FishRes1 = c("l"),
-  FishRes4 = c("mh"),
-  #CommJobs = c("mh"),
-  #RecJobs = c("l"),
-  ComDiv = c("l"),
-  RecDiv = c("tbd"),
-  Social = c("lm"),
-  ComFood = c("h"),
-  RecFood = c("mh")
-)
-
-#convert to longer text for consistency and display in html table
-risk.eco <- risk.eco %>%
-     mutate_at(vars(-System), function(x){
-       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
-     as.data.frame()
-
-#make table
-risk.eco %>%
-  mutate_at(vars(-System), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 9) 
-
-```
-.contrib[
-* Recreational value risk increased from low to low-moderate
-* Recreational diversity added, risk criteria in development
-]  
-]  
-
-.pull-right[ 
-*Species and Sector level risk elements*
-```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
-#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
-
-risk.sppsector<-data.frame(
-  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
-  FControl =  c(1,1,2,2,4,1,4,2,2,1,1,1,2,9,1,1,2,2,1,1,1,1,1,9),
-  Interact = c(1,1,1,2,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
-  #OceanUse =    c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
-  OSW1 =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
-  OSW2 =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
-  OtherUse =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
-  RegComplex =  c(1,1,4,2,4,2,4,2,2,4,3,3,3,1,1,2,1,3,2,1,4,1,1,9),
-  Discards =    c(3,3,3,3,3,3,3,4,2,2,3,3,1,1,1,1,1,2,2,2,2,1,1,9),
-  Allocation =  c(1,1,4,1,4,1,4,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,9) 
-)
-
-
-#convert to text for consistency
-risk.sppsector <- risk.sppsector %>%
-     mutate_at(vars(-Species), function(x){
-       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na",
-              '6' = 'tbd')}) %>%
-     as.data.frame()
-
-#make table
-risk.sppsector %>%
-  mutate_at(vars(-Species), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey", "black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 10) 
-
-```
-.contrib[
-* Management fully updated for existing elements 
-* Offshore wind (OSW) risks split into 2 new elements in development, non-OSW uses added
-]
-]
-
-
-???
-
