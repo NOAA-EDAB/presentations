@@ -105,6 +105,10 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 ]
 ]
 ???
+* The SOE aims to improve the consideration of ecosystem information into the fishery management process
+* The SOE falls under ESRs and is an intergral part to the IEA loop. 
+* The SOE is specifically written with fishery managerers as the audience
+* It's current uses include direct links to mgmt objectives, uses an open science emphasis, and is used by the MAFMC for risk assessment, conceptual modeling, and MSE
 
 ---
 ## State of the Ecosystem: Maintain 2021-2023 structure for 2024*
@@ -115,7 +119,7 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 1. Graphical summary
     + Page 1 report card re: objectives &rarr;
     + Page 2&3 risk summary bullets
-    + Page 4 **2023 snapshot*
+    + Page 4 **2023 highlights*
 1. Performance relative to management objectives
 1. Risks to meeting management objectives
     + **Climate and Ecosystem risks*
@@ -165,11 +169,13 @@ knitr::kable(mng_obj, linesep = "",
 ]
 
 ???
-.contrib[
-* except for 2 *synthetic replacements*
-]
-
-
+* The SOE has retained the same structure from 20221 - 2023 with some execptions in 2024
+* Section 1: graphical summaries including a report card, risk summary bullets, and a 2023 highlights (new)
+  + Report cards and most indicators are separated between GOM and GB
+* Section 2: Performance relative to mgmt objectives inddicated on right table
+* Section 3: Risk to meeting mgmt objectives
+  + Climate and ecosystem risks has been restructured to better describe the direct mgmt implications
+  + Offshore wind development4\
 ---
 ## Ecosystem synthesis themes: still framing! but replace p.4 with 2023 Highlights
 
@@ -188,6 +194,9 @@ Characterizing ecosystem change for fishery management
 ![:img](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//RegimeShift_V5.jpg)
 ]
 
+???
+* Ecosystem synthesis themes were previously located on p4 which was replaced with 2023 hightlights
+* These themes are still important and most indicators link back to one or more theme
 
 ---
 ## State of the Ecosystem report scale and figures
@@ -221,6 +230,17 @@ No color line = not significant or < 30 years
 <p style="background-color:#D3D3D3;">Grey background = last 10 years</p>
 ]
 ]
+
+???
+* Provide an orientation for reading and interpreting the report
+* The northeast is split up into 3 EPUs. The New England report covers GB and GOM
+* Report is structured like an information funnel: high level = report, detailed interpretation or context = catalog, detailed methods = technical documentation
+  + The data catalog has been reworked to now be like an encyclopedia entry for each indicator and should be first stop if you want to learn more. 
+  + Living document that will be updated with each annual report
+* Indicator time series are presented in standard format
+  + shaded region = last 10 years
+  + colored line shows trend (if present)
+  + Trends not evaluated if < 30 data, but working on new methods for shorter time series
 
 ---
 ## Report structure 2024: same as 2021-2023 with more management risk emphasis 
@@ -257,6 +277,12 @@ No color line = not significant or < 30 years
         + Offshore wind development
 ]
 
+???
+* These two sections performance and risks to mgmt objectives have similar components to last year but have been restructured
+* For performance we focus on *what* indicators say and *why* we think it's changing
+* For risks we focus start with the indicator of risk, explain its drivers, and discuss future considerations
+  + These are split into risks for spatial, seasonal, and quota setting/rebuilding
+  + Conclude with offshore wind development
 
 ---
 ## 2024 State of the Ecosystem Request tracking memo
@@ -341,6 +367,11 @@ flextable::as_grouped_data(requeststab, groups = "Aggregate") %>%
 
 ]
 
+???
+* Tracking memo describes the requests we've received from both councils, it's current status, and a ranking done by the MAFMC
+* Many high priority tasks were delayed due to staff turnover with the major changes relating to the report organization and the online catalog
+* Currently in progress includes: developing EOF indicators, development of short term ecosystem forecasts with CEFI, methodology for assessing regime shifts,and stock-level indicators through ESPs and thresholds analyses.
+
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-NE-030424_Page_2.png")
 background-size: 500px
@@ -367,6 +398,11 @@ Protected species:
 *  Recover endangered populations ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png), NARW ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Gray seal ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png)  
 ]
 .pull-right-40[]
+
+???
+* The summary report cards show the objectives (with associated indicator), whether the 30 year trend is +/-, whether the current statis is above or below a long-term mean, and a brief description of potential implications
+*There is a separate card for GB and GOM but some of the indicators are identical
+*Some indicators are a current-year snapshot and we don't indentify trend, only status
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-NE-030424_Page_3.png")
@@ -395,6 +431,8 @@ Protected species:
 ]
 .pull-right-40[]
 
+???
+* Note: We also include Atlantic Salmon indicators under protected species for the GOM
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_3.png")
@@ -421,6 +459,9 @@ Other ocean uses: offshore wind development
 ]
 .pull-right-40[]
 
+???
+* We provide a summary to the risks to meeting mgmt objectives that mirror the structure of section 2. This summary discusses general risks and is nearly identical between the two regional reports
+
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_4.png")
 background-size: 500px
@@ -446,6 +487,10 @@ Notable 2023 events and conditions
 .pull-right-40[
 ]
 
+???
+* The new pg4 is what we're calling a yearly highlights page.
+* This summarizes events in the past year that are novel, record-breaking, link multiple indicators, or are causes for increased caution. These can also be positive or have unknown impact on the system.
+* The summary icons relate to the typ eof effect we're seeing and generally correspond to the location of that event
 
 ---
 # 2024 Performance relative to management objectives
@@ -453,6 +498,11 @@ Notable 2023 events and conditions
 .center[
 ![:img Fishing icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//5_FISHING.png) &nbsp; &nbsp; &nbsp; ![:img Fishing industry icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//6_INDUSTRY.png) &nbsp; &nbsp; &nbsp; ![:img Multiple drivers icon made by EDAB, 25%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//18.MULTIPLE_SYSTEM_DRIVERS.png) &nbsp; &nbsp; &nbsp; ![:img Spiritual cultural icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//22.SPIRITUAL_CULTURAL.png) &nbsp; &nbsp; &nbsp; ![:img Protected species icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//16.PROTECTEDSPECIES.png)
 ]
+
+???
+* In this section I'm going to walk through section 1: performance relative to mtgmt objectives
+* For each objective, I'm going to discuss the relavent indicators, status, and trends
+* Then I will discuss possible drivers for these indicators & possible things to monitor in the future
 
 ---
 
@@ -498,8 +548,10 @@ ecodata::plot_rec_hms(shadedRegion = c(2014,2023), report="NewEngland")
 Multiple drivers: ecosystem and stock production, management, market conditions (including COVID-19 disruptions), and environmental change
 
 ???
-Although scallop decreases are partially explained by a decreased TAC, analyses suggest that the drop in landings is at least partially due to market disruptions due to the COVID-19 pandemic.
-However, we do not anticipate the long-term declining trend in landings to change.
+* Overall NE seafood production is declining with the most recent year below the long-term mean 
+* Commercial landings declining for US Seafood and Council Seafood in both regions, but council seafood in the GOM has stabilized in the last 10 years
+* For Rec harvest, we've seen a continued downward trend in recreational landings and no long-term trend in shark landings
+* Trends in seafood production represent the combined effects of multiple drivers including biological production, management, market conditions, and enviornmental change
 
 ---
 ## New England Landings drivers: Stock status? Survey biomass?
@@ -507,7 +559,7 @@ However, we do not anticipate the long-term declining trend in landings to chang
 .pull-left[
 Indicator: Stock status
 
-```{r , fig.width = 7.5, fig.asp=0.8}
+```{r , fig.width = 9, fig.asp=0.8}
 
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-stock-status.R")
 #stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target.")
@@ -551,6 +603,13 @@ Biomass availability still seems unlikely driver
 
 ]
 
+???
+* Stock status can be a driver of seafood production since it relates to both stock production and management actions
+  + 9 stocks below Bmsy and 13 don't have Bmsy assessed
+  + Looking to compare TAC and % of TAC taken in future reports
+* Declines in seafood production could be explained by declining resources, but survey biomass for most guilds has shown long-term increases
+  + Trends in landings are not mirroring the trophic structure of surveyed species, so shifting ecosystem structure is an unlikely driver for production declines
+  
 ---
 ## Implications: New England Seafood Production
 .pull-left[
@@ -586,6 +645,12 @@ ecodata::plot_comdat(report = "NewEngland", plottype = "guild")
 
 ]
 
+???
+* We conclude that declines in commercial seafood production is likely driven by the requirement to rebuild individual stocks combined with market dynamics
+* Declines in recreational landings likely relate to shark fishery mgmt and possibly survey mehtodology
+* We should continue to monitor ecosystem shifts including climate risks, shifting distributions, and ecosystem composition
+  + These can compound mgmt challenges 
+  +We should also monitor fishing community engagement, especially those affected by environmental justice vulnerabilities
 ---
 
 ## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png)
@@ -609,9 +674,7 @@ Monitor changes in climate and landings drivers:
 
 .pull-right[
 Indicator: Bennet--price and volume indices
-
-
-```{r , fig.width = 7.5, fig.asp = 0.9, results = 'hide'}
+```{r , fig.width = 7, fig.asp = 0.7, results = 'hide'}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet-all.R")
 gb <- ecodata::plot_bennet(report = "NewEngland", varName = "guild", EPU = "GB")+
   ggplot2::ylab("Million USD (2022)")
@@ -620,9 +683,7 @@ gom <- ecodata::plot_bennet(report = "NewEngland", varName = "guild", EPU = "GOM
 
 gb / gom + plot_layout(guides = 'collect') & theme(legend.position = 'bottom')
 ```
-]
-???
-```{r }
+```{r, fig.width =7, fig.asp = 0.4}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet.R"),  fig.asp=.35, results = 'hide'
 gb <- ecodata::plot_bennet(report = "NewEngland", varName = "total", EPU = "GB") +
   ggplot2::ggtitle("GB revenue components") +
@@ -637,7 +698,19 @@ gom <- ecodata::plot_bennet(report = "NewEngland", varName = "total", EPU = "GOM
 
 gb + gom + plot_layout(guides = 'collect') & theme(legend.position = 'bottom')
 ```
+]
 
+???
+* We don't report commercial profits directly due to incomplete cost data but we report on revenues as an indicator of profits
+* Commercial revenue is dominated by a single species in both regions. GB - scallop, and GOM - lobster
+  + Revenue fluctuates in GB due to rotational management
+  + Most of GOM revenue in non-council-managed species
+* The Bennet Indicator is a tool we use to deconstruct revenue into prices or volume driven effects
+  + This indicator is relative to a 1982 baseline, whcih is the current era of fisheries mgmt
+  + The solid line shows the revenue change relative to 1982 and the color bars show the price and volume components of that revenue broken out by feeding guild
+  + In GB we're below 1982 revenue baseline driven by a volumes prior to 2010, but is now caused by declining prices, specifically for bethos (quahogs and surfclams)
+  + In the GOM, profits are above 1982 baseline and driven mostly by benthivore prices (lobster)
+* We should continue monitoring changes in scallop and lobster, due to their dominance in commercial revenues and increased climate vulnerability
 ---
 
 ## Objective: New England Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/no trend.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/near long term average.png)
@@ -665,6 +738,12 @@ Implications
 * Absence of a long-term trend in recreational effort suggests relative stability in the overall number of recreational opportunities in New England
 
 ]
+
+???
+* Rec opportunities show no long-term trend with the current year near the long-term mean
+* After declines in 2010, recent years rec effort has leveled off
+* Though rec fleet diversity declined in the 1980's , it has stabilized over the last 30 years
+* The lack of trend in either indicators suggest that rec opportunities in NE are somewhat stable
 
 ---
 
@@ -702,6 +781,13 @@ ecodata::plot_recdat(report = "NewEngland", varName = "catchdiversity")
 ```
 
 ] 
+
+???
+* We divide indicators of system stability into fisheries and ecosystem stability
+* For the commercial fishing, the fleet count is below the longterm mean, and caught species diversity is near the lowest point in time series
+  + trends not evaluated due to time series length
+  + We consider this a decrease in commercial fishing stability due to more consolidated fishing centered around fewer species
+* Recreational catch diversity is increasing but given the lack of trend in effort or fleet diversity, we are not claiming a change in stability
 
 ---
 ## Objective: New England Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/above long term ave.png)
@@ -741,8 +827,11 @@ Implications:
 ]
 
 ???
-* Overall stability in the fisheries and ecosystem components
-* Increasing diversity in several indicators warrants continued monitoring
+* We look at zooplankton and larval fish diversity as indices of ecological stability 
+  + These were not updated this year, but show long-term trends in zooplankton diversity in GB and no trends in GOM
+* We also look at the expected number of species form the NEFSC bottom trawl survey as a measure of overall species diversity
+  + This data is broken by a change in survey vessel, but shows an increase in the GOM, with relatively high values in recent years for both regions
+  + The increase in GOM adult species indicates an influx of warm water species suggesting lack of stability
 
 ---
 
@@ -783,7 +872,14 @@ cropComEJ
 Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 
 ???
-These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
+* These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in New England.
+  + Engagement is a measure of fishing activity where Reliance is fishing activity relative to population size
+  + For example, New Bedford has the highest engagement due to the volume of fishing activity in the community, but since activity is relatively small given the population of the community, it has a low reliance score
+  + Communities are color-coded based on their Environmental Justice Vulnerability index
+  + Communities that are high in both engagement and reliance are vulnerabile to changes in fishing patterns. These include Stonington and Beals, ME
+*Communities EJ vulnerability is scores as a composite of several census indices relating to personal disruption, population composition, and poverty
+  + New Bedford and Boston had previously been identified as having higher EJ vulnerability, with the inclusion of Swans Island, ME this year. Swans Island has a high unemployment concerns but without the demographic concerns seen in the other two larger cities.
+  + Communities that experience EJ issues might have a lower capacity to respond to changing environments or regulations
 
 ---
 ## Objective: New England Environmental Justice and Social Vulnerability
@@ -821,6 +917,13 @@ cropRecEJ
 
 Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 
+???
+* This slide only shows the top 10 engaged and reliant communities based on recreational fishing
+* Only Dennis and Bourne have high engagement and reliance, where none did last year
+  + Gronton, MA and Clinton, CT are no longer listed in the top ten
+* Falmouth and Dennis now show a medium degree of EJ vulnerability but are generally near national averages
+  + Most rec communities have below national average levels of vulnerability
+
 ---
 ## Objectives: Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)
 
@@ -851,7 +954,10 @@ Implications:
 * The increasing trend in gray seal bycatch may be related to an increase in the gray seal population (U.S. pup counts).
 ]
 ???
-.reduced_opacity[]
+* We are currently meeting bycatch objectives for gray seals and bycatch
+  + Shaded region is data and limit (PBR) is the red line
+  + The decline in harbor porpoise bycatch is likely due to a general decline in US waters, reduced fishery overlap, and declining gillnet efforts
+  + The increase in grey seal bycatch is likley due to an increase in the actual population based on pup counts but it still is below the PBR
 
 ---
 ## Objectives: Protected species *Recover endangered populations* ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)
@@ -889,6 +995,12 @@ Implications:
     - TechInteract, evaluated by species and sector, unchanged-->
 ]
 
+???
+* NARW abundance appears to be stabilizing from 2020-2022 after nearly a decade of decline
+  + Multiple drivers and stressors
+* Pup counts have risen over the past 4 years
+* Unusual mortality events continue for 3 other large whale species and one for pinnipeds is pending closure
+
 ---
 # 2024 Risks to meeting fishery management objectives
 
@@ -924,8 +1036,12 @@ Implications:
 *  Implications
 ]
 
+???
+* In the risks to management objectives section we've revised how we organize the section on climate and ecosystem change
+  + We've divided the section into 3 types risk: spatial, seasonal, quota/rebuilding
+  + Within each type of risk we discuss indicators that can impact that type of managment action, the drivers for those indicators, and future considerations/implications
 ---
-## Risks to Spatial Management:Indicators
+## Risks to Spatial Management: Indicators
 
 .pull-left[
 Fish distribution shifts
@@ -954,8 +1070,14 @@ ecodata::plot_HMS_species_distribution() + ggplot2::ggtitle("Whale and Dolphin D
 
 ]
 
+???
+* The distribution of stocks influences spatial allocations, bycatch measures, and survey interpretation
+* Species' distributions can change along with a changing climate and these shifts need to be considered for spatial mgmt actions
+* Shelf-wide we've seen a shift in species' center of gravity towards the northeast and into deeper water
+* We also see long-term shifts in cetacean distributions 
+
 ---
-## Risks to Spatial Management:Drivers
+## Risks to Spatial Management: Drivers
 
 .pull-left[
 Forage shifts, temperature increase
@@ -992,6 +1114,14 @@ a+b
 
 ]
 
+???
+* These range shifts are thoguht to be caused by a combination of changing habitats and food availability
+  + We see long term trends in spring and fall forage populations towards the northeast
+  + We also have long-term warming trends in the region
+* There have also been long-term trends in important oceanographic features
+  + The N. wall of the Gulf stream has been moving more north over time which can impact the flow of water into the GOM and MAB
+  + The mid-atlantic cold pool (which is a seasonal refuge for several species), has been getting warming and smaller over time
+
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/EastCoastClimateScenarios.png")
 background-size: 400px
@@ -1008,6 +1138,13 @@ Adapting management to changing stock distributions and dynamic ocean processes 
 *   [Near term predictions of distribution shifts](https://www.lenfestocean.org/nb/news-and-publications/multimedia/crafting-models-to-predict-near-term-fisheries-shifts-under-climate-change) project in progress
 
 ???
+* The distribution shifts that we've observed are caused by persistent global and regional effects of climate change 
+  + We don't expect distributions to shift back as long as long-term warming trends persist
+* As part of NOAA's CEFI, near-term oceanographic forecasts are in development that will help identify how warming may impact species distributions
+  + There is a real need to understand how species distributions relate to oceanographic variability and how species' life history relates to range shifts
+* Changing stocks will require managers to monitor and consider possible future distributions in mgmt actions
+  + The East Coast Climate Change Scenario Planning group is looking to build pathways to better coordinate mgmt and research 
+
 https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ScenPlanningOptions.png
 
 ---
@@ -1030,18 +1167,20 @@ ecodata::plot_spawn_timing() + ggplot2::ggtitle("Spring Resting Maturity Stage")
 *  In Cape Cod Bay, peak spring habitat use by right and humpback whales has shifted 18-19 days later over time.
 ]
 
+???
+* The effectiveness of seasonal mgmt actions like seasons and area opening/closures relies on a alignment with seasonal life cycle events or phenology
+  + If the timing of these events were to change, there is a risk of less effective seasonal mgmt actions
+* We see shifts in the spawning timing of yellowtail flounder and haddock with more resting (post-spawn) females over time indicating earlier spawning
+* Recreational tuna has shifted 50 days earlier over the last 20 years
+* We aslo see humpbacks use Cape Code Bay earlier then first recorded
+
 ---
 ## Risks to Seasonal Management: Drivers
 
 .pull-left[
-```{r transition, fig.alt="Ocean summer length in the MAB: the annual total number of days between the spring thermal transition date and the fall thermal transition date (black), with an increasing trend (orange)."}
-#, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-sumlength.R")
-# The transition dates are defined as the day of the year when surface temperatures changeover from cool to warm conditions in the spring and back to cool conditions in the fall.
+```{r transition, fig.alt="Ocean summer length in GB and the GOM: the annual total number of days between the spring thermal transition date and the fall thermal transition date (black), with an increasing trend (orange)."}
 
-ecodata::plot_trans_dates(varName = "length") + ggplot2::ggtitle("Time between spring and fall transition: MAB") + theme(
-  strip.background = element_blank(),
-  strip.text.x = element_blank()
-) + ggplot2::coord_cartesian(xlim = c(1983, 2021.5))
+ecodata::plot_trans_dates(report = "NewEngland", varName = "length") + ggplot2::ggtitle("Time between spring and fall transition") + ggplot2::coord_cartesian(xlim = c(1983, 2021.5))
 ```
 
 .contrib[
@@ -1057,11 +1196,6 @@ ecodata::plot_cold_pool(varName = "persistence") + ggplot2::coord_cartesian(xlim
 
 .pull-right[
 
-```{r}
-ecodata::plot_trans_dates(report = "NewEngland", varName = "length") + ggplot2::ggtitle("Time between spring and fall transition") + ggplot2::coord_cartesian(xlim = c(1983, 2021.5))
-```
-
-
 Future considerations
 
 *  Management actions that rely on effective alignment of fisheries availability and biological processes should continue to evaluate whether prior assumptions on seasonal timings still hold.
@@ -1070,7 +1204,11 @@ Future considerations
 
 ]
 ???
-
+* Unlike the long-term trends driving distribution shits, shifts in phenology are driven by changes in the timing of seasonal environmental processes
+  + There has been a long-term increase in the length of the summer, driven by a later fall turnover in both regions
+  + We are also monitoring the persistence of the seasonal cold pool which has fluctuated between declining and no-change between years
+* Mgmt that relies on assumptions of fisheries availabiltiy or the timing of biological processes needs to continue to evasluate their validity
+* This category of indicators in relatively sparse. We should continue to develop timing shifts for individual stocks
 ---
 ## Risks to Quota Setting/Rebuilding: Indicators
 
@@ -1120,6 +1258,14 @@ a/b
 ```
 ]
 ???
+* The efficacy of short-term stock projections and rebuilding plans rely on understanding processes that effect stock growht, reproduction, and natural mortality
+  + With ecosystem change, there is a risk that biological reference points may no longer reflect the current population
+* A small fish per large fish index was created based on survey data as a indicator of fish productivity
+  + With the exception of 2006 and 2013, fish productivity has been below average over the last 20 years
+* An analysis of stock assessment recruitment anomaly also shows low recruitment over the same period
+* We also see oscillations in fish condition across both regions with large declines from 2001-2010. 
+  + 2023 had the lowest condition in GOM since the rebound in 2010
+
 `r Cite(myBib, 'perretti_regime_2017')`
 ---
 ## Risks to Quota Setting/Rebuilding: Indicators
@@ -1142,6 +1288,9 @@ ecodata::plot_gom_salmon()+
 ```
 ]
 
+???
+* We can also see productivity shifts in seabirds, with longterm declines in common tern productivity
+* In Atlantic Salmon, we see declines in the return rate fish
 ---
 ## Risks to Quota Setting/Rebuilding: Drivers
 
@@ -1172,7 +1321,11 @@ a/b
 
 ```
 ]
-
+???
+* Fish productivity and condition are partically the result of food quality and abundance
+  + We've observed declining seasonal abundance of copepods
+  + In GB, there's been an increase of small-bodied copepods, potentially reducing food quality
+* Forage fish indices show relative stability in NE. We also see forage fish energy content below 1990s reference points for several species
 ---
 ## Risks to Quota Setting/Rebuilding: Drivers
 
@@ -1198,7 +1351,15 @@ ecodata::plot_seal_pups()
 ```
 
 ]
-
+???
+* Productivity can also be related to environmental conditions due to its effect on metabolism and reproductive proceeses
+* In a new indicator, we looked at some thermal tolerance thresholds as a function of depth to try and estimate what proportion of habitat was in unfavorable conditions
+  + We see that GB has areas exceeding the 15C threshold semi frequently, and the 24C threshold only in shallow water
+  + The exceeds the 15C threshold in shallower water, but doesn't reach the upper threshold
+  + We hope to continue to refine this indicator for individual species as part of ongoing work
+* Trophic interactions can also alter stock productivity
+  + Increases in HMS populations above targets suggest there might be an increase in predation pressure
+  
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//RegimeShift_V5.jpg")
 background-size: 500px
@@ -1210,7 +1371,12 @@ background-position: right bottom
 *   Assumptions for species’ growth, reproduction, and natural mortality should continue to be evaluated for individual species. 
 *   With observations of system-wide productivity shifts of multiple managed stocks, more research is needed to determine whether regime shifts or ecosystem reorganization are occurring, and how this should be incorporated into management.
 
-
+???
+* Given the long-term environmental change and species shifts described in the other sections, there's a real risk of ineffective rebuilding plans or short-term predictions if not accounted for
+* We need to re-evaluate species assumptions and stock assessment parameters
+* Ongoing efforts to assess whether regime shfits or reorganization is occuring.
+  + Workshop this past May
+  + Need to describe how this can be incorporated into mgmt.
 ---
 ## Risks: Offshore Wind Development: Indicators
 
@@ -1296,6 +1462,19 @@ p2
 ecodata::plot_wind_port(report = "NewEngland")
 ```
 ]
+???
+* Offshore wind development has begun in NE and poses several risks to fishing and fisheries mgmt
+* We estimate the historical fishery revenue that was harvested from wind lease areas from 2008 to 2022
+  + Depending on the species this represents 3-54% of the maximum annual revenue (windowpane - redfish)
+  + By raw revenue: scallop, monkfish, herring, skates, and silver hake make up the largest impacted revenue
+  + Most the scallop overlap with wind lease areas occurs in the MAB
+  + The overlap will likely decrease in the GOM when BOEM finalizes the lease areas
+* We also calculate the port revenue obtained from wind lease areas
+  + The dark blue is the min WEA revenue, and the med blue is the max
+  + Some of the highest minimum impact ports include Boston, Little COmpton, and Westport
+  + These are port-wide metrics, and the effects of individual operators can still be quite high despite a lower percent revenue
+  + Ports are also marked if they have higher EJ or gentrification concerns
+* We've also fulfilled a council request to see these statistics for the mid-Atlantic ports that rely on New England managed species
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/NARW_hotspots_final_2024.jpg")
@@ -1321,11 +1500,13 @@ Implications:
 .pull-right[]
 
 ???
-*  1-23% (Mid-Atlantic) or 1-34% (New England) of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
-*  Up to 20% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
-*  Up to 53% of annual commercial landings and 54% of revenue for New England species occur in lease areas.
+* Despite some changes in the timeline, offshore wind developement is still ramping up and 2030 goals are expected to be met
+  + Delays in some projects may mean that the development timeline is faster in coming years
+* The staggered development in space and time means that impacts will affect regions differently and at different times
+* Beyond fishery revenue some of the other major impacts include:
+  + Protected species interactions, particularly NARW calf migration corridors as whale hotspots overlap with lease areas. This is particularly concerning for southern NE, especially during construction
+  + The effects on federal surveys through operations, survey design, habitat modification, and navigation. There's an ongoing effort to better quantify and mitigate these impacts.
 
-Evaluating the impacts to scientific surveys has begun.
 
 ---
 .pull-left[
@@ -1347,7 +1528,16 @@ Evaluating the impacts to scientific surveys has begun.
 ]
 
 ???
-In Chesapeake Bay, [hypoxia conditions](https://noaa-edab.github.io/catalog/ches_bay_synthesis.html) were the lowest on record (since 1995), creating more suitable habitat for multiple fin fish and benthic species. Cooler [Chesapeake Bay water temperatures](https://noaa-edab.github.io/catalog/ches_bay_sst.html) paired with low hypoxia in the summer suggest conditions that season were favorable for striped bass. Cooler summer temperatures also support juvenile summer flounder growth.  However, warmer winter and spring water temperatures in the Chesapeake Bay, along with other environmental factors (such as low flow), may have played a role in low production of juvenile striped bass in 2023. Higher-than-average [salinity](https://noaa-edab.github.io/catalog/ch_bay_sal.html) across the Bay was likely driven by low precipitation and increased the area of available habitat for species such as croaker, spot, menhaden, and red drum, while restricting habitat area for invasive blue catfish.
+* The final section is a more detailed look at 2023 highlights. These can either have positive, negative, or unknown implications, but were deemed notable by SOE contributors. 
+  + If events become frequent or are worth monitoring for in the future, they may become new indicators
+* Overall 2023 was an extremely warm year globally. The added El Nino conditions changed preciptication patterns around the region as well
+* There were observed hypoxia and low pH events off of NJ that may have contribed to recorded die offs.
+  + We are working on better representing oxygen and OA conditions over time
+* In contrast, The Chesapeake Bay saw record *low* hypoxia, inmproving finfish and benthic habitat.
+* A sea scallop mortality event was observed in Elephan Trunk off of NJ, which was believed to be related to localized warming events on the bottom
+  + The plot shows the number of days in 2022 that temperature was within a scallop-specific thermal stress window based on GLORYS reanalysis
+  + Elephant Trunk is highlighted in bold, with an average of 30 days in those conditions
+  + This and other species-specific thermal tolerance metrics are in development now
 
 ---
 ## 2023 Highlights
@@ -1365,6 +1555,11 @@ ecodata::plot_wcr() + ggplot2::coord_cartesian(xlim = c(1981,2021.5))
 Intermittent warm waters like this can be threats to temperature sensitive species, especially species at the southern end of their range or are not mobile (e.g. scallops), while also providing suitable habitat for more southern species.
 ]
 
+???
+* There were also large-scale changes in circulation
+* The Gulf stream experienced large meanders coming up onto the shelf, bringing warm waters
+  + Events like these can harm temperature sensitive species or provide new habitat for southern species
+* There was also a decline in warm core rings, bucking a consistently  high level since 2000. 
 ---
 ## 2023 Highlights
 
@@ -1385,7 +1580,11 @@ b / (a + patchwork::plot_spacer())
 
 ```
 ]
-
+???
+* The GOM experiened the largest phytoplankton bloom on record with Chlorophyll levels nearly 10 times average.
+  + The bloom was caused by a resident dinoflagellate Tripos muelleri
+  + Though large, this extra production was not grazed nor was it found in sediments
+  + Ongoing work is in progress to assess the impact of this bloom and its causes
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
