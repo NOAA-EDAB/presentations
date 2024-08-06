@@ -1,7 +1,7 @@
 ---
 title: "Operationalizing the use of ecosystem <br /> information in Mid-Atlantic science<br /> and management decisions"
 subtitle: "SCS8 Case Study <br /> 26 August 2024"
-author: Sarah Gaichas$^{1,2}$ <br /> <br /> Thanks to Geret DePiper$^{1,2}$, Brandon Muffley$^3$, Emily Liljestrand$^2$
+author: Sarah Gaichas$^{1,2}$ <br /> <br /> Thanks to Geret DePiper$^{1,2}$, Brandon Muffley$^3$
 institute: <span style="font-weight:normal;"><font size="-0.5">$^1$Mid-Atlantic Fishery Management Council SSC <br /> $^2$NOAA NMFS Northeast Fisheries Science Center <br /> $^3$Mid-Atlantic Fishery Management Council</font></span>
 output:
   xaringan::moon_reader:
@@ -108,20 +108,24 @@ background-position: right
 
 .pull-left-60[
 
-*  Stock assessments
+## *  Stock assessments
 
-*  ABC setting
+## *  ABC setting
 
-*  EAFM risk assessment
+## *  EAFM risk assessment
 
-*  Co-evoluation of ecosystem reporting and operational use
+## *  Co-evolution of ecosystem reporting and operational use
 
-## Pictured: 
-## bottom temperature time series covariate on recruitment in the 2024 operational black sea bass assessment
+
+Right: Bottom temperature time series covariate on recruitment in the 2024 operational black sea bass assessment
 
 ]
 
-.pull-right-40[]
+.pull-right-40[
+.footnote[
+Image courtesy Emily Liljestrand, NEFSC
+]
+]
 
 ???
 *  Stock assessments (ESPs-->assessment structure; ecosystem covariates-->OFL projections)
@@ -181,6 +185,239 @@ print(p2, vp=grid::viewport(gp=grid::gpar(cex=1.5)))
 See [MAFMC ABC control rule](http://www.mafmc.org/s/MAFMC-ABC-Control-Rule-White-Paper.pdf) and [update for 2020 MAFMC risk policy](https://www.mafmc.org/s/b_Implications-of-MAFMC-Risk-Policy-for-Multi.pdf)
 ]
 
+]
+
+---
+## MAFMC Ecosystem Approach to Fisheries Management
+
+.pull-left[
+* 2016 Ecosystem Approach to Fishery Management (EAFM) [Policy Guidance document](
+http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf)
+
+![:img EAFM Policy Guidance Doc Word Cloud](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_EAFMwordcloud.png)
+
+]
+
+.pull-right[
+* Mid-Atlantic EAFM framework:
+.center[
+![:img Mid-Atlantic EAFM framework, 100%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+]
+
+]
+???
+The Council’s EAFM framework has similarities to the IEA loop on slide 2. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
+
+`r Cite(myBib, "depiper_operationalizing_2017")`
+`r Cite(myBib, "bastille_improving_2021")`
+`r Cite(myBib, "muffley_there_2021")`
+`r Cite(myBib,"gaichas_implementing_2018")`
+`r Cite(myBib,"depiper_learning_2021")`
+`r Cite(myBib, "gaichas_framework_2016")`
+
+
+---
+## EAFM Risk Assessment: 2024 Update with new elements
+
+.pull-left[
+*Species level risk elements*
+```{r sptable}
+#tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+# spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
+risk.species<-data.frame(
+  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Chub mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
+  Assess  = c("l", "l", "l",  "l", "l", "l", "h", "l", "lm", "h", "l", "h", "l", "l", "h", "na", "na"),
+  Fstatus = c("l", "l", "h", "l", "l", "l", "lm", "l", "lm", "lm", "l", "h", "l", "h", "lm", "na", "na"),
+  Bstatus = c("l", "l", "lm", "l", "l", "h", "lm", "lm", "lm", "lm", "lm", "mh", "lm", "l", "lm", "na", "na"),
+  #FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
+  #FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
+  PreyA = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
+  PredP = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
+  FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
+  Climate = c("h", "mh", "lm", "lm", "mh", "lm", "na", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
+  DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "na", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
+  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na"),
+  OffHab = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd")#,
+)
+
+
+# these elements were removed by the council
+#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
+#  FoodSafe = c(),
+
+# one column test
+# risk.species %>%
+#   mutate(Fstatus = 
+#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
+#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
+
+#convert to longer text for consistency and display in html table
+risk.species <- risk.species %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#generalize to all
+risk.species %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+```
+.contrib[
+* Mackerel and dogfish **Fstatus** risk reduced to low, Summer flounder risk increased to high. Spiny dogfish **Bstatus** risk decreased to low
+* Indicators in development for new Prey Availability, Predation Pressure, and Offshore Habitat elements
+]  
+
+*Ecosystem level risk elements*
+```{r ecotable}
+#tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.eco<-data.frame(
+  System = c("Mid-Atlantic"),
+  EcoProd = c("lm"),
+  #EcoDiv = c("lm"),
+  CommVal = c("mh"),
+  RecVal = c("lm"),
+  FishRes1 = c("l"),
+  FishRes2 = c("mh"),
+  #CommJobs = c("mh"),
+  #RecJobs = c("l"),
+  ComDiv = c("l"),
+  RecDiv = c("tbd"),
+  Social = c("lm"),
+  ComFood = c("mh"),
+  RecFood = c("mh")
+)
+
+#convert to longer text for consistency and display in html table
+risk.eco <- risk.eco %>%
+     mutate_at(vars(-System), function(x){
+       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#make table
+risk.eco %>%
+  mutate_at(vars(-System), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+
+```
+.contrib[
+* Recreational value risk increased from low to low-moderate
+* Recreational diversity added, risk criteria in development
+]  
+]  
+
+.pull-right[ 
+*Species and Sector level risk elements*
+```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
+#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.sppsector<-data.frame(
+  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
+  FControl =  c(1,1,2,2,4,1,4,2,2,1,1,1,2,9,1,1,2,2,1,1,1,1,1,9),
+  Interact = c(1,1,1,2,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
+  #OceanUse =    c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
+  OSW1 =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
+  OSW2 =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
+  OtherUse =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
+  RegComplex =  c(1,1,4,2,4,2,4,2,2,4,3,3,3,1,1,2,1,3,2,1,4,1,1,9),
+  Discards =    c(3,3,3,3,3,3,3,4,2,2,3,3,1,1,1,1,1,2,2,2,2,1,1,9),
+  Allocation =  c(1,1,4,1,4,1,4,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,9) 
+)
+
+
+#convert to text for consistency
+risk.sppsector <- risk.sppsector %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na",
+              '6' = 'tbd')}) %>%
+     as.data.frame()
+
+#make table
+risk.sppsector %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey", "black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 10) 
+
+```
+.contrib[
+* Management fully updated for existing elements 
+* Offshore wind (OSW) risks split into 2 new elements in development, non-OSW uses added
+]
+]
+
+---
+.pull-left[
+
+```{r sfconceptmod, echo = F, fig.align = "center"}
+# setup for conceptual model
+PKG <- c(#"foreign","foodweb","sna", "DiagrammeR","circlize", "kableExtra", "googledrive", "readxl"
+         "RColorBrewer","QPress",
+         "chorddiag",
+         "widgetframe")
+
+for (p in PKG) {
+  if(!require(p,character.only = TRUE)) {
+    install.packages(p)
+    require(p,character.only = TRUE)}
+}
+
+data.dir <- here::here("data")
+
+#assumes this is a project and .dia file is in data directory
+edges <- model.dia(file.path(data.dir, "Summer_Flounder_July22_2019.dia"))
+
+source("R/interactive_chord_sfconsmod.R")
+
+conmod <- interactive_chord_sfconsmod(edges, width=710, height=710, margin=130)
+
+frameWidget(conmod)
+
+```
+
+]
+
+.pull-right[
+## How is MAFMC using the risk assessment?
+
+* Prioritization: the Council selected summer flounder as high-risk fishery for conceptual modeling
+
+* Council completed management strategy evaluation (MSE) addressing [recreational fishery discards](https://www.mafmc.org/actions/summer-flounder-mse) using information from conceptual modeling.
+
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/keepOneNoOFkey.png)
+
+*  Increase in angler welfare attainable without compromising stock status
+]
+???
+In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
+
+
+---
+# Operational multispecies recreational demand model
+
+
+
+---
+# Updating the risk assessmment
+
+---
+# Evolution of ecosystem reporting
+
+---
+# Conclusions
+
+---
+# References
+
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
 ]
 
 ---
@@ -249,79 +486,13 @@ See [MAFMC SSC OFL CV Guidance Document](https://www.mafmc.org/s/Final_Revised-O
 ```{r OFLCVtable}
 
 criteria <- data.frame("Decsion Criteria" = c("Ecosystem factors accounted"),
-                       "Default OFL CV = 60%" = c("Assessment considers habitat
-and ecosystem effects on stock
-productivity, distribution,
-mortality and quantitatively
-includes appropriate factors
-reducing uncertainty in short
-term predictions.
-And/or evidence outside the
-assessment suggests that
-ecosystem productivity and
-habitat quality are stable or
-accountable.
-And/or ecosystem events
-affecting stock in the short term
-are absent.
-And/or comparable species in
-the region have synchronous
-production characteristics and
-stable short-term predictions.
-And/or climate vulnerability
-analysis suggests low risk of
-change in productivity due to
-changing climate."),
-                       "Default OFL CV = 100%" = c("Assessment considers
-habitat/ecosystem factors but
-does not demonstrate either
-reduced or inflated short-term
-prediction uncertainty based
-on these factors.
-And/or evidence outside the
-assessment suggests that
-ecosystem productivity and
-habitat quality are variable.
-And/or acute ecosystem
-events are likely to have a low
-to moderate risk of affecting
-the stock in the short term.
-And/or mixed productivity and
-uncertainty signals among
-comparable species in the
-region.
-And/or climate vulnerability
-analysis suggests moderate
-risk of change in productivity
-from changing climate."),
-                       "Default OFL CV = 150%" = c("Assessment either
-demonstrates that including
-appropriate ecosystem/habitat
-factors increases short-term
-prediction uncertainty, or does
-not consider habitat and
-ecosystem factors. And/or
-evidence outside the
-assessment suggests that
-ecosystem productivity and
-habitat quality are variable
-and degrading.
-And/or acute ecosystem
-events are likely to have a high
-risk of affecting the stock in
-the short term.
-And/or comparable species in
-the region have high
-uncertainty in short term
-predictions.
-And/or climate vulnerability
-analysis suggests high risk of
-changing productivity from
-changing climate. "))
+                       "Default OFL CV = 60%" = c("Assessment considers habitat and ecosystem effects on stock productivity, distribution, mortality and quantitatively includes appropriate factors reducing uncertainty in short term predictions. And/or evidence outside the assessment suggests that ecosystem productivity and habitat quality are stable or accountable. And/or ecosystem events affecting stock in the short term are absent. And/or comparable species in the region have synchronous production characteristics and stable short-term predictions. And/or climate vulnerability analysis suggests low risk of change in productivity due to changing climate."),
+                       "Default OFL CV = 100%" = c("Assessment considers habitat/ecosystem factors but does not demonstrate either reduced or inflated short-term prediction uncertainty based on these factors. And/or evidence outside the assessment suggests that ecosystem productivity and habitat quality are variable. And/or acute ecosystem events are likely to have a low to moderate risk of affecting the stock in the short term. And/or mixed productivity and uncertainty signals among comparable species in the region. And/or climate vulnerability analysis suggests moderate risk of change in productivity from changing climate."),
+                       "Default OFL CV = 150%" = c("Assessment either demonstrates that including appropriate ecosystem/habitat factors increases short-term prediction uncertainty, or does not consider habitat and ecosystem factors.  And/or evidence outside the assessment suggests that ecosystem productivity and habitat quality are variable and degrading. And/or acute ecosystem events are likely to have a high risk of affecting the stock in the short term. And/or comparable species in the region have high uncertainty in short term predictions. And/or climate vulnerability analysis suggests high risk of changing productivity from changing climate."))
 
 kableExtra::kable(criteria, booktabs = TRUE,
-  col.names = c("Decsion Criteria", "Default OFL CV = 60%", "Default OFL CV = 100%", "Default OFL CV = 150%")) %>%
+                  col.names = c("Decsion Criteria", "Default OFL CV = 60%", "Default OFL CV = 100%", "Default OFL CV = 150%")) %>%
   kable_styling(font_size = 16)
-  
+
 
 ```
