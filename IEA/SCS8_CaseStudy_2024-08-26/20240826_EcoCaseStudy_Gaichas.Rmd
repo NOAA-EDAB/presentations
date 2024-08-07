@@ -393,7 +393,7 @@ frameWidget(conmod)
 
 ![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/keepOneNoOFkey.png)
 
-*  Increase in angler welfare attainable within the same stock status
+*  Increase in angler welfare attainable with same stock status
 ]
 ???
 In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
@@ -406,12 +406,134 @@ background-position: bottom
 
 ## Operational multispecies recreational demand model sets specifications
 
-
-
-
-
 ---
-# Updating the risk assessmment
+## Updating the risk assessmment: add recreational and cross-sectoral risks, static --> dynamic indicators
+
+.pull-left[
+```{r}
+
+mafmc_cond <- c("Atlantic mackerel",
+           "Black sea bass",
+           "Bluefish",
+           "Butterfish",
+           "Goosefish",
+           "Illex", #not in condition
+           "Loligo",  #not in condition
+           "Scup",
+           "Spiny dogfish",
+           "Summer flounder",
+           "Surf clam",  #not in condition
+           "Ocean quahog")  #not in condition
+           #"Clams", # Atlantic surfclam and ocean quahog not separate groups
+           #"Tilefish") # Blueline and golden tilefish not separate groups
+
+AnnualRelCond2023_Fall <- readr::read_csv("https://raw.githubusercontent.com/NOAA-EDAB/foodweb-risk/main/condition/AnnualRelCond2023_Fall.csv")
+
+
+
+survEPUcond <- AnnualRelCond2023_Fall |>
+  dplyr::select(Time = YEAR,
+                Var = Species,
+                EPU,
+                Value = MeanCond,
+                nCond) |>
+  dplyr::group_by(EPU, Var) |>
+  dplyr::mutate(scaleCond = scale(Value,scale =T,center=T)) 
+
+xs <- quantile(survEPUcond$scaleCond, seq(0,1, length.out = 6), na.rm = TRUE)
+
+survEPUcond <- survEPUcond |>
+  dplyr::mutate(category = cut(scaleCond,
+                                  breaks = xs,
+                                  labels = c( "Poor Condition",
+                                              "Below Average",
+                                              "Neutral",
+                                              "Above Average",
+                                              "Good Condition"),
+                                  include.lowest = TRUE))
+
+condquants <- data.frame(ymin = xs[1:5],
+                         ymax = xs[2:6],
+                         category = sort(unique(survEPUcond$category))
+)
+
+vir <- viridis::viridis_pal()(5)
+
+mafmcsurvEPUcond <- survEPUcond |>
+  dplyr::filter(Var %in% mafmc_cond[2],
+                EPU %in% c("MAB"))
+
+p <-   ggplot2::ggplot() +
+  ggplot2::theme_bw() +
+  ggplot2::geom_rect(data = condquants,
+                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
+                     alpha = .3) +
+  ggplot2::scale_fill_manual(values=vir) +
+  ggplot2::geom_point(data= mafmcsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
+  #ggplot2::geom_hline(yintercept = xs[2:5]) +
+  #ggplot2::geom_line() +
+  ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
+  ggplot2::ylab("Scaled condition") +
+  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var))) +
+  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
+
+p
+
+```
+
+]
+
+.pull-right[
+```{r}
+
+fallmacro <- readRDS(url("https://github.com/NOAA-EDAB/foodweb-risk/raw/main/preyindices/fallmacrobenthosindex.rds"))
+
+fixmacro<- fallmacro |>
+      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      dplyr::summarise(max = max(Value))
+
+    p <- fallmacro |>
+      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate",
+                               "Fall Macrobenthos Biomass Index Estimate SE"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
+      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
+      #max = as.numeric(Value)) |>
+      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
+      dplyr::left_join(fixmacro) |>
+      dplyr::mutate(#Value = Value/resca,
+        Mean = as.numeric(Mean),
+        #max = as.numeric(Value),
+        Mean = Mean/max,
+        SE = SE/max,
+        Upper = Mean + SE,
+        Lower = Mean - SE) |>
+      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
+      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+      #                  ymin = -Inf, ymax = Inf) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+      ggplot2::geom_point()+
+      ggplot2::geom_line()+
+      ggplot2::ggtitle("Macrofauna prey")+
+      ggplot2::ylab(expression("Relative macrofauna biomass"))+
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::facet_wrap(.~EPU)+
+      ecodata::geom_gls()+
+      ecodata::theme_ts()+
+      ecodata::theme_facet()+
+      ecodata::theme_title()
+    
+  p 
+  
+```
+]
+
+???
+Council and Advisory Panel members recommended new elements addressing human dimensions (recreational access equity), new elements addressing cross-sectoral impacts (offshore wind impacts on biology and ecosystem as well as fishery access and scientific sampling), and transitions from static ecosystem indicators to time series indicators (prey availability, predation pressure, and fishing community vulnerability). New ecosystem science was required to support these requests. The process included development of new indicators of prey availability based on spatio-temporal modeling using ecological datasets (stomach contents, zooplankton), and new spatial analyses of habitat, revenue, and surveys relative to wind energy development areas. Development of potential risk criteria is ongoing; thresholds between low, moderate, and high risk that are essential to operational use are developed collaboratively with Council and Advisory Panel members. 
 
 ---
 # Evolution of ecosystem reporting
