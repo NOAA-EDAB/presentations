@@ -108,13 +108,13 @@ background-position: right
 
 .pull-left-60[
 
-## *  Stock assessments
+## Stock assessments
 
-## *  ABC setting
+## ABC setting
 
-## *  EAFM risk assessment
+## EAFM risk assessment
 
-## *  Co-evolution of ecosystem reporting and operational use
+## Co-evolution of ecosystem reporting and operational use
 
 
 Right: Bottom temperature time series covariate on recruitment in the 2024 operational black sea bass assessment
@@ -407,7 +407,9 @@ background-position: bottom
 ## Operational multispecies recreational demand model sets specifications
 
 ---
-## Updating the risk assessmment: add recreational and cross-sectoral risks, static --> dynamic indicators
+## Updating the risk assessmment: add recreational and cross-sectoral risks, static &rarr; dynamic indicators
+
+Example: Evaluate risks posed by prey availability to achieving OY for Council managed species
 
 .pull-left[
 ```{r}
@@ -460,7 +462,7 @@ condquants <- data.frame(ymin = xs[1:5],
 vir <- viridis::viridis_pal()(5)
 
 mafmcsurvEPUcond <- survEPUcond |>
-  dplyr::filter(Var %in% mafmc_cond[2],
+  dplyr::filter(Var %in% mafmc_cond[2], #BSB
                 EPU %in% c("MAB"))
 
 p <-   ggplot2::ggplot() +
@@ -474,12 +476,35 @@ p <-   ggplot2::ggplot() +
   #ggplot2::geom_line() +
   ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
   ggplot2::ylab("Scaled condition") +
-  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var))) +
+  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var), "fall body condition")) +
   ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
 
 p
 
 ```
+
+```{r}
+mafmcsurvEPUcond <- survEPUcond |>
+  dplyr::filter(Var %in% mafmc_cond[3], #Bluefish
+                EPU %in% c("MAB"))
+
+p <-   ggplot2::ggplot() +
+  ggplot2::theme_bw() +
+  ggplot2::geom_rect(data = condquants,
+                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
+                     alpha = .3) +
+  ggplot2::scale_fill_manual(values=vir) +
+  ggplot2::geom_point(data= mafmcsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
+  #ggplot2::geom_hline(yintercept = xs[2:5]) +
+  #ggplot2::geom_line() +
+  ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
+  ggplot2::ylab("Scaled condition") +
+  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var), "fall body condition")) +
+  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
+
+p
+```
+
 
 ]
 
@@ -518,7 +543,7 @@ fixmacro<- fallmacro |>
       ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
       ggplot2::geom_point()+
       ggplot2::geom_line()+
-      ggplot2::ggtitle("Macrofauna prey")+
+      ggplot2::ggtitle("Benthic invertebrate prey index")+
       ggplot2::ylab(expression("Relative macrofauna biomass"))+
       ggplot2::xlab(ggplot2::element_blank())+
       ggplot2::facet_wrap(.~EPU)+
@@ -530,6 +555,45 @@ fixmacro<- fallmacro |>
   p 
   
 ```
+
+```{r}
+
+p  <-  ecodata::forage_index |>
+      dplyr::filter(Var %in% c("Fall Forage Fish Biomass Estimate",
+                               "Fall Forage Fish Biomass Estimate SE"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
+      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
+      #max = as.numeric(Value)) |>
+      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
+      dplyr::left_join(fixmacro) |>
+      dplyr::mutate(#Value = Value/resca,
+        Mean = as.numeric(Mean),
+        #max = as.numeric(Value),
+        Mean = Mean/max,
+        SE = SE/max,
+        Upper = Mean + SE,
+        Lower = Mean - SE) |>
+      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
+      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+      #                  ymin = -Inf, ymax = Inf) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+      ggplot2::geom_point()+
+      ggplot2::geom_line()+
+      ggplot2::ggtitle("Forage fish prey index")+
+      ggplot2::ylab(expression("Relative forage biomass"))+
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::facet_wrap(.~EPU)+
+      ecodata::geom_gls()+
+      ecodata::theme_ts()+
+      ecodata::theme_facet()+
+      ecodata::theme_title()
+
+p
+```
+
 ]
 
 ???
