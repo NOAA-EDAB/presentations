@@ -1,14 +1,14 @@
 ---
 title: "Operationalizing the use of ecosystem <br /> information in Mid-Atlantic science<br /> and management decisions"
 subtitle: "SCS8 Case Study <br /> 26 August 2024"
-author: Sarah Gaichas$^{1,2}$ <br /> <br /> Thanks to Geret DePiper$^{1,2}$, Brandon Muffley$^3$
-institute: <span style="font-weight:normal;"><font size="-0.5">$^1$Mid-Atlantic Fishery Management Council SSC <br /> $^2$NOAA NMFS Northeast Fisheries Science Center <br /> $^3$Mid-Atlantic Fishery Management Council</font></span>
+author: Sarah Gaichas <br /> Mid-Atlantic SSC and NOAA NMFS Northeast Fisheries Science Center <br /> <br />Thanks to Geret DePiper (MAFMC SSC, NEFSC) and Brandon Muffley (MAFMC)
+
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css", "libs/cols.css"]
     lib_dir: libs
     nature:
-      titleSlideClass: ["right", "bottom", "my-title"]
+      titleSlideClass: ["right", "middle", "my-title"]
       ratio: "16:9"
       highlightStyle: githubp
       highlightLines: true
@@ -21,7 +21,7 @@ output:
 ---
 class: top, left
 
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MACouncil.png")
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC+Jurisdiction+Map+v3-01.jpg")
 background-size: 200px
 background-position: right
 
@@ -93,7 +93,14 @@ Components of an operational process:
 
 *  Feedbacks from the management system and adjustments to achieve management objectives
 
-"Operationalizing" is an iterative process, especially the using part
+"Operationalizing" is an iterative process within a specific context
+
+
+.contrib[*Mid Atlantic fishery management plans and species*]
+
+![:img MAFMC fishery management plans and species, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMPs4.png)
+
+.footnote[Source: http://www.mafmc.org/fishery-management-plans] 
 
 ???
 (we spend a lot of time on this, understand that operational processes require a lot of time and resources and are *not* research)
@@ -143,12 +150,16 @@ Focus on the risk assessment and its operational use, process to bring new scien
 
 ---
 
-## Ecosystem and Socioeconomic Profiles in Assessments, and MAFMC ABC process
+## Ecosystem and Socioeconomic Profiles (ESPs) in Assessments, and MAFMC ABC process
 
 .pull-left[
-![:img Pathways for scientific advice from the northeast ESP process, 100%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ESPdecisionsupporttable.png)
+![:img Pathways for scientific advice from the northeast ESP process, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ESPdecisionsupporttable.png)
 
-![:img Pathways for scientific advice from the northeast ESP process, 100%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
+![:img Bluefish ESP conceptual model, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
+
+.footnote[
+Images courtesy Abigail Tyrell, NEFSC
+]
 ]
 
 
@@ -194,7 +205,9 @@ See [MAFMC ABC control rule](http://www.mafmc.org/s/MAFMC-ABC-Control-Rule-White
 * 2016 Ecosystem Approach to Fishery Management (EAFM) [Policy Guidance document](
 http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf)
 
+.center[
 ![:img EAFM Policy Guidance Doc Word Cloud, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_EAFMwordcloud.png)
+]
 
 ]
 
@@ -385,15 +398,15 @@ frameWidget(conmod)
 .pull-right[
 ## How is MAFMC using the risk assessment?
 
-* Prioritization: the Council selected summer flounder as high-risk fishery for conceptual modeling
+* Risk based prioritization: the Council selected summer flounder for conceptual modeling
 
-* Council completed management strategy evaluation (MSE) addressing [recreational fishery discards](https://www.mafmc.org/actions/summer-flounder-mse) using information from conceptual modeling.
+* Council completed management strategy evaluation (MSE) addressing [recreational fishery discards](https://www.mafmc.org/actions/summer-flounder-mse) based on conceptual modeling
 
-* Linked population and recreational demand model
+* Stakeholder driven MSE coupled population and recreational demand models
 
 ![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/keepOneNoOFkey.png)
 
-*  Increase in angler welfare attainable with same stock status
+* Results: potential improvement in angler welfare with low risk to stock status
 ]
 ???
 In this interactive circular graph visualization, model elements identified as important by the Council (through risk assessment) and by the working group (through a range of experience and expertise) are at the perimeter of the circle. Elements are defined in detail in the last section of [this page](https://gdepiper.github.io/Summer_Flounder_Conceptual_Models/sfconsmod_riskfactors_subplots.html). Relationships between elements are represented as links across the center of the circle to other elements on the perimeter. Links from a model element that affect another element start wide at the base and are color coded to match the category of the element they affect.Hover over a perimeter section (an element) to see all relationships for that element, including links from other elements. Hover over a link to see what it connects. Links by default show text for the two elements and the direction of the relationship (1 for relationship, 0 for no relationship--most links are one direction).For example, hovering over the element "Total Landings" in the full model shows that the working group identified the elements affected by landings as Seafood Production, Recreational Value, and Commercial Profits (three links leading out from landings), and the elements affecting landings as Fluke SSB, Fluke Distributional Shift, Risk Buffering, Management Control, Total Discards, and Shoreside Support (6 links leading into Total Landings).
@@ -601,12 +614,54 @@ p
 ???
 Council and Advisory Panel members recommended new elements addressing human dimensions (recreational access equity), new elements addressing cross-sectoral impacts (offshore wind impacts on biology and ecosystem as well as fishery access and scientific sampling), and transitions from static ecosystem indicators to time series indicators (prey availability, predation pressure, and fishing community vulnerability). New ecosystem science was required to support these requests. The process included development of new indicators of prey availability based on spatio-temporal modeling using ecological datasets (stomach contents, zooplankton), and new spatial analyses of habitat, revenue, and surveys relative to wind energy development areas. Development of potential risk criteria is ongoing; thresholds between low, moderate, and high risk that are essential to operational use are developed collaboratively with Council and Advisory Panel members. 
 
+The slide shows a higher risk example (black sea bass, low recent condition correlated with recently declining prey) and a lower risk example (bluefish, despite a long term decline in forage fish prey. recent condition has been good)
+
 `r Cite(myBib, "gaichas_assessing_2023")`
 
 ---
-# Evolution of ecosystem reporting
+## Evolution of ecosystem reporting: from physical time series to specific management risks
+
+.pull-left[
+*2016-2023 Reports: Climate Section*
+```{r}
+ecodata::plot_bottom_temp_comp()
+```
+
+*2024 Report: Climate/Ecosystem Risks*
+
+**Risks to Spatial Management/Allocation**
+.contrib[
+*  Indicators and potential drivers of distribution shifts
+]
+
+**Risks to Seasonal Management/Timed Closures**
+.contrib[
+*  Indicators and potential drivers of changing timing (phenology)
+]
+
+**Risks to Quota Management/Rebuilding**
+.contrib[
+*  Indicators and potential drivers of changing productivity
+]
+]
+
+.pull-right[
+*2024 Report: Days at stressful scallop temperature*
+.right[
+
+![:img scallop stress bottom temp, 75%](https://github.com/NOAA-EDAB/ecodata/raw/dev/workshop/images/bottom_temp_threshold_17_19_Elephant_Trunk.png)
+
+]
+
+.footnote[
+Image courtesy Joseph Caracappa, NEFSC
+]
+]
+
+???
 
 ---
+
 # Conclusions
 
 ---
@@ -675,7 +730,7 @@ varying unpredictably (higher uncertainty).
 ]
 
 .footnote[
-See [MAFMC SSC OFL CV Guidance Document](https://www.mafmc.org/s/Final_Revised-OFL-CV-guidance-document_06_19_20.pdf)
+See [MAFMC SSC OFL CV Guidance Document](https://www.mafmc.org/s/Final-OFL-CV-guidance-document_06_24.pdf)
 ]
 
 ---
