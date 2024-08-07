@@ -411,7 +411,96 @@ background-position: bottom
 
 Example: Evaluate risks posed by prey availability to achieving OY for Council managed species
 
+
 .pull-left[
+```{r}
+
+fallmacro <- readRDS(url("https://github.com/NOAA-EDAB/foodweb-risk/raw/main/preyindices/fallmacrobenthosindex.rds"))
+
+fixmacro<- fallmacro |>
+      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      dplyr::summarise(max = max(Value))
+
+    p <- fallmacro |>
+      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate",
+                               "Fall Macrobenthos Biomass Index Estimate SE"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
+      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
+      #max = as.numeric(Value)) |>
+      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
+      dplyr::left_join(fixmacro) |>
+      dplyr::mutate(#Value = Value/resca,
+        Mean = as.numeric(Mean),
+        #max = as.numeric(Value),
+        Mean = Mean/max,
+        SE = SE/max,
+        Upper = Mean + SE,
+        Lower = Mean - SE) |>
+      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
+      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+      #                  ymin = -Inf, ymax = Inf) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+      ggplot2::geom_point()+
+      ggplot2::geom_line()+
+      ggplot2::ggtitle("Benthic invertebrate prey index")+
+      ggplot2::ylab(expression("Relative macrofauna biomass"))+
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::facet_wrap(.~EPU)+
+      ecodata::geom_gls()+
+      ecodata::theme_ts()+
+      ecodata::theme_facet()+
+      ecodata::theme_title()
+    
+  p 
+  
+```
+
+```{r}
+
+p  <-  ecodata::forage_index |>
+      dplyr::filter(Var %in% c("Fall Forage Fish Biomass Estimate",
+                               "Fall Forage Fish Biomass Estimate SE"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
+      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
+      #max = as.numeric(Value)) |>
+      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
+      dplyr::left_join(fixmacro) |>
+      dplyr::mutate(#Value = Value/resca,
+        Mean = as.numeric(Mean),
+        #max = as.numeric(Value),
+        Mean = Mean/max,
+        SE = SE/max,
+        Upper = Mean + SE,
+        Lower = Mean - SE) |>
+      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
+      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+      #                  ymin = -Inf, ymax = Inf) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+      ggplot2::geom_point()+
+      ggplot2::geom_line()+
+      ggplot2::ggtitle("Forage fish prey index")+
+      ggplot2::ylab(expression("Relative forage biomass"))+
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::facet_wrap(.~EPU)+
+      ecodata::geom_gls()+
+      ecodata::theme_ts()+
+      ecodata::theme_facet()+
+      ecodata::theme_title()
+
+p
+```
+
+]
+
+.pull-right[
 ```{r}
 
 mafmc_cond <- c("Atlantic mackerel",
@@ -508,96 +597,11 @@ p
 
 ]
 
-.pull-right[
-```{r}
-
-fallmacro <- readRDS(url("https://github.com/NOAA-EDAB/foodweb-risk/raw/main/preyindices/fallmacrobenthosindex.rds"))
-
-fixmacro<- fallmacro |>
-      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate"),
-                    EPU %in% c("MAB")) |>
-      dplyr::group_by(EPU) |>
-      dplyr::summarise(max = max(Value))
-
-    p <- fallmacro |>
-      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate",
-                               "Fall Macrobenthos Biomass Index Estimate SE"),
-                    EPU %in% c("MAB")) |>
-      dplyr::group_by(EPU) |>
-      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
-      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
-      #max = as.numeric(Value)) |>
-      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
-      dplyr::left_join(fixmacro) |>
-      dplyr::mutate(#Value = Value/resca,
-        Mean = as.numeric(Mean),
-        #max = as.numeric(Value),
-        Mean = Mean/max,
-        SE = SE/max,
-        Upper = Mean + SE,
-        Lower = Mean - SE) |>
-      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
-      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
-      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
-      #                  ymin = -Inf, ymax = Inf) +
-      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
-      ggplot2::geom_point()+
-      ggplot2::geom_line()+
-      ggplot2::ggtitle("Benthic invertebrate prey index")+
-      ggplot2::ylab(expression("Relative macrofauna biomass"))+
-      ggplot2::xlab(ggplot2::element_blank())+
-      ggplot2::facet_wrap(.~EPU)+
-      ecodata::geom_gls()+
-      ecodata::theme_ts()+
-      ecodata::theme_facet()+
-      ecodata::theme_title()
-    
-  p 
-  
-```
-
-```{r}
-
-p  <-  ecodata::forage_index |>
-      dplyr::filter(Var %in% c("Fall Forage Fish Biomass Estimate",
-                               "Fall Forage Fish Biomass Estimate SE"),
-                    EPU %in% c("MAB")) |>
-      dplyr::group_by(EPU) |>
-      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
-      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
-      #max = as.numeric(Value)) |>
-      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
-      dplyr::left_join(fixmacro) |>
-      dplyr::mutate(#Value = Value/resca,
-        Mean = as.numeric(Mean),
-        #max = as.numeric(Value),
-        Mean = Mean/max,
-        SE = SE/max,
-        Upper = Mean + SE,
-        Lower = Mean - SE) |>
-      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
-      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
-      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
-      #                  ymin = -Inf, ymax = Inf) +
-      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
-      ggplot2::geom_point()+
-      ggplot2::geom_line()+
-      ggplot2::ggtitle("Forage fish prey index")+
-      ggplot2::ylab(expression("Relative forage biomass"))+
-      ggplot2::xlab(ggplot2::element_blank())+
-      ggplot2::facet_wrap(.~EPU)+
-      ecodata::geom_gls()+
-      ecodata::theme_ts()+
-      ecodata::theme_facet()+
-      ecodata::theme_title()
-
-p
-```
-
-]
 
 ???
 Council and Advisory Panel members recommended new elements addressing human dimensions (recreational access equity), new elements addressing cross-sectoral impacts (offshore wind impacts on biology and ecosystem as well as fishery access and scientific sampling), and transitions from static ecosystem indicators to time series indicators (prey availability, predation pressure, and fishing community vulnerability). New ecosystem science was required to support these requests. The process included development of new indicators of prey availability based on spatio-temporal modeling using ecological datasets (stomach contents, zooplankton), and new spatial analyses of habitat, revenue, and surveys relative to wind energy development areas. Development of potential risk criteria is ongoing; thresholds between low, moderate, and high risk that are essential to operational use are developed collaboratively with Council and Advisory Panel members. 
+
+`r Cite(myBib, "gaichas_assessing_2023")`
 
 ---
 # Evolution of ecosystem reporting
