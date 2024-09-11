@@ -1,0 +1,688 @@
+---
+title: "MAFMC SSC Ecosystem and Economic groups"
+subtitle: "Update <br /> 12 September 2024"
+author: "Sarah Gaichas, Geret DePiper, and Brandon Muffley"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: ["libs/macros.js"]
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+class: top, left
+
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_1.png")
+background-size: 500px
+background-position: right
+
+
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
+                      warning = F,
+                      message = F
+                      )
+
+
+library(tidyverse)
+library(kableExtra)
+
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./operationalSOE.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+
+# Ecosystem and Economic work
+
+.pull-left-60[
+
+*  SSC subgroup update
+
+    +  Review of State of the Ecosystem request memo
+    +  Prioritization!
+        +  State of the Ecosystem requests 2023-2024
+        +  Joint with NEFMC SSC Chair
+
+*  EAFM risk assessment update
+
+    +  EOP and AP meeting 31 July
+    +  New elements and indicators, proposed risk criteria
+    
+
+]
+
+.pull-right-40[
+]
+
+---
+## 2024 State of the Ecosystem Request tracking memo
+
+```{r, results='hide'}
+#   resultfile <- googledrive::drive_find(pattern = "SOE 2023 Request Checklist to Memo", type = "spreadsheet")
+ # 
+#  requests <- googledrive::drive_download(resultfile, type = "csv", overwrite = TRUE) %>%
+#    {read.csv(.$local_path)} 
+
+requests <- read.csv(here::here("SOE 2023 Request Checklist to Memo.csv"))
+```
+
+.scroll-output[
+
+```{r memo}
+
+# requests <- googledrive::drive_download(resultfile, type = "csv", overwrite = TRUE) %>%
+#   {read.csv(.$local_path)} 
+
+requeststab <- requests %>%
+  dplyr::select(Request, Year, Aggregate, Project, Source, Status, Progress, Order) %>%
+  dplyr::mutate(Source = str_trim(str_extract(Source, "[^-]+"))) %>%
+  dplyr::group_by(factor(Aggregate, levels = c("System level thresholds/ref pts",
+                                               "Management",
+                                               "Short term forecasts",
+                                               "Regime shifts",
+                                               "Multiple system drivers",
+                                               "Functional group level status/thresholds/ref pts",
+                                               "Stock level indicators",
+                                               "SOE admin"))
+                  )%>% #, Project) %>%
+  dplyr::mutate(#AvgOrder = mean(Order, na.rm=T),
+                Rank = factor(case_when(Order < 1.5 ~ "Highest", 
+                                     Order >= 1.5 & Order < 1.75 ~ "High",
+                                     Order >= 1.75 & Order < 2 ~ "Moderate",
+                                     Order >= 2 & Order < 2.5 ~ "Low",
+                                     Order >=2.5 ~ "Lowest",
+                                     TRUE ~ "Unranked"),
+                       levels=c("Highest", "High", "Moderate", "Unranked", "Low", "Lowest")))%>%
+  dplyr::arrange(Rank, Order, .by_group = TRUE) %>% #AvgOrder, 
+  # arrange(match(Status, c("In SOE", 
+  #                         "In SOE-MAFMC",
+  #                         "In SOE-MAFMC, In progress-NEFMC",
+  #                         "In progress", 
+  #                         "Not started")), desc(Year)) %>%
+  dplyr::ungroup() %>%
+  #dplyr::mutate("Memo Section" = rownames(.)) %>%
+  #dplyr::mutate(Section = dplyr::group_indices(.)) %>%
+  dplyr::select(Request, Year, Aggregate, Rank, Source, Status, Progress)
+
+# knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
+#   kable_styling(font_size=12#, latex_options = c("hold_position", "striped", "repeat_header")
+#                 ) %>%
+#   row_spec(0,bold=TRUE) %>%
+#   column_spec(1, width="10.5cm") %>%
+#   column_spec(2, width="1cm") %>%
+#   column_spec(3, width="2cm") %>%
+#   column_spec(4, width="4.5cm") %>%
+#   column_spec(5, width="13.5cm") %>%
+#   column_spec(6, width="1.5cm")
+  #column_spec(1, width="9.5cm") %>%
+  #column_spec(1, width="13.5cm") %>%
+  #column_spec(2, width="1cm") %>%
+  #column_spec(3, width="13.5cm")
+  #column_spec(3, width="2.5cm") %>%
+  #column_spec(4, width="13.5cm") %>%
+  #column_spec(5, width="1.5cm")
+
+flextable::as_grouped_data(requeststab, groups = "Aggregate") %>% 
+  flextable::as_flextable(hide_grouplabel=TRUE) %>% 
+  flextable::align(i = ~ !is.na(Aggregate), align = "left") %>% 
+  flextable::bold(i = ~ !is.na(Aggregate), bold = TRUE) %>%
+  flextable::theme_zebra() %>%
+  flextable::bg(i = ~ !is.na(Aggregate), bg = "beige", part = "body") %>%
+  flextable::hline(i = ~ !is.na(Aggregate)) %>%
+  #flextable::set_caption("State of the Ecosystem requests by category and Council priority.") %>%
+  flextable::autofit() 
+  #flextable::width(width = c(2.5,0.5,0.7,0.7,0.7,1.5))
+
+```
+
+]
+
+
+---
+## Priority categories in the Request Memo
+
+.pull-left-40[
+The memo is organized into categories by topic, and categories are listed in descending order of overall (2022) priority based on approximate weighting within the category.
+
+Therefore, a range of priority may be applied to individual requests within a category even though the entire category has an overall priority.
+
+*The subgroup agreed to keep this group priority ranking*
+
+SSC: [Link to current memo](https://drive.google.com/file/d/1woOaPCelKgPEcLpqMOBq23dmrMDKKH7q/view?usp=drive_link)  
+SSC: [Link to overview](https://docs.google.com/document/d/1Q06XL6Gaz8i3Hr9sggGjJTE-NII3-HBW/edit?usp=drive_link&ouid=104644076769486561215&rtpof=true&sd=true)
+
+]
+
+.pull-right-60[
+*  System level thresholds/reference points: highest, much methods work in progress
+
+*  Management: high, resource limited  
+*  Short term forecasts: high, CEFI should help  
+*  Regime shifts: high, need system level framework 
+
+*  Multiple system drivers: moderate-high, many unranked requests  
+
+*  Functional group level status/thresholds/reference points: moderate, many in progress
+*  Stock level indicators: moderate, ESPs better venue
+
+*  SOE administration: unranked  
+
+] 
+
+???
+*System level thresholds/reference points*
+Includes requests to develop analytical methods that can be applied across all indicator types and operationalized for management advice. Much of this high priority methodological work is in progress.
+*Management*
+Includes analyses related to management performance. Work on this category is resource limited.
+*Short term forecasts*
+Includes requests for biological and environmental forecasts. These forecasts may be forthcoming from CEFI products once they are tested. 
+*Regime shifts*
+Many analyses have been conducted and are in progress for individual ecosystem components, but a unifying framework with consistent methods is needed for the SOE.
+*Multiple system drivers*
+This category has the most requests. Most unranked requests from 2023 are in this category. Prioritization within this category is sorely needed.
+*Functional group level status/thresholds/reference points*
+Most of these requests are in progress. 
+*Stock level indicators*
+Requests for this information may be more appropriately directed to stock specific ecosystem products such as Ecosystem and Socioeconomic Profiles (ESPs). 
+
+---
+## Discussion of 2023 and 2024 requests (1 of 2)
+
+These newer requests were ranked highest within each category
+
+
+*  System level thresholds/reference points: highest
+    + maintain high priority on trend/threshold evaluation
+    + express indicators relative to biological thresholds
+    + standardize uncertainty language (IPCC)
+    + longer term: simulation analysis of thresholds
+
+*  Management: high  
+    + include indicators for risk policy/risk assessment processes
+    
+*  Short term forecasts: high 
+    + include CEFI projections
+    
+*  Regime shifts: high 
+    + instead characterize current conditions in context of expected short term change
+
+SSC: link to [full list](https://docs.google.com/spreadsheets/d/1sULWI4xkeCMToktNOc69CQAjk50Mv7ZfZAOaL9C9PI8/edit?usp=drive_link), comments welcome!
+
+---
+## Discussion of 2023 and 2024 requests (2 of 2)
+
+These newer requests were ranked highest within each category
+
+*  Multiple system drivers: moderate-high
+    + profits vs revenue: provide incomplete net revenue and index of costs
+    + clarify objectives and terminology for fishing community engagement/reliance/EEJ
+        + time series of community indicators
+        + social and economic linkages to climate
+        + consider appropriate scale for indicators
+
+*  Functional group level status/thresholds/reference points: moderate
+    + not specifically prioritized
+    + include more aggregations for biomass and landings (Council-managed, status)
+
+*  Stock level indicators: moderate, ESPs
+    + not specifically prioritized 
+    + cross reference ESP products where appropriate
+    
+
+
+SSC: link to [full list](https://docs.google.com/spreadsheets/d/1sULWI4xkeCMToktNOc69CQAjk50Mv7ZfZAOaL9C9PI8/edit?usp=drive_link), comments welcome!
+---
+## MAFMC Ecosystem Approach to Fisheries Management
+
+.pull-left[
+* 2016 Ecosystem Approach to Fishery Management (EAFM) [Policy Guidance document](
+http://www.mafmc.org/s/EAFM-Doc-Revised-2019-02-08.pdf)
+
+.center[
+![:img EAFM Policy Guidance Doc Word Cloud, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_EAFMwordcloud.png)
+]
+
+]
+
+.pull-right[
+* Mid-Atlantic EAFM framework:
+.center[
+![:img Mid-Atlantic EAFM framework, 100%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Framework.png)
+]
+
+]
+???
+The Council’s EAFM framework has similarities to the IEA loop on slide 2. It uses risk assessment as a first step to prioritize combinations of managed species, fleets, and ecosystem interactions for consideration. Second, a conceptual model is developed identifying key environmental, ecological, social, economic, and management linkages for a high-priority fishery. Third, quantitative modeling addressing Council-specified questions and based on interactions identified in the conceptual model is applied to evaluate alternative management strategies that best balance management objectives. As strategies are implemented, outcomes are monitored and the process is adjusted, and/or another priority identified in risk assessment can be addressed. 
+
+`r Cite(myBib, "depiper_operationalizing_2017")`
+`r Cite(myBib, "bastille_improving_2021")`
+`r Cite(myBib, "muffley_there_2021")`
+`r Cite(myBib,"gaichas_implementing_2018")`
+`r Cite(myBib,"depiper_learning_2021")`
+`r Cite(myBib, "gaichas_framework_2016")`
+
+
+---
+## EAFM Risk Assessment: 2024 Update with new elements
+
+.pull-left[
+*Species level risk elements*
+```{r sptable}
+#tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+# spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
+risk.species<-data.frame(
+  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Chub mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
+  Assess  = c("l", "l", "l",  "l", "l", "l", "h", "l", "lm", "h", "l", "h", "l", "l", "h", "na", "na"),
+  Fstatus = c("l", "l", "h", "l", "l", "l", "lm", "l", "lm", "lm", "l", "h", "l", "h", "lm", "na", "na"),
+  Bstatus = c("l", "l", "lm", "l", "l", "h", "lm", "lm", "lm", "lm", "lm", "mh", "lm", "l", "lm", "na", "na"),
+  #FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
+  #FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
+  PreyA = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
+  PredP = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
+  FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
+  Climate = c("h", "mh", "lm", "lm", "mh", "lm", "na", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
+  DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "na", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
+  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na"),
+  OffHab = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd")#,
+)
+
+
+# these elements were removed by the council
+#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
+#  FoodSafe = c(),
+
+# one column test
+# risk.species %>%
+#   mutate(Fstatus = 
+#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
+#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
+
+#convert to longer text for consistency and display in html table
+risk.species <- risk.species %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#generalize to all
+risk.species %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+```
+.contrib[
+* Mackerel and dogfish **Fstatus** risk reduced to low, Summer flounder risk increased to high. Spiny dogfish **Bstatus** risk decreased to low
+* Indicators in development for new Prey Availability, Predation Pressure, and Offshore Habitat elements
+]  
+
+*Ecosystem level risk elements*
+```{r ecotable}
+#tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.eco<-data.frame(
+  System = c("Mid-Atlantic"),
+  EcoProd = c("lm"),
+  #EcoDiv = c("lm"),
+  CommVal = c("mh"),
+  RecVal = c("lm"),
+  FishRes1 = c("l"),
+  FishRes2 = c("mh"),
+  #CommJobs = c("mh"),
+  #RecJobs = c("l"),
+  ComDiv = c("l"),
+  RecDiv = c("tbd"),
+  Social = c("lm"),
+  ComFood = c("mh"),
+  RecFood = c("mh")
+)
+
+#convert to longer text for consistency and display in html table
+risk.eco <- risk.eco %>%
+     mutate_at(vars(-System), function(x){
+       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#make table
+risk.eco %>%
+  mutate_at(vars(-System), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+
+```
+.contrib[
+* Recreational value risk increased from low to low-moderate
+* Recreational diversity added, risk criteria in development
+]  
+]  
+
+.pull-right[ 
+*Species and Sector level risk elements*
+```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
+#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.sppsector<-data.frame(
+  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
+  FControl =  c(1,1,2,2,4,1,4,2,2,1,1,1,2,9,1,1,2,2,1,1,1,1,1,9),
+  Interact = c(1,1,1,2,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
+  #OceanUse =    c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
+  OSW1 =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
+  OSW2 =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
+  OtherUse =    c(6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6),
+  RegComplex =  c(1,1,4,2,4,2,4,2,2,4,3,3,3,1,1,2,1,3,2,1,4,1,1,9),
+  Discards =    c(3,3,3,3,3,3,3,4,2,2,3,3,1,1,1,1,1,2,2,2,2,1,1,9),
+  Allocation =  c(1,1,4,1,4,1,4,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,9) 
+)
+
+
+#convert to text for consistency
+risk.sppsector <- risk.sppsector %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na",
+              '6' = 'tbd')}) %>%
+     as.data.frame()
+
+#make table
+risk.sppsector %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey", "black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 10) 
+
+```
+.contrib[
+* Management fully updated for existing elements 
+* Offshore wind (OSW) risks split into 2 new elements in development, non-OSW uses added
+]
+]
+
+---
+## New elements under discussion, and elements with indicator or criteria updates
+
+.pull-left[
+
+## New Ecological
+
+*   Food web: prey availability
+*   Food web: predation pressure
+*   Offshore habitat
+
+## New Economic and Social
+
+*   Recreational diversity
+
+## New Management
+
+*  Other ocean activities
+    +  Split out offshore wind
+        +  Biological/ecological risks 
+        +  Survey/fishery access risks
+    +  Split out non-wind activities
+
+
+]
+
+
+.pull-right[
+## Update Ecological
+
+*   Ecological production: add indicator
+
+## Update Economic and Social
+
+*   Commercial fishing: review additonal indicator
+*   Shoreside support: update time series
+*   Fishing community vulnerability: new indicators
+
+## Update Management
+
+*  Discards: refine criteria
+
+]
+
+---
+## Updating the risk assessment: static &rarr; dynamic indicators
+
+Example: Evaluate risks posed by prey availability to achieving OY for Council managed species
+
+
+.pull-left[
+```{r}
+
+fallmacro <- readRDS(url("https://github.com/NOAA-EDAB/foodweb-risk/raw/main/preyindices/fallmacrobenthosindex.rds"))
+
+fixmacro<- fallmacro |>
+      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      dplyr::summarise(max = max(Value))
+
+    p <- fallmacro |>
+      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate",
+                               "Fall Macrobenthos Biomass Index Estimate SE"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
+      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
+      #max = as.numeric(Value)) |>
+      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
+      dplyr::left_join(fixmacro) |>
+      dplyr::mutate(#Value = Value/resca,
+        Mean = as.numeric(Mean),
+        #max = as.numeric(Value),
+        Mean = Mean/max,
+        SE = SE/max,
+        Upper = Mean + SE,
+        Lower = Mean - SE) |>
+      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
+      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+      #                  ymin = -Inf, ymax = Inf) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+      ggplot2::geom_point()+
+      ggplot2::geom_line()+
+      ggplot2::ggtitle("Benthic invertebrate prey index")+
+      ggplot2::ylab(expression("Relative macrofauna biomass"))+
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::facet_wrap(.~EPU)+
+      ecodata::geom_gls()+
+      ecodata::theme_ts()+
+      ecodata::theme_facet()+
+      ecodata::theme_title()
+    
+  p 
+  
+```
+
+```{r}
+
+p  <-  ecodata::forage_index |>
+      dplyr::filter(Var %in% c("Fall Forage Fish Biomass Estimate",
+                               "Fall Forage Fish Biomass Estimate SE"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
+      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
+      #max = as.numeric(Value)) |>
+      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
+      dplyr::left_join(fixmacro) |>
+      dplyr::mutate(#Value = Value/resca,
+        Mean = as.numeric(Mean),
+        #max = as.numeric(Value),
+        Mean = Mean/max,
+        SE = SE/max,
+        Upper = Mean + SE,
+        Lower = Mean - SE) |>
+      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
+      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+      #                  ymin = -Inf, ymax = Inf) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+      ggplot2::geom_point()+
+      ggplot2::geom_line()+
+      ggplot2::ggtitle("Forage fish prey index")+
+      ggplot2::ylab(expression("Relative forage biomass"))+
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::facet_wrap(.~EPU)+
+      ecodata::geom_gls()+
+      ecodata::theme_ts()+
+      ecodata::theme_facet()+
+      ecodata::theme_title()
+
+p
+```
+
+]
+
+.pull-right[
+```{r}
+
+mafmc_cond <- c("Atlantic mackerel",
+           "Black sea bass",
+           "Bluefish",
+           "Butterfish",
+           "Goosefish",
+           "Illex", #not in condition
+           "Loligo",  #not in condition
+           "Scup",
+           "Spiny dogfish",
+           "Summer flounder",
+           "Surf clam",  #not in condition
+           "Ocean quahog")  #not in condition
+           #"Clams", # Atlantic surfclam and ocean quahog not separate groups
+           #"Tilefish") # Blueline and golden tilefish not separate groups
+
+AnnualRelCond2023_Fall <- readr::read_csv("https://raw.githubusercontent.com/NOAA-EDAB/foodweb-risk/main/condition/AnnualRelCond2023_Fall.csv")
+
+
+
+survEPUcond <- AnnualRelCond2023_Fall |>
+  dplyr::select(Time = YEAR,
+                Var = Species,
+                EPU,
+                Value = MeanCond,
+                nCond) |>
+  dplyr::group_by(EPU, Var) |>
+  dplyr::mutate(scaleCond = scale(Value,scale =T,center=T)) 
+
+xs <- quantile(survEPUcond$scaleCond, seq(0,1, length.out = 6), na.rm = TRUE)
+
+survEPUcond <- survEPUcond |>
+  dplyr::mutate(category = cut(scaleCond,
+                                  breaks = xs,
+                                  labels = c( "Poor Condition",
+                                              "Below Average",
+                                              "Neutral",
+                                              "Above Average",
+                                              "Good Condition"),
+                                  include.lowest = TRUE))
+
+condquants <- data.frame(ymin = xs[1:5],
+                         ymax = xs[2:6],
+                         category = sort(unique(survEPUcond$category))
+)
+
+vir <- viridis::viridis_pal()(5)
+
+mafmcsurvEPUcond <- survEPUcond |>
+  dplyr::filter(Var %in% mafmc_cond[2], #BSB
+                EPU %in% c("MAB"))
+
+p <-   ggplot2::ggplot() +
+  ggplot2::theme_bw() +
+  ggplot2::geom_rect(data = condquants,
+                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
+                     alpha = .3) +
+  ggplot2::scale_fill_manual(values=vir) +
+  ggplot2::geom_point(data= mafmcsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
+  #ggplot2::geom_hline(yintercept = xs[2:5]) +
+  #ggplot2::geom_line() +
+  ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
+  ggplot2::ylab("Scaled condition") +
+  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var), "fall body condition")) +
+  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
+
+p
+
+```
+
+```{r}
+mafmcsurvEPUcond <- survEPUcond |>
+  dplyr::filter(Var %in% mafmc_cond[3], #Bluefish
+                EPU %in% c("MAB"))
+
+p <-   ggplot2::ggplot() +
+  ggplot2::theme_bw() +
+  ggplot2::geom_rect(data = condquants,
+                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
+                     alpha = .3) +
+  ggplot2::scale_fill_manual(values=vir) +
+  ggplot2::geom_point(data= mafmcsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
+  #ggplot2::geom_hline(yintercept = xs[2:5]) +
+  #ggplot2::geom_line() +
+  ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
+  ggplot2::ylab("Scaled condition") +
+  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var), "fall body condition")) +
+  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
+
+p
+```
+
+
+]
+
+
+???
+Council and Advisory Panel members recommended new elements addressing human dimensions (recreational access equity), new elements addressing cross-sectoral impacts (offshore wind impacts on biology and ecosystem as well as fishery access and scientific sampling), and transitions from static ecosystem indicators to time series indicators (prey availability, predation pressure, and fishing community vulnerability). New ecosystem science was required to support these requests. The process included development of new indicators of prey availability based on spatio-temporal modeling using ecological datasets (stomach contents, zooplankton), and new spatial analyses of habitat, revenue, and surveys relative to wind energy development areas. Development of potential risk criteria is ongoing; thresholds between low, moderate, and high risk that are essential to operational use are developed collaboratively with Council and Advisory Panel members. 
+
+The slide shows a higher risk example (black sea bass, low recent condition correlated with recently declining prey) and a lower risk example (bluefish, despite a long term decline in forage fish prey. recent condition has been good)
+
+`r Cite(myBib, "gaichas_assessing_2023")`
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/CCCVITarsila.png")
+background-size: 1080px
+background-position: bottom
+
+## Updating the risk assessment: static &rarr; dynamic indicators
+
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/windriskBrandon.png")
+background-size: 1080px
+background-position: bottom
+
+## Updating the risk assessment: static &rarr; dynamic indicators
+
+
+
