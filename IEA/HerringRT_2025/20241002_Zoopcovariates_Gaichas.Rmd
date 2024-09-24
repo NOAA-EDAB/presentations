@@ -61,29 +61,32 @@ myBib <- ReadBib("./FishDiet_Ecoindicators.bib", check = FALSE)
 #           dashed = FALSE
 
 ```
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/forageSeattleTimes.png"), url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/allcomponents.png")
-background-size: 590px, 550px
-background-position: top left, bottom right
+# Does food drive recruitment of Atlantic herring?
 
-.right[
-# Motivation
+## Atlantic herring, *Clupea harengus*
 
-Small pelagics as forage; 
-Importance as a group  
-
-How much?  
-Where and when?  
-Drive predator and fishery distributions  
+.pull-left[
+![Atlantic herring illustration, credit NOAA Fisheries](https://www.fisheries.noaa.gov/s3/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png)
 ]
 
+.pull-right[
+.large[
+
+"The herring is a plankton feeder.... Examination of 1 ,500 stomachs showed that adult herring near Eastport were living solely on copepods and on pelagic euphausiid shrimps (*Meganyctiphanes norwegica*), fish less than 4 inches long depending on the former alone, while the larger herring were eating both." `r Cite(myBib, "collette_bigelow_2002")`
+
+]
+]
 
 ???
+When first hatched, and before the disappearance of the yolk sac, the larvae (European) feed on larval snails and crustaceans, on diatoms, and on peridinians, but they soon begin taking copepods, and depend exclusively on these for a time after they get to be 12 mm. long, especially on the little Pseudocalanus elongatus. As they grow older they feed more and more on the larger copepods and amphipods, pelagic shrimps, and decapod crustacean larvae.
 
 
 ---
 ## Outline
 
 .pull-left-60[
+
+1. Covariate selection
 
 1. Stock assessment application
 
@@ -97,6 +100,25 @@ Drive predator and fishery distributions
 https://xkcd.com/1138
 ]
 ]
+
+---
+## Covariate selection
+
+Which zooplankton index is likely to affect recruitment and why?
+
+.pull-left[
+
+herring conceptual model
+
+]
+
+.pull-right[
+
+Adelle's boosted regression tree results
+
+]
+
+
 
 
 ---
@@ -208,13 +230,18 @@ NEFSC survey strata definitions are built into the VAST `northwest-atlantic` ext
 ## Integrating into stock assessment 
 
 .pull-left[
-A new bluefish stock assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")`.
+A new herring stock assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")`.
 
 WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
 
-Forage fish indices were explored as covariates on catchability for the fishery independent bottom trawl surveys (R/V Bigelow), but did not improve the assessment.
+Zooplankton indices were explored as covariates on herring recruitment.
 
-However, the application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error.  
+We explored indices with different zooplankton groups, seasons, and regions according to herring life history and results from the boosted regression tree:
+
+*  Jan-Jun large copepods  in spring herring BTS strata with lag-0 to represent food for pre-recruit juveniles
+*  Jul-Dec small copepods in fall herring BTS strata with lag-1 to represent food for larvae in general
+*  Sep-Feb small copepods in herring larval area with lag-1 to represent food for larvae more specifically
+
 ]
 
 .pull-right[
