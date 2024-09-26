@@ -39,6 +39,7 @@ library(patchwork)
 library(ggpubr)
 library(data.table)
 library(forcats)
+library(FishStatsUtils)
 ```
 
 ```{r, load_refs, include=FALSE, cache=FALSE}
@@ -527,6 +528,39 @@ Zooplankton stations, January-June Northeast Fisheries Science Center surveys
 ???
 
 ---
+## Zooplankton groups
+
+These models are for the following copepod categories:
+
+*  Calanus finmarchicus (calfin_100m3) = "calfin" in table below,
+*  Large copepods (calfin_100m3, mlucens_100m3, calminor_100m3, euc_100m3, calspp_100m3) = "lgcopeALL", 
+*  Small copepods (all) (ctyp_100m3, pseudo_100m3, tlong_100m3, cham_100m3, para_100m3, acarspp_100m3, clauso, acarlong_100m3, fur_100m3, ost_100m3, temspp_100m3, tort_100m3, paraspp_100m3) = "smallcopeALL" and 
+*  Small copepods (SOE) (ctyp_100m3, pseudo_100m3, tlong_100m3, cham_100m3) = "smallcopeSOE".
+
+Actual species in each:
+
+*   Calanus finmarchicus, = Large copeopds SOE (used in small-large index) 
+
+*   Large copepods ALL:  Calanus finmarchicus,  Metridia lucens, Calanus minor,  Eucalanus spp.,  Calanus spp.
+
+*   Small copepods ALL:  Centropages typicus, Pseudocalanus spp., Temora longicornis, Centropages hamatus, Paracalanus parvus, Acartia spp., Clausocalanus arcuicornis, Acartia longiremis, Clausocalanus furcatus,  Temora stylifera, Temora spp., Tortanus discaudatus, Paracalanus spp.
+
+*   Small copeopods SOE (used in small-large index):  Centropages typicus, Pseudocalanus spp., Temora longicornis, Centropages hamatus
+
+Groups proposed for the herring RT are
+
+*   Large copepods ALL:  Calanus finmarchicus,  Metridia lucens, Calanus minor,  Eucalanus spp.,  Calanus spp.
+
+*   Small copepods ALL:  Centropages typicus, Pseudocalanus spp., Temora longicornis, Centropages hamatus, Paracalanus parvus, Acartia spp., Clausocalanus arcuicornis, Acartia longiremis, Clausocalanus furcatus,  Temora stylifera, Temora spp., Tortanus discaudatus, Paracalanus spp.
+
+---
+## Where and when are herring larvae present?
+
+Another VAST model based on herring larvae collected on the same surveys as the zooplankton
+
+
+
+---
 ## Spatial partitioning: examining zooplankton trends at multiple scales
 
 ```{r}
@@ -551,9 +585,7 @@ D70pct_nwast <- readRDS(url("https://github.com/NOAA-EDAB/zooplanktonindex/raw/m
 
 # MAB EPU
 MAB2 <- D70pct_nwast %>% 
-  dplyr::filter(stratum_number %in% MAB) %>%
-  dplyr::select(stratum_number2) %>%
-  dplyr::distinct()
+  dplyr::filter(stratum_number %in% MAB) 
 
 # MAB herring larvae area
 MAB2herr <- MAB2 %>%
@@ -565,9 +597,7 @@ MAB2out <- MAB2 %>%
 
 # Georges Bank EPU
 GB2 <- D70pct_nwast %>% 
-  dplyr::filter(stratum_number %in% GB) %>%
-  dplyr::select(stratum_number2) %>%
-  dplyr::distinct()
+  dplyr::filter(stratum_number %in% GB) 
 
 # GB herring larvae
 GB2herr <- GB2 %>%
@@ -579,9 +609,7 @@ GB2out <- GB2 %>%
 
 # gulf of maine EPU 
 GOM2 <- D70pct_nwast %>%
-  dplyr::filter(stratum_number %in% GOM) %>%
-  dplyr::select(stratum_number2) %>%
-  dplyr::distinct()
+  dplyr::filter(stratum_number %in% GOM)
 
 # GOM herring larvae
 GOM2herr <- GOM2 %>%
@@ -593,9 +621,7 @@ GOM2out <- GOM2 %>%
 
 # scotian shelf EPU 
 SS2 <- D70pct_nwast %>%
-  dplyr::filter(stratum_number %in% SS) %>%
-  dplyr::select(stratum_number2) %>%
-  dplyr::distinct()
+  dplyr::filter(stratum_number %in% SS) 
 
 # SS herring larvae
 SS2herr <- SS2 %>%
@@ -613,26 +639,20 @@ nolarv <- dplyr::bind_rows(MAB2out, GB2out, GOM2out, SS2out)
 
 # spring herring NEFSC BTS
 her_spr2 <- D70pct_nwast %>%
-  dplyr::filter(stratum_number %in% herring_spring) %>%
-  dplyr::select(stratum_number2) %>%
-  dplyr::distinct()
+  dplyr::filter(stratum_number %in% herring_spring) 
 
 # fall herring NEFSC BTS
 her_fall2 <- D70pct_nwast %>%
-  dplyr::filter(stratum_number %in% herring_fall) %>%
-  dplyr::select(stratum_number2) %>%
-  dplyr::distinct()
+  dplyr::filter(stratum_number %in% herring_fall) 
 
 # all epus
 allEPU2 <- D70pct_nwast %>%
-  dplyr::filter(stratum_number %in% c(MAB, GB, GOM, SS)) %>%
-  dplyr::select(stratum_number2) %>%
-  dplyr::distinct()
+  dplyr::filter(stratum_number %in% c(MAB, GB, GOM, SS)) 
 
 
 ```
 
-```{r maps, crop=TRUE, fig.cap="Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown.", fig.show='hold', out.width="33%"}
+```{r maps, crop=TRUE, fig.cap="Maps of key areas for Herring assessment indices. The full VAST model grid is shown in brown.", fig.show='hold', out.width="33%"}
 
 theme_set(theme_bw())
 
@@ -677,7 +697,7 @@ background-image: url("https://github.com/NOAA-EDAB/forageindex/raw/main/pyindex
 background-size: 560px
 background-position: right top
 
-## Results: Fall Forage Index
+## Results: Jan-Jun (Spring) large copepods
 
 ```{r}
 # strata.limits <- as.list(c("AllEPU" = allEPU2, 
@@ -787,7 +807,7 @@ Fig 4. Mean occupancy habitats at the 20% (light blue) and 80% (dark blue) quant
 ]
 
 ---
-## Comparisons: Design based survey aggregate forage
+## Comparisons: Ecodata and VAST
 
 .pull-left[
 ```{r tscomp}
