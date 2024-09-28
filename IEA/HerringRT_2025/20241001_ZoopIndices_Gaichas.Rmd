@@ -662,9 +662,10 @@ ggplot(data = ecodata::coast) +
   geom_point(data = MAB2, aes(x = Lon, y = Lat), colour = "green3", size=0.05, alpha=0.5) +
   geom_point(data = GB2, aes(x = Lon, y = Lat), colour = "orange", size=0.05, alpha=0.5) +
   geom_point(data = GOM2, aes(x = Lon, y = Lat), colour = "red", size=0.05, alpha=0.5) +
+  geom_point(data = SS2, aes(x = Lon, y = Lat), colour = "purple", size=0.05, alpha=0.1) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) + #full extent of VAST model
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) + #zoomed to Hatteras and N
-  ggtitle("MAB (green), GB (orange), GOM (red)")
+  ggtitle("MAB (green), GB (orange), GOM (red), SS(purple)")
 
 
 ggplot(data = ecodata::coast) +
@@ -680,10 +681,10 @@ ggplot(data = ecodata::coast) +
   geom_sf() + 
   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
   geom_point(data = her_spr2, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
-  geom_point(data = herrlarv, aes(x = Lon, y = Lat), size=0.03, colour = "purple",  alpha=0.5) +
+  geom_point(data = herrlarv, aes(x = Lon, y = Lat), size=0.03, colour = "blue",  alpha=0.5) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
-  ggtitle("Herring larval area Sept-Feb (purple), over spring survey strata (yellow")
+  ggtitle("Herring larval area Sept-Feb (blue), over spring survey strata (yellow")
 
 ```
 
@@ -693,29 +694,26 @@ Indices for zooplankton can be calculated for any subset of the full model domai
 NEFSC survey strata definitions are built into the VAST `northwest-atlantic` extrapolation grid already. We defined additional new strata to address the recreational inshore-offshore 3 mile boundary. The area within and outside 3 miles of shore was defined using the `sf` R package as a 3 nautical mile (approximated as 5.556 km) buffer from a high resolution coastline from the`rnaturalearth` R package. This buffer was then intersected with the current `FishStatsUtils::northwest_atlantic_grid` built into VAST and saved using code [here](https://github.com/sgaichas/bluefishdiet/blob/main/VASTcovariates_updatedPreds_sst_3mi.Rmd#L49-L94). Then, the new State and Federal waters strata were used to split NEFSC survey strata where applicable, and the new full set of strata were used along with a modified function from `FishStatsUtils::Prepare_NWA_Extrapolation_Data_Fn` to build a custom extrapolation grid for VAST as described in detail [here](https://sgaichas.github.io/bluefishdiet/VASTcovariates_finalmodbiascorrect_3misurvstrat.html). 
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/forageindex/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
-background-size: 560px
-background-position: right top
-
-## Results: Jan-Jun (Spring) large copepods
+## Comparison: Ecodata and VAST annual *Calanus finmarchicus*
 
 ```{r}
-# strata.limits <- as.list(c("AllEPU" = allEPU2, 
-#                            "MABGB" = MABGB2,
-#                            "MABGBstate" = MABGBstate,
-#                            "MABGBfed" = MABGBfed,
-#                            "MAB" = MAB2,
-#                            "GB" = GB2,
-#                            "GOM" = GOM2,
-#                            "bfall" = bfall2,
-#                            "bfin" = bfinshore2,
-#                            "bfoff" = bfoffshore2,
-#                            "MABGBalbinshore" = albinshore2,
-#                            "MABGBothoffshore" = MABGBothoffshore2,
-#                            "albbfin" = albbfinshore,
-#                            "albbfall" = albbfall,
-#                            "allother" = allother2))
+
 stratlook <- data.frame(Stratum = c("Stratum_1",
+                                    "Stratum_2",
+                                    "Stratum_3",
+                                    "Stratum_4",
+                                    "Stratum_5",
+                                    "Stratum_6",
+                                    "Stratum_7"),
+                        Region  = c("AllEPU",
+                                    "her_sp",
+                                    "her_fa",
+                                    "MAB",
+                                    "GB",
+                                    "GOM",
+                                    "SS"))
+
+stratlook2 <- data.frame(Stratum = c("Stratum_1",
                                     "Stratum_2",
                                     "Stratum_3",
                                     "Stratum_4",
@@ -723,61 +721,119 @@ stratlook <- data.frame(Stratum = c("Stratum_1",
                                     "Stratum_6",
                                     "Stratum_7",
                                     "Stratum_8",
-                                    "Stratum_9",
-                                    "Stratum_10",
-                                    "Stratum_11",
-                                    "Stratum_12",
-                                    "Stratum_13",
-                                    "Stratum_14",
-                                    "Stratum_15"),
-                        Region  = c("AllEPU", 
-                                    "MABGB", 
-                                    "MABGBstate", 
-                                    "MABGBfed", 
+                                    "Stratum_9"),
+                        Region  = c("AllEPU",
+                                    "her_sp",
+                                    "her_fa",
+                                    "her_larv",
+                                    "no_larv",
                                     "MAB",
                                     "GB",
                                     "GOM",
-                                    "bfall",
-                                    "bfin",
-                                    "bfoff",
-                                    "MABGBalbinshore",
-                                    "MABGBothoffshore",
-                                    "albbfin",
-                                    "albbfall",
-                                    "allother"))
+                                    "SS"))
+
+source(here::here("IEA/HerringRT_2025/R/utils_VASToutput.R"))
+
+outdir <- here::here("IEA/HerringRT_2025/mods")
+moddirs <- list.dirs(outdir) 
+moddirs <- moddirs[-1]
+# keep folder name
+modnames <- list.dirs(outdir, full.names = FALSE)
+
+modselect <- modtable(moddirs)
+
+# lets only look at indices for converged models
+modcompare_conv <- modselect |>
+  dplyr::ungroup() |>
+  dplyr::filter(converged2 == "likely") |>
+  dplyr::select(modname) |>
+  as.vector() |>
+  unname() |>
+  unlist()
+
+moddirs_conv <-  moddirs[grepl(sprintf("\\.*(%s)$", paste(modcompare_conv, collapse = '|')), moddirs)]
+
+
+modcompareindex <- purrr::map_dfr(moddirs_conv, purrr::possibly(getmodindex, otherwise = NULL))
+
+splitoutput <- modcompareindex %>%
+  dplyr::mutate(Season = modname |> map(str_split, pattern = "_") |> map_chr(c(1,2))) %>%
+  dplyr::mutate(Data = modname |> map(str_split, pattern = "_") |> map_chr(c(1,1))) %>%
+  dplyr::mutate(Estimate = ifelse(Estimate == 0, NA, Estimate)) |>
+  dplyr::left_join(stratlook)
+
+# only larvarea models have this strata set
+splitoutput2 <- modcompareindex %>%
+  dplyr::filter(str_detect(modname, "larvarea")) |>
+  dplyr::mutate(Season = modname |> map(str_split, pattern = "_") |> map_chr(c(1,2))) %>%
+  dplyr::mutate(Data = modname |> map(str_split, pattern = "_") |> map_chr(c(1,1))) %>%
+  dplyr::mutate(Estimate = ifelse(Estimate == 0, NA, Estimate)) |>
+  dplyr::left_join(stratlook2)
+
+zoomax <- max(splitoutput$Estimate, na.rm=T)
+
+zootsmean <- splitoutput %>%
+  dplyr::group_by(modname, Region) %>%
+  dplyr::mutate(fmean = mean(Estimate, na.rm=T)) 
+
 ```
+
+```{r}
+VASTmean <- splitoutput |>
+    dplyr::filter(Data %in% c("calfin"),
+                  Season %in% c("annual"),
+                  Region %in% c("MAB", "GB", "GOM")) |>
+    dplyr::group_by(Region, Season) |>
+    dplyr::summarise(tsmean = mean(Estimate))
+
+VASTanom <- splitoutput |>
+    dplyr::filter(Data %in% c("calfin"),
+                  Season %in% c("annual"),
+                  Region %in% c("MAB", "GB", "GOM")) |>
+    dplyr::left_join(VASTmean) |>
+    dplyr::group_by(Region, Season) |>
+    dplyr::mutate(#Value = Value/resca,
+      Mean = as.numeric(Estimate),
+      SE = Std..Error.for.Estimate,
+      Mean = (Mean-tsmean)/tsmean,
+      SE = (SE-tsmean)/tsmean,
+      Upper = Mean + SE,
+      Lower = Mean - SE) |>
+  dplyr::rename(EPU = Region)
+
+SOEcalfin <- ecodata::zoo_abundance_anom |>
+  dplyr::mutate(Value = as.numeric(Value)) |>
+  dplyr::filter(Var == "Calfin") |>
+  ggplot2::ggplot(aes(x = Time, y = Value)) +
+  ggplot2::geom_point() + 
+  ggplot2::geom_line() + 
+  ecodata::geom_gls() +
+  ggplot2::geom_line(data = VASTanom, aes(x=Time, y=Mean), color = "blue") +
+  ecodata::theme_facet() +
+  ggplot2::facet_wrap(~EPU)
+
+SOEcalfin + ggplot2::ggtitle("Calanus finmarchicus annual anomaly: ecodata in black; VAST in blue")
+
+```
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/forageindex/raw/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/ln_density-predicted.png")
+background-size: 560px
+background-position: right top
+
+## Results: Jan-Jun (Spring) large copepods
+
 
 .pull-left[
 
-```{r fallall, fig.asp=1.0}
+```{r fallall, fig.asp=2.0}
 #, fig.cap="Fall forage indices scaled to the maximum value (Mid Atlantic 1985) for ecoregions Georges Bank (GB), Gulf of Maine (GOM), Mid Atlantic Bight (MAB), and bluefish assessment index areas in state waters within 3 miles of shore (StateWaters) and bottom trawl survey index strata (SurveyBluefish)."
-splitout <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/forageindex/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv")
-splitoutput <- splitout %>%
-  dplyr::left_join(stratlook) %>%
-  dplyr::filter(Region %in% c("GOM", "GB", "MAB","MABGBstate", "bfin")) %>%
-  dplyr::mutate(Type = ifelse(Region %in% c("GOM", "GB", "MAB"), "Ecoregion", "Bluefish"),
-                Region = case_when(Region == "MABGBstate" ~ "StateWaters",
-                                   Region == "bfin" ~ "SurveyBluefish",
-                                   TRUE ~ Region))
 
-foragemax <- max(splitoutput$Estimate)
-
-ggplot(splitoutput, aes(x=Time, y=Estimate, colour=Region)) +
-  #geom_errorbar(aes(ymin=Estimate+Std..Error.for.Estimate, ymax=Estimate-Std..Error.for.Estimate))+
-  geom_ribbon(aes(ymin=Estimate+Std..Error.for.Estimate, ymax=Estimate-Std..Error.for.Estimate, fill=Region), linetype = 0, alpha = 0.15)+
-  geom_point(aes(shape=Region))+
-  geom_line()+
-  scale_color_manual(values=c("orange", "red", "green3", "purple", "blue")) +
-  scale_fill_manual(values=c("orange", "red", "green3", "purple", "blue")) +
-  facet_wrap(~fct_relevel(Type, "Ecoregion", "Bluefish"), scales = "free_y", ncol = 1) +
-  scale_y_continuous(labels=function(x)round(x/foragemax, digits = 2))+
-  ylab("Relative forage biomass scaled to maximum")  
-  
-  
-  #guides(colour = guide_legend(ncol=2)) +
-  #theme(legend.position = c(1, 0),
-  #      legend.justification = c(1, 0))
-  #theme(legend.position="none")
+plot_zooindices(splitoutput = splitoutput, 
+             plotdata = "lgcopeALL", 
+             plotregions = c("her_sp", "her_fa", "MAB", "GB", "GOM", "SS", "AllEPU"), 
+             plottitle = "Large copeopods") 
 ```
 
 VAST estimated Fall forage biomass density &rarr;

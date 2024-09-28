@@ -160,3 +160,142 @@ getmodindex <- function(d.name){
   
   return(out)
 }
+
+# plot indices as facets season columns region rows
+plot_zooindices <- function(splitoutput, plotdata, plotregions, plottitle){
+  
+  filterEPUs <- plotregions #c("her_sp", "her_fa", "MAB", "GB", "GOM", "SS", "AllEPU")
+  
+  seasons <- splitoutput |> dplyr::filter(Data==plotdata) |> dplyr::select(Season) |> dplyr::distinct()
+  
+  ncols <- dim(seasons)[1]
+  
+  currentMonth <- lubridate::month(Sys.Date())
+  currentYear <- lubridate::year(Sys.Date())
+  if (currentMonth > 4) {
+    endShade <- currentYear
+  } else {
+    endShade <- currentYear - 1
+  }
+  shadedRegion <- c(endShade-9,endShade)
+  
+  shade.alpha <- 0.3
+  shade.fill <- "lightgrey"
+  lwd <- 1
+  pcex <- 2
+  trend.alpha <- 0.5
+  trend.size <- 2
+  hline.size <- 1
+  line.size <- 2
+  hline.alpha <- 0.35
+  hline.lty <- "dashed"
+  label.size <- 5
+  hjust.label <- 1.5
+  letter_size <- 4
+  errorbar.width <- 0.25
+  x.shade.min <- shadedRegion[1]
+  x.shade.max <- shadedRegion[2]
+  
+  setup <- list(
+    shade.alpha = shade.alpha,
+    shade.fill =shade.fill,
+    lwd = lwd,
+    pcex = pcex,
+    trend.alpha = trend.alpha,
+    trend.size = trend.size,
+    line.size = line.size,
+    hline.size = hline.size,
+    hline.alpha = hline.alpha,
+    hline.lty = hline.lty,
+    errorbar.width = errorbar.width,
+    label.size = label.size,
+    hjust.label = hjust.label,
+    letter_size = letter_size,
+    x.shade.min = x.shade.min,
+    x.shade.max = x.shade.max
+  )
+  
+  
+  fix<- splitoutput |>
+    dplyr::filter(Data %in% plotdata, #c("calfin"),
+                  Region %in% filterEPUs) |>
+    dplyr::group_by(Region, Season) |>
+    dplyr::summarise(max = max(Estimate, na.rm=T))
+  
+  p <- splitoutput |>
+    dplyr::filter(Data %in% plotdata, #c("calfin"),
+                  Region %in% filterEPUs) |>
+    dplyr::group_by(Region, Season) |>
+    dplyr::left_join(fix) |>
+    dplyr::mutate(#Value = Value/resca,
+      Mean = as.numeric(Estimate),
+      SE = Std..Error.for.Estimate,
+      Mean = Mean/max,
+      SE = SE/max,
+      Upper = Mean + SE,
+      Lower = Mean - SE) |>
+    ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, linetype = modname, group = modname))+
+    ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+                      xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+                      ymin = -Inf, ymax = Inf) +
+    ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+    ggplot2::geom_point()+
+    ggplot2::geom_line()+
+    ggplot2::ggtitle(plottitle)+
+    ggplot2::ylab(expression("Relative abundance"))+
+    ggplot2::xlab(ggplot2::element_blank())+
+    ggplot2::facet_wrap(Region~Season, ncol = ncols, 
+                        labeller = label_wrap_gen(multi_line=FALSE))+
+    ecodata::geom_gls()+
+    ecodata::theme_ts()+
+    ecodata::theme_facet()+
+    ecodata::theme_title() +
+    ggplot2::theme(legend.position = "bottom")
+  
+  return(p)
+}
+
+# plot indices together to see relative scale
+
+plot_zooindices_onepanel <- function(splitoutput, plotdata, plottitle){
+  
+  fix<- splitoutput |>
+    dplyr::filter(Data %in% plotdata #, 
+                  #Region %in% filterEPUs
+    ) |>
+    dplyr::group_by(Season) |> #Region,
+    dplyr::summarise(max = max(Estimate, na.rm=T))
+  
+  p <- splitoutput |>
+    dplyr::filter(Data %in% plotdata #, #c("calfin"),
+                  #Region %in% filterEPUs
+    ) |>
+    dplyr::group_by(Season) |> #Region, 
+    dplyr::left_join(fix) |>
+    dplyr::mutate(#Value = Value/resca,
+      Mean = as.numeric(Estimate),
+      SE = Std..Error.for.Estimate,
+      Mean = Mean/max,
+      SE = SE/max,
+      Upper = Mean + SE,
+      Lower = Mean - SE) |>
+    ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, linetype = Region, group = Region))+
+    #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+    #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+    #                  ymin = -Inf, ymax = Inf) +
+    ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Region), alpha = 0.5)+
+    ggplot2::geom_point()+
+    ggplot2::geom_line()+
+    ggplot2::ggtitle(plottitle)+
+    ggplot2::ylab(expression("Relative abundance"))+
+    ggplot2::xlab(ggplot2::element_blank())+
+    ggplot2::facet_wrap(~Season, #Region~ ncol = ncols, 
+                        labeller = label_wrap_gen(multi_line=FALSE))+
+    #ecodata::geom_gls()+
+    ecodata::theme_ts()+
+    ecodata::theme_facet()+
+    ecodata::theme_title() +
+    ggplot2::theme(legend.position = "bottom")
+  
+  return(p)
+}
