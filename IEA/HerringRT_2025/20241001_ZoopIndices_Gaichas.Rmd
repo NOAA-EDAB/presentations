@@ -74,7 +74,7 @@ myBib <- ReadBib("./FishDiet_Ecoindicators.bib", check = FALSE)
 .pull-right[
 .large[
 
-"The herring is a plankton feeder.... Examination of 1 ,500 stomachs showed that adult herring near Eastport were living solely on copepods and on pelagic euphausiid shrimps (*Meganyctiphanes norwegica*), fish less than 4 inches long depending on the former alone, while the larger herring were eating both." `r Cite(myBib, "collette_bigelow_2002")`
+"The herring is a plankton feeder.... Examination of 1,500 stomachs showed that adult herring near Eastport were living solely on copepods and on pelagic euphausiid shrimps (*Meganyctiphanes norwegica*), fish less than 4 inches long depending on the former alone, while the larger herring were eating both." `r Cite(myBib, "collette_bigelow_2002")`
 
 ]
 ]
@@ -235,11 +235,11 @@ calfin
 
 1. Which RE model is best? Selection
 
-1. What affects the sampling process? 
+1. Spatial bounds for indices 
 
-1. Which area is most relevant to herring larvae?
+1. Spatial and temporal bounds specific to herring larvae
 
-1. Index sensitivity
+1. Index trends
 
 ]
 
@@ -330,24 +330,21 @@ Estimation uses stochastic partial differential equation (SPDE) approximation.
 
 .pull-left[
 
-Poisson link delta model `r Cite(myBib, "ng_predator_2021")`
-
-this is "Index2", Gamma distribution for positive catches and Alternative "Poisson-link delta-model" using log-link for numbers-density and log-link for biomass per number
-
+Observation model "Index2", Gamma distribution for positive catches and Alternative "Poisson-link delta-model" using log-link for numbers-density and log-link for biomass per number. It is intended for continuous data, which includes biomass data and “numbers standardized to a fixed area.”
 
 Probability of encounter Poisson: $p(i) = 1 - exp[-n(i)]$ *set to 1 for groups found at all stations, e.g. small copepods or zooplankton volume*
 
 Number of zooplankton cells per volume given encounter: $r(i) = \frac{n(i)}{p(i)}w(i)$
 
-Probability for weight $B$:
+]
+
+.pull-right[
+Probability for numbers per volume $B$:
 
 $$ Pr[b(i) = B] =  \begin{cases} 1-p(i), B = 0\\\\p(i) \times g[B|r(i), \sigma_b^2], B > 0 \end{cases},$$  
 
 where $g$ is a Gamma function.  
 
-]
-
-.pull-right[
 Density $b$ at a location (knot) $s$ for year $t$ is then the predicted number of cells per volume (linear predictor for encounter * linear predictor for cells/vol given encounter):
 
 $$\hat{b}_{s,t} = \hat{n}_{s,t}\hat{w}_{s,t}$$
@@ -360,16 +357,15 @@ Bias correction as in `r Cite(myBib, "thorson_implementing_2016")`
 
 ]
 
+???
+I am interpreting zooplankton abundance per 100 cubic meters as numbers standardized to a fixed area (volume) in applying the Gamma observation model.
+
 ---
-## Defining herring prey from stomachs: a mix of zooplankton 
+## Herring prey from adult stomachs: a mix of zooplankton 
 
 .pull-left-30[
-
-![]("https://www.noaa.gov/media/digital-library-photo/pl23fish7968jpg")
-
-![]("https://www.noaa.gov/media/digital-library-photo/pl23fish3327jpg-0")
-
-
+![copepods](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/NOAAzooppics/pl23_fish7968.jpg)
+![euphausiids](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/NOAAzooppics/pl23_fish3327.jpg)
 .contrib[
 Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/tm2020/
 ]
@@ -381,6 +377,78 @@ Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/t
 
 # Use Brian's new Rmd to get herring diet by decade and season or season and region
 
+herringdiet <- readRDS(url("https://github.com/NOAA-EDAB/zooplanktonindex/raw/main/data/herringdiet.rds"))
+
+herringdecseastot <- herringdiet %>%
+  # make decade column
+  # make 2 seasons winter--> spring and summer--> fall
+  dplyr::mutate(decade = floor(year/10)*10) |>
+                #season2 = case_when(season %in% c("WINTER", "SPRING") ~ "SPRING",
+                #                    season %in% c("SUMMER", "FALL") ~ "FALL")) %>%
+                #season2 = case_when(season %in% c( "SPRING") ~ "SPRING",
+                #                    season %in% c( "FALL") ~ "FALL")) %>%
+  dplyr::select(decade, season, totwt) %>%
+  dplyr::distinct() %>%
+  dplyr::group_by(decade, season) %>%
+  dplyr::mutate(totwt2 = sum(totwt, na.rm = TRUE),
+                nyrs = n_distinct(year)) %>%
+  dplyr::select(decade, season, totwt2, nyrs) %>%
+  dplyr::distinct()
+
+diet <- read.csv(here::here("data/allwtp2024-09-28.csv"))
+
+preylook <- read.csv(here::here("data/SASPREY24.csv"))
+
+preylook <- dplyr::select(preylook, c(Pynam, pycomnam, COLLCAT))
+
+# add blueprey list
+decadeseason <- diet %>%
+  dplyr::mutate(copeprey = ifelse(prey %in% c("COPEPO"), TRUE, FALSE),
+                plotcol = ifelse(copeprey, "blue", "lightgrey"),
+                decade = as.integer(gsub("s","",decade))) %>%
+  dplyr::left_join(herringdecseastot, by=c("season" = "season", 
+                                            "decade" = "decade")) %>%
+
+  dplyr::group_by(decade, season) %>%
+  dplyr::filter(meansw>0) %>%
+  dplyr::arrange(desc(copeprey), .by_group = TRUE)
+
+
+bars <- map(unique(decadeseason$decade)
+            , ~geom_bar(aes(width=nyrs), stat = "identity", colour = "white"#, position = "stack", 
+                       , data = decadeseason %>% filter(decade == .x)))
+
+
+p2 <-   ggplot(decadeseason, aes(decade, relmsw, fill=copeprey)) +
+                                    #fill=factor(prey, 
+                                    #            levels = c(as.factor(names(preycolaggsel)),
+                                    #                       setdiff(prey, preycolaggsel)),
+                                    #           ordered = TRUE
+                                    #           ))) +
+   #geom_bar(aes(width=nyrs), stat = "identity") + #
+   bars +
+   ylab("Percent in Diet") +
+   xlab("Decade") +
+   geom_text(aes(y=relmsw, 
+             label = ifelse(relmsw > 3, prey, "")),
+             position = position_stack(vjust = 0.5),
+             size=2.5)+
+   facet_wrap(~fct_relevel(season,"WINTER", "SPRING","SUMMER", "FALL")) +
+   theme_bw() +
+   #viridis::scale_fill_viridis(discrete = TRUE) +
+   scale_fill_manual(values=c( "grey90", "lightblue")) + 
+   theme(legend.position = "none"
+         #legend.position="bottom",
+         #legend.text=element_text(size=5)
+         ) #+
+    #geom_bar_interactive(stat = "identity", aes(tooltip = prey, data_id = prey))
+
+#ggiraph(code = print(p1)) 
+#p1
+
+p2
+
+
 ```
 
 ] 
@@ -389,46 +457,9 @@ Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/t
 ???
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Data_by_year_lgcopeALL_spring.png")
-background-size: 600px
-background-position: right top
-
-## Sampling for zooplankton taxa
-
-.pull-left[
-
-Between 1982-2022 there were: 
-.contrib[
-
-*  25634 NEFSC survey stations with stomach collections. 
-*  22751 NEFSC survey stations with piscivore stomachs. 
-    +  8869 piscivore stations with bluefish prey; 
-    +  39% of piscivore stations have bluefish prey. 
-*  1814 NEFSC survey stations with bluefish stomachs. 
-    +  907 bluefish stations with bluefish prey;
-    +  50% of bluefish stations have bluefish prey.
-*  3838 NEAMAP survey stations with piscivore stomachs
-    +  2369 piscivore stations with bluefish prey;
-    +  62% of piscivore stations have bluefish prey.
-    
-]
-
-]
-
-.pull-right[
-
-<!--![Fall bluefish NEFSC](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishOnlyFallData_by_year.png) -->
-.center[
-.footnote[
-Zooplankton stations, January-June Northeast Fisheries Science Center surveys
-]
-]
-
-]
-???
-
----
 ## Zooplankton groups
+
+Focus is on recruitment, food for larvae through juveniles.
 
 Models developed for the Herring RT are for the following copepod categories:
 
@@ -445,15 +476,116 @@ Models developed for the Herring RT are for the following copepod categories:
 
 
 ---
-## Model selection
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Data_by_year_lgcopeALL_spring.png")
+background-size: 600px
+background-position: right top
 
-Always estimate spatial and spatio-temporal random effects
+## Sampling for zooplankton taxa
+
+.pull-left[
+
+```{r}
+herringfood_stn <- readRDS(url("https://github.com/NOAA-EDAB/zooplanktonindex/raw/main/data/herringfood_stn_all_OISST.rds"))
+
+# make SST column that uses surftemp unless missing or 0
+
+herringfood_stn <- herringfood_stn %>%
+  dplyr::mutate(sstfill = ifelse((is.na(sfc_temp)|sfc_temp==0), oisst, sfc_temp),
+                season_larv = month %in% c(1:2, 9:12)) |>
+  dplyr::filter(year>1981)
+
+seasontot <- herringfood_stn |> 
+  dplyr::group_by(season_ng) |>
+  dplyr::summarise(totstn = n(),
+                   across(c(calfin_100m3,
+                            lgcopeALL_100m3,
+                            smallcopeALL_100m3,
+                            cluhar_100m3,
+                            euph_100m3,
+                            volume_100m3
+                            ), ~ sum(.x != 0, na.rm = TRUE)))
+
+season4tot <- herringfood_stn |> 
+  dplyr::group_by(season_4) |>
+  dplyr::summarise(totstn = n(),
+                   across(c(calfin_100m3,
+                            lgcopeALL_100m3,
+                            smallcopeALL_100m3,
+                            cluhar_100m3,
+                            euph_100m3,
+                            volume_100m3
+                            ), ~ sum(.x != 0, na.rm = TRUE)))
+
+larvtot <- herringfood_stn |> 
+  dplyr::group_by(season_larv) |>
+  dplyr::summarise(totstn = n(),
+                   across(c(calfin_100m3,
+                            lgcopeALL_100m3,
+                            smallcopeALL_100m3,
+                            cluhar_100m3,
+                            euph_100m3,
+                            volume_100m3
+                            ), ~ sum(.x != 0, na.rm = TRUE)))
+
+totstn <- sum(seasontot$totstn)
+totcalfin <- sum(seasontot$calfin_100m3)
+totlgcope <- sum(seasontot$lgcopeALL_100m3)
+totsmcope <- sum(seasontot$smallcopeALL_100m3)
+toteuph <- sum(seasontot$euph_100m3)
+totherr <- sum(seasontot$cluhar_100m3)
+
+
+```
+
+
+Between 1982-2022 there were: 
+
+*  `r totstn` NEFSC zooplankton survey stations.  
+    +  `r round(seasontot$totstn[seasontot$season_ng=="SPRING"]/totstn*100)`% between January-June (Spring). 
+    +  `r round(seasontot$totstn[seasontot$season_ng=="FALL"]/totstn*100)`% between July-December (Fall).  
+*  `r totcalfin` with *Calanus finmarchicus*.  
+    +  `r round(seasontot$calfin_100m3[seasontot$season_ng=="SPRING"]/totcalfin*100)`% between January-June (Spring).   
+    +  `r round(seasontot$calfin_100m3[seasontot$season_ng=="FALL"]/totcalfin*100)`% between July-December (Fall).  
+*  `r totlgcope` stations with large copepods. 
+    +  `r round(seasontot$lgcopeALL_100m3[seasontot$season_ng=="SPRING"]/totlgcope*100)`% between January-June (Spring).  
+    +  `r round(seasontot$lgcopeALL_100m3[seasontot$season_ng=="FALL"]/totlgcope*100)`% between July-December (Fall).  
+*  `r totsmcope` stations with small copepods. 
+    +  `r round(seasontot$smallcopeALL_100m3[seasontot$season_ng=="SPRING"]/totsmcope*100)`% between January-June (Spring).  
+    +  `r round(seasontot$smallcopeALL_100m3[seasontot$season_ng=="FALL"]/totsmcope*100)`% between July-December (Fall).  
+*  `r toteuph` stations with euphausiids  
+    +  `r round(seasontot$euph_100m3[seasontot$season_ng=="SPRING"]/toteuph*100)`% between January-June (Spring).  
+    +  `r round(seasontot$euph_100m3[seasontot$season_ng=="FALL"]/toteuph*100)`% between July-December (Fall). 
+*  `r totherr` stations with herring larvae
+    +  `r round(seasontot$cluhar_100m3[seasontot$season_ng=="SPRING"]/totherr*100)`% between January-June (Spring).  
+    +  `r round(seasontot$cluhar_100m3[seasontot$season_ng=="FALL"]/totherr*100)`% between July-December (Fall). 
+
+]
+
+.pull-right[
+
+<!--![Fall bluefish NEFSC](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/BluefishOnlyFallData_by_year.png) -->
+.center[
+.footnote[
+Zooplankton stations, January-June Northeast Fisheries Science Center surveys
+]
+]
+
+]
+???
+
+
+---
+## Model [selection](https://noaa-edab.github.io/zooplanktonindex/CopeModSelection.html)
+
+Result: Always best to estimate spatial and spatio-temporal random effects
+
+However, the small copepod fall model had the spatial random effects parameter for encounter rate,  $\omega_1$, approach 0. We allowed it to be estimated at 0 rather than fixing it at 0. Resulting indices were identical.
 
 Only spring large zooplankton did better with a day of year catchability covariate
 
-Did not have time to explore habitat covariates
+Did not have time to explore other catchability covariates or habitat covariates
 
-
+Next steps might be to look at depth and or temperature
 
 ---
 ## Spatial partitioning: examining zooplankton trends at multiple scales
@@ -732,7 +864,7 @@ background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/IEA
 background-size: 560px
 background-position: right top
 
-## Results: Jan-Jun (Spring) large copepods
+## Results: Jan-Jun (Spring) large [copepods](https://noaa-edab.github.io/zooplanktonindex/CopeModResults.html)
 
 .pull-left[
 
@@ -781,7 +913,7 @@ background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/IEA
 background-size: 560px
 background-position: right top
 
-## When and where are herring larvae present?
+## When and where are [herring larvae](https://noaa-edab.github.io/zooplanktonindex/HerringLarvaeExplore.html) present?
 
 .pull-left[
 
@@ -815,6 +947,20 @@ Herring larvae Sep-Feb VAST output:
 *  Select quantile with largest continuous area 
 *  Outline "concave hull" of area
 *  Integrate as new strata set into VAST grid
+*  Run small copepods model with larval strata
+
+
+*  `r totstn` NEFSC zooplankton survey stations.  
+    +  `r round(larvtot$totstn[larvtot$season_larv=="TRUE"]/totstn*100)`% between September-February. 
+    +  `r round(larvtot$totstn[larvtot$season_larv=="FALSE"]/totstn*100)`% outside larval time.  
+*  `r totherr` stations with herring larvae
+    +  `r round(larvtot$cluhar_100m3[larvtot$season_larv=="TRUE"]/totherr*100)`% between September-February. 
+    +  `r round(larvtot$cluhar_100m3[larvtot$season_larv=="FALSE"]/totherr*100)`% outside larval time.  
+*  `r totsmcope` stations with small copepods. 
+    +  `r round(larvtot$smallcopeALL_100m3[larvtot$season_larv=="TRUE"]/totsmcope*100)`% between September-February. 
+    +  `r round(larvtot$smallcopeALL_100m3[larvtot$season_larv=="FALSE"]/totsmcope*100)`% outside larval time.  
+
+
 
 ]
 
@@ -971,79 +1117,74 @@ Model is bias corrected with no covariares.
 ]
 ???
 
-
 ---
-## Including ecosystem information for fish stocks: Alaska Ecosystem and Socioeconomic Profiles
+## Extensions: Other zooplankton indices could link to growth or survival (...next RTA)
 
 .pull-left[
+```{r zoovolspring, fig.asp=1}
 
-![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)  
-&nbsp; 
-
-Ecosystem and Socioeconomic Profiles (ESPs) `r Cite(myBib, c("shotwell_synthesizing_2022", "haltuch_oceanographic_2020", "tolimieri_oceanographic_2018", "dorn_risk_2020"))`
-]
-
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/GOApcodESPrisk.png)
-]
-
-.footnote[
-
-Pacific cod example from Alaska: https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheries-science-center-year-review and https://apps-afsc.fisheries.noaa.gov/refm/docs/2021/GOApcod.pdf
-]
-
-
-???
-Our ESP process was developed from the AFSC process, but we adjusted things slightly because of how our benchmarks are scheduled and because we are providing scientific advice to multiple Councils. 
-
-The ESP framework is an iterative cycle that complements the stock assessment cycle. First I will give you an overview of the ESP cycle, and then I will explain each step in more detail. The ESP begins with the development of the problem statement by identifying the topics that the assessment working group and ESP team want to assess. This process includes a literature review or other method of gathering existing information on the stock, such as reviewing prior assessments and research recommendations. Next, a conceptual model is created that links important processes and pressures to stock performance. From these linkages, we develop indicators that can be used to monitor the system conditions. Next, the indicators are analyzed to determine their status and the likely impacts on the stock. Some indicators may be tested for inclusion in assessment models. Finally, all of these analyses are synthesized into a report card to provide general recommendations for fishery management.
-
-
-
----
-## Extensions: Other zooplankton indices could link to growth or survival (next RTA)
-
-.pull-left[
-
-
-.left[
-]
-]
-
-.pull-right[
-
-#### MAB
-
-.center[
-
-]
-
-#### NE
-
-]
-
-???
-aggregate forage important in this system with many forage species: Jason Link horrendogram
-
-potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
-
----
-## Mid-Atlantic Council Ecosystem Risk Assessment: New indices
-
-**Food web (Council-managed predators): change to "Food web: Prey availability"**
-
-.contrib[
-This element is applied at the species level. 
-Fish stocks and protected species stocks are managed using single species approaches, but fish and protected species stocks exist within a food web of predator and prey interactions. This element is one of two separating food web risks to achieving OY for Council managed species from two sources. This first element assesses prey availability for each species, and the second food web risk element assesses predation pressure on each species (see next element). 
-]
-  
-**Proposed definition**: Risk of not achieving OY for Council managed species due to availability of prey.
-
-Indicators:
-.pull-left[
-
+plot_zooindices(splitoutput = splitoutput, 
+             plotdata = "zoopvol", 
+             plotregions = c("her_sp", "AllEPU"), #"AllEPU", "SS"
+             plottitle = "zooplankton volume") 
+```
 ]
 .pull-right[
+```{r, fig.asp=1}
+condSpring <- read.csv("https://github.com/NOAA-EDAB/foodweb-risk/raw/main/condition/AnnualRelCond2023_Spring.csv")
+
+
+survEPUcond <- condSpring |>
+  dplyr::select(Time = YEAR,
+                Var = Species,
+                EPU,
+                Value = MeanCond,
+                nCond) |>
+  dplyr::group_by(EPU, Var) |>
+  dplyr::mutate(scaleCond = scale(Value,scale =T,center=T)) 
+
+xs <- quantile(survEPUcond$scaleCond, seq(0,1, length.out = 6), na.rm = TRUE)
+
+survEPUcond <- survEPUcond |>
+  dplyr::mutate(category = cut(scaleCond,
+                                  breaks = xs,
+                                  labels = c( "Poor Condition",
+                                              "Below Average",
+                                              "Neutral",
+                                              "Above Average",
+                                              "Good Condition"),
+                                  include.lowest = TRUE))
+
+condquants <- data.frame(ymin = xs[1:5],
+                         ymax = xs[2:6],
+                         category = sort(unique(survEPUcond$category))
+)
+
+vir <- viridis::viridis_pal()(5)
+
+herrsurvEPUcond <- survEPUcond |>
+  dplyr::filter(Var %in% c("Atlantic herring"),
+                EPU %in% c("GOM", "GB", "MAB"))
+
+p <-   ggplot2::ggplot() +
+  ggplot2::theme_bw() +
+  ggplot2::geom_rect(data = condquants,
+                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
+                     alpha = .3) +
+  ggplot2::scale_fill_manual(values=vir) +
+  ggplot2::geom_point(data= herrsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
+  #ggplot2::geom_hline(yintercept = xs[2:5]) +
+  #ggplot2::geom_line() +
+  ggplot2::facet_grid(factor(EPU, levels = c("GOM", "GB", "MAB", "SS", "NA"))~Var, ) +
+  ggplot2::ylab("Scaled condition") +
+  ggplot2::ggtitle(paste(unique(herrsurvEPUcond$Var), "spring body condition")) +
+  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
+
+p
+
+
+```
+
 
 ]
 
@@ -1070,15 +1211,19 @@ background-position: right
 
 ## Next steps
 
+These were implemented as recruitment covariates in WHAM
+
+## Discussion
+
 Further tailoring for herring?
 
 These and other zooplankton indices will be submitted for 
 
 *  2025 ecosystem reporting
 
-*  Time series for fitting or forcing food web models, 
+*  Time series for fitting or forcing food web models 
 
-*  Mid-Atlantic risk assessment
+*  Council risk indicators
 
 Ideas for improvement welcome
 
