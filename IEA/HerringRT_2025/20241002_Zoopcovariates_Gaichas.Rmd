@@ -122,101 +122,140 @@ Adelle's boosted regression tree results
 
 
 ---
-## Spatial partitioning: examining small pelagics trends at multiple scales
+## Spatial partitioning: zooplankton trends at multiple scales
 
 ```{r}
 
-# 3nm buffer
-coast3nmbuff <- readRDS(url("https://github.com/sgaichas/bluefishdiet/raw/main/spatialdat/neus_coast3nmbuff.rds"))
-
-fedwaters <- setdiff(FishStatsUtils::northwest_atlantic_grid, coast3nmbuff)
-
-
-#current bluefish assessment strata are all Bigelow inshore strata MAB-GB
-bfinshore <- c(3020, 3050, 3080, 3110, 3140, 3170, 3200, 3230, 
-              3260, 3290, 3320, 3350, 3380, 3410, 3440, 3450, 3460)
-
-bfinshoregrid <-  FishStatsUtils::northwest_atlantic_grid %>%
-  filter(stratum_number %in% bfinshore)
-  
-  
-# from Tony's 8 March presentation, minus the inshore in CCBay
-bfoffshore <- c(1010, 1730, 1690, 1650, 1050, 1060, 1090, 1100, 1250, 1200, 1190, 1610)
-
-bfoffshoregrid <-  FishStatsUtils::northwest_atlantic_grid %>%
-  filter(stratum_number %in% bfoffshore)
-
-#from mskeyrun vignette, EPU based on survey strata, replace built in VAST EPU
-#https://noaa-edab.github.io/ms-keyrun/articles/GBSurveySet.html
+herring_spring <- c(01010, 01020, 01030, 01040, 01050, 01060, 01070, 01080, 01090, 
+                    01100, 01110, 01120, 01130, 01140, 01150, 01160, 01170, 01180, 
+                    01190, 01200, 01210, 01220, 01230, 01240, 01250, 01260, 01270, 
+                    01280, 01290, 01300, 01360, 01370, 01380, 01390, 01400, 01610, 
+                    01620, 01630, 01640, 01650, 01660, 01670, 01680, 01690, 01700, 
+                    01710, 01720, 01730, 01740, 01750, 01760)
+herring_fall <- c(01050, 01060, 01070, 01080, 01090, 01100, 01110, 01120, 01130, 
+                  01140, 01150, 01160, 01170, 01180, 01190, 01200, 01210, 01220, 
+                  01230, 01240, 01250, 01260, 01270, 01280, 01290, 01300, 01360, 
+                  01370, 01380, 01390, 01400)
 
 MAB <- c(1010:1080, 1100:1120, 1600:1750, 3010:3450, 3470, 3500, 3510)
 GB  <- c(1090, 1130:1210, 1230, 1250, 3460, 3480, 3490, 3520:3550)
 GOM <- c(1220, 1240, 1260:1290, 1360:1400, 3560:3830)
+SS  <- c(1300:1352, 3840:3990)
 
-MABgrid <-  FishStatsUtils::northwest_atlantic_grid %>%
-  filter(stratum_number %in% c(MAB))
+D70pct_nwast <- readRDS(url("https://github.com/NOAA-EDAB/zooplanktonindex/raw/main/spatialdat/D70pct_nwa_strat2.rds"))
 
-GBgrid <-  FishStatsUtils::northwest_atlantic_grid %>%
-  filter(stratum_number %in% c(GB))
+# MAB EPU
+MAB2 <- D70pct_nwast %>% 
+  dplyr::filter(stratum_number %in% MAB) 
 
-GOMgrid <-  FishStatsUtils::northwest_atlantic_grid %>%
-  filter(stratum_number %in% c(GOM))
+# MAB herring larvae area
+MAB2herr <- MAB2 %>%
+  dplyr::filter(stratum_number2 %% 10 == 1) 
 
-MABGBgrid <-  FishStatsUtils::northwest_atlantic_grid %>%
-  filter(stratum_number %in% c(MAB, GB))
+# MAB outside larval area
+MAB2out <- MAB2 %>%
+  dplyr::filter(stratum_number2 %% 10 == 2) 
 
-albinshoregrid <- MABGBgrid %>%
-  filter(stratum_number>2999 & stratum_number<3999) %>% #inshore
-  anti_join(bfinshoregrid)
+# Georges Bank EPU
+GB2 <- D70pct_nwast %>% 
+  dplyr::filter(stratum_number %in% GB) 
 
-othoffshoregrid <- MABGBgrid %>%
-  anti_join(bind_rows(albinshoregrid, bfinshoregrid, bfoffshoregrid))
+# GB herring larvae
+GB2herr <- GB2 %>%
+  dplyr::filter(stratum_number2 %% 10 == 1) 
 
-statewatersgrid <- coast3nmbuff %>%
-  inner_join(MABGBgrid)
+#GB outside larval area
+GB2out <- GB2 %>%
+  dplyr::filter(stratum_number2 %% 10 == 2)
 
-fedwatersgrid <- fedwaters %>%
-  inner_join(MABGBgrid)
+# gulf of maine EPU 
+GOM2 <- D70pct_nwast %>%
+  dplyr::filter(stratum_number %in% GOM)
 
-allinshoregrid <- MABGBgrid %>%
-  filter(stratum_number>2999 & stratum_number<3999) #combines albatross and bigelow inshore
+# GOM herring larvae
+GOM2herr <- GOM2 %>%
+  dplyr::filter(stratum_number2 %% 10 == 1) 
+
+#GOM outside larval area
+GOM2out <- GOM2 %>%
+  dplyr::filter(stratum_number2 %% 10 == 2)
+
+# scotian shelf EPU 
+SS2 <- D70pct_nwast %>%
+  dplyr::filter(stratum_number %in% SS) 
+
+# SS herring larvae
+SS2herr <- SS2 %>%
+  dplyr::filter(stratum_number2 %% 10 == 1) 
+
+#SS outside larval area
+SS2out <- SS2 %>%
+  dplyr::filter(stratum_number2 %% 10 == 2)
+
+# whole herring larval area
+herrlarv <- dplyr::bind_rows(MAB2herr, GB2herr, GOM2herr, SS2herr)
+
+# outside herring larval area
+nolarv <- dplyr::bind_rows(MAB2out, GB2out, GOM2out, SS2out)
+
+# spring herring NEFSC BTS
+her_spr2 <- D70pct_nwast %>%
+  dplyr::filter(stratum_number %in% herring_spring) 
+
+# fall herring NEFSC BTS
+her_fall2 <- D70pct_nwast %>%
+  dplyr::filter(stratum_number %in% herring_fall) 
+
+# all epus
+allEPU2 <- D70pct_nwast %>%
+  dplyr::filter(stratum_number %in% c(MAB, GB, GOM, SS)) 
+
 
 ```
 
-```{r maps, crop=TRUE, fig.cap="Maps of key areas for Bluefish assessment indices. The full VAST model grid is shown in brown.", fig.show='hold', out.width="33%"}
+```{r maps, crop=TRUE, fig.cap="Maps of key areas for Herring assessment indices. The full VAST model grid is shown in brown.", fig.show='hold', out.width="33%"}
 
 theme_set(theme_bw())
 
 ggplot(data = ecodata::coast) +
   geom_sf() + 
   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = MABgrid, aes(x = Lon, y = Lat), colour = "green3", size=0.05, alpha=0.5) +
-  geom_point(data = GBgrid, aes(x = Lon, y = Lat), colour = "orange", size=0.05, alpha=0.5) +
-  geom_point(data = GOMgrid, aes(x = Lon, y = Lat), colour = "red", size=0.05, alpha=0.5) +
+  geom_point(data = MAB2, aes(x = Lon, y = Lat), colour = "green3", size=0.05, alpha=0.5) +
+  geom_point(data = GB2, aes(x = Lon, y = Lat), colour = "orange", size=0.05, alpha=0.5) +
+  geom_point(data = GOM2, aes(x = Lon, y = Lat), colour = "red", size=0.05, alpha=0.5) +
+  geom_point(data = SS2, aes(x = Lon, y = Lat), colour = "purple", size=0.05, alpha=0.1) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) + #full extent of VAST model
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) + #zoomed to Hatteras and N
-  ggtitle("MAB (green), GB (orange), GOM (red)")
+  ggtitle("MAB (green), GB (orange), GOM (red), SS(purple)")
 
 
 ggplot(data = ecodata::coast) +
   geom_sf() + 
   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = MABGBgrid, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
-  geom_point(data = albinshoregrid, aes(x = Lon, y = Lat), size=0.03, colour = "lightblue",  alpha=0.3) +
-  geom_point(data = bfinshoregrid, aes(x = Lon, y = Lat), size=0.05, colour = "blue") +
-  geom_point(data = bfoffshoregrid, aes(x = Lon, y = Lat), size=0.05, colour = "lightblue1",  alpha=0.3) +
+  geom_point(data = her_spr2, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
+  geom_point(data = her_fall2, aes(x = Lon, y = Lat), size=0.03, colour = "lightblue",  alpha=0.3) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
-  ggtitle("Inshore (light and dark blue) and offshore (light blue) bluefish survey strata")
+  ggtitle("Herring spring (yellow) and fall (light blue) survey strata")
 
 ggplot(data = ecodata::coast) +
   geom_sf() + 
   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = MABGBgrid, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
-  geom_point(data = statewatersgrid, aes(x = Lon, y = Lat), size=0.03, colour = "purple",  alpha=0.5) +
+  geom_point(data = her_spr2, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
+  geom_point(data = herrlarv, aes(x = Lon, y = Lat), size=0.03, colour = "blue",  alpha=0.3) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
-  ggtitle("State waters (purple), concentrated bluefish recreational fishing")
+  ggtitle("Herring spring survey strata (yellow) and larval area (blue)")
+
+
+# ggplot(data = ecodata::coast) +
+#   geom_sf() + 
+#   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
+#   geom_point(data = her_spr2, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
+#   geom_point(data = herrlarv, aes(x = Lon, y = Lat), size=0.03, colour = "blue",  alpha=0.5) +
+#   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
+#   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
+#   ggtitle("Herring larval area Sept-Feb (blue), over spring survey strata (yellow")
 
 ```
 
