@@ -75,21 +75,27 @@ https://www.naturepl.com/stock-photo-copepods-calanus-finmarchicus-aggregated-at
 ]
 
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringConceptualMod.png")
+background-size: 1070px
+background-position: bottom
+
 ## Which indicators are relevant for recruitment?
 
-
-Conceptual model figure
-
-
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringBRT_rec.png")
+background-size: 800px
+background-position: right
+
 ## Which indicators are relevant for recruitment?
 
 .pull-left-30[
-Boosted regression tree (Molina 2024)
+Boosted regression tree (Molina 2024) investigated relationships between environmental indicators and Atlantic herring recruitment estimated in the assessment.
+
+Larval and juvenile food (zooplankton), egg predation, and temperature always highest influence
 ]
 
 .pull-right-70[
-Boosted regression tree figure
+
 ]
 ---
 ## Northeast US [existing zooplankton indicators](https://noaa-edab.github.io/forageindex/ZooplanktonOverview.html)
@@ -233,21 +239,18 @@ Estimation uses stochastic partial differential equation (SPDE) approximation.
 ## Estimating density in space and the index
 
 .pull-left[
-
 Observation model "Index2", Gamma distribution for positive catches and Alternative "Poisson-link delta-model" using log-link for numbers-density and log-link for biomass per number. It is intended for continuous data, which includes biomass data and “numbers standardized to a fixed area.”
 
 Probability of encounter Poisson: `\(p(i) = 1 - exp[-n(i)]\)` *set to 1 for groups found at all stations, e.g. small copepods or zooplankton volume*
 
 Number of zooplankton cells per volume given encounter: `\(r(i) = \frac{n(i)}{p(i)}w(i)\)`
 
+Probability for numbers per volume `\(B\)` where `\(g\)` is a Gamma function.  :
+
+$$ Pr[b(i) = B] =  \begin{cases} 1-p(i), B = 0\\\\p(i) \times g[B|r(i), \sigma_b^2], B &gt; 0 \end{cases},$$  
 ]
 
 .pull-right[
-Probability for numbers per volume `\(B\)`:
-
-$$ Pr[b(i) = B] =  \begin{cases} 1-p(i), B = 0\\\\p(i) \times g[B|r(i), \sigma_b^2], B &gt; 0 \end{cases},$$  
-
-where `\(g\)` is a Gamma function.  
 
 Density `\(b\)` at a location (knot) `\(s\)` for year `\(t\)` is then the predicted number of cells per volume (linear predictor for encounter * linear predictor for cells/vol given encounter):
 
@@ -285,6 +288,10 @@ Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/t
 ???
 
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringConceptualMod.png")
+background-size: 600px
+background-position: bottom
+
 ## Zooplankton groups
 
 Focus is on recruitment, food for larvae through juveniles.
@@ -506,10 +513,10 @@ Model is bias corrected with no covariares.
 ???
 
 ---
-## Extensions: Other zooplankton indices could link to growth or survival (...next RTA)
+## Extensions: Other zooplankton indices could link to adult growth or survival (...next RTA)
 
 .pull-left[
-&lt;img src="20241001_ZoopIndices_Gaichas_files/figure-html/zoovolspring-1.png" width="504" /&gt;
+&lt;img src="20241001_ZoopIndices_Gaichas_files/figure-html/zoovolspring-1.png" width="504" /&gt;&lt;img src="20241001_ZoopIndices_Gaichas_files/figure-html/zoovolspring-2.png" width="504" /&gt;
 ]
 .pull-right[
 &lt;img src="20241001_ZoopIndices_Gaichas_files/figure-html/unnamed-chunk-10-1.png" width="504" /&gt;
