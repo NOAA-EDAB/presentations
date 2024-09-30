@@ -1,68 +1,34 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Zooplankton indices as covariates in WHAM</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas, Jon Deroba, Adelle Molina" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+.title[
+# Zooplankton indices as covariates in WHAM
+]
+.subtitle[
+## Herring Research Track <br /> 2 October 2024
+]
+.author[
+### Sarah Gaichas, Jon Deroba, Adelle Molina
+]
+
 ---
-title: "Zooplankton indices as covariates in WHAM"
-subtitle: "Herring Research Track <br /> 2 October 2024"
-author: Sarah Gaichas, Jon Deroba, Adelle Molina 
-institute: 
-output:
-  xaringan::moon_reader:
-    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
-    lib_dir: libs
-    nature:
-      titleSlideClass: ["right", "middle", "my-title"]
-      ratio: "16:9"
-      highlightStyle: githubp
-      highlightLines: true
-      countIncrementalSlides: false
-      beforeInit: "libs/macros.js"
-  revealjs::revealjs_presentation:
-    self_contained: false
-    reveal_plugins: ["notes", "search"]
----
+
 class: top, left
 
-```{r setup, include=FALSE}
-#<span style="font-weight:normal;"><font size="-0.5">$^1$NOAA NMFS Northeast Fisheries Science Center, Woods Hole, MA, USA; $^2$Ocean Associates Inc, Arlington, VA, USA;</font></span>
 
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = F,
-                      fig.retina = 3,
-                      warning = F,
-                      message = F,
-                      error = F)
-knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
-#Plotting and data libraries
-library(tidyverse)
-theme_set(theme_bw())
-library(tidyr)
-library(here)
-library(sf)
-library(patchwork)
-library(ggpubr)
-library(data.table)
-library(forcats)
-library(FishStatsUtils)
-```
 
-```{r, load_refs, include=FALSE, cache=FALSE}
-#trick to downlaod bib file from other repo to keep just 1 up to date
 
-# url <- "https://raw.githubusercontent.com/sgaichas/bluefishdiet/main/FishDiet_EcoIndicators.bib"
-#   download.file(url, destfile = "./FishDiet_Ecoindicators.bib")
-
-library(RefManageR)
-BibOptions(check.entries = FALSE,
-           bib.style = "authoryear",
-           cite.style = "authoryear",
-           longnamesfirst = FALSE,
-           max.names = 1,
-           style = "markdown")
-myBib <- ReadBib("./FishDiet_Ecoindicators.bib", check = FALSE)
-
-#,
-#           hyperlink = FALSE,
-#           dashed = FALSE
-
-```
 
 # Does food drive recruitment of Atlantic herring?
 
@@ -75,7 +41,7 @@ myBib <- ReadBib("./FishDiet_Ecoindicators.bib", check = FALSE)
 .pull-right[
 .large[
 
-"The herring is a plankton feeder.... Examination of 1,500 stomachs showed that adult herring near Eastport were living solely on copepods and on pelagic euphausiid shrimps (*Meganyctiphanes norwegica*), fish less than 4 inches long depending on the former alone, while the larger herring were eating both." `r Cite(myBib, "collette_bigelow_2002")`
+"The herring is a plankton feeder.... Examination of 1,500 stomachs showed that adult herring near Eastport were living solely on copepods and on pelagic euphausiid shrimps (*Meganyctiphanes norwegica*), fish less than 4 inches long depending on the former alone, while the larger herring were eating both." &lt;a name=cite-collette_bigelow_2002&gt;&lt;/a&gt;([Collette et al., 2002](#bib-collette_bigelow_2002))
 
 ]
 ]
@@ -112,141 +78,12 @@ Larval and juvenile food (zooplankton), egg predation, and temperature always hi
 ---
 ## Spatial partitioning: zooplankton trends at multiple scales
 
-```{r}
-
-herring_spring <- c(01010, 01020, 01030, 01040, 01050, 01060, 01070, 01080, 01090, 
-                    01100, 01110, 01120, 01130, 01140, 01150, 01160, 01170, 01180, 
-                    01190, 01200, 01210, 01220, 01230, 01240, 01250, 01260, 01270, 
-                    01280, 01290, 01300, 01360, 01370, 01380, 01390, 01400, 01610, 
-                    01620, 01630, 01640, 01650, 01660, 01670, 01680, 01690, 01700, 
-                    01710, 01720, 01730, 01740, 01750, 01760)
-herring_fall <- c(01050, 01060, 01070, 01080, 01090, 01100, 01110, 01120, 01130, 
-                  01140, 01150, 01160, 01170, 01180, 01190, 01200, 01210, 01220, 
-                  01230, 01240, 01250, 01260, 01270, 01280, 01290, 01300, 01360, 
-                  01370, 01380, 01390, 01400)
-
-MAB <- c(1010:1080, 1100:1120, 1600:1750, 3010:3450, 3470, 3500, 3510)
-GB  <- c(1090, 1130:1210, 1230, 1250, 3460, 3480, 3490, 3520:3550)
-GOM <- c(1220, 1240, 1260:1290, 1360:1400, 3560:3830)
-SS  <- c(1300:1352, 3840:3990)
-
-D70pct_nwast <- readRDS(url("https://github.com/NOAA-EDAB/zooplanktonindex/raw/main/spatialdat/D70pct_nwa_strat2.rds"))
-
-# MAB EPU
-MAB2 <- D70pct_nwast %>% 
-  dplyr::filter(stratum_number %in% MAB) 
-
-# MAB herring larvae area
-MAB2herr <- MAB2 %>%
-  dplyr::filter(stratum_number2 %% 10 == 1) 
-
-# MAB outside larval area
-MAB2out <- MAB2 %>%
-  dplyr::filter(stratum_number2 %% 10 == 2) 
-
-# Georges Bank EPU
-GB2 <- D70pct_nwast %>% 
-  dplyr::filter(stratum_number %in% GB) 
-
-# GB herring larvae
-GB2herr <- GB2 %>%
-  dplyr::filter(stratum_number2 %% 10 == 1) 
-
-#GB outside larval area
-GB2out <- GB2 %>%
-  dplyr::filter(stratum_number2 %% 10 == 2)
-
-# gulf of maine EPU 
-GOM2 <- D70pct_nwast %>%
-  dplyr::filter(stratum_number %in% GOM)
-
-# GOM herring larvae
-GOM2herr <- GOM2 %>%
-  dplyr::filter(stratum_number2 %% 10 == 1) 
-
-#GOM outside larval area
-GOM2out <- GOM2 %>%
-  dplyr::filter(stratum_number2 %% 10 == 2)
-
-# scotian shelf EPU 
-SS2 <- D70pct_nwast %>%
-  dplyr::filter(stratum_number %in% SS) 
-
-# SS herring larvae
-SS2herr <- SS2 %>%
-  dplyr::filter(stratum_number2 %% 10 == 1) 
-
-#SS outside larval area
-SS2out <- SS2 %>%
-  dplyr::filter(stratum_number2 %% 10 == 2)
-
-# whole herring larval area
-herrlarv <- dplyr::bind_rows(MAB2herr, GB2herr, GOM2herr, SS2herr)
-
-# outside herring larval area
-nolarv <- dplyr::bind_rows(MAB2out, GB2out, GOM2out, SS2out)
-
-# spring herring NEFSC BTS
-her_spr2 <- D70pct_nwast %>%
-  dplyr::filter(stratum_number %in% herring_spring) 
-
-# fall herring NEFSC BTS
-her_fall2 <- D70pct_nwast %>%
-  dplyr::filter(stratum_number %in% herring_fall) 
-
-# all epus
-allEPU2 <- D70pct_nwast %>%
-  dplyr::filter(stratum_number %in% c(MAB, GB, GOM, SS)) 
 
 
-```
-
-```{r maps, crop=TRUE, fig.cap="Maps of key areas for Herring assessment indices. The full VAST model grid is shown in brown.", fig.show='hold', out.width="33%"}
-
-theme_set(theme_bw())
-
-ggplot(data = ecodata::coast) +
-  geom_sf() + 
-  geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = MAB2, aes(x = Lon, y = Lat), colour = "green3", size=0.05, alpha=0.5) +
-  geom_point(data = GB2, aes(x = Lon, y = Lat), colour = "orange", size=0.05, alpha=0.5) +
-  geom_point(data = GOM2, aes(x = Lon, y = Lat), colour = "red", size=0.05, alpha=0.5) +
-  geom_point(data = SS2, aes(x = Lon, y = Lat), colour = "purple", size=0.05, alpha=0.1) +
-  #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) + #full extent of VAST model
-  coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) + #zoomed to Hatteras and N
-  ggtitle("MAB (green), GB (orange), GOM (red), SS(purple)")
-
-
-ggplot(data = ecodata::coast) +
-  geom_sf() + 
-  geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = her_spr2, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.7) +
-  geom_point(data = her_fall2, aes(x = Lon, y = Lat), size=0.03, colour = "lightblue",  alpha=0.7) +
-  #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
-  coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
-  ggtitle("Herring spring (yellow) and fall (light blue) survey strata")
-
-ggplot(data = ecodata::coast) +
-  geom_sf() + 
-  geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = her_spr2, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.7) +
-  geom_point(data = her_fall2, aes(x = Lon, y = Lat), size=0.03, colour = "lightblue",  alpha=0.7) +
-  geom_point(data = herrlarv, aes(x = Lon, y = Lat), size=0.03, colour = "blue",  alpha=0.7) +
-  #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
-  coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
-  ggtitle("Herring survey strata with Sept-Feb larval area (blue)")
-
-
-# ggplot(data = ecodata::coast) +
-#   geom_sf() + 
-#   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-#   geom_point(data = her_spr2, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
-#   geom_point(data = herrlarv, aes(x = Lon, y = Lat), size=0.03, colour = "blue",  alpha=0.5) +
-#   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
-#   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
-#   ggtitle("Herring larval area Sept-Feb (blue), over spring survey strata (yellow")
-
-```
+&lt;div class="figure"&gt;
+&lt;img src="20241002_Zoopcovariates_Gaichas_files/figure-html/maps-1.png" alt="Maps of key areas for Herring assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;&lt;img src="20241002_Zoopcovariates_Gaichas_files/figure-html/maps-2.png" alt="Maps of key areas for Herring assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;&lt;img src="20241002_Zoopcovariates_Gaichas_files/figure-html/maps-3.png" alt="Maps of key areas for Herring assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;
+&lt;p class="caption"&gt;Maps of key areas for Herring assessment indices. The full VAST model grid is shown in brown.&lt;/p&gt;
+&lt;/div&gt;
 
 
 ???
@@ -257,7 +94,7 @@ NEFSC survey strata definitions are built into the VAST `northwest-atlantic` ext
 ## Exploratory zooplankton indices in the stock assessment 
 
 .pull-left[
-Use as a basis the new herring stock assessment in Woods Hole Assessment Model (WHAM)  `r Cite(myBib,"stock_woods_2021")`.
+Use as a basis the new herring stock assessment in Woods Hole Assessment Model (WHAM)  &lt;a name=cite-stock_woods_2021&gt;&lt;/a&gt;([Stock et al., 2021](https://www.sciencedirect.com/science/article/pii/S0165783621000953)).
 
 We are using the `devel` version of WHAM: https://github.com/timjmiller/wham/tree/devel
 
@@ -348,14 +185,9 @@ Model ecov_process                 ecov_how           ecovdat conv pdHess       
 ![lgCopeSp2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m14/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
 ]
 
-```{r}
-m10par <- readRDS(here::here("WHAM/mm192_lgcopeSpring2/m10/res_tables/parameter_estimates_table.RDS"))
 
-m14par <- readRDS(here::here("WHAM/mm192_lgcopeSpring2/m14/res_tables/parameter_estimates_table.RDS"))
 
-```
-
-Without covariate, recruitment variance is `r round(m10par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m14par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; lgCopeSpring2 beta_1 is `r round(m14par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",1],3)`, CI `r round(m14par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",3],3)`, `r round(m14par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",4],3)`
+Without covariate, recruitment variance is 0.823, and with is 0.797; lgCopeSpring2 beta_1 is -0.407, CI -1.063, 0.25
 
 ---
 ## Results: Spring large copepods covariate: logscale rw diagnostics
@@ -380,14 +212,9 @@ Without covariate, recruitment variance is `r round(m10par["stock 1 NAA $\\sigma
 ![lgCopeSp2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m6/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
 ]
 
-```{r}
-m2par <- readRDS(here::here("WHAM/mm192_lgcopeSpring2/m2/res_tables/parameter_estimates_table.RDS"))
 
-m6par <- readRDS(here::here("WHAM/mm192_lgcopeSpring2/m6/res_tables/parameter_estimates_table.RDS"))
 
-```
-
-Without covariate, recruitment variance is `r round(m2par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m6par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; lgCopeSpring2 beta_1 is `r round(m6par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",1],3)`, CI `r round(m6par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",3],3)`, `r round(m6par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",4],3)`
+Without covariate, recruitment variance is 0.823, and with is 0.804; lgCopeSpring2 beta_1 is -0.45, CI -1.438, 0.538
 
 
 ---
@@ -413,14 +240,9 @@ Without covariate, recruitment variance is `r round(m2par["stock 1 NAA $\\sigma$
 ![lgCopeSp2 m15 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m15/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
 ]
 
-```{r}
-m11par <- readRDS(here::here("WHAM/mm192_lgcopeSpring2/m11/res_tables/parameter_estimates_table.RDS"))
 
-m15par <- readRDS(here::here("WHAM/mm192_lgcopeSpring2/m15/res_tables/parameter_estimates_table.RDS"))
 
-```
-
-Without covariate, recruitment variance is `r round(m11par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m15par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; lgCopeSpring2 beta_1 is `r round(m15par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",1],5)`, CI `r round(m15par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",3],5)`, `r round(m15par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",4],5)`
+Without covariate, recruitment variance is 0.823, and with is 0.791; lgCopeSpring2 beta_1 is -4.5\times 10^{-4}, CI -0.00128, 3.8\times 10^{-4}
 
 
 ---
@@ -447,14 +269,9 @@ Without covariate, recruitment variance is `r round(m11par["stock 1 NAA $\\sigma
 ![lgCopeSp2 m7 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m7/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
 ]
 
-```{r}
-m3par <- readRDS(here::here("WHAM/mm192_lgcopeSpring2/m3/res_tables/parameter_estimates_table.RDS"))
 
-m7par <- readRDS(here::here("WHAM/mm192_lgcopeSpring2/m7/res_tables/parameter_estimates_table.RDS"))
 
-```
-
-Without covariate, recruitment variance is `r round(m3par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m7par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; lgCopeSpring2 beta_1 is `r round(m7par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",1],5)`, CI `r round(m7par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",3],5)`, `r round(m7par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",4],5)`
+Without covariate, recruitment variance is 0.823, and with is 0.793; lgCopeSpring2 beta_1 is -4.3\times 10^{-4}, CI -0.00126, 4\times 10^{-4}
 
 ---
 ## Results: Fall small copepods covariate: model summary
@@ -493,14 +310,9 @@ Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL 
 ![smCopeFall2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeFall2/m14/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
 ]
 
-```{r}
-m10par <- readRDS(here::here("WHAM/mm192_smcopeFall2/m10/res_tables/parameter_estimates_table.RDS"))
 
-m14par <- readRDS(here::here("WHAM/mm192_smcopeFall2/m14/res_tables/parameter_estimates_table.RDS"))
 
-```
-
-Without covariate, recruitment variance is `r round(m10par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m14par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeFall2 beta_1 is `r round(m14par["stock 1 Recruitment Ecov: smCopeFall2 $\\beta_1$",1],3)`, CI `r round(m14par["stock 1 Recruitment Ecov: smCopeFall2 $\\beta_1$",3],3)`, `r round(m14par["stock 1 Recruitment Ecov: smCopeFall2 $\\beta_1$",4],3)`
+Without covariate, recruitment variance is 0.823, and with is 0.79; smcopeFall2 beta_1 is -1.013, CI -2.715, 0.689
 
 ---
 ## Results: Sep-Feb small copepods in herring larval area covariate: model summary
@@ -539,14 +351,9 @@ Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL 
 ![smCopeSepFeb2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2/m14/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
 ]
 
-```{r}
-m10par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2/m10/res_tables/parameter_estimates_table.RDS"))
 
-m14par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2/m14/res_tables/parameter_estimates_table.RDS"))
 
-```
-
-Without covariate, recruitment variance is `r round(m10par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m14par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeSepFeb2 beta_1 is `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",1],3)`, CI `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",3],3)`, `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",4],3)`
+Without covariate, recruitment variance is 0.823, and with is 0.77; smcopeSepFeb2 beta_1 is -0.85, CI -1.883, 0.182
 
 ---
 ## Alternate: Sep-Feb small copepods in fall herring survey strata covariate
@@ -585,14 +392,9 @@ Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL 
 ![smCopeSepFeb2_fallstrat m6 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m6/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
 ]
 
-```{r}
-m2par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2_fallstrata/m2/res_tables/parameter_estimates_table.RDS"))
 
-m6par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2_fallstrata/m6/res_tables/parameter_estimates_table.RDS"))
 
-```
-
-Without covariate, recruitment variance is `r round(m2par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m6par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeSepFeb2 beta_1 is `r round(m6par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",1],3)`, CI `r round(m6par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",3],3)`, `r round(m6par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",4],3)`
+Without covariate, recruitment variance is 0.823, and with is 0.762; smcopeSepFeb2 beta_1 is -1.01, CI -2.11, 0.089
 
 ---
 ## Results: Sep-Feb small copepods in herring larval area covariate: logscale ar1 diagnostics
@@ -617,14 +419,9 @@ Without covariate, recruitment variance is `r round(m2par["stock 1 NAA $\\sigma$
 ![smCopeSepFeb2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m14/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
 ]
 
-```{r}
-m10par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2_fallstrata/m10/res_tables/parameter_estimates_table.RDS"))
 
-m14par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2_fallstrata/m14/res_tables/parameter_estimates_table.RDS"))
 
-```
-
-Without covariate, recruitment variance is `r round(m10par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m14par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeSepFeb2 beta_1 is `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",1],3)`, CI `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",3],3)`, `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",4],3)`
+Without covariate, recruitment variance is 0.823, and with is 0.757; smcopeSepFeb2 beta_1 is -0.976, CI -2.044, 0.093
 
 
 ---
@@ -676,18 +473,9 @@ Model ecov_process                   ecov_how       ecovdat conv pdHess       NL
 ![both m3 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m3/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
 ]
 
-```{r}
-m1par <- readRDS(here::here("WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/res_tables/parameter_estimates_table.RDS"))
-
-m3par <- readRDS(here::here("WHAM/mm192_lgcopeSpring_smcopeSepFeb/m3/res_tables/parameter_estimates_table.RDS"))
-
-#; lgcopeSpring2 beta_1 is `r round(m3par["stock 1 Recruitment Ecov: lgCopeSpring2 $\beta_1$",1],3)`, CI `r round(m3par["stock 1 Recruitment Ecov: lgCopeSpring2 $\beta_1$",3],3)`, `r round(m3par["stock 1 Recruitment Ecov: lgCopeSpring2 $\beta_1$",4],3)`
 
 
-
-```
-
-Without covariates, recruitment variance is `r round(m1par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m3par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeSepFeb2 beta_1 is `r round(m3par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",1],3)`, CI `r round(m3par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",3],3)`, `r round(m3par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",4],3)`
+Without covariates, recruitment variance is 0.823, and with is 0.755; smcopeSepFeb2 beta_1 is -0.88, CI -1.929, 0.169
 
 ???
 
@@ -695,18 +483,12 @@ Without covariates, recruitment variance is `r round(m1par["stock 1 NAA $\\sigma
 ## Implications for reference points: Sep-Feb small copepods in herring larval area
 
 .pull-left[
-```{r}
-compare_sepfeb <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2/smCopeSepFeb2compare_best3.rds"))
-
-compare_sepfeb$g[[1]]
-```
+&lt;img src="20241002_Zoopcovariates_Gaichas_files/figure-html/unnamed-chunk-11-1.png" width="504" /&gt;
 
 ]
 
 .pull-right[
-```{r}
-compare_sepfeb$g[[9]]
-```
+&lt;img src="20241002_Zoopcovariates_Gaichas_files/figure-html/unnamed-chunk-12-1.png" width="504" /&gt;
 
 ]
 
@@ -734,12 +516,162 @@ Same pattern by area
 ## Thank you!  References
 
 .contrib[
-```{r refs, echo=FALSE, results="asis"}
-PrintBibliography(myBib)
-```
+&lt;a name=bib-collette_bigelow_2002&gt;&lt;/a&gt;[Collette, B. B. et
+al.](#cite-collette_bigelow_2002) (2002). _Bigelow and Schroeder's
+Fishes of the Gulf of Maine, Third Edition_. 3rd ed. edition.
+Washington, DC: Smithsonian Books. ISBN: 978-1-56098-951-6.
+
+&lt;a name=bib-stock_woods_2021&gt;&lt;/a&gt;[Stock, B. C. et
+al.](#cite-stock_woods_2021) (2021). "The Woods Hole Assessment Model
+(WHAM): A general state-space assessment framework that incorporates
+time- and age-varying processes via random effects and links to
+environmental covariates". En. In: _Fisheries Research_ 240, p. 105967.
+ISSN: 0165-7836. DOI:
+[10.1016/j.fishres.2021.105967](https://doi.org/10.1016%2Fj.fishres.2021.105967).
+URL:
+[https://www.sciencedirect.com/science/article/pii/S0165783621000953](https://www.sciencedirect.com/science/article/pii/S0165783621000953)
+(visited on May. 26, 2021).
 ]
 
 .footnote[
 Slides available at https://noaa-edab.github.io/presentations  
-Contact: <Sarah.Gaichas@noaa.gov>
+Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
 ]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
