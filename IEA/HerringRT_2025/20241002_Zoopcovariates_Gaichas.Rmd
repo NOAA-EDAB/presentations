@@ -1,8 +1,8 @@
 ---
 title: "Zooplankton indices as covariates in WHAM"
 subtitle: "Herring Research Track <br /> 2 October 2024"
-author: Sarah Gaichas$^1$, Jon Deroba$^1$, Adelle Molina$^{1,2} 
-institute: <span style="font-weight:normal;"><font size="-0.5">$^1$NOAA NMFS Northeast Fisheries Science Center, Woods Hole, MA, USA; $^2$Ocean Associates Inc, Arlington, VA, USA;</font></span>
+author: Sarah Gaichas, Jon Deroba, Adelle Molina 
+institute: 
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
@@ -21,6 +21,7 @@ output:
 class: top, left
 
 ```{r setup, include=FALSE}
+#<span style="font-weight:normal;"><font size="-0.5">$^1$NOAA NMFS Northeast Fisheries Science Center, Woods Hole, MA, USA; $^2$Ocean Associates Inc, Arlington, VA, USA;</font></span>
 
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = F,
@@ -39,6 +40,7 @@ library(patchwork)
 library(ggpubr)
 library(data.table)
 library(forcats)
+library(FishStatsUtils)
 ```
 
 ```{r, load_refs, include=FALSE, cache=FALSE}
@@ -61,6 +63,7 @@ myBib <- ReadBib("./FishDiet_Ecoindicators.bib", check = FALSE)
 #           dashed = FALSE
 
 ```
+
 # Does food drive recruitment of Atlantic herring?
 
 ## Atlantic herring, *Clupea harengus*
@@ -72,7 +75,7 @@ myBib <- ReadBib("./FishDiet_Ecoindicators.bib", check = FALSE)
 .pull-right[
 .large[
 
-"The herring is a plankton feeder.... Examination of 1 ,500 stomachs showed that adult herring near Eastport were living solely on copepods and on pelagic euphausiid shrimps (*Meganyctiphanes norwegica*), fish less than 4 inches long depending on the former alone, while the larger herring were eating both." `r Cite(myBib, "collette_bigelow_2002")`
+"The herring is a plankton feeder.... Examination of 1,500 stomachs showed that adult herring near Eastport were living solely on copepods and on pelagic euphausiid shrimps (*Meganyctiphanes norwegica*), fish less than 4 inches long depending on the former alone, while the larger herring were eating both." `r Cite(myBib, "collette_bigelow_2002")`
 
 ]
 ]
@@ -80,26 +83,6 @@ myBib <- ReadBib("./FishDiet_Ecoindicators.bib", check = FALSE)
 ???
 When first hatched, and before the disappearance of the yolk sac, the larvae (European) feed on larval snails and crustaceans, on diatoms, and on peridinians, but they soon begin taking copepods, and depend exclusively on these for a time after they get to be 12 mm. long, especially on the little Pseudocalanus elongatus. As they grow older they feed more and more on the larger copepods and amphipods, pelagic shrimps, and decapod crustacean larvae.
 
-
----
-## Outline
-
-.pull-left-60[
-
-1. Covariate selection
-
-1. Stock assessment application
-
-1. Discussion
-
-]
-
-.pull-right-40[
-![xkcd maps](https://imgs.xkcd.com/comics/heatmap.png)
-.contrib[
-https://xkcd.com/1138
-]
-]
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringConceptualMod.png")
@@ -237,8 +220,8 @@ ggplot(data = ecodata::coast) +
 ggplot(data = ecodata::coast) +
   geom_sf() + 
   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = her_spr2, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
-  geom_point(data = her_fall2, aes(x = Lon, y = Lat), size=0.03, colour = "lightblue",  alpha=0.3) +
+  geom_point(data = her_spr2, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.7) +
+  geom_point(data = her_fall2, aes(x = Lon, y = Lat), size=0.03, colour = "lightblue",  alpha=0.7) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
   ggtitle("Herring spring (yellow) and fall (light blue) survey strata")
@@ -246,11 +229,12 @@ ggplot(data = ecodata::coast) +
 ggplot(data = ecodata::coast) +
   geom_sf() + 
   geom_point(data = FishStatsUtils::northwest_atlantic_grid, aes(x = Lon, y = Lat),  colour = "coral4", size=0.05, alpha=0.1) +
-  geom_point(data = her_spr2, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.1) +
-  geom_point(data = herrlarv, aes(x = Lon, y = Lat), size=0.03, colour = "blue",  alpha=0.3) +
+  geom_point(data = her_spr2, aes(x = Lon, y = Lat), size=0.05, colour = "yellow",  alpha=0.7) +
+  geom_point(data = her_fall2, aes(x = Lon, y = Lat), size=0.03, colour = "lightblue",  alpha=0.7) +
+  geom_point(data = herrlarv, aes(x = Lon, y = Lat), size=0.03, colour = "blue",  alpha=0.7) +
   #coord_sf(xlim = c(-79, -65.5), ylim = c(33, 45)) +
   coord_sf(xlim =c(-78, -65.5), ylim = c(35, 45)) +
-  ggtitle("Herring spring survey strata (yellow) and larval area (blue)")
+  ggtitle("Herring survey strata with Sept-Feb larval area (blue)")
 
 
 # ggplot(data = ecodata::coast) +
@@ -264,152 +248,185 @@ ggplot(data = ecodata::coast) +
 
 ```
 
-Indices for aggregate small pelagics from piscivore stomachs can be calculated for any subset of the full model domain. Bias correction of the resulting indices is then applied `r Cite(myBib, "thorson_implementing_2016")`. 
 
 ???
 NEFSC survey strata definitions are built into the VAST `northwest-atlantic` extrapolation grid already. We defined additional new strata to address the recreational inshore-offshore 3 mile boundary. The area within and outside 3 miles of shore was defined using the `sf` R package as a 3 nautical mile (approximated as 5.556 km) buffer from a high resolution coastline from the`rnaturalearth` R package. This buffer was then intersected with the current `FishStatsUtils::northwest_atlantic_grid` built into VAST and saved using code [here](https://github.com/sgaichas/bluefishdiet/blob/main/VASTcovariates_updatedPreds_sst_3mi.Rmd#L49-L94). Then, the new State and Federal waters strata were used to split NEFSC survey strata where applicable, and the new full set of strata were used along with a modified function from `FishStatsUtils::Prepare_NWA_Extrapolation_Data_Fn` to build a custom extrapolation grid for VAST as described in detail [here](https://sgaichas.github.io/bluefishdiet/VASTcovariates_finalmodbiascorrect_3misurvstrat.html). 
 
 
 ---
-## Integrating into stock assessment 
+## Exploratory zooplankton indices in the stock assessment 
 
 .pull-left[
-A new herring stock assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")`.
+Use as a basis the new herring stock assessment in Woods Hole Assessment Model (WHAM)  `r Cite(myBib,"stock_woods_2021")`.
 
-WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
+We are using the `devel` version of WHAM: https://github.com/timjmiller/wham/tree/devel
+
+Model [mm192](https://drive.google.com/drive/folders/1sQdDsfdnVbiiY4X7Rgr-fvegwT7Fa1Az?usp=drive_link) is our starting point.
 
 Zooplankton indices were explored as covariates on herring recruitment.
 
-We explored indices with different zooplankton groups, seasons, and regions according to herring life history and results from the boosted regression tree:
+Recruitment is modeled as deviations from the "recruitment scaling parameter", leaving one option for modeling effects of covariates on recruitment: "controlling".
 
-*  Jan-Jun large copepods  in spring herring BTS strata with lag-0 to represent food for pre-recruit juveniles
-*  Jul-Dec small copepods in fall herring BTS strata with lag-1 to represent food for larvae in general
-*  Sep-Feb small copepods in herring larval area with lag-1 to represent food for larvae more specifically
+A "controlling" recruitment covariate results in a time-varying recruitment scaling parameter.
+
 
 ]
 
 .pull-right[
-```{r results='hide', message=FALSE}
 
-u1 <- "https://github.com/NOAA-EDAB/forageindex/raw/main/WHAMoutput/BF28C_m7_ecov_off.rds"
-u2 <- "https://github.com/NOAA-EDAB/forageindex/raw/main/WHAMoutput/BF28C_m7_ecov_on.rds"
-  
-ecov_off <- readRDS(url(u1, method="libcurl"))
-ecov_on <- readRDS(url(u2, method="libcurl"))
+We explored indices with different zooplankton groups, seasons, and regions according to herring life history and results from the boosted regression tree:
 
-mods <- list(ecov_off, ecov_on)
-names(mods) <- c("ecov_off", "ecov_on")
-
-compwham <- wham::compare_wham_models(mods, do.plot = F, fdir = here::here("data"))
-
-```
-
-
-```{r WHAMq, fig.asp = 0.8, fig.cap="Fall state waters forage index fit as a catchabilty covariate within the bluefish assessment model (top), with resulting catchability, q, for the recreational fishery catch per unit effort (MRIP) index (bottom)."}
-
-StateWaters <- splitoutnew |>
-  dplyr::left_join(stratlook) %>%
-  dplyr::filter(Region %in% c("GOM", "GB", "MAB","MABGBstate", "bfin")) %>%
-  dplyr::mutate(Type = ifelse(Region %in% c("GOM", "GB", "MAB"), "Ecoregion", "Bluefish"),
-                Region = case_when(Region == "MABGBstate" ~ "StateWaters",
-                                   Region == "bfin" ~ "SurveyBluefish",
-                                   TRUE ~ Region)) |>
-  dplyr::filter(Region == "StateWaters") |>
-  dplyr::mutate(logStateW = log(Estimate)) |>
-  dplyr::select(year = Time, logStateW, SE = Std..Error.for.ln.Estimate.)
-
-forageobs <- ecov_on$input$data$Ecov_obs
-forageest <- ecov_on$rep$Ecov_out[,,1][,3]
-forageestse <- ecov_on$rep$Ecov_obs_sigma
-
-StateWatersWHAM <- StateWaters |>
-  bind_cols(forageobs=forageobs, 
-            forageest=forageest, 
-            forageestse=forageestse)
-
-foragefit <- ggplot(StateWatersWHAM, aes(x=year, y=forageobs, color="ln_StateWaters")) + #y=logStateW
-  geom_point() +
-  geom_ribbon(aes(ymin=forageobs-(1.96*SE), ymax=forageobs+(1.96*SE), fill="ln_StateWaters"),  linetype = 0, alpha = 0.15) +
-  geom_line(aes(x=year, y=forageest, color="WHAM_fit"))+
-  geom_ribbon(aes(ymin=forageest-(forageestse), ymax=forageest+(forageestse), 
-                  fill="WHAM_fit"),  linetype = 0, alpha = 0.15) +
-  scale_color_manual(name='Forage Index',
-                     breaks=c('WHAM_fit', 'ln_StateWaters'),
-                     values=c('ln_StateWaters'='purple', 'WHAM_fit'="indianred"),
-                     aesthetics = c("colour", "fill")) +
-  xlab("Year") +
-  ylab("ln(State Waters fall forage)")
-
-
-forageqMRIP <- ecov_on$rep$q[,3]
-noqMRIP <- ecov_off$rep$q[,3]
-assyear <- 1985:2021
-
-se <- summary(ecov_on$sdrep)
-se <- matrix(se[rownames(se) == "logit_q_mat",2], length(ecov_on$years))
-forageqMRIPse <- se[,3]
-
-WHAMq <- data.frame(year=assyear, ecovq=forageqMRIP, se=forageqMRIPse, qbase=noqMRIP)
-
-WHAMfit <- ggplot(WHAMq, aes(x=year, y=ecovq, color='ecov_on'))+
-  geom_line()+ #color="indianred"
-  geom_ribbon(aes(ymin=ecovq*exp(-1.96*se), ymax=ecovq*exp(1.96*se), fill='ecov_on'),  linetype = 0, alpha = 0.15)+ 
-  geom_line(aes(x=year, y=qbase, color='ecov_off')) +
-  scale_color_manual(name='MRIP Catchability',
-                     breaks=c('ecov_off', 'ecov_on'),
-                     values=c('ecov_on'='indianred', 'ecov_off'="black"),
-                     aesthetics = c("colour", "fill")) +
-  xlab("Year") +
-  ylab("Estimated catchability, q")
-
-foragefit + WHAMfit + plot_layout(ncol = 1)
-
-```
+*  Jan-Jun (Spring) large copepods  in spring herring BTS strata with lag-0 to represent food for pre-recruit juveniles
+*  Jul-Dec (Fall) small copepods in fall herring BTS strata with lag-1 to represent food for larvae in general
+*  Sep-Feb small copepods in herring larval area with lag-1 to represent food for larvae more specifically
+*  Combinations of large and small copepod covariates above 
 
 ]
 ???
 
+---
+## Implementing each index
 
-The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
-The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
-The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
+We evaluated 
+
+*  Options for covariate input (millions of cells vs. log(cells), VAST estimated SE vs. WHAM estimated SE)  
+*  Options for covariate observation model ("rw" vs. "ar1")  
+*  Options for recruitment link ("none" vs. "controlling-linear" with lag-0 for large copepods and lag-1 for small)  
+
+Short story:
+
+*  Models with covariates input on the log scale generally converged
+*  Models with WHAM estimated covariate SE ("est_1") generally converged
+*  Under the above conditions, most models with and without the recruitment link converged for all covariates
+
+*  Models with the Jan-Jun (Spring) large copepods covariate also converged with input as millions of cells and VAST estimated SE
+
+*  I'm still figuring out where to find all the diagnostics in WHAM, so "converged" may not be "a good model"
+
+[Way too much detail including false starts](https://noaa-edab.github.io/zooplanktonindex/WHAMcovariate_tests.html)
 
 ---
-.pull-left[
-## Do prey affect bluefish availability? Yes, for the recreational CPUE index
+## Results: Spring large copepods covariate: model summary
 
-
-```{r WHAMresults, ft.arraystretch = 1}
-
-compwhamtab <- as.data.frame(compwham$tab) |>
-  tibble::rownames_to_column(var = "model")
-
-flextable::flextable(compwhamtab) |>
-  flextable::set_caption("Bluefish stock assessment model fit and retrospective diagnostics with (model = ecov_on) and without (model = ecov_off) the fall StateWaters forage index included as a catchability covariate on the recreational fishery catch per unit effort index. Mohn's rho values (rho) indicate retrospective performance for recruitment (R), spawning stock biomass (SSB) and fully selected fishing mortality (Fbar).")
+*Models with ecov_off had slightly better AIC than comparable models with ecov_on*
 
 ```
+Model ecov_process                 ecov_how           ecovdat conv pdHess       NLL  dAIC     AIC  rho_R rho_SSB rho_Fbar
+ m10           ar1                     none     logmean-est_1 TRUE   TRUE -1793.611     0 -3325.2 0.8684  0.5901  -0.2314
+ m14           ar1 controlling-lag-0-linear     logmean-est_1 TRUE   TRUE -1794.325   0.6 -3324.6 0.8999  0.5844  -0.2296
+  m2            rw                     none     logmean-est_1 TRUE   TRUE -1790.837   3.5 -3321.7 0.8683  0.5901  -0.2314
+  m6            rw controlling-lag-0-linear     logmean-est_1 TRUE   TRUE -1791.227   4.7 -3320.5 0.8844  0.5846    -0.23
+
+ m11           ar1                     none meanmil-logsigmil TRUE   TRUE -1509.570 566.1 -2759.1 0.8682  0.5901  -0.2314
+ m15           ar1 controlling-lag-0-linear meanmil-logsigmil TRUE   TRUE -1510.349 566.5 -2758.7 0.9081   0.592  -0.2379
+  m3            rw                     none meanmil-logsigmil TRUE   TRUE -1506.709 569.8 -2755.4 0.8594  0.5907  -0.2362
+  m7            rw controlling-lag-0-linear meanmil-logsigmil TRUE   TRUE -1507.424 570.4 -2754.8 0.8104   0.594  -0.2448
+
+```
+
+---
+## Results: Spring large copepods covariate: logscale ar1 diagnostics
+
+.pull-left[
+![lgCopeSp2 m10 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m10/plots_png/diagnostics/lgCopeSpring2_diagnostic.png)
 ]
 
 .pull-right[
-*Inclusion of the forage fish index improved model fit.* 
-
-```{r, fig.asp=1}
-
-
-plotwham <- wham::compare_wham_models(mods, do.table = F, plot.opts=list(kobe.prob=FALSE,
-                                                                         which=1),
-                                      fdir=here::here("data"))
-
-plotwham$g[[1]] + 
-  scale_color_manual(values = c("black", "indianred")) + 
-  scale_fill_manual(values = c("black", "indianred")) +
-  theme(legend.position = "right")
-
-```
+![lgCopeSp2 m10 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m10/plots_png/diagnostics/OSA_resid_ecov_4panel_lgCopeSpring2.png)
 
 ]
 
-The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to <span style="color:#cd5c5c;">higher biomass estimates from the assessment including forage fish.</span>  
+---
+## Results: Spring large copepods covariate: logscale ar1 recruitment
+
+.pull-left[
+![lgCopeSp2 m10 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m10/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![lgCopeSp2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m14/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+```{r}
+m10par <- readRDS(here::here("WHAM/mm192_lgcopeSpring2/m10/res_tables/parameter_estimates_table.RDS"))
+
+m14par <- readRDS(here::here("WHAM/mm192_lgcopeSpring2/m14/res_tables/parameter_estimates_table.RDS"))
+
+```
+
+Without covariate, recruitment variance is `r round(m10par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m14par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; lgCopeSpring2 beta_1 is `r round(m14par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",1],3)`, CI `r round(m14par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",3],3)`, `r round(m14par["stock 1 Recruitment Ecov: lgCopeSpring2 $\\beta_1$",4],3)`
+
+---
+## Results: Spring large copepods covariate: logscale rw diagnostics
+
+.pull-left[
+
+]
+
+.pull-right[
+
+
+]
+
+---
+## Results: Spring large copepods covariate: logscale rw recruitment
+
+.pull-left[
+
+]
+
+.pull-right[
+
+
+]
+
+---
+## Results: Spring large copepods covariate: natural scale ar1 diagnostics
+
+.pull-left[
+
+]
+
+.pull-right[
+
+
+]
+
+---
+## Results: Spring large copepods covariate: natural scale ar1 recruitment
+
+.pull-left[
+
+]
+
+.pull-right[
+
+
+]
+
+---
+## Results: Spring large copepods covariate: natural scale rw diagnostics
+
+.pull-left[
+
+]
+
+.pull-right[
+
+
+]
+
+---
+## Results: Spring large copepods covariate: natural scale rw recruitment
+
+.pull-left[
+
+]
+
+.pull-right[
+
+
+]
 
 ---
 ## Including ecosystem information for fish stocks: Alaska Ecosystem and Socioeconomic Profiles
@@ -438,106 +455,6 @@ Our ESP process was developed from the AFSC process, but we adjusted things slig
 The ESP framework is an iterative cycle that complements the stock assessment cycle. First I will give you an overview of the ESP cycle, and then I will explain each step in more detail. The ESP begins with the development of the problem statement by identifying the topics that the assessment working group and ESP team want to assess. This process includes a literature review or other method of gathering existing information on the stock, such as reviewing prior assessments and research recommendations. Next, a conceptual model is created that links important processes and pressures to stock performance. From these linkages, we develop indicators that can be used to monitor the system conditions. Next, the indicators are analyzed to determine their status and the likely impacts on the stock. Some indicators may be tested for inclusion in assessment models. Finally, all of these analyses are synthesized into a report card to provide general recommendations for fishery management.
 
 
-
----
-## Northeast US Bluefish *Pomatomus saltatrix* ESP, reviewed December 2022
-
-.pull-left[
-
-![Bluefish ESP conceptual model](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
-.contrib[Figure and table by Abigail Tyrell]
-]
-
-.pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/TOR1.svg)
-]
-
-The full ESP document is available as a working paper from the [stock assessment data portal](https://apps-nefsc.fisheries.noaa.gov/saw/sasi_files.php?year=2022&species_id=32&stock_id=6&review_type_id=5&info_type_id=5&map_type_id=&filename=WP%2001%20Tyrell%20etAl%202022%20-%20ESP.pdf) 
-
-## Ecosystem considerations can apply to observation as well as population processes 
-
-???
-
----
-## What have we learned? New England Atlantic Herring as forage `r Cite(myBib,"deroba_dream_2018")`.
-.pull-left-30[
-Complex food web, generalist predators
-- Weak individual predator response to many herring harvest control rules
-- (Stronger predator response to changing herring growth)
-- Herring is one of several important prey (36-40 in plot)
-- Assessing multiple prey together will likely show stronger effects on predators
-]
-.pull-right-70[
-![NEUSfw](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/LinkNEUSfoodweb.png)
-.contrib[The original "horrendogram" `r Cite(myBib,"link_does_2002")`]
-]
-
-
----
-## Extensions: Can forage indices link zooplankton and fish productivity?
-
-.pull-left[
-
-```{r ecodata}
-#fishcond <- magick::image_read("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAB_Condition_allsex_2022_viridis.jpg") 
-#magick::image_trim(fishcond)
-
-epu_abbr = "MAB"
-
-```
-
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"), fig.asp=.6}
-
-```
-
-.left[
-```{r, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-abund.R"), out.width = "90%", fig.asp=.5}
-
-```
-]
-]
-
-.pull-right[
-
-#### MAB
-
-.center[
-```{r MAforagebio, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-forage-index.R"), fig.asp=.6, out.width="70%"}
-#fig.cap = "Forage fish index based on spring and fall survey predator diets in the Mid Atlantic.", 
-```
-]
-
-#### NE
-```{r NEforagebio, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-forage-index.R"),  fig.asp=.5, out.width="100%"}
-#fig.cap = "Forage fish index based on spring and fall survey predator diets on Georges Bank (GB) and in the Gulf of Maine (GOM).",
-```
-
-]
-
-???
-aggregate forage important in this system with many forage species: Jason Link horrendogram
-
-potential trends in aggregate forage to be compared with trends in zooplankton and environmental drivers
-
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_3.png")
-background-size: 500px
-background-position: right
-
-## Next steps
-
-Update for 2024 ecosystem reporting
-
-Benthic index for food web modeling, risk assessment
-
-Improvements/exploration: 
-
-*   Add predator functional response?
-
-*   Multivariate model tracking prey groups?
-
-*   Your ideas here!
 
 ---
 ## Thank you!  References
