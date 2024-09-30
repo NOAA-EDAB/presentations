@@ -276,7 +276,7 @@ A "controlling" recruitment covariate results in a time-varying recruitment scal
 
 We explored indices with different zooplankton groups, seasons, and regions according to herring life history and results from the boosted regression tree:
 
-*  Jan-Jun (Spring) large copepods  in spring herring BTS strata with lag-0 to represent food for pre-recruit juveniles
+*  Jan-Jun (Spring) large copepods in spring herring BTS strata with lag-0 to represent food for pre-recruit juveniles
 *  Jul-Dec (Fall) small copepods in fall herring BTS strata with lag-1 to represent food for larvae in general
 *  Sep-Feb small copepods in herring larval area with lag-1 to represent food for larvae more specifically
 *  Combinations of large and small copepod covariates above 
@@ -503,31 +503,217 @@ m14par <- readRDS(here::here("WHAM/mm192_smcopeFall2/m14/res_tables/parameter_es
 Without covariate, recruitment variance is `r round(m10par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m14par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeFall2 beta_1 is `r round(m14par["stock 1 Recruitment Ecov: smCopeFall2 $\\beta_1$",1],3)`, CI `r round(m14par["stock 1 Recruitment Ecov: smCopeFall2 $\\beta_1$",3],3)`, `r round(m14par["stock 1 Recruitment Ecov: smCopeFall2 $\\beta_1$",4],3)`
 
 ---
-## Including ecosystem information for fish stocks: Alaska Ecosystem and Socioeconomic Profiles
+## Results: Sep-Feb small copepods in herring larval area covariate: model summary
+
+*Model with ar1 covariate had slightly better AIC than models without recruitment links*
+
+```
+Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL  dAIC     AIC  rho_R rho_SSB rho_Fbar
+  m14          ar1 controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1791.900     0 -3319.8  0.814  0.5966  -0.2327
+   m2           rw                     none logmean-est_1 TRUE   TRUE -1789.657   0.5 -3319.3 0.8683  0.5901  -0.2314
+  m10          ar1                     none logmean-est_1 TRUE   TRUE -1790.469   0.9 -3318.9 0.8683  0.5901  -0.2314
+   m6           rw controlling-lag-1-linear logmean-est_1 TRUE  FALSE -1785.746   ---     ---    ---     ---      ---
+
+```
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale ar1 diagnostics
 
 .pull-left[
-
-![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)  
-&nbsp; 
-
-Ecosystem and Socioeconomic Profiles (ESPs) `r Cite(myBib, c("shotwell_synthesizing_2022", "haltuch_oceanographic_2020", "tolimieri_oceanographic_2018", "dorn_risk_2020"))`
+![smCopeSepFeb2 m10 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2/m10/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
 ]
 
 .pull-right[
-![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/GOApcodESPrisk.png)
+![smCopeSepFeb2 m10 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2/m10/plots_png/diagnostics/OSA_resid_ecov_4panel_smCopeSepFeb2.png)
+
 ]
 
-.footnote[
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale ar1 recruitment
 
-Pacific cod example from Alaska: https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheries-science-center-year-review and https://apps-afsc.fisheries.noaa.gov/refm/docs/2021/GOApcod.pdf
+.pull-left[
+![smCopeSepFeb2 m10 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2/m10/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
 ]
 
+.pull-right[
+![smCopeSepFeb2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2/m14/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+```{r}
+m10par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2/m10/res_tables/parameter_estimates_table.RDS"))
+
+m14par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2/m14/res_tables/parameter_estimates_table.RDS"))
+
+```
+
+Without covariate, recruitment variance is `r round(m10par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m14par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeSepFeb2 beta_1 is `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",1],3)`, CI `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",3],3)`, `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",4],3)`
+
+---
+## Alternate: Sep-Feb small copepods in fall herring survey strata covariate
+
+*Both rw and ar1 models worked with covariates, rw better fit*
+
+```
+Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL  dAIC     AIC  rho_R rho_SSB rho_Fbar
+   m6           rw controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1791.981   0.0 -3322.0 0.7592  0.6023  -0.2327
+  m14          ar1 controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1792.464   1.1 -3320.9 0.7943  0.5971  -0.2329
+   m2           rw                     none logmean-est_1 TRUE   TRUE -1790.196   1.6 -3320.4 0.8682  0.5901  -0.2314
+  m10          ar1                     none logmean-est_1 TRUE   TRUE -1790.734   2.5 -3319.5 0.8683  0.5901  -0.2314
+
+```
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale rw diagnostics
+
+.pull-left[
+![smCopeSepFeb2_fallstrat m2 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m2/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
+]
+
+.pull-right[
+![smCopeSepFeb2_fallstrat m2 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m2/plots_png/diagnostics/OSA_resid_ecov_4panel_smCopeSepFeb2.png)
+
+]
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale rw recruitment
+
+.pull-left[
+![smCopeSepFeb2_fallstrat m2 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m2/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![smCopeSepFeb2_fallstrat m6 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m6/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+```{r}
+m2par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2_fallstrata/m2/res_tables/parameter_estimates_table.RDS"))
+
+m6par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2_fallstrata/m6/res_tables/parameter_estimates_table.RDS"))
+
+```
+
+Without covariate, recruitment variance is `r round(m2par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m6par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeSepFeb2 beta_1 is `r round(m6par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",1],3)`, CI `r round(m6par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",3],3)`, `r round(m6par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",4],3)`
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale ar1 diagnostics
+
+.pull-left[
+![smCopeSepFeb2 m10 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m10/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
+]
+
+.pull-right[
+![smCopeSepFeb2 m10 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m10/plots_png/diagnostics/OSA_resid_ecov_4panel_smCopeSepFeb2.png)
+
+]
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale ar1 recruitment
+
+.pull-left[
+![smCopeSepFeb2 m10 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m10/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![smCopeSepFeb2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m14/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+```{r}
+m10par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2_fallstrata/m10/res_tables/parameter_estimates_table.RDS"))
+
+m14par <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2_fallstrata/m14/res_tables/parameter_estimates_table.RDS"))
+
+```
+
+Without covariate, recruitment variance is `r round(m10par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m14par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeSepFeb2 beta_1 is `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",1],3)`, CI `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",3],3)`, `r round(m14par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",4],3)`
+
+
+---
+## Results: Both Spring large copepods and Sep-Feb small copepods in herring larval area: model summary
+
+*Models with and without ar1 covariates linked to recruitment had the same AIC*
+
+```
+Model ecov_process                   ecov_how       ecovdat conv pdHess       NLL dAIC     AIC  rho_R rho_SSB rho_Fbar
+   m2          ar1                       none logmean-est_1 TRUE   TRUE -1771.328  0.0 -3272.7 0.8682  0.5901  -0.2314
+   m4          ar1 controlling-lag-0/1-linear logmean-est_1 TRUE   TRUE -1773.347  0.0 -3272.7 0.8529  0.5922  -0.2313
+   m1           rw                       none logmean-est_1 TRUE   TRUE -1767.742  3.2 -3269.5 0.8683  0.5901  -0.2314
+   m3           rw controlling-lag-0/1-linear logmean-est_1 TRUE   TRUE -1769.627  3.4 -3269.3 0.8001  0.5976  -0.2321
+
+```
+
+---
+## Results: Both Spring large copepods and Sep-Feb small copepods in herring larval area: logscale rw diagnostics
+
+.pull-left[
+![lgCopeSpring m1 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/plots_png/diagnostics/lgCopeSpring2_diagnostic.png)
+]
+
+.pull-right[
+![lgCopeSpring2 m1 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/plots_png/diagnostics/OSA_resid_ecov_4panel_lgCopeSpring2.png)
+
+]
+
+---
+## Results: Both Spring large copepods and Sep-Feb small copepods in herring larval area: logscale rw diagnostics
+
+.pull-left[
+![smCopeSepFeb m1 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
+]
+
+.pull-right[
+![smCopeSepFeb2 m1 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/plots_png/diagnostics/OSA_resid_ecov_4panel_smCopeSepFeb2.png)
+
+]
+
+---
+## Results: Both Spring large copepods and Sep-Feb small copepods in herring larval area: logscale rw recruitment
+
+.pull-left[
+![both m1 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![both m3 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m3/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+```{r}
+m1par <- readRDS(here::here("WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/res_tables/parameter_estimates_table.RDS"))
+
+m3par <- readRDS(here::here("WHAM/mm192_lgcopeSpring_smcopeSepFeb/m3/res_tables/parameter_estimates_table.RDS"))
+
+#; lgcopeSpring2 beta_1 is `r round(m3par["stock 1 Recruitment Ecov: lgCopeSpring2 $\beta_1$",1],3)`, CI `r round(m3par["stock 1 Recruitment Ecov: lgCopeSpring2 $\beta_1$",3],3)`, `r round(m3par["stock 1 Recruitment Ecov: lgCopeSpring2 $\beta_1$",4],3)`
+
+
+
+```
+
+Without covariates, recruitment variance is `r round(m1par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m3par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeSepFeb2 beta_1 is `r round(m3par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",1],3)`, CI `r round(m3par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",3],3)`, `r round(m3par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",4],3)`
 
 ???
-Our ESP process was developed from the AFSC process, but we adjusted things slightly because of how our benchmarks are scheduled and because we are providing scientific advice to multiple Councils. 
 
-The ESP framework is an iterative cycle that complements the stock assessment cycle. First I will give you an overview of the ESP cycle, and then I will explain each step in more detail. The ESP begins with the development of the problem statement by identifying the topics that the assessment working group and ESP team want to assess. This process includes a literature review or other method of gathering existing information on the stock, such as reviewing prior assessments and research recommendations. Next, a conceptual model is created that links important processes and pressures to stock performance. From these linkages, we develop indicators that can be used to monitor the system conditions. Next, the indicators are analyzed to determine their status and the likely impacts on the stock. Some indicators may be tested for inclusion in assessment models. Finally, all of these analyses are synthesized into a report card to provide general recommendations for fishery management.
+---
+## Implications for reference points: Sep-Feb small copepods in herring larval area
 
+.pull-left[
+```{r}
+compare_sepfeb <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2/smCopeSepFeb2compare_best3.rds"))
+
+compare_sepfeb$g[[1]]
+```
+
+]
+
+.pull-right[
+```{r}
+compare_sepfeb$g[[9]]
+```
+
+]
+
+---
+## Implications for reference points: Sep-Feb small copepods in herring larval area
+
+![:img compare kobe smCopeSepFeb2, 80%](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2/compare_rel_status_kobe.png)
 
 
 ---
