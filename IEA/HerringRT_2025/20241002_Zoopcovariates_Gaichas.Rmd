@@ -724,6 +724,107 @@ Same pattern by area
 *  herring larval
 *  fall survey
 
+---
+## Results: Duration of optimal larval temperature, Sept-Dec: model summary
+
+```
+  Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL  dAIC     AIC  rho_R rho_SSB rho_Fbar
+
+    m4           rw controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1827.543     0 -3393.1 0.6543  0.5984 -0.2323
+    m3           rw                     none logmean-est_1 TRUE   TRUE -1826.370   0.4 -3392.7 0.8682  0.5901 -0.2314
+    m8          ar1 controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1826.627   3.8 -3389.3 0.6714   0.598 -0.2324
+    m7          ar1                     none logmean-est_1 TRUE   TRUE -1825.511   4.1   -3389 0.8682  0.5901 -0.2314
+
+    m2           rw controlling-lag-1-linear    mean-est_1 TRUE   TRUE -1650.465 354.2 -3038.9 0.6473  0.5976 -0.2321
+    m1           rw                     none    mean-est_1 TRUE   TRUE -1649.265 354.6 -3038.5 0.8594  0.5907 -0.2362
+    m6          ar1 controlling-lag-1-linear    mean-est_1 TRUE   TRUE -1649.607 357.9 -3035.2 0.6643  0.5971 -0.2322
+    m5          ar1                     none    mean-est_1 TRUE  FALSE -1644.890   ---     ---    ---     ---     ---
+
+```
+---
+## Results: Duration of optimal larval temperature, Sept-Dec: logscale rw diagnostics
+
+.pull-left[
+![LarvalTempDuration/m3  fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m3/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
+]
+
+.pull-right[
+![LarvalTempDuration/m3 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m3/plots_png/diagnostics/OSA_resid_ecov_4panel_smCopeSepFeb2.png)
+
+]
+
+---
+## Results: Duration of optimal larval temperature, Sept-Dec: logscale rw recruitment
+
+.pull-left[
+![LarvalTempDuration/m3 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m3/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![LarvalTempDuration/m4 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m4/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+```{r}
+m3par <- readRDS(here::here("WHAM/mm192_LarvalTempDuration/m3/res_tables/parameter_estimates_table.RDS"))
+
+m4par <- readRDS(here::here("WHAM/mm192_LarvalTempDuration/m4/res_tables/parameter_estimates_table.RDS"))
+
+```
+
+Without covariate, recruitment variance is `r round(m3par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m4par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeSepFeb2 beta_1 is `r round(m4par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",1],3)`, CI `r round(m4par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",3],3)`, `r round(m4par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",4],3)`
+
+---
+## Results: Duration of optimal larval temperature, Sept-Dec: logscale ar1 diagnostics
+
+.pull-left[
+![LarvalTempDuration/m7 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m7/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
+]
+
+.pull-right[
+![LarvalTempDuration/m7 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m7/plots_png/diagnostics/OSA_resid_ecov_4panel_smCopeSepFeb2.png)
+
+]
+
+---
+## Results: Duration of optimal larval temperature, Sept-Dec: logscale ar1 recruitment
+
+.pull-left[
+![LarvalTempDuration/m7 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m7/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![LarvalTempDuration/m8 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m8/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+```{r}
+m7par <- readRDS(here::here("WHAM/mm192_LarvalTempDuration/m7/res_tables/parameter_estimates_table.RDS"))
+
+m8par <- readRDS(here::here("WHAM/mm192_LarvalTempDuration/m8/res_tables/parameter_estimates_table.RDS"))
+
+```
+
+Without covariate, recruitment variance is `r round(m7par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m8par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; smcopeSepFeb2 beta_1 is `r round(m8par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",1],3)`, CI `r round(m8par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",3],3)`, `r round(m8par["stock 1 Recruitment Ecov: smCopeSepFeb2 $\\beta_1$",4],3)`
+
+---
+## Implications for reference points: Duration of optimal larval temperature, Sept-Dec
+
+.pull-left[
+```{r}
+compare_temp <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2/smCopeSepFeb2compare_best3.rds"))
+
+compare_temp$g[[1]]
+```
+
+]
+
+.pull-right[
+```{r}
+compare_temp$g[[9]]
+```
+
+]
+
+
 
 ---
 
