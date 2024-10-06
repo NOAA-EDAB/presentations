@@ -1,59 +1,34 @@
----
-title: "Multispecies models: US update"
-subtitle: "WGSAM ToR a, 7 October 2024"
-author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Alberto Rovellini, Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth),<br />Robert Gamble, Max Grezlik (UMass Dartmouth),  Isaac Kaplan, Emily Liljestrand, Sean Lucey (RWE), Maria Cristina Perez (UMass Dartmouth), Sarah Weisberg (Stony Brook U and NOAA), Robert Wildermuth"
-output:
-  xaringan::moon_reader:
-    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css"]
-    lib_dir: libs
-    nature:
-      titleSlideClass: ["right", "middle", "my-title"]
-      ratio: "16:9"
-      highlightStyle: githubp
-      highlightLines: true
-      countIncrementalSlides: false
-      beforeInit: "libs/macros.js"
-  revealjs::revealjs_presentation:
-    self_contained: false
-    reveal_plugins: ["notes", "search"]
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Multispecies models: US update</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas, Presenter   Contributors: Alberto Rovellini, Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth), Robert Gamble, Max Grezlik (UMass Dartmouth), Isaac Kaplan, Emily Liljestrand, Sean Lucey (RWE), Maria Cristina Perez (UMass Dartmouth), Sarah Weisberg (Stony Brook U and NOAA), Robert Wildermuth" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+.title[
+# Multispecies models: US update
+]
+.subtitle[
+## WGSAM ToR a, 7 October 2024
+]
+.author[
+### Sarah Gaichas, Presenter<br /><br /><br />Contributors: Alberto Rovellini, Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth),<br />Robert Gamble, Max Grezlik (UMass Dartmouth), Isaac Kaplan, Emily Liljestrand, Sean Lucey (RWE), Maria Cristina Perez (UMass Dartmouth), Sarah Weisberg (Stony Brook U and NOAA), Robert Wildermuth
+]
 
 ---
+
 class: top, left
 
-```{r setup, include=FALSE}
 
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = F,
-                      fig.retina = 3,
-                      #fig.width = 4,
-                      #fig.height = 2,
-                      fig.asp = 0.45,
-                      warning = F,
-                      message = F
-                      )
-#Plotting and data libraries
-knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
-library(tidyverse)
-theme_set(theme_bw())
-library(tidyr)
-library(here)
-```
 
-```{r, load_refs, include=FALSE, cache=FALSE}
-library(RefManageR)
-BibOptions(check.entries = FALSE,
-           bib.style = "authoryear",
-           cite.style = "authoryear",
-           longnamesfirst = FALSE,
-           max.names = 1,
-           style = "markdown")
-myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
 
-#,
-#           hyperlink = FALSE,
-#           dashed = FALSE
-
-```
 
 
 # Updates
@@ -89,7 +64,7 @@ background-position: right
 
 # More Diverse uses of end to end and food web models
 
-## Atlantis &darr; and Rpath &rarr;
+## Atlantis &amp;darr; and Rpath &amp;rarr;
 
 .pull-left[
 ![:img NEUSmap, 88%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
@@ -308,10 +283,7 @@ Larval thermal habiat
 But haddock egg predation and thermal habitat worked better
 Preliminary: NAA RE strong signal in this assessment, masking recruitment covariates
 
-```{r, fig.asp=0.8}
 
-
-```
 
 
 ]
@@ -325,186 +297,16 @@ Preliminary: NAA RE strong signal in this assessment, masking recruitment covari
 Example: Evaluate risks posed by prey availability to achieving OY for Council managed species
 
 .pull-left[
-```{r}
+&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-2-1.png" width="504" /&gt;
 
-fallmacro <- readRDS(url("https://github.com/NOAA-EDAB/foodweb-risk/raw/main/preyindices/fallmacrobenthosindex.rds"))
-
-fixmacro<- fallmacro |>
-      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate"),
-                    EPU %in% c("MAB")) |>
-      dplyr::group_by(EPU) |>
-      dplyr::summarise(max = max(Value))
-
-    p <- fallmacro |>
-      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate",
-                               "Fall Macrobenthos Biomass Index Estimate SE"),
-                    EPU %in% c("MAB")) |>
-      dplyr::group_by(EPU) |>
-      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
-      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
-      #max = as.numeric(Value)) |>
-      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
-      dplyr::left_join(fixmacro) |>
-      dplyr::mutate(#Value = Value/resca,
-        Mean = as.numeric(Mean),
-        #max = as.numeric(Value),
-        Mean = Mean/max,
-        SE = SE/max,
-        Upper = Mean + SE,
-        Lower = Mean - SE) |>
-      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
-      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
-      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
-      #                  ymin = -Inf, ymax = Inf) +
-      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
-      ggplot2::geom_point()+
-      ggplot2::geom_line()+
-      ggplot2::ggtitle("Benthic invertebrate prey index")+
-      ggplot2::ylab(expression("Relative macrofauna biomass"))+
-      ggplot2::xlab(ggplot2::element_blank())+
-      ggplot2::facet_wrap(.~EPU)+
-      ecodata::geom_gls()+
-      ecodata::theme_ts()+
-      ecodata::theme_facet()+
-      ecodata::theme_title()
-    
-  p 
-  
-```
-
-```{r}
-
-p  <-  ecodata::forage_index |>
-      dplyr::filter(Var %in% c("Fall Forage Fish Biomass Estimate",
-                               "Fall Forage Fish Biomass Estimate SE"),
-                    EPU %in% c("MAB")) |>
-      dplyr::group_by(EPU) |>
-      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
-      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
-      #max = as.numeric(Value)) |>
-      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
-      dplyr::left_join(fixmacro) |>
-      dplyr::mutate(#Value = Value/resca,
-        Mean = as.numeric(Mean),
-        #max = as.numeric(Value),
-        Mean = Mean/max,
-        SE = SE/max,
-        Upper = Mean + SE,
-        Lower = Mean - SE) |>
-      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
-      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
-      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
-      #                  ymin = -Inf, ymax = Inf) +
-      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
-      ggplot2::geom_point()+
-      ggplot2::geom_line()+
-      ggplot2::ggtitle("Forage fish prey index")+
-      ggplot2::ylab(expression("Relative forage biomass"))+
-      ggplot2::xlab(ggplot2::element_blank())+
-      ggplot2::facet_wrap(.~EPU)+
-      ecodata::geom_gls()+
-      ecodata::theme_ts()+
-      ecodata::theme_facet()+
-      ecodata::theme_title()
-
-p
-```
+&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="504" /&gt;
 
 ]
 
 .pull-right[
-```{r}
+&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-4-1.png" width="504" /&gt;
 
-mafmc_cond <- c("Atlantic mackerel",
-           "Black sea bass",
-           "Bluefish",
-           "Butterfish",
-           "Goosefish",
-           "Illex", #not in condition
-           "Loligo",  #not in condition
-           "Scup",
-           "Spiny dogfish",
-           "Summer flounder",
-           "Surf clam",  #not in condition
-           "Ocean quahog")  #not in condition
-           #"Clams", # Atlantic surfclam and ocean quahog not separate groups
-           #"Tilefish") # Blueline and golden tilefish not separate groups
-
-AnnualRelCond2023_Fall <- readr::read_csv("https://raw.githubusercontent.com/NOAA-EDAB/foodweb-risk/main/condition/AnnualRelCond2023_Fall.csv")
-
-
-
-survEPUcond <- AnnualRelCond2023_Fall |>
-  dplyr::select(Time = YEAR,
-                Var = Species,
-                EPU,
-                Value = MeanCond,
-                nCond) |>
-  dplyr::group_by(EPU, Var) |>
-  dplyr::mutate(scaleCond = scale(Value,scale =T,center=T)) 
-
-xs <- quantile(survEPUcond$scaleCond, seq(0,1, length.out = 6), na.rm = TRUE)
-
-survEPUcond <- survEPUcond |>
-  dplyr::mutate(category = cut(scaleCond,
-                                  breaks = xs,
-                                  labels = c( "Poor Condition",
-                                              "Below Average",
-                                              "Neutral",
-                                              "Above Average",
-                                              "Good Condition"),
-                                  include.lowest = TRUE))
-
-condquants <- data.frame(ymin = xs[1:5],
-                         ymax = xs[2:6],
-                         category = sort(unique(survEPUcond$category))
-)
-
-vir <- viridis::viridis_pal()(5)
-
-mafmcsurvEPUcond <- survEPUcond |>
-  dplyr::filter(Var %in% mafmc_cond[2], #BSB
-                EPU %in% c("MAB"))
-
-p <-   ggplot2::ggplot() +
-  ggplot2::theme_bw() +
-  ggplot2::geom_rect(data = condquants,
-                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
-                     alpha = .3) +
-  ggplot2::scale_fill_manual(values=vir) +
-  ggplot2::geom_point(data= mafmcsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
-  #ggplot2::geom_hline(yintercept = xs[2:5]) +
-  #ggplot2::geom_line() +
-  ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
-  ggplot2::ylab("Scaled condition") +
-  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var), "fall body condition")) +
-  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
-
-p
-
-```
-
-```{r}
-mafmcsurvEPUcond <- survEPUcond |>
-  dplyr::filter(Var %in% mafmc_cond[3], #Bluefish
-                EPU %in% c("MAB"))
-
-p <-   ggplot2::ggplot() +
-  ggplot2::theme_bw() +
-  ggplot2::geom_rect(data = condquants,
-                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
-                     alpha = .3) +
-  ggplot2::scale_fill_manual(values=vir) +
-  ggplot2::geom_point(data= mafmcsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
-  #ggplot2::geom_hline(yintercept = xs[2:5]) +
-  #ggplot2::geom_line() +
-  ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
-  ggplot2::ylab("Scaled condition") +
-  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var), "fall body condition")) +
-  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
-
-p
-```
+&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-5-1.png" width="504" /&gt;
 
 
 ]
@@ -515,7 +317,7 @@ Council and Advisory Panel members recommended new elements addressing human dim
 
 The slide shows a higher risk example (black sea bass, low recent condition correlated with recently declining prey) and a lower risk example (bluefish, despite a long term decline in forage fish prey. recent condition has been good)
 
-`r Cite(myBib, "gaichas_assessing_2023")`
+
 
 
 
@@ -524,13 +326,149 @@ The slide shows a higher risk example (black sea bass, low recent condition corr
 ## Thank you!  References
 
 .contrib[
-```{r refs, echo=FALSE, results="asis"}
-PrintBibliography(myBib)
-```
+NULL
 ]
 
 .footnote[
 Slides available at https://noaa-edab.github.io/presentations  
-Contact: <Sarah.Gaichas@noaa.gov>
+Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
 ]
 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
