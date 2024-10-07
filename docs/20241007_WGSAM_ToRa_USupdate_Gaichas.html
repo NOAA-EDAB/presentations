@@ -3,7 +3,7 @@
   <head>
     <title>Multispecies models: US update</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Sarah Gaichas, Presenter   Contributors: Alberto Rovellini, Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth), Robert Gamble, Max Grezlik (UMass Dartmouth), Isaac Kaplan, Emily Liljestrand, Sean Lucey (RWE), Maria Cristina Perez (UMass Dartmouth), Sarah Weisberg (Stony Brook U and NOAA), Robert Wildermuth" />
+    <meta name="author" content="Sarah Gaichas, Presenter   Contributors: Alberto Rovellini, Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth), Robert Gamble, Max Grezlik (UMass Dartmouth), Isaac Kaplan, Emily Liljestrand, Sean Lucey (RWE), Maria Cristina Perez (UMass Dartmouth), James Thorson, Sarah Weisberg (Stony Brook U and NOAA), Robert Wildermuth" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
@@ -19,7 +19,7 @@ class: right, middle, my-title, title-slide
 ## WGSAM ToR a, 7 October 2024
 ]
 .author[
-### Sarah Gaichas, Presenter<br /><br /><br />Contributors: Alberto Rovellini, Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth),<br />Robert Gamble, Max Grezlik (UMass Dartmouth), Isaac Kaplan, Emily Liljestrand, Sean Lucey (RWE), Maria Cristina Perez (UMass Dartmouth), Sarah Weisberg (Stony Brook U and NOAA), Robert Wildermuth
+### Sarah Gaichas, Presenter<br /><br /><br />Contributors: Alberto Rovellini, Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth),<br />Robert Gamble, Max Grezlik (UMass Dartmouth), Isaac Kaplan, Emily Liljestrand, Sean Lucey (RWE), Maria Cristina Perez (UMass Dartmouth), James Thorson, Sarah Weisberg (Stony Brook U and NOAA), Robert Wildermuth
 ]
 
 ---
@@ -36,11 +36,11 @@ class: top, left
 .pull-left-40[  
 ## Since WGSAM 2023
 
-*  Atlantis climate and port integration
-    +  Northeast US (NEUS)
-    +  California Current
+*  Atlantis climate and port integration, Northeast US (NEUS)
 *  Atlantis ecosystem yield (Gulf of Alaska)
 *  Rpath 
+    +  Ascendancy and resilience
+    +  Portfolio management
 *  EcoState 
 *  Single species applications
     +  Stock assessment
@@ -187,7 +187,7 @@ background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs
 background-size: 150px
 background-position: bottom right
 
-# [Georges Bank Keyrun Review](https://ices-library.figshare.com/articles/report/Working_Group_on_Multispecies_Assessment_Methods_WGSAM_outputs_from_2022_meeting_/22087292) and Work in progress
+## [Georges Bank Keyrun Review](https://ices-library.figshare.com/articles/report/Working_Group_on_Multispecies_Assessment_Methods_WGSAM_outputs_from_2022_meeting_/22087292) and Work in progress
 
 .pull-left[
 *  Challenge of place based approach for stocks with substantial dynamics outside Georges Bank: "In that case, expanding the models outside the boundaries of the EPU, and/or explicitly accounting for the input/output of fish and energy across the boundaries will likely be needed"
@@ -216,20 +216,22 @@ background-position: bottom right
 ]
 
 ---
-# EcoSpace: new state-space dynamic food web
+## EcoSpace: new state-space [dynamic food web model](https://james-thorson-noaa.github.io/EcoState/)
 
-https://ecoevorxiv.org/repository/view/7476/
+Jim Thorson's Paper in review: https://ecoevorxiv.org/repository/view/7476/  
 
-https://james-thorson-noaa.github.io/EcoState/
+&lt;iframe width="1212" height="682" src="https://james-thorson-noaa.github.io/EcoState/articles/simulation.html" title="MS-keyrun simulated data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen&gt;&lt;/iframe&gt;
 
-https://james-thorson-noaa.github.io/EcoState/articles/simulation.html
+???
+## [Simulation test](https://james-thorson-noaa.github.io/EcoState/articles/simulation.html) 
+
 
 ---
 # Single species applications
 
 ## Time varying natural mortality for Atlantic mackerel
 
-## Ecologicxal drivers of recruitment for Atlantic herring
+## Ecological drivers of recruitment for Atlantic herring
 
 ---
 background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/WGSAM24_PPImackerel_Smith.png")
@@ -267,24 +269,39 @@ background-position: bottom
 ## Which indicators are relevant for recruitment?
 
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringBRT_rec.png")
+background-size: 800px
+background-position: right
+
+## Which indicators are potential covariates for recruitment?
+
+.pull-left-30[
+Boosted regression tree (Molina 2024) investigated relationships between environmental indicators and Atlantic herring recruitment estimated in the assessment.
+
+Larval and juvenile food (zooplankton), egg predation, and temperature always highest influence
+]
+
+.pull-right-70[
+
+]
+
+
+---
 .pull-left[  
 ## How to include in the stock assessment?
 
-Haddock egg predation
-Zooplankton
-Larval thermal habiat
+Zooplankton example
 
+![smCopeSepFeb2_fallstrat m2 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m2/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
 ]
 
 .pull-right[
 
 *The inclusion of the zooplankton index improved model fit IN THE WRONG DIRECTION.* 
 
-But haddock egg predation and thermal habitat worked better
-Preliminary: NAA RE strong signal in this assessment, masking recruitment covariates
+![smCopeSepFeb2_fallstrat m6 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m6/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
 
-
-
+Haddock egg predation and thermal habitat better
 
 ]
 
@@ -297,16 +314,16 @@ Preliminary: NAA RE strong signal in this assessment, masking recruitment covari
 Example: Evaluate risks posed by prey availability to achieving OY for Council managed species
 
 .pull-left[
-&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-2-1.png" width="504" /&gt;
+&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-1-1.png" width="504" /&gt;
 
-&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="504" /&gt;
+&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-2-1.png" width="504" /&gt;
 
 ]
 
 .pull-right[
-&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-4-1.png" width="504" /&gt;
+&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-3-1.png" width="504" /&gt;
 
-&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-5-1.png" width="504" /&gt;
+&lt;img src="20241007_WGSAM_ToRa_USupdate_Gaichas_files/figure-html/unnamed-chunk-4-1.png" width="504" /&gt;
 
 
 ]
@@ -320,19 +337,6 @@ The slide shows a higher risk example (black sea bass, low recent condition corr
 
 
 
-
----
-
-## Thank you!  References
-
-.contrib[
-NULL
-]
-
-.footnote[
-Slides available at https://noaa-edab.github.io/presentations  
-Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
-]
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
