@@ -1,0 +1,520 @@
+---
+title: "Multispecies models: US update"
+subtitle: "WGSAM ToR a, 7 October 2024"
+author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Alberto Rovellini, Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth),<br />Robert Gamble, Max Grezlik (UMass Dartmouth),  Isaac Kaplan, Emily Liljestrand, Sean Lucey (RWE), Maria Cristina Perez (UMass Dartmouth), James Thorson, Sarah Weisberg (Stony Brook U and NOAA), Robert Wildermuth"
+output:
+  bookdown::word_document2: default 
+---
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
+                      warning = F,
+                      message = F
+                      )
+#Plotting and data libraries
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+library(tidyverse)
+theme_set(theme_bw())
+library(tidyr)
+library(here)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+
+# Updates
+
+
+## Since WGSAM 2023
+
+*  Atlantis climate and port integration, Northeast US (NEUS)
+*  Atlantis ecosystem yield (Gulf of Alaska)
+*  Rpath 
+    +  Ascendancy and resilience
+    +  Portfolio management
+*  EcoState 
+*  Single species applications
+    +  Stock assessment
+    +  Risk assessment
+
+
+
+
+![xkcd comic 2992 titled UK coal](https://imgs.xkcd.com/comics/uk_coal_2x.png)
+
+.right[.contrib[One week ago today; https://xkcd.com/2992/]]
+
+
+???
+Everyone loves an update
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Balance_concept.png")
+background-size: 700px
+background-position: right
+
+# More Diverse uses of end to end and food web models
+
+## Atlantis &darr; and Rpath &rarr;
+
+
+![:img NEUSmap, 88%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
+
+
+
+
+---
+background-image: url("https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr3_lrg.jpg")
+background-size: 500px
+background-position: right
+
+# Atlantis NEUSv2:  
+
+## Updates for climate scenario testing
+
+
+## Joe Carracappa, Andy Beet, Robert Gamble
+*  Sensitivity to fishing scenarios (complete)
+*  Integrating spatial fleets and ports of origin
+*  Thermal thresholds project to integrate species temperature ranges
+*  Climate projections using MOM-6 planned
+*  Testing ecosystem overfishing indicators for the Northeast US
+
+
+.footnote[https://github.com/NOAA-EDAB/neus-atlantis]  
+
+
+
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/WGSAM24_GOA_Rovellini.png")
+background-size: contain 
+
+???
+
+Albi Rovellini's ongoing work on evaluating GOA optimum yield with Atlantis. This is part of a study on multispecies fishing simulations under different climate regimes and fishing configurations. 
+
+*  Gulf of Alaska groundfish is managed with a multispecies ecosystem cap on annual catch allocations
+*  Optimum Yield cap = 800,000 mt each year, sum of single-species ABC must be lower
+*  Similar system in the Bering Sea, but higher cap (2M t)
+*  Since 1987, the GOA OY cap has never constrained catch allocations (unlike the Bering Sea cap), suggesting that the OY cap may be too high for the productivity of GOA stocks
+*  Given its history and projected climate change in the GOA, should we expect the OY cap to constrain GOA catches in the future?
+*  Multispecies fishing simulations with Atlantis, 4 climate-fishing combinations:
+*  Fishing: (1) all stocks fished at equal multipliers of FMSY; (2) same as (1) except arrowtooth flounder is only lightly exploited
+*  Climate: from ROMS, (1) pre-heatwave 1999 cool conditions; (2) high CO2 emissions, end of century scenario
+
+Results:
+Underexploitation of key groundfish predator Arrowtooth flounder (right-hand column) leads to lower global yield, because arrowtooth predates on groundfish (mostly walleye pollock). Arrowtooth flounder is currently lightly exploited because it has limited commercial value
+Warmer climate (bottom row) leads to lower global yield, largely because of near collapse of Pacific cod under warm conditions mediated by recruitment failure
+
+TAKE HOME MESSAGE: The OY cap in the GOA is unlikely to constrain fishery allocations in the future
+
+---
+background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/Weisberg_PopDy_Poster_2023.png")
+background-size: 700px
+background-position: right
+
+## Rpath: Relative ascendency for three adjacent food webs
+
+
+Sarah Weisberg PhD thesis
+
+Highlight key groups within food webs and identify regime shifts
+
+*  Ecological network analysis shows different potential resilience across MAB, GB, GOM, and regimes in Gulf of Maine food web efficiency/resilience. 
+
+*  Benthic vs pelagic groups across the three systems
+
+*  Highly efficient food webs have lower resilience due to fewer trophic pathways decreasing redundancy. 
+
+* The Gulf of Maine had low resilience in the 2000s, corresponding to poor fish condition 
+
+.footnote[p.s. [Shiny GOM used in IEA course](https://connect.fisheries.noaa.gov/content/6c128564-f8b2-49c4-8afc-614f9e2e7a5b/)]
+
+
+
+
+
+
+???
+*Advancing the Utility of Food Web-Derived Indicators to Support Ecosystem-Based Fisheries Management*
+---
+background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/WGSAM24_portfiolio_Grezlik.png")
+background-size: 720px
+background-position: right
+
+## Rpath: Supporting Portfolio Theory Management of Georges Bank Fisheries
+
+
+Max Grezlik PhD Thesis
+
+Efficiency frontiers quantify revenue and financial risk taken to achieve a given revenue. 
+
+Red and blue lines compare an expanded groundfish complex to single species management of the same species. 
+
+The point is the observed revenue and risk of forgone revenue for a given year. 
+
+Preliminary results suggest the current, 13-species complex allows for some benefits beyond what single species management would achieve. The distance between observed and EBFM frontier suggests there is added economic benefit to expanding the current complex.
+
+
+
+
+
+???
+
+Goal: demonstrate the utility of diversification of fishing portfolios in New England
+
+*  NEFMC efforts toward climate-resilient fisheries. 
+*  Worked example: expanding Northeast Groundfish Complex. 
+*  Fishing portfolio diversification empowers fishers to find solutions to choke stocks which have threatened the sustainability and profitability of an historic fishery. 
+
+
+Efficiency frontiers quantify revenue and financial risk taken to achieve a given revenue. Red and blue lines compare an expanded groundfish complex to single species management of the same species. The point is the observed revenue and risk of forgone revenue for a given year. Preliminary results suggest the current, 13-species complex allows for some benefits beyond what single species management would achieve. The distance between observed and EBFM frontier suggests there is added economic benefit to expanding the current complex.
+
+
+---
+background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/work-in-progress.png)
+background-size: 150px
+background-position: bottom right
+
+## [Georges Bank Keyrun Review](https://ices-library.figshare.com/articles/report/Working_Group_on_Multispecies_Assessment_Methods_WGSAM_outputs_from_2022_meeting_/22087292) and Work in progress
+
+
+*  Challenge of place based approach for stocks with substantial dynamics outside Georges Bank: "In that case, expanding the models outside the boundaries of the EPU, and/or explicitly accounting for the input/output of fish and energy across the boundaries will likely be needed"
+
+*  Dedicated R packages for data positively reviewed
+
+*  Standardize diet interactions and better quantify other food in estimation models using Rpath
+
+*  Do model self-tests
+
+*  Model specific structural and sensitivity recommendations
+
+
+
+## In progress
+
+*  Self tests (4 species Hydra in progress by Cristina)
+
+*  Model specific recommendations
+    +  Fleet changes done, 3 fleet being implemented by Emily L
+    +  Feeding parameters done
+
+*  Testing stalled but hope to resume (ToR c)
+
+*  Work continues on input datasets (landings and discards)
+
+
+---
+## EcoSpace: new state-space [dynamic food web model](https://james-thorson-noaa.github.io/EcoState/)
+
+Jim Thorson's Paper in review: https://ecoevorxiv.org/repository/view/7476/  
+
+<iframe width="1212" height="682" src="https://james-thorson-noaa.github.io/EcoState/articles/simulation.html" title="MS-keyrun simulated data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>
+
+???
+## [Simulation test](https://james-thorson-noaa.github.io/EcoState/articles/simulation.html) 
+
+
+---
+# Single species applications
+
+## Time varying natural mortality for Atlantic mackerel
+
+## Ecological drivers of recruitment for Atlantic herring
+
+---
+background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/WGSAM24_PPImackerel_Smith.png")
+background-size: contain 
+
+Laurel Smith et al.
+
+---
+## Does food drive recruitment of Atlantic herring?
+
+Create zooplankton indices to evaluate changes in food for Atlantic herring larvae, juveniles, and adults over time and in space in the Northeast US continental shelf ecosystem.
+
+Two applications: 
+
+1. Addressing uncertainty in the stock assessment for Atlantic herring (*Clupea harengus*) 
+
+1. Describing zooplankton species and group trends for integrated ecosystem assessment
+
+
+![Atlantic herring illustration, credit NOAA Fisheries](https://www.fisheries.noaa.gov/s3/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png)
+
+
+
+![copepods](https://nplimages.infradoxxs.com/cache/pcache2/01407135.jpg)
+.footnote[
+https://www.naturepl.com/stock-photo-copepods-calanus-finmarchicus-aggregated-at-the-surface-reverse-diel-nature-image01407135.html 
+]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringConceptualMod.png")
+background-size: 1070px
+background-position: bottom
+
+## Which indicators are relevant for recruitment?
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringBRT_rec.png")
+background-size: 800px
+background-position: right
+
+## Which indicators are potential covariates for recruitment?
+
+
+Boosted regression tree (Molina 2024) investigated relationships between environmental indicators and Atlantic herring recruitment estimated in the assessment.
+
+Larval and juvenile food (zooplankton), egg predation, and temperature always highest influence
+
+
+
+
+
+
+
+---
+
+## How to include in the stock assessment?
+
+Zooplankton example
+
+![smCopeSepFeb2_fallstrat m2 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m2/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
+]
+
+
+
+*The inclusion of the zooplankton index improved model fit IN THE WRONG DIRECTION.* 
+
+![smCopeSepFeb2_fallstrat m6 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m6/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+
+Haddock egg predation and thermal habitat better
+
+
+
+
+???
+
+---
+## Risk assessment applications for fishery managers
+
+Example: Evaluate risks posed by prey availability to achieving OY for Council managed species
+
+
+```{r}
+
+fallmacro <- readRDS(url("https://github.com/NOAA-EDAB/foodweb-risk/raw/main/preyindices/fallmacrobenthosindex.rds"))
+
+fixmacro<- fallmacro |>
+      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      dplyr::summarise(max = max(Value))
+
+    p <- fallmacro |>
+      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate",
+                               "Fall Macrobenthos Biomass Index Estimate SE"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
+      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
+      #max = as.numeric(Value)) |>
+      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
+      dplyr::left_join(fixmacro) |>
+      dplyr::mutate(#Value = Value/resca,
+        Mean = as.numeric(Mean),
+        #max = as.numeric(Value),
+        Mean = Mean/max,
+        SE = SE/max,
+        Upper = Mean + SE,
+        Lower = Mean - SE) |>
+      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
+      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+      #                  ymin = -Inf, ymax = Inf) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+      ggplot2::geom_point()+
+      ggplot2::geom_line()+
+      ggplot2::ggtitle("Benthic invertebrate prey index")+
+      ggplot2::ylab(expression("Relative macrofauna biomass"))+
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::facet_wrap(.~EPU)+
+      ecodata::geom_gls()+
+      ecodata::theme_ts()+
+      ecodata::theme_facet()+
+      ecodata::theme_title()
+    
+  p 
+  
+```
+
+```{r}
+
+p  <-  ecodata::forage_index |>
+      dplyr::filter(Var %in% c("Fall Forage Fish Biomass Estimate",
+                               "Fall Forage Fish Biomass Estimate SE"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
+      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
+      #max = as.numeric(Value)) |>
+      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
+      dplyr::left_join(fixmacro) |>
+      dplyr::mutate(#Value = Value/resca,
+        Mean = as.numeric(Mean),
+        #max = as.numeric(Value),
+        Mean = Mean/max,
+        SE = SE/max,
+        Upper = Mean + SE,
+        Lower = Mean - SE) |>
+      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
+      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+      #                  ymin = -Inf, ymax = Inf) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+      ggplot2::geom_point()+
+      ggplot2::geom_line()+
+      ggplot2::ggtitle("Forage fish prey index")+
+      ggplot2::ylab(expression("Relative forage biomass"))+
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::facet_wrap(.~EPU)+
+      ecodata::geom_gls()+
+      ecodata::theme_ts()+
+      ecodata::theme_facet()+
+      ecodata::theme_title()
+
+p
+```
+
+
+
+
+```{r}
+
+mafmc_cond <- c("Atlantic mackerel",
+           "Black sea bass",
+           "Bluefish",
+           "Butterfish",
+           "Goosefish",
+           "Illex", #not in condition
+           "Loligo",  #not in condition
+           "Scup",
+           "Spiny dogfish",
+           "Summer flounder",
+           "Surf clam",  #not in condition
+           "Ocean quahog")  #not in condition
+           #"Clams", # Atlantic surfclam and ocean quahog not separate groups
+           #"Tilefish") # Blueline and golden tilefish not separate groups
+
+AnnualRelCond2023_Fall <- readr::read_csv("https://raw.githubusercontent.com/NOAA-EDAB/foodweb-risk/main/condition/AnnualRelCond2023_Fall.csv")
+
+
+
+survEPUcond <- AnnualRelCond2023_Fall |>
+  dplyr::select(Time = YEAR,
+                Var = Species,
+                EPU,
+                Value = MeanCond,
+                nCond) |>
+  dplyr::group_by(EPU, Var) |>
+  dplyr::mutate(scaleCond = scale(Value,scale =T,center=T)) 
+
+xs <- quantile(survEPUcond$scaleCond, seq(0,1, length.out = 6), na.rm = TRUE)
+
+survEPUcond <- survEPUcond |>
+  dplyr::mutate(category = cut(scaleCond,
+                                  breaks = xs,
+                                  labels = c( "Poor Condition",
+                                              "Below Average",
+                                              "Neutral",
+                                              "Above Average",
+                                              "Good Condition"),
+                                  include.lowest = TRUE))
+
+condquants <- data.frame(ymin = xs[1:5],
+                         ymax = xs[2:6],
+                         category = sort(unique(survEPUcond$category))
+)
+
+vir <- viridis::viridis_pal()(5)
+
+mafmcsurvEPUcond <- survEPUcond |>
+  dplyr::filter(Var %in% mafmc_cond[2], #BSB
+                EPU %in% c("MAB"))
+
+p <-   ggplot2::ggplot() +
+  ggplot2::theme_bw() +
+  ggplot2::geom_rect(data = condquants,
+                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
+                     alpha = .3) +
+  ggplot2::scale_fill_manual(values=vir) +
+  ggplot2::geom_point(data= mafmcsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
+  #ggplot2::geom_hline(yintercept = xs[2:5]) +
+  #ggplot2::geom_line() +
+  ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
+  ggplot2::ylab("Scaled condition") +
+  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var), "fall body condition")) +
+  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
+
+p
+
+```
+
+```{r}
+mafmcsurvEPUcond <- survEPUcond |>
+  dplyr::filter(Var %in% mafmc_cond[3], #Bluefish
+                EPU %in% c("MAB"))
+
+p <-   ggplot2::ggplot() +
+  ggplot2::theme_bw() +
+  ggplot2::geom_rect(data = condquants,
+                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
+                     alpha = .3) +
+  ggplot2::scale_fill_manual(values=vir) +
+  ggplot2::geom_point(data= mafmcsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
+  #ggplot2::geom_hline(yintercept = xs[2:5]) +
+  #ggplot2::geom_line() +
+  ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
+  ggplot2::ylab("Scaled condition") +
+  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var), "fall body condition")) +
+  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
+
+p
+```
+
+
+
+
+
+???
+Council and Advisory Panel members recommended new elements addressing human dimensions (recreational access equity), new elements addressing cross-sectoral impacts (offshore wind impacts on biology and ecosystem as well as fishery access and scientific sampling), and transitions from static ecosystem indicators to time series indicators (prey availability, predation pressure, and fishing community vulnerability). New ecosystem science was required to support these requests. The process included development of new indicators of prey availability based on spatio-temporal modeling using ecological datasets (stomach contents, zooplankton), and new spatial analyses of habitat, revenue, and surveys relative to wind energy development areas. Development of potential risk criteria is ongoing; thresholds between low, moderate, and high risk that are essential to operational use are developed collaboratively with Council and Advisory Panel members. 
+
+The slide shows a higher risk example (black sea bass, low recent condition correlated with recently declining prey) and a lower risk example (bluefish, despite a long term decline in forage fish prey. recent condition has been good)
+
+`r Cite(myBib, "gaichas_assessing_2023")`
+
+
+
