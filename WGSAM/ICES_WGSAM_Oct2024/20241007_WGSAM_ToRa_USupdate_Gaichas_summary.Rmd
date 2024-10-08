@@ -1,49 +1,26 @@
 ---
 title: "Multispecies models: US update"
 subtitle: "WGSAM ToR a, 7 October 2024"
-author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Alberto Rovellini, Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth),<br />Robert Gamble, Max Grezlik (UMass Dartmouth),  Isaac Kaplan, Emily Liljestrand, Sean Lucey (RWE), Maria Cristina Perez (UMass Dartmouth), James Thorson, Sarah Weisberg (Stony Brook U and NOAA), Robert Wildermuth"
-output:
-  bookdown::word_document2: default 
+author: "Sarah Gaichas, Alberto Rovellini, Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth), Robert Gamble, Max Grezlik (UMass Dartmouth), Isaac Kaplan, Emily Liljestrand, Sean Lucey (RWE), Maria Cristina Perez (UMass Dartmouth), James Thorson, Sarah Weisberg (Stony Brook U and NOAA), Robert Wildermuth"
+output:  
+  bookdown::word_document2: default
 ---
 
 ```{r setup, include=FALSE}
 
-options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = F,
                       fig.retina = 3,
-                      #fig.width = 4,
-                      #fig.height = 2,
                       fig.asp = 0.45,
                       warning = F,
-                      message = F
-                      )
+                      message = F)
 #Plotting and data libraries
-knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 library(tidyverse)
 theme_set(theme_bw())
 library(tidyr)
 library(here)
 ```
 
-```{r, load_refs, include=FALSE, cache=FALSE}
-library(RefManageR)
-BibOptions(check.entries = FALSE,
-           bib.style = "authoryear",
-           cite.style = "authoryear",
-           longnamesfirst = FALSE,
-           max.names = 1,
-           style = "markdown")
-myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
-
-#,
-#           hyperlink = FALSE,
-#           dashed = FALSE
-
-```
-
-
 # Updates
-
 
 ## Since WGSAM 2023
 
@@ -65,14 +42,6 @@ myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
 .right[.contrib[One week ago today; https://xkcd.com/2992/]]
 
 
-???
-Everyone loves an update
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Balance_concept.png")
-background-size: 700px
-background-position: right
-
 # More Diverse uses of end to end and food web models
 
 ## Atlantis &darr; and Rpath &rarr;
@@ -81,12 +50,6 @@ background-position: right
 ![:img NEUSmap, 88%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
 
 
-
-
----
-background-image: url("https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr3_lrg.jpg")
-background-size: 500px
-background-position: right
 
 # Atlantis NEUSv2:  
 
@@ -107,10 +70,6 @@ background-position: right
 
 
 
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/WGSAM24_GOA_Rovellini.png")
-background-size: contain 
-
 ???
 
 Albi Rovellini's ongoing work on evaluating GOA optimum yield with Atlantis. This is part of a study on multispecies fishing simulations under different climate regimes and fishing configurations. 
@@ -130,9 +89,6 @@ Warmer climate (bottom row) leads to lower global yield, largely because of near
 
 TAKE HOME MESSAGE: The OY cap in the GOA is unlikely to constrain fishery allocations in the future
 
----
-background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/Weisberg_PopDy_Poster_2023.png")
-background-size: 700px
 background-position: right
 
 ## Rpath: Relative ascendency for three adjacent food webs
@@ -159,10 +115,6 @@ Highlight key groups within food webs and identify regime shifts
 
 ???
 *Advancing the Utility of Food Web-Derived Indicators to Support Ecosystem-Based Fisheries Management*
----
-background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/WGSAM24_portfiolio_Grezlik.png")
-background-size: 720px
-background-position: right
 
 ## Rpath: Supporting Portfolio Theory Management of Georges Bank Fisheries
 
@@ -193,11 +145,6 @@ Goal: demonstrate the utility of diversification of fishing portfolios in New En
 Efficiency frontiers quantify revenue and financial risk taken to achieve a given revenue. Red and blue lines compare an expanded groundfish complex to single species management of the same species. The point is the observed revenue and risk of forgone revenue for a given year. Preliminary results suggest the current, 13-species complex allows for some benefits beyond what single species management would achieve. The distance between observed and EBFM frontier suggests there is added economic benefit to expanding the current complex.
 
 
----
-background-image: url(https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/work-in-progress.png)
-background-size: 150px
-background-position: bottom right
-
 ## [Georges Bank Keyrun Review](https://ices-library.figshare.com/articles/report/Working_Group_on_Multispecies_Assessment_Methods_WGSAM_outputs_from_2022_meeting_/22087292) and Work in progress
 
 
@@ -226,31 +173,26 @@ background-position: bottom right
 *  Work continues on input datasets (landings and discards)
 
 
----
-## EcoSpace: new state-space [dynamic food web model](https://james-thorson-noaa.github.io/EcoState/)
+## EcoState: new state-space [dynamic food web model](https://james-thorson-noaa.github.io/EcoState/)
 
 Jim Thorson's Paper in review: https://ecoevorxiv.org/repository/view/7476/  
 
-<iframe width="1212" height="682" src="https://james-thorson-noaa.github.io/EcoState/articles/simulation.html" title="MS-keyrun simulated data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100%; height:100%;" allowfullscreen></iframe>
 
-???
 ## [Simulation test](https://james-thorson-noaa.github.io/EcoState/articles/simulation.html) 
 
 
----
+
 # Single species applications
 
 ## Time varying natural mortality for Atlantic mackerel
 
 ## Ecological drivers of recruitment for Atlantic herring
 
----
-background-image: url("https://raw.githubusercontent.com/NOAA-EDAB/presentations/master/docs/EDAB_images/WGSAM24_PPImackerel_Smith.png")
-background-size: contain 
+
 
 Laurel Smith et al.
 
----
+
 ## Does food drive recruitment of Atlantic herring?
 
 Create zooplankton indices to evaluate changes in food for Atlantic herring larvae, juveniles, and adults over time and in space in the Northeast US continental shelf ecosystem.
@@ -271,17 +213,11 @@ Two applications:
 https://www.naturepl.com/stock-photo-copepods-calanus-finmarchicus-aggregated-at-the-surface-reverse-diel-nature-image01407135.html 
 ]
 
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringConceptualMod.png")
-background-size: 1070px
-background-position: bottom
+
 
 ## Which indicators are relevant for recruitment?
 
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringBRT_rec.png")
-background-size: 800px
-background-position: right
+
 
 ## Which indicators are potential covariates for recruitment?
 
@@ -291,12 +227,6 @@ Boosted regression tree (Molina 2024) investigated relationships between environ
 Larval and juvenile food (zooplankton), egg predation, and temperature always highest influence
 
 
-
-
-
-
-
----
 
 ## How to include in the stock assessment?
 
@@ -316,9 +246,7 @@ Haddock egg predation and thermal habitat better
 
 
 
-???
 
----
 ## Risk assessment applications for fishery managers
 
 Example: Evaluate risks posed by prey availability to achieving OY for Council managed species
@@ -513,8 +441,6 @@ p
 Council and Advisory Panel members recommended new elements addressing human dimensions (recreational access equity), new elements addressing cross-sectoral impacts (offshore wind impacts on biology and ecosystem as well as fishery access and scientific sampling), and transitions from static ecosystem indicators to time series indicators (prey availability, predation pressure, and fishing community vulnerability). New ecosystem science was required to support these requests. The process included development of new indicators of prey availability based on spatio-temporal modeling using ecological datasets (stomach contents, zooplankton), and new spatial analyses of habitat, revenue, and surveys relative to wind energy development areas. Development of potential risk criteria is ongoing; thresholds between low, moderate, and high risk that are essential to operational use are developed collaboratively with Council and Advisory Panel members. 
 
 The slide shows a higher risk example (black sea bass, low recent condition correlated with recently declining prey) and a lower risk example (bluefish, despite a long term decline in forage fish prey. recent condition has been good)
-
-`r Cite(myBib, "gaichas_assessing_2023")`
 
 
 
