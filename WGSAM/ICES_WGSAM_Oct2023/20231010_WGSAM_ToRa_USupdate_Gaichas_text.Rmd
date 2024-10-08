@@ -1,0 +1,374 @@
+---
+title: "Multispecies models: US update"
+subtitle: "WGSAM ToR a, 10 October 2023"
+author: "Sarah Gaichas, Presenter<br /><br /><br />Contributors: Andy Beet, Joe Caracappa, Gavin Fay (UMass Dartmouth),<br />Sarah Gaichas, Robert Gamble, Chris Harvey, Isaac Kaplan, Scott Large, Owen Liu, Sean Lucey, <br />Maria Cristina Perez (UMass Dartmouth), Desiree Tommassi, Sarah Weisberg (Stony Brook U), Robert Wildermuth"
+output:  
+  bookdown::word_document2: default
+---
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+library(tidyverse)
+theme_set(theme_bw())
+library(tidyr)
+library(here)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./mskeyrun.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+
+# Updates
+
+
+## Since WGSAM 2022
+
+*  Atlantis climate and port integration
+    +  Northeast US (NEUS)
+    +  California Current
+*  Rpath 
+*  MS-Keyrun updates 
+*  Single species applications
+
+ 
+
+
+![xkcd comic 1328 titled Update](https://imgs.xkcd.com/comics/update.png)
+
+.right[.contrib[https://xkcd.com/1328]]
+ 
+
+???
+Everyone loves an update
+
+
+# More Diverse uses of end to end and food web models
+
+## Atlantis &darr; and Rpath &rarr;
+
+
+![:img NEUSmap, 88%](https://ars.els-cdn.com/content/image/1-s2.0-S030438002200148X-gr1_lrg.jpg)
+ 
+
+
+
+
+# Atlantis NEUSv2: **major** update
+
+
+## Joe Carracappa, Andy Beet, Robert Gamble
+*  Forcing with GLORYS12V1 and primary production in the newly calibrated model `r Cite(myBib, "caracappa_northeast_2022")`
+*  Running in the cloud via NOAA HPC
+
+## In progress
+*  Sensitivity to fishing scenarios
+*  Testing ecosystem overfishing indicators for the Northeast US
+*  Integrating spatial fleets and ports of origin
+*  Climate projections using MOM-6 planned
+
+.footnote[https://github.com/NOAA-EDAB/neus-atlantis]  
+ 
+
+
+
+
+
+Owen Liu and colleagues projected future abundance and distribution of groundfish based on historic empirical data of fish densities, bottom temperature and dissolved oxygen
+Analysis focuses on a complex of 4 lower shelf/upper slope groundfish (sablefish, Dover sole, shortspine thornyhead, longspine thornyhead)
+Projections indicate species-specific changes in abundance and distributional responses; contrast shown here between sablefish (decrease and move into deeper water) and Dover sole (models disagree on abundance, relatively little change in depth)
+
+These trends are tending to push some stocks to the margins of present-day fishing footprints for West Coast ports, which could lead to changes catch composition
+
+Related work suggests that the effects of these types of changes will be felt most in groundfish fisheries in northern ports, and that distributional shifts will lead to future overlap between high densities of fish and areas slated for offshore wind energy development
+
+
+
+Atlantis end to end model of the California Current, similar to models developed for most other regions of the US, and globally by Beth Fulton and team. Previous versions of this Atlantis model have been in use for over a decade. This newest version features several critical innovations that are now generating preliminary outputs. The key innovations (arrows) are: 1) forcing Atlantis with downscaled GLORYS + ESM ocean projections under climate change (thru a collaboration known as Future Seas, led by UCSC and SWFSC); 2) forcing groundfish distributions through climate-driven SDMs of groundfish + pelagics (e.g., from Liu et al in press, 1 slide ago); and 3) parameterizing fishing effort spatially to match empirical Fishing Footprints of key port groups
+
+Preliminary results here just illustrate that we are projecting changes in biomass and distribution, which leads to port-level changes in catch of target species. For instance, in this example, four of our major target groundfish species generally shift north, and some ports experience a slight increase in catch under climate change relative to a no-climate change base case. However, some stocks also move deeper and offshore, beyond the ‘footprints’ of certain ports, leading to decreases in catch, which is what we observe for the northernmost ports at the top of the plot.   
+
+
+# Rpath: Gulf of Maine
+
+
+Sarah Weisberg PhD thesis section/PopDy Fellowship 
+*Advancing Climate-Informed, Ecosystem-Based Fisheries Management Through Food Web Modeling, Indicator Development And Risk Analysis In The Rapidly Warming Gulf Of Maine*
+
+*  Ecological network analysis shows regimes in Gulf of Maine food web efficiency/resilience. Highly efficient food webs have lower resilience due to fewer trophic pathways decreasing redundancy. 
+
+* The Gulf of Maine had low resilience in the 2000s, corresponding to poor fish condition 
+
+.footnote[p.s. [Shiny GOM used in IEA course](https://connect.fisheries.noaa.gov/content/6c128564-f8b2-49c4-8afc-614f9e2e7a5b/)]
+
+ 
+
+
+
+
+# [Georges Bank Keyrun Review](https://ices-library.figshare.com/articles/report/Working_Group_on_Multispecies_Assessment_Methods_WGSAM_outputs_from_2022_meeting_/22087292) and Work in progress
+
+*  Challenge of place based approach for stocks with substantial dynamics outside Georges Bank: "In that case, expanding the models outside the boundaries of the EPU, and/or explicitly accounting for the input/output of fish and energy across the boundaries will likely be needed"
+
+*  Dedicated R packages for data positively reviewed
+
+*  Standardize diet interactions and better quantify other food in estimation models using Rpath
+
+*  Do model self-tests
+
+*  Model specific structural and sensitivity recommendations
+ 
+
+
+## In progress
+
+*  Self tests (4 species Hydra, ToR c)
+
+*  Model specific recommendations in progress
+    +  Fleet changes
+    +  Feeding parameters
+
+*  Testing in progress (ToR c)
+
+*  Work continues on input datasets
+ 
+
+
+
+
+CEATTLE, developed by Kirstin Holsman at the Alaska Center, is a multispecies statistical catch-at-age assessment model that includes ecosystem considerations like bioenergetics and multispecies interactions (Holsman et al. applications in AK) or, in this case, multiple life-stage interactions.
+
+Sophia Wassermann and colleagues have applied the model to study how temperature variability and cannibalism in Pacific hake interact to influence stock productivity. Adding cannibalism to the model leads to higher estimated recruitment and biomass, due to the inclusion of predation mortality, largely on age-1 hake. 
+
+This work is expected to be relevant to other highly cannibalistic hake stocks; additionally the NWFSC team welcomes input and advice from other examples where cannibalism has been included in assessments, such as for Northeast Arctic Cod. 
+
+
+
+
+We conducted a management strategy evaluation to assess the robustness of current and alternative Pacific sardine harvest control rules under a variety of recruitment scenarios representing potential projections of future climate conditions in the California Current. The current environmentally  informed control rule modifies the harvest rate for the northern sardine subpopulation based on average sea surface temperatures measured during California Cooperative Oceanic Fisheries 24 Investigations (CalCOFI) field cruises. This rule prioritizes catch at intermediate biomass levels but may increase variability in catch and closure frequency compared to alternative control rules, especially if recruitment is unrelated to ocean temperatures. Fishing at maximum sustainable yield and using dynamically estimated reference points reduced the frequency of biomass falling below 150,000 mt by up to 17%, while using survey index-based biomass estimates resulted in a 29 14% higher risk of delayed fishery closure during stock declines than when using assessment based estimates. 
+
+
+
+# Forage fish index
+
+![Bluefish illustration, credit NOAA Fisheries](https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Bluefish-NOAAFisheries.png)
+"... it is perhaps the most ferocious and bloodthirsty fish in the sea, leaving in its wake a trail of dead and mangled mackerel, menhaden, herring, alewives, and other species on which it preys." `r Cite(myBib, "collette_bigelow_2002")`  
+ 
+
+## Does prey drive predator availability?  
+
+*Bluefish diet in the Northeast US*  
+
+```{r, crop=TRUE, fig.show='hold', out.width="25%"}
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Squid-Longfin-v1-NOAAFisheries.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://objects.liquidweb.services/images/201909/robert_aguilar,_serc_48650727166_3ce8edc47d_b.jpg")
+#credit: Robert Aguilar, Smithsonian Environmental Research Center
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Butterfish-NOAAFisheries.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Scup-NOAAFisheries_0.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-08/640x427-Mackerel-Atlantic-NOAAFisheries.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://www.fishbase.se/images/thumbnails/jpg/tn_Etter_u2.jpg") 
+#credit:  Fishbase
+
+knitr::include_graphics("https://objects.liquidweb.services/images/201412/robert_aguilar,_serc_14908290116_f863c14a2a_b.jpg")
+#credit: Smithsonian, Robert Aguilar
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2022-09/640x427-Hake-Silver-NOAAFisheries.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2021-03/squid_illex_nb_w_0.png")
+#credit: NOAA fisheries
+
+knitr::include_graphics("https://media.fisheries.noaa.gov/styles/original/s3/2021-01/640x427-Atlantic_Menhaden_NB_W.jpg")
+#credit: NOAA fisheries
+
+```
+.contrib[
+Northeast Fisheries Science Center Diet Data Online: https://fwdp.shinyapps.io/tm2020/
+]
+
+VAST model-based "forage index" aggregating 20 prey groups using stomach contents of 22 predators: Gaichas et al in press, http://dx.doi.org/10.1139/cjfas-2023-0093
+ 
+
+???
+<font size="-1"></font>
+
+Changing distribution and abundance of small pelagics may drive changes in predator distributions, affecting predator availability to fisheries and surveys. However, small pelagic fish are difficult to survey directly, so we developed a novel method of assessing small pelagic fish aggregate abundance via predator diet data. We used piscivore diet data collected from multiple bottom trawl surveys within a Vector Autoregressive Spatio-Temporal (VAST) model to assess trends of small pelagics on the Northeast US shelf. The goal was to develop a spatial “forage index” to inform survey and/or fishery availability in the bluefish (Pomatomus saltatrix) stock assessment. Using spring and fall surveys from 1973-2020, 20 small pelagic groups were identified as major bluefish prey using the diet data. Then, predators were grouped by diet similarity to identify 19 piscivore species with the most similar diet to bluefish in the region. Diets from all 20 piscivores were combined for the 20 prey groups at each surveyed location, and the total weight of small pelagic prey per predator stomach at each location was input into a Poisson-link delta model to estimate expected prey mass per predator stomach. Best fit models included spatial and spatio-temporal random effects, with predator mean length, number of predator species, and sea surface temperature as catchability covariates. Spring and fall prey indices were split into inshore and offshore areas to reflect changing prey availability over time in areas available to the recreational fishery and the bottom trawl survey, and also to contribute to regional ecosystem reporting
+
+Using NEFSC bottom trawl survey diet data from 1973-2021, 20 small pelagic groups were identified as major bluefish prey with 10 or more observations (in descending order of observations): Longfin squids (*Doryteuthis* formerly *Loligo* sp.), Anchovy family (Engraulidae), bay anchovy (*Anchoa mitchilli*), Atlantic butterfish, (*Peprilus triachanthus*), Cephalopoda, (*Anchoa hepsetus*), red eye round herring (*Etrumeus teres*), Sandlance (*Ammodytes* sp.), scup (*Stenotomus chrysops*), silver hake (*Merluccius bilinearis*), shortfin squids (*Illex* sp.), Atlantic herring (*Clupea harengus*), Herring family (Clupeidae), Bluefish (*Pomatomus saltatrix*), silver anchovy (*Engraulis eurystole*), longfin inshore squid (*Doryteuthis pealeii*), Atlantic mackerel (*Scomber scombrus*), flatfish (Pleuronectiformes), weakfish (*Cynoscion regalis*), and Atlantic menhaden (*Brevoortia tyrannus*). 
+
+Prey categories such as fish unidentified, Osteichthyes, and unidentified animal remains were not included in the prey list. Although unidentified fish and Osteichthyes can comprise a significant portion of bluefish stomach contents, we cannot assume that unidentified fish in other predator stomachs represent unidentified fish in bluefish stomachs.  
+
+Image credits: Striped and bay anchovy photo--Robert Aguilar, Smithsonian Environmental Research Center; redeye round herring photo--https://diveary.com ; sandlance photo--Virginia Institute of Marine Science; all others NOAA Fisheries.
+
+
+
+## How to include in the stock assessment? 
+
+A new bluefish assessment was implemented using the Woods Hole Assessment Model (WHAM) `r Cite(myBib,"stock_woods_2021")` with the forage index as a catchability covariate.
+
+```{r}
+# strata.limits <- as.list(c("AllEPU" = allEPU2, 
+#                            "MABGB" = MABGB2,
+#                            "MABGBstate" = MABGBstate,
+#                            "MABGBfed" = MABGBfed,
+#                            "MAB" = MAB2,
+#                            "GB" = GB2,
+#                            "GOM" = GOM2,
+#                            "bfall" = bfall2,
+#                            "bfin" = bfinshore2,
+#                            "bfoff" = bfoffshore2,
+#                            "MABGBalbinshore" = albinshore2,
+#                            "MABGBothoffshore" = MABGBothoffshore2,
+#                            "albbfin" = albbfinshore,
+#                            "albbfall" = albbfall,
+#                            "allother" = allother2))
+stratlook <- data.frame(Stratum = c("Stratum_1",
+                                    "Stratum_2",
+                                    "Stratum_3",
+                                    "Stratum_4",
+                                    "Stratum_5",
+                                    "Stratum_6",
+                                    "Stratum_7",
+                                    "Stratum_8",
+                                    "Stratum_9",
+                                    "Stratum_10",
+                                    "Stratum_11",
+                                    "Stratum_12",
+                                    "Stratum_13",
+                                    "Stratum_14",
+                                    "Stratum_15"),
+                        Region  = c("AllEPU", 
+                                    "MABGB", 
+                                    "MABGBstate", 
+                                    "MABGBfed", 
+                                    "MAB",
+                                    "GB",
+                                    "GOM",
+                                    "bfall",
+                                    "bfin",
+                                    "bfoff",
+                                    "MABGBalbinshore",
+                                    "MABGBothoffshore",
+                                    "albbfin",
+                                    "albbfall",
+                                    "allother"))
+```
+
+
+```{r fallall, fig.asp=.6}
+#, fig.cap="Fall forage indices scaled to the maximum value (Mid Atlantic 1985) for ecoregions Georges Bank (GB), Gulf of Maine (GOM), Mid Atlantic Bight (MAB), and bluefish assessment index areas in state waters within 3 miles of shore (StateWaters) and bottom trawl survey index strata (SurveyBluefish)."
+splitout <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/forageindex/main/pyindex/allagg_fall_500_lennosst_ALLsplit_biascorrect/Index.csv")
+splitoutput <- splitout %>%
+  dplyr::left_join(stratlook) %>%
+  dplyr::filter(Region %in% c("GOM", "GB", "MAB","MABGBstate", "bfin")) %>%
+  dplyr::mutate(Type = ifelse(Region %in% c("GOM", "GB", "MAB"), "Ecoregion", "Bluefish"),
+                Region = case_when(Region == "MABGBstate" ~ "StateWaters",
+                                   Region == "bfin" ~ "SurveyBluefish",
+                                   TRUE ~ Region))
+
+foragemax <- max(splitoutput$Estimate)
+
+ggplot(splitoutput, aes(x=Time, y=Estimate, colour=Region)) +
+  #geom_errorbar(aes(ymin=Estimate+Std..Error.for.Estimate, ymax=Estimate-Std..Error.for.Estimate))+
+  geom_ribbon(aes(ymin=Estimate+Std..Error.for.Estimate, ymax=Estimate-Std..Error.for.Estimate, fill=Region), linetype = 0, alpha = 0.15)+
+  geom_point(aes(shape=Region))+
+  geom_line()+
+  scale_color_manual(values=c("orange", "red", "green3", "purple", "blue")) +
+  scale_fill_manual(values=c("orange", "red", "green3", "purple", "blue")) +
+  facet_wrap(~fct_relevel(Type, "Ecoregion", "Bluefish"), scales = "free_y", ncol = 1) +
+  scale_y_continuous(labels=function(x)round(x/foragemax, digits = 2))+
+  ylab("Relative forage biomass scaled to maximum")  
+  
+  
+  #guides(colour = guide_legend(ncol=2)) +
+  #theme(legend.position = c(1, 0),
+  #      legend.justification = c(1, 0))
+  #theme(legend.position="none")
+```
+
+Application of the forage fish index to the recreational catch per angler catchability was successful when implemented as an autoregressive process over the time-series with WHAM estimating the standard error, and led to an overall decreasing trend in catchability over time. 
+ 
+
+
+
+*The inclusion of the forage fish index improved model fit.* 
+
+```{r, fig.asp=0.8}
+
+u1 <- "https://github.com/NOAA-EDAB/forageindex/raw/main/WHAMoutput/BF28C_m7_ecov_off.rds"
+u2 <- "https://github.com/NOAA-EDAB/forageindex/raw/main/WHAMoutput/BF28C_m7_ecov_on.rds"
+  
+ecov_off <- readRDS(url(u1, method="libcurl"))
+ecov_on <- readRDS(url(u2, method="libcurl"))
+
+mods <- list(ecov_off, ecov_on)
+names(mods) <- c("ecov_off", "ecov_on")
+
+plotwham <- wham::compare_wham_models(mods, do.table = F, plot.opts=list(kobe.prob=FALSE,
+                                                                         which=1),
+                                      fdir=here::here("WGSAM/ICES_WGSAM_Oct2023/WHAMoutput"))
+
+plotwham$g[[1]] + 
+  scale_color_manual(values = c("black", "indianred")) + 
+  scale_fill_manual(values = c("black", "indianred")) +
+  theme(legend.position = "right")
+
+```
+
+The recreational index is important in scaling the biomass results, and the lower availability at the end of the time-series led to <span style="color:#cd5c5c;">higher biomass estimates from the assessment including forage fish.</span>  
+
+ 
+
+
+???
+WHAM is a state space stock assessment model framework: https://timjmiller.github.io/wham/
+
+The Bigelow index fit with the fall forage fish index did not improve the model fit (AIC), was slightly worse fit and gave identical results
+The Albatross index fit with the fall forage fish index did not converge or hessian was not positive definite for any of the models (even when how = 0 for some of them).
+The MRIP index fit with the annual forage fish index did not converge or hessian was not positive definite for any of the models
+
+
+
+## Additional resources
+
+[Alaska multispecies and ecosystem models](https://www.integratedecosystemassessment.noaa.gov/regions/alaska/ebs-integrated-modeling)
+
+[California Current Future Seas MSEs](https://www.integratedecosystemassessment.noaa.gov/regions/california-current/cc-projects-future-seas)
+
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: <Sarah.Gaichas@noaa.gov>
+]
+
