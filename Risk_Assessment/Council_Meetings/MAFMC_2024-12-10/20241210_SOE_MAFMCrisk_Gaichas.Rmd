@@ -340,13 +340,249 @@ species, and the second food web risk element assesses predation
 pressure on each species (see next element).
 
 .pull-left[
-*Potential indicators*
+*Indicators*
 ```{r, fig.asp=.4} 
-ecodata::plot_forage_index() + ggplot2::coord_cartesian(xlim = c(1983, 2021.5)) + ggplot2::ggtitle("Aggregate forage fish index") 
-```
+fallsmcope <- readRDS(url("https://github.com/NOAA-EDAB/foodweb-risk/raw/main/preyindices/fallsmcopepodALLindex.rds"))
 
-```{r} 
-ecodata::plot_condition()
+fixsmcope<- fallsmcope |>
+      dplyr::filter(Var %in% c("Fall Small copepods ALL Abundance Index Estimate"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      dplyr::summarise(max = max(Value, na.rm=T))
+
+    pfallsmcope <- fallsmcope |>
+      dplyr::filter(Var %in% c("Fall Small copepods ALL Abundance Index Estimate",
+                               "Fall Small copepods ALL Abundance Index Estimate SE"),
+                    EPU %in% c("MAB")) |>
+      dplyr::mutate(Value = ifelse(Value == 0, NA, Value)) |>
+      dplyr::group_by(EPU) |>
+      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "E", "F", "Var")) |>
+      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
+      #max = as.numeric(Value)) |>
+      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
+      dplyr::left_join(fixsmcope) |>
+      dplyr::mutate(#Value = Value/resca,
+        Mean = as.numeric(Mean),
+        #max = as.numeric(Value),
+        Mean = Mean/max,
+        SE = SE/max,
+        Upper = Mean + SE,
+        Lower = Mean - SE) |>
+      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
+      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+      #                  ymin = -Inf, ymax = Inf) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+      ggplot2::geom_point()+
+      ggplot2::geom_line()+
+      ggplot2::ggtitle("Small copepods prey index")+
+      ggplot2::ylab(expression("Relative small copepod abundance"))+
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::facet_wrap(.~EPU)+
+      ecodata::geom_gls()+
+      ecodata::geom_lm(n=10) +
+      ecodata::theme_ts()+
+      ecodata::theme_facet()+
+      ecodata::theme_title()
+    
+  #p 
+
+
+
+fallmacro <- readRDS(url("https://github.com/NOAA-EDAB/foodweb-risk/raw/main/preyindices/fallmacrobenthosindex.rds"))
+
+fixmacro<- fallmacro |>
+      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      dplyr::summarise(max = max(Value))
+
+    pfallmac <- fallmacro |>
+      dplyr::filter(Var %in% c("Fall Macrobenthos Biomass Index Estimate",
+                               "Fall Macrobenthos Biomass Index Estimate SE"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
+      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
+      #max = as.numeric(Value)) |>
+      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
+      dplyr::left_join(fixmacro) |>
+      dplyr::mutate(#Value = Value/resca,
+        Mean = as.numeric(Mean),
+        #max = as.numeric(Value),
+        Mean = Mean/max,
+        SE = SE/max,
+        Upper = Mean + SE,
+        Lower = Mean - SE) |>
+      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
+      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+      #                  ymin = -Inf, ymax = Inf) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+      ggplot2::geom_point()+
+      ggplot2::geom_line()+
+      ggplot2::ggtitle("Benthic invertebrate prey index")+
+      ggplot2::ylab(expression("Relative macrofauna biomass"))+
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::facet_wrap(.~EPU)+
+      ecodata::geom_gls()+
+      ecodata::geom_lm(n=10) +
+      ecodata::theme_ts()+
+      ecodata::theme_facet()+
+      ecodata::theme_title()
+    
+  #p 
+  
+
+
+pforage  <-  ecodata::forage_index |>
+      dplyr::filter(Var %in% c("Fall Forage Fish Biomass Estimate",
+                               "Fall Forage Fish Biomass Estimate SE"),
+                    EPU %in% c("MAB")) |>
+      dplyr::group_by(EPU) |>
+      tidyr::separate(Var, into = c("Season", "A", "B", "C", "D", "Var")) |>
+      dplyr::mutate(Var = tidyr::replace_na(Var, "Mean")) |> #,
+      #max = as.numeric(Value)) |>
+      tidyr::pivot_wider(names_from = Var, values_from = Value) |>
+      dplyr::left_join(fixmacro) |>
+      dplyr::mutate(#Value = Value/resca,
+        Mean = as.numeric(Mean),
+        #max = as.numeric(Value),
+        Mean = Mean/max,
+        SE = SE/max,
+        Upper = Mean + SE,
+        Lower = Mean - SE) |>
+      ggplot2::ggplot(ggplot2::aes(x = Time, y = Mean, group = Season))+
+      #ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+      #                  xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+      #                  ymin = -Inf, ymax = Inf) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = Lower, ymax = Upper, fill = Season), alpha = 0.5)+
+      ggplot2::geom_point()+
+      ggplot2::geom_line()+
+      ggplot2::ggtitle("Forage fish prey index")+
+      ggplot2::ylab(expression("Relative forage biomass"))+
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::facet_wrap(.~EPU)+
+      ecodata::geom_gls()+
+      ecodata::geom_lm(n=10) +
+      ecodata::theme_ts()+
+      ecodata::theme_facet()+
+      ecodata::theme_title()
+
+#p
+
+mafmc_cond <- c("Atlantic mackerel",
+           "Black sea bass",
+           "Bluefish",
+           "Butterfish",
+           "Goosefish",
+           "Illex", #not in condition
+           "Loligo",  #not in condition
+           "Scup",
+           "Spiny dogfish",
+           "Summer flounder",
+           "Surf clam",  #not in condition
+           "Ocean quahog")  #not in condition
+           #"Clams", # Atlantic surfclam and ocean quahog not separate groups
+           #"Tilefish") # Blueline and golden tilefish not separate groups
+
+AnnualRelCond2023_Fall <- readr::read_csv("https://raw.githubusercontent.com/NOAA-EDAB/foodweb-risk/main/condition/AnnualRelCond2023_Fall.csv")
+
+
+
+survEPUcond <- AnnualRelCond2023_Fall |>
+  dplyr::select(Time = YEAR,
+                Var = Species,
+                EPU,
+                Value = MeanCond,
+                nCond) |>
+  dplyr::group_by(EPU, Var) |>
+  dplyr::mutate(scaleCond = scale(Value,scale =T,center=T)) 
+
+xs <- quantile(survEPUcond$scaleCond, seq(0,1, length.out = 6), na.rm = TRUE)
+
+survEPUcond <- survEPUcond |>
+  dplyr::mutate(category = cut(scaleCond,
+                                  breaks = xs,
+                                  labels = c( "Poor Condition",
+                                              "Below Average",
+                                              "Neutral",
+                                              "Above Average",
+                                              "Good Condition"),
+                                  include.lowest = TRUE))
+
+condquants <- data.frame(ymin = xs[1:5],
+                         ymax = xs[2:6],
+                         category = sort(unique(survEPUcond$category))
+)
+
+vir <- viridis::viridis_pal()(5)
+
+mafmcsurvEPUcond <- survEPUcond |>
+  dplyr::filter(Var %in% mafmc_cond[1], #At mackerel
+                EPU %in% c("MAB"))
+
+pmackcond <-   ggplot2::ggplot() +
+  ggplot2::theme_bw() +
+  ggplot2::geom_rect(data = condquants,
+                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
+                     alpha = .3) +
+  ggplot2::scale_fill_manual(values=vir) +
+  ggplot2::geom_point(data= mafmcsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
+  #ggplot2::geom_hline(yintercept = xs[2:5]) +
+  #ggplot2::geom_line() +
+  ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
+  ggplot2::ylab("Scaled condition") +
+  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var), "fall body condition")) +
+  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
+
+
+mafmcsurvEPUcond <- survEPUcond |>
+  dplyr::filter(Var %in% mafmc_cond[2], #BSB
+                EPU %in% c("MAB"))
+
+pbsbcond <-   ggplot2::ggplot() +
+  ggplot2::theme_bw() +
+  ggplot2::geom_rect(data = condquants,
+                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
+                     alpha = .3) +
+  ggplot2::scale_fill_manual(values=vir) +
+  ggplot2::geom_point(data= mafmcsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
+  #ggplot2::geom_hline(yintercept = xs[2:5]) +
+  #ggplot2::geom_line() +
+  ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
+  ggplot2::ylab("Scaled condition") +
+  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var), "fall body condition")) +
+  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
+
+#p
+
+mafmcsurvEPUcond <- survEPUcond |>
+  dplyr::filter(Var %in% mafmc_cond[3], #Bluefish
+                EPU %in% c("MAB"))
+
+pbfcond <-   ggplot2::ggplot() +
+  ggplot2::theme_bw() +
+  ggplot2::geom_rect(data = condquants,
+                     aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
+                     alpha = .3) +
+  ggplot2::scale_fill_manual(values=vir) +
+  ggplot2::geom_point(data= mafmcsurvEPUcond, ggplot2::aes(x=Time, y=scaleCond[,1])) +
+  #ggplot2::geom_hline(yintercept = xs[2:5]) +
+  #ggplot2::geom_line() +
+  ggplot2::facet_grid(Var~factor(EPU, levels = c("MAB", "GB", "GOM", "SS", "NA")), ) +
+  ggplot2::ylab("Scaled condition") +
+  ggplot2::ggtitle(paste(unique(mafmcsurvEPUcond$Var), "fall body condition")) +
+  ggplot2::guides(fill = ggplot2::guide_legend(reverse = TRUE))
+
+#p
+
+fig4 <- pfallsmcope + pmackcond + pfallmac + pbsbcond + pforage + pbfcond + plot_layout(nrow = 3)
+
+ggsave("preyavriskex.png", fig4, device="png", width = 12, height = 12, units = "in")
+
+knitr::include_graphics("preyavriskex.png")
+
 ```
 ]
 
@@ -356,10 +592,10 @@ ecodata::plot_condition()
 .table[
 ```{r}
 tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
-                   "Definition" = c("Prey availability high (not limiting) and/or good fish condition past 5 years",
-                                    "Aggregate prey available for this species has stable or increasing trend, moderate condition",
-                                    "Aggregate prey available for this species has significant decreasing trend, poor condition",
-                                    "Managed species highly dependent on prey with limited and declining availability, poor condition"))
+                   "Definition" = c("Fish condition good, no correlation with major prey trends",
+                                    "Fish condition above average or neutral, aggregate prey for this species has stable or increasing trend",
+                                    "Fish condition below average or neutral, aggregate prey for this species has significant decreasing trend",
+                                    "Fish condition poor, species highly dependent on prey with  limited and declining availability, or prey and condition trends significantly correlated"))
 knitr::kable(tabl, format="html",
              col.names = c("Risk Level", "Definition"),
                            booktabs = T) %>%
@@ -381,13 +617,71 @@ pressure on each species, and the first element assesses prey
 availability for each species (see element above).
 
 .pull-left[
-*Potential indicators*
+*Indicators*
+*  Predator prey overlap
+
+*  Predator consumption index
+
+```{r}
+mackcons <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/riskassess-MAFMC/refs/heads/master/consumption/C.CB.All%20predators.Atlantic%20mackerel%20(Scomber%20scombrus).2024-11-19.csv")
+buttcons <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/riskassess-MAFMC/refs/heads/master/consumption/C.CB.All%20predators.Butterfish%20(Peprilus%20triacanthus).2024-11-19.csv")
+lolcons <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/riskassess-MAFMC/refs/heads/master/consumption/C.CB.All%20predators.Loligo%20squid%20(Loligo%20sp.).2024-11-19.csv")
+
+mackbuttlolcons <- dplyr::bind_rows(mackcons, buttcons, lolcons) |>
+  dplyr::select(Var = Prey, Time = Year, Value = Mean.consump, UCI, LCI) |>
+  dplyr::mutate(Value = ifelse(Value == 0, NA, Value)) 
+
+  setup <- ecodata::plot_setup(shadedRegion = NULL,
+                               report="MidAtlantic")
+  
+  cons_agg <- mackbuttlolcons |>
+      dplyr::group_by(Var) |>
+      dplyr::mutate(hline = mean(Value))
+  
+  cons_agg |>
+      ggplot2::ggplot()+
+
+      #Highlight last ten years
+      ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+                        xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+                        ymin = -Inf, ymax = Inf) +
+      ecodata::geom_gls(ggplot2::aes(x = Time, y = Value,
+                                     group = Var),
+                        alpha = setup$trend.alpha, size = setup$trend.size) +
+      ecodata::geom_lm(n=10, ggplot2::aes(x = Time, y = Value,
+                                        group = Var),
+                       alpha = setup$trend.alpha, size = setup$trend.size) +
+      #ecodata::geom_lm(aes(x = Time, y = Value))+
+      ggplot2::geom_line(ggplot2::aes(x = Time, y = Value,), linewidth = setup$lwd) +
+      ggplot2::geom_point(ggplot2::aes(x = Time, y = Value), size = setup$pcex) +
+      ggplot2::scale_x_continuous(breaks = seq(1980, 2020, by = 10), expand = c(0.01, 0.01)) +
+      #ggplot2::scale_color_manual(values = series.col2, aesthetics = "color")+
+      ggplot2::facet_wrap(~Var, scales = "free", ncol = 3)+
+      #ggplot2::guides(color = "none") +
+      #ggplot2::ylab(ylabdat) +
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::theme(legend.position = "none",
+                     legend.title = ggplot2::element_blank())+
+      ggplot2::geom_hline(ggplot2::aes(yintercept = hline,
+                                       color = Var),
+                          linewidth = setup$hline.size,
+                          alpha = setup$hline.alpha,
+                          linetype = setup$hline.lty) +
+      ecodata::theme_ts() +
+      ggplot2::ggtitle(setup$region)+
+      ecodata::theme_title() +
+      ecodata::theme_facet()
+
+```
+
 
 *  Predation pressure index
 
+![:img PPI from Laurel, 50%](https://github.com/NOAA-EDAB/riskassess-MAFMC/raw/master/images/PPIfig.png)
+
+
 *  Model-derived predation mortality
 
-*  Aggregate predator biomass
 ]
 
 .pull-right[
@@ -397,9 +691,9 @@ availability for each species (see element above).
 ```{r}
 tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
                    "Definition" = c("Predation pressure represents low proportion of overall mortality",
-                                    "Predation pressure moderate proportion of overall mortality, decreasing mortality trend",
-                                    "Predation pressure moderate proportion of overall mortality, increasing mortality trend",
-                                    "Predation pressure represents high proportion of overall mortality, increasing mortality trend"))
+                                    "Decreasing or no overlap/consumption/PPI/mortality trend,  predation represents a moderate proportion of overall mortality",
+                                    "Increasing overlap/consumption/PPI/mortality trend, predation represents a moderate proportion of overall mortality",
+                                    "Increasing overlap/consumption/PPI/mortality trend, predation represents a high proportion of overall mortality"))
 knitr::kable(tabl, format="html",
              col.names = c("Risk Level", "Definition"),
                            booktabs = T) %>%
