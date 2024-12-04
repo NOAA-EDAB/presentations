@@ -94,12 +94,13 @@ https://www.fisheries.noaa.gov/resource/document/ecosystem-based-fisheries-manag
 ### Introduction
 
 * What is ecosystem information? What is an indicator?
-* Where can we use ecosystem information in the management process?
+* Connecting ecosystem information to the management process
 
 ### Practical examples
 
 * Ecosystem reporting in the Northeast US
-* Example ecosystem approach: Mid Atlantic Fishery Management Council
+* Ecosystem information in stock assessment
+* Ecosystem approach to fishery management
 * Climate coordination on the US East Coast
 
 ### EBFM collaboration opportunities
@@ -377,52 +378,31 @@ Notable 2023 events and conditions
 ---
 ## Using ecosystem information at the stock level: Ecosystem Socioeconomic Profiles (ESPs)
 
-.pull-left-60[
 
-![:img Bluefish ESP conceptual model, 90%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
+.pull-left-40[
+
+![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)
+
+![:img Bluefish ESP conceptual model](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
+
+.footnote[
+Images courtesy [ASFC](https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheries-science-center-year-review), and Abigail Tyrell and Emily Liljestrand, NEFSC
+]
+
+]
+
+--
+
+.pull-right-60[
+
+![:img bottom temp in BSB assessment, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Ecov_1_North_BT.png)![:img GOA cod risk assessment, 50%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/GOApcodESPrisk.png)
 
 ![:img ESP decisions](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ESPdecisionsupporttable2.png)
 
 ]
 
-.pull-right-40[
 
-![:img bottom temp in BSB assessment](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Ecov_1_North_BT.png)
 
-.footnote[
-Images courtesy Abigail Tyrell and Emily Liljestrand, NEFSC
-]
-
-]
-
----
-## Looking across stocks for ecosystem signals
-
-.pull-left[
-Indicator: fish condition 
-```{r, fig.width=8}
-ecodata::plot_condition()
-```
-
-*  Stock level [condition drivers](https://www.mafmc.org/s/c_Butterfish_Condition_Additional-TOR-1_2021.pdf) --> decision on butterfish recruitment stanza for projections
-]
-
-.pull-right[
-Indicator: fish productivity anomaly
-```{r ,  fig.asp=.8}
-#code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-productivity-anomaly.R"),
-a <- ecodata::plot_productivity_anomaly(report = "MidAtlantic")
-b <- ecodata::plot_productivity_anomaly(report = "MidAtlantic", varName = "assessment")
-
-a/b
-```
-
-*  Related to multiple drivers 
-*  Multispecies projection and reference point implications
-]
-
-???
-`r Cite(myBib, 'perretti_regime_2017')`
 
 ---
 ## Broader use of ecosystem information: MAFMC Ecosystem Approach to Fisheries Management
@@ -710,14 +690,56 @@ In this interactive circular graph visualization, model elements identified as i
 ---
 ## East Coast Climate Change coordination
 
+.pull-left-40[
+https://www.mafmc.org/e3cg
+
+* Leadership group including the three east coast councils, ASMFC, and NOAA regional offices and science centers
+* Responsible for coordinating and tracking progress toward implementation of climate-related management actions on the east coast
+* Management actions outlined based on scenario planning
+
+]
+
+.pull-right-60[
+![:img NEUS map, 50%](https://www.integratedecosystemassessment.noaa.gov/sites/default/files/inline-images/Northeast%20continent.png)![:img SEUS map, 50%](https://media.fisheries.noaa.gov/2021-12/1687x1451-SEFSC-US-South-Atlantic-Marine-Ecosystem.jpg)
+![](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/ScenPlanningOrgs.png)
+]
+
 
 ---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/EastCoastClimateScenarios.png")
+background-size: 600px
+background-position: right bottom
+
 ## What is scenario planning?
 
+.pull-left[
+![:img scenario planning in context](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/climatescenarioarrow.png)
+Visualizing futures with stakeholders
+*   [Salmon example](https://www.greateratlantic.fisheries.noaa.gov/policyseries/index.php/GARPS/article/view/15/14)
+*   [Right whale example](https://www.fisheries.noaa.gov/resource/document/north-atlantic-right-whale-eubalaena-glacialis-scenario-planning-summary-report)
+*   [East Coast Climate Scenario Planning](https://www.mafmc.org/climate-change-scenario-planning) can help coordinate management.
+
+]
+
+.pull-right[]
 
 ---
-## What is the Climate Ecosystems Fisheries Initiative? 
+## What information do we have about future ecosystem conditions? 
 
+.pull-left[
+### Climate Ecosystems Fisheries Initiative (CEFI) 
+* National level, cross-NOAA effort to build ocean modeling and decision support system to implement climate-ready fishery management
+* Regional Decision Support Team for greater Atlantic region to identify priority scientific products for the NE and MA Councils and ASMFC
+
+.footnote[
+https://www.fisheries.noaa.gov/topic/climate-change/climate,-ecosystems,-and-fisheries
+]
+]
+
+.pull-right[
+
+![:img CEFI Decision Support](https://www.fisheries.noaa.gov/s3//2023-05/DEFI-Decision-Support-System-graphic.png)
+]
 
 ---
 .center[
