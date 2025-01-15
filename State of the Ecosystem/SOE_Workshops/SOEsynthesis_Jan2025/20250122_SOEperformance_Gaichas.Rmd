@@ -1,0 +1,1207 @@
+---
+title: "State of the Ecosystem Structure <br /> Proposed 2024"
+subtitle: "SOE January Synthesis Meeting<br /> 16 January 2024"
+author: "Sarah Gaichas, Andy Beet, Brandon Beltz, Geret DePiper, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith<br /> Northeast Fisheries Science Center<br /> and all SOE contributors"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css", "libs/cols.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: ["libs/macros.js", "libs/cols_macro.js"]
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+
+---
+class: top, left
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+
+<style>
+.reduced_opacity {
+  opacity: 0.5;
+}
+</style>
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F,
+                      fig.retina = 3,
+                      #fig.width = 4,
+                      #fig.height = 2,
+                      fig.asp = 0.45,
+                      warning = F,
+                      message = F)
+#Plotting and data libraries
+library(tidyverse)
+library(tidyr)
+library(here)
+library(kableExtra)
+library(ecodata)
+library(readxl); library(data.table)
+library(DT)
+library(widgetframe)
+library(patchwork)
+
+# if figure output defaults to docs/imaages/ replace with this before moving to 
+# presentations/docs in both the html output (search and replace)
+# and folder name
+# 20220316_MAFMCSSC_Gaichas_files/figure-html/
+
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           longnamesfirst = FALSE,
+           max.names = 1,
+           style = "markdown")
+myBib <- ReadBib("./MidSOE.bib", check = FALSE)
+
+#,
+#           hyperlink = FALSE,
+#           dashed = FALSE
+
+```
+
+
+
+# 2025 Performance relative to management objectives
+
+.center[
+![:img Fishing icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//5_FISHING.png) &nbsp; &nbsp; &nbsp; ![:img Fishing industry icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//6_INDUSTRY.png) &nbsp; &nbsp; &nbsp; ![:img Multiple drivers icon made by EDAB, 25%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//18.MULTIPLE_SYSTEM_DRIVERS.png) &nbsp; &nbsp; &nbsp; ![:img Spiritual cultural icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//22.SPIRITUAL_CULTURAL.png) &nbsp; &nbsp; &nbsp; ![:img Protected species icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//16.PROTECTEDSPECIES.png)
+]
+
+---
+## Objective: Mid Atlantic Seafood production ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png) &emsp; Risk elements: <span style="background-color:red;">ComFood</span> and <span style="background-color:orange;">RecFood</span>, unchanged
+
+.pull-left[
+Indicator: Commercial landings 
+
+```{r,  fig.asp=0.8}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"),
+#total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
+
+ecodata::plot_comdat(report = "MidAtlantic", varName = "landings")
+```
+
+
+]
+
+.pull-right[
+Indicators: Recreational harvest
+```{r,  fig.asp=.4}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"),
+#, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
+
+ecodata::plot_recdat(report = "MidAtlantic", varName ="landings")
+
+```
+
+
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R")
+#, fig.width=5
+#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
+
+ecodata::plot_rec_hms(shadedRegion = c(2014,2023), report="MidAtlantic")
+
+```
+
+]
+
+Multiple potential drivers of landings changes: ecosystem and stock production, management actions, market conditions (including COVID-19 disruptions), and environmental change.
+
+???
+The long-term declining trend in landings didn't change.
+---
+## Mid Atlantic Landings drivers: Stock status? TAC? &emsp; Risk elements: Fstatus, Bstatus, MgtControl 
+
+.pull-left[
+Indicator: Stock status
+
+```{r ,  fig.asp=0.8}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-stock-status.R"),
+#, fig.width = 7.5, fig.asp = 0.5
+#stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target. Only one stock, Atlantic mackerel, has fishing mortality above the limit (subject to overfishing).")
+
+a <- ecodata::plot_stock_status(report = "MidAtlantic")
+
+a$p + ggplot2::coord_cartesian(xlim=c(0,2), ylim=c(0,2)) +
+  ggplot2::annotation_custom(gridExtra::tableGrob(a$unknown,
+                             theme = gridExtra::ttheme_default(base_size = 7), 
+                             rows=NULL), 
+                             xmin=0.8, xmax=1.8, ymin=1.5, ymax=2)
+
+```
+
+]
+
+.pull-right[
+
+Indicators: Total ABC or ACL, and Realized catch relative to management target
+
+```{r }
+#, code =  readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-stacked.R")
+#, fig.width = 5, fig.asp = 0.5
+#abcacl-stacked, fig.cap="Sum of catch limits across all MAFMC managed fisheries."
+
+ecodata::plot_abc.acl(report = "MidAtlantic", plottype = "Stacked")
+```
+
+```{r , fig.width=5, fig.asp=0.4}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-abcacl-catch.R"),
+#abcacl-catch, fig.cap = "Catch divided by ABC/ACL for MAFMC managed fisheies. Chub mackerel removed due extremely low catch. Outliers = Recreational Black Sea Bass.  Possible management success story? - See comment in google doc."
+
+ecodata::plot_abc.acl(report = "MidAtlantic", plottype = "Catch")
+```
+
+.contrib[
+Few managed species have binding limits; Management less likely playing a role
+]
+]
+
+
+
+???
+Stock status affects catch limits established by the Council, which in turn may affect landings trends. Summed across all MAFMC managed species, total Acceptable Biological Catch or Annual Catch Limits (ABC or ACL) have been relatively stable 2012-2020 (top). With the addition of blueline tilefish management in 2017, an additional ABC and ACL contribute to the total 2017-2020. Discounting blueline tilefish, the recent total ABC or ACL is lower relative to 2012-2013, with much of that decrease due to declining Atlantic mackerel ABC. 
+
+Nevertheless, the percentage caught for each stock’s ABC/ACL suggests that these catch limits are not generally constraining as most species are well below the 1/1 ratio (bottom). Therefore, stock status and associated management constraints are unlikely to be driving decreased landings for the majority of species.
+
+---
+## Implications: Mid Atlantic Seafood Production Drivers
+.pull-left[
+
+Biomass does not appear to drive landings trends
+
+```{r , fig.width=8, fig.asp = 0.85}
+# code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"),
+#nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean."
+
+ecodata::plot_aggregate_biomass(report = "MidAtlantic")
+```
+
+.contrib[
+Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
+*New species categories, more southern species in Benthivores*
+]
+
+]
+
+.pull-right[
+.contrib[ 
+* Declining managed benthos, aggregate planktivores
+
+```{r, fig.width=4, fig.asp=1.2}
+# code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), 
+# comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
+
+ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild")
+```
+
+* Recreational drivers differ: shark fishery management, possibly survey methodology
+
+Monitor: 
+* climate risks including warming, ocean acidification, and shifting distributions  
+```{r, eval=FALSE}
+#species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.width=3.5, fig.asp=.9
+```  
+* ecosystem composition and production changes  
+* fishing engagement  
+]
+]
+
+
+???
+Because stock status is mostly acceptable, ABCs don't appear to be constraining for many stocks, and aggregate biomass trends appear stable, the decline in commercial landings is most likely driven by market dynamics affecting the landings of surfclams and ocean quahogs, as quotas are not binding for these species.
+
+Climate change also seems to be shifting the distribution of surfclams and ocean quahogs, resulting in areas with overlapping distributions and increased mixed landings. Given the regulations governing mixed landings, this could become problematic in the future and is currently being evaluated by the Council. 
+
+---
+## Objective: New England Seafood production ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png)
+
+.pull-left[
+Indicators: Commercial landings 
+
+```{r, fig.asp=0.9}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-total-landings.R"),
+#total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
+
+a <- ecodata::plot_comdat(report = "NewEngland", varName = "landings")
+
+a + ggplot2::facet_wrap(~EPU, ncol = 1)
+```
+I never put NAFO back in for 2019-2022...
+
+]
+
+.pull-right[
+Indicators: Recreational harvest
+<br />
+
+```{r,  fig.asp=.4}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-landings.R"),
+#, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
+
+ecodata::plot_recdat(report = "NewEngland", varName ="landings")
+```
+
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-rec_hms.R")
+#, fig.width=5
+#rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
+
+ecodata::plot_rec_hms(shadedRegion = c(2014,2023), report="NewEngland")
+
+```
+
+
+]
+
+Multiple drivers: ecosystem and stock production, management, market conditions (including COVID-19 disruptions), and environmental change
+
+???
+Although scallop decreases are partially explained by a decreased TAC, analyses suggest that the drop in landings is at least partially due to market disruptions due to the COVID-19 pandemic.
+However, we do not anticipate the long-term declining trend in landings to change.
+
+---
+## New England Landings drivers: Stock status? Survey biomass?
+
+.pull-left[
+Indicator: Stock status
+
+```{r , fig.width = 7.5, fig.asp=0.8}
+
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-stock-status.R")
+#stock-status, fig.cap = paste0("Summary of single species status for ",council_abbr," and jointly federally managed stocks (Goosefish and Spiny dogfish). Stocks in green are below the biomass threshold (overfished), stocks in orange are above the biomass threshold but below the biomass target, and stocks in purple are above the biomass target.")
+
+a <- ecodata::plot_stock_status(report = "NewEngland")
+
+nrow <- as.integer(dim(a$unknown)[1])
+halfnrow <- as.integer(nrow/2)
+
+
+
+a$p + ggplot2::coord_cartesian(xlim=c(0,3), ylim=c(0,2)) +
+  ggplot2::annotation_custom(gridExtra::tableGrob(a$unknown[1:halfnrow, ],
+                             theme = gridExtra::ttheme_default(base_size = 4), 
+                             rows=NULL), 
+                             xmin=0.5, xmax=1.5, ymin=1.4, ymax=1.9) +
+ggplot2::annotation_custom(gridExtra::tableGrob(a$unknown[(halfnrow+1):nrow, ],
+                             theme = gridExtra::ttheme_default(base_size = 4), 
+                             rows=NULL), 
+                             xmin=1.9, xmax=2.9, ymin=1.4, ymax=1.9)
+```
+.contrib[
+Stocks below BMSY increased from XX, stocks below ½ BMSY decreased from YY. Management still likely playing large role in seafood declines
+]
+
+]
+
+.pull-right[
+Indicator: Survey biomass
+```{r ,  fig.width=8, fig.asp = 0.85, results='hide'}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-aggregate-biomass-gb.R"),
+
+a <- ecodata::plot_aggregate_biomass(report = "NewEngland", EPU = "GB") + ggplot2::ggtitle("Georges Bank")
+b <- ecodata::plot_aggregate_biomass(report = "NewEngland", EPU = "GOM") + ggplot2::ggtitle("Gulf of Maine")
+
+a+b
+```
+.contrib[
+Biomass availability still seems unlikely driver
+]
+
+]
+
+---
+## No indicator: New England Realized catch compared to specified catch
+
+Need to work with NEFMC staff to obtain dataset equivalent to that submitted by MAFMC staff for the Mid Atlantic.
+
+---
+## Implications: New England Seafood Production
+.pull-left[
+Drivers:
+* decline in commercial landings is most likely driven by the requirement to rebuild individual stocks as well as market dynamics
+* other drivers affecting recreational landings: shark fishery management, possibly survey methodology  
+
+Monitor: 
+* climate risks including warming, ocean acidification, and shifting distributions  
+* ecosystem composition and production changes  
+* fishing engagement  
+
+```{r , fig.width=6, fig.asp=.3}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), 
+a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(expand = FALSE)
+b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(expand = FALSE) 
+
+a+b
+
+```
+
+]
+
+.pull-right[
+
+```{r,  fig.width=6, fig.asp=1}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-commercial-landings.R"),
+# comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
+ecodata::plot_comdat(report = "NewEngland", plottype = "guild")
+
+```
+
+
+]
+
+---
+## Objective: Mid Atlantic Commercial Profits ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png)  ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png) &emsp; Risk element: <span style="background-color:orange;">CommRev</span>, unchanged
+
+.pull-left[
+Indicator: Commercial Revenue 
+
+```{r, fig.asp=.5 }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-comm-revenue.R")
+#, fig.width = 5, fig.asp = 0.45
+#comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
+
+ecodata::plot_comdat(report="MidAtlantic", varName="revenue")
+```
+
+Recent change driven by benthos  
+Monitor changes in climate and landings drivers:  
+-  Climate risk element: <span style="background-color:orange;">Surfclams</span> and <span style="background-color:red;">ocean quahogs</span> are sensitive to ocean warming and acidification.   
+-  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth
+]
+
+.pull-right[
+Indicator: Bennet--price and volume indices
+*baseline year for indicator has changed from previous reports*
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"),  fig.asp=.35
+#bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), fig.width=6,
+
+```
+
+```{r , fig.width = 5, fig.asp = 0.9}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R")
+#bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight."
+ecodata::plot_bennet(report="MidAtlantic") + ggplot2::facet_wrap(~Var, ncol=1)
+```
+]
+
+
+???
+Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
+
+---
+## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png)
+
+.pull-left[
+Indicator: Commercial Revenue
+```{r , fig.width = 7.5, fig.asp = 0.35}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-comm-revenue.R")
+ecodata::plot_comdat(report="NewEngland", varName="revenue")
+```
+
+
+Both regions driven by single species
+* GOM high revenue despite low volume
+* Fluctuations in GB due to rotational management
+
+Monitor changes in climate and landings drivers:
+* Sea scallops and lobsters are sensitive to ocean warming and acidification
+
+]
+
+.pull-right[
+Indicator: Bennet--price and volume indices
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet.R"),  fig.asp=.35, results = 'hide'
+```
+
+```{r , fig.width = 7.5, fig.asp = 0.9, results = 'hide'}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-bennet-all.R")
+ecodata::plot_bennet(report="NewEngland")
+```
+]
+ 
+---
+## Objective: Mid Atlantic Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:yellow;">RecValue</span>, decreased risk; add diversity?
+
+.pull-left[
+Indicators: Recreational effort and fleet diversity   
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-effort.R")
+#rec-op, fig.cap = paste0("Recreational effort in the ",region,".")
+
+ecodata::plot_recdat(report = "MidAtlantic", varName = "effort")
+```
+
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")
+#rec-div, fig.cap = paste0("Recreational fleet effort diversity in the ",region,".")
+
+ecodata::plot_recdat(report = "MidAtlantic", varName = "effortdiversity")
+```
+]
+
+.pull-right[
+Implications
+
+* Increased angler trips in 2020 relative to previous years strongly influenced the previously reported long term increase in recreational effort. Adding 2021 data, recreational effort (angler trips) has no long term trend.  
+* The increasing long term trend from 2021 changed the risk categories for the RecValue element to low-moderate (previously ranked high risk). No trend indicates low risk.  
+* Decline in recreational fleet diversity suggests a potentially reduced range of opportunities.  
+* Driven by party/charter contraction and a shift toward shore based angling.
+
+]
+
+???
+Changes in recreational fleet diversity can be considered when managers seek options to maintain recreational opportunities. Shore anglers will have access to different species than vessel-based anglers, and when the same species, typically smaller fish. Many states have developed shore-based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector. 
+
+---
+## Objective: New England Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/no trend.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/near long term average.png)
+
+.pull-left[
+Indicators: Recreational effort and fleet diversity   
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-effort.R")
+#rec-op, fig.cap = paste0("Recreational effort in the ",region,".")
+
+ecodata::plot_recdat(report = "NewEngland", varName = "effort")
+```
+
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-diversity.R")
+#rec-div, fig.cap = paste0("Recreational fleet effort diversity in the ",region,".")
+
+ecodata::plot_recdat(report = "NewEngland", varName = "effortdiversity")
+```
+]
+
+.pull-right[
+Implications
+
+* Absence of a long-term trend in recreational effort suggests relative stability in the overall number of recreational opportunities in New England
+
+]
+---
+## Objective: Mid Atlantic Fishery Stability ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk elements: <span style="background-color:lightgreen;">FishRes1</span> and <span style="background-color:lightgreen;">FleetDiv</span>, unchanged
+
+.pull-left[
+*Fishery*  Indicators: Commercial fleet count, fleet diversity   
+
+```{r, fig.asp=.85}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R")
+
+ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count")
+```
+.contrib[
+Most recent fleet counts at low range of series
+]
+]
+
+.pull-right[
+*Fishery*  Indicators: commercial species revenue diversity, recreational species catch diversity
+```{r,  fig.asp=.4}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R"),
+ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity")
+```
+.contrib[
+Most recent near series low value. Covid role?
+]
+```{r , fig.asp=.4}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")
+#recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
+
+ecodata::plot_recdat(report = "MidAtlantic", varName = "catchdiversity")
+```
+
+]
+---
+## Objective: Mid Atlantic Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk element: ecological diversity put aside, new indices
+
+.pull-left[
+*Ecological* Indicators: zooplankton and larval fish diversity (*not updated*)
+```{r}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")
+
+ecodata::plot_zoo_diversity(report = "MidAtlantic")
+```
+
+```{r}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-ichthyo-diversity.R")
+
+ecodata::plot_ichthyo_diversity(report = "MidAtlantic")
+```
+
+]
+
+.pull-right[
+*Ecological* Indicator: expected number of species, NEFSC bottom trawl survey 
+```{r }
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-exp-n.R")#exp-n, fig.cap = "Adult fish diversity the Mid-Atlantic Bight, based on expected number of species."
+
+ecodata::plot_exp_n(report = "MidAtlantic", varName = "fall")
+```
+
+Implications:  
+* stable capacity to respond to the current range of commercial fishing opportunities  
+* recreational catch diversity maintained by a different set of species over time  
+* monitor zooplankton diversity driven by declining dominant species  
+
+]
+???
+While larval and adult fish diversity indices are stable, a few warm-southern larval species are becoming more dominant. Increasing zooplankton diversity is driven by declining dominance of an important species, which warrants continued monitoring.
+
+---
+## Objective: New England Fishery Stability ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/decrease.png) Com ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png); Rec ![:img near average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/near long term average.png)
+
+.pull-left[
+*Fishery*  Indicators: Commercial fleet count, fleet diversity   
+
+```{r, fig.asp=.85}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div.R"),
+
+ecodata::plot_commercial_div(report = "NewEngland", varName = "Fleet count")
+```
+.contrib[
+Most recent around lowest points in series
+]
+]
+
+.pull-right[
+*Fishery*  Indicators: commercial species revenue diversity, recreational species catch diversity
+```{r, fig.asp=.4}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-div-species-div.R")
+
+ecodata::plot_commercial_div(report = "NewEngland", varName = "Permit revenue species diversity")
+```
+.contrib[
+Most recent lowest point in series. Covid role?
+]
+
+```{r , fig.asp=.4}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recdat-div-catch.R"),
+#recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
+
+ecodata::plot_recdat(report = "NewEngland", varName = "catchdiversity")
+```
+
+] 
+
+---
+## Objective: New England Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/above long term ave.png)
+
+.pull-left[
+*Ecological* Indicators: zooplankton and larval fish diversity (*not updated*)
+
+```{r}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_NE.Rmd-zoo-diversity-gb.R")
+
+ecodata::plot_zoo_diversity(report = "NewEngland")
+```
+
+```{r}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-ichthyo-diversity.R")
+
+ecodata::plot_ichthyo_diversity(report = "NewEngland")
+```
+
+]
+
+.pull-right[
+*Ecological* Indicator: expected number of species, NEFSC bottom trawl survey
+```{r}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_NE.Rmd-exp-n.R")
+#exp-n, fig.cap = "Adult fish diversity the Mid-Atlantic Bight, based on expected number of species."
+
+ecodata::plot_exp_n(report = "NewEngland", varName = "fall")
+
+```
+
+Implications:  
+* Commercial fishery diversity driven by small number of species
+* Diminished capacity to respond to future fishing opportunities
+* Recreational diversity due to species distributions and regulations
+* Adult diversity in GOM suggests increase in warm-water species
+]
+
+???
+* Overall stability in the fisheries and ecosystem components
+* Increasing diversity in several indicators warrants continued monitoring
+
+
+
+---
+## Objective: Mid Atlantic Environmental Justice and Social Vulnerability &emsp; Risk element: <span style="background-color:yellow;">Social</span>
+Indicators: Environmental justice vulnerability, commercial fishery engagement and reliance  
+.pull-left[
+```{r , fig.width = 6.5, fig.asp = 0.75, results='hide'}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R")
+#commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in the Mid-Atlantic."
+
+ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial")
+```
+
+]
+
+.pull-right[
+
+```{r, out.width="100%"}
+#get rid of the gray excel outline using R package magick
+ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/EJ_Commercial_MAB_2024.PNG") 
+
+# from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
+# get height, width and crop longer side to match shorter side
+ii <- magick::image_info(ComEJ)
+
+cropComEJ <- ComEJ %>%
+  #magick::image_crop(cropComEJ, "820x580+5+5")
+  magick::image_crop(paste0(ii$width-10,"x",ii$height-10, "+5+5"))
+
+cropComEJ
+```
+
+<!--![Commercial fishing communities environmental justice spider plot](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//EJ_Commercial_MAB.png)-->
+]
+
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+
+???
+These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
+---
+## Objective: Mid Atlantic Environmental Justice and Social Vulnerability  &emsp; Risk element: <span style="background-color:yellow;">Social</span> 
+Indicators: Environmental justice vulnerability, recreational fishery engagement and reliance  
+.pull-left[
+```{r, fig.width = 6.5, fig.asp = 0.75, results='hide'}
+# , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), 
+#recreational-engagement, fig.cap= "Recreational engagement, reliance, and social vulnerability for the top recreational fishing communities in the Mid-Atlantic."
+
+ecodata::plot_engagement(report = "MidAtlantic", varName = "Recreational")
+```
+
+]
+
+.pull-right[
+```{r, out.width="100%"}
+#get rid of the gray excel outline using R package magick
+RecEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/EJ_Recreational_MAB_2024.PNG") 
+
+# from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
+# get height, width and crop longer side to match shorter side
+ii <- magick::image_info(RecEJ)
+
+cropRecEJ <- RecEJ %>%
+  #magick::image_crop(cropComEJ, "820x580+5+5")
+  magick::image_crop(paste0(ii$width-10,"x",ii$height-10, "+5+5"))
+
+cropRecEJ
+```
+
+<!--![Recreational fishing communities environmental justice spider plot](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//EJ_Recreational_MAB.png)--> 
+]
+
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+
+---
+## Objective: New England Environmental Justice and Social Vulnerability
+
+Indicators: Environmental justice vulnerability, commercial fishery engagement and reliance  
+
+.pull-left[
+```{r , fig.width = 6.5, fig.asp = 0.75, results='hide'}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-engagement.R"),
+#commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in New England."
+
+ecodata::plot_engagement(report = "NewEngland", varName = "Commercial")
+```
+
+]
+
+.pull-right[
+
+```{r, out.width="100%"}
+#get rid of the gray excel outline using R package magick
+ComEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/EJ_Commercial_NE_2024.PNG") 
+
+# from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
+# get height, width and crop longer side to match shorter side
+ii <- magick::image_info(ComEJ)
+
+cropComEJ <- ComEJ %>%
+  #magick::image_crop(cropComEJ, "820x580+5+5")
+  magick::image_crop(paste0(ii$width-10,"x",ii$height-10, "+5+5"))
+
+cropComEJ
+```
+
+<!--![Commercial fishing communities environmental justice spider plot](EDAB_images/EJ_Commercial_NE.png)-->
+]
+
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+
+???
+These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
+
+---
+## Objective: New England Environmental Justice and Social Vulnerability
+
+Indicators: Environmental justice vulnerability, recreational fishery engagement and reliance
+
+.pull-left[
+```{r  fig.width = 6.5, fig.asp = 0.75, results='hide'}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recreational-engagement.R"),
+#recreational-engagement, fig.cap= "Recreational engagement, reliance, and social vulnerability for the top recreational fishing communities in New England."
+
+ecodata::plot_engagement(report = "NewEngland", varName = "Recreational")
+```
+
+]
+
+.pull-right[
+```{r, out.width="100%"}
+#get rid of the gray excel outline using R package magick
+RecEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/EJ_Recreational_NE_2024.PNG") 
+
+# from https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
+# get height, width and crop longer side to match shorter side
+ii <- magick::image_info(RecEJ)
+
+cropRecEJ <- RecEJ %>%
+  #magick::image_crop(cropComEJ, "820x580+5+5")
+  magick::image_crop(paste0(ii$width-10,"x",ii$height-10, "+5+5"))
+
+cropRecEJ
+```
+
+<!--![Recreational fishing communities environmental justice spider plot](EDAB_images/EJ_Recreational_MAB.png)--> 
+]
+
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+
+---
+## Objectives: All Areas Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)
+
+.pull-left[
+Indicators: Harbor porpoise and gray seal bycatch
+.reduced_opacity[
+```{r,  fig.height=3}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"),
+ecodata::plot_harborporpoise()
+```
+
+```{r,  fig.height=3}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"),
+ecodata::plot_grayseal()
+```
+]
+]
+
+.pull-right[
+Implications: 
+
+* Currently meeting objectives
+
+* Risk element: TechInteract, evaluated by species and sector:  14 <span style="background-color:lightgreen;">low</span>, 6 <span style="background-color:yellow;">low-mod</span>, 3 <span style="background-color:orange;">mod-high</span> risk, unchanged
+
+* The downward trend in harbor porpoise bycatch can also be due to a decrease in harbor porpoise abundance in US waters, reducing their overlap with fisheries, and a decrease in gillnet effort. 
+
+* The increasing trend in gray seal bycatch may be related to an increase in the gray seal population (U.S. pup counts).
+]
+
+---
+## Objectives: All Areas Protected species *Recover endangered populations* ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)
+
+.pull-left[
+Indicators: North Atlantic right whale population, calf counts
+
+```{r, fig.height=3}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-narw-abundance.R")
+
+ecodata::plot_narw(varName = "adult")
+```
+
+```{r, fig.height=3}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-NARW-calf-abundance.R")
+
+ecodata::plot_narw(varName = "calf")
+```
+
+]
+
+.pull-right[
+Implications:  
+
+* Signs the adult population stabilized 2020-2022
+
+* Population drivers for North Atlantic Right Whales (NARW) include combined fishery interactions/ship strikes, distribution shifts, and copepod availability. 
+
+* Additional potential stressors include offshore wind development, which overlaps with important habitat areas used year-round by right whales, including mother and calf migration corridors and foraging habitat.
+
+* Unusual mortality events continue for 3 large whale species.
+
+<!--* Risk elements: 
+    - FW2Prey evaluated by species: 13 <span style="background-color:lightgreen;">low</span>, 3 <span style="background-color:yellow;">low-mod</span> risk, unchanged 
+    - TechInteract, evaluated by species and sector, unchanged-->
+]
+
+
+---
+# 2023 Risks to meeting fishery management objectives
+
+.center[
+![:img Climate icon made by EDAB, 25%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//3_CLIMATE.png) &nbsp; &nbsp; &nbsp; ![:img Wind icon made by EDAB, 25%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//24.WIND.png)
+] 
+
+.center[
+![:img Hydrography icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//1_HYDROGRAPHY.png) &nbsp; &nbsp; &nbsp; ![:img Phytoplankon icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//9_PHYTOPLANKTON.png) &nbsp; &nbsp; &nbsp; ![:img Forage fish icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//13_FORAGEFISH.png) &nbsp; &nbsp; &nbsp; ![:img Apex predators icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//17.APEXPREDATORS.png)  &nbsp; &nbsp; &nbsp; ![:img Other human uses icon made by EDAB, 15%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//8_OTHERHUMANUSES.png) 
+]
+
+---
+# Skipping to Other Ocean Uses 
+
+# Revised Climate and Ecosystem Risk synthesis tomorrow
+
+---
+## Risks: Offshore Wind Development Mid Atlantic &emsp; Element: OceanUse
+
+.pull-left[
+Indicators: development timeline (updated??), fishery and community specific revenue in lease areas
+
+```{r,  fig.height=3}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wind-proposed-dev.R"),
+
+ecodata::plot_wind_dev_speed()
+```
+
+```{r}
+#, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-spp-rev.R")
+#, fig.width=5, fig.asp=.4
+#wea-spp-rev, fig.cap="Wind energy revenue in the Mid-Atlantic."
+
+ecodata::plot_wind_revenue(report = "MidAtlantic", varName = "value")
+
+```
+Council request: which New England ports have significant reliance on Mid-Atlantic managed species?
+
+```{r wind-rev-NE-MAFMC,  fig.width=6.5, fig.asp=.36, fig.align='left'}
+#fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.",
+df.symbol <- ecodata::wind_port %>% filter(EPU == "NE", 
+                                           !Var %in% c("WEA_MAX", "TOT_MAX", 
+                                                     "perc_MIN", "perc_MAX")) %>% 
+   pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(City = paste0(City,State)) %>% 
+  dplyr::filter(City %in% c("POINT JUDITH RI",
+                            "NORTH KINGSTOWN RI",
+                            "BOSTON MA",
+                            "WOODS HOLE MA",
+                            "HYANNIS MA",
+                            "BARNSTABLE MA")) %>%
+  dplyr::select(City, EJ, Gent) %>% 
+  pivot_longer(cols = c(EJ, Gent), names_to = "Variable") %>% 
+  filter(!value == "NA") %>% 
+  dplyr::mutate(symbol = recode(Variable, EJ = -7, Gent = -3), 
+                Variable = recode(Variable,"EJ"= "Mid-High to High EJ Concerns" , 
+                                  "Gent" ="Mid-High to High Gentrificaiton Concerns"))
+
+# Percentage plot
+
+df.all.perc<- ecodata::wind_port %>% filter(EPU == "NE") %>%
+  pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(ordering = WEA_MAX,  
+                City = paste0(City, State), 
+                TOT_MAX = c(100 - perc_MIN - perc_MAX)) %>% 
+  pivot_longer(cols = c(perc_MIN,  perc_MAX, TOT_MAX), names_to="Var", values_to = "Value") %>% 
+  dplyr::arrange(desc(ordering)) %>%
+  dplyr::filter(City %in% c("POINT JUDITH RI",
+                            "NORTH KINGSTOWN RI",
+                            "BOSTON MA",
+                            "WOODS HOLE MA",
+                            "HYANNIS MA",
+                            "BARNSTABLE MA")) %>%
+  dplyr::mutate(City = factor(City, levels = unique(City))) %>% 
+  dplyr::filter(!Var %in% c("WEA_MAX", "EJ", "Gent")) %>% 
+  dplyr::mutate(Var = recode(Var,"perc_MIN"= "WEA Revenue" , 
+                             "perc_MAX" ="WEA Revenue Range", 
+                             "TOT_MAX" = "Non-WEA Revenue"), 
+                Var = factor(Var, levels = c("Non-WEA Revenue", 
+                                             "WEA Revenue Range", 
+                                             "WEA Revenue")))
+p2<-ggplot2::ggplot()+
+  ggplot2::geom_bar(data = df.all.perc, aes(fill = Var, y = reorder(City, ordering), x = Value), stat="identity" )+
+  scale_fill_brewer()+
+  ggplot2::theme(legend.position = "bottom", 
+                 legend.title = element_blank(), 
+                 legend.box="vertical", legend.margin=margin())+
+  ggplot2::geom_point(data = df.symbol, aes(x = symbol,y = City, shape = Variable)) +
+  scale_shape_manual(values = c(17, 16)) +
+  ggplot2::ggtitle("Port Revenue from WEA, majority MAFMC species")+
+  ggplot2::xlab(expression("Port Revenue (%)"))+
+  ggplot2::ylab(element_blank())+
+  ecodata::theme_ts()
+
+p2
+```
+
+]
+
+.pull-right[
+```{r, fig.asp=1.1}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-wea-port-rev.R")
+
+ecodata::plot_wind_port(report = "MidAtlantic")
+```
+]
+
+---
+## Risks: Offshore Wind Development New England
+
+
+.pull-left[
+Indicators: fishery and community specific revenue in lease areas
+
+
+```{r}
+#, code=readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-wea-spp-rev.R")
+#, fig.width=5, fig.asp=.4
+#wea-spp-rev, fig.cap="Wind energy revenue in New England."
+
+ecodata::plot_wind_revenue(report = "NewEngland", varName = "value")
+```
+
+Council request: which Mid-Atlantic ports have significant reliance on New England managed species?
+
+```{r, wind-rev-MA-NEFMC, fig.width=6.5, fig.asp=.36, fig.align='left'}
+df.symbol <- ecodata::wind_port %>% filter(EPU == "MAB", 
+                                           !Var %in% c("WEA_MAX", "TOT_MAX", 
+                                                     "perc_MIN", "perc_MAX")) %>% 
+   pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(City = paste0(City,State)) %>% 
+  dplyr::filter(City %in% c("BELMAR NJ",
+                            "CAPE MAY NJ",
+                            "HAMPTON VA",
+                            "ISLIP NY",
+                            "NEWPORT NEWS VA",
+                            "POINT LOOKOUT NY",
+                            "WARETOWN NJ",
+                            "WILDWOOD NJ")) %>%
+  dplyr::select(City, EJ, Gent) %>% 
+  pivot_longer(cols = c(EJ, Gent), names_to = "Variable") %>% 
+  filter(!value == "NA") %>% 
+  dplyr::mutate(symbol = recode(Variable, EJ = -7, Gent = -3), 
+                Variable = recode(Variable,"EJ"= "Mid-High to High EJ Concerns" , 
+                                  "Gent" ="Mid-High to High Gentrificaiton Concerns"))
+
+# Percentage plot
+
+df.all.perc<- ecodata::wind_port %>% filter(EPU == "MAB") %>%
+  pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(ordering = WEA_MAX,  
+                City = paste0(City, State), 
+                TOT_MAX = c(100 - perc_MIN - perc_MAX)) %>% 
+  pivot_longer(cols = c(perc_MIN,  perc_MAX, TOT_MAX), names_to="Var", values_to = "Value") %>% 
+  dplyr::arrange(desc(ordering)) %>%
+  dplyr::filter(City %in% c("BELMAR NJ",
+                            "CAPE MAY NJ",
+                            "HAMPTON VA",
+                            "ISLIP NY",
+                            "NEWPORT NEWS VA",
+                            "POINT LOOKOUT NY",
+                            "WARETOWN NJ",
+                            "WILDWOOD NJ")) %>%
+  dplyr::mutate(City = factor(City, levels = unique(City))) %>% 
+  dplyr::filter(!Var %in% c("WEA_MAX", "EJ", "Gent")) %>% 
+  dplyr::mutate(Var = recode(Var,"perc_MIN"= "WEA Revenue" , 
+                             "perc_MAX" ="WEA Revenue Range", 
+                             "TOT_MAX" = "Non-WEA Revenue"), 
+                Var = factor(Var, levels = c("Non-WEA Revenue", 
+                                             "WEA Revenue Range", 
+                                             "WEA Revenue")))
+p2<-ggplot2::ggplot()+
+  ggplot2::geom_bar(data = df.all.perc, aes(fill = Var, y = reorder(City, ordering), x = Value), stat="identity" )+
+  scale_fill_brewer()+
+  ggplot2::theme(legend.position = "bottom", 
+                 legend.title = element_blank(), 
+                 legend.box="vertical", legend.margin=margin())+
+  ggplot2::geom_point(data = df.symbol, aes(x = symbol,y = City, shape = Variable)) +
+  scale_shape_manual(values = c(17, 16)) +
+  ggplot2::ggtitle("Port Revenue from WEA, majority NEFMC species")+
+  ggplot2::xlab(expression("Port Revenue (%)"))+
+  ggplot2::ylab(element_blank())+
+  ecodata::theme_ts()
+
+p2
+```
+
+]
+
+.pull-right[
+```{r, fig.asp=1.1}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-wea-port-rev.R")
+
+ecodata::plot_wind_port(report = "NewEngland")
+```
+]
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/right_whales.jpg")
+background-size: 500px
+background-position: right
+
+## Risks: Offshore Wind Development Summary
+
+.pull-left[
+Implications: *revise*
+*  X% of port revenue from fisheries currently comes from areas proposed for offshore wind development. Some communities have environmental justice concerns and gentrification vulnerability.
+*  Up to Y% of annual commercial landings and revenue for Mid-Atlantic species occur in lease areas.
+*  Development will affect species differently, negatively affecting species that prefer soft bottom habitat while potentially benefiting species that prefer hard structured habitat.
+*  Planned wind areas overlap with one of the only known right whale foraging habitats, and altered local oceanography could affect right whale prey availability. Development also brings increased vessel strike risk and the potential impacts of pile driving noise.
+]
+.pull-right[]
+
+???
+Current plans for rapid buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region 
+Evaluating the impacts to scientific surveys has begun.
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
+background-size: 350px
+background-position: right bottom
+
+## THANK YOU! SOEs made possible by (at least) 71 contributors from 20+ institutions UPDATE THIS
+
+.table[
+![:col_row 
+    Kimberly Bastille<br>
+    Aaron Beaver (Anchor QEA)<br>
+    Andy Beet<br>
+    Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
+    Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
+    Zhuomin Chen (U Connecticut)<br>
+    Joseph Caracappa<br>
+    Doug Christel (GARFO)<br>
+    Patricia Clay<br>
+    Lisa Colburn<br>
+    Jennifer Cudney (NMFS Atlantic HMS Management Division)<br>
+    Tobey Curtis (NMFS Atlantic HMS Management Division)<br>
+    Art Degaetano (Cornell U)<br>
+    Geret DePiper<br>
+    Dan Dorfman (NOAA-NOS-NCCOS)<br> 
+    Hubert du Pontavice<br>
+    Emily Farr (NMFS Office of Habitat Conservation)<br>
+    Michael Fogarty<br>
+    Paula Fratantoni<br>
+    Kevin Friedland<br>
+    Marjy Friedrichs (Virginia Institute of Marine Science)<br>
+    Sarah Gaichas<br>
+    Ben Galuardi (GARFO)<br>
+    Avijit Gangopadhyay (School for Marine Science and Technology UMass Dartmouth)<br>
+    James Gartland (Virginia Institute of Marine Science),
+    
+    Lori Garzio (Rutgers University)<br>
+    Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
+    Sean Hardison<br>
+    Kimberly Hyde<br>
+    John Kosik<br>
+    Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
+    Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
+    Scott Large<br>
+    Gabe Larouche (Cornell U)<br>
+    Daniel Linden<br>
+    Andrew Lipsky<br>
+    Sean Lucey<br>
+    Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
+    Chris Melrose<br>
+    Shannon Meseck<br>
+    Ryan Morse<br>
+    Ray Mroch (SEFSC)<br>
+    Brandon Muffley (MAFMC)<br>
+    Kimberly Murray<br>
+    Janet Nye (University of North Carolina at Chapel Hill)<br>
+    Chris Orphanides<br>
+    Richard Pace<br>
+    Debi Palka<br>
+    Tom Parham (Maryland DNR),
+    
+    Charles Perretti<br>
+    CJ Pellerin (NOAA Chesapeake Bay Office)<br>
+    Kristin Precoda<br>
+    Grace Roskar (NMFS Office of Habitat Conservation)<br>
+    Grace Saba (Rutgers)<br>
+    Vincent Saba<br>
+    Sarah Salois<br>
+    Chris Schillaci (GARFO)<br>
+    Amy Schueller (SEFSC)<br>
+    Teresa Schwemmer (Stony Brook University)<br>
+    Dave Secor (CBL)<br>
+    Angela Silva<br>
+    Adrienne Silver (UMass/SMAST)<br>
+    Emily Slesinger (Rutgers University)<br>
+    Laurel Smith<br>
+    Talya tenBrink (GARFO)<br>
+    Bruce Vogt (NOAA Chesapeake Bay Office)<br>
+    Ron Vogel (UMD Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
+    John Walden<br>
+    Harvey Walsh<br>
+    Changhua Weng<br>
+    Timothy White (Environmental Studies Program BOEM)<br>
+    Sarah Wilkin (NMFS Office of Protected Resources)<br>
+    Mark Wuenschel ]
+]
+
+???
+
+
+---
+## References
+
+.contrib[
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+]
+
+
+## Additional resources
+.pull-left[
+* [ecodata R package](https://github.com/noaa-edab/ecodata)
+
+
+]
+.pull-right[
+* [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
+
+* [Draft indicator catalog](https://noaa-edab.github.io/catalog/)
+
+.contrib[
+
+* Slides available at https://noaa-edab.github.io/presentations
+* Contact: <Sarah.Gaichas@noaa.gov>
+]
+]
+
+???
+* Visualizations:
+  * [Mid-Atlantic Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_MAB)
+  * [Mid-Atlantic Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_MAB)
+  * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
+  * [New England Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_NE)
+  * [New England Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_NE)
+  * [New England Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_NE)
+
