@@ -146,7 +146,7 @@ Images courtesy [ASFC](https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheri
 
 
 ---
-## State of the Ecosystem: Maintain 2021-2024 structure for 2025*
+## State of the Ecosystem: Maintain 2024 structure for 2025
 .pull-left[
 
 
@@ -207,7 +207,7 @@ knitr::kable(mng_obj, linesep = "",
 ]
 
 ---
-## Ecosystem synthesis themes: still framing! but replace p.3 with 2024 Overview
+## Ecosystem synthesis themes
 
 Characterizing ecosystem change for fishery management
 
@@ -225,65 +225,7 @@ Characterizing ecosystem change for fishery management
 ]
 
 ---
-## New PAGE 3 this year; 2023 Highlights/Overview/Postmortem
-
-.pull-left[
-Needs a name 
-
-Bulleted and graphical observations of anomalous conditions in 2023
-
-*  Warm water everywhere EXCEPT in Spring on the NEUS shelf
-*  Hypoxia and mortality events in NJ coastal ocean this summer
-*  GOM summer phytoplankton bloom off the scale
-*  Heatwaves (??)
-*  Gulf Stream changes radically altering shelf break habitats
-
-THIS WILL BE DECIDED ON WEDNESDAY  
-]
-
-.pull-right[
-![:img GOM chlorophyll anomaly](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/W_1998_2023-GOM-CHLOR_A-STACKED_TIMESERIES.PNG)
-]
-
-
----
-## Report structure revised in 2021 to address Council requests and improve synthesis 
-
-.pull-left[
-* Performance relative to management objectives
-    - *What* does the indicator say--up, down, stable?
-    - *Why* do we think it is changing: integrates synthesis themes
-        - Multiple drivers
-        - Regime shifts
-        - Ecosystem reorganization
-* Objectives
-    - Seafood production
-    - Profits
-    - Recreational opportunities
-    - Stability
-    - Social and cultural
-    - Protected species
-]
-
-.pull-right[
-* Risks to meeting fishery management objectives
-    - *What* does the indicator say--up, down, stable?
-    - *Why* this is important to managers: integrates synthesis themes
-        - Multiple drivers
-        - Regime shifts
-        - Ecosystem reorganization
-* Risk categories
-    - Climate: warming, ocean currents, acidification
-        - Habitat changes (incl. vulnerability analysis)
-        - Productivity changes (system and fish)
-        - Species interaction changes
-        - Community structure changes
-    - Other ocean uses
-        - Offshore wind development
-]
-
----
-## Report structure 2024, maintain in 2025: towards improved synthesis 
+## Report structure 2021-2024, maintain in 2025: towards improved synthesis 
 
 .pull-left[
 * Performance relative to management objectives
@@ -352,13 +294,37 @@ No color line = not significant or < 30 years
 
 
 ---
-# New for 2025: Trend assessment
+# 2025 Changes: Trend assessment
 
+.pull-left[
 ## Recent short term trends assessed
 
+Andy's [`arfit` R package](https://noaa-edab.github.io/arfit/articles/background_work.html) integrated into `ecodata`
+
+Tests for significant trend, null hypothesis is mean with autocorrelation (no trend)
+
+Apply to most recent 10 years of each dataset
+
+<br>
+<br>
 
 ## No more polynomial long term trends assessed
 
+Decision based on how strange some of them looked
+
+Has implications for risk assessment scoring
+] 
+
+.pull-right[
+```{r, fig.asp=.4}
+ecodata::plot_recdat(varName = "effortdiversity", n=10)
+```
+
+```{r, fig.asp=.55}
+ecodata::plot_comdat(varName = "revenue", n=10)
+```
+
+]
 
 ---
 
@@ -369,11 +335,11 @@ These are the basis of 2025--discuss what to change
 ]
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_2.png")
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_2.png")
 background-size: 500px
 background-position: right
 
-## State of the Ecosystem Summary 2023: 
+## Mid Atlantic State of the Ecosystem Summary 2024: 
 **Performance relative to management objectives** 
 
 .pull-left-60[
@@ -381,7 +347,7 @@ Seafood production ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDA
 
 Profits ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png), ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) 
 
-Recreational opportunities:  Effort ![:img increasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Effort diversity ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
+Recreational opportunities:  Effort ![:img increasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//increase.png) ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png); Effort diversity ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
 
 Stability: Fishery ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
 
@@ -390,47 +356,21 @@ Social and cultural, trend not evaluated, status of:
 *  Environmental Justice (EJ) Vulnerability by community  
 
 Protected species: 
-*  Maintain bycatch below thresholds ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)  
+*  Maintain bycatch below thresholds (harbor porpoise, gray seals) ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)  
 *  Recover endangered populations (NARW) ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
 ]
 .pull-right-40[]
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-draft-03.16.23_Page_3.png")
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-NE-508_Page_2.png")
 background-size: 500px
 background-position: right
 
-## State of the Ecosystem Summary 2023: 
-**Risks to meeting fishery management objectives**  
-
-.pull-left-60[
-Climate: warming and changing oceanography continue
-*  Heat waves and Gulf Stream instability
-*  Estuarine, coastal, and offshore habitats affected, with range of species responses
-*  Distribution shifts complicate management
-*  Multiple fish with poor condition, declining productivity 
-
-Other ocean uses: offshore wind development
-*  Current revenue in proposed areas
-    - 1-34% by port (some with EJ concerns)
-    - up to 17% by managed species
-*  Different development impacts for species preferring soft bottom vs. hard bottom 
-*  Overlap with important right whale foraging habitats, increased vessel strike and noise risks 
-*  Rapid buildout in patchwork of areas 
-*  Scientific survey mitigation required
-]
-.pull-right-40[]
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//SOE-NE-final-03.27.23-508_Page_2.png")
-background-size: 500px
-background-position: right
-
-## State of the Ecosystem Summary 2023: 
+## New England State of the Ecosystem Summary 2024: 
 **Performance relative to management objectives - Georges Bank** 
 
 .pull-left-60[
-Seafood production ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
+Seafood production Total ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), Managed ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png), Both ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
 
 Profits ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png) 
 
@@ -443,17 +383,18 @@ Social and cultural, trend not evaluated, status of:
 *  Environmental Justice (EJ) Vulnerability by community  
 
 Protected species: 
-*  Maintain bycatch below thresholds ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)  
+*  Maintain bycatch below thresholds (harbor porpoise, gray seals) ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)  
 *  Recover endangered populations ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png), NARW ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Gray seal ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png)  
 ]
+
 .pull-right-40[]
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//SOE-NE-final-03.27.23-508_Page_3.png")
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-NE-030424_Page_3.png")
 background-size: 500px
 background-position: right
 
-## State of the Ecosystem Summary 2023: 
+## New England State of the Ecosystem Summary 2024: 
 **Performance relative to management objectives - Gulf of Maine** 
 
 .pull-left-60[
@@ -461,6 +402,7 @@ Seafood production ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDA
 
 Profits Total ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png); NEFMC Managed ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png), ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) 
 
+.reduced_opacity[
 Recreational opportunities:  Effort ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Effort diversity ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
 
 Stability: Fishery ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png), Commercial ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Rec ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
@@ -470,67 +412,80 @@ Social and cultural, trend not evaluated, status of:
 *  Environmental Justice (EJ) Vulnerability by community  
 
 Protected species: 
-*  Maintain bycatch below thresholds ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)  
-*  Recover endangered populations ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png), NARW ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Gray seal ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png) 
-]
-.pull-right-40[]
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//SOE-NE-final-03.27.23-508_Page_4.png")
-background-size: 500px
-background-position: right
-
-## State of the Ecosystem Summary 2023: 
-**Risks to meeting fishery management objectives**  
-
-.pull-left-60[
-Climate: warming and changing oceanography continue
-*  2022 among warmest years on record
-*  Gulf Stream instability
-*  Mid-Atlantic cold pool becoming warmer, smaller, and shorter in duration
-*  Gulf of Maine fall bloom highest in time series
-*  Mixed fish condition 
-*  Distribution shifts complicate management
+*  Maintain bycatch below thresholds (harbor porpoise, gray seals) ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)  
+*  Recover endangered populations ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png), NARW ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) Gray seal ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png)] Salmon ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)
 ]
 .pull-right-40[]
 
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//SOE-NE-final-03.27.23-508_Page_4.png")
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_3.png")
 background-size: 500px
 background-position: right
 
-## State of the Ecosystem Summary 2023: 
+## State of the Ecosystem Summary 2024: 
 **Risks to meeting fishery management objectives**  
 
 .pull-left-60[
+Climate: risks to spatial and seasonal management, quota setting and rebuilding
+*  Fish and protected species distribution shifts
+*  Changing spawning and migration timing
+*  Multiple stocks with poor condition, declining productivity 
+
 Other ocean uses: offshore wind development
-*  Integrated Ecosystem Assessment is beginning for offshore wind and fisheries in the Gulf of Maine
 *  Current revenue in proposed areas
-    - 1-31% by port (some with EJ concerns)
-    - Up to 12% annual commercial revenue by NEFMC-managed species
-*  Overlap with known important right whale foraging habitats, increased vessel strike and noise risks 
-*  Scientific survey mitigation in progress
+    - 1-23% by Mid-Atlantic port (some with EJ concerns)
+    - 1–34% by New England port (some with EJ concerns)
+    - 1-20% by MAFMC managed species
+    - 3-54% by NEFMC managed species
+*  Overlap with important right whale foraging habitats, increased vessel strike and noise risks
+*  Gulf of Maine fisheries/offshore wind IEA in progress
 ]
 .pull-right-40[]
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-030424_Page_4.png")
+background-size: 500px
+background-position: right
+
+## State of the Ecosystem Summary 2024:
+**New section this year: 2023 Highlights**
+
+.pull-left-60[
+Notable 2023 events and conditions
+
+*  South Fork Wind and Vineyard Wind 1 construction started
+*  Scallop die-off elephant trunk 2022-2023
+*  Hypoxia and mortality events in NJ coastal ocean this summer
+*  Record *low* hypoxia in Chesapeake Bay
+*  GOM summer phytoplankton bloom off the scale
+*  2nd ranked GOM bottom heatwave
+*  Warm water everywhere EXCEPT in Spring on the NEUS shelf
+*  Gulf Stream changes altering shelf break habitats
+*  El Nino. Warmest year on record globally. Again.
+]
+
+.pull-right-40[
+]
+
 
 ---
 
 .center[
-# Council Requests from 2024
+# Council Requests from 2024 and Prioritization
 
 ]
 
 ---
-## 2025 State of the Ecosystem Request tracking memo *SARAH STILL TO UPDATE*
+## 2025 State of the Ecosystem Request tracking memo in progress
 
 ```{r, results='hide'}
-# resultfile <- googledrive::drive_find(pattern = "SOE 2023 Request Checklist", type = "spreadsheet")
-# 
-# requests <- googledrive::drive_download(resultfile, type = "csv", overwrite = TRUE) %>%
-#   {read.csv(.$local_path)} 
+#   resultfile <- googledrive::drive_find(pattern = "SOE 2023 Request Checklist to Memo", type = "spreadsheet")
+ # 
+#  requests <- googledrive::drive_download(resultfile, type = "csv", overwrite = TRUE) %>%
+#    {read.csv(.$local_path)} 
 
-requests <- read.csv(here("SOE 2023 Request Checklist.csv"))
+requests <- read.csv(here::here("SOE 2023 Request Checklist to Memo.csv"))
 ```
 
 .scroll-output[
@@ -541,26 +496,46 @@ requests <- read.csv(here("SOE 2023 Request Checklist.csv"))
 #   {read.csv(.$local_path)} 
 
 requeststab <- requests %>%
-  dplyr::select(Request, Year, Source, Status, Progress) %>%
+  dplyr::select(Request, Year, Aggregate, Project, Source, Status, Progress, Order) %>%
   dplyr::mutate(Source = str_trim(str_extract(Source, "[^-]+"))) %>%
-  dplyr::arrange(match(Status, c("",
-                          "In SOE", 
-                          "In SOE-MAFMC",
-                          "In SOE-MAFMC, In progress-NEFMC",
-                          "In progress", 
-                          "Not started")), desc(Year)) %>%
-  dplyr::mutate("Memo Section" = rownames(.))
+  dplyr::group_by(factor(Aggregate, levels = c("System level thresholds/ref pts",
+                                               "Management",
+                                               "Short term forecasts",
+                                               "Regime shifts",
+                                               "Multiple system drivers",
+                                               "Functional group level status/thresholds/ref pts",
+                                               "Stock level indicators",
+                                               "SOE admin"))
+                  )%>% #, Project) %>%
+  dplyr::mutate(#AvgOrder = mean(Order, na.rm=T),
+                Rank = factor(case_when(Order < 1.5 ~ "Highest", 
+                                     Order >= 1.5 & Order < 1.75 ~ "High",
+                                     Order >= 1.75 & Order < 2 ~ "Moderate",
+                                     Order >= 2 & Order < 2.5 ~ "Low",
+                                     Order >=2.5 ~ "Lowest",
+                                     TRUE ~ "Unranked"),
+                       levels=c("Highest", "High", "Moderate", "Unranked", "Low", "Lowest")))%>%
+  dplyr::arrange(Rank, Order, .by_group = TRUE) %>% #AvgOrder, 
+  # arrange(match(Status, c("In SOE", 
+  #                         "In SOE-MAFMC",
+  #                         "In SOE-MAFMC, In progress-NEFMC",
+  #                         "In progress", 
+  #                         "Not started")), desc(Year)) %>%
+  dplyr::ungroup() %>%
+  #dplyr::mutate("Memo Section" = rownames(.)) %>%
+  #dplyr::mutate(Section = dplyr::group_indices(.)) %>%
+  dplyr::select(Request, Year, Aggregate, Rank, Source, Status, Progress)
 
-knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
-  kable_styling(font_size=12#, latex_options = c("hold_position", "striped", "repeat_header")
-                ) %>%
-  row_spec(0,bold=TRUE) %>%
-  column_spec(1, width="10.5cm") %>%
-  column_spec(2, width="1cm") %>%
-  column_spec(3, width="2cm") %>%
-  column_spec(4, width="4.5cm") %>%
-  column_spec(5, width="13.5cm") %>%
-  column_spec(6, width="1.5cm")
+# knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
+#   kable_styling(font_size=12#, latex_options = c("hold_position", "striped", "repeat_header")
+#                 ) %>%
+#   row_spec(0,bold=TRUE) %>%
+#   column_spec(1, width="10.5cm") %>%
+#   column_spec(2, width="1cm") %>%
+#   column_spec(3, width="2cm") %>%
+#   column_spec(4, width="4.5cm") %>%
+#   column_spec(5, width="13.5cm") %>%
+#   column_spec(6, width="1.5cm")
   #column_spec(1, width="9.5cm") %>%
   #column_spec(1, width="13.5cm") %>%
   #column_spec(2, width="1cm") %>%
@@ -569,7 +544,112 @@ knitr::kable(requeststab, longtable = T, booktabs = TRUE, linesep = "") %>%
   #column_spec(4, width="13.5cm") %>%
   #column_spec(5, width="1.5cm")
 
+flextable::as_grouped_data(requeststab, groups = "Aggregate") %>% 
+  flextable::as_flextable(hide_grouplabel=TRUE) %>% 
+  flextable::align(i = ~ !is.na(Aggregate), align = "left") %>% 
+  flextable::bold(i = ~ !is.na(Aggregate), bold = TRUE) %>%
+  flextable::theme_zebra() %>%
+  flextable::bg(i = ~ !is.na(Aggregate), bg = "beige", part = "body") %>%
+  flextable::hline(i = ~ !is.na(Aggregate)) %>%
+  #flextable::set_caption("State of the Ecosystem requests by category and Council priority.") %>%
+  flextable::autofit() 
+  #flextable::width(width = c(2.5,0.5,0.7,0.7,0.7,1.5))
+
 ```
 
 ]
 
+
+---
+## Priority categories in the Request Memo
+
+.pull-left-40[
+The memo is organized into categories by topic, and categories are listed in descending order of overall (2022) priority based on approximate weighting within the category.
+
+Therefore, a range of priority may be applied to individual requests within a category even though the entire category has an overall priority.
+
+*The subgroup agreed to keep this group priority ranking*
+
+SSC: [Link to current memo](https://drive.google.com/file/d/1woOaPCelKgPEcLpqMOBq23dmrMDKKH7q/view?usp=drive_link)  
+SSC: [Link to overview](https://docs.google.com/document/d/1Q06XL6Gaz8i3Hr9sggGjJTE-NII3-HBW/edit?usp=drive_link&ouid=104644076769486561215&rtpof=true&sd=true)
+
+]
+
+.pull-right-60[
+*  System level thresholds/reference points: highest, much methods work in progress
+
+*  Management: high, resource limited  
+*  Short term forecasts: high, CEFI should help  
+*  Regime shifts: high, need system level framework 
+
+*  Multiple system drivers: moderate-high, many unranked requests  
+
+*  Functional group level status/thresholds/reference points: moderate, many in progress
+*  Stock level indicators: moderate, ESPs better venue
+
+*  SOE administration: unranked  
+
+] 
+
+???
+*System level thresholds/reference points*
+Includes requests to develop analytical methods that can be applied across all indicator types and operationalized for management advice. Much of this high priority methodological work is in progress.
+*Management*
+Includes analyses related to management performance. Work on this category is resource limited.
+*Short term forecasts*
+Includes requests for biological and environmental forecasts. These forecasts may be forthcoming from CEFI products once they are tested. 
+*Regime shifts*
+Many analyses have been conducted and are in progress for individual ecosystem components, but a unifying framework with consistent methods is needed for the SOE.
+*Multiple system drivers*
+This category has the most requests. Most unranked requests from 2023 are in this category. Prioritization within this category is sorely needed.
+*Functional group level status/thresholds/reference points*
+Most of these requests are in progress. 
+*Stock level indicators*
+Requests for this information may be more appropriately directed to stock specific ecosystem products such as Ecosystem and Socioeconomic Profiles (ESPs). 
+
+---
+## Discussion of 2023 and 2024 requests (1 of 2)
+
+These newer requests were ranked highest within each category
+
+
+*  System level thresholds/reference points: highest
+    + maintain high priority on trend/threshold evaluation
+    + express indicators relative to biological thresholds
+    + standardize uncertainty language (IPCC)
+    + longer term: simulation analysis of thresholds
+
+*  Management: high  
+    + include indicators for risk policy/risk assessment processes
+    
+*  Short term forecasts: high 
+    + include CEFI projections
+    
+*  Regime shifts: high 
+    + instead characterize current conditions in context of expected short term change
+
+SSC: link to [full list](https://docs.google.com/spreadsheets/d/1sULWI4xkeCMToktNOc69CQAjk50Mv7ZfZAOaL9C9PI8/edit?usp=drive_link), comments welcome!
+
+---
+## Discussion of 2023 and 2024 requests (2 of 2)
+
+These newer requests were ranked highest within each category
+
+*  Multiple system drivers: moderate-high
+    + profits vs revenue: provide incomplete net revenue and index of costs
+    + clarify objectives and terminology for fishing community engagement/reliance/EEJ
+        + time series of community indicators
+        + social and economic linkages to climate
+        + consider appropriate scale for indicators
+
+*  Functional group level status/thresholds/reference points: moderate
+    + not specifically prioritized
+    + include more aggregations for biomass and landings (Council-managed, status)
+
+*  Stock level indicators: moderate, ESPs
+    + not specifically prioritized 
+    + cross reference ESP products where appropriate
+    
+
+
+SSC: link to [full list](https://docs.google.com/spreadsheets/d/1sULWI4xkeCMToktNOc69CQAjk50Mv7ZfZAOaL9C9PI8/edit?usp=drive_link), comments welcome!
