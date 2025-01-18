@@ -76,7 +76,6 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 ```
 
 
-
 # 2025 Performance relative to management objectives
 
 .center[
@@ -93,7 +92,7 @@ Indicator: Commercial landings
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"),
 #total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
 
-ecodata::plot_comdat(report = "MidAtlantic", varName = "landings")
+ecodata::plot_comdat(report = "MidAtlantic", varName = "landings", n=10)
 ```
 
 
@@ -105,7 +104,7 @@ Indicators: Recreational harvest
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"),
 #, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
 
-ecodata::plot_recdat(report = "MidAtlantic", varName ="landings")
+ecodata::plot_recdat(report = "MidAtlantic", varName ="landings", n=10)
 
 ```
 
@@ -189,7 +188,7 @@ Biomass does not appear to drive landings trends
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-aggregate-biomass.R"),
 #nefsc-biomass-mab, fig.cap = "Spring (left) and fall (right) surveyed biomass in the Mid-Atlantic Bight. Data from the NEFSC Bottom Trawl Survey are shown in black, with NEAMAP shown in red. The shaded area around each annual mean represents 2 standard deviations from the mean."
 
-ecodata::plot_aggregate_biomass(report = "MidAtlantic")
+ecodata::plot_aggregate_biomass(report = "MidAtlantic", n=10)
 ```
 
 .contrib[
@@ -797,7 +796,7 @@ Implications: Highlighted communities may be vulnerable to changes in fishing pa
 
 .pull-left[
 Indicators: Harbor porpoise and gray seal bycatch
-.reduced_opacity[
+
 ```{r,  fig.height=3}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-harborporpoise.R"),
 ecodata::plot_harborporpoise()
@@ -807,7 +806,7 @@ ecodata::plot_harborporpoise()
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-grayseal.R"),
 ecodata::plot_grayseal()
 ```
-]
+
 ]
 
 .pull-right[
@@ -864,15 +863,17 @@ background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/doc
 background-size: 350px
 background-position: right bottom
 
-## THANK YOU! SOEs made possible by (at least) 71 contributors from 20+ institutions UPDATE THIS
+## THANK YOU! SOEs made possible by (at least) 80 contributors from 20+ institutions UPDATE FOR 2025
 
 .table[
 ![:col_row 
     Kimberly Bastille<br>
     Aaron Beaver (Anchor QEA)<br>
     Andy Beet<br>
+    Brandon Beltz<br>
     Ruth Boettcher (Virginia Department of Game and Inland Fisheries)<br>
     Mandy Bromilow (NOAA Chesapeake Bay Office)<br>
+    Baoshan Chen (Stony Brook University)<br>
     Zhuomin Chen (U Connecticut)<br>
     Joseph Caracappa<br>
     Doug Christel (GARFO)<br>
@@ -892,13 +893,14 @@ background-position: right bottom
     Sarah Gaichas<br>
     Ben Galuardi (GARFO)<br>
     Avijit Gangopadhyay (School for Marine Science and Technology UMass Dartmouth)<br>
-    James Gartland (Virginia Institute of Marine Science),
+    James Gartland (Virginia Institute of Marine Science)<br>
+    Lori Garzio (Rutgers University),
     
-    Lori Garzio (Rutgers University)<br>
     Glen Gawarkiewicz (Woods Hole Oceanographic Institution)<br>
     Sean Hardison<br>
+    Dvora Hart<br>
     Kimberly Hyde<br>
-    John Kosik<br>
+    John Kocik<br>
     Steve Kress (National Audubon Society’s Seabird Restoration Program)<br>
     Young-Oh Kwon (Woods Hole Oceanographic Institution)<br>
     Scott Large<br>
@@ -913,16 +915,18 @@ background-position: right bottom
     Ray Mroch (SEFSC)<br>
     Brandon Muffley (MAFMC)<br>
     Kimberly Murray<br>
+    David Moe Nelson (NCCOS)<br>
     Janet Nye (University of North Carolina at Chapel Hill)<br>
     Chris Orphanides<br>
     Richard Pace<br>
     Debi Palka<br>
-    Tom Parham (Maryland DNR),
-    
+    Tom Parham (Maryland DNR)<br>
     Charles Perretti<br>
     CJ Pellerin (NOAA Chesapeake Bay Office)<br>
-    Kristin Precoda<br>
+    Kristin Precoda,
+    
     Grace Roskar (NMFS Office of Habitat Conservation)<br>
+    Jeffrey Runge (U Maine)<br>   
     Grace Saba (Rutgers)<br>
     Vincent Saba<br>
     Sarah Salois<br>
@@ -940,9 +944,11 @@ background-position: right bottom
     John Walden<br>
     Harvey Walsh<br>
     Changhua Weng<br>
+    Dave Wilcox (VIMS)<br>
     Timothy White (Environmental Studies Program BOEM)<br>
     Sarah Wilkin (NMFS Office of Protected Resources)<br>
-    Mark Wuenschel ]
+    Mark Wuenschel<br>
+    Qian Zhang (U Maryland)]
 ]
 
 ???
@@ -962,14 +968,14 @@ PrintBibliography(myBib)
 .pull-left[
 * [ecodata R package](https://github.com/noaa-edab/ecodata)
 
+* [Indicator catalog](https://noaa-edab.github.io/catalog/)
+
+* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
 
 ]
 .pull-right[
 * [SOE Reports on the web](https://www.fisheries.noaa.gov/new-england-mid-atlantic/ecosystems/state-ecosystem-reports-northeast-us-shelf)
 
-* [SOE Technical Documentation](https://noaa-edab.github.io/tech-doc)
-
-* [Draft indicator catalog](https://noaa-edab.github.io/catalog/)
 
 .contrib[
 
@@ -979,11 +985,3 @@ PrintBibliography(myBib)
 ]
 
 ???
-* Visualizations:
-  * [Mid-Atlantic Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_MAB)
-  * [Mid-Atlantic Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_MAB)
-  * [Mid-Atlantic Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_MAB)
-  * [New England Human Dimensions indicators](http://noaa-edab.github.io/ecodata/human_dimensions_NE)
-  * [New England Macrofauna indicators](http://noaa-edab.github.io/ecodata/macrofauna_NE)
-  * [New England Lower trophic level indicators](https://noaa-edab.github.io/ecodata/LTL_NE)
-
