@@ -826,7 +826,73 @@ Implications: Highlighted communities may be vulnerable to changes in fishing pa
 ---
 ## Objective: Fishing Community Climate Vulnerability (new)
 
+.pull-left[
 
+```{r commvulex, fig.width = 6, fig.asp=.5, fig.cap="Proportion of Mid-Atlantic communities at each revenue climate vulnerability level over time."}
+
+#CCCVI <- readxl::read_excel("CCCVI-NE/NE_CCCVI_00_22.xlsx", sheet = "NE_CCCVI_Final00_22")
+
+
+
+# CCCVImid <- ecodata::community_climate_vulnerability |> 
+#   dplyr::filter(State %in% c("MD", "NJ", "VA","NY", "NC", "DE")) 
+# 
+# CCCVImid[CCCVImid == 0] <- NA
+
+vulquants <- data.frame(ymin = c(1,1.6,2.6,3.6),
+                        ymax = c(1.5,2.5,3.5,4),
+                        category = c("Low",
+                                     "Moderate",
+                                     "High",
+                                     "Very High"))
+
+risk = c("darkgreen", "yellow", "orange", "red")
+names(risk) <- c("Low","Moderate","High","Very High")
+
+
+props <- ecodata::community_climate_vulnerability |>
+  dplyr::filter(!is.na(Value), #remove communities with no ranking in a given year
+                Var %in% "vulnSum") |> # hardcoded for total vulnerability
+  #dplyr::select(Time, Port, State, Var) |>
+  dplyr::group_by(Time, EPU) |>
+  dplyr::mutate(commn = n(),
+                vulCat = dplyr::case_when(Value <= 1.5 ~ "Low",
+                                          Value > 3.5 ~ "Very High",
+                                          Value > 1.5 & Value <= 2.5 ~ "Moderate",
+                                          Value > 2.5 & Value <= 3.5 ~ "High")) |>
+  dplyr::group_by(Time, EPU, vulCat) |>
+  dplyr::mutate(catn = n(),
+                propcat = catn/commn)
+
+propsonly <- props |>
+  dplyr::select(Time, vulCat, propcat) |>
+  dplyr::distinct()
+
+ggplot2::ggplot() + #, group=PORT_NAME
+  #ggplot2::geom_line(aes(group = PORT_NAME), alpha = 0.05) +
+  # ggplot2::geom_rect(data = vulquants,
+  #                    aes(ymin = ymin, ymax = ymax, fill = category, xmin = -Inf, xmax = Inf),
+  #                    alpha = .3) +
+  ggplot2::scale_fill_manual(values=risk) +
+  ggplot2::geom_point(data = propsonly, ggplot2::aes(x=Time, y=propcat, color=vulCat)) +
+  ggplot2::geom_line(data = propsonly, ggplot2::aes(x=Time, y=propcat, color=vulCat)) +
+  ggplot2::scale_color_manual(values=risk, 
+                              breaks=c('Low', 'Moderate', 'High', 'Very High'),
+                              name="Climate Vulnerability") +
+  ggplot2::facet_wrap(~EPU) +
+  #ggplot2::ylim(1,4) +
+  ggplot2::theme_bw() + 
+  #ggplot2::ggtitle("Mid-Atlantic") +
+  #ggplot2::theme(legend.position = "blank")
+  ggplot2::ylab("Proportion communities")
+
+```
+
+]
+
+.pull-right[
+![:img CCCVR map total vulnerability](https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/NE_Total_Vulnerability_092624-TarsilaSeara_2025.jpg)
+]
 
 ---
 ## Objectives: All Areas Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)
