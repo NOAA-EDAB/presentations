@@ -666,7 +666,7 @@ Indicators: Environmental justice vulnerability, commercial fishery engagement
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R")
 #commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in the Mid-Atlantic."
 
-Bobby1 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/MA_fig1-RobertMurphy_2025.tiff")
+Bobby1 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/MA_com-BobbyMurphy_2025.png")
 
 Bobby1
 
@@ -702,12 +702,12 @@ Implications: Highlighted communities may be vulnerable to changes in fishing pa
 These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
 ---
 ## Objective: Mid Atlantic Environmental Justice and Social Vulnerability  &emsp; Risk element: <span style="background-color:yellow;">Social</span> 
-Indicators: Environmental justice vulnerability, recreational fishery engagement and reliance  
+Indicators: Environmental justice vulnerability, recreational fishery engagement   
 .pull-left[
 ```{r, fig.width = 6.5, fig.asp = 0.75, results='hide'}
 # , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), 
 #recreational-engagement, fig.cap= "Recreational engagement, reliance, and social vulnerability for the top recreational fishing communities in the Mid-Atlantic."
-Bobby2 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/MA_fig2-RobertMurphy_2025.tiff")
+Bobby2 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/MA_rec-BobbyMurphy_2025.png")
 
 Bobby2
 
@@ -741,14 +741,14 @@ Implications: Highlighted communities may be vulnerable to changes in fishing pa
 ---
 ## Objective: New England Environmental Justice and Social Vulnerability
 
-Indicators: Environmental justice vulnerability, commercial fishery engagement and reliance  
+Indicators: Environmental justice vulnerability, commercial fishery engagement 
 
 .pull-left[
 ```{r , fig.width = 6.5, fig.asp = 0.75, results='hide'}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-engagement.R"),
 #commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in New England."
 
-Bobby3 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/NE_fig1-RobertMurphy_2025.tiff")
+Bobby3 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/NE_com-BobbyMurphy_2025.png")
 
 Bobby3
 
@@ -786,14 +786,14 @@ These plots provide a snapshot of the presence of environmental justice issues i
 ---
 ## Objective: New England Environmental Justice and Social Vulnerability
 
-Indicators: Environmental justice vulnerability, recreational fishery engagement and reliance
+Indicators: Environmental justice vulnerability, recreational fishery engagement
 
 .pull-left[
 ```{r  fig.width = 6.5, fig.asp = 0.75, results='hide'}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recreational-engagement.R"),
 #recreational-engagement, fig.cap= "Recreational engagement, reliance, and social vulnerability for the top recreational fishing communities in New England."
 
-Bobby4 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/NE_fig2-RobertMurphy_2025.tiff")
+Bobby4 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/NE_rec-BobbyMurphy_2025.png")
 
 Bobby4
 
@@ -822,6 +822,11 @@ cropRecEJ <- RecEJ %>%
 ]
 
 Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+
+---
+## Objective: Fishing Community Climate Vulnerability (new)
+
+
 
 ---
 ## Objectives: All Areas Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)
