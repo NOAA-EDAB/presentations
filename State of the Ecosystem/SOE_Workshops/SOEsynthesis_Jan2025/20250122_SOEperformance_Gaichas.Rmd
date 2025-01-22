@@ -666,13 +666,65 @@ Indicators: Environmental justice vulnerability, commercial fishery engagement
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R")
 #commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in the Mid-Atlantic."
 
-Bobby1 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/MA_com-BobbyMurphy_2025.png")
-
-Bobby1
 
 #ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial")
-```
 
+commsocvul <- read.csv(here::here("data-raw/fishdata_2022_CSVI_final (1).csv"))
+
+# logic: category gets the max indicator rank, I think this is how EJ works
+
+commsocvulrank <- commsocvul |>
+  dplyr::filter(REGION=="Northeast") |>
+  dplyr::mutate(across(27:34, ~ case_when(   #stringr::str_detect("_rank")
+                  . == "low" ~ "1",
+                  . == "med" ~ "2",
+                  . == "med high" ~ "3",
+                  . == "high" ~ "4",
+                  TRUE ~ NA_character_
+                ))) |>
+  dplyr::rowwise() |>
+  dplyr::mutate(EJrank = max(as.numeric(personal_disruption_rank), 
+                             as.numeric(pop_composition_rank), 
+                             as.numeric(poverty_rank)),
+                Econrank = max(as.numeric(labor_force_str_rank),
+                               as.numeric(housing_characteristics_rank)),
+                Gentrank = max(as.numeric(housing_disrupt_rank),
+                               as.numeric(retiree_migration_rank),
+                               as.numeric(urban_sprawl_index_rank)))
+
+
+MA_com_plot <- commsocvulrank |>
+  dplyr::filter(STATEABBR %in% c("DE", "MD", "NJ", "NY", "NC", "PA", "VA")) |>
+  ggplot2::ggplot(ggplot2::aes(x=ComEng, y=ComRel)) + 
+  ggplot2::geom_point(shape=1, 
+             size=1.4, stroke=0.9, alpha=0.6, 
+             aes(color=EJrank))+
+  ggplot2::scale_color_manual(values = c(4 ~ "firebrick4",
+                                3~"darkorange1",
+                                2~"goldenrod1",
+                                1~"gray")) +
+  ggplot2::theme_bw()+
+  ggplot2::ylim(-5,32)+
+  ggplot2::theme(text = ggplot2::element_text(size=9),
+        plot.title = ggplot2::element_text(size=9, vjust=-7.5, hjust=0.01),
+        panel.grid.major = ggplot2::element_blank(), 
+        panel.grid.minor = ggplot2::element_blank())+
+  ggplot2::ylab(expression(paste("Relative Commercial Engagement Index", italic(" (factor score)"))))+
+  ggplot2::xlab(expression(paste("Commercial Engagement Index", italic(" (factor score)"))))+
+  ggplot2::guides(color=guide_legend(title="Engagement Score Rank"))+
+  ggrepel::geom_label_repel(aes(label = ifelse(ComEng>3.1,as.character(GEO_NAME),ifelse(ComRel>3.8,as.character(GEO_NAME),''))),
+                   size=2,
+                   box.padding   = 0.4, 
+                   point.padding = 0,
+                   segment.color = 'grey50',
+                   min.segment.length = 0.01,
+                   max.overlaps=Inf,
+                   label.size = NA,
+                   fill = alpha(c("white"),0.1))
+
+MA_com_plot
+```
+![:img MA commercial](https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/MA_com-BobbyMurphy_2025.png)
 
 ]
 
