@@ -693,42 +693,53 @@ commsocvulrank <- commsocvul |>
                                as.numeric(urban_sprawl_index_rank)))
 
 
-MA_com_plot <- commsocvulrank |>
+p <- commsocvulrank |>
   dplyr::filter(STATEABBR %in% c("DE", "MD", "NJ", "NY", "NC", "PA", "VA")) |>
   ggplot2::ggplot(ggplot2::aes(x=ComEng, y=ComRel)) + 
   ggplot2::geom_point(shape=1, 
              size=1.4, stroke=0.9, alpha=0.6, 
-             aes(color=EJrank))+
-  ggplot2::scale_color_manual(values = c(4 ~ "firebrick4",
-                                3~"darkorange1",
-                                2~"goldenrod1",
-                                1~"gray")) +
+             aes(color=as.factor(EJrank)))+
+  ggplot2::scale_colour_viridis_d(direction = -1) +
+  # ggplot2::scale_color_manual(values = c(4 ="firebrick4",
+  #                               3="darkorange1",
+  #                               2="goldenrod1",
+  #                               1="gray")) +
   ggplot2::theme_bw()+
-  ggplot2::ylim(-5,32)+
+  #ggplot2::ylim(-5,32)+
   ggplot2::theme(text = ggplot2::element_text(size=9),
         plot.title = ggplot2::element_text(size=9, vjust=-7.5, hjust=0.01),
         panel.grid.major = ggplot2::element_blank(), 
         panel.grid.minor = ggplot2::element_blank())+
   ggplot2::ylab(expression(paste("Relative Commercial Engagement Index", italic(" (factor score)"))))+
   ggplot2::xlab(expression(paste("Commercial Engagement Index", italic(" (factor score)"))))+
-  ggplot2::guides(color=guide_legend(title="Engagement Score Rank"))+
-  ggrepel::geom_label_repel(aes(label = ifelse(ComEng>3.1,as.character(GEO_NAME),ifelse(ComRel>3.8,as.character(GEO_NAME),''))),
+  ggplot2::guides(color=guide_legend(title="EJ Vulnerability Rank"))+
+  ggrepel::geom_label_repel(aes(label = ifelse(ComEng>2,as.character(GEO_NAME),ifelse(ComRel>1.06,as.character(GEO_NAME),''))),
                    size=2,
-                   box.padding   = 0.4, 
-                   point.padding = 0,
+                   box.padding   = 0.3, 
+                   point.padding = 0.1,
                    segment.color = 'grey50',
+                   direction = "both",
+                   force_pull=0.5,
                    min.segment.length = 0.01,
                    max.overlaps=Inf,
                    label.size = NA,
-                   fill = alpha(c("white"),0.1))
+                   fill = alpha(c("white"),0.1),
+                   point.size=0.1)
 
-MA_com_plot
+p
 ```
-![:img MA commercial](https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/MA_com-BobbyMurphy_2025.png)
 
 ]
 
 .pull-right[
+![:img MA commercial](https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/MA_com-BobbyMurphy_2025.png)
+
+]
+
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+
+
+???
 
 ```{r, out.width="100%"}
 #get rid of the gray excel outline using R package magick
@@ -746,11 +757,7 @@ cropComEJ <- ComEJ %>%
 ```
 
 <!--![Commercial fishing communities environmental justice spider plot](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//EJ_Commercial_MAB.png)-->
-]
 
-Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
-
-???
 These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
 ---
 ## Objective: Mid Atlantic Environmental Justice and Social Vulnerability  &emsp; Risk element: <span style="background-color:yellow;">Social</span> 
@@ -759,17 +766,53 @@ Indicators: Environmental justice vulnerability, recreational fishery engagement
 ```{r, fig.width = 6.5, fig.asp = 0.75, results='hide'}
 # , code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R"), 
 #recreational-engagement, fig.cap= "Recreational engagement, reliance, and social vulnerability for the top recreational fishing communities in the Mid-Atlantic."
-Bobby2 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/MA_rec-BobbyMurphy_2025.png")
 
-Bobby2
+p <- commsocvulrank |>
+  dplyr::filter(STATEABBR %in% c("DE", "MD", "NJ", "NY", "NC", "PA", "VA")) |>
+  ggplot2::ggplot(ggplot2::aes(x=RecEng, y=RecRel)) + 
+  ggplot2::geom_point(shape=1, 
+             size=1.4, stroke=0.9, alpha=0.6, 
+             aes(color=as.factor(EJrank)))+
+  ggplot2::scale_colour_viridis_d(direction = -1) +
+  # ggplot2::scale_color_manual(values = c(4 ="firebrick4",
+  #                               3="darkorange1",
+  #                               2="goldenrod1",
+  #                               1="gray")) +
+  ggplot2::theme_bw()+
+  #ggplot2::ylim(-5,32)+
+  ggplot2::theme(text = ggplot2::element_text(size=9),
+        plot.title = ggplot2::element_text(size=9, vjust=-7.5, hjust=0.01),
+        panel.grid.major = ggplot2::element_blank(), 
+        panel.grid.minor = ggplot2::element_blank())+
+  ggplot2::ylab(expression(paste("Relative Commercial Engagement Index", italic(" (factor score)"))))+
+  ggplot2::xlab(expression(paste("Commercial Engagement Index", italic(" (factor score)"))))+
+  ggplot2::guides(color=guide_legend(title="EJ Vulnerability Rank"))+
+  ggrepel::geom_label_repel(aes(label = ifelse(RecEng>7,as.character(GEO_NAME),ifelse(RecRel>7,as.character(GEO_NAME),''))),
+                   size=2,
+                   box.padding   = 0.3, 
+                   point.padding = 0.1,
+                   segment.color = 'grey50',
+                   direction = "both",
+                   force_pull=0.5,
+                   min.segment.length = 0.01,
+                   max.overlaps=Inf,
+                   label.size = NA,
+                   fill = alpha(c("white"),0.1),
+                   point.size=0.1)
 
-
+p
 #ecodata::plot_engagement(report = "MidAtlantic", varName = "Recreational")
 ```
 
 ]
 
 .pull-right[
+
+![:img MA rec](https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/MA_rec-BobbyMurphy_2025.png)
+]
+
+???
+
 ```{r, out.width="100%"}
 #get rid of the gray excel outline using R package magick
 RecEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/EJ_Recreational_MAB_2024.PNG") 
@@ -786,7 +829,7 @@ cropRecEJ <- RecEJ %>%
 ```
 
 <!--![Recreational fishing communities environmental justice spider plot](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//EJ_Recreational_MAB.png)--> 
-]
+
 
 Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 
@@ -800,9 +843,40 @@ Indicators: Environmental justice vulnerability, commercial fishery engagement
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-commercial-engagement.R"),
 #commercial-engagement, fig.cap= "Commercial engagement, reliance, and social vulnerability for the top commercial fishing communities in New England."
 
-Bobby3 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/NE_com-BobbyMurphy_2025.png")
+p <- commsocvulrank |>
+  dplyr::filter(STATEABBR %in% c("CT", "ME", "MA", "NH", "RI")) |>
+  ggplot2::ggplot(ggplot2::aes(x=ComEng, y=ComRel)) + 
+  ggplot2::geom_point(shape=1, 
+             size=1.4, stroke=0.9, alpha=0.6, 
+             aes(color=as.factor(EJrank)))+
+  ggplot2::scale_colour_viridis_d(direction = -1) +
+  # ggplot2::scale_color_manual(values = c(4 ="firebrick4",
+  #                               3="darkorange1",
+  #                               2="goldenrod1",
+  #                               1="gray")) +
+  ggplot2::theme_bw()+
+  #ggplot2::ylim(-5,32)+
+  ggplot2::theme(text = ggplot2::element_text(size=9),
+        plot.title = ggplot2::element_text(size=9, vjust=-7.5, hjust=0.01),
+        panel.grid.major = ggplot2::element_blank(), 
+        panel.grid.minor = ggplot2::element_blank())+
+  ggplot2::ylab(expression(paste("Relative Commercial Engagement Index", italic(" (factor score)"))))+
+  ggplot2::xlab(expression(paste("Commercial Engagement Index", italic(" (factor score)"))))+
+  ggplot2::guides(color=guide_legend(title="EJ Vulnerability Rank"))+
+  ggrepel::geom_label_repel(aes(label = ifelse(ComEng>3.1,as.character(GEO_NAME),ifelse(ComRel>3.8,as.character(GEO_NAME),''))),
+                   size=2,
+                   box.padding   = 0.3, 
+                   point.padding = 0.1,
+                   segment.color = 'grey50',
+                   direction = "both",
+                   force_pull=0.5,
+                   min.segment.length = 0.01,
+                   max.overlaps=Inf,
+                   label.size = NA,
+                   fill = alpha(c("white"),0.1),
+                   point.size=0.1)
 
-Bobby3
+p
 
 
 #ecodata::plot_engagement(report = "NewEngland", varName = "Commercial")
@@ -811,6 +885,11 @@ Bobby3
 ]
 
 .pull-right[
+
+![:img NE commercial](https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/NE_com-BobbyMurphy_2025.png)
+]
+???
+
 
 ```{r, out.width="100%"}
 #get rid of the gray excel outline using R package magick
@@ -828,11 +907,11 @@ cropComEJ <- ComEJ %>%
 ```
 
 <!--![Commercial fishing communities environmental justice spider plot](EDAB_images/EJ_Commercial_NE.png)-->
-]
+
 
 Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 
-???
+
 These plots provide a snapshot of the presence of environmental justice issues in the most highly engaged and most highly reliant commercial and recreational fishing communities in the Mid-Atlantic. These communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When any of these communities are also experiencing social vulnerability including environmental justice issues, they may have lower ability to successfully respond to change. 
 
 ---
@@ -845,9 +924,41 @@ Indicators: Environmental justice vulnerability, recreational fishery engagement
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-recreational-engagement.R"),
 #recreational-engagement, fig.cap= "Recreational engagement, reliance, and social vulnerability for the top recreational fishing communities in New England."
 
-Bobby4 <-  magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/NE_rec-BobbyMurphy_2025.png")
+p <- commsocvulrank |>
+  dplyr::filter(STATEABBR %in% c("CT", "ME", "MA", "NH", "RI")) |>
+  ggplot2::ggplot(ggplot2::aes(x=RecEng, y=RecRel)) + 
+  ggplot2::geom_point(shape=1, 
+             size=1.4, stroke=0.9, alpha=0.6, 
+             aes(color=as.factor(EJrank)))+
+  ggplot2::scale_colour_viridis_d(direction = -1) +
+  # ggplot2::scale_color_manual(values = c(4 ="firebrick4",
+  #                               3="darkorange1",
+  #                               2="goldenrod1",
+  #                               1="gray")) +
+  ggplot2::theme_bw()+
+  #ggplot2::ylim(-5,32)+
+  ggplot2::theme(text = ggplot2::element_text(size=9),
+        plot.title = ggplot2::element_text(size=9, vjust=-7.5, hjust=0.01),
+        panel.grid.major = ggplot2::element_blank(), 
+        panel.grid.minor = ggplot2::element_blank())+
+  ggplot2::ylab(expression(paste("Relative Commercial Engagement Index", italic(" (factor score)"))))+
+  ggplot2::xlab(expression(paste("Commercial Engagement Index", italic(" (factor score)"))))+
+  ggplot2::guides(color=guide_legend(title="EJ Vulnerability Rank"))+
+  ggrepel::geom_label_repel(aes(label = ifelse(RecEng>2.4,as.character(GEO_NAME),ifelse(RecRel>1,as.character(GEO_NAME),''))),
+                   size=2,
+                   box.padding   = 0.3, 
+                   point.padding = 0.1,
+                   segment.color = 'grey50',
+                   direction = "both",
+                   force_pull=0.5,
+                   min.segment.length = 0.01,
+                   max.overlaps=Inf,
+                   label.size = NA,
+                   fill = alpha(c("white"),0.1),
+                   point.size=0.1)
 
-Bobby4
+p
+
 
 #ecodata::plot_engagement(report = "NewEngland", varName = "Recreational")
 ```
@@ -855,6 +966,11 @@ Bobby4
 ]
 
 .pull-right[
+
+![:img NE rec](https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/NE_rec-BobbyMurphy_2025.png)
+]
+
+???
 ```{r, out.width="100%"}
 #get rid of the gray excel outline using R package magick
 RecEJ <- magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/workshop/images/EJ_Recreational_NE_2024.PNG") 
@@ -871,7 +987,7 @@ cropRecEJ <- RecEJ %>%
 ```
 
 <!--![Recreational fishing communities environmental justice spider plot](EDAB_images/EJ_Recreational_MAB.png)--> 
-]
+
 
 Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 
