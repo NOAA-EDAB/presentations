@@ -274,12 +274,17 @@ A "controlling" recruitment covariate results in a time-varying recruitment scal
 
 .pull-right[
 
-We explored indices with different zooplankton groups, seasons, and regions according to herring life history and results from the boosted regression tree:
+Covariates explored: 
 
 *  Jan-Jun (Spring) large copepods in spring herring BTS strata with lag-0 to represent food for pre-recruit juveniles
 *  Jul-Dec (Fall) small copepods in fall herring BTS strata with lag-1 to represent food for larvae in general
 *  Sep-Feb small copepods in herring larval area with lag-1 to represent food for larvae more specifically
 *  Combinations of large and small copepod covariates above 
+
+*  Optimal temperature duration (days) during the fall larval season, September-December
+
+*  Sensitivity: Turn off NAA RE and then try fitting with the most robust recruitment covariates.
+
 
 ]
 ???
@@ -291,19 +296,44 @@ We evaluated
 
 *  Options for covariate input (millions of cells vs. log(cells), VAST estimated SE vs. WHAM estimated SE)  
 *  Options for covariate observation model ("rw" vs. "ar1")  
-*  Options for recruitment link ("none" vs. "controlling-linear" with lag-0 for large copepods and lag-1 for small)  
+*  Options for recruitment link ("none" vs. "controlling-linear" with lag-0 for large copepods, lag-1 for small copepods, and lag-1 for larval temperature duration)  
+*  No attempts were made to fit polynomial effects although this is possible in WHAM
+
 
 Short story:
 
 *  Models with covariates input on the log scale generally converged
 *  Models with WHAM estimated covariate SE ("est_1") generally converged
 *  Under the above conditions, most models with and without the recruitment link converged for all covariates
+*  Models with the Jan-Jun (Spring) large copepods covariate also converged with input as millions of cells and VAST estimated SE  
 
-*  Models with the Jan-Jun (Spring) large copepods covariate also converged with input as millions of cells and VAST estimated SE
 
-*  I'm still figuring out where to find all the diagnostics in WHAM, so "converged" may not be "a good model"
+---
+## Overview of results shown for each model
 
-[Way too much detail including false starts](https://noaa-edab.github.io/zooplanktonindex/WHAMcovariate_tests.html)
+.pull-left[
+Summary table comparing across models with and without recruitment covariates turned on
+
+Diagnostics shown: 
+
+*  WHAM's fit to the covariate time series
+*  One step ahead residuals for WHAM's fit
+*  Estimated time varying recruitment scaling parameter with N age 1
+
+Finally, recruitment sigma compared with base, covariate beta with CI
+
+] 
+
+.pull-right[
+
+The main diagnostics we used to determine if the model was improved by covariates were:
+
+*  model converged and Hessian matrix invertable
+*  dAIC lowest
+*  recruitment sigma reduced (how much?)
+*  estimated covariate effect CI does not include 0
+*  direction of covariate effect is sensible
+]
 
 ---
 ## Results: Spring large copepods covariate: model summary
@@ -691,39 +721,7 @@ Without covariates, recruitment variance is `r round(m1par["stock 1 NAA $\\sigma
 
 ???
 
----
-## Implications for reference points: Sep-Feb small copepods in herring larval area
-
-.pull-left[
-```{r}
-compare_sepfeb <- readRDS(here::here("WHAM/mm192_smcopeSepFeb2/smCopeSepFeb2compare_best3.rds"))
-
-compare_sepfeb$g[[1]]
-```
-
-]
-
-.pull-right[
-```{r}
-compare_sepfeb$g[[9]]
-```
-
-]
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2/compare_rel_status_kobe.png")
-background-size: 800px
-background-position: right
-
-## Implications for reference points 
-
-Sep-Feb small copepods m14
-
-Same pattern by area
-
-*  herring larval
-*  fall survey
-
+-
 ---
 ## Results: Duration of optimal larval temperature, Sept-Dec: model summary
 
@@ -806,36 +804,69 @@ m8par <- readRDS(here::here("WHAM/mm192_LarvalTempDuration/m8/res_tables/paramet
 Without covariate, recruitment variance is `r round(m7par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m8par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; LarvalTempDuration beta_1 is `r round(m8par["stock 1 Recruitment Ecov: LarvalTempDuration $\\beta_1$",1],3)`, CI `r round(m8par["stock 1 Recruitment Ecov: LarvalTempDuration $\\beta_1$",3],3)`, `r round(m8par["stock 1 Recruitment Ecov: LarvalTempDuration $\\beta_1$",4],3)`
 
 ---
-## Implications for reference points: Duration of optimal larval temperature, Sept-Dec
 
-.pull-left[
-```{r}
-compare_temp <- readRDS(here::here("WHAM/mm192_LarvalTempDuration/larvtempduration.rds"))
+## Sensitivity: Remove NAA RE, add September - December duration of larval optimal temperature: model summary
 
-compare_temp$g[[1]]
+*Both rw and ar1 models worked with covariates, rw better fit*
+
+```
+Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL  dAIC     AIC  rho_R rho_SSB rho_Fbar
+
+  m4            rw controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1762.281     0 -3266.6 1.6108  0.3339   -0.121
+  m8           ar1 controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1761.214   4.2 -3262.4 1.6872  0.3341  -0.1213
+  m3            rw                     none logmean-est_1 TRUE   TRUE -1748.086  26.4 -3240.2 3.5003  0.3664  -0.1424
+  m7           ar1                     none logmean-est_1 TRUE   TRUE -1747.227  30.1 -3236.5 3.5003  0.3664  -0.1424
+
+  m2            rw controlling-lag-1-linear    mean-est_1 TRUE   TRUE -1585.263 354.1 -2912.5 1.5766  0.3325  -0.1206
+  m1            rw                     none    mean-est_1 TRUE   TRUE -1570.980 380.6   -2886 3.5014  0.3662  -0.1421
+  m5           ar1                     none    mean-est_1 TRUE   TRUE -1570.163 384.3 -2882.3 3.5003  0.3673  -0.1437
+  m6           ar1 controlling-lag-1-linear    mean-est_1 TRUE  FALSE -1584.188   ---     ---    ---     ---      ---
 ```
 
+---
+## Duration of optimal larval temperature, Sept-Dec: logscale rw diagnostics
+
+.pull-left[
+![LarvalTempDuration/m3  fit](WHAM/mm192_LarvalTempDuration_NAA_REoff/m3/plots_png/diagnostics/LarvalTempDuration_diagnostic.png)
 ]
 
 .pull-right[
-```{r}
-compare_temp$g[[9]]
-```
 
+![LarvalTempDuration/m3 osa](WHAM/mm192_LarvalTempDuration_NAA_REoff/m3/plots_png/diagnostics/OSA_resid_ecov_4panel_LarvalTempDuration.png)
 ]
 
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/compare_png/compare_rel_status_kobe.png")
-background-size: 800px
-background-position: right
+## Duration of optimal larval temperature, Sept-Dec: logscale rw recruitment
 
-## Implications for reference points 
+.pull-left[
+![LarvalTempDuration/m3 rec](WHAM/mm192_LarvalTempDuration_NAA_REoff/m3/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![LarvalTempDuration/m4 rec](WHAM/mm192_LarvalTempDuration_NAA_REoff/m4/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+```{r}
+m3par <- readRDS(here::here("WHAM/mm192_LarvalTempDuration_NAA_REoff/m3/res_tables/parameter_estimates_table.RDS"))
+
+m4par <- readRDS(here::here("WHAM/mm192_LarvalTempDuration_NAA_REoff/m4/res_tables/parameter_estimates_table.RDS"))
+
+```
+
+Without covariate, recruitment variance is `r round(m3par["stock 1 NAA $\\sigma$ (age 1)",1],3)`, and with is `r round(m4par["stock 1 NAA $\\sigma$ (age 1)",1],3)`; LarvalTempDuration beta_1 is `r round(m4par["stock 1 Recruitment Ecov: LarvalTempDuration $\\beta_1$",1],3)`, CI `r round(m4par["stock 1 Recruitment Ecov: LarvalTempDuration $\\beta_1$",3],3)`, `r round(m4par["stock 1 Recruitment Ecov: LarvalTempDuration $\\beta_1$",4],3)`
 
 ---
+# Discussion
 
-# Discussion? Thoughts?
+The duration of optimal larval temperature covariate resulted in slightly better model fits and reduced recruitment variability relative to the model without covariates. The effect of optimal larval temperature on recruitment was postive, as hypothesized, with fewer days of optimal temperature resulting in a lower recruitment scaling parameter. However, the confidence interval of the effect included 0. 
 
+While some of the zooplankton time series also resulted in slightly better model fits and reduced recruitment variability relative to the model without covariates, the effects of zooplankton were negative on recruitment. This relationship is opposite the hypothesized relationship between herring and food, which was expected to be positive. 
 
+The sensitivity run removing NAA RE resulted in a much stronger impact of the optimal larval temperature on recruitment. 
+
+# Thoughts?
+
+---
 
 ## Thank you!  References
 
@@ -849,3 +880,5 @@ PrintBibliography(myBib)
 Slides available at https://noaa-edab.github.io/presentations  
 Contact: <Sarah.Gaichas@noaa.gov>
 ]
+
+
