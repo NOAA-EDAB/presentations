@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Zooplankton indices as covariates in WHAM</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sarah Gaichas, Jon Deroba, Adelle Molina" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/EDAB_theme3_508_SOE_16by9.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: right, middle, my-title, title-slide
+
+.title[
+# Zooplankton indices as covariates in WHAM
+]
+.subtitle[
+## Herring Research Track Review <br /> 11 March 2025
+]
+.author[
+### Sarah Gaichas, Jon Deroba, Adelle Molina
+]
+
+---
+
+class: top, left
+
+
+
+
+
+# Does food drive recruitment of Atlantic herring?
+
+## Atlantic herring, *Clupea harengus*
+
+.pull-left[
+![Atlantic herring illustration, credit NOAA Fisheries](https://www.fisheries.noaa.gov/s3/styles/original/s3/2022-08/640x427-Herring-Atlantic-NOAAFisheries.png)
+]
+
+.pull-right[
+.large[
+
+"The herring is a plankton feeder.... Examination of 1,500 stomachs showed that adult herring near Eastport were living solely on copepods and on pelagic euphausiid shrimps (*Meganyctiphanes norwegica*), fish less than 4 inches long depending on the former alone, while the larger herring were eating both." &lt;a name=cite-collette_bigelow_2002&gt;&lt;/a&gt;([Collette et al., 2002](#bib-collette_bigelow_2002))
+
+]
+]
+
+???
+When first hatched, and before the disappearance of the yolk sac, the larvae (European) feed on larval snails and crustaceans, on diatoms, and on peridinians, but they soon begin taking copepods, and depend exclusively on these for a time after they get to be 12 mm. long, especially on the little Pseudocalanus elongatus. As they grow older they feed more and more on the larger copepods and amphipods, pelagic shrimps, and decapod crustacean larvae.
+
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringConceptualMod.png")
+background-size: 1070px
+background-position: bottom
+
+## Which indicators are potential covariates for recruitment?
+
+---
+background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringBRT_rec.png")
+background-size: 800px
+background-position: right
+
+## Which indicators are potential covariates for recruitment?
+
+.pull-left-30[
+Boosted regression tree (Molina 2024) investigated relationships between environmental indicators and Atlantic herring recruitment estimated in the assessment.
+
+Larval and juvenile food (zooplankton), egg predation, and temperature always highest influence
+]
+
+.pull-right-70[
+
+]
+
+
+---
+## Spatial partitioning: zooplankton trends at multiple scales
+
+
+
+&lt;div class="figure"&gt;
+&lt;img src="20250311_Zoopcovariates_Gaichas_files/figure-html/maps-1.png" alt="Maps of key areas for Herring assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;&lt;img src="20250311_Zoopcovariates_Gaichas_files/figure-html/maps-2.png" alt="Maps of key areas for Herring assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;&lt;img src="20250311_Zoopcovariates_Gaichas_files/figure-html/maps-3.png" alt="Maps of key areas for Herring assessment indices. The full VAST model grid is shown in brown." width="33%" /&gt;
+&lt;p class="caption"&gt;Maps of key areas for Herring assessment indices. The full VAST model grid is shown in brown.&lt;/p&gt;
+&lt;/div&gt;
+
+
+???
+NEFSC survey strata definitions are built into the VAST `northwest-atlantic` extrapolation grid already. We defined additional new strata to address the recreational inshore-offshore 3 mile boundary. The area within and outside 3 miles of shore was defined using the `sf` R package as a 3 nautical mile (approximated as 5.556 km) buffer from a high resolution coastline from the`rnaturalearth` R package. This buffer was then intersected with the current `FishStatsUtils::northwest_atlantic_grid` built into VAST and saved using code [here](https://github.com/sgaichas/bluefishdiet/blob/main/VASTcovariates_updatedPreds_sst_3mi.Rmd#L49-L94). Then, the new State and Federal waters strata were used to split NEFSC survey strata where applicable, and the new full set of strata were used along with a modified function from `FishStatsUtils::Prepare_NWA_Extrapolation_Data_Fn` to build a custom extrapolation grid for VAST as described in detail [here](https://sgaichas.github.io/bluefishdiet/VASTcovariates_finalmodbiascorrect_3misurvstrat.html). 
+
+
+---
+## Exploratory zooplankton indices in the stock assessment 
+
+.pull-left[
+Use as a basis the new herring stock assessment in Woods Hole Assessment Model (WHAM)  &lt;a name=cite-stock_woods_2021&gt;&lt;/a&gt;([Stock et al., 2021](https://www.sciencedirect.com/science/article/pii/S0165783621000953)).
+
+We are using the `devel` version of WHAM: https://github.com/timjmiller/wham/tree/devel
+
+Model [mm192](https://drive.google.com/drive/folders/1sQdDsfdnVbiiY4X7Rgr-fvegwT7Fa1Az?usp=drive_link) is our starting point.
+
+Zooplankton indices were explored as covariates on herring recruitment.
+
+Recruitment is modeled as deviations from the "recruitment scaling parameter", leaving one option for modeling effects of covariates on recruitment: "controlling".
+
+A "controlling" recruitment covariate results in a time-varying recruitment scaling parameter.
+
+
+]
+
+.pull-right[
+
+Covariates explored: 
+
+*  Jan-Jun (Spring) large copepods in spring herring BTS strata with lag-0 to represent food for pre-recruit juveniles
+*  Jul-Dec (Fall) small copepods in fall herring BTS strata with lag-1 to represent food for larvae in general
+*  Sep-Feb small copepods in herring larval area with lag-1 to represent food for larvae more specifically
+*  Combinations of large and small copepod covariates above 
+
+*  Optimal temperature duration (days) during the fall larval season, September-December
+
+*  Sensitivity: Turn off NAA RE and then try fitting with the most robust recruitment covariates.
+
+
+]
+???
+
+---
+## Implementing each index
+
+We evaluated 
+
+*  Options for covariate input (millions of cells vs. log(cells), VAST estimated SE vs. WHAM estimated SE)  
+*  Options for covariate observation model ("rw" vs. "ar1")  
+*  Options for recruitment link ("none" vs. "controlling-linear" with lag-0 for large copepods, lag-1 for small copepods, and lag-1 for larval temperature duration)  
+*  No attempts were made to fit polynomial effects although this is possible in WHAM
+
+
+Short story:
+
+*  Models with covariates input on the log scale generally converged
+*  Models with WHAM estimated covariate SE ("est_1") generally converged
+*  Under the above conditions, most models with and without the recruitment link converged for all covariates
+*  Models with the Jan-Jun (Spring) large copepods covariate also converged with input as millions of cells and VAST estimated SE  
+
+
+---
+## Overview of results shown for each model
+
+.pull-left[
+Summary table comparing across models with and without recruitment covariates turned on
+
+Diagnostics shown: 
+
+*  WHAM's fit to the covariate time series
+*  One step ahead residuals for WHAM's fit
+*  Estimated time varying recruitment scaling parameter with N age 1
+
+Finally, recruitment sigma compared with base, covariate beta with CI
+
+] 
+
+.pull-right[
+
+The main diagnostics we used to determine if the model was improved by covariates were:
+
+*  model converged and Hessian matrix invertable
+*  dAIC lowest
+*  recruitment sigma reduced (how much?)
+*  estimated covariate effect CI does not include 0
+*  direction of covariate effect is sensible
+]
+
+---
+## Results: Spring large copepods covariate: model summary
+
+*Models with no covariates had slightly better AIC than comparable models with recruitment links*
+
+```
+Model ecov_process                 ecov_how           ecovdat conv pdHess       NLL  dAIC     AIC  rho_R rho_SSB rho_Fbar
+
+ m10           ar1                     none     logmean-est_1 TRUE   TRUE -1793.611     0 -3325.2 0.8684  0.5901  -0.2314
+ m14           ar1 controlling-lag-0-linear     logmean-est_1 TRUE   TRUE -1794.325   0.6 -3324.6 0.8999  0.5844  -0.2296
+  m2            rw                     none     logmean-est_1 TRUE   TRUE -1790.837   3.5 -3321.7 0.8683  0.5901  -0.2314
+  m6            rw controlling-lag-0-linear     logmean-est_1 TRUE   TRUE -1791.227   4.7 -3320.5 0.8844  0.5846    -0.23
+
+ m11           ar1                     none meanmil-logsigmil TRUE   TRUE -1509.570 566.1 -2759.1 0.8682  0.5901  -0.2314
+ m15           ar1 controlling-lag-0-linear meanmil-logsigmil TRUE   TRUE -1510.349 566.5 -2758.7 0.9081   0.592  -0.2379
+  m3            rw                     none meanmil-logsigmil TRUE   TRUE -1506.709 569.8 -2755.4 0.8594  0.5907  -0.2362
+  m7            rw controlling-lag-0-linear meanmil-logsigmil TRUE   TRUE -1507.424 570.4 -2754.8 0.8104   0.594  -0.2448
+
+```
+
+---
+## Results: Spring large copepods covariate: logscale ar1 diagnostics
+
+.pull-left[
+![lgCopeSp2 m10 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m10/plots_png/diagnostics/lgCopeSpring2_diagnostic.png)
+]
+
+.pull-right[
+![lgCopeSp2 m10 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m10/plots_png/diagnostics/OSA_resid_ecov_4panel_lgCopeSpring2.png)
+
+]
+
+---
+## Results: Spring large copepods covariate: logscale ar1 recruitment
+
+.pull-left[
+![lgCopeSp2 m10 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m10/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![lgCopeSp2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m14/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariate, recruitment variance is 0.823, and with is 0.797; lgCopeSpring2 beta_1 is -0.407, CI -1.063, 0.25
+
+---
+## Results: Spring large copepods covariate: logscale rw diagnostics
+
+.pull-left[
+![lgCopeSp2 m2 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m2/plots_png/diagnostics/lgCopeSpring2_diagnostic.png)
+]
+
+.pull-right[
+![lgCopeSp2 m2 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m2/plots_png/diagnostics/OSA_resid_ecov_4panel_lgCopeSpring2.png)
+
+]
+
+---
+## Results: Spring large copepods covariate: logscale rw recruitment
+
+.pull-left[
+![lgCopeSp2 m10 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m2/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![lgCopeSp2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m6/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariate, recruitment variance is 0.823, and with is 0.804; lgCopeSpring2 beta_1 is -0.45, CI -1.438, 0.538
+
+
+---
+## Results: Spring large copepods covariate: natural scale ar1 diagnostics
+
+.pull-left[
+![lgCopeSp2 m11 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m11/plots_png/diagnostics/lgCopeSpring2_diagnostic.png)
+]
+
+.pull-right[
+![lgCopeSp2 m11 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m11/plots_png/diagnostics/OSA_resid_ecov_4panel_lgCopeSpring2.png)
+
+]
+
+---
+## Results: Spring large copepods covariate: natural scale ar1 recruitment
+
+.pull-left[
+![lgCopeSp2 m11 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m11/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![lgCopeSp2 m15 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m15/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariate, recruitment variance is 0.823, and with is 0.791; lgCopeSpring2 beta_1 is -4.5\times 10^{-4}, CI -0.00128, 3.8\times 10^{-4}
+
+
+---
+## Results: Spring large copepods covariate: natural scale rw diagnostics
+
+.pull-left[
+![lgCopeSp3 m11 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m3/plots_png/diagnostics/lgCopeSpring2_diagnostic.png)
+]
+
+.pull-right[
+![lgCopeSp3 m11 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m3/plots_png/diagnostics/OSA_resid_ecov_4panel_lgCopeSpring2.png)
+
+]
+
+
+---
+## Results: Spring large copepods covariate: natural scale rw recruitment
+
+.pull-left[
+![lgCopeSp2 m3 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m3/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![lgCopeSp2 m7 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring2/m7/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariate, recruitment variance is 0.823, and with is 0.793; lgCopeSpring2 beta_1 is -4.3\times 10^{-4}, CI -0.00126, 4\times 10^{-4}
+
+---
+## Results: Fall small copepods covariate: model summary
+
+*Models with no covariates had slightly better AIC than the ar1 model with recruitment links*
+
+```
+Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL  dAIC     AIC  rho_R rho_SSB rho_Fbar
+  m10          ar1                     none logmean-est_1 TRUE   TRUE -1797.177     0 -3332.4 0.8682  0.5901  -0.2314
+   m2           rw                     none logmean-est_1 TRUE   TRUE -1796.175   0.1 -3332.3 0.8682  0.5901  -0.2314
+  m14          ar1 controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1797.931   0.5 -3331.9 0.8486  0.6001  -0.2333
+   m6           rw controlling-lag-1-linear logmean-est_1 TRUE  FALSE -1794.370   ---     ---    ---     ---      ---
+
+```
+
+---
+## Results: Fall small copepods covariate: logscale ar1 diagnostics
+
+.pull-left[
+![smCopeFall2 m10 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeFall2/m10/plots_png/diagnostics/smCopeFall2_diagnostic.png)
+]
+
+.pull-right[
+![smCopeFall2 m10 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeFall2/m10/plots_png/diagnostics/OSA_resid_ecov_4panel_smCopeFall2.png)
+
+]
+
+---
+## Results: Fall small copepods covariate: logscale ar1 recruitment
+
+.pull-left[
+![smCopeFall2 m10 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeFall2/m10/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![smCopeFall2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeFall2/m14/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariate, recruitment variance is 0.823, and with is 0.79; smcopeFall2 beta_1 is -1.013, CI -2.715, 0.689
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: model summary
+
+*Model with ar1 covariate had slightly better AIC than models without recruitment links*
+
+```
+Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL  dAIC     AIC  rho_R rho_SSB rho_Fbar
+  m14          ar1 controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1791.900     0 -3319.8  0.814  0.5966  -0.2327
+   m2           rw                     none logmean-est_1 TRUE   TRUE -1789.657   0.5 -3319.3 0.8683  0.5901  -0.2314
+  m10          ar1                     none logmean-est_1 TRUE   TRUE -1790.469   0.9 -3318.9 0.8683  0.5901  -0.2314
+   m6           rw controlling-lag-1-linear logmean-est_1 TRUE  FALSE -1785.746   ---     ---    ---     ---      ---
+
+```
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale ar1 diagnostics
+
+.pull-left[
+![smCopeSepFeb2 m10 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2/m10/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
+]
+
+.pull-right[
+![smCopeSepFeb2 m10 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2/m10/plots_png/diagnostics/OSA_resid_ecov_4panel_smCopeSepFeb2.png)
+
+]
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale ar1 recruitment
+
+.pull-left[
+![smCopeSepFeb2 m10 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2/m10/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![smCopeSepFeb2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2/m14/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariate, recruitment variance is 0.823, and with is 0.77; smcopeSepFeb2 beta_1 is -0.85, CI -1.883, 0.182
+
+---
+## Alternate: Sep-Feb small copepods in fall herring survey strata covariate
+
+*Both rw and ar1 models worked with covariates, rw better fit*
+
+```
+Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL  dAIC     AIC  rho_R rho_SSB rho_Fbar
+   m6           rw controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1791.981   0.0 -3322.0 0.7592  0.6023  -0.2327
+  m14          ar1 controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1792.464   1.1 -3320.9 0.7943  0.5971  -0.2329
+   m2           rw                     none logmean-est_1 TRUE   TRUE -1790.196   1.6 -3320.4 0.8682  0.5901  -0.2314
+  m10          ar1                     none logmean-est_1 TRUE   TRUE -1790.734   2.5 -3319.5 0.8683  0.5901  -0.2314
+
+```
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale rw diagnostics
+
+.pull-left[
+![smCopeSepFeb2_fallstrat m2 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m2/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
+]
+
+.pull-right[
+![smCopeSepFeb2_fallstrat m2 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m2/plots_png/diagnostics/OSA_resid_ecov_4panel_smCopeSepFeb2.png)
+
+]
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale rw recruitment
+
+.pull-left[
+![smCopeSepFeb2_fallstrat m2 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m2/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![smCopeSepFeb2_fallstrat m6 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m6/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariate, recruitment variance is 0.823, and with is 0.762; smcopeSepFeb2 beta_1 is -1.01, CI -2.11, 0.089
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale ar1 diagnostics
+
+.pull-left[
+![smCopeSepFeb2 m10 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m10/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
+]
+
+.pull-right[
+![smCopeSepFeb2 m10 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m10/plots_png/diagnostics/OSA_resid_ecov_4panel_smCopeSepFeb2.png)
+
+]
+
+---
+## Results: Sep-Feb small copepods in herring larval area covariate: logscale ar1 recruitment
+
+.pull-left[
+![smCopeSepFeb2 m10 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m10/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![smCopeSepFeb2 m14 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_smcopeSepFeb2_fallstrata/m14/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariate, recruitment variance is 0.823, and with is 0.757; smcopeSepFeb2 beta_1 is -0.976, CI -2.044, 0.093
+
+
+---
+## Results: Both Spring large copepods and Sep-Feb small copepods in herring larval area: model summary
+
+*Models with and without ar1 covariates linked to recruitment had the same AIC*
+
+```
+Model ecov_process                   ecov_how       ecovdat conv pdHess       NLL dAIC     AIC  rho_R rho_SSB rho_Fbar
+   m2          ar1                       none logmean-est_1 TRUE   TRUE -1771.328  0.0 -3272.7 0.8682  0.5901  -0.2314
+   m4          ar1 controlling-lag-0/1-linear logmean-est_1 TRUE   TRUE -1773.347  0.0 -3272.7 0.8529  0.5922  -0.2313
+   m1           rw                       none logmean-est_1 TRUE   TRUE -1767.742  3.2 -3269.5 0.8683  0.5901  -0.2314
+   m3           rw controlling-lag-0/1-linear logmean-est_1 TRUE   TRUE -1769.627  3.4 -3269.3 0.8001  0.5976  -0.2321
+
+```
+
+---
+## Results: Both Spring large copepods and Sep-Feb small copepods: logscale rw diagnostics
+
+.pull-left[
+![lgCopeSpring m1 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/plots_png/diagnostics/lgCopeSpring2_diagnostic.png)
+]
+
+.pull-right[
+![lgCopeSpring2 m1 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/plots_png/diagnostics/OSA_resid_ecov_4panel_lgCopeSpring2.png)
+
+]
+
+---
+## Results: Both Spring large copepods and Sep-Feb small copepods: logscale rw diagnostics
+
+.pull-left[
+![smCopeSepFeb m1 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/plots_png/diagnostics/smCopeSepFeb2_diagnostic.png)
+]
+
+.pull-right[
+![smCopeSepFeb2 m1 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/plots_png/diagnostics/OSA_resid_ecov_4panel_smCopeSepFeb2.png)
+
+]
+
+---
+## Results: Both Spring large copepods and Sep-Feb small copepods: logscale rw recruitment
+
+.pull-left[
+![both m1 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m1/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![both m3 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_lgcopeSpring_smcopeSepFeb/m3/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariates, recruitment variance is 0.823, and with is 0.755; smcopeSepFeb2 beta_1 is -0.88, CI -1.929, 0.169
+
+???
+
+-
+---
+## Results: Duration of optimal larval temperature, Sept-Dec: model summary
+
+```
+  Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL  dAIC     AIC  rho_R rho_SSB rho_Fbar
+
+    m4           rw controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1827.543     0 -3393.1 0.6543  0.5984 -0.2323
+    m3           rw                     none logmean-est_1 TRUE   TRUE -1826.370   0.4 -3392.7 0.8682  0.5901 -0.2314
+    m8          ar1 controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1826.627   3.8 -3389.3 0.6714   0.598 -0.2324
+    m7          ar1                     none logmean-est_1 TRUE   TRUE -1825.511   4.1   -3389 0.8682  0.5901 -0.2314
+
+    m2           rw controlling-lag-1-linear    mean-est_1 TRUE   TRUE -1650.465 354.2 -3038.9 0.6473  0.5976 -0.2321
+    m1           rw                     none    mean-est_1 TRUE   TRUE -1649.265 354.6 -3038.5 0.8594  0.5907 -0.2362
+    m6          ar1 controlling-lag-1-linear    mean-est_1 TRUE   TRUE -1649.607 357.9 -3035.2 0.6643  0.5971 -0.2322
+    m5          ar1                     none    mean-est_1 TRUE  FALSE -1644.890   ---     ---    ---     ---     ---
+
+```
+---
+## Results: Duration of optimal larval temperature, Sept-Dec: logscale rw diagnostics
+
+.pull-left[
+![LarvalTempDuration/m3  fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m3/plots_png/diagnostics/LarvalTempDuration_diagnostic.png)
+]
+
+.pull-right[
+![LarvalTempDuration/m3 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m3/plots_png/diagnostics/OSA_resid_ecov_4panel_LarvalTempDuration.png)
+
+]
+
+---
+## Results: Duration of optimal larval temperature, Sept-Dec: logscale rw recruitment
+
+.pull-left[
+![LarvalTempDuration/m3 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m3/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![LarvalTempDuration/m4 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m4/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariate, recruitment variance is 0.823, and with is 0.79; LarvalTempDuration beta_1 is 2.066, CI -0.657, 4.789
+
+---
+## Results: Duration of optimal larval temperature, Sept-Dec: logscale ar1 diagnostics
+
+.pull-left[
+![LarvalTempDuration/m7 fit](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m7/plots_png/diagnostics/LarvalTempDuration_diagnostic.png)
+]
+
+.pull-right[
+![LarvalTempDuration/m7 osa](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m7/plots_png/diagnostics/OSA_resid_ecov_4panel_LarvalTempDuration.png)
+
+]
+
+---
+## Results: Duration of optimal larval temperature, Sept-Dec: logscale ar1 recruitment
+
+.pull-left[
+![LarvalTempDuration/m7 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m7/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![LarvalTempDuration/m8 rec](https://github.com/NOAA-EDAB/presentations/raw/master/IEA/HerringRT_2025/WHAM/mm192_LarvalTempDuration/m8/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariate, recruitment variance is 0.823, and with is 0.791; LarvalTempDuration beta_1 is 2.032, CI -0.711, 4.775
+
+---
+
+## Sensitivity: Remove NAA RE, add September - December duration of larval optimal temperature: model summary
+
+*Both rw and ar1 models worked with covariates, rw better fit*
+
+```
+Model ecov_process                 ecov_how       ecovdat conv pdHess       NLL  dAIC     AIC  rho_R rho_SSB rho_Fbar
+
+  m4            rw controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1762.281     0 -3266.6 1.6108  0.3339   -0.121
+  m8           ar1 controlling-lag-1-linear logmean-est_1 TRUE   TRUE -1761.214   4.2 -3262.4 1.6872  0.3341  -0.1213
+  m3            rw                     none logmean-est_1 TRUE   TRUE -1748.086  26.4 -3240.2 3.5003  0.3664  -0.1424
+  m7           ar1                     none logmean-est_1 TRUE   TRUE -1747.227  30.1 -3236.5 3.5003  0.3664  -0.1424
+
+  m2            rw controlling-lag-1-linear    mean-est_1 TRUE   TRUE -1585.263 354.1 -2912.5 1.5766  0.3325  -0.1206
+  m1            rw                     none    mean-est_1 TRUE   TRUE -1570.980 380.6   -2886 3.5014  0.3662  -0.1421
+  m5           ar1                     none    mean-est_1 TRUE   TRUE -1570.163 384.3 -2882.3 3.5003  0.3673  -0.1437
+  m6           ar1 controlling-lag-1-linear    mean-est_1 TRUE  FALSE -1584.188   ---     ---    ---     ---      ---
+```
+
+---
+## Duration of optimal larval temperature, Sept-Dec: logscale rw diagnostics
+
+.pull-left[
+![LarvalTempDuration/m3  fit](WHAM/mm192_LarvalTempDuration_NAA_REoff/m3/plots_png/diagnostics/LarvalTempDuration_diagnostic.png)
+]
+
+.pull-right[
+
+![LarvalTempDuration/m3 osa](WHAM/mm192_LarvalTempDuration_NAA_REoff/m3/plots_png/diagnostics/OSA_resid_ecov_4panel_LarvalTempDuration.png)
+]
+
+---
+## Duration of optimal larval temperature, Sept-Dec: logscale rw recruitment
+
+.pull-left[
+![LarvalTempDuration/m3 rec](WHAM/mm192_LarvalTempDuration_NAA_REoff/m3/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+.pull-right[
+![LarvalTempDuration/m4 rec](WHAM/mm192_LarvalTempDuration_NAA_REoff/m4/plots_png/diagnostics/NAA_4panel_stock_1_region_1_age_1.png)
+]
+
+
+
+Without covariate, recruitment variance is 0.833, and with is 0.503; LarvalTempDuration beta_1 is 5.122, CI 2.709, 7.535
+
+---
+# Discussion
+
+The duration of optimal larval temperature covariate resulted in slightly better model fits and reduced recruitment variability relative to the model without covariates. The effect of optimal larval temperature on recruitment was postive, as hypothesized, with fewer days of optimal temperature resulting in a lower recruitment scaling parameter. However, the confidence interval of the effect included 0. 
+
+While some of the zooplankton time series also resulted in slightly better model fits and reduced recruitment variability relative to the model without covariates, the effects of zooplankton were negative on recruitment. This relationship is opposite the hypothesized relationship between herring and food, which was expected to be positive. 
+
+The sensitivity run removing NAA RE resulted in a much stronger impact of the optimal larval temperature on recruitment. 
+
+# Thoughts?
+
+---
+
+## Thank you!  References
+
+.contrib[
+&lt;a name=bib-collette_bigelow_2002&gt;&lt;/a&gt;[Collette, B. B. et
+al.](#cite-collette_bigelow_2002) (2002). _Bigelow and Schroeder's
+Fishes of the Gulf of Maine, Third Edition_. 3rd ed. edition.
+Washington, DC: Smithsonian Books. ISBN: 978-1-56098-951-6.
+
+&lt;a name=bib-stock_woods_2021&gt;&lt;/a&gt;[Stock, B. C. et
+al.](#cite-stock_woods_2021) (2021). "The Woods Hole Assessment Model
+(WHAM): A general state-space assessment framework that incorporates
+time- and age-varying processes via random effects and links to
+environmental covariates". En. In: _Fisheries Research_ 240, p. 105967.
+ISSN: 0165-7836. DOI:
+[10.1016/j.fishres.2021.105967](https://doi.org/10.1016%2Fj.fishres.2021.105967).
+URL:
+[https://www.sciencedirect.com/science/article/pii/S0165783621000953](https://www.sciencedirect.com/science/article/pii/S0165783621000953)
+(visited on May. 26, 2021).
+]
+
+.footnote[
+Slides available at https://noaa-edab.github.io/presentations  
+Contact: &lt;Sarah.Gaichas@noaa.gov&gt;
+]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "githubp",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
