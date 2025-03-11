@@ -241,9 +241,9 @@ flextable::as_grouped_data(mng_obj, groups = "service") %>%
 
 FitFlextableToPage <- function(ft, pgwidth = 6){
 
-  ft_out <- ft %>% autofit()
+  ft_out <- ft %>% flextable::autofit()
 
-  ft_out <- width(ft_out, width = dim(ft_out)$widths*pgwidth /(flextable_dim(ft_out)$widths))
+  ft_out <- flextable::width(ft_out, width = dim(ft_out)$widths*pgwidth /(flextable::flextable_dim(ft_out)$widths))
   return(ft_out)
 }
 
@@ -276,19 +276,19 @@ tab <- flextable::as_grouped_data(mng_obj, groups = "service") %>%
   
 FitFlextableToPage(tab)
 
-knitr::kable(mng_obj, linesep = "",
-      col.names = c("Objective Categories","Indicators reported"),
-      caption = "Risks to meeting fishery management objectives",
-      #align = 'c',
-      booktabs = T) %>%
-  kable_styling(font_size = 14) %>%
- # kable_styling(latex_options = "hold_position", "scale_down") %>%
- # column_spec(c(2), width = c("25em")) %>%
-  row_spec(0, bold = TRUE) %>%
- # group_rows("Provisioning/Cultural", 1,4) %>%
- # group_rows("Supporting/Regulating", 5,9)
-  pack_rows("Provisioning and Cultural Services", 1,6) %>%
-  pack_rows("Supporting and Regulating Services", 7,10)
+# knitr::kable(mng_obj, linesep = "",
+#       col.names = c("Objective Categories","Indicators reported"),
+#       caption = "Risks to meeting fishery management objectives",
+#       #align = 'c',
+#       booktabs = T) %>%
+#   kable_styling(font_size = 14) %>%
+#  # kable_styling(latex_options = "hold_position", "scale_down") %>%
+#  # column_spec(c(2), width = c("25em")) %>%
+#   row_spec(0, bold = TRUE) %>%
+#  # group_rows("Provisioning/Cultural", 1,4) %>%
+#  # group_rows("Supporting/Regulating", 5,9)
+#   pack_rows("Provisioning and Cultural Services", 1,6) %>%
+#   pack_rows("Supporting and Regulating Services", 7,10)
 
 
 ```
@@ -426,15 +426,15 @@ background-position: right
 .pull-left-60[
 Seafood production ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png), ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) 
 
-Profits ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png), ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) 
+Profits ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png) 
 
 Recreational opportunities:  Effort ![:img increasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//increase.png) ![:img above average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png); Effort diversity ![:img decreasing arrow icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  
 
-Stability: Fishery ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png); Ecological ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near-long-term-average.png)  
+Stability: Fishery not stable; Ecological not stable
 
-Social and cultural, trend not evaluated, status of:  
-*  Fishing engagement and reliance by community  
-*  Environmental Justice (EJ) Vulnerability by community  
+Social and cultural:  
+*  Fishing engagement and social vulnerability status by community
+*  Revenue climate vulnerability ![:img no trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png), majority high risk
 
 Protected species: 
 *  Maintain bycatch below thresholds (harbor porpoise, gray seals) ![:img mixed trend icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 4%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)  
@@ -451,19 +451,16 @@ background-position: right
 **Risks to meeting fishery management objectives**  
 
 .pull-left-60[
-Climate: risks to spatial and seasonal management, quota setting and rebuilding
+Climate: risks to managing spatially, managing seasonally, and catch specification
 *  Fish and protected species distribution shifts
 *  Changing spawning and migration timing
 *  Multiple stocks with poor condition, declining productivity 
 
 Other ocean uses: offshore wind development
 *  Current revenue in proposed areas
-    - 1-23% by Mid-Atlantic port (some with EJ concerns)
-    - 1–34% by New England port (some with EJ concerns)
-    - 1-20% by MAFMC managed species
-    - 3-54% by NEFMC managed species
+    - 1-46% by Mid-Atlantic port
+    - 2-16% by MAFMC managed species
 *  Overlap with important right whale foraging habitats, increased vessel strike and noise risks
-*  Gulf of Maine fisheries/offshore wind IEA in progress
 ]
 .pull-right-40[]
 
@@ -477,15 +474,22 @@ background-position: right
 .pull-left-60[
 Notable 2024 events and conditions
 
-*  South Fork Wind and Vineyard Wind 1 construction started
-*  Scallop die-off elephant trunk 2022-2023
-*  Hypoxia and mortality events in NJ coastal ocean this summer
-*  Record *low* hypoxia in Chesapeake Bay
-*  GOM summer phytoplankton bloom off the scale
-*  2nd ranked GOM bottom heatwave
-*  Warm water everywhere EXCEPT in Spring on the NEUS shelf
-*  Gulf Stream changes altering shelf break habitats
-*  El Nino. Warmest year on record globally. Again.
+*  2024 warmest year on record globally. Again.
+
+*  BUT
+*  Cooler conditions across the coast
+*  Well established Mid Atlantic Cold Pool
+*  Multiple summer upwelling events off NJ 
+*  Extreme ocean acidification measured off NJ
+*  Many fishery observations of new spatial and timing patterns, changed abundance 
+*  Good scallop recruitment in Nantucket lightship
+*  More red drum in Chesapeake Bay
+*  Arctic copepods in GOM
+*  Cocolithophore bloom off NY
+*  Large whale aggregations
+
+We welcome your observations! <northeast.ecosystem.highlights@noaa.gov>
+
 ]
 
 .pull-right-40[
@@ -536,7 +540,7 @@ Notable 2024 events and conditions
 #   {read.csv(.$local_path)} 
 
 requeststab <- requests %>%
-  dplyr::select(Request, Year, Aggregate, Project, Source, Status, Progress, Order) %>%
+  dplyr::select(Request, Year, Aggregate = Aggregate.Category, Project, Source, Status, Progress, Order) %>%
   dplyr::mutate(Source = str_trim(str_extract(Source, "[^-]+"))) %>%
   dplyr::group_by(factor(Aggregate, levels = c("System level thresholds/ref pts",
                                                "Management",
