@@ -996,38 +996,45 @@ ecodata::plot_recdat(report = "MidAtlantic", varName = "catchdiversity", n=10)
 ]
 
 ---
-## Objective: Mid Atlantic Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk element: ecological diversity put aside, new indices
+## Objective: Mid Atlantic Ecological Stability: Not Stable 
 
 .pull-left[
-*Ecological* Indicators: zooplankton and larval fish diversity (*not updated*)
+*Ecological* Indicators: PP and zooplankton
+
+```{r totpp}
+#fig.cap="Total areal annual primary production for the MAB. The dashed line represents the long-term (1998-2024) annual mean."
+
+ecodata::plot_annual_chl_pp(report = "MidAtlantic", varName = "pp", plottype = "total") +
+  ggplot2::coord_cartesian(ylim = c(1e+07, 4e+07), xlim = c(1998, 2023)) + 
+  ggplot2::ggtitle("MAB Primary Production") +
+  ggplot2::ylab("Carbon (mt)")
+```
+
 ```{r}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/LTL_MAB.Rmd-zoo-diversity.R")
 
 ecodata::plot_zoo_diversity(report = "MidAtlantic", n=10)
 ```
 
-```{r}
-#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-ichthyo-diversity.R")
-
-ecodata::plot_ichthyo_diversity(report = "MidAtlantic", n=10)
-```
 
 ]
 
 .pull-right[
-*Ecological* Indicator: expected number of species, NEFSC bottom trawl survey 
+*Ecological* Indicators: fish richness and traits
+
 ```{r }
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-exp-n.R")#exp-n, fig.cap = "Adult fish diversity the Mid-Atlantic Bight, based on expected number of species."
 
-ecodata::plot_exp_n(report = "MidAtlantic", varName = "fall", n=10)
+ecodata::plot_exp_n(report = "MidAtlantic", varName = "fall", n=10) +
+  ggplot2::theme(legend.position = "bottom")
 ```
 
-ADD TRAITS
+```{r traits, fig.asp=0.5, fig.cap="Fish community functional traits in the Mid Atlantic Bight based on Fall (red) and Spring (blue) survey data. Length at maturity for the full finfish community has increased in spring (orange line), but decreased in fall (purple lines)"}
 
-Implications:  
-* stable capacity to respond to the current range of commercial fishing opportunities  
-* recreational catch diversity maintained by a different set of species over time  
-* monitor zooplankton diversity driven by declining dominant species  
+ecodata::plot_finfish_traits(varName = "length_maturity") +
+  ggplot2::theme(legend.position = "bottom")
+
+```
 
 ]
 ???
@@ -1038,8 +1045,8 @@ While larval and adult fish diversity indices are stable, a few warm-southern la
 
 Indicators: Commercial fishery engagement, social vulnerability, revenue climate vulnerability
 .pull-left[
-```{r commercial-engagement, fig.cap= "Commercial engagement and population relative engagement, with labels for the top commercially engaged fishing communities in the Mid-Atlantic. *Due to changes in data infrastructure, data from Reedville, VA was combined with data from ‘Other VA' and 'Other Northumberland’.", fig.width = 7, fig.asp = 0.85, results='hide'}
-#Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both commercial engagement and reliance indicators.
+```{r commercial-engagement,  fig.width = 7, fig.asp = 1, results='hide'}
+#fig.cap= "Commercial engagement and population relative engagement, with labels for the top commercially engaged fishing communities in the Mid-Atlantic. *Due to changes in data infrastructure, data from Reedville, VA was combined with data from ‘Other VA' and 'Other Northumberland’.",
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
 #(* Scored high (1.00 and above)) for both commercial engagement and reliance indicators)
@@ -1060,36 +1067,41 @@ flextable::flextable(a$t) |>
                                pop_composition_rank = "Population Composition",
                                poverty_rank = "Poverty") |>
   flextable::colformat_num(na_str = "-") |>
-  flextable::set_caption("Socio-demographic indicator rankings (ranging from low = low vulnerability to high = high vulnerability) for Mid-Atlantic communities most engaged in commercial fishing, 2022. Blank spaces indicate no data available.") |>
+  #flextable::set_caption("Socio-demographic indicator rankings (ranging from low = low vulnerability to high = high vulnerability) for Mid-Atlantic communities most engaged in commercial fishing, 2022. Blank spaces indicate no data available.") |>
+  flextable::fontsize(size = 8, part = "all") |>
   flextable::autofit() 
   
 ```
 
 ]
-Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
 
 ---
 ## Community Social and Climate Vulnerability &emsp; Risk element: <span style="background-color:yellow;">Social</span> 
 
 Indicators: Commercial fishery revenue climate vulnerability
 .pull-left[
-```{r commvulex, fig.width = 6.5, fig.asp=.5, fig.cap="Proportion of Mid-Atlantic communities at each revenue climate vulnerability level over time."}
-
+```{r commvulex, fig.width = 6.5, fig.asp=.5}
+#fig.cap="Proportion of Mid-Atlantic communities at each revenue climate vulnerability level over time."
 ecodata::plot_community_climate_vulnerability(n=100)
 ```
+The [Community Climate Change Risk Indicators](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) are calculated by multiplying the percent contribution of species to the total value landed in a community by their respective Total Vulnerability scores (based on NOAA’s Climate Vulnerability Assessment) for different sensitivity and exposure factors and then summing the resulting values by year.
 ]
 
 .pull-right[
-The [Community Climate Change Risk Indicators](https://noaa-edab.github.io/catalog/community_climate_vulnerability.html) are calculated by multiplying the percent contribution of species to the total value landed in a community by their respective Total Vulnerability scores (based on NOAA’s Climate Vulnerability Assessment) for different sensitivity and exposure factors and then summing the resulting values by year.
+.center[
+![:img CCCVR map total vulnerability, 80%](https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/workshop/images/NE_Total_Vulnerability_092624-TarsilaSeara_2025.jpg)
 ]
+]
+
 
 ---
 ## Community Social and Climate Vulnerability &emsp; Risk element: <span style="background-color:yellow;">Social</span> 
 
 Indicators: Recreational fishery engagement, social vulnerability
+
 .pull-left[
 
-```{r recreational-engagement, fig.cap= "Recreational engagement and population relative engagement with labels for the top recreationally engaged fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 0.85, results='hide'}
+```{r recreational-engagement, fig.cap= "Recreational engagement and population relative engagement with labels for the top recreationally engaged fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 1, results='hide'}
 #Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
@@ -1107,20 +1119,23 @@ a$p + ggplot2::theme(plot.title=element_text(vjust = 0))
 ```
 ]
 
-pull-right[
+.pull-right[
 ```{r recvultab}
 flextable::flextable(a$t) |>
   flextable::set_header_labels(personal_disruption_rank = "Personal Disruption",
                                pop_composition_rank = "Population Composition",
                                poverty_rank = "Poverty") |>
   flextable::colformat_num(na_str = "-") |>
-  flextable::set_caption("Socio-demographic indicator rankings (ranging from low = low vulnerability to high = high vulnerability) for Mid-Atlantic communities most engaged in recreational fishing, 2022. Blank spaces indicate no data available.") |>
+  #flextable::set_caption("Socio-demographic indicator rankings (ranging from low = low vulnerability to high = high vulnerability) for Mid-Atlantic communities most engaged in recreational fishing, 2022. Blank spaces indicate no data available.") |>
+  flextable::fontsize(size = 8, part = "all") |>
   flextable::autofit() 
   
 ```
 
 ]
-Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+
+???
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. 
 
 ---
 ## Objectives: Coastwide Protected species *Maintain bycatch below thresholds* ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img meeting objectives icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//checked.png)
@@ -1143,7 +1158,7 @@ ecodata::plot_grayseal()
 .pull-right[
 Implications: 
 
-* Currently meeting objectives
+* Currently meeting objectives, but uncertainty in gray seal estimates
 
 * Risk element: TechInteract, evaluated by species and sector:  14 <span style="background-color:lightgreen;">low</span>, 6 <span style="background-color:yellow;">low-mod</span>, 3 <span style="background-color:orange;">mod-high</span> risk, unchanged
 
@@ -1175,7 +1190,7 @@ ecodata::plot_narw(varName = "calf")
 .pull-right[
 Implications:  
 
-* Signs the adult population stabilized 2020-2022
+* Signs the adult population stabilized 2020-2023
 
 * Population drivers for North Atlantic Right Whales (NARW) include combined fishery interactions/ship strikes, distribution shifts, and copepod availability. 
 
