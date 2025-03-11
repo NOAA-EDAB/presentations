@@ -341,9 +341,9 @@ Characterizing ecosystem change for fishery management
         - Future considerations
 * Risk categories
     + *Climate and Ecosystem Change*
-        + *Risk to spatial management*
-        + *Risk to seasonal management*
-        + *Risk to quota setting/rebuilding*
+        + *Risk to managing spatially*
+        + *Risk to managing sesonally*
+        + *Risk to setting catch limits*
     + Other ocean uses
         + Offshore wind development
 ]
@@ -706,24 +706,31 @@ SSC: link to [full list](https://docs.google.com/spreadsheets/d/1sULWI4xkeCMTokt
 ]
 
 ---
-## Objective: Mid Atlantic Seafood production ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png) &emsp; Risk elements: <span style="background-color:red;">ComFood</span> and <span style="background-color:orange;">RecFood</span>, unchanged
+## Objective: Mid Atlantic Seafood production ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png) &emsp; Risk elements: <span style="background-color:orange;">ComFood</span> and <span style="background-color:orange;">RecFood</span>, unchanged
 
 .pull-left[
-Indicator: Commercial landings 
+Indicators: Commercial landings, climate risk
 
-```{r,  fig.asp=0.8}
+```{r,  fig.asp=0.5}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-total-landings.R"),
 #total-landings, fig.cap = paste0("Total commercial seafood landings (black) and ",region," managed seafood landings (red).")
 
 ecodata::plot_comdat(report = "MidAtlantic", varName = "landings", n=10)
 ```
 
-ADD CLIMATE VULNERABILITY OF LANDINGS
+.right[
+```{r climatevul-land, fig.width = 6, fig.asp = 0.5, fig.cap="Mid-Atlantic region total climate vulnerability of commercial landings (sum of Mid-Atlantic port landings weighted by species climate vulnerability from Hare et al. 2016)."}
+ecodata::plot_community_climate_vulnerability(plottype = "regionland", n=100) +
+  ggplot2::theme(legend.position = "left")
+```
+]
 
 ]
 
 .pull-right[
 Indicators: Recreational harvest
+<br>
+<br>
 ```{r,  fig.asp=.4}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-landings.R"),
 #, rec-landings, fig.cap = paste0("Total recreational seafood harvest (millions of fish) in the ",region," region.")
@@ -733,18 +740,30 @@ ecodata::plot_recdat(report = "MidAtlantic", varName ="landings", n=10)
 ```
 
 
-```{r }
+```{r,  fig.asp=.4}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-rec_hms.R")
 #, fig.width=5
 #rec_hms, fig.cap="Recreational shark landings from Large Pelagics Survey." , fig.width=5, fig.asp=.35
 
-ecodata::plot_rec_hms(shadedRegion = c(2014,2023), report="MidAtlantic")
+a <- ecodata::plot_rec_hms(report="MidAtlantic", n=100)  +
+  ggplot2::scale_color_discrete(        
+    limits = c("LargeCoastal",  "Prohibited", "SmallCoastal"),         
+    labels = c("Large Coastal", "Prohibited", "Small Coastal")
+    ) +
+  ggplot2::ggtitle("Mid Atlantic Recreational Shark Landings")
+
+b <- ecodata::plot_lps_sharks(n=100) + ggplot2::ggtitle("Mid Atlantic Rec. Pelagic Shark Landings")
+
+a+b
 
 ```
 
+.table[
+Multiple potential drivers: ecosystem and stock production, management, market conditions, and environmental change.
+]
 ]
 
-Multiple potential drivers of landings changes: ecosystem and stock production, management actions, market conditions (including COVID-19 disruptions), and environmental change.
+
 
 ???
 The long-term declining trend in landings didn't change.
@@ -837,9 +856,6 @@ ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild", n=10)
 
 Monitor: 
 * climate risks including warming, ocean acidification, and shifting distributions  
-```{r, eval=FALSE}
-#species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem.", code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R"), fig.width=3.5, fig.asp=.9
-```  
 * ecosystem composition and production changes  
 * fishing engagement  
 ]
@@ -865,7 +881,13 @@ Indicator: Commercial Revenue
 ecodata::plot_comdat(report="MidAtlantic", varName="revenue", n=10)
 ```
 
-ADD CLIMATE VULNERABILITY OF REVENUE
+.right[
+```{r climatevul-rev, fig.width=6, fig.asp=0.5, fig.cap="Mid-Atlantic region total climate vulnerability of commercial revenue (sum of Mid-Atlantic port revenue weighted by species climate vulnerability from Hare et al. 2016)."}
+
+ecodata::plot_community_climate_vulnerability(plottype = "regionrev", n=100) +
+  ggplot2::theme(legend.position = "left")
+```
+]
 
 Recent change driven by benthos  
 Monitor changes in climate and landings drivers:  
@@ -875,22 +897,25 @@ Monitor changes in climate and landings drivers:
 
 .pull-right[
 Indicator: Bennet--price and volume indices
-```{r }
-#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R"),  fig.asp=.35
-#bennet, fig.cap = paste0("Revenue change from the 2015 values in dollars (black), Price (PI), and Volume Indicators (VI) for commercial landings in the Mid-Atlantic Bight."), fig.width=6,
+```{r bennet,  fig.width=6.2, fig.asp=.4}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet.R")fig.cap = "Revenue change from 1982 values in 2023 dollars (black); Price (PI), and Volume Indicators (VI) for total commercial landings in the Mid-Atlantic Bight.",
+
+ecodata::plot_bennet(report = "MidAtlantic", varName = "total")
 
 ```
 
-```{r , fig.width = 5, fig.asp = 0.9}
-#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R")
-#bennet-all, fig.cap = "Total component value in dollars (black) for commercial landings in the Mid-Atlantic Bight."
+```{r bennet-all,   fig.width = 6, fig.asp = 0.7}
+#code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-bennet-all.R"),fig.cap = "Total price and volume indicators in 2023 dollars (black) for commercial landings, and individual guild contributions to each indicator, in the Mid-Atlantic Bight.",
+
 ecodata::plot_bennet(report="MidAtlantic") + ggplot2::facet_wrap(~Var, ncol=1)
 ```
 ]
 
-
 ???
-Recent declines in prices contributed to falling revenue as quantities landed did not increase enough to counteract declining prices. 
+Recent change driven by benthos  
+Monitor changes in climate and landings drivers:  
+-  Climate risk element: <span style="background-color:orange;">Surfclams</span> and <span style="background-color:red;">ocean quahogs</span> are sensitive to ocean warming and acidification.   
+-  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth 
 
 ---
 ## ADD GERETS PROFIT STUFF HERE
