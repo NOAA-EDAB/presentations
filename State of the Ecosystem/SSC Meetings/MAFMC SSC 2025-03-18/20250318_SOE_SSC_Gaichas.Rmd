@@ -957,15 +957,19 @@ Implications
 Changes in recreational fleet diversity can be considered when managers seek options to maintain recreational opportunities. Shore anglers will have access to different species than vessel-based anglers, and when the same species, typically smaller fish. Many states have developed shore-based regulations where the minimum size is lower than in other areas and sectors to maintain opportunities in the shore angling sector. 
 
 ---
-## Objective: Mid Atlantic Fishery Stability ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk elements: <span style="background-color:lightgreen;">FishRes1</span> and <span style="background-color:lightgreen;">FleetDiv</span>, unchanged
+## Objective: Mid Atlantic Fishery Stability: Not Stable &emsp; Risk elements: <span style="background-color:orange;">FishRes1</span> and <span style="background-color:lightgreen;">FleetDiv</span>
 
 .pull-left[
 *Fishery*  Indicators: Commercial fleet count, fleet diversity   
 
-```{r, fig.asp=.85}
+```{r,  fig.asp = 0.85}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div.R")
 
-ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count", n=10)
+a <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count", n=100)
+
+b <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet diversity in revenue", n=100)
+
+a/b
 ```
 .contrib[
 Most recent fleet counts at low range of series
@@ -974,13 +978,14 @@ Most recent fleet counts at low range of series
 
 .pull-right[
 *Fishery*  Indicators: commercial species revenue diversity, recreational species catch diversity
+<br>
+<br>
 ```{r,  fig.asp=.4}
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R"),
-ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity", n=10)
+ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity", n=100)
 ```
-.contrib[
-Most recent near series low value.
-]
+
+
 ```{r , fig.asp=.4}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-div-catch.R")
 #recdat-div-catch, fig.cap = paste0("Diversity of recreational catch in the ",region,".")
@@ -989,6 +994,7 @@ ecodata::plot_recdat(report = "MidAtlantic", varName = "catchdiversity", n=10)
 ```
 
 ]
+
 ---
 ## Objective: Mid Atlantic Ecological Stability ![:img mixed trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//Mixed trends.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//near long term average.png) &emsp; Risk element: ecological diversity put aside, new indices
 
