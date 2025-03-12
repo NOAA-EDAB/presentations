@@ -1584,30 +1584,37 @@ c/d
 ## Risks to Setting Catch Limits: Mid Atlantic Drivers
 
 Drivers: Low trophic levels
-```{r zoopanom, fig.alt="Changes in zooplankton abundance in the MAB for large (top left) and small (top right) copepods, Cnidarians (bottom left), and Euphausiids (bottom right), with significant increases (orange) in small copeods and Cnidarians.", fig.width=8, fig.asp=1}
-a <- ecodata::plot_zooplankton_index(report = "MidAtlantic", varName = "Lgcopeall", n=10) +  ggplot2::theme(legend.position = "none")
-b <- ecodata::plot_zooplankton_index(report = "MidAtlantic", varName = "Smallcopeall", n=10) +  ggplot2::theme(legend.position = "none")
 
-c <- ecodata::plot_benthos_index(report = "MidAtlantic", varName = "Megabenthos", n=10) +  ggplot2::theme(legend.position = "bottom")
-d <- ecodata::plot_benthos_index(report = "MidAtlantic", varName = "Macrobenthos", n=10) +  ggplot2::theme(legend.position = "none")
+.center[
+
+```{r totppagain, fig.alt="Total areal annual primary production for the MAB. The dashed line represents the long-term (1998-2024) annual mean." , fig.asp=.35}
+#fig.cap="Total areal annual primary production for the MAB. The dashed line represents the long-term (1998-2024) annual mean."
+
+ecodata::plot_annual_chl_pp(report = "MidAtlantic", varName = "pp", plottype = "total") +
+  ggplot2::coord_cartesian(ylim = c(1e+07, 4e+07), xlim = c(1998, 2023)) + 
+  ggplot2::ggtitle("MAB Primary Production") +
+  ggplot2::ylab("Carbon (mt)")
+```
 
 
-(a+b) / (c+d)
+```{r zoopanom, fig.alt="Changes in zooplankton abundance in the MAB for large (top left) and small (top right) copepods, Cnidarians (bottom left), and Euphausiids (bottom right), with significant increases (orange) in small copeods and Cnidarians.", fig.width=12, fig.asp=.35}
+a <- ecodata::plot_zooplankton_index(report = "MidAtlantic", varName = "Lgcopeall", n=10) +  ggplot2::theme(legend.position = "none") +
+  ggplot2::ggtitle("Large Copepods")
+b <- ecodata::plot_zooplankton_index(report = "MidAtlantic", varName = "Smallcopeall", n=10) +  ggplot2::theme(legend.position = "bottom") +
+  ggplot2::ggtitle("Small Copepods")
+c <- ecodata::plot_zooplankton_index(report = "MidAtlantic", varName = "Euph", n=10) +  ggplot2::theme(legend.position = "none") +
+  ggplot2::ggtitle("Euphausiids")
+
+
+a + b + c
 
 ```
+
 ]
 
+
 ???
-old
-```{r oldzoopanom, fig.alt="Changes in zooplankton abundance in the MAB for large (top left) and small (top right) copepods, Cnidarians (bottom left), and Euphausiids (bottom right), with significant increases (orange) in small copeods and Cnidarians.", fig.width=5, fig.asp=1}
-a <- ecodata::plot_zoo_abundance_anom(report = "MidAtlantic", varName = "copepod") + 
-  ggplot2::facet_wrap(~EPU~Var, labeller = labeller(EPU = function(x) {rep("", length(x))})) +  ggplot2::coord_cartesian(xlim = c(1977, 2022))
-b <- ecodata::plot_zoo_abundance_anom(report = "MidAtlantic", varName = "euphausid") + 
-  ggplot2::facet_wrap(~EPU~Var, labeller = labeller(EPU = function(x) {rep("", length(x))})) +  ggplot2::coord_cartesian(xlim = c(1977, 2022))
 
-a/b
-
-```
 
 ---
 ## Risks to Setting Catch Limits: Coastwide
@@ -1627,42 +1634,27 @@ a+b+c
 ## Risks to Setting Catch Limits: Coastwide
 
 Drivers: Environmental
-.pull-left-60[
 *Potential Ocean Acidification Impacts: Scallops and Longfin squid*
-```{r mab-oa, fig.show= 'hold', out.width = '50%', fig.alt = "Locations where bottom aragonite saturation state ($\\Omega_{Arag}$; were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (left panel) and longfin squid (right panel) for the time periods 2007-2022 , 2023 (dark cyan), and 2024 (magenta). Gray circles indicate locations where bottom $\\Omega_{Arag}$ values were above the species specific sensitivity values."}
 
+```{r mab-oa, fig.show= 'hold', out.width = '100%', fig.alt = "Locations where bottom aragonite saturation state ($\\Omega_{Arag}$; summer only: June-August) were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (left panel) and longfin squid (right panel) for the time periods 2007-2022 (dark cyan), 2023 only (magenta) and 2024 only (cyan). Gray circles indicate locations where bottom $\\Omega_{Arag}$ values were above the species specific sensitivity values."}
 
-#knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC-GraceSaba.jpg")
-
-knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/blob/dev/data-raw/workshop/images/SeasonalBottomAragoniteScallop-GraceSaba_2025.png?raw=true")
-
-
-knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/blob/dev/data-raw/workshop/images/SeasonalBottomAragoniteLongfin-GraceSaba_2025.png?raw=true")
-
-#magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC - Grace Saba.jpg")
-
+magick::image_read("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/dev/data-raw/workshop/images/SOE-2025-OA-figure_final_GraceSaba_2025.png")
 ```
 
-]
 
-.pull-right-40[ 
 Drivers: Predation  
-*Seals increasing, sharks stable, ~50% of HMS populations above target*
-```{r , fig.asp=0.9}
-ecodata::plot_seal_pups()
+*Seals increasing, mix of population status for HMS*
 
-```
-
-]
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//RegimeShift_V5.jpg")
 background-size: 500px
 background-position: right bottom
 
-## Risks to Setting Catch Limits *Edit this--presented last year*
+## Risks to Setting Catch Limits
 
 Future considerations
+*   Processes that control fish productivity and mortality are dynamic, complex, and are the result of the interactions between multiple changing system drivers.
 *   There is a real risk that short-term predictions in assessments and rebuilding plans that assume unchanging underlying conditions will not be as effective, given the observed change documented in the prior sections in both ecological and environmental processes. 
 *   Assumptions for species’ growth, reproduction, and natural mortality should continue to be evaluated for individual species. 
 *   With observations of system-wide productivity shifts of multiple managed stocks, more research is needed to determine whether regime shifts or ecosystem reorganization are occurring, and how this should be incorporated into management.
@@ -1671,7 +1663,7 @@ Future considerations
 
 
 ---
-## Risks: Offshore Wind Development Mid Atlantic &emsp; Element: OceanUse
+## Risks: Offshore Wind Development Mid Atlantic &emsp; Elements: OSW1 and OSW2
 
 .pull-left[
 Indicators: fishery and community specific revenue in lease areas
@@ -1684,81 +1676,63 @@ Indicators: fishery and community specific revenue in lease areas
 ecodata::plot_wind_revenue(report = "MidAtlantic", varName = "value", plottype = "nofacets")
 
 ```
-Council request: which New England ports have significant reliance on Mid-Atlantic managed species?
-
-NEED TO UPDATE PORTS
+Council request: New England ports relying on Mid-Atlantic managed species
 
 ```{r wind-rev-NE-MAFMC,  fig.width=6.5, fig.asp=.36, fig.align='left'}
 #fig.cap="Percent of New England port revenue with majority MAFMC landings from Wind Energy Areas (WEA) in descending order from most to least port revenue from WEA. EJ = Environmental Justice.",
 
-  fix <- ecodata::wind_port |>
-     dplyr::filter(EPU %in% "NE") |>
-     dplyr::mutate(City = paste0(City, ",", State)) |>
-     dplyr::filter(City %in% c("POINT JUDITH, RI",
-                            "NORTH KINGSTOWN, RI",
-                            "BOSTON, MA",
-                            "WOODS HOLE, MA",
+df.symbol <- ecodata::wind_port %>% filter(EPU == "NE", 
+                                           !Var %in% c("MaxVal", "TOT_MAX", 
+                                                     "perc_MIN", "perc_MAX")) %>% 
+   tidyr::pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(City = paste0(City,",", State)) %>% 
+  dplyr::filter(City %in% c("POINT JUDITH, RI",
+                            "DAVISVILLE/NORTH KINGSTOWN, RI",
                             "HYANNIS, MA",
-                            "BARNSTABLE, MA")) 
+                            "MENEMSHA, MA")) %>%
+  dplyr::select(City, EJ, Gentrification) %>% 
+  pivot_longer(cols = c(EJ, Gentrification), names_to = "Variable") %>% 
+  filter(!value == "NA") %>% 
+  dplyr::mutate(symbol = recode(Variable, EJ = -7, Gentrification = -3), 
+                Variable = recode(Variable,"EJ"= "Mid-High to High Social-Demographic Concerns" , 
+                                  "Gentrification" ="Mid-High to High Gentrificaiton Concerns"))
 
-   fix <- tidyr::pivot_wider(fix,names_from = Var, values_from = Value) |>
-     dplyr::mutate(ordering = MaxVal,
-                   #City = paste0(City, ",", State),
+# Percentage plot
+
+df.all.perc<- ecodata::wind_port %>% filter(EPU == "NE") %>%
+  tidyr::pivot_wider( names_from = Var, values_from = Value) %>%
+  dplyr::mutate(ordering = MaxVal,
+                   City = paste0(City, ",", State),
                    perc_dif =  c(perc_MAX - perc_MIN),
-                   TOT_MAX = c(100 - perc_dif - perc_MIN))
-   fix <- tidyr::pivot_longer(fix,cols = c(perc_MIN,  perc_dif, TOT_MAX), names_to="Var", values_to = "Value") |>
-     dplyr::arrange(ordering) |>
-     dplyr::mutate(City = factor(City, levels = unique(City))) |>
-     dplyr::filter(!Var %in% c("EJ","Gentrification","MaxVal")) |>
-     dplyr::mutate(Var = dplyr::recode(Var,"perc_MIN"= "WEA Revenue" ,
-                                "perc_dif" ="WEA Revenue Range",
-                                "TOT_MAX" = "Non-WEA Revenue"),
-                   Var = factor(Var, levels = c("Non-WEA Revenue",
-                                                "WEA Revenue Range",
-                                                "WEA Revenue")))
-
-   # add EJ port symbols
-   df.symbol <- ecodata::wind_port |>
-     dplyr::filter(EPU %in% "NE",
-                   !Var %in% c("MaxVal", "TOT_MAX",
-                               "perc_MIN", "perc_MAX")) |>
-     tidyr::pivot_wider( names_from = Var, values_from = Value) |>
-     dplyr::mutate(City = paste0(City,",",State)) |>
-     dplyr::filter(City %in% c("POINT JUDITH, RI",
-                            "NORTH KINGSTOWN, RI",
-                            "BOSTON, MA",
-                            "WOODS HOLE, MA",
+                   TOT_MAX = c(100 - perc_dif - perc_MIN)) %>% 
+  tidyr::pivot_longer(cols = c(perc_MIN,  perc_dif, TOT_MAX), names_to="Var", values_to = "Value") %>% 
+  dplyr::arrange(desc(ordering)) %>%
+  dplyr::filter(City %in% c("POINT JUDITH, RI",
+                            "DAVISVILLE/NORTH KINGSTOWN, RI",
                             "HYANNIS, MA",
-                            "BARNSTABLE, MA")) |>
-     dplyr::select(City, EJ, Gentrification) |>
-     tidyr::pivot_longer(cols = c(EJ, Gentrification), names_to = "Variable") |>
-     dplyr::filter(!value == "NA") |>
-     dplyr::mutate(symbol = dplyr::recode(Variable, EJ = -7, Gentrification = -3),
-                   Variable = dplyr::recode(Variable,"EJ"= "Mid-High to High EJ Concerns" ,
-                                     "Gentrification" ="Mid-High to High Gentrification Concerns"))
+                            "MENEMSHA, MA")) %>%
+  dplyr::mutate(City = factor(City, levels = unique(City))) %>% 
+  dplyr::filter(!Var %in% c("MaxVal", "EJ", "Gentrification")) %>% 
+  dplyr::mutate(Var = recode(Var,"perc_MIN"= "WEA Revenue" , 
+                             "perc_dif" ="WEA Revenue Range", 
+                             "TOT_MAX" = "Non-WEA Revenue"), 
+                Var = factor(Var, levels = c("Non-WEA Revenue", 
+                                             "WEA Revenue Range", 
+                                             "WEA Revenue")))
+p2<-ggplot2::ggplot()+
+  ggplot2::geom_bar(data = df.all.perc, aes(fill = Var, y = reorder(City, ordering), x = Value), stat="identity" )+
+  ggplot2::scale_fill_brewer()+
+  ggplot2::theme(legend.position = "bottom", 
+                 legend.title = element_blank(), 
+                 legend.box="vertical", legend.margin=margin())+
+  ggplot2::geom_point(data = df.symbol, aes(x = symbol,y = City, shape = Variable)) +
+  ggplot2::scale_shape_manual(values = c(17, 16)) +
+  ggplot2::ggtitle("Port Revenue from WEA, majority MAFMC species")+
+  ggplot2::xlab(expression("Port Revenue (%)"))+
+  ggplot2::ylab(element_blank())+
+  ecodata::theme_ts()
 
-
-  # code for generating plot object p
-  # ensure that setup list objects are called as setup$...
-  # e.g. fill = setup$shade.fill, alpha = setup$shade.alpha,
-  # xmin = setup$x.shade.min , xmax = setup$x.shade.max
-  #
-  p <- fix |>
-    ggplot2::ggplot()+
-    ggplot2::geom_bar(ggplot2::aes(x = Value,y = City, fill=Var),stat="identity")+
-    ggplot2::scale_fill_brewer()+
-    ggplot2::theme(legend.position = "bottom",
-                   legend.title = ggplot2::element_blank(),
-                   legend.box="vertical", legend.margin=ggplot2::margin())+
-    ggplot2::geom_point(data = df.symbol, ggplot2::aes(x = symbol,y = City, shape = Variable)) +
-    ggplot2::scale_shape_manual(values = c(17, 16)) +
-    #ggplot2::ggtitle(paste0(report,": Port Revenue from Wind Energy Area"))+
-    ggplot2::xlab(expression("Port Revenue (%)"))+
-    ggplot2::ylab(ggplot2::element_blank())+
-    ecodata::theme_ts()
-  
-  p  
-  
+p2
 ```
 
 ]
@@ -1788,19 +1762,18 @@ ecodata::plot_wind_dev_speed()
 
 
 Implications:
-*  Current plans for buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region 
-*  Planned wind areas overlap with one of the only known right whale foraging habitats, and altered local oceanography could affect right whale prey availability. Development also brings increased vessel strike risk and the potential impacts of pile driving noise.
+*  Current plans for buildout of offshore wind in a patchwork of areas spreads the impacts differentially throughout the region. 
+*  Lease areas overlap with North Atlantic right whale habitat. Development may alter local oceanography and prey availability, increase vessel strike risk, and result in pile driving noise impacts.
 ]
 
 .pull-right[]
 
 ???
-* Despite some changes in the timeline, offshore wind developement is still ramping up and 2030 goals are expected to be met
-  + Delays in some projects may mean that the development timeline is faster in coming years
-* The staggered development in space and time means that impacts will affect regions differently and at different times
-* Beyond fishery revenue some of the other major impacts include:
-  + Protected species interactions, particularly NARW calf migration corridors as whale hotspots overlap with lease areas. This is particularly concerning for southern NE, especially during construction
-  + The effects on federal surveys through operations, survey design, habitat modification, and navigation. There's an ongoing effort to better quantify and mitigate these impacts.
+
+---
+## 2024 Highlights
+
+
 
 ---
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//noaa-iea.png")
