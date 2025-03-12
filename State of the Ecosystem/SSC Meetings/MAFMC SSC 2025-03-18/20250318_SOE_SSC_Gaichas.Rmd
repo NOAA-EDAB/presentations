@@ -918,7 +918,142 @@ Monitor changes in climate and landings drivers:
 -  pH in surfclam summer habitat is approaching, but not yet at, pH affecting surfclam growth 
 
 ---
-## ADD GERETS PROFIT STUFF HERE
+# SSC REQUEST: Two viable proxies for profits explored
+
+<font size="5">
+- Net Revenue 
+  + Federally permitted vessels  only
+
+- Profitability Ratio
+  +   Numerator = Total Gross Revenue
+  +   Denominator = Average cost on federally permitted trips
+<font>
+
+---
+# Cost coverage
+
+<font size="5">
+- Only available for federally permitted trips
+  +   Different trend in gross revenue for Non-federally permitted trips
+  +   Corresponds to differences in production/cost functions
+<font>
+ 
+```{r coverage, fig.show = "hold", out.width = "60%", fig.align = "center"}
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/coverage-1.png")
+```
+
+---
+# Net Revenue for Federally Permitted Trips
+
+<font size="5">
+- Trends follow Gross Revenue
+<font>
+ 
+```{r netrev, fig.show = "hold", out.width = "60%", fig.align = "center"}
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/netrev-1.png")
+```
+
+---
+# Profitability
+
+<font size="5">
+- Gross Revenue, Average Cost, Revenue/Cost ratio
+<font>
+ 
+```{r profitability, fig.show = "hold", out.width = "60%", fig.align = "center"}
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Profitability-1.png")
+```
+
+---
+# Cointegration Analysis
+
+<font size="5">
+- SSC request
+- Do gross revenues move with diesel costs?
+<font>
+ 
+```{r unitroot, fig.show = "hold",as.is=TRUE, fig.align = "center"}
+#knitr::include_graphics("images/Unitroot.png")
+
+FitFlextableToPage <- function(ft, pgwidth = 8){
+
+  ft_out <- ft %>% flextable::autofit()
+
+  ft_out <- flextable::width(ft_out, width = dim(ft_out)$widths*pgwidth /(flextable::flextable_dim(ft_out)$widths))
+  return(ft_out)
+}
+unitroot <- data.frame("Fleet Segment" = rep(c(rep("Missing Costs",2), rep("Net Revenue Possible",2)), 2),
+                       Variable = c(rep("Gross Revenue", 4), rep("Diesel Price", 4)),
+                       Model = c(rep(c("Augmented Dickey-Fuller Test", "Elliot, Rothenberg and Stock"), 4)),
+                       tau = c(-3.87140622932212,
+                               -5.10667170026516,
+                               -2.89229999558957,
+                               -4.3529075077671,
+                               -0.745185795998029,
+                               -1.40079635985865,
+                               -0.745029481895351,
+                               -1.39964414618024))
+
+ft <- flextable::flextable(unitroot) |>
+  flextable::set_caption("Unit root tests for Gross Revenue and Diesel prices.") |>
+  flextable::footnote(i = 1:4, j = 4, 
+                      value = flextable::as_paragraph("p < 0.01"),
+                      ref_symbols = "***", 
+                      part = "body") |>
+  flextable::align(align = "left", part = "all")
+
+FitFlextableToPage(ft)
+```
+---
+
+# Cointegration Analysis
+
+<font size="5">
+- Unit Root tests confirmed by regression of gross revenue on diesel price
+<font>
+ 
+```{r cointegration, fig.show = "hold", out.width = "47%",fig.align = "center"}
+
+coint <- data.frame(Rows = c("Intercept", " ", "Diesel Price", " ",  "N", "R2"),
+                    Model1 = c(0.05, "(0.01)", 0.00, "(0.00)", 1248, 0.00))
+
+flextable::flextable(coint) |>
+  flextable::set_header_labels(Rows = "",
+                               Model1 = "Model 1") |>
+  flextable::footnote(i = 1, j = 2, 
+                      value = flextable::as_paragraph("p < 0.01"),
+                      ref_symbols = "***", 
+                      part = "body") |>
+  flextable::align(align = "left", part = "all")
+
+
+```
+
+???
+---
+
+# Summing Up
+
+<font size="5">
+- Net Revenue standard proxy for profits
+  + Only covers 50 - 75% of Mid-Atlantic trip revenue
+  
+- Profitability indices possible
+  + Tenuous assumption that federally permitted trip costs good representation for non-federally permitted costs
+  
+- No cointegration between gross revenue and diesel prices on non-federally permitted trips
+<font>
+
+???
+---
+
+# SSC recommendation?
+
+<font size="5">
+Proposal 1. A combination of Gross Revenue from all trips in the Mid-Atlantic region and Net Revenue estimates for federally-permitted vessels.
+
+Proposal 2. Revenue, Cost, and Profitability Indices
+<font>
 
 ---
 ## Objective: Mid Atlantic Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:yellow;">RecValue</span>, decreased risk; add diversity?
