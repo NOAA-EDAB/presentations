@@ -1,6 +1,7 @@
 ---
 title: "State of the Ecosystem <br /> Mid-Atlantic 2025"
 subtitle: "MAFMC SSC<br /> 18 March 2025"
+author: "Sarah Gaichas, lead editor, NEFSC"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css", "libs/cols.css"]
@@ -170,7 +171,7 @@ Images courtesy [ASFC](https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheri
 
 .pull-right[
 
-![:img State of the Ecosystem page 1 summary table, 45%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-02282025-508-performance.png)![:img State of the Ecosystem page 2 risk bullets, 45%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-02282025-508-risks.png)
+![:img State of the Ecosystem page 1 summary table, 32%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-02282025-508-performance.png)![:img State of the Ecosystem page 2 risk bullets, 32%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-02282025-508-risks.png)![:img State of the Ecosystem page 3 highlights, 32%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-MA-02282025-508-highlights.png)
 
 
 ]
@@ -311,41 +312,6 @@ Characterizing ecosystem change for fishery management
 
 .pull-right[
 ![:img](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//RegimeShift_V5.jpg)
-]
-
----
-## Report structure 2021-2024, maintain in 2025: towards improved synthesis 
-
-.pull-left[
-* Performance relative to management objectives
-    - *What* does the indicator say--up, down, stable?
-    - *Why* do we think it is changing: integrates synthesis themes
-        - Multiple drivers
-        - Regime shifts
-        - Ecosystem reorganization
-* Objectives
-    - Seafood production
-    - Profits
-    - Recreational opportunities
-    - Stability
-    - Social and cultural
-    - Protected species
-]
-
-.pull-right[
-* Risks to meeting fishery management objectives
-    - Same *What* and *Why* as Performance Section
-    - New structure for Climate section
-        - Fishery risk indicator
-        - Climate and ecosystem drivers of fishery risk
-        - Future considerations
-* Risk categories
-    + *Climate and Ecosystem Change*
-        + *Risk to managing spatially*
-        + *Risk to managing sesonally*
-        + *Risk to setting catch limits*
-    + Other ocean uses
-        + Offshore wind development
 ]
 
 ---
@@ -719,7 +685,7 @@ ecodata::plot_comdat(report = "MidAtlantic", varName = "landings", n=10)
 ```
 
 .right[
-```{r climatevul-land, fig.width = 6, fig.asp = 0.5, fig.cap="Mid-Atlantic region total climate vulnerability of commercial landings (sum of Mid-Atlantic port landings weighted by species climate vulnerability from Hare et al. 2016)."}
+```{r climatevul-land, fig.width = 6, fig.asp = 0.5, fig.alt="Mid-Atlantic region total climate vulnerability of commercial landings (sum of Mid-Atlantic port landings weighted by species climate vulnerability from Hare et al. 2016)."}
 ecodata::plot_community_climate_vulnerability(plottype = "regionland", n=100) +
   ggplot2::theme(legend.position = "left")
 ```
@@ -836,7 +802,6 @@ ecodata::plot_aggregate_biomass(report = "MidAtlantic", n=10)
 
 .contrib[
 Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
-*New species categories, more southern species in Benthivores*
 ]
 
 ]
@@ -844,13 +809,14 @@ Key: Black = NEFSC survey; <p style="color:#FF6A6A;">Red = NEAMAP survey</p>
 .pull-right[
 .contrib[ 
 * Declining aggregate planktivores, benthos?
-
+.center[
 ```{r, fig.width=4, fig.asp=1.2}
 # code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-comdat-commercial-landings.R"), 
 # comm-landings, fig.cap = paste0("Total commercial landings (black) and ",council_abbr," managed species landings (red) by feeding guild."), fig.width=5, fig.asp=1.35
 
 ecodata::plot_comdat(report = "MidAtlantic", plottype = "guild", n=10)
 ```
+] 
 
 * Recreational drivers differ: shark fishery management, possibly survey methodology
 
@@ -882,7 +848,7 @@ ecodata::plot_comdat(report="MidAtlantic", varName="revenue", n=10)
 ```
 
 .right[
-```{r climatevul-rev, fig.width=6, fig.asp=0.5, fig.cap="Mid-Atlantic region total climate vulnerability of commercial revenue (sum of Mid-Atlantic port revenue weighted by species climate vulnerability from Hare et al. 2016)."}
+```{r climatevul-rev, fig.width=6, fig.asp=0.5, fig.alt="Mid-Atlantic region total climate vulnerability of commercial revenue (sum of Mid-Atlantic port revenue weighted by species climate vulnerability from Hare et al. 2016)."}
 
 ecodata::plot_community_climate_vulnerability(plottype = "regionrev", n=100) +
   ggplot2::theme(legend.position = "left")
@@ -1056,7 +1022,7 @@ Proposal 2. Revenue, Cost, and Profitability Indices
 <font>
 
 ---
-## Objective: Mid Atlantic Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//no trend.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk element: <span style="background-color:yellow;">RecValue</span>, decreased risk; add diversity?
+## Objective: Mid Atlantic Recreational opportunities ![:img increasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//increase.png) ![:img above average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//above long term ave.png);  ![:img decreasing arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//decrease.png) ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//below long term ave.png)  Risk elements: <span style="background-color:yellow;">RecValue</span>, <span style="background-color:red;">RecDiv</span>
 
 .pull-left[
 Indicators: Recreational effort and fleet diversity   
@@ -1106,9 +1072,7 @@ b <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet diver
 
 a/b
 ```
-.contrib[
-Most recent fleet counts at low range of series
-]
+
 ]
 
 .pull-right[
@@ -1164,7 +1128,7 @@ ecodata::plot_exp_n(report = "MidAtlantic", varName = "fall", n=10) +
   ggplot2::theme(legend.position = "bottom")
 ```
 
-```{r traits, fig.asp=0.5, fig.cap="Fish community functional traits in the Mid Atlantic Bight based on Fall (red) and Spring (blue) survey data. Length at maturity for the full finfish community has increased in spring (orange line), but decreased in fall (purple lines)"}
+```{r traits, fig.asp=0.5, fig.alt="Fish community functional traits in the Mid Atlantic Bight based on Fall (red) and Spring (blue) survey data. Length at maturity for the full finfish community has increased in spring (orange line), but decreased in fall (purple lines)"}
 
 ecodata::plot_finfish_traits(varName = "length_maturity") +
   ggplot2::theme(legend.position = "bottom")
@@ -1176,7 +1140,7 @@ ecodata::plot_finfish_traits(varName = "length_maturity") +
 While larval and adult fish diversity indices are stable, a few warm-southern larval species are becoming more dominant. Increasing zooplankton diversity is driven by declining dominance of an important species, which warrants continued monitoring.
 
 ---
-## Community Social and Climate Vulnerability &emsp; Risk element: <span style="background-color:yellow;">Social</span> 
+## Community Social and Climate Vulnerability &emsp; Risk element: <span style="background-color:orange;">Social</span> 
 
 Indicators: Commercial fishery engagement, social vulnerability, revenue climate vulnerability
 .pull-left[
@@ -1211,7 +1175,7 @@ flextable::flextable(a$t) |>
 ]
 
 ---
-## Community Social and Climate Vulnerability &emsp; Risk element: <span style="background-color:yellow;">Social</span> 
+## Community Social and Climate Vulnerability &emsp; Risk element: <span style="background-color:orange;">Social</span> 
 
 Indicators: Commercial fishery revenue climate vulnerability
 .pull-left[
@@ -1230,13 +1194,13 @@ The [Community Climate Change Risk Indicators](https://noaa-edab.github.io/catal
 
 
 ---
-## Community Social and Climate Vulnerability &emsp; Risk element: <span style="background-color:yellow;">Social</span> 
+## Community Social and Climate Vulnerability &emsp; Risk element: <span style="background-color:orange;">Social</span> 
 
 Indicators: Recreational fishery engagement, social vulnerability
 
 .pull-left[
 
-```{r recreational-engagement, fig.cap= "Recreational engagement and population relative engagement with labels for the top recreationally engaged fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 1, results='hide'}
+```{r recreational-engagement, fig.alt= "Recreational engagement and population relative engagement with labels for the top recreationally engaged fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 1, results='hide'}
 #Communities ranked medium-high or above for one or more of the environmental justice indicators are highlighted in bright orange. *Community scored high (1.00 and above) for both recreational engagement and reliance indicators.
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recreational-engagement.R")
 #fig.width = 6.5, fig.asp = 0.75
@@ -1295,7 +1259,7 @@ Implications:
 
 * Currently meeting objectives, but uncertainty in gray seal estimates
 
-* Risk element: TechInteract, evaluated by species and sector:  14 <span style="background-color:lightgreen;">low</span>, 6 <span style="background-color:yellow;">low-mod</span>, 3 <span style="background-color:orange;">mod-high</span> risk, unchanged
+* Risk element: TechInteract, evaluated by species and sector:  14 <span style="background-color:lightgreen;">low</span>, 7 <span style="background-color:yellow;">low-mod</span>, 2 <span style="background-color:orange;">mod-high</span> risk
 
 * The downward trend in harbor porpoise bycatch can also be due to a decrease in harbor porpoise abundance in US waters, reducing their overlap with fisheries, and a decrease in gillnet effort. 
 
@@ -1515,7 +1479,7 @@ a+b
 
 .pull-left[
 Benthos center of gravity from fish stomachs
-```{r macrobenthosshifts, fig.alt="Eastward (left) and northward (right) shifts in the center of gravity for macrobenthos species on the Northeast U.S. Shelf", fig.width = 8}
+```{r macrobenthosshifts2, fig.alt="Eastward (left) and northward (right) shifts in the center of gravity for macrobenthos species on the Northeast U.S. Shelf", fig.width = 8}
 #, fig.asp = .3
 ecodata::plot_benthos_index(plottype = "cog", varName = "Macrobenthos", n=10)+ ggplot2::coord_cartesian(xlim = c(1982, 2022))
 ```
@@ -1791,9 +1755,14 @@ background-position: right bottom
 Future considerations
 *   Processes that control fish productivity and mortality are dynamic, complex, and are the result of the interactions between multiple changing system drivers.
 *   There is a real risk that short-term predictions in assessments and rebuilding plans that assume unchanging underlying conditions will not be as effective, given the observed change documented in the prior sections in both ecological and environmental processes. 
-*   Assumptions for species’ growth, reproduction, and natural mortality should continue to be evaluated for individual species. 
+*   Assumptions for species’ growth, reproduction, and natural mortality should continue to be evaluated for individual species.
+
+.pull-left-60[
+
 *   With observations of system-wide productivity shifts of multiple managed stocks, more research is needed to determine whether regime shifts or ecosystem reorganization are occurring, and how this should be incorporated into management.
 
+]
+.pull-right-40[]
 
 
 
@@ -1975,7 +1944,7 @@ Linked to well-developed 2024 Mid Atlantic Cold Pool
 .pull-left[
 ## 2024 Highlights
 
-```{r mab-oa, out.width = '100%', fig.alt = "Locations where bottom aragonite saturation state ($\\Omega_{Arag}$; summer only: June-August) were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (left panel) and longfin squid (right panel) for the time periods 2007-2022 (dark cyan), 2023 only (magenta) and 2024 only (cyan). Gray circles indicate locations where bottom $\\Omega_{Arag}$ values were above the species specific sensitivity values.."}
+```{r mab-oa2, out.width = '100%', fig.alt = "Locations where bottom aragonite saturation state ($\\Omega_{Arag}$; summer only: June-August) were at or below the laboratory-derived sensitivity level for Atlantic sea scallop (left panel) and longfin squid (right panel) for the time periods 2007-2022 (dark cyan), 2023 only (magenta) and 2024 only (cyan). Gray circles indicate locations where bottom $\\Omega_{Arag}$ values were above the species specific sensitivity values.."}
 
 
 #knitr::include_graphics("https://github.com/NOAA-EDAB/ecodata/raw/master/docs/images/Saba_Fig_SOE_MAFMC-GraceSaba.jpg")
@@ -2049,7 +2018,7 @@ background-position: right bottom
     Michael Fogarty<br>
     Paula Fratantoni<br>
     Kevin Friedland,
-
+    
     Marjy Friedrichs (VIMS)<br>
     Sarah Gaichas<br>
     Ben Galuardi (GAFRO)<br>
@@ -2072,12 +2041,12 @@ background-position: right bottom
     Sean Lucey (RWE)<br>
     Don Lyons (National Audubon Society’s Seabird Restoration Program)<br>
     Chris Melrose<br>
-    Anna Mercer<br>
+    Anna Mercer,
+    
     Shannon Meseck<br>
     Ryan Morse<br>
     Ray Mroch (SEFSC)<br>
-    Brandon Muffley (MAFMC),
-    
+    Brandon Muffley (MAFMC)<br>
     Robert Murphy<br>
     Kimberly Murray<br>
     NEFSC staff<br>
@@ -2096,7 +2065,8 @@ background-position: right bottom
     Sarah Salois<br>
     Chris Schillaci (GARFO)<br>
     Amy Schueller (SEFSC)<br>
-    Teresa Schwemmer (URI)<br>
+    Teresa Schwemmer (URI),
+    
     Tarsila Seara<br>
     Dave Secor (CBL)<br>
     Emily Slesinger<br>
@@ -2105,15 +2075,14 @@ background-position: right bottom
     Talya tenBrink (GARFO)<br>
     Abigail Tyrell<br>
     Rebecca Van Hoeck<br>
-    Bruce Vogt (NOAA Chesapeake Bay Office),
-    
+    Bruce Vogt (NOAA Chesapeake Bay Office)<br>
     Ron Vogel (University of Maryland Cooperative Institute for Satellite Earth System Studies and NOAA/NESDIS Center for Satellite Applications and Research)<br>
     John Walden<br>
     Harvey Walsh<br>
     Sarah Weisberg<br>
     Changhua Weng<br>
     Dave Wilcox (VIMS)<br>
-    Timothy White (Environmental Studies Program, BOEM)<br>
+    Timothy White (Environmental Studies Program BOEM)<br>
     Sarah Wilkin (NMFS Office of Protected Resources)<br>
     Mark Wuenschel<br>
     Qian Zhang (U Maryland)]

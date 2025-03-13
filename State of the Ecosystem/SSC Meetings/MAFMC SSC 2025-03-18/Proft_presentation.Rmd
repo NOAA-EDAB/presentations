@@ -1,0 +1,122 @@
+---
+title: "Profit Proxies"
+author: "Geret DePiper"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/EDAB_theme3_508_SOE_16by9_GD.css"]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["right", "middle", "my-title"]
+      ratio: "16:9"
+      highlightStyle: githubp
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(here)
+```
+# Two viable proxies for profits explored
+
+- Net Revenue 
+  + Federally permitted vessels  only
+
+- Profitability Ratio
+  +   Numerator = Total Gross Revenue
+  +   Denominator = Average cost on federally permitted trips
+
+
+???
+---
+
+# Cost coverage
+
+<font size="5">
+- Only available for federally permitted trips
+  +   Different trend in gross revenue for Non-federally permitted trips
+  +   Corresponds to differences in production/cost functions
+<font>
+ 
+```{r coverage, fig.show = "hold", out.width = "60%", fig.align = "center"}
+knitr::include_graphics("images/coverage-1.png")
+```
+
+???
+---
+
+# Net Revenue for Federally Permitted Trips
+
+<font size="5">
+- Trends follow Gross Revenue
+<font>
+ 
+```{r netrev, fig.show = "hold", out.width = "60%", fig.align = "center"}
+knitr::include_graphics("images/netrev-1.png")
+```
+
+???
+---
+# Profitability
+
+<font size="5">
+- Gross Revenue, Average Cost, Revenue/Cost ratio
+<font>
+ 
+```{r profitability, fig.show = "hold", out.width = "60%", fig.align = "center"}
+knitr::include_graphics("images/Profitability-1.png")
+```
+
+???
+---
+# Cointegration Analysis
+
+<font size="5">
+- SSC request
+- Do gross revenues move with diesel costs?
+<font>
+ 
+```{r unitroot, fig.show = "hold",as.is=TRUE, fig.align = "center"}
+knitr::include_graphics("images/Unitroot.png")
+```
+
+???
+---
+
+# Cointegration Analysis
+
+<font size="5">
+- Unit Root tests confirmed by regression of gross revenue on diesel price
+<font>
+ 
+```{r cointegration, fig.show = "hold", out.width = "47%",fig.align = "center"}
+knitr::include_graphics("images/cointegration.png")
+```
+
+???
+---
+
+# Summing Up
+
+- Net Revenue standard proxy for profits
+  + Only covers 50 - 75% of Mid-Atlantic trip revenue
+  
+- Profitability indices possible
+  + Tenuous assumption that federally permitted trip costs good representation for non-federally permitted costs
+  
+- No cointegration between gross revenue and diesel prices on non-federally permitted trips
+
+???
+---
+
+# SSC recommendation?
+
+Proposal 1. A combination of Gross Revenue from all trips in the Mid-Atlantic region and Net Revenue estimates for federally-permitted vessels.
+
+Proposal 2. Revenue, Cost, and Profitability Indices
