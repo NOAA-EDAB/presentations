@@ -1665,18 +1665,18 @@ moderate-high risk to fishery resilience. Data access has changed but updates sh
 ```{r Shoresupp1, fig.alt="Shoreside support businesses: Number of Companies and nonemployer entitites", echo = F, fig.height=2.5, message = FALSE, warning = FALSE}
 #opar <- par(mfrow = c(1, 1), mar = c(0, 0, 0, 0), oma = c(4, 6, 2, 6))
 
-shoreside <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/riskassess-MAFMC/refs/heads/master/shoresideetc/Shoreside_Support_2025%20-%20Geret%20DePiper%20-%20NOAA%20Federal.csv")
+#shoreside <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/riskassess-MAFMC/refs/heads/master/shoresideetc/Shoreside_Support_2025%20-%20Geret%20DePiper%20-%20NOAA%20Federal.csv")
 
 
-shoreside <- shoreside |> #ecodata::shoreside_support |>
-  dplyr::select(Time, Value, Var, Region, Units) #|>
+shoreside <- ecodata::shoreside_support |> #shoreside |> #
+  dplyr::select(Time, Value, Var, EPU, Units) #|>
   #dplyr::filter(Time < 2017) #check--gets same trends as in 2018 paper
 
   setup <- ecodata::plot_setup(shadedRegion = NULL,
                                report="MidAtlantic")
   
   shore_agg <- shoreside |>
-      dplyr::group_by(Var, Region) |>
+      dplyr::group_by(Var, EPU) |>
       dplyr::mutate(hline = mean(Value))
   
   shore_agg |>
