@@ -108,7 +108,7 @@ knitr::kable(tabl, format="html",
   row_spec(3, bold = T, background = "orange")
 ```
 
-Ranked moderate-high risk due to the significant long term revenue decrease
+Ranked moderate-high risk due to the current low status and visual trend
 
 ]
 .pull-right[
@@ -253,30 +253,10 @@ knitr::kable(tabl, format="html",
 ```{r}
 risk.species<-data.frame(
   Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Chub mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
-  # Assess  = c("l", "l", "l",  "l", "l", "l", "h", "l", "lm", "h", "l", "h", "l", "l", "h", "na", "na"),
-  Fstatus = c("l", "l", "h", "l", "l", "l", "lm", "l", "lm", "lm", "l", "h", "l", "h", "lm", "na", "na"),
+  Fstatus = c("l", "l", "h", "l", "l", "l", "lm", "l", "lm", "lm", "h", "h", "l", "l", "lm", "na", "na"),
   Bstatus = c("l", "l", "lm", "l", "l", "h", "lm", "lm", "lm", "lm", "lm", "mh", "lm", "l", "lm", "na", "na")#,
-  # #FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
-  # #FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
-  # PreyA = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
-  # PredP = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
-  # FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
-  # Climate = c("h", "mh", "lm", "lm", "mh", "lm", "na", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
-  # DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "na", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
-  # EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na"),
-  # OffHab = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd")#,
 )
 
-
-# these elements were removed by the council
-#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
-#  FoodSafe = c(),
-
-# one column test
-# risk.species %>%
-#   mutate(Fstatus = 
-#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
-#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
 
 #convert to longer text for consistency and display in html table
 risk.species <- risk.species %>%
@@ -308,6 +288,360 @@ risk.species %>%
 ```
 
 ]
+
+
+---
+## Offshore Habitat (new)
+
+This element will be applied at the species level, and evaluates risk of not achieving
+OY due to changes in offshore habitat quality and quantity.
+
+.pull-left-70[
+*Potential criteria--species specific*
+.table[
+```{r}
+tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
+                   "Bluefish" = c("No indicators suggest negative impact to OY",
+                                    "Either distribution indicators or natural mortality indicators suggest negative impact to OY but climate indicators suggest no impact.",
+                                    "Climate indicators suggest negative impacts to OY or Both distribution and natural mortality indicators suggest negative impacts to OY.",
+                                    "Distribution, climate, and natural mortality indicators all suggest negative impacts to OY."),
+                   "Black sea bass" = c("No indicators suggest negative impact to OY",
+                                    "Indicators suggest increase in overwinter mixing but no change or increase in overwinter survival",
+                                    "Indicators suggest decrease in overwinter survival but no change or decrease in overwinter mixing",
+                                    "Overwinter survival decreasing, overwinter mixing increasing"),
+                   "Golden tilefish" = c("No indicators suggest negative impact to OY",
+                                    "Physical oceanography indicators suggest negativeimpacts to OY but Habitat condition indicators suggest no impact or positive impact",
+                                    "Habitat condition indicators suggest negative impacts to OY but Physical oceanography indicators suggest no impact or positive impact",
+                                    "Both Physical oceanography and Habitat condition indicators suggest negative impact to OY"))
+knitr::kable(tabl, format="html",
+             col.names = c("Risk Level", "Bluefish", "Black Sea Bass", "Golden Tilefish"),
+                           booktabs = T) %>%
+  kable_styling(font_size = 9) %>%
+  column_spec(1, width = "10em")|>
+  column_spec(2, width = "20em")|>
+  column_spec(3, width = "20em")|>
+  column_spec(4, width = "20em")
+```
+]
+]
+
+.pull-right-30[
+```{r}
+risk.species<-data.frame(
+  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Chub mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
+  OffHab = c("tbd", "tbd", "tbd", "tbd", "l", "tbd", "tbd", "tbd", "tbd", "tbd", "l", "tbd", "mh", "tbd", "tbd", "tbd", "tbd")#,
+)
+
+
+#convert to longer text for consistency and display in html table
+risk.species <- risk.species %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#generalize to all
+risk.species %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", 
+              color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", 
+              background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), 
+              background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 14) 
+#   flextable::flextable()
+# 
+# # Define colors and ranges
+# bg_picker <- scales::col_bin(
+#     palette = c("white", "light blue"),
+#     domain = c(0, 100), # min and max range can be also set dynamically 
+#     bins = c(0, 10, 20)) # as well as the bins
+# 
+# 
+# ftab <- regulartable(SalesData) %>% 
+#     bg(j = columns, bg = bg_picker)
+
+```
+
+]
+
+???
+The EOP Committee and AP elected to tailor offshore habitat indicators for each managed species, using Ecosystem and Socioeconomic Profile (ESP) information as a starting point. Risk indicators will be developed as ESP information becomes available.
+
+---
+class: center, center
+
+# Social and Economic Risk Elements
+
+---
+class: top, left
+## Commercial Value
+
+This element is applied at the ecosystem level, and addresses the risk
+of not maximizing fishery value. Revenue serves as a proxy for
+commercial profits.
+
+.pull-left[
+.table[
+```{r riskcomval, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+
+tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
+                   "Definition" = c("No trend and low variability in revenue",
+                                    "Increasing or high variability in revenue",
+                                    "Significant long term revenue decrease",
+                                    "Significant recent decrease in revenue"))
+
+knitr::kable(tabl, format="html",
+             col.names = c("Risk Level", "Definition"),
+                           booktabs = T) %>%
+  #kable_styling(full_width = TRUE) %>%
+  column_spec(1, width = "10em")|>
+  column_spec(2, width = "30em")%>%
+  row_spec(3, bold = T, background = "orange")
+```
+]
+
+]
+.pull-right[
+```{r, fig.asp = 0.5, results='hide'}
+#comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
+ecodata::plot_comdat(report="MidAtlantic", varName="revenue", n=10) + 
+  ggplot2::theme(legend.position = "bottom",
+                      legend.title = ggplot2::element_blank())
+```
+
+]
+
+Ranked moderate-high risk due to the current low status and visual trend
+
+## Risk element: <span style="background-color:orange;">CommVal</span> 
+
+---
+## Commercial Fishery Resilience (1) - Revenue Diversity
+
+This element is applied at the ecosystem level, and addresses the
+potential risk of reduced commercial fishery business resilience by
+evaluating species diversity of revenue at the permit level.
+
+.pull-left[
+.table[
+```{r , echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+
+tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
+                   "Definition" = c("No trend in diversity measures",
+                                    "Increasing trend or high variance in diversity measure",
+                                    "Significant long term downward trend in diversity measure",
+                                    "Significant recent downward trend in diversity measure"))
+
+knitr::kable(tabl, format="html",
+             col.names = c("Risk Level", "Definition"),
+                           booktabs = T) %>%
+  #kable_styling(full_width = TRUE) %>%
+  column_spec(1, width = "10em")|>
+  column_spec(2, width = "30em")%>%
+  row_spec(1, bold = T, background = "lightgreen")
+```
+]
+
+]
+
+.pull-right[
+```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the Mid Atlantic.")}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")
+
+ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity", n=100)
+
+
+```
+]
+
+In late 2024, this element was ranked high risk due to a significant short term decline 2013-2022. With the addition of new data, this decline is no longer present, as species revenue diversity increased in 2023. Therefore this element now ranks low risk.
+
+
+## Risk element: <span style="background-color:lightgreen;">FishRes1</span> 
+
+
+---
+## Commercial Fishery Resilience (3) -- Fleet Diversity
+
+This element is applied at the ecosystem level, and ranks the risk to
+maintaining equity in access to fishery resources.
+
+.pull-left[
+.table[
+```{r , echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+
+tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
+                   "Definition" = c("No trend in diversity measures",
+                                    "Increasing trend or high variance in diversity measure",
+                                    "Significant long term downward trend in diversity measure",
+                                    "Significant recent downward trend in diversity measure"))
+
+knitr::kable(tabl, format="html",
+             col.names = c("Risk Level", "Definition"),
+                           booktabs = T) %>%
+  #kable_styling(full_width = TRUE) %>%
+  column_spec(1, width = "10em")|>
+  column_spec(2, width = "30em")%>%
+  row_spec(3, bold = T, background = "orange")
+```
+]
+
+This element was ranked low risk based on two indicators of fleet diversity. The Mid-Atlantic fleet count indicator has a significant 21 year downward trend, so the element is now ranked moderate-high risk.  
+]
+
+.pull-right[
+```{r commercial-div, fig.width = 8, fig.asp = 0.8, fig.alt = "Commercial fleet count and revenue diversity in the Mid Atlantic."}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")
+
+a <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count", n=100)
+
+b <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet diversity in revenue", n=100)
+
+a / b
+```
+
+]
+
+
+## Risk element: <span style="background-color:orange;">ComDiv</span> 
+
+
+
+---
+## EAFM Risk Assessment: 2025 Update with new elements
+
+.pull-left[
+*Species level risk elements*
+```{r sptable}
+#tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+# spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
+risk.species<-data.frame(
+  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Chub mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
+  Assess  = c("l", "l", "l",  "l", "l", "l", "h", "l", "lm", "h", "lm", "h", "l", "l", "h", "na", "na"),
+  Fstatus = c("l", "l", "h", "l", "l", "l", "lm", "l", "lm", "lm", "h", "h", "l", "l", "lm", "na", "na"),
+  Bstatus = c("l", "l", "lm", "l", "l", "h", "lm", "lm", "lm", "lm", "lm", "mh", "lm", "l", "lm", "na", "na"),
+  #FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
+  #FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
+  PreyA = c("tbd", "tbd", "tbd", "tbd", "h", "lm", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "lm", "tbd", "tbd", "tbd", "tbd"),
+  PredP = c("l", "l", "tbd", "tbd", "tbd", "mh", "tbd", "mh", "lm", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
+  FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
+  Climate = c("h", "mh", "lm", "lm", "mh", "lm", "na", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
+  DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "na", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
+  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na"),
+  OffHab = c("tbd", "tbd", "tbd", "tbd", "l", "tbd", "tbd", "tbd", "tbd", "tbd", "l", "tbd", "mh", "tbd", "tbd", "tbd", "tbd")#,
+)
+
+
+
+# these elements were removed by the council
+#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
+#  FoodSafe = c(),
+
+# one column test
+# risk.species %>%
+#   mutate(Fstatus = 
+#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
+#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
+
+#convert to longer text for consistency and display in html table
+risk.species <- risk.species %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#generalize to all
+risk.species %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 8) 
+```
+.contrib[
+]  
+
+*Ecosystem level risk elements*
+```{r ecotable}
+#tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.eco<-data.frame(
+  System = c("Mid-Atlantic"),
+  EcoProd = c("lm"),
+  #EcoDiv = c("lm"),
+  CommVal = c("mh"),
+  RecVal = c("lm"),
+  FishRes1 = c("l"),
+  FishRes2 = c("lm"),
+  #CommJobs = c("mh"),
+  #RecJobs = c("l"),
+  ComDiv = c("mh"),
+  RecDiv = c("h"),
+  Social = c("mh"),
+  ComFood = c("mh"),
+  RecFood = c("mh")
+)
+#convert to longer text for consistency and display in html table
+risk.eco <- risk.eco %>%
+     mutate_at(vars(-System), function(x){
+       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
+     as.data.frame()
+
+#make table
+risk.eco %>%
+  mutate_at(vars(-System), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+
+```
+.contrib[
+]  
+]  
+
+.pull-right[ 
+*Species and Sector level risk elements*
+```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
+#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
+
+risk.sppsector<-data.frame(
+  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
+  FControl =  c(1,1,2,1,4,2,4,2,2,1,1,1,2,9,1,2,3,2,2,2,2,1,1,9),
+  Interact = c(1,1,1,2,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
+  #OceanUse =    c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
+  OSW1 =    c(2,3,2,2,2,2,3,3,2,2,3,2,3,1,1,1,1,2,2,3,3,1,6,9),
+  OSW2 =    c(1,3,6,2,6,2,6,3,6,2,2,2,2,6,6,6,6,6,2,6,2,2,6,6),
+  OtherUse =    c(6,6,1,1,6,6,6,6,6,6,1,6,1,6,6,6,6,1,1,6,6,6,6,9),
+  RegComplex =  c(1,1,4,2,4,2,4,2,2,4,3,3,3,1,1,2,1,3,2,1,4,1,1,9),
+  Discards =    c(3,3,3,3,3,3,3,3,2,2,3,3,1,1,1,1,2,2,2,2,2,1,1,9),
+  Allocation =  c(1,1,4,1,4,1,4,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,9) 
+)
+
+
+
+#convert to text for consistency
+risk.sppsector <- risk.sppsector %>%
+     mutate_at(vars(-Species), function(x){
+       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na",
+              '6' = 'tbd')}) %>%
+     as.data.frame()
+
+#make table
+risk.sppsector %>%
+  mutate_at(vars(-Species), function(x){ 
+    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey", "black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
+  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
+  kable_styling(font_size = 9) 
+
+```
+.contrib[
+]
+]
+
+
+???
+
+---
+# UNCHANGED 2024-2025
 
 ---
 ## Food Web (1) - Prey Availability
@@ -1209,92 +1543,6 @@ risk.species %>%
 ]
 
 ---
-## Offshore Habitat (new)
-
-This element will be applied at the species level, and evaluates risk of not achieving
-OY due to changes in offshore habitat quality and quantity.
-
-.pull-left[
-*Potential indicators*
-
-*  Amount of habitat  
-
-*  Quality of habitat  
-
-*  Other aspects of habitat important to support fish productivity (e.g. cold pool extent, duration, temperature) 
-
-]
-
-.pull-right[
-
-*Potential criteria*
-.table[
-```{r}
-tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
-                   "Definition" = c("No trends in offshore habitat",
-                                    "Trend in offshore habitat (1-2 measures, increase or  decrease)",
-                                    "Trend in offshore habitat (3+ measures, increase or  decrease)",
-                                    "Decreasing trend in offshore habitat, 4+ measures"))
-knitr::kable(tabl, format="html",
-             col.names = c("Risk Level", "Definition"),
-                           booktabs = T) %>%
-  #kable_styling(full_width = TRUE) %>%
-  column_spec(1, width = "10em")|>
-  column_spec(2, width = "30em")
-```
-]
-]
-
-
----
-class: center, center
-
-# Social and Economic Risk Elements
-
----
-class: top, left
-## Commercial Value
-
-This element is applied at the ecosystem level, and addresses the risk
-of not maximizing fishery value. Revenue serves as a proxy for
-commercial profits.
-
-.pull-left[
-.table[
-```{r riskcomval, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-
-tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
-                   "Definition" = c("No trend and low variability in revenue",
-                                    "Increasing or high variability in revenue",
-                                    "Significant long term revenue decrease",
-                                    "Significant recent decrease in revenue"))
-
-knitr::kable(tabl, format="html",
-             col.names = c("Risk Level", "Definition"),
-                           booktabs = T) %>%
-  #kable_styling(full_width = TRUE) %>%
-  column_spec(1, width = "10em")|>
-  column_spec(2, width = "30em")%>%
-  row_spec(3, bold = T, background = "orange")
-```
-]
-
-]
-.pull-right[
-```{r, fig.asp = 0.5, results='hide'}
-#comm-revenue, fig.width = 4, fig.asp = 0.45, fig.cap = "Total revenue for the region (black) and revenue from MAFMC managed species (red)."
-ecodata::plot_comdat(report="MidAtlantic", varName="revenue") + 
-  ggplot2::theme(legend.position = "bottom",
-                      legend.title = ggplot2::element_blank())
-```
-
-]
-
-Ranked moderate-high risk due to the significant long term revenue decrease
-
-## Risk element: <span style="background-color:orange;">CommVal</span> 
-
----
 ## Marine Recreational Angler Trips
 
 This element is assessed at the ecosystem level where it applies equally
@@ -1336,18 +1584,29 @@ Ranked low-moderate risk due to the significant long term increase with high rec
 ## Risk element: <span style="background-color:yellow;">RecVal</span> 
 
 ---
-## Commercial Fishery Resilience (1) - Revenue Diversity
+## Recreational Fleet Diversity (new)
 
-This element is applied at the ecosystem level, and addresses the
-potential risk of reduced commercial fishery business resilience by
-evaluating species diversity of revenue at the permit level.
+This element is applied at the ecosystem level, and ranks the risk to
+maintaining equity in recreational access to fishery resources.
 
 .pull-left[
+*Potential Indicator*
+```{r rec-div, fig.alt = "Recreational fleet effort diversity (black) in the Mid-Atlantic, with significant decrease (purple line)."}
+#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")
+
+ecodata::plot_recdat(report = "MidAtlantic", varName = "effortdiversity", n=10)
+```
+
+]
+
+.pull-right[
+
+*Criteria*
 .table[
 ```{r , echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
 
 tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
-                   "Definition" = c("No trend in diversity measures",
+                   "Definition" = c("No trend in diversity measure",
                                     "Increasing trend or high variance in diversity measure",
                                     "Significant long term downward trend in diversity measure",
                                     "Significant recent downward trend in diversity measure"))
@@ -1358,26 +1617,16 @@ knitr::kable(tabl, format="html",
   #kable_styling(full_width = TRUE) %>%
   column_spec(1, width = "10em")|>
   column_spec(2, width = "30em")%>%
-  row_spec(1, bold = T, background = "lightgreen")
+  row_spec(4, bold = T, background = "red")
 ```
 ]
 
 ]
 
-.pull-right[
-```{r commercial-div-species-div,  fig.cap = paste0("Species revenue diversity in the Mid Atlantic.")}
-#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")
-
-ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Permit revenue species diversity")
+Ranked high risk due to the significant recent downward trend in diversity.
 
 
-```
-]
-
-With less than 30 years in the time series, trend was not assessed. With no trend, this element ranks low risk. However, a decline prior to 2000 is visually apparent and could be assessed with updated methods for the 2025 risk assessment.
-
-
-## Risk element: <span style="background-color:lightgreen;">FishRes1</span> 
+## Risk element: <span style="background-color:red;">RecDiv</span> 
 
 ---
 ## Commercial Fishery Resilience (2) - Shoreside Support
@@ -1413,180 +1662,79 @@ moderate-high risk to fishery resilience. Data access has changed but updates sh
 ]
 
 .pull-right[
-```{r Shoresupp1, fig.alt="Shoreside support businesses: Number of Companies", echo = F, fig.height=2.5, message = FALSE, warning = FALSE}
+```{r Shoresupp1, fig.alt="Shoreside support businesses: Number of Companies and nonemployer entitites", echo = F, fig.height=2.5, message = FALSE, warning = FALSE}
 #opar <- par(mfrow = c(1, 1), mar = c(0, 0, 0, 0), oma = c(4, 6, 2, 6))
 
-load(here::here("data-raw/SOE_data.RData")) #Risk_Assessment/Council_Meetings/MAFMC_2024-04-09/
+shoreside <- read.csv("https://raw.githubusercontent.com/NOAA-EDAB/riskassess-MAFMC/refs/heads/master/shoresideetc/Shoreside_Support_2025%20-%20Geret%20DePiper%20-%20NOAA%20Federal.csv")
 
-aggcomp <- SOE.data[Units %like% "Number of Companies"]
-setkey(aggcomp, Time, EPU)
-allcomp <- aggcomp[, sum(Value, na.rm = T), by = key(aggcomp)]
-setnames(allcomp, 'V1', 'Value')
-allcomp[, Var := paste('Mid-Atlantic Companies')]
-allcomp[, Units := 'Number']
 
-allcomp <- as.data.frame(allcomp)
+shoreside <- shoreside |> #ecodata::shoreside_support |>
+  dplyr::select(Time, Value, Var, Region, Units) #|>
+  #dplyr::filter(Time < 2017) #check--gets same trends as in 2018 paper
 
-#source(here::here("Risk_Assessment/Council_Meetings/MAFMC_2024-04-09/data-raw/new_SOE_plot.R"))
-
-#soe.plot(allcomp, 'Time', 'Mid-Atlantic Companies', rel.y.num = 0.8, x.label = 'Year', y.label = 'Number of Businesses', rel.y.text = 1)
-report <- "MidAtlantic"
-shadedRegion <- NULL
-
-setup <- ecodata::plot_setup(shadedRegion = shadedRegion,
-                               report=report)
-
-ggplot2::ggplot(allcomp, aes(x=Time, y=Value)) +
-  ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
-        xmin = setup$x.shade.min , xmax = setup$x.shade.max,
-        ymin = -Inf, ymax = Inf) +
-    ggplot2::geom_point()+
-    ggplot2::geom_line()+
-    #ggplot2::ggtitle(stringr::str_to_title(var))+
-    ggplot2::ylab("Mid-Atlantic Companies")+
-    ggplot2::xlab(ggplot2::element_blank())+
-    ecodata::geom_gls()+
-    ecodata::theme_ts()#+
-    # ggplot2::geom_hline(ggplot2::aes(yintercept = hline),
-    #                     linewidth = setup$hline.size,
-    #                     alpha = setup$hline.alpha,
-    #                     linetype = setup$hline.lty)#+
-     #ecodata::theme_title()
+  setup <- ecodata::plot_setup(shadedRegion = NULL,
+                               report="MidAtlantic")
   
+  shore_agg <- shoreside |>
+      dplyr::group_by(Var, Region) |>
+      dplyr::mutate(hline = mean(Value))
+  
+  shore_agg |>
+      ggplot2::ggplot()+
+
+      #Highlight last ten years
+      ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
+                        xmin = setup$x.shade.min , xmax = setup$x.shade.max,
+                        ymin = -Inf, ymax = Inf) +
+      ecodata::geom_gls(ggplot2::aes(x = Time, y = Value,
+                                     group = Var),
+                        alpha = setup$trend.alpha, size = setup$trend.size) +
+      ecodata::geom_lm(n=10, ggplot2::aes(x = Time, y = Value,
+                                        group = Var),
+                       alpha = setup$trend.alpha, size = setup$trend.size) +
+      #ecodata::geom_lm(aes(x = Time, y = Value))+
+      ggplot2::geom_line(ggplot2::aes(x = Time, y = Value, color = Var), linewidth = setup$lwd) +
+      ggplot2::geom_point(ggplot2::aes(x = Time, y = Value, color = Var), size = setup$pcex) +
+      ggplot2::scale_x_continuous(breaks = seq(1980, 2020, by = 5), expand = c(0.01, 0.01)) +
+      #ggplot2::scale_color_manual(values = series.col2, aesthetics = "color")+
+      ggplot2::facet_wrap(~Var, scales = "free", ncol = 2)+
+      #ggplot2::guides(color = "none") +
+      #ggplot2::ylab(ylabdat) +
+      ggplot2::xlab(ggplot2::element_blank())+
+      ggplot2::theme(legend.position = "none",
+                     legend.title = ggplot2::element_blank())+
+      ggplot2::geom_hline(ggplot2::aes(yintercept = hline,
+                                       color = Var),
+                          linewidth = setup$hline.size,
+                          alpha = setup$hline.alpha,
+                          linetype = setup$hline.lty) +
+      ecodata::theme_ts() +
+      ggplot2::ggtitle(setup$region)+
+      ecodata::theme_title() +
+      ecodata::theme_facet()
+
+
 
 ```
-
-```{r Shoresupp2, fig.alt="Shoreside support businesses: Number of Nonemployer entities", echo = F, fig.height=2.5, message = FALSE, warning = FALSE}
-#opar <- par(mfrow = c(1, 1), mar = c(0, 0, 0, 0), oma = c(4, 6, 2, 6))
-
-aggent <- SOE.data[Units %like% "Number of Nonemployer establishments"]
-setkey(aggent, Time, EPU)
-allent <- aggent[, sum(Value, na.rm = T), by = key(aggent)]
-setnames(allent, 'V1', 'Value')
-allent[, Var := paste('Mid-Atlantic Nonemployer Entities')]
-allent[, Units := 'Number']
-
-allent <- as.data.frame(allent)
-
-#soe.plot(allent, 'Time', 'Mid-Atlantic Nonemployer Entities', rel.y.num = 0.8, x.label = 'Year', y.label = 'Number of Businesses', rel.y.text = 1)
-
-ggplot2::ggplot(allent, aes(x=Time, y=Value)) +
-  ggplot2::annotate("rect", fill = setup$shade.fill, alpha = setup$shade.alpha,
-        xmin = setup$x.shade.min , xmax = setup$x.shade.max,
-        ymin = -Inf, ymax = Inf) +
-    ggplot2::geom_point()+
-    ggplot2::geom_line()+
-    #ggplot2::ggtitle(stringr::str_to_title(var))+
-    ggplot2::ylab("Mid-Atlantic Nonemployer Entities")+
-    ggplot2::xlab(ggplot2::element_blank())+
-    #ecodata::geom_gls()+
-    ecodata::theme_ts()
-
-```
 ]
 
 
 
----
-## Commercial Fishery Resilience (3) -- Fleet Diversity
-
-This element is applied at the ecosystem level, and ranks the risk to
-maintaining equity in access to fishery resources.
-
-.pull-left[
-.table[
-```{r , echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-
-tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
-                   "Definition" = c("No trend in diversity measures",
-                                    "Increasing trend or high variance in diversity measure",
-                                    "Significant long term downward trend in diversity measure",
-                                    "Significant recent downward trend in diversity measure"))
-
-knitr::kable(tabl, format="html",
-             col.names = c("Risk Level", "Definition"),
-                           booktabs = T) %>%
-  #kable_styling(full_width = TRUE) %>%
-  column_spec(1, width = "10em")|>
-  column_spec(2, width = "30em")%>%
-  row_spec(1, bold = T, background = "lightgreen")
-```
-]
-
-With less than 30 years in the time series, trend was not assessed. For fleet count a visual trend may be apparent, while for revenue diversity no apparent visual trend exists. With no trend, this element ranks low risk. 
-]
-
-.pull-right[
-```{r commercial-div, fig.width = 8, fig.asp = 0.8, fig.alt = "Commercial fleet count and revenue diversity in the Mid Atlantic."}
-#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-commercial-div-species-div.R")
-
-a <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet count")
-
-b <- ecodata::plot_commercial_div(report = "MidAtlantic", varName = "Fleet diversity in revenue")
-
-a / b
-```
-
-]
-
-
-## Risk element: <span style="background-color:lightgreen;">ComDiv</span> 
-
-
----
-## Recreational Fleet Diversity (new)
-
-This element is applied at the ecosystem level, and ranks the risk to
-maintaining equity in recreational access to fishery resources.
-
-.pull-left[
-*Potential Indicator*
-```{r rec-div, fig.alt = "Recreational fleet effort diversity (black) in the Mid-Atlantic, with significant decrease (purple line)."}
-#, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")
-
-ecodata::plot_recdat(report = "MidAtlantic", varName = "effortdiversity")
-```
-
-]
-
-.pull-right[
-
-*Potential criteria*
-.table[
-```{r , echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-
-tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
-                   "Definition" = c("No trend in diversity measure",
-                                    "Increasing trend or high variance in diversity measure",
-                                    "Significant long term downward trend in diversity measure",
-                                    "Significant recent downward trend in diversity measure"))
-
-knitr::kable(tabl, format="html",
-             col.names = c("Risk Level", "Definition"),
-                           booktabs = T) %>%
-  #kable_styling(full_width = TRUE) %>%
-  column_spec(1, width = "10em")|>
-  column_spec(2, width = "30em")
-```
-]
-
-]
 
 ---
 .pull-left[
 ## Fishing Community Vulnerability
 
-This element is applied at the ecosystem level, and evaluates the risk of reduced community resilience (vulnerability, reliance,
-engagement).
+This element is applied at the ecosystem level, and evaluates the risk of reduced community resilience (engagement, social vulnerability).
 
 .table[
 ```{r , echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
 
 tabl <- data.frame("Risk Level" = c("Low", "Low-Moderate", "Moderate-High", "High"),
                    "Definition" = c("Few (<10%) vulnerable fishery dependent communities",
-                                    "10-25% of fishery dependent communities with >3 high vulnerability ratings",
-                                    "25-50% of fishery dependent communities with >3 high  vulnerability ratings",
-                                    "Majority (>50%) of fishery dependent communities with >3 high vulnerability ratings"))
+                                    "10-25% of fishery dependent communities with 2 or more high vulnerability ratings",
+                                    "25-50% of fishery dependent communities with 2 or more high  vulnerability ratings",
+                                    "Majority (>50%) of fishery dependent communities with 2 or more high vulnerability ratings"))
 
 knitr::kable(tabl, format="html",
              col.names = c("Risk Level", "Definition"),
@@ -1594,12 +1742,13 @@ knitr::kable(tabl, format="html",
   #kable_styling(full_width = TRUE) %>%
   column_spec(1, width = "10em")|>
   column_spec(2, width = "30em")%>%
-  row_spec(2, bold = T, background = "yellow")
+  row_spec(3, bold = T, background = "orange")
 ```
 
-In past risk assessments, four of the top communities (20%) had three or more of these high risk rankings, so we ranked overall social-cultural risk as low-moderate for these Mid-Atlantic communities. However, newer analyses evaluating EJ vulnerability could be incorporated into this analysis.
+The current risk assessment uses 2022 data, modified criteria for fewer indicator categories and a different set of social indicators. Over 48% of commercial fishing dependent communities and 34% of recreational fishing dependent communities had two or more high social vulnerability ratings. This would rank communities moderate-high for social vulnerability for either sector. Therefore, social vulnerability risk is ranked moderate-high. 
+
 ]
-## Risk element: <span style="background-color:yellow;">Social</span> 
+## Risk element: <span style="background-color:orange;">Social</span> 
 ]
 
 .pull-right[
@@ -1710,136 +1859,4 @@ ecodata::plot_recdat(report = "MidAtlantic", varName ="landings")
 This significant long term decrease in both recreational landings represents a moderate-high risk to food production.
 
 ## Risk element: <span style="background-color:orange;">RecFood</span> 
-
----
-## EAFM Risk Assessment: 2024 Update with new elements
-
-.pull-left[
-*Species level risk elements*
-```{r sptable}
-#tab.cap="Species level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
-
-# spplist     oc,  sc,  flk, scp, bsb, mack, but, lsq, ssq, gtile,  btile,  blu, dog, monk
-risk.species<-data.frame(
-  Species = c("Ocean Quahog", "Surfclam", "Summer flounder", "Scup", "Black sea bass", "Atl. mackerel", "Chub mackerel", "Butterfish", "Longfin squid", "Shortfin squid", "Golden tilefish", "Blueline tilefish", "Bluefish", "Spiny dogfish", "Monkfish", "Unmanaged forage", "Deepsea corals"),
-  Assess  = c("l", "l", "l",  "l", "l", "l", "h", "l", "lm", "h", "l", "h", "l", "l", "h", "na", "na"),
-  Fstatus = c("l", "l", "h", "l", "l", "l", "lm", "l", "lm", "lm", "l", "h", "l", "h", "lm", "na", "na"),
-  Bstatus = c("l", "l", "lm", "l", "l", "h", "lm", "lm", "lm", "lm", "lm", "mh", "lm", "l", "lm", "na", "na"),
-  #FW1Pred = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l"),
-  #FW1Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lm", "l"),
-  PreyA = c("tbd", "tbd", "tbd", "tbd", "h", "lm", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "lm", "tbd", "tbd", "tbd", "tbd"),
-  PredP = c("l", "l", "tbd", "tbd", "tbd", "mh", "tbd", "mh", "lm", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd"),
-  FW2Prey = c("l", "l", "l", "l", "l", "l", "l", "l", "lm", "lm", "l", "l", "l", "l", "l", "lm", "l"),
-  Climate = c("h", "mh", "lm", "lm", "mh", "lm", "na", "l", "l", "l", "mh", "mh","l", "l", "l", "na", "na"),
-  DistShift = c("mh", "mh", "mh", "mh", "mh", "mh", "na", "h", "mh", "h", "l", "l", "mh", "h", "mh", "na", "na"),
-  EstHabitat = c("l", "l", "h", "h", "h", "l", "l", "l", "l", "l", "l", "l", "h", "l", "l", "na", "na"),
-  OffHab = c("tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd", "tbd")#,
-)
-
-
-# these elements were removed by the council
-#  PopDiv = c("na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na", "na"),
-#  FoodSafe = c(),
-
-# one column test
-# risk.species %>%
-#   mutate(Fstatus = 
-#     cell_spec(Fstatus, format="latex", color = "black", align = "c", background =factor(Fstatus, c("na", "l", "lm", "mh", "h"),c("white", "green", "yellow", "orange", "red")))) %>%
-#   kable(risk.species, format="latex", escape = F, booktabs = T, linesep = "")
-
-#convert to longer text for consistency and display in html table
-risk.species <- risk.species %>%
-     mutate_at(vars(-Species), function(x){
-       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
-     as.data.frame()
-
-#generalize to all
-risk.species %>%
-  mutate_at(vars(-Species), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 8) 
-```
-.contrib[
-]  
-
-*Ecosystem level risk elements*
-```{r ecotable}
-#tab.cap="Ecosystem level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
-
-risk.eco<-data.frame(
-  System = c("Mid-Atlantic"),
-  EcoProd = c("lm"),
-  #EcoDiv = c("lm"),
-  CommVal = c("mh"),
-  RecVal = c("lm"),
-  FishRes1 = c("h"),
-  FishRes4 = c("lm"),
-  #CommJobs = c("mh"),
-  #RecJobs = c("l"),
-  ComDiv = c("l"),
-  RecDiv = c("h"),
-  Social = c("mh"),
-  ComFood = c("mh"),
-  RecFood = c("mh")
-)
-
-#convert to longer text for consistency and display in html table
-risk.eco <- risk.eco %>%
-     mutate_at(vars(-System), function(x){
-       recode(x,'tbd' = "tbd", 'l'="lowest",'lm'="lowmod",'mh'="modhigh",'h'="highest")}) %>%
-     as.data.frame()
-
-#make table
-risk.eco %>%
-  mutate_at(vars(-System), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey","black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 9) 
-
-```
-.contrib[
-]  
-]  
-
-.pull-right[ 
-*Species and Sector level risk elements*
-```{r mgttable,  echo=FALSE, message=FALSE, warnings=FALSE}
-#tab.cap="Species and sector level risk analysis results; l=low risk (green), lm= low-moderate risk (yellow), mh=moderate to high risk (orange), h=high risk (red)\\label{sptable}",
-
-risk.sppsector<-data.frame(
-  Species = c("Ocean Quahog-C", "Surfclam-C", "Summer flounder-R", "Summer flounder-C","Scup-R", "Scup-C","Black sea bass-R", "Black sea bass-C","Atl. mackerel-R", "Atl. mackerel-C","Butterfish-C", "Longfin squid-C", "Shortfin squid-C", "Golden tilefish-R", "Golden tilefish-C","Blueline tilefish-R","Blueline tilefish-C", "Bluefish-R", "Bluefish-C","Spiny dogfish-R", "Spiny dogfish-C", "Chub mackerel-C", "Unmanaged forage", "Deepsea corals"),
-  FControl =  c(1,1,2,2,4,1,4,2,2,1,1,1,2,9,1,1,2,2,1,1,1,1,1,9),
-  Interact = c(1,1,1,2,1,2,1,2,1,2,2,3,2,1,1,1,1,1,1,1,3,2,1,9),
-  #OceanUse =    c(2,2,2,2,2,3,3,4,1,3,3,4,2,1,1,1,1,1,2,1,3,2,3,3),
-  OSW1 =    c(6,6,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,2,2,2,2,1,6,9),
-  OSW2 =    c(6,6,6,2,6,2,6,3,6,2,2,2,6,6,6,6,6,6,2,6,6,2,6,6),
-  OtherUse =    c(6,6,2,2,6,6,6,6,6,6,2,6,2,6,6,6,6,2,2,6,6,6,6,9),
-  RegComplex =  c(1,1,4,2,4,2,4,2,2,4,3,3,3,1,1,2,1,3,2,1,4,1,1,9),
-  Discards =    c(3,3,3,3,3,3,3,3,2,2,3,3,1,1,1,1,1,2,2,2,2,1,1,9),
-  Allocation =  c(1,1,4,1,4,1,4,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,9) 
-)
-
-
-#convert to text for consistency
-risk.sppsector <- risk.sppsector %>%
-     mutate_at(vars(-Species), function(x){
-       recode(x,'1'="lowest",'2'="lowmod",'3'="modhigh",'4'="highest",'9'="na",
-              '6' = 'tbd')}) %>%
-     as.data.frame()
-
-#make table
-risk.sppsector %>%
-  mutate_at(vars(-Species), function(x){ 
-    cell_spec(x, format="html", color = factor(x, c("tbd", "na", "lowest", "lowmod", "modhigh", "highest"),c("grey", "black", "black", "black", "black", "white")), align = "c", background =factor(x, c("tbd","na", "lowest", "lowmod", "modhigh", "highest"),c("grey","white", "lightgreen", "yellow", "orange", "red")), background_as_tile=F)}) %>%
-  kable(format = "html", escape = F, table.attr='class="risktable"') %>%
-  kable_styling(font_size = 9) 
-
-```
-.contrib[
-]
-]
-
-
-???
 
