@@ -896,7 +896,9 @@ fig4 <- pfallsmcope + pmackcond + pfallmac + pbsbcond + pforage + pbfcond + plot
 
 ggsave("preyavriskex.png", fig4, device="png", width = 12, height = 12, units = "in")
 
-knitr::include_graphics("preyavriskex.png")
+#knitr::include_graphics(here::here("preyavriskex.png"))
+
+knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/blob/d8c746bfeffedb686288f1048c2d66533a9cbd97/Risk_Assessment/EOP/EOP_NewElement_Update_2025-03-20/preyavriskex.png?raw=true")
 
 ```
 ]
@@ -1745,7 +1747,7 @@ knitr::kable(tabl, format="html",
   row_spec(3, bold = T, background = "orange")
 ```
 
-The current risk assessment uses 2022 data, modified criteria for fewer indicator categories and a different set of social indicators. Over 48% of commercial fishing dependent communities and 34% of recreational fishing dependent communities had two or more high social vulnerability ratings. This would rank communities moderate-high for social vulnerability for either sector. Therefore, social vulnerability risk is ranked moderate-high. 
+The current risk assessment uses 2022 data, modified criteria for fewer indicator categories and a different set of social indicators. Over 48% of commercial fishing dependent communities and 34% of recreational fishing dependent communities had two or more high social vulnerability ratings. Therefore, social vulnerability risk is ranked moderate-high. 
 
 ]
 ## Risk element: <span style="background-color:orange;">Social</span> 
@@ -1758,7 +1760,9 @@ The current risk assessment uses 2022 data, modified criteria for fewer indicato
 #fig.width = 6.5, fig.asp = 0.75
 #(* Scored high (1.00 and above)) for both commercial engagement and reliance indicators)
 
-ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial") 
+a <- ecodata::plot_engagement()
+
+a$p + ggplot2::theme(plot.title=element_text(vjust = 0))
 ```
 
 ```{r recreational-engagement, fig.alt= "Recreational engagement and reliance, and environmental justice vulnerability, for the top recreationally engaged and reliant fishing communities in the Mid-Atlantic.", fig.width = 7, fig.asp = 0.65, results='hide'}
@@ -1768,7 +1772,9 @@ ecodata::plot_engagement(report = "MidAtlantic", varName = "Commercial")
 
 #(* Scored high (1.00 and above) for both recreational engagement and reliance indicators;
 
-ecodata::plot_engagement(report = "MidAtlantic", varName = "Recreational")
+a <- ecodata::plot_engagement(varName = "Recreational")
+
+a$p + ggplot2::theme(plot.title=element_text(vjust = 0))
 ```
 
 ]
