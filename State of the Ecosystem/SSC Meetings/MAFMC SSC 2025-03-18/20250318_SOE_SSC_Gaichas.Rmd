@@ -1165,7 +1165,7 @@ a$p + ggplot2::theme(plot.title=element_text(vjust = 0))
 
 .pull-right[
 ```{r comvultab}
-flextable::flextable(a$t) |>
+flextable::flextable(a$data) |>
   flextable::set_header_labels(personal_disruption_rank = "Personal Disruption",
                                pop_composition_rank = "Population Composition",
                                poverty_rank = "Poverty") |>
@@ -1224,7 +1224,7 @@ a$p + ggplot2::theme(plot.title=element_text(vjust = 0))
 
 .pull-right[
 ```{r recvultab}
-flextable::flextable(a$t) |>
+flextable::flextable(a$data) |>
   flextable::set_header_labels(personal_disruption_rank = "Personal Disruption",
                                pop_composition_rank = "Population Composition",
                                poverty_rank = "Poverty") |>
