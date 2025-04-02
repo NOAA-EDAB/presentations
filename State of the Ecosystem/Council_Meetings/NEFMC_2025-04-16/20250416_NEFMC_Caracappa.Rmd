@@ -108,41 +108,6 @@ myBib <- ReadBib("./MidSOE.bib", check = FALSE)
 ???
 
 ---
-## Ecosystem reporting at different levels of organization
-
-.pull-left[
-### Ecosystem Level &rarr; SOE
-
-![:img NE shelf map](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/MAFMC_NE_SHELF_MAP.png)
-
-]
-
-.pull-right[
-
-### Stock Level &rarr; ESP
-
-![:img herring cons mod](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/AherringConceptualMod.png)
-Ecosystem and Socioeconomic Profiles (ESPs) `r Cite(myBib, c("shotwell_introducing_2023", "shotwell_synthesizing_2022", "haltuch_oceanographic_2020", "tolimieri_oceanographic_2018", "dorn_risk_2020"))`
-
-]
-
----
-## Using ecosystem information at the stock level: Ecosystem Socioeconomic Profiles (ESPs)
-
-
-.pull-left-40[
-
-![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)
-
-![:img Bluefish ESP conceptual model](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
-
-.footnote[
-Images courtesy [ASFC](https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheries-science-center-year-review), and Abigail Tyrell and Emily Liljestrand, NEFSC
-]
-
-]
-
---
 ## State of the Ecosystem: Maintain 2024 structure for 2025
 .pull-left[
 
@@ -435,23 +400,6 @@ Protected species:
 ]
 .pull-right-40[]
 ---
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-NE-02282025-508-performance-GOM.png")
-background-size: 500px
-background-position: right
-
-## New England State of the Ecosystem Summary 2025: 
-
-.pull-left-60[
-TOR:C2 performance metrics
-
-- Status and trend are descriptive but don't provide a "desired state or trend"
-- For instance commercial revenue is near the long-term average. Is that good? Is there another metric we want to assess how well that objective is being met?
-- Example objective for commercial revenue: "Revenue stays above 1990 levels for 5 years and has a neutral or positive trend"
-- Need to work on reference points among indicators with NEFMC
-]
-.pull-right-40[]
-
----
 background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/SOE-NE-02282025-508-risks.png")
 background-size: 500px
 background-position: right
@@ -510,14 +458,6 @@ We welcome your observations! <northeast.ecosystem.highlights@noaa.gov>
 # SSC and Council Requests from 2024 and Prioritization
 
 ]
-
-.pull-left[
-
-- Based on July, 2024 prioritization meeting with MAFMC's Ecosystem subgroup and NEFMC SSC chair 
-- Would like to expand NEFMC SSC participation in coming years if possible
-
-]
-
 ---
 ## 2025 State of the Ecosystem Request tracking memo
 
@@ -620,99 +560,77 @@ flextable::as_grouped_data(requeststab, groups = "Aggregate") %>%
 
 
 ---
-## Priority categories in the Request Memo
+# 2025 Changes: Trend assessment
 
-.pull-left-40[
-The memo is organized into categories by topic, and categories are listed in descending order of overall (2022) priority based on approximate weighting within the category.
+.pull-left[
+## Recent short term trends assessed
 
-Therefore, a range of priority may be applied to individual requests within a category even though the entire category has an overall priority.
+Andy Beet's [`arfit` R package](https://noaa-edab.github.io/arfit/articles/background_work.html) integrated into `ecodata`
 
-*The subgroup agreed to keep this group priority ranking*
+Apply to most recent 10 years of each dataset
 
-SSC: [Link to current memo](https://drive.google.com/file/d/1woOaPCelKgPEcLpqMOBq23dmrMDKKH7q/view?usp=drive_link)  
-SSC: [Link to overview](https://docs.google.com/document/d/1Q06XL6Gaz8i3Hr9sggGjJTE-NII3-HBW/edit?usp=drive_link&ouid=104644076769486561215&rtpof=true&sd=true)
+Apply to full datasets <30 years
+
+<br>
+<br>
+
+## No more polynomial long term trends assessed
+
+Decision based on how strange some of them looked
+
+Has implications for risk assessment scoring
+] 
+
+.pull-right[
+```{r, fig.asp=.4}
+ecodata::plot_recdat(varName = "effortdiversity", n=10)
+```
+
+```{r, fig.asp=.55}
+ecodata::plot_comdat(varName = "revenue", n=10)
+```
 
 ]
 
-.pull-right-60[
-*  System level thresholds/reference points: highest, much methods work in progress
+???
 
-*  Management: high, resource limited  
-*  Short term forecasts: high, CEFI should help  
-*  Regime shifts: high, need system level framework 
+Tests for significant trend, null hypothesis is mean with autocorrelation (no trend)
+---
+# 2025 Changes: Trend assessment
 
-*  Multiple system drivers: moderate-high, many unranked requests  
+.pull-left[
+## Recent short term trends assessed
 
-*  Functional group level status/thresholds/reference points: moderate, many in progress
-*  Stock level indicators: moderate, ESPs better venue
+Andy Beet's [`arfit` R package](https://noaa-edab.github.io/arfit/articles/background_work.html) integrated into `ecodata`
 
-*  SOE administration: unranked  
+Apply to most recent 10 years of each dataset
 
+Apply to full datasets <30 years
+
+<br>
+<br>
+
+## No more polynomial long term trends assessed
+
+Decision based on how strange some of them looked
+
+Has implications for risk assessment scoring
 ] 
 
+.pull-right[
+```{r, fig.asp=.4}
+ecodata::plot_recdat(varName = "effortdiversity", n=10)
+```
+
+```{r, fig.asp=.55}
+ecodata::plot_comdat(varName = "revenue", n=10)
+```
+
+]
+
 ???
-*System level thresholds/reference points*
-Includes requests to develop analytical methods that can be applied across all indicator types and operationalized for management advice. Much of this high priority methodological work is in progress.
-*Management*
-Includes analyses related to management performance. Work on this category is resource limited.
-*Short term forecasts*
-Includes requests for biological and environmental forecasts. These forecasts may be forthcoming from CEFI products once they are tested. 
-*Regime shifts*
-Many analyses have been conducted and are in progress for individual ecosystem components, but a unifying framework with consistent methods is needed for the SOE.
-*Multiple system drivers*
-This category has the most requests. Most unranked requests from 2023 are in this category. Prioritization within this category is sorely needed.
-*Functional group level status/thresholds/reference points*
-Most of these requests are in progress. 
-*Stock level indicators*
-Requests for this information may be more appropriately directed to stock specific ecosystem products such as Ecosystem and Socioeconomic Profiles (ESPs). 
 
----
-## Discussion of 2023 and 2024 requests (1 of 2)
-
-These newer requests were ranked highest within each category
-
-
-*  System level thresholds/reference points: highest
-    + maintain high priority on trend/threshold evaluation
-    + express indicators relative to biological thresholds
-    + standardize uncertainty language (IPCC)
-    + longer term: simulation analysis of thresholds
-
-*  Management: high  
-    + include indicators for risk policy/risk assessment processes
-    
-*  Short term forecasts: high 
-    + include CEFI projections
-    
-*  Regime shifts: high 
-    + instead characterize current conditions in context of expected short term change
-
-SSC: link to [full list](https://docs.google.com/spreadsheets/d/1sULWI4xkeCMToktNOc69CQAjk50Mv7ZfZAOaL9C9PI8/edit?usp=drive_link), comments welcome!
-
----
-## Discussion of 2023 and 2024 requests (2 of 2)
-
-These newer requests were ranked highest within each category
-
-*  Multiple system drivers: moderate-high
-    + profits vs revenue: provide incomplete net revenue and index of costs
-    + clarify objectives and terminology for fishing community engagement/reliance
-        + time series of community indicators
-        + social and economic linkages to climate
-        + consider appropriate scale for indicators
-
-*  Functional group level status/thresholds/reference points: moderate
-    + not specifically prioritized
-    + include more aggregations for biomass and landings (Council-managed, status)
-
-*  Stock level indicators: moderate, ESPs
-    + not specifically prioritized 
-    + cross reference ESP products where appropriate
-    
-
-
-SSC: link to [full list](https://docs.google.com/spreadsheets/d/1sULWI4xkeCMToktNOc69CQAjk50Mv7ZfZAOaL9C9PI8/edit?usp=drive_link), comments welcome!
-
+Tests for significant trend, null hypothesis is mean with autocorrelation (no trend)
 ---
 # 2025 Performance relative to management objectives
 
@@ -854,7 +772,7 @@ ecodata::plot_comdat(report = "NewEngland", plottype = "guild")
 ## Objective: New England Commercial Profits ![:img mixed trends arrow icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Mixed trends.png)  ![:img below average icon icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/below long term ave.png)
 
 .pull-left[
-Indicator: Commercial Revenue
+Indicator: Commercial Revenue; profit indicators are under SSC review
 ```{r , fig.width = 7.5, fig.asp = 0.35}
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_NE.Rmd-comdat-comm-revenue.R")
 ecodata::plot_comdat(report="NewEngland", varName="revenue")
@@ -904,147 +822,6 @@ gom <- ecodata::plot_bennet(report = "NewEngland", varName = "total", EPU = "GOM
 
 gb + gom + plot_layout(guides = 'collect') & theme(legend.position = 'bottom')
 ```
----
-# SSC REQUEST: Two viable proxies for profits explored
-
-<font size="5">
-- Net Revenue 
-  + Federally permitted vessels  only
-
-- Profitability Ratio
-  +   Numerator = Total Gross Revenue
-  +   Denominator = Average cost on federally permitted trips
-<font>
-
----
-background-image: url("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/coverage-1.png")
-background-size: 700px
-background-position: right
-.pull-left-40[
-# Cost coverage
-
-<font size="5">
-- Only available for federally permitted trips
-  +   Different trend in gross revenue for Non-federally permitted trips
-  +   Corresponds to differences in production/cost functions
-<font>
-]
-
-.pull-right-60[]
-
----
-# Net Revenue for Federally Permitted Trips
-
-<font size="5">
-- Trends follow Gross Revenue
-<font>
- 
-```{r netrev, fig.show = "hold", out.width = "60%", fig.align = "center"}
-knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/netrev-1.png")
-```
-
----
-# Profitability
-
-<font size="5">
-- Gross Revenue, Average Cost, Revenue/Cost ratio
-<font>
- 
-```{r profitability, fig.show = "hold", out.width = "60%", fig.align = "center"}
-knitr::include_graphics("https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/Profitability-1.png")
-```
-
----
-# Cointegration Analysis
-
-<font size="5">
-- SSC request
-- Do gross revenues move with diesel costs?
-<font>
- 
-```{r unitroot, fig.show = "hold",as.is=TRUE, fig.align = "center"}
-#knitr::include_graphics("images/Unitroot.png")
-
-FitFlextableToPage <- function(ft, pgwidth = 8){
-
-  ft_out <- ft %>% flextable::autofit()
-
-  ft_out <- flextable::width(ft_out, width = dim(ft_out)$widths*pgwidth /(flextable::flextable_dim(ft_out)$widths))
-  return(ft_out)
-}
-unitroot <- data.frame("Fleet Segment" = rep(c(rep("Missing Costs",2), rep("Net Revenue Possible",2)), 2),
-                       Variable = c(rep("Gross Revenue", 4), rep("Diesel Price", 4)),
-                       Model = c(rep(c("Augmented Dickey-Fuller Test", "Elliot, Rothenberg and Stock"), 4)),
-                       tau = c(-3.87140622932212,
-                               -5.10667170026516,
-                               -2.89229999558957,
-                               -4.3529075077671,
-                               -0.745185795998029,
-                               -1.40079635985865,
-                               -0.745029481895351,
-                               -1.39964414618024))
-
-ft <- flextable::flextable(unitroot) |>
-  flextable::set_caption("Unit root tests for Gross Revenue and Diesel prices.") |>
-  flextable::footnote(i = 1:4, j = 4, 
-                      value = flextable::as_paragraph("p < 0.01"),
-                      ref_symbols = "***", 
-                      part = "body") |>
-  flextable::align(align = "left", part = "all")
-
-FitFlextableToPage(ft)
-```
----
-
-# Cointegration Analysis
-
-<font size="5">
-- Unit Root tests confirmed by regression of gross revenue on diesel price
-<font>
- 
-```{r cointegration, fig.show = "hold", out.width = "47%",fig.align = "center"}
-
-coint <- data.frame(Rows = c("Intercept", " ", "Diesel Price", " ",  "N", "R2"),
-                    Model1 = c(0.05, "(0.01)", 0.00, "(0.00)", 1248, 0.00))
-
-flextable::flextable(coint) |>
-  flextable::set_header_labels(Rows = "",
-                               Model1 = "Model 1") |>
-  flextable::footnote(i = 1, j = 2, 
-                      value = flextable::as_paragraph("p < 0.01"),
-                      ref_symbols = "***", 
-                      part = "body") |>
-  flextable::align(align = "left", part = "all")
-
-
-```
-
-???
----
-
-# Summing Up
-
-<font size="5">
-- Net Revenue standard proxy for profits
-  + Only covers 50 - 75% of Mid-Atlantic trip revenue
-  
-- Profitability indices possible
-  + Tenuous assumption that federally permitted trip costs good representation for non-federally permitted costs
-  
-- No cointegration between gross revenue and diesel prices on non-federally permitted trips
-<font>
-
-???
----
-
-# SSC recommendation?
-
-<font size="5">
-Proposal 1. A combination of Gross Revenue from all trips in the Mid-Atlantic region and Net Revenue estimates for federally-permitted vessels.
-
-Proposal 2. Revenue, Cost, and Profitability Indices
-<font>
-
 ---
 ## Objective: New England Recreational opportunities ![:img no trend icon, 2%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/no trend.png) ![:img near average icon icon, 1%](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/near long term average.png)
 
@@ -1156,19 +933,6 @@ ecodata::plot_finfish_traits(report = 'NewEngland',varName = "fecundity") +
 
 ???
 ---
-## TOR 3CA: Do the indicators of the Stability objective (SOE, p. 19-23) address Council needs? Comment on how they could be refined. 
-
-.pull-left[
-- Stability objectives mostly focused on diversity indices.
-- Is higher permit/species diversity the main metric we're interested in?
-- Talk of regime shift indicators/tipping points but no conclusive methodology so far. 
-- Many definitions of stability: steady revenue, lack of variability, etc. What's most relevant for management?
-]
-
-.pull-right[
-![:img](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images//RegimeShift_V5.jpg)
-]
----
 ## New England Community Social and Climate Vulnerability 
 
 Indicators: Commercial fishery engagement, social vulnerability, revenue climate vulnerability
@@ -1203,7 +967,7 @@ a$data |>
 <!--![Recreational fishing communities environmental justice spider plot](EDAB_images/EJ_Recreational_MAB.png)--> 
 ]
 
-Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing environmental justice issues, they may have lower ability to successfully respond to change.
+Implications: Highlighted communities may be vulnerable to changes in fishing patterns due to regulations and/or climate change. When also experiencing social vulnerabilities, they may have lower ability to successfully respond to change.
 ---
 ## New England Social and Climate Vulnerability
 
