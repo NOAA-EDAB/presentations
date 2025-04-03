@@ -1668,22 +1668,47 @@ magick::image_read("https://github.com/NOAA-EDAB/ecodata/raw/dev/data-raw/worksh
 ]
 
 ---
+.pull-left[
 # Take Home
 
-MAFMC mainly meeting individual stock objectives, but ecosystem level management objective indicators show concerning trends
+**Mostly meeting individual stock objectives.**
 
-Declining seafood production, historically low revenue, declining range of recreational opportunities, majority of communities with high climate revenue risk
+```{r, fig.asp=.7}
+a <- ecodata::plot_stock_status()
 
-Species distributions, timing, and productivity have changed, and environmental conditions changed again in 2024
+a$p
+```
 
+]
+
+.pull-right[
+
+**Ecosystem level management objectives worrying?**
+
+Declining <span style="background-color:orange;">seafood production</span> 
+
+Historically low <span style="background-color:orange;">revenue</span> 
+
+Declining range of <span style="background-color:red;">recreational opportunities</span> 
+
+Most community level revenue has high climate vulnerability
+
+```{r}
+ecodata::plot_community_climate_vulnerability()
+```
+
+
+]
+
+Species distributions, timing, and productivity have changed. Ocean conditions highly variable year to year.
 
 
 ---
-# Discussion
+## Discussion
 
 .pull-left[
 
-```{r management-objectives}
+```{r management-objectives-review}
 mng_obj <- data.frame("Objective Categories" = c("Seafood Production",
                                                  "Commercial Profits","Recreational Opportunities",
                                                  "Stability","Social & Cultural",
@@ -1732,7 +1757,7 @@ flextable::as_grouped_data(mng_obj, groups = "service") %>%
   flextable::bold(i = ~ !is.na(service), bold = TRUE) %>%
   flextable::set_header_labels(Objective.Categories = "Objective categories",
                                Indicators.reported = "Indicators reported") %>%
-  flextable::set_caption("Ecosystem-scale fishery management objectives in the Mid-Atlantic Bight") %>%
+  flextable::set_caption("Ecosystem-scale fishery management objectives") %>%
   flextable::autofit() 
 
 
@@ -1740,14 +1765,17 @@ flextable::as_grouped_data(mng_obj, groups = "service") %>%
 ]
 
 .pull-right[
-Review objectives
+**Review objectives: maximum benefit to the Nation in first 3 categories**
 
-any to add?
+*  Is the list complete? 
 
-prioritize?
+*  Does the Council have reference points, desired states, or other performance metrics we should address for each objective?
+
+Stability objective: are current indicators addressing Council needs?
+
+Forecasts: what decisions or contexts would ocean forecasts be most useful for?
 
 ]
-
 
 
 ---
