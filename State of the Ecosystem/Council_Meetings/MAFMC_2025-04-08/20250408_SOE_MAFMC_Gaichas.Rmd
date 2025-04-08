@@ -757,7 +757,7 @@ ecodata::plot_recdat(report = "MidAtlantic", varName = "effort", n=10)
 #, code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/human_dimensions_MAB.Rmd-recdat-diversity.R")
 #rec-div, fig.cap = paste0("Recreational fleet effort diversity in the ",region,".")
 
-ecodata::plot_recdat(report = "MidAtlantic", varName = "effortdiversity", n=10)
+ecodata::plot_recdat(varName = "effortdiversity", n=10)
 ```
 ]
 
