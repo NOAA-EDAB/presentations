@@ -1,7 +1,7 @@
 ---
 title: "State of the Ecosystem<br />New England 2025"
 subtitle: "NEFMC Update<br /> 16 April 2025"
-author: "Joseph Caracappa, (editor),<br /> Andy Beet, Brandon Beltz,  Geret DePiper, Sarah Gaichas, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith (data and section leads), <br />  and all SOE contributors"
+author: "Joseph Caracappa, (lead editor)"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css", "libs/cols.css"]
@@ -291,15 +291,47 @@ Key to figures
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R")
 #species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
 
-a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(xlim = c(1969,2021))
-b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(xlim = c(1969,2021)) 
+# a <- ecodata::plot_species_dist(varName = "along", n = 10) + ggplot2::coord_cartesian(xlim = c(1969,2021))
+# b <- ecodata::plot_species_dist(varName = "depth", n = 10) + ggplot2::coord_cartesian(xlim = c(1969,2021)) 
+# 
+# a/b
+set.seed(10)
 
-a/b
+t1  = 1970:2014
+t2 = 2015:2024
+val1 =  (11.364*t1)-21387+rnorm(length(t1),0,40)
+val2 =  (-10*t2)+21640+rnorm(length(t2),0,10)
+
+dat1 = data.frame(x = c(t1,t2),y = c(val1,val2))
+p1 = ggplot(data = dat1, aes(x=x, y= y))+
+  geom_line()+
+  geom_gls()+
+  geom_lm(n = 10)+
+  ylab('Value')+
+  xlab('')+
+  ggtitle('Indicator')+
+  theme_bw()
+
+val3 =  (-11.364*t1)+23887+rnorm(length(t1),0,40)
+val4 =  (20*t2)-39280+rnorm(length(t2),0,10)
+dat2 = data.frame(x = c(t1,t2),y = c(val3,val4))
+
+p4 = ggplot(data = dat2, aes(x=x, y= y))+
+  geom_line()+
+  geom_gls()+
+  geom_lm(n = 10)+
+  ylab('Value')+
+  xlab('')+
+  ggtitle('Indicator')+
+  theme_bw()
+
+p1/p4
 
 ```  
 
 .contrib[
-Trends assessed only for 30+ years: [more information](https://noaa-edab.github.io/tech-doc/trend-analysis.html)
+Long-term trends assessed only for 30+ years: [more information](https://noaa-edab.github.io/tech-doc/trend-analysis.html)
+Short-term trends assessed for last 10 years of data OR a full time series <30 years
 
 <p style="color:#FF8C00;">Orange line = significant increase</p>
 <p style="color:#9932CC;">Purple line = significant decrease</p>
@@ -582,50 +614,39 @@ Has implications for risk assessment scoring
 ] 
 
 .pull-right[
-```{r, fig.asp=.4}
-ecodata::plot_recdat(varName = "effortdiversity", n=10)
+```{r, fig.asp = 0.5}
+set.seed(10)
+
+t1  = 1970:2014
+t2 = 2015:2024
+val1 =  (11.364*t1)-21387+rnorm(length(t1),0,40)
+val2 =  (-10*t2)+21640+rnorm(length(t2),0,10)
+
+dat1 = data.frame(x = c(t1,t2),y = c(val1,val2))
+p1 = ggplot(data = dat1, aes(x=x, y= y))+
+  geom_line()+
+  geom_gls()+
+  geom_lm(n = 10)+
+  ylab('Value')+
+  xlab('')+
+  ggtitle('Indicator')+
+  theme_bw()
+
+val3 =  (-11.364*t1)+23887+rnorm(length(t1),0,40)
+val4 =  (20*t2)-39280+rnorm(length(t2),0,10)
+dat2 = data.frame(x = c(t1,t2),y = c(val3,val4))
+
+p4 = ggplot(data = dat2, aes(x=x, y= y))+
+  geom_line()+
+  geom_gls()+
+  geom_lm(n = 10)+
+  ylab('Value')+
+  xlab('')+
+  ggtitle('Indicator')+
+  theme_bw()
+
+p1/p4
 ```
-
-```{r, fig.asp=.55}
-ecodata::plot_comdat(varName = "revenue", n=10)
-```
-
-]
-
-???
-
-Tests for significant trend, null hypothesis is mean with autocorrelation (no trend)
----
-# 2025 Changes: Trend assessment
-
-.pull-left[
-## Recent short term trends assessed
-
-Andy Beet's [`arfit` R package](https://noaa-edab.github.io/arfit/articles/background_work.html) integrated into `ecodata`
-
-Apply to most recent 10 years of each dataset
-
-Apply to full datasets <30 years
-
-<br>
-<br>
-
-## No more polynomial long term trends assessed
-
-Decision based on how strange some of them looked
-
-Has implications for risk assessment scoring
-] 
-
-.pull-right[
-```{r, fig.asp=.4}
-ecodata::plot_recdat(varName = "effortdiversity", n=10)
-```
-
-```{r, fig.asp=.55}
-ecodata::plot_comdat(varName = "revenue", n=10)
-```
-
 ]
 
 ???

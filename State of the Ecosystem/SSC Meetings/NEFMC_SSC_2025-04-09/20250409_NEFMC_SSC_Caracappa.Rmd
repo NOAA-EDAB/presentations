@@ -1,7 +1,7 @@
 ---
 title: "State of the Ecosystem<br />New England 2025"
-subtitle: "NEFMC SSC Update<br /> 2 April 2025"
-author: "Joseph Caracappa, (editor),<br /> Andy Beet, Brandon Beltz,  Geret DePiper, Sarah Gaichas, Kimberly Hyde, Scott Large, Sean Lucey, Laurel Smith (data and section leads), <br />  and all SOE contributors"
+subtitle: "NEFMC SSC Update<br /> 9 April 2025"
+author: "Joseph Caracappa, (lead editor)"
 output:
   xaringan::moon_reader:
     css: ["default", "libs/EDAB_theme3_508_SOE_16by9.css", "libs/cols.css"]
@@ -130,10 +130,12 @@ Ecosystem and Socioeconomic Profiles (ESPs) `r Cite(myBib, c("shotwell_introduci
 ## Using ecosystem information at the stock level: Ecosystem Socioeconomic Profiles (ESPs)
 
 
-.pull-left-40[
+.pull-left[
 
 ![GOA pcod ESP conceptual model](https://media.fisheries.noaa.gov/styles/media_750_x500/s3/2022-03/Working_Conceptual_Model_EBS%20Pcod.png)
+]
 
+.pull-right[
 ![:img Bluefish ESP conceptual model](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/bluefishconceptualmodel.png)
 
 .footnote[
@@ -142,7 +144,7 @@ Images courtesy [ASFC](https://www.fisheries.noaa.gov/alaska/2021-alaska-fisheri
 
 ]
 
---
+---
 ## State of the Ecosystem: Maintain 2024 structure for 2025
 .pull-left[
 
@@ -326,10 +328,42 @@ Key to figures
 #code = readLines("https://raw.githubusercontent.com/NOAA-EDAB/ecodata/master/chunk-scripts/macrofauna_MAB.Rmd-species-dist.R")
 #species-dist, fig.cap = "Aggregate species distribution metrics for species in the Northeast Large Marine Ecosystem."
 
-a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(xlim = c(1969,2021))
-b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(xlim = c(1969,2021)) 
+# a <- ecodata::plot_species_dist(varName = "along") + ggplot2::coord_cartesian(xlim = c(1969,2021))
+# b <- ecodata::plot_species_dist(varName = "depth") + ggplot2::coord_cartesian(xlim = c(1969,2021)) 
+# 
+# a/b
 
-a/b
+set.seed(10)
+
+t1  = 1970:2014
+t2 = 2015:2024
+val1 =  (11.364*t1)-21387+rnorm(length(t1),0,40)
+val2 =  (-10*t2)+21640+rnorm(length(t2),0,10)
+
+dat1 = data.frame(x = c(t1,t2),y = c(val1,val2))
+p1 = ggplot(data = dat1, aes(x=x, y= y))+
+  geom_line()+
+  geom_gls()+
+  geom_lm(n = 10)+
+  ylab('Value')+
+  xlab('')+
+  ggtitle('Indicator')+
+  theme_bw()
+
+val3 =  (-11.364*t1)+23887+rnorm(length(t1),0,40)
+val4 =  (20*t2)-39280+rnorm(length(t2),0,10)
+dat2 = data.frame(x = c(t1,t2),y = c(val3,val4))
+
+p4 = ggplot(data = dat2, aes(x=x, y= y))+
+  geom_line()+
+  geom_gls()+
+  geom_lm(n = 10)+
+  ylab('Value')+
+  xlab('')+
+  ggtitle('Indicator')+
+  theme_bw()
+
+p1/p4
 
 ```  
 
@@ -467,8 +501,8 @@ Climate: risks to managing spatially, managing seasonally, and catch specificati
 
 Other ocean uses: offshore wind development
 *  Current revenue in proposed areas
-    - 1-46% by Mid-Atlantic port
-    - 2-16% by MAFMC managed species
+    - 0-32% by New England port
+    - 1-20% by NEFMC managed species
 *  Overlap with important right whale foraging habitats, increased vessel strike and noise risks
 ]
 .pull-right-40[]
@@ -1027,6 +1061,7 @@ flextable::flextable(coint) |>
 <font size="5">
 - Net Revenue standard proxy for profits
   + Only covers 50 - 75% of Mid-Atlantic trip revenue
+  + ~80% of GOM trip revenue
   
 - Profitability indices possible
   + Tenuous assumption that federally permitted trip costs good representation for non-federally permitted costs
@@ -1040,7 +1075,7 @@ flextable::flextable(coint) |>
 # SSC recommendation?
 
 <font size="5">
-Proposal 1. A combination of Gross Revenue from all trips in the Mid-Atlantic region and Net Revenue estimates for federally-permitted vessels.
+Proposal 1. A combination of Gross Revenue from all trips in New England regions and Net Revenue estimates for federally-permitted vessels.
 
 Proposal 2. Revenue, Cost, and Profitability Indices
 <font>
